@@ -1,0 +1,27 @@
+---
+export type Props = {
+	href?: string | URL | null | undefined;
+	itemprop?: string | null | undefined;
+	useLiningNumbers?: boolean | undefined;
+};
+
+const { href, itemprop, useLiningNumbers } = Astro.props;
+const property = itemprop ? { itemprop } : {};
+const cssClass = ["number", ...[useLiningNumbers ? ["lining"] : []]];
+---
+
+{
+	href ? (
+		<a
+			class={[...cssClass, "sb-number-link"].join(" ")}
+			href={href}
+			{...property}
+		>
+			<slot />
+		</a>
+	) : (
+		<span class={[...cssClass, "sb-number-span"].join(" ")} {...property}>
+			<slot />
+		</span>
+	)
+}

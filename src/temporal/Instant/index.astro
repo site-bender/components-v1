@@ -1,0 +1,18 @@
+---
+import { Temporal } from "@js-temporal/polyfill";
+
+export type Props = {
+	value: string | Temporal.Instant | Temporal.ZonedDateTime;
+};
+
+const { value } = Astro.props;
+
+const instant =
+	value instanceof Temporal.ZonedDateTime
+		? value.toInstant()
+		: typeof value === "string"
+		? Temporal.Instant.from(value)
+		: value;
+---
+
+<time class="sb-instant" datetime={instant.toJSON()}>{instant.toJSON()}</time>

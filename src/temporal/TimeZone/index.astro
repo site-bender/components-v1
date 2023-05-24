@@ -1,0 +1,18 @@
+---
+import { Temporal } from "@js-temporal/polyfill";
+
+export type Props = {
+	value: string | Temporal.TimeZone | Temporal.ZonedDateTime;
+};
+
+const { value } = Astro.props;
+
+const timeZoneName =
+	value instanceof Temporal.TimeZone
+		? value.toString()
+		: value instanceof Temporal.ZonedDateTime
+		? (value as Temporal.ZonedDateTime).timeZone.toString()
+		: value;
+---
+
+<span class="sb-time-zone-span">{timeZoneName}</span>

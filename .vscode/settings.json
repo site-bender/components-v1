@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "pnpm-lock.yaml": true,
+    ".vscode": true
+  }
+}

@@ -1,0 +1,49 @@
+---
+import { DEFAULT_TIME_OPTIONS, DEFAULT_LOCALE } from "../../constants";
+import { Temporal, Intl } from "@js-temporal/polyfill";
+import type { DateTimeFormatOptions } from "../../types";
+
+export type Props = {
+  hour?: number | string;
+  locale?: string | Array<string>;
+  microsecond?: number | string;
+  millisecond?: number | string;
+  minute?: number | string;
+  nanosecond?: number | string;
+  options?: DateTimeFormatOptions;
+  second?: number | string;
+  value?: string | Temporal.PlainTimeLike;
+};
+
+const {
+  hour = 0,
+  locale = DEFAULT_LOCALE,
+  microsecond = 0,
+  millisecond = 0,
+  minute = 0,
+  nanosecond = 0,
+  options = {},
+  second = 0,
+  value,
+} = Astro.props;
+
+const plainTime = value
+  ? (value as Temporal.PlainTime)
+  : new Temporal.PlainTime(
+      Number(hour),
+      Number(minute),
+      Number(second),
+      Number(millisecond),
+      Number(microsecond),
+      Number(nanosecond)
+    );
+
+const opts = Object.assign({}, DEFAULT_TIME_OPTIONS, {
+  calendar: "iso8601",
+  ...options,
+});
+---
+
+<time class="sb-plain-time" datetime={plainTime.toJSON()}
+  >{Intl.DateTimeFormat(locale, opts).format(plainTime)}</time
+>

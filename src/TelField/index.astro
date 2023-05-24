@@ -1,0 +1,68 @@
+---
+import FieldWrapper from "../wrappers/FieldWrapper/index.astro";
+import generateShortId from "../utilities/generateShortId";
+import mapDataset from "../utilities/mapDataset";
+import Tel from "../metadata/Tel/index.astro";
+import type { Dataset, Messages } from "../types";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"input"> & {
+	dataset?: Dataset;
+	help?: string;
+	isHyperlink?: boolean;
+	label: string;
+	messages?: Messages;
+	name: string;
+	readonly?: boolean;
+	value?: string;
+};
+
+const {
+	dataset,
+	help,
+	isHyperlink,
+	id = `_${generateShortId()}`,
+	label,
+	messages,
+	readonly,
+	value,
+	...attrs
+} = Astro.props;
+
+const labelId = `${id}-label`;
+const helpId = `${id}-help`;
+const data = mapDataset(dataset);
+---
+
+<FieldWrapper
+	fieldType="sb-tel"
+	{...help ? { help } : {}}
+	helpId={helpId}
+	id={id as string}
+	label={label}
+	labelId={labelId}
+	{...messages ? { messages } : {}}
+	name={attrs.name}
+	readonly={readonly}
+	{...attrs.required ? { required: true } : {}}
+>
+	<Fragment slot="element">
+		{
+			readonly ? (
+				<div class="readonly sb-tel-readonly">
+					<Tel {...(isHyperlink ? { isHyperlink } : {})}>{value}</Tel>
+				</div>
+			) : (
+				<input
+					aria-labelledBy={`${labelId} ${helpId}`}
+					class="sb-tel-input"
+					{...data}
+					id={id as string}
+					{...attrs}
+					type="tel"
+					{...(value ? { value } : {})}
+				/>
+			)
+		}
+	</Fragment>
+</FieldWrapper>

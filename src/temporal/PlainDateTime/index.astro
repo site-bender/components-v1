@@ -1,0 +1,73 @@
+---
+import {
+  DEFAULT_CALENDAR,
+  DEFAULT_DATE_TIME_OPTIONS,
+  DEFAULT_LOCALE,
+  DEFAULT_TIME_ZONE,
+} from "../../constants";
+import { Temporal, Intl } from "@js-temporal/polyfill";
+import type { Calendar, DateTimeFormatOptions } from "../../types";
+
+export type Props = {
+  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
+  day?: number | string;
+  era?: string | undefined;
+  eraYear?: string | undefined;
+  hour?: number | string;
+  locale?: string | Array<string>;
+  microsecond?: number | string;
+  millisecond?: number | string;
+  minute?: number | string;
+  month?: number | string;
+  monthCode?: string;
+  nanosecond?: number | string;
+  options?: DateTimeFormatOptions;
+  second?: number | string;
+  value?: string | Temporal.PlainDateTimeLike;
+  year?: number | string;
+};
+
+const {
+  calendar = DEFAULT_CALENDAR,
+  day,
+  era,
+  eraYear,
+  hour = 0,
+  locale = DEFAULT_LOCALE,
+  microsecond = 0,
+  millisecond = 0,
+  minute = 0,
+  month,
+  monthCode,
+  nanosecond = 0,
+  options = {},
+  second = 0,
+  value,
+  year,
+} = Astro.props;
+
+const plainDateTime = value
+  ? (value as Temporal.PlainDateTime)
+  : Temporal.PlainDateTime.from({
+      calendar,
+      day: Number(day),
+      hour: Number(hour),
+      microsecond: Number(microsecond),
+      millisecond: Number(millisecond),
+      minute: Number(minute),
+      ...(monthCode ? { monthCode } : { month: Number(month) }),
+      nanosecond: Number(nanosecond),
+      second: Number(second),
+      ...(era && eraYear ? { era, eraYear } : { year: Number(year) }),
+    } as Temporal.PlainDateTimeLike);
+
+const opts = Object.assign({}, DEFAULT_DATE_TIME_OPTIONS, {
+  calendar: plainDateTime.calendarId.toString(),
+  timeZone: DEFAULT_TIME_ZONE,
+  ...options,
+});
+---
+
+<time class="sb-plain-date-time" datetime={plainDateTime.toJSON()}
+  >{Intl.DateTimeFormat(locale, opts).format(plainDateTime)}</time
+>

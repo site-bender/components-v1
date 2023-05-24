@@ -1,0 +1,58 @@
+---
+import generateShortId from "../utilities/generateShortId";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"form">;
+
+const {
+  class: className = "",
+  id = `_${generateShortId()}`,
+  ...attrs
+} = Astro.props;
+
+const cssClass = ["sb-form", "show", ...[className ? [className] : []]].join(
+  " "
+);
+---
+
+<form class={cssClass} id={id as string} {...attrs}>
+  <slot />
+</form>
+
+<script define:vars={{ id }}>
+  window.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(`#${id}`);
+    const types = ["email", "number", "text", "textarea", "tel", "url"];
+    const fields = [...form.elements].filter((el) => types.includes(el.type));
+
+    form?.classList?.remove("show");
+
+    function setDirty(event) {
+      const dirty = fields.filter(
+        (field) => field.defaultValue !== field.value || field.selected
+      );
+
+      form.isDirty = Boolean(dirty.length);
+
+      form.isDirty
+        ? form.classList?.add("show")
+        : form.classList?.remove("show");
+    }
+
+    fields.forEach((field) =>
+      globalThis._subscribe?.("input", field.id, setDirty)
+    );
+
+    // globalThis._subscribe?.("submit", form.id, function (event) {
+    // 	event.preventDefault();
+
+    // 	const formData = new FormData(form);
+
+    // 	[...formData?.entries()].forEach(([key, value]) =>
+    // 		console.log(key, value)
+    // 	);
+    // });
+
+    console.log(`« Form validation enabled for form \x1B[35;1m${id}\x1B[m. »`);
+  });
+</script>

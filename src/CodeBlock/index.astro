@@ -1,0 +1,59 @@
+---
+import getLineNumberingWidth from "../utilities/getLineNumberingWidth";
+
+export type Frontmatter = {
+  anchor?: string;
+  aria?: string;
+  blurb?: string;
+  client?: string;
+  content?: Array<string>;
+  description?: string;
+  label?: string;
+  layout?: string;
+  page?: string;
+  publishedOn?: string;
+  rel?: string;
+  tags?: Array<string>;
+  thumbnail?: string;
+  title?: string;
+};
+
+export type MDXInstance<T> = {
+  compiledContent: () => string;
+  file: string;
+  frontmatter: T;
+  publishedOn?: string;
+  rawContent: () => string;
+  title?: string;
+  url: string | undefined;
+};
+
+export type Props<T> = {
+  count?: number;
+  snippet: MDXInstance<T>;
+};
+
+const { count, snippet } = Astro.props;
+
+const cap = snippet.frontmatter.caption;
+const hasCap = Boolean(cap || Astro.slots.caption);
+const digits = count || getLineNumberingWidth(snippet.rawContent());
+---
+
+<figure
+  class="sb-code-block-figure"
+  style={`--line-number-width: ${digits}rem;`}
+>
+  {
+    hasCap ? (
+      <figcaption>
+        {Astro.slots.caption ? (
+          <slot name="caption" />
+        ) : (
+          <Fragment set:html={cap} />
+        )}
+      </figcaption>
+    ) : null
+  }
+  <Fragment set:html={snippet.compiledContent()} />
+</figure>

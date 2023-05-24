@@ -1,0 +1,101 @@
+---
+import { Temporal } from "@js-temporal/polyfill";
+import FieldWrapper from "../../wrappers/FieldWrapper/index.astro";
+import generateShortId from "../../utilities/generateShortId";
+import mapDataset from "../../utilities/mapDataset";
+import PlainTime from "../PlainTime/index.astro";
+import type { Calendar, DateTimeFormatOptions } from "../../types";
+import type { Dataset, Messages } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+import type { TIME_ZONE } from "../../constants";
+
+export type Props = Omit<HTMLAttributes<"input">, "slot" | "value"> & {
+  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
+  dataset?: Dataset;
+  help?: string;
+  hour?: number;
+  label: string;
+  locale?: string | Array<string>;
+  messages?: Messages;
+  microsecond?: number;
+  millisecond?: number;
+  minute?: number;
+  name: string;
+  nanosecond?: number;
+  options?: DateTimeFormatOptions;
+  readonly?: boolean;
+  second?: number;
+  timeZone?: keyof typeof TIME_ZONE;
+  value?: string | Temporal.PlainTime;
+};
+
+const {
+  calendar = "iso8601",
+  dataset,
+  help,
+  hour,
+  id = `_${generateShortId()}`,
+  label,
+  locale,
+  messages,
+  microsecond,
+  millisecond,
+  minute,
+  nanosecond,
+  options,
+  readonly,
+  second,
+  size,
+  timeZone,
+  value: rawValue,
+  ...attrs
+} = Astro.props;
+
+const labelId = `${id}-label`;
+const helpId = `${id}-help`;
+const data = mapDataset(dataset);
+
+const value = rawValue
+  ? Temporal.PlainTime.from(rawValue)
+  : Temporal.PlainTime.from({
+      ...(hour == null ? {} : { hour: Number(hour) }),
+      ...(microsecond == null ? {} : { microsecond: Number(microsecond) }),
+      ...(millisecond == null ? {} : { millisecond: Number(millisecond) }),
+      ...(minute == null ? {} : { minute: Number(minute) }),
+      ...(second == null ? {} : { second: Number(second) }),
+    });
+---
+
+<FieldWrapper
+  fieldType="sb-plain-time"
+  {...help ? { help } : {}}
+  helpId={helpId}
+  id={id as string}
+  label={label}
+  labelId={labelId}
+  {...messages ? { messages } : {}}
+  name={attrs.name}
+  readonly={readonly}
+  {...attrs.required ? { required: true } : {}}
+>
+  <Fragment slot="element">
+    {
+      readonly ? (
+        <div class="readonly sb-plain-time-readonly">
+          <PlainTime {...attrs} value={value} />
+        </div>
+      ) : (
+        <input
+          aria-labelledBy={`${labelId} ${helpId}`}
+          class="sb-plain-time-input"
+          {...data}
+          id={id as string}
+          pattern="\d{4}-\d{2}-\d{2}"
+          {...attrs}
+          type="time"
+          {...(value ? { value: value.toJSON() } : {})}
+        />
+      )
+    }
+  </Fragment>
+</FieldWrapper>

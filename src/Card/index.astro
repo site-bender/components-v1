@@ -1,0 +1,57 @@
+---
+import Image from "../Image/index.astro";
+import type { ImageSource } from "../types";
+
+export type Props = {
+  alt: string;
+  filename: string;
+  height?: number;
+  href?: string;
+  isInvertible?: boolean;
+  sources: Array<ImageSource>;
+  title: string;
+  width: number;
+};
+
+const { alt, filename, height, href, isInvertible, sources, title, width } =
+  Astro.props;
+
+const description = await Astro.slots.render("default");
+---
+
+<section class={`card${isInvertible ? " allow-invert" : ""}`}>
+  {
+    href ? (
+      <a class="group" href={href}>
+        <header>
+          <h3>{title}</h3>
+        </header>
+        <Image
+          alt={alt}
+          filename={filename}
+          {...(height != null ? { height } : {})}
+          loading="eager"
+          sources={sources}
+          width={width}
+        />
+      </a>
+    ) : (
+      <div class="group">
+        <header>
+          <h3>{title}</h3>
+        </header>
+        <Image
+          alt={alt}
+          filename={filename}
+          {...(height != null ? { height } : {})}
+          loading="eager"
+          sources={sources}
+          width={width}
+        />
+      </div>
+    )
+  }
+  <div class="card-description">
+    <Fragment set:html={description} />
+  </div>
+</section>

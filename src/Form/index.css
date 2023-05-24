@@ -1,0 +1,424 @@
+form.sb-form fieldset {
+	align-items: flex-start;
+	background-color: var(--fieldset-background-color);
+	border-color: var(--fieldset-border-color);
+	border-radius: 5px;
+	border-style: dotted;
+	border-width: 1px;
+	color: var(--fieldset-color);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-bottom: var(--space-s);
+	padding: 1rem;
+}
+
+form.sb-form button:focus,
+form.sb-form input:focus,
+form.sb-form select:focus,
+form.sb-form textarea:focus {
+	outline-color: var(--form-outline-color);
+}
+
+form.sb-form .sb-form-field {
+	margin: var(--form-field-margin);
+	max-width: calc(100vw - 2rem);
+}
+
+form.sb-form input:not([type="checkbox"], [type="radio"]),
+form.sb-form label,
+form.sb-form output,
+form.sb-form select,
+form.sb-form textarea {
+	max-width: 80vw;
+}
+
+form.sb-form button,
+form.sb-form input:not([type="checkbox"], [type="radio"]),
+form.sb-form select {
+	min-height: 3.125rem;
+}
+
+form.sb-form .sb-boolean-wrapper label {
+	display: grid;
+	gap: 1em;
+	grid-template-columns: 1em auto;
+	margin-top: 1rem;
+	width: min(86vw, 100%);
+}
+
+form.sb-form .sb-boolean-wrapper label > * {
+	margin: 0;
+}
+
+form.sb-form .sb-boolean-wrapper input[type="checkbox"] {
+	appearance: none;
+	border-radius: 0.15em;
+	border: var(--boolean-field-border);
+	color: var(--boolean-field-color);
+	display: grid;
+	font: inherit;
+	height: 1.15em;
+	margin: 0.15em 0 0;
+	place-content: center;
+	transform: translateY(-0.075em);
+	vertical-align: middle;
+	width: 1.15em;
+	width: auto;
+}
+
+form.sb-form .sb-boolean-wrapper input[type="checkbox"]:checked {
+	background-color: var(--boolean-field-background-color-checked);
+}
+
+form.sb-form .sb-boolean-wrapper input[type="checkbox"]::before {
+	background-color: var(--boolean-field-background-color-before);
+	box-shadow: var(--boolean-field-box-shadow-before);
+	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+	content: "";
+	height: 0.65em;
+	transform-origin: bottom left;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
+	width: 0.65em;
+}
+
+form.sb-form .sb-boolean-wrapper input[type="checkbox"]:checked::before {
+	background-color: var(--boolean-field-background-color-checked-before);
+	transform: scale(1);
+}
+
+form.sb-form .sb-boolean-wrapper input[type="checkbox"]:focus {
+	outline-offset: max(2px, 0.15em);
+	outline: var(--boolean-field-outline);
+}
+
+form.sb-form .sb-boolean-wrapper input:disabled {
+	color: var(--contact-form-input-color-disabled);
+	cursor: not-allowed;
+}
+
+form.sb-form fieldset legend {
+	background-color: var(--fieldset-legend-background-color);
+	border-radius: 5px;
+	border: 1px solid var(--fieldset-legend-border-color);
+	color: var(--fieldset-legend-color);
+	font-family: var(--fieldset-legend-font-family);
+	font-size: var(--fieldset-legend-font-size);
+	font-weight: 400;
+	padding: 0.25rem 0.5rem;
+}
+
+form.sb-form fieldset.grouped legend,
+form.sb-form fieldset fieldset legend {
+	font-family: var(--fieldset-legend-font-family);
+	font-size: var(--fieldset-legend-font-size-nested);
+}
+
+form.sb-form .sb-form-field {
+	position: relative;
+}
+
+form.sb-form .sb-fieldset-wrapper.required legend,
+form.sb-form .sb-form-field.required label {
+	color: var(--form-label-color-required);
+	font-weight: var(--form-label-font-weight);
+	padding-bottom: 0.25rem;
+}
+
+form.sb-form .sb-fieldset-wrapper.required.readonly legend,
+form.sb-form .sb-form-field.required.readonly label {
+	color: var(--form-label-color-optional);
+	padding-bottom: 0.25rem;
+}
+
+form.sb-form .sb-fieldset-wrapper label,
+form.sb-form .sb-form-field label {
+	color: var(--form-label-color-optional);
+}
+
+form.sb-form .sb-form-field label {
+	display: block;
+	font-family: var(--form-label-font-family);
+	padding-left: 0.2rem;
+}
+
+form.sb-form .sb-fieldset-wrapper label {
+	align-items: center;
+	display: flex;
+	font-family: var(--form-fieldset-wrapper-label-font-family);
+	gap: 0.4rem;
+}
+
+form.sb-form .sb-fieldset-wrapper input:not([type="checkbox"], [type="radio"]),
+form.sb-form .sb-fieldset-wrapper select,
+form.sb-form .sb-fieldset-wrapper textarea,
+form.sb-form .sb-form-field input:not([type="checkbox"], [type="radio"]),
+form.sb-form .sb-form-field select,
+form.sb-form .sb-form-field textarea {
+	font-family: var(--form-field-font-family);
+	font-size: var(--form-field-font-size);
+	font-variant: proportional-nums oldstyle-nums;
+	font-weight: 500;
+	padding: 0.5rem 0.25rem;
+}
+
+form.sb-form .sb-fieldset-wrapper input,
+form.sb-form .sb-fieldset-wrapper select,
+form.sb-form .sb-fieldset-wrapper textarea,
+form.sb-form .sb-form-field input,
+form.sb-form .sb-form-field select,
+form.sb-form .sb-form-field textarea {
+	background-color: var(--form-field-background-color);
+	border-radius: 5px;
+	border: 1px dotted var(--form-field-border-color);
+	color: var(--form-field-color);
+	margin: 0;
+	position: relative;
+}
+
+form.sb-form .sb-fieldset-wrapper input[type="checkbox"],
+form.sb-form .sb-fieldset-wrapper input[type="radio"],
+form.sb-form .sb-form-field input[type="checkbox"],
+form.sb-form .sb-form-field input[type="radio"] {
+	height: 1.2rem;
+	width: 1.2rem;
+	margin-right: 0.25rem;
+}
+
+form.sb-form
+	.sb-fieldset-wrapper
+	label:has(input[type="checkbox"], input[type="radio"]),
+form.sb-form
+	.sb-form-field
+	label:has(input[type="checkbox"], input[type="radio"]) {
+	align-items: center;
+	display: flex;
+	gap: 0.2rem;
+	justify-content: flex-start;
+}
+
+form.sb-form .sb-fieldset-wrapper input:required,
+form.sb-form .sb-fieldset-wrapper select:required,
+form.sb-form .sb-fieldset-wrapper textarea:required,
+form.sb-form .sb-form-field input:required,
+form.sb-form .sb-form-field select:required,
+form.sb-form .sb-form-field textarea:required {
+	border: 4px double var(--form-field-border-color-required);
+}
+
+form.sb-form .sb-fieldset-wrapper input:focus,
+form.sb-form .sb-fieldset-wrapper select:focus,
+form.sb-form .sb-fieldset-wrapper textarea:focus,
+form.sb-form .sb-form-field input:focus,
+form.sb-form .sb-form-field select:focus,
+form.sb-form .sb-form-field textarea:focus {
+	background-color: var(--form-field-background-color-focus);
+	border-color: var(--form-field-border-color-focus);
+	box-shadow: none;
+	color: var(--form-field-color-focus);
+}
+
+form.sb-form.show .sb-fieldset-wrapper input:invalid,
+form.sb-form.show .sb-fieldset-wrapper select:invalid,
+form.sb-form.show .sb-fieldset-wrapper textarea:invalid,
+form.sb-form.show .sb-fieldset-wrapper input:required:invalid,
+form.sb-form.show .sb-fieldset-wrapper select:required:invalid,
+form.sb-form.show .sb-fieldset-wrapper textarea:required:invalid,
+form.sb-form.show .sb-form-field input:invalid,
+form.sb-form.show .sb-form-field select:invalid,
+form.sb-form.show .sb-form-field textarea:invalid,
+form.sb-form.show .sb-form-field input:required:invalid,
+form.sb-form.show .sb-form-field select:required:invalid,
+form.sb-form.show .sb-form-field textarea:required:invalid {
+	background: repeating-linear-gradient(
+		45deg,
+		var(--background-stripe-invalid-light),
+		var(--background-stripe-invalid-light) 3px,
+		var(--background-stripe-invalid-dark) 3px,
+		var(--background-stripe-invalid-dark) 6px
+	);
+	border: var(--form-field-border-invalid);
+}
+
+form.sb-form .sb-fieldset-wrapper input:valid,
+form.sb-form .sb-fieldset-wrapper select:valid,
+form.sb-form .sb-fieldset-wrapper textarea:valid,
+form.sb-form .sb-fieldset-wrapper input:required:valid,
+form.sb-form .sb-fieldset-wrapper select:required:valid,
+form.sb-form .sb-fieldset-wrapper textarea:required:valid,
+form.sb-form .sb-form-field input:valid,
+form.sb-form .sb-form-field select:valid,
+form.sb-form .sb-form-field textarea:valid,
+form.sb-form .sb-form-field input:required:valid,
+form.sb-form .sb-form-field select:required:valid,
+form.sb-form .sb-form-field textarea:required:valid {
+	border-color: var(--form-field-border-color-valid);
+}
+
+form.sb-form.show .sb-fieldset-wrapper input:valid + span::after,
+form.sb-form.show .sb-fieldset-wrapper select:valid + span::after,
+form.sb-form.show .sb-fieldset-wrapper textarea:valid + span::after,
+form.sb-form.show .sb-form-field input:valid + span::after,
+form.sb-form.show .sb-form-field select:valid + span::after,
+form.sb-form.show .sb-form-field textarea:valid + span::after {
+	color: var(--form-field-valid-symbol-color);
+	content: var(--form-field-valid-symbol);
+	display: inline-block;
+	font-weight: 700;
+}
+
+form.sb-form.show .sb-fieldset-wrapper input:invalid + span::after,
+form.sb-form.show .sb-fieldset-wrapper select:invalid + span::after,
+form.sb-form.show .sb-fieldset-wrapper textarea:invalid + span::after,
+form.sb-form.show .sb-fieldset-wrapper input:required:invalid + span::after,
+form.sb-form.show .sb-fieldset-wrapper select:required:invalid + span::after,
+form.sb-form.show .sb-fieldset-wrapper textarea:required:invalid + span::after,
+form.sb-form.show .sb-form-field input:invalid + span::after,
+form.sb-form.show .sb-form-field select:invalid + span::after,
+form.sb-form.show .sb-form-field textarea:invalid + span::after,
+form.sb-form.show .sb-form-field input:required:invalid + span::after,
+form.sb-form.show .sb-form-field select:required:invalid + span::after,
+form.sb-form.show .sb-form-field textarea:required:invalid + span::after {
+	color: var(--form-field-invalid-symbol-color);
+	content: var(--form-field-invalid-symbol);
+	display: inline-block;
+	font-weight: 700;
+}
+
+form.sb-form .sb-fieldset-wrapper input:required:focus,
+form.sb-form .sb-fieldset-wrapper select:required:focus,
+form.sb-form .sb-fieldset-wrapper textarea:required:focus,
+form.sb-form .sb-form-field input:required:focus,
+form.sb-form .sb-form-field select:required:focus,
+form.sb-form .sb-form-field textarea:required:focus {
+	background: var(--form-field-background-color);
+	border-color: var(--form-field-border-color-required);
+	color: var(--form-field-color-required);
+}
+
+form.sb-form .sb-form-field textarea {
+	margin-bottom: -0.5rem;
+}
+
+form.sb-form .sb-fieldset-wrapper *[readonly],
+form.sb-form .sb-form-field *[readonly] {
+	background-color: transparent;
+	border-color: transparent;
+	color: var(--form-field-color-readonly);
+	padding-left: 0;
+}
+
+form.sb-form .sb-duration-field label {
+	margin-bottom: var(--space-xs);
+}
+
+form.sb-form
+	.sb-fieldset-wrapper
+	input[type="number"]
+	form
+	.sb-form-field
+	input[type="number"] {
+	text-align: right;
+}
+
+form.sb-form .sb-fieldset-wrapper output,
+form.sb-form .sb-form-field output {
+	display: block;
+	font-family: var(--form-help-font-family);
+	font-size: 1rem;
+	margin: 0.2rem 0 0.5rem;
+	min-height: var(--form-help-min-height);
+	padding-left: 0.2rem;
+}
+
+form.sb-form .sb-fieldset-wrapper output.invalid,
+form.sb-form .sb-form-field output.invalid {
+	color: hsl(321, 60%, 32%);
+}
+
+form.sb-form .sb-fieldset-wrapper .readonly,
+form.sb-form .sb-form-field .readonly {
+	margin-top: 0.3rem;
+	padding-left: 0.2rem;
+}
+
+.multiple-input {
+	align-items: stretch;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	justify-content: flex-start;
+	margin-top: 0;
+}
+
+.sb-field-edit-toggle {
+	position: absolute;
+	right: -4.5rem;
+	top: 1.25rem;
+}
+
+form.sb-form .sb-button-bar button {
+	align-items: center;
+	background-color: var(--form-button-background-color-submit);
+	border-radius: 5px;
+	border: 2px solid var(--form-button-border-color-submit);
+	color: var(--form-button-color-submit);
+	display: flex;
+	font-family: var(--form-button-font-family);
+	font-kerning: normal;
+	font-size: var(--form-button-font-size);
+	font-variant-caps: titling-caps;
+	font-weight: 700;
+	justify-content: center;
+	letter-spacing: 1px;
+	padding: 0 0.75rem;
+	text-transform: uppercase;
+}
+
+form.sb-form .sb-button-bar button:disabled,
+form.sb-form .sb-button-bar button:disabled:hover {
+	background-color: var(--form-button-background-color-disabled);
+	border: 1px solid var(--form-button-border-color-disabled);
+	color: var(--form-button-color-disabled);
+	cursor: not-allowed;
+}
+
+form.sb-form .sb-button-bar button:focus,
+form.sb-form .sb-button-bar button:hover {
+	background-color: var(--form-button-background-color-submit-hover);
+	border: 1px solid var(--form-button-border-color-submit-hover);
+	color: var(--form-button-color-submit-hover);
+}
+
+form fieldset.sb-fieldset-wrapper {
+	border: none;
+	max-width: 80vw;
+	min-width: 99.5%;
+	padding: 0;
+}
+
+form fieldset.sb-fieldset-wrapper legend {
+	background-color: transparent;
+	border: none;
+	color: var(--duration-field-legend-color);
+	display: block;
+	font-family: var(--duration-field-font-family);
+	padding: 0;
+}
+
+form fieldset.sb-fieldset-wrapper div.sb-duration-field {
+	column-gap: 1.25rem;
+	column-width: 12.5rem;
+	width: 100%;
+}
+
+form fieldset.sb-fieldset-wrapper div.sb-duration-field > * {
+	width: fit-content;
+}
+
+form fieldset.sb-fieldset-wrapper input {
+	margin-right: 0.3rem;
+	max-width: 6ch;
+	text-align: right;
+}

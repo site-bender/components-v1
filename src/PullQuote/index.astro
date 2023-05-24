@@ -1,0 +1,20 @@
+---
+export type Props = {
+	author?: string;
+	cite?: string;
+};
+
+const { author, cite } = Astro.props;
+---
+
+<blockquote class="pull-quote" {...(cite ? { cite } : {})}>
+	<p><slot /></p>
+	{
+		author ? (
+			<span class="quotation-author">
+				<span aria-hidden="true">~ </span>
+				{author}
+			</span>
+		) : null
+	}
+</blockquote>

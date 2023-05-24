@@ -1,0 +1,146 @@
+---
+import { Temporal } from "@js-temporal/polyfill";
+import FieldWrapper from "../../wrappers/FieldWrapper/index.astro";
+import generateShortId from "../../utilities/generateShortId";
+import mapDataset from "../../utilities/mapDataset";
+import PlainMonthDay from "../PlainMonthDay/index.astro";
+import type { Calendar, DateTimeFormatOptions } from "../../types";
+import type { Dataset, Messages } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = Omit<HTMLAttributes<"input">, "value" | "slot"> & {
+  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
+  dataset?: Dataset;
+  day?: number | string;
+  era?: string | undefined;
+  eraYear?: number | undefined;
+  help?: string;
+  label: string;
+  locale?: string | Array<string>;
+  messages?: Messages;
+  month?: number | string;
+  monthCode?: string;
+  name: string;
+  options?: DateTimeFormatOptions;
+  readonly?: boolean;
+  timeZone?: Temporal.TimeZone;
+  value?: string | Temporal.PlainMonthDay | Temporal.PlainMonthDayLike;
+  year?: number | string;
+};
+
+const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+const {
+  calendar,
+  dataset,
+  day,
+  era,
+  eraYear,
+  help,
+  id = `_${generateShortId()}`,
+  label,
+  locale,
+  messages,
+  month,
+  monthCode,
+  options,
+  readonly,
+  size,
+  timeZone = tz,
+  value: rawValue,
+  year,
+  ...attrs
+} = Astro.props;
+
+const labelId = `${id}-label`;
+const helpId = `${id}-help`;
+const data = mapDataset(dataset);
+
+const value = rawValue
+  ? Temporal.PlainMonthDay.from(rawValue)
+  : Temporal.PlainMonthDay.from({
+      ...(calendar ? { calendar: Temporal.Calendar.from(calendar) } : {}),
+      ...(day == null ? {} : { day: Number(day) }),
+      ...(era && eraYear
+        ? { era, eraYear }
+        : year == null
+        ? {}
+        : { year: Number(year) }),
+      ...(monthCode
+        ? { monthCode }
+        : month == null
+        ? {}
+        : { month: Number(month) }),
+    });
+
+const MONTH = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+---
+
+<FieldWrapper
+  fieldType="sb-plain-month-day"
+  {...help ? { help } : {}}
+  helpId={helpId}
+  id={id as string}
+  label={label}
+  labelId={labelId}
+  {...messages ? { messages } : {}}
+  name={attrs.name}
+  readonly={readonly}
+  {...attrs.required ? { required: true } : {}}
+>
+  <Fragment slot="element">
+    {
+      readonly ? (
+        <div class="readonly sb-plain-month-day-readonly">
+          <PlainMonthDay {...attrs} value={value} />
+        </div>
+      ) : (
+        <div class="multiple-input" {...data}>
+          <select
+            aria-labelledBy={`${labelId} ${helpId}`}
+            class="sb-plain-month-day-month-select"
+            id={`${id}-month`}
+            {...attrs}
+          >
+            {[...Array(12).keys()].map((key) => (
+              <option
+                selected={key + 1 === value.getISOFields().isoMonth}
+                value={key + 1}
+              >
+                {MONTH.at(key)}
+              </option>
+            ))}
+          </select>
+          <select
+            aria-labelledBy={`${labelId} ${helpId}`}
+            class="sb-plain-month-day-day-select"
+            id={`${id}-day`}
+            {...attrs}
+          >
+            {[...Array(32).keys()].slice(1).map((key) => (
+              <option
+                selected={key === value.getISOFields().isoDay}
+                value={key}
+              >
+                {key}
+              </option>
+            ))}
+          </select>
+        </div>
+      )
+    }
+  </Fragment>
+</FieldWrapper>

@@ -1,0 +1,88 @@
+---
+import {
+  DEFAULT_CALENDAR,
+  DEFAULT_LOCALE,
+  DEFAULT_TIME_ZONE,
+  DEFAULT_ZONED_DATE_TIME_OPTIONS,
+  TIME_ZONE,
+} from "../../constants";
+import { Temporal, Intl } from "@js-temporal/polyfill";
+import type { Calendar, DateTimeFormatOptions } from "../../types";
+
+export type Props = {
+  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
+  day?: number | string;
+  era?: string | undefined;
+  eraYear?: number | undefined;
+  hour?: number | string;
+  locale?: string | Array<string>;
+  microsecond?: number | string;
+  millisecond?: number | string;
+  minute?: number | string;
+  month?: number | string;
+  monthCode?: string;
+  nanosecond?: number | string;
+  offset?: string;
+  options?: DateTimeFormatOptions;
+  second?: number | string;
+  timeZone?: keyof typeof TIME_ZONE | Temporal.TimeZoneLike;
+  value?: string | Temporal.ZonedDateTimeLike;
+  year?: number | string;
+};
+
+const {
+  calendar = DEFAULT_CALENDAR,
+  day,
+  era,
+  eraYear,
+  hour = 0,
+  locale = DEFAULT_LOCALE,
+  microsecond = 0,
+  millisecond = 0,
+  minute = 0,
+  month,
+  monthCode,
+  nanosecond = 0,
+  offset,
+  options = {},
+  second = 0,
+  timeZone = DEFAULT_TIME_ZONE,
+  value: rawValue,
+  year,
+} = Astro.props;
+
+const value = rawValue
+  ? Temporal.ZonedDateTime.from(rawValue)
+  : Temporal.ZonedDateTime.from({
+      calendar: Temporal.Calendar.from(calendar),
+      ...(day == null ? {} : { day: Number(day) }),
+      era,
+      eraYear: eraYear ? Number(eraYear) : undefined,
+      ...(hour == null ? {} : { hour: Number(hour) }),
+      ...(microsecond == null ? {} : { microsecond: Number(microsecond) }),
+      ...(millisecond == null ? {} : { millisecond: Number(millisecond) }),
+      ...(minute == null ? {} : { minute: Number(minute) }),
+      ...(monthCode
+        ? { monthCode }
+        : month == null
+        ? {}
+        : { month: Number(month) }),
+      ...(nanosecond == null ? {} : { nanosecond: Number(nanosecond) }),
+      ...(second == null ? {} : { second: Number(second) }),
+      ...(timeZone
+        ? { timeZone: Temporal.TimeZone.from(timeZone) }
+        : offset
+        ? { offset }
+        : {}),
+      ...(year == null ? {} : { year: Number(year) }),
+    });
+
+const opts = Object.assign({}, DEFAULT_ZONED_DATE_TIME_OPTIONS, {
+  calendar: value.calendarId.toString(),
+  ...options,
+});
+---
+
+<time class="sb-zoned-date-time" datetime={value.toJSON()}
+  >{Intl.DateTimeFormat(locale, opts).format(value)}</time
+>

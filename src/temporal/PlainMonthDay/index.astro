@@ -1,0 +1,53 @@
+---
+import {
+  DEFAULT_CALENDAR,
+  DEFAULT_MONTH_DAY_OPTIONS,
+  DEFAULT_LOCALE,
+} from "../../constants";
+import { Temporal, Intl } from "@js-temporal/polyfill";
+import type { Calendar, DateTimeFormatOptions } from "../../types";
+
+export type Props = {
+  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
+  day?: number | string;
+  locale?: string | Array<string>;
+  month?: number | string;
+  monthCode?: string;
+  options?: DateTimeFormatOptions;
+  value: string | Temporal.PlainMonthDayLike | Temporal.PlainDateLike;
+  year?: string | number;
+};
+
+const {
+  calendar = DEFAULT_CALENDAR,
+  day,
+  locale = DEFAULT_LOCALE,
+  month,
+  monthCode,
+  options = {},
+  value,
+  year,
+} = Astro.props;
+
+const plainMonthDay = value
+  ? (value as Temporal.PlainMonthDay)
+  : Temporal.PlainMonthDay.from(
+      {
+        ...(calendar ? { calendar } : {}),
+        day: Number(day),
+        ...(monthCode
+          ? { monthCode }
+          : { month: Number(month), year: Number(year) }),
+      },
+      { overflow: "reject" }
+    );
+
+const opts = Object.assign({}, DEFAULT_MONTH_DAY_OPTIONS, {
+  calendar: plainMonthDay.calendarId.toString(),
+  ...options,
+});
+---
+
+<time class="sb-plain-month-day" datetime={plainMonthDay.toJSON()}
+  >{Intl.DateTimeFormat(locale, opts).format(plainMonthDay)}</time
+>

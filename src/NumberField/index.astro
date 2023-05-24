@@ -1,0 +1,91 @@
+---
+import FieldWrapper from "../wrappers/FieldWrapper/index.astro";
+import generateShortId from "../utilities/generateShortId";
+import mapDataset from "../utilities/mapDataset";
+import Number from "../metadata/Number/index.astro";
+import type { Dataset, Messages } from "../types";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"input"> &
+  HTMLAttributes<"a"> & {
+    dataset?: Dataset;
+    help?: string;
+    isInteger?: boolean;
+    label: string;
+    messages?: Messages;
+    name: string;
+    readonly?: boolean | null | undefined;
+    useLiningNumbers?: boolean | undefined;
+    value?: string | number;
+  };
+
+const {
+  dataset,
+  help,
+  href,
+  id = `_${generateShortId()}`,
+  isInteger,
+  itemid,
+  itemprop,
+  itemref,
+  itemtype,
+  label,
+  messages,
+  readonly,
+  step: stepDefault,
+  useLiningNumbers,
+  value,
+  ...attrs
+} = Astro.props;
+
+const labelId = `${id}-label`;
+const helpId = `${id}-help`;
+const data = mapDataset(dataset);
+const step = stepDefault
+  ? { step: stepDefault }
+  : isInteger
+  ? { step: "1" }
+  : {};
+const properties =
+  itemtype && itemprop ? { itemid, itemscope: true, itemtype } : {};
+---
+
+<FieldWrapper
+  fieldType="sb-number"
+  {...help ? { help } : {}}
+  helpId={helpId}
+  id={id as string}
+  label={label}
+  labelId={labelId}
+  {...messages ? { messages } : {}}
+  name={attrs.name}
+  readonly={readonly}
+  {...attrs.required ? { required: true } : {}}
+>
+  <Fragment slot="element">
+    {
+      readonly ? (
+        <div class="readonly sb-number-readonly" {...properties}>
+          <Number
+            href={href}
+            useLiningNumbers={useLiningNumbers}
+            itemprop={itemprop}
+          >
+            {value}
+          </Number>
+        </div>
+      ) : (
+        <input
+          aria-labelledBy={`${labelId} ${helpId}`}
+          class="sb-number-input"
+          {...data}
+          id={id as string}
+          {...attrs}
+          {...step}
+          type="number"
+          {...(value ? { value } : {})}
+        />
+      )
+    }
+  </Fragment>
+</FieldWrapper>

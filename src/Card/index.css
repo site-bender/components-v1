@@ -1,0 +1,38 @@
+section.card {
+	border: 1px solid var(--card-border-color);
+	break-inside: avoid;
+	display: inline-block;
+	margin-bottom: 1rem;
+	max-width: 42ch;
+	padding: 1rem;
+	vertical-align: top;
+}
+
+section.card > :not(.group) {
+	padding: 0 0 1rem;
+	margin: 0;
+}
+
+section.card > .group > header {
+	padding: 0;
+}
+
+section.card img {
+	filter: grayscale(100%);
+	height: auto;
+	margin: auto;
+	max-width: 100%;
+	width: 100%;
+}
+
+section.card a:focus img,
+section.card a:hover img,
+section.card img:focus,
+section.card img:hover {
+	filter: grayscale(0%);
+}
+
+section.card:not(.allow-invert) h3 {
+	margin: 1.5rem 0 0;
+	padding: 0;
+}

@@ -1,0 +1,12 @@
+---
+export type Props = {
+	legend?: string;
+};
+
+const { legend } = Astro.props;
+---
+
+<fieldset class="sb-fieldset">
+	{legend ? <legend>{legend}</legend> : null}
+	<slot />
+</fieldset>

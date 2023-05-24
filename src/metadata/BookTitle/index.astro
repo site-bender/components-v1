@@ -1,0 +1,17 @@
+---
+export type Props = {
+	isHyperlink?: boolean;
+	itemprop?: string | null | undefined;
+};
+
+const properties = {
+	itemprop: "name",
+	itemscope: "",
+	itemtype: "https://schema.org/Book",
+};
+const title = await Astro.slots.render("default");
+---
+
+{/* prettier-ignore */
+}
+<span class="sb-book-title" {...properties}>{title.trim()}</span>

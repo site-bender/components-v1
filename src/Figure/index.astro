@@ -1,0 +1,69 @@
+---
+import generateShortId from "../utilities/generateShortId";
+import Picture from "../Picture/index.astro";
+import type { ImageSource } from "../types";
+
+export type Props = {
+  alt: string;
+  caption?: string;
+  filename: string;
+  height?: number;
+  id?: string;
+  index?: number;
+  isIndexed?: boolean;
+  loading?: "eager" | "lazy" | undefined;
+  sources: Array<ImageSource>;
+  style?: string;
+  width: number;
+};
+
+const {
+  alt,
+  caption,
+  filename,
+  height,
+  id,
+  index,
+  isIndexed,
+  loading = "lazy",
+  sources,
+  style,
+  width,
+} = Astro.props;
+
+// const description = await Astro.slots.render("default");
+const indexed = isIndexed ? { class: "indexed" } : {};
+const cap = caption ? caption : await Astro.slots.render("default");
+const describedBy = await Astro.slots.render("describedby");
+const describedById = describedBy ? { describedById: generateShortId() } : {};
+---
+
+<figure {...indexed} {...id ? { id } : {}}>
+  {
+    cap && (
+      <figcaption>
+        {index ? `Figure ${index}: ` : ""}
+        <Fragment set:html={cap} />
+      </figcaption>
+    )
+  }
+  <Picture
+    alt={alt}
+    {...describedById}
+    filename={filename}
+    {...height ? { height } : {}}
+    loading={loading}
+    sources={sources}
+    {...style ? { style } : {}}
+    width={width}
+  />
+  {
+    describedBy ? (
+      <div
+        class="off-screen"
+        id={describedById as string}
+        set:html={describedBy}
+      />
+    ) : null
+  }
+</figure>

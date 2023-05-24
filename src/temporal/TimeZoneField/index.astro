@@ -1,0 +1,80 @@
+---
+import { TIME_ZONE } from "../../constants";
+import FieldWrapper from "../../wrappers/FieldWrapper/index.astro";
+import generateShortId from "../../utilities/generateShortId";
+import mapDataset from "../../utilities/mapDataset";
+import TimeZone from "../TimeZone/index.astro";
+import toTimeZoneString from "../../utilities/toTimeZoneString";
+import type { Dataset, Messages } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+import type { Temporal } from "@js-temporal/polyfill";
+
+export type Props = Omit<HTMLAttributes<"select">, "slot" | "value"> & {
+  dataset?: Dataset;
+  help?: string;
+  label: string;
+  messages?: Messages;
+  name: string;
+  readonly?: boolean;
+  value?: string | Temporal.TimeZone;
+};
+
+const {
+  dataset,
+  help,
+  id = `_${generateShortId()}`,
+  label,
+  messages,
+  readonly,
+  value: rawValue,
+  ...attrs
+} = Astro.props;
+
+const labelId = `${id}-label`;
+const helpId = `${id}-help`;
+const data = mapDataset(dataset);
+
+const value =
+  rawValue && typeof rawValue === "string"
+    ? rawValue
+    : toTimeZoneString(rawValue);
+---
+
+<FieldWrapper
+  fieldType="sb-time-zone"
+  {...help ? { help } : {}}
+  helpId={helpId}
+  id={id as string}
+  label={label}
+  labelId={labelId}
+  {...messages ? { messages } : {}}
+  name={attrs.name}
+  readonly={readonly}
+  {...attrs.required ? { required: true } : {}}
+>
+  <Fragment slot="element">
+    {
+      readonly ? (
+        <div class="readonly sb-time-zone-readonly">
+          <TimeZone {...attrs} value={value as string} />
+        </div>
+      ) : (
+        <select
+          aria-labelledBy={`${labelId} ${helpId}`}
+          class="sb-time-zone-select"
+          {...data}
+          id={id as string}
+          {...attrs}
+        >
+          {Object.keys(TIME_ZONE)
+            .sort()
+            .map((key) => (
+              <option selected={value === key} value={key}>
+                {key}
+              </option>
+            ))}
+        </select>
+      )
+    }
+  </Fragment>
+</FieldWrapper>

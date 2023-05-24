@@ -1,0 +1,21 @@
+---
+export type Props = {
+	href?: string | URL | null | undefined;
+	itemprop?: string | null | undefined;
+};
+
+const { href, itemprop } = Astro.props;
+const property = itemprop ? { itemprop } : {};
+---
+
+{
+	href ? (
+		<a class="sb-metadata-link" href={href} {...property}>
+			<slot />
+		</a>
+	) : (
+		<span class="sb-metadata-span" {...property}>
+			<slot />
+		</span>
+	)
+}

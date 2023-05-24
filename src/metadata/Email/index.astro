@@ -1,0 +1,25 @@
+---
+export type Props = {
+	isHyperlink?: boolean;
+	itemprop?: string | null | undefined;
+};
+
+const { isHyperlink, itemprop } = Astro.props;
+const property = itemprop ? { itemprop } : {};
+---
+
+{
+	isHyperlink ? (
+		<a
+			class="sb-email-link"
+			href={`mailto:${await Astro.slots.render("default")}`}
+			{...property}
+		>
+			<slot />
+		</a>
+	) : (
+		<span class="sb-email-span" {...property}>
+			<slot />
+		</span>
+	)
+}

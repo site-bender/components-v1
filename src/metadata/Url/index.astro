@@ -1,0 +1,25 @@
+---
+export type Props = {
+	isHyperlink?: boolean | undefined;
+	itemprop?: string | null | undefined;
+};
+
+const { isHyperlink, itemprop } = Astro.props;
+const property = itemprop ? { itemprop } : {};
+---
+
+{
+	isHyperlink ? (
+		<a
+			class="sb-url-link"
+			href={await Astro.slots.render("default")}
+			{...property}
+		>
+			<slot />
+		</a>
+	) : (
+		<span class="sb-url-span" {...property}>
+			<slot />
+		</span>
+	)
+}
