@@ -79,7 +79,8 @@
     "config:update": "dprint config update",
     "fmt": "dprint fmt",
     "fmt:check": "dprint check",
-    "lint": "deno lint"
+    "lint": "deno lint",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
     "@js-temporal/polyfill": "^0.4.4",
