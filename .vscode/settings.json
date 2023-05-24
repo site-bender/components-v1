@@ -1,6 +1,10 @@
 {
   "files.exclude": {
     "pnpm-lock.yaml": true,
-    ".vscode": true
+    ".vscode": true,
+    ".gitignore": true,
+    ".npmrc": true,
+    "deno.jsonc": true,
+    "dprint.json": true
   }
 }

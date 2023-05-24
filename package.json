@@ -1,9 +1,18 @@
 {
-  "name": "components",
+  "name": "@sitebender/components",
   "version": "0.0.1",
   "keywords": [
-    "astro-component"
+    "astro-component",
+    "sitebender",
+    "vanilla"
   ],
+  "homepage": "https://github.com/site-bender/components#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/site-bender/components.git"
+  },
+  "license": "MIT",
+  "author": "Charles F. Munat <charles.munat@gmail.com>",
   "type": "module",
   "exports": {
     "./book-title": "./src/metadata/BookTitle/index.astro",
@@ -64,7 +73,14 @@
     "src",
     "index.ts"
   ],
-  "scripts": {},
+  "scripts": {
+    "check:exports": "npx find-unused-exports",
+    "check:packages": "npx npm-check -u",
+    "config:update": "dprint config update",
+    "fmt": "dprint fmt",
+    "fmt:check": "dprint check",
+    "lint": "deno lint"
+  },
   "devDependencies": {
     "@js-temporal/polyfill": "^0.4.4",
     "astro": "^2.4.1",
