@@ -1,0 +1,35 @@
+---
+// Validate at https://validator.schema.org/
+import type { HTMLAttributes } from "astro/types";
+
+export type Props<T> = HTMLAttributes<"div"> & {
+  element?: string;
+  itemprop?: string;
+  properties: T;
+};
+
+const { element, itemprop, properties = {}, ...attrs } = Astro.props;
+
+const item = itemprop ? { itemprop } : {};
+
+const {
+  ["@context"]: context = "https://schema.org",
+  ["@type"]: type,
+  ...other
+} = properties;
+
+const Element = element || "span";
+---
+
+<Element {...item} itemscope itemtype={`${context}/${type}`} {...attrs}>
+  {
+    Object.entries(other).map(([itemprop, content]) =>
+      typeof content === "object" ? (
+        <Astro.self itemprop={itemprop} properties={content} />
+      ) : (
+        <meta content={content as string} itemprop={itemprop} />
+      )
+    )
+  }
+  <slot />
+</Element>

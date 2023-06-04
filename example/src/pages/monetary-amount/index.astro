@@ -1,0 +1,196 @@
+---
+import MonetaryAmount from "../../../../src/metadata/MonetaryAmount/index.astro";
+import CodeBlock from "../../../../src/CodeBlock/index.astro";
+import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
+import Layout from "../_layouts/index.astro";
+import TableOfContents from "../_components/TableOfContents/index.astro";
+import * as typeTs from "./_assets/type.ts.md";
+import * as defaultExampleHtml from "./_assets/default-example.html.md";
+import * as defaultExampleAstro from "./_assets/default-example.astro.md";
+import * as withDataAttrsHtml from "./_assets/with-data-attrs.html.md";
+import * as withDataAttrsAstro from "./_assets/with-data-attrs.astro.md";
+import * as tabularNumbersHtml from "./_assets/tabular-numbers.html.md";
+import * as tabularNumbersAstro from "./_assets/tabular-numbers.astro.md";
+import * as withMicrodataHtml from "./_assets/with-microdata.html.md";
+import * as withMicrodataAstro from "./_assets/with-microdata.astro.md";
+import * as withLinkedDataHtml from "./_assets/with-linked-data.html.md";
+import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
+---
+
+<Layout title="MonetaryAmount">
+  <Fragment slot="tail">
+    <script set:html={copyToClipboardJs} />
+  </Fragment>
+  <main>
+    <article>
+      <h2>MonetaryAmount</h2>
+      <ol class="page-contents">
+        <li><a href="#default">Default example</a></li>
+        <li>
+          <a href="#dataset"
+            >Example with <code>href</code>, <code>id</code>, and <code
+              >data-</code
+            > attributes</a
+          >
+        </li>
+        <li><a href="#tabular-numbers">Tabular numbers example</a></li>
+        <li><a href="#linked-data">Linked data example</a></li>
+        <li><a href="#microdata">Microdata example</a></li>
+      </ol>
+      <p>
+        The <code>MonetaryAmount</code> component is used to mark up a monetary amount,
+        e.g., $50. The currency is always included. Here it defaults to USD.
+      </p>
+      <section id="types">
+        <h3>Types</h3>
+        <CodeBlock snippet={typeTs} />
+        <p>
+          The <code>dataset</code> prop takes a map of attribute names (minus the
+          <code>data-</code>) and values and maps them to <code
+            >data-&lt;name&gt;</code
+          > attributes. See below.
+        </p>
+      </section>
+      <section id="default">
+        <h3>Default example</h3>
+        <p>
+          This is the minimum required to use the <code>MonetaryAmount</code> component:
+        </p>
+        <CodeBlock snippet={defaultExampleAstro} />
+        <p>Here is the actual component:</p>
+        <p class="example">
+          <MonetaryAmount value="42" />
+        </p>
+        <p>And here is the HTML created:</p>
+        <CodeBlock snippet={defaultExampleHtml} />
+      </section>
+      <section id="dataset">
+        <h3>
+          Example with <code>href</code>, <code>id</code>, and <code>data-</code
+          > attributes
+        </h3>
+        <p>
+          We can also include data- attributes (and all normal HTML attributes
+          for the input element, such as an <code>id</code>). Including an <code
+            >href</code
+          > prop makes it a link. It will automatically set the <code>rel</code>
+          attribute to "external" if the link is to an external resource. You can
+          override this by setting the <code>rel</code> prop directly.
+        </p>
+        <CodeBlock snippet={withDataAttrsAstro} />
+        <p>
+          The <code>dataset</code> key-value pairs are whatever you want them to
+          be.
+        </p>
+        <p>Here is the actual component:</p>
+        <p class="example">
+          <MonetaryAmount
+            dataset={{
+              type: "pocket-change",
+            }}
+            href="https://en.wikipedia.org/wiki/Church_of_the_SubGenius"
+            id="bobs-dough"
+            rel="nofollow noreferrer"
+            value="42"
+          />
+          <p>And here is the HTML created:</p>
+          <CodeBlock snippet={withDataAttrsHtml} />
+          <p>
+            Note that HTML attributes will be added to the <code>a</code> element
+            if an <code>href</code> attribute is included; otherwise, they will be
+            added to the <code>span</code> element.
+          </p>
+        </p>
+      </section>
+      <section id="tabular-numbers">
+        <h3>Tabular numbers example</h3>
+        <p>
+          We can use the <code>useTabularNumerals</code> flag to force the use of
+          tabular numerals (same height and width). When using the underscore, the
+          <code>value</code> attribute must be used and <code>value</code> must be
+          a number, not a string. Otherwise, a string is acceptable.
+        </p>
+        <CodeBlock snippet={tabularNumbersAstro} />
+        <p>Here is the actual component:</p>
+        <p class="example">
+          <MonetaryAmount useTabularNumerals value={123_456_789} />
+        </p>
+        <p>And here is the HTML created:</p>
+        <CodeBlock snippet={tabularNumbersHtml} />
+      </section>
+      <section id="linked-data">
+        <h3>Linked Data example</h3>
+        <p>
+          We can also include linked data as <code>application/json+ld</code> in
+          a
+          <code>script</code> element according the the Schema.org <a
+            href="https://schema.org/MonetaryAmount"
+            rel="external">MonetaryAmount</a
+          > object by including a <code>properties</code> object. Note: the <code
+            >options</code
+          > object is of type NumberFormatOptions (see <a href="#types">Types</a
+          > above) and is used for formatting with <a
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat"
+            rel="external">Intl.NumberFormat</a
+          >. Here we set the currency to euros (<code>EUR</code>).
+        </p>
+        <CodeBlock snippet={withLinkedDataAstro} />
+        <p>Here is the actual component:</p>
+        <p class="example">
+          <MonetaryAmount
+            options={{
+              currency: "EUR",
+            }}
+            properties={{
+              maxValue: 1_000_000_000_000,
+              minValue: 1_000_000_000,
+              name: "Bob's stash",
+            }}
+            useJsonLd
+            value={42_000_000_000}
+          />
+        </p>
+        <p>
+          And here is the HTML created.
+          <a href="https://validator.schema.org/" rel="external"
+            >Validate the JSON here.</a
+          >
+        </p>
+        <CodeBlock snippet={withLinkedDataHtml} />
+      </section>
+      <section id="microdata">
+        <h3>Microdata example</h3>
+        <p>
+          We can also include microdata according the Schema.org <a
+            href="https://schema.org/MonetaryAmount"
+            rel="external">MonetaryAmount</a
+          > object. Here we set the currency to New Zealand dollars (<code
+            >NZD</code
+          >).
+        </p>
+        <CodeBlock snippet={withMicrodataAstro} />
+        <p>Here is the actual component:</p>
+        <p class="example">
+          <MonetaryAmount
+            options={{
+              currency: "NZD",
+            }}
+            properties={{
+              maxValue: 1_000_000_000_000,
+              minValue: 1_000_000_000,
+              name: "Bob's stash",
+            }}
+            value={42_000_000_000}
+          />
+        </p>
+        <p>
+          And here is the HTML created.
+          <a href="https://validator.schema.org/" rel="external"
+            >Validate the output here.</a
+          >
+        </p>
+        <CodeBlock snippet={withMicrodataHtml} />
+      </section>
+    </article>
+  </main>
+</Layout>

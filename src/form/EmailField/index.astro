@@ -1,0 +1,76 @@
+---
+import Email from "../../metadata/Email/index.astro";
+import FieldWrapper from "../FieldWrapper/index.astro";
+import generateShortId from "../../utilities/generateShortId";
+import mapDataset from "../../utilities/mapDataset";
+import type { Dataset, Messages } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"input"> & {
+  dataset?: Dataset;
+  help?: string;
+  isHyperlink?: boolean;
+  label: string;
+  messages?: Messages;
+  name: string;
+  readonly?: boolean;
+  value?: string;
+};
+
+const {
+  dataset,
+  help,
+  isHyperlink,
+  id = `_${generateShortId()}`,
+  itemid,
+  itemprop,
+  itemref,
+  itemtype,
+  label,
+  messages,
+  readonly,
+  value,
+  ...attrs
+} = Astro.props;
+
+const labelId = `${id}-label`;
+const helpId = `${id}-help`;
+const data = mapDataset(dataset);
+const properties =
+  itemtype && itemprop ? { itemid, itemscope: true, itemtype } : {};
+---
+
+<FieldWrapper
+  fieldType="sb-email"
+  {...help ? { help } : {}}
+  helpId={helpId}
+  id={id as string}
+  label={label}
+  labelId={labelId}
+  {...messages ? { messages } : {}}
+  name={attrs.name}
+  readonly={readonly}
+  {...attrs.required ? { required: true } : {}}
+>
+  <Fragment slot="element">
+    {
+      readonly ? (
+        <div class="readonly sb-email-readonly" {...properties}>
+          <Email itemprop={itemprop} {...(isHyperlink ? { isHyperlink } : {})}>
+            {value}
+          </Email>
+        </div>
+      ) : (
+        <input
+          aria-labelledBy={`${labelId} ${helpId}`}
+          class="sb-email-input"
+          {...data}
+          id={id as string}
+          {...attrs}
+          type="email"
+          {...(value ? { value } : {})}
+        />
+      )
+    }
+  </Fragment>
+</FieldWrapper>

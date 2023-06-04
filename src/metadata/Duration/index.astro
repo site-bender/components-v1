@@ -1,0 +1,21 @@
+---
+import { Temporal } from "@js-temporal/polyfill";
+import formatDuration from "../../utilities/formatDuration";
+import mapDataset from "../../utilities/mapDataset";
+import type { Dataset } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"time"> & {
+  dataset?: Dataset;
+  duration: string | Temporal.DurationLike;
+};
+
+const { dataset, duration = "PT0S", ...attrs } = Astro.props;
+
+const d = Temporal.Duration.from(duration);
+const data = mapDataset(dataset);
+---
+
+<time class="sb-duration" {...data} datetime={d.toJSON()} {...attrs}
+  >{formatDuration(d)}</time
+>

@@ -1,6 +1,10 @@
 import type { Basedata, Metadata } from "../../../../types"
 
-export default function getWebPageData(basedata: Basedata, metadata: Metadata, title: string) {
+export default function getWebPageData(
+	basedata: Basedata,
+	metadata: Metadata,
+	title: string,
+) {
 	return {
 		"@type": "WebPage",
 		"@id": metadata.canonical,

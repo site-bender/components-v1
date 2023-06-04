@@ -1,0 +1,91 @@
+---
+import FieldWrapper from "../FieldWrapper/index.astro";
+import generateShortId from "../../utilities/generateShortId";
+import mapDataset from "../../utilities/mapDataset";
+import PlainYearMonth from "../../metadata/PlainYearMonth/index.astro";
+import toPlainYearMonthString from "../../utilities/toPlainYearMonthString";
+import type { Calendar, Dataset, Messages } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+import type { Temporal } from "@js-temporal/polyfill";
+import type { TIME_ZONE } from "../../constants";
+
+export type Props = Omit<HTMLAttributes<"input">, "slot" | "value"> & {
+  calendar?: Calendar | Temporal.Calendar;
+  dataset?: Dataset;
+  day?: number | string;
+  era?: string | undefined;
+  eraYear?: string | undefined;
+  help?: string;
+  label: string;
+  locale?: string | Array<string>;
+  messages?: Messages;
+  month?: number | string;
+  monthCode?: string;
+  name: string;
+  readonly?: boolean;
+  timeZone?: keyof typeof TIME_ZONE;
+  value?: string | Temporal.PlainYearMonthLike | Temporal.PlainYearMonthLike;
+  year?: number | string;
+};
+
+const {
+  calendar,
+  dataset,
+  day,
+  help,
+  id = `_${generateShortId()}`,
+  label,
+  locale,
+  messages,
+  month,
+  monthCode,
+  readonly,
+  value: rawValue,
+  year,
+  ...attrs
+} = Astro.props;
+
+const labelId = `${id}-label`;
+const helpId = `${id}-help`;
+const data = mapDataset(dataset);
+
+const value = rawValue
+  ? toPlainYearMonthString(rawValue)
+  : toPlainYearMonthString({
+      ...(monthCode ? { monthCode } : { month: Number(month) }),
+      year: Number(year),
+    });
+---
+
+<FieldWrapper
+  fieldType="sb-year-month"
+  {...help ? { help } : {}}
+  helpId={helpId}
+  id={id as string}
+  label={label}
+  labelId={labelId}
+  {...messages ? { messages } : {}}
+  name={attrs.name}
+  readonly={readonly}
+  {...attrs.required ? { required: true } : {}}
+>
+  <Fragment slot="element">
+    {
+      readonly ? (
+        <div class="readonly sb-plain-year-month-readonly">
+          <PlainYearMonth {...attrs} value={value} />
+        </div>
+      ) : (
+        <input
+          aria-labelledBy={`${labelId} ${helpId}`}
+          class="sb-plain-year-month-input"
+          {...data}
+          id={id as string}
+          {...attrs}
+          type="month"
+          {...(value ? { value } : {})}
+        />
+      )
+    }
+  </Fragment>
+</FieldWrapper>

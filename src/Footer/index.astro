@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import "./index.css";
+
+export type Props = HTMLAttributes<"footer"> & {
+  cssClasses?: Array<string>;
+};
+
+const { cssClasses = [], ...attrs } = Astro.props;
+const css = ["sb-footer", ...cssClasses].join(" ");
+---
+
+<footer class={css} {...attrs}>
+  <slot />
+</footer>

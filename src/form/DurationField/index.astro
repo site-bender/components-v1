@@ -1,0 +1,336 @@
+---
+import { Temporal } from "@js-temporal/polyfill";
+import Duration from "../../metadata/Duration/index.astro";
+import FieldsetWrapper from "../FieldsetWrapper/index.astro";
+import generateShortId from "../../utilities/generateShortId";
+import type { Dataset, Messages } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = Omit<HTMLAttributes<"input">, "slot" | "value"> & {
+  allowDays?: boolean;
+  allowHours?: boolean;
+  allowMicroseconds?: boolean;
+  allowMilliseconds?: boolean;
+  allowMinutes?: boolean;
+  allowMonths?: boolean;
+  allowNanoseconds?: boolean;
+  allowSeconds?: boolean;
+  allowWeeks?: boolean;
+  allowYears?: boolean;
+  dataset?: Dataset;
+  days?: number;
+  dayStep?: number;
+  help?: string;
+  hours?: number;
+  hourStep?: number;
+  label: string;
+  messages?: Messages;
+  microseconds?: number;
+  microsecondStep?: number;
+  milliseconds?: number;
+  millisecondStep?: number;
+  minutes?: number;
+  minuteStep?: number;
+  months?: number;
+  monthStep?: number;
+  name: string;
+  nanoseconds?: number;
+  nanosecondStep?: number;
+  readonly?: boolean;
+  seconds?: number;
+  secondStep?: number;
+  value?: string | Temporal.Duration | Temporal.DurationLike;
+  weeks?: number;
+  weekStep?: number;
+  years?: number;
+  yearStep?: number;
+};
+
+const {
+  allowDays,
+  allowHours,
+  allowMicroseconds,
+  allowMilliseconds,
+  allowMinutes,
+  allowMonths,
+  allowNanoseconds,
+  allowSeconds,
+  allowWeeks,
+  allowYears,
+  dataset,
+  days = 0,
+  dayStep = 1,
+  help,
+  hours = 0,
+  hourStep = 1,
+  id = `_${generateShortId()}`,
+  label,
+  messages,
+  microseconds = 0,
+  microsecondStep = 1,
+  milliseconds = 0,
+  millisecondStep = 1,
+  minutes = 0,
+  minuteStep = 1,
+  months = 0,
+  monthStep = 1,
+  name,
+  nanoseconds = 0,
+  nanosecondStep = 1,
+  readonly,
+  required,
+  seconds = 0,
+  secondStep = 1,
+  value,
+  weeks = 0,
+  weekStep = 1,
+  years = 0,
+  yearStep = 1,
+  ...attrs
+} = Astro.props;
+
+const duration = value
+  ? Temporal.Duration.from(value)
+  : Temporal.Duration.from({
+      ...(allowDays ? { days } : {}),
+      ...(allowHours ? { hours } : {}),
+      ...(allowMicroseconds ? { microseconds } : {}),
+      ...(allowMilliseconds ? { milliseconds } : {}),
+      ...(allowMinutes ? { minutes } : {}),
+      ...(allowMonths ? { months } : {}),
+      ...(allowNanoseconds ? { nanoseconds } : {}),
+      ...(allowSeconds ? { seconds } : {}),
+      ...(allowWeeks ? { weeks } : {}),
+      ...(allowYears ? { years } : {}),
+    });
+
+const labelId = `${id}-label`;
+const helpId = `${id}-help`;
+---
+
+<FieldsetWrapper
+  {...dataset ? { help } : {}}
+  fieldType="sb-duration"
+  {...help ? { help } : {}}
+  helpId={helpId}
+  id={id as string}
+  label={label}
+  labelId={labelId}
+  {...messages ? { messages } : {}}
+  name={name}
+  readonly={readonly}
+  {...required ? { required: true } : {}}
+>
+  <Fragment slot="element">
+    {
+      readonly ? (
+        <div class="readonly sb-duration-readonly">
+          <Duration duration={duration} {...attrs} />
+        </div>
+      ) : (
+        <div class="sb-duration-field">
+          {allowYears ? (
+            <label
+              class="sb-duration-years-label"
+              for={`${id}-years`}
+              id={`${id}-years-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-years-label`}
+                class="sb-duration-years-input"
+                id={`${id}-years`}
+                min={0}
+                name={`${name}:years`}
+                {...(required ? { required: true } : {})}
+                step={yearStep}
+                type="number"
+                value={duration ? duration.years : 0}
+              />{" "}
+              years
+            </label>
+          ) : null}
+          {allowMonths ? (
+            <label
+              class="sb-duration-months-label"
+              for={`${id}-months`}
+              id={`${id}-months-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-months-label`}
+                class="sb-duration-months-input"
+                id={`${id}-months`}
+                min={0}
+                name={`${name}:months`}
+                {...(required ? { required: true } : {})}
+                step={monthStep}
+                type="number"
+                value={duration ? duration.months : 0}
+              />{" "}
+              months
+            </label>
+          ) : null}
+          {allowWeeks ? (
+            <label
+              class="sb-duration-weeks-label"
+              for={`${id}-weeks`}
+              id={`${id}-weeks-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-weeks-label`}
+                class="sb-duration-weeks-input"
+                id={`${id}-weeks`}
+                min={0}
+                name={`${name}:weeks`}
+                {...(required ? { required: true } : {})}
+                step={weekStep}
+                type="number"
+                value={duration ? duration.weeks : 0}
+              />{" "}
+              weeks
+            </label>
+          ) : null}
+          {allowDays ? (
+            <label
+              class="sb-duration-days-label"
+              for={`${id}-days`}
+              id={`${id}-days-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-days-label`}
+                class="sb-duration-days-input"
+                id={`${id}-days`}
+                min={0}
+                name={`${name}:days`}
+                {...(required ? { required: true } : {})}
+                step={dayStep}
+                type="number"
+                value={duration ? duration.days : 0}
+              />{" "}
+              days
+            </label>
+          ) : null}
+          {allowHours ? (
+            <label
+              class="sb-duration-hours-label"
+              for={`${id}-hours`}
+              id={`${id}-hours-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-hours-label`}
+                class="sb-duration-hours-input"
+                id={`${id}-hours`}
+                min={0}
+                name={`${name}:hours`}
+                {...(required ? { required: true } : {})}
+                step={hourStep}
+                type="number"
+                value={duration ? duration.hours : 0}
+              />{" "}
+              hours
+            </label>
+          ) : null}
+          {allowMinutes ? (
+            <label
+              class="sb-duration-minutes-label"
+              for={`${id}-minutes`}
+              id={`${id}-minutes-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-minutes-label`}
+                class="sb-duration-minutes-input"
+                id={`${id}-minutes`}
+                min={0}
+                name={`${name}:minutes`}
+                {...(required ? { required: true } : {})}
+                step={minuteStep}
+                type="number"
+                value={duration ? duration.minutes : 0}
+              />{" "}
+              minutes
+            </label>
+          ) : null}
+          {allowSeconds ? (
+            <label
+              class="sb-duration-seconds-label"
+              for={`${id}-seconds`}
+              id={`${id}-seconds-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-seconds-label`}
+                class="sb-duration-seconds-input"
+                id={`${id}-seconds`}
+                min={0}
+                name={`${name}:seconds`}
+                {...(required ? { required: true } : {})}
+                step={secondStep}
+                type="number"
+                value={duration ? duration.seconds : 0}
+              />{" "}
+              seconds
+            </label>
+          ) : null}
+          {allowMilliseconds ? (
+            <label
+              class="sb-duration-milliseconds-label"
+              for={`${id}-milliseconds`}
+              id={`${id}-milliseconds-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-milliseconds-label`}
+                class="sb-duration-milliseconds-input"
+                id={`${id}-milliseconds`}
+                min={0}
+                name={`${name}:milliseconds`}
+                {...(required ? { required: true } : {})}
+                step={millisecondStep}
+                type="number"
+                value={duration ? duration.milliseconds : 0}
+              />{" "}
+              millis
+            </label>
+          ) : null}
+          {allowMicroseconds ? (
+            <label
+              class="sb-duration-microseconds-label"
+              for={`${id}-microseconds`}
+              id={`${id}-microseconds-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-microseconds-label`}
+                class="sb-duration-microseconds-input"
+                id={`${id}-microseconds`}
+                min={0}
+                name={`${name}:microseconds`}
+                {...(required ? { required: true } : {})}
+                step={microsecondStep}
+                type="number"
+                value={duration ? duration.microseconds : 0}
+              />{" "}
+              micros
+            </label>
+          ) : null}
+          {allowNanoseconds ? (
+            <label
+              class="sb-duration-nanoseconds-label"
+              for={`${id}-nanoseconds`}
+              id={`${id}-nanoseconds-label`}
+            >
+              <input
+                aria-labelledBy={`${id} ${id}-nanoseconds-label`}
+                id={`${id}-nanoseconds`}
+                class="sb-duration-nanoseconds-input"
+                min={0}
+                name={`${name}:nanoseconds`}
+                {...(required ? { required: true } : {})}
+                step={nanosecondStep}
+                type="number"
+                value={duration ? duration.nanoseconds : 0}
+              />{" "}
+              nanos
+            </label>
+          ) : null}
+        </div>
+      )
+    }
+  </Fragment>
+</FieldsetWrapper>

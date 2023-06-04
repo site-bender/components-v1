@@ -1,0 +1,52 @@
+---
+import baseCss from "./_styles/base.css?raw";
+import codeCss from "./_styles/code.css?raw";
+import resetCss from "./_styles/reset.css?raw";
+import themeCss from "./_styles/theme.css?raw";
+import CCLicense from "../../../../src/CCLicense/index.astro";
+import Footer from "../../../../src/Footer/index.astro";
+import Header from "../../../../src/Header/index.astro";
+import Nav from "../_components/Nav/index.astro";
+
+export type Props = {
+  title?: string;
+};
+
+const { title } = Astro.props;
+
+const { pathname } = Astro.url;
+
+const name = "@sitebender/components";
+---
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title ? `${title} :: ` : ""}{name}</title>
+
+    <link href="/favicon.svg" rel="icon" type="image/svg" />
+
+    <style media="screen" set:html={resetCss}></style>
+    <style media="screen" set:html={themeCss}></style>
+    <style media="screen" set:html={baseCss}></style>
+    <style media="screen" set:html={codeCss}></style>
+
+    <slot name="head" />
+  </head>
+  <body>
+    <Header>
+      <h1 class="logo">
+        {pathname === "/" ? <span>{name}</span> : <a href="/">{name}</a>}
+      </h1>
+    </Header>
+    <Nav />
+    <slot />
+    <Footer>
+      <CCLicense byAttribution nonCommercial shareAlike />
+    </Footer>
+    <slot name="tail" />
+  </body>
+</html>

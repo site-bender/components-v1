@@ -1,0 +1,16 @@
+---
+import TableOfContents from "../TableOfContents/index.astro";
+
+const { pathname } = Astro.url;
+---
+
+{
+	pathname === "/" ? null : (
+		<nav>
+			<details class="components">
+				<summary>Components</summary>
+				<TableOfContents />
+			</details>
+		</nav>
+	)
+}

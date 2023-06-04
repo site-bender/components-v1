@@ -1,54 +1,103 @@
 ---
 import exifr from "exifr";
-
-import Source from "../Source/index.astro";
+import generateShortId from "../utilities/generateShortId";
+import type { Dataset } from "../types";
+import type { HTMLAttributes } from "astro/types";
+import type { ImageObject } from "../schema.org";
+import Source from "./Source/index.astro";
 import type { ImageSource } from "../types";
+import "./index.css";
 
-export type Props = {
+export type Props = HTMLAttributes<"img"> & {
   alt: string;
-  caption?: string;
-  describedById?: string;
+  cssClasses?: Array<string>;
+  dataset?: Dataset;
+  description?: string;
+  descriptionClass?: string;
   filename: string;
   height?: number;
+  href?: string;
+  linkAttributes?: HTMLAttributes<"a">;
   loading?: "eager" | "lazy" | undefined;
+  properties?: Partial<ImageObject>;
   sources: Array<ImageSource>;
-  style?: string;
+  src: string;
+  useJsonLd?: boolean;
   width: number;
 };
 
 const {
   alt,
-  describedById,
+  cssClasses = [],
+  description,
+  descriptionClass = "off-screen",
   filename,
   height = 0,
+  linkAttributes = {},
   loading = "lazy",
   sources,
-  style,
+  src,
   width,
+  ...attrs
 } = Astro.props;
 
-const describedId = describedById ? { "aria-describedby": describedById } : {};
+const desc = (await Astro.slots.render("description")) || description;
+const describedById = desc ? { describedById: generateShortId() } : {};
 
-const tags = await exifr.parse(`public/images/380/${filename}.png`);
-
+const tags = await exifr.parse(`public${src}`);
 const aspectRatio = (tags?.ImageHeight || 0) / (tags?.ImageWidth || 1);
 const h = height || Math.floor(aspectRatio * width);
+const css = ["sb-picture", ...cssClasses].join(" ");
 ---
 
-<picture>
-  {
-    sources.map((source: ImageSource) => (
-      <Source filename={filename} source={source} />
-    ))
-  }
-  <img
-    alt={alt}
-    {...describedId}
-    decoding="async"
-    {...h ? { height: h } : {}}
-    loading={loading}
-    src={`/images/${width}/${filename}.png`}
-    {...style ? { style } : {}}
-    {...width != null ? { width } : {}}
-  />
-</picture>
+{
+  linkAttributes.href ? (
+    <a {...linkAttributes}>
+      <picture class={css}>
+        {sources.map((source: ImageSource) => (
+          <Source filename={filename} source={source} />
+        ))}
+        <img
+          alt={alt}
+          {...describedById}
+          decoding="async"
+          {...(h ? { height: h } : {})}
+          loading={loading}
+          src={src}
+          {...(width != null ? { width } : {})}
+          {...attrs}
+        />
+        {desc ? (
+          <div
+            class={descriptionClass}
+            id={describedById?.describedById}
+            set:html={desc}
+          />
+        ) : null}
+      </picture>
+    </a>
+  ) : (
+    <picture class={css}>
+      {sources.map((source: ImageSource) => (
+        <Source filename={filename} source={source} />
+      ))}
+      <img
+        alt={alt}
+        {...describedById}
+        decoding="async"
+        {...(h ? { height: h } : {})}
+        loading={loading}
+        src={src}
+        {...(width != null ? { width } : {})}
+        {...attrs}
+      />
+      {desc ? (
+        <div
+          class={descriptionClass}
+          id={describedById?.describedById}
+          set:html={desc}
+        />
+      ) : null}
+    </picture>
+  )
+}

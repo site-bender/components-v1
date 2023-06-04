@@ -1,0 +1,33 @@
+fieldset.sb-button-bar {
+	align-items: flex-start;
+	background-color: var(--sb-button-bar-background-color, hsl(212, 25%, 93%));
+	border-color: var(--sb-button-bar-border-color, hsl(212, 25%, 71%));
+	border-radius: var(--sb-button-bar-border-radius, 5px);
+	border-style: var(--sb-button-bar-border-style, dotted);
+	border-width: var(--sb-button-bar-border-width, 1px);
+	color: var(--sb-button-bar-color, hsl(212, 25%, 15%));
+	display: var(--sb-button-bar-display, flex);
+	flex-direction: var(--sb-button-bar-flex-direction, row);
+	justify-content: var(--sb-button-bar-justify-content, flex-start);
+	margin-bottom: var(--sb-button-bar-margin-bottom, 1rem);
+	padding: var(--sb-button-bar-padding, 1rem);
+}
+
+fieldset.sb-button-bar legend {
+	background-color: var(
+		--sb-button-bar-legend-background-color,
+		hsl(212, 25%, 93%)
+	);
+	border-radius: var(--sb-button-bar-legend-border-radius, 5px);
+	border: var(--sb-button-bar-legend-border, 1px solid hsl(212, 25%, 71%));
+	color: var(--sb-button-bar-legend-color, hsl(212, 25%, 15%));
+	font-family: var(--sb-button-bar-legend-font-family, inherit);
+	font-size: var(--sb-button-bar-legend-font-size, 1.25rem);
+	font-weight: 400;
+	padding: 0.25rem 0.5rem;
+}
+
+fieldset.sb-button-bar fieldset legend {
+	font-family: var(--sb-button-bar-legend-font-family, inherit);
+	font-size: var(--sb-button-bar-legend-font-size-nested, 1rem);
+}

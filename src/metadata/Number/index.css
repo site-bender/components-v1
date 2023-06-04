@@ -1,0 +1,4 @@
+a.tabular-nums,
+span.tabular-nums {
+	font-variant-numeric: tabular-nums;
+}

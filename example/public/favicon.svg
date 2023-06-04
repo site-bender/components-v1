@@ -1,0 +1,7 @@
+<svg width="32px" height="32px" viewBox="0 0 1600 1600"
+	xmlns="http://www.w3.org/2000/svg">
+	<rect class="top" width="100%" height="38%" x="0" y="0" fill="#375e97" />
+	<rect class="left" width="38%" height="60%" x="0" y="40%" fill="#3f681c" />
+	<rect class="right" width="60%" height="22%" x="40%" y="40%" fill="#ffbb00" />
+	<rect class="bottom" width="60%" height="36%" x="40%" y="64%" fill="#fd7b5d" />
+</svg>

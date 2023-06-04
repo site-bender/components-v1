@@ -1,20 +1,65 @@
 ---
-export type Props = {
+import type { Dataset } from "../types";
+import type { HTMLAttributes } from "astro/types";
+import type { Quotation } from "../schema.org";
+import Microdata from "../Microdata/index.astro";
+import mapDataset from "../utilities/mapDataset";
+import "./index.css";
+
+export type Props = HTMLAttributes<"blockquote"> & {
 	author?: string;
-	cite?: string;
+	authorItemprop?: string;
+	authorType?: "Person" | "Organization" | "Thing";
+	cssClasses?: Array<string>;
+	dataset?: Dataset;
+	properties?: Partial<Quotation>;
+	useJsonLd?: boolean;
 };
 
-const { author, cite } = Astro.props;
+const {
+	author,
+	authorItemprop = "author",
+	authorType = "Person",
+	cssClasses = [],
+	dataset,
+	properties,
+	useJsonLd,
+	...attrs
+} = Astro.props;
+
+const quote = await Astro.slots.render("default");
+const auth = (await Astro.slots.render("author")) || author;
+
+const css = ["sb-pull-quote", ...cssClasses].join(" ");
+const data = mapDataset(dataset);
+
+const meta = {
+	"@context": "https://schema.org",
+	"@type": "Quotation",
+	...(useJsonLd ? {} : { ...properties }),
+};
 ---
 
-<blockquote class="pull-quote" {...(cite ? { cite } : {})}>
-	<p><slot /></p>
+<Microdata class={css} element="figure" properties={meta}>
+	<blockquote {...data} itemprop="text" set:html={quote} {...attrs} />
 	{
-		author ? (
-			<span class="quotation-author">
-				<span aria-hidden="true">~ </span>
-				{author}
-			</span>
+		auth ? (
+			<figcaption
+				class="sb-pull-quote-author"
+				itemprop={authorItemprop}
+				itemscope
+				itemtype={`https://schema.org/${authorType}`}
+			>
+				<span itemprop="name" set:html={auth} />
+			</figcaption>
 		) : null
 	}
-</blockquote>
+	{
+		useJsonLd ? (
+			<script
+				set:html={JSON.stringify({ ...meta, ...properties }, null, 2)}
+				type="application/json+ld"
+			/>
+		) : null
+	}
+</Microdata>

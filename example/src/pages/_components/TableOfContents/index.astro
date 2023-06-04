@@ -1,0 +1,27 @@
+---
+const pages = (await Astro.glob("/src/pages/*/index.astro"))
+  .map(({ url }) => url?.split("/")[1])
+  .filter((str) => str?.charAt(0) !== "_");
+
+const components = pages.map((page) => {
+  return {
+    path: `/${page}`,
+    label: page
+      ?.split("-")
+      .map(
+        ([upper, ...lower]) => `${upper?.toLocaleUpperCase()}${lower.join("")}`
+      )
+      .join(""),
+  };
+});
+---
+
+<ul class="toc">
+  {
+    components.map(({ path, label }) => (
+      <li>
+        <a href={path}>{label}</a>
+      </li>
+    ))
+  }
+</ul>

@@ -1,6 +1,9 @@
 import type { Basedata, LdImage, Metadata } from "../../../../types"
 
-export default function getImageData(basedata: Basedata, metadata: Metadata): LdImage | void {
+export default function getImageData(
+	basedata: Basedata,
+	metadata: Metadata,
+): LdImage | void {
 	const imageUrl = metadata.image?.src ||
 		`${basedata.imageUrl}${metadata.image?.filename}.${metadata.image?.type}`
 
@@ -16,7 +19,7 @@ export default function getImageData(basedata: Basedata, metadata: Metadata): Ld
 			},
 			creditText: "Charles & Hannah",
 			height: metadata.image?.height,
-			inLanguage: metadata.language || basedata.language || "en-NZ",
+			inLanguage: metadata.language || basedata.language || "en-US",
 			license: metadata.image?.license || basedata.license,
 			url: imageUrl,
 			width: metadata.image?.width,

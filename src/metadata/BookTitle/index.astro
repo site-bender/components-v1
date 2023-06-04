@@ -1,17 +1,37 @@
 ---
-export type Props = {
-	isHyperlink?: boolean;
-	itemprop?: string | null | undefined;
+import type { Dataset } from "../../types";
+import type { Book } from "../../schema.org";
+import mapDataset from "../../utilities/mapDataset";
+import Microdata from "../../Microdata/index.astro";
+import type { HTMLAttributes } from "astro/types";
+import Content from "./Content/index.astro";
+
+export type Props = HTMLAttributes<"a"> & {
+  dataset?: Dataset;
+  href?: string;
+  properties?: Partial<Book>;
+  useJsonLd?: boolean;
 };
 
-const properties = {
-	itemprop: "name",
-	itemscope: "",
-	itemtype: "https://schema.org/Book",
+const name = ((await Astro.slots.render("default")) || "").trim();
+const { dataset, href, properties, useJsonLd, ...attrs } = Astro.props;
+const ext = href?.includes("://") ? { rel: "external" } : {};
+const data = mapDataset(dataset);
+const meta = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  ...(useJsonLd ? {} : { ...properties }),
 };
-const title = await Astro.slots.render("default");
 ---
 
-{/* prettier-ignore */
-}
-<span class="sb-book-title" {...properties}>{title.trim()}</span>
+<Microdata properties={meta}>
+  <Content attrs={attrs} data={data} ext={ext} href={href} name={name} />
+  {
+    useJsonLd ? (
+      <script
+        set:html={JSON.stringify({ ...meta, ...properties }, null, 2)}
+        type="application/json+ld"
+      />
+    ) : null
+  }
+</Microdata>

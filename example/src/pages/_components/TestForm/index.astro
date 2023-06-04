@@ -1,0 +1,27 @@
+---
+---
+
+<form class="doc-form" action="#">
+  <slot />
+  <output>Sent to server: <code></code></output>
+</form>
+
+<style media="all">
+  form.doc-form {
+    align-items: flex-start;
+    background-color: hsl(212, 25%, 93%);
+    border: 1px solid hsl(111, 46%, 24%);
+    border-radius: 7px;
+    color: hsl(212, 25%, 15%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+    margin: 1rem 0 3rem;
+    padding: 1rem;
+  }
+
+  form.doc-form .sb-form-field label {
+    margin: 0;
+  }
+</style>

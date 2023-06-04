@@ -1,5 +1,6 @@
 import { Temporal } from "@js-temporal/polyfill"
 
+// https://tc39.es/proposal-temporal/docs/duration.html
 export default function formatDuration(
 	duration: string | Temporal.DurationLike,
 ): string {

@@ -1,0 +1,37 @@
+---
+import type { ImageSource } from "../../types";
+import { DEFAULT_IMAGE_TYPES } from "../../constants";
+
+export type Props = {
+  filename: string;
+  source: ImageSource;
+};
+
+const {
+  filename,
+  source: { media, sizes, types = DEFAULT_IMAGE_TYPES },
+} = Astro.props;
+
+function getSrcset(
+  filename: string,
+  type: "avif" | "png" | "webp",
+  sizes: Array<string>
+): string {
+  return sizes
+    .map(
+      (size: string, index: number) =>
+        `/images/${size}/${filename}.${type} ${index + 1}x`
+    )
+    .join(", ");
+}
+
+const sources = types.map((type) => ({
+  ...(media ? { media } : {}),
+  srcset: getSrcset(filename, type, sizes),
+  type: `image/${type}`,
+}));
+---
+
+<>
+  {sources.map((attrs) => <source {...attrs} />)}
+</>

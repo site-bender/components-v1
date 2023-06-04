@@ -5,7 +5,9 @@ export default function getArticleData(
 	metadata: Partial<Metadata>,
 ): LdArticle | void {
 	const authors = (
-		metadata.article?.authors?.length ? metadata.article.authors : basedata.authors
+		metadata.article?.authors?.length
+			? metadata.article.authors
+			: basedata.authors
 	).map((author) =>
 		typeof author === "string"
 			? {

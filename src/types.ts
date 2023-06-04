@@ -3,23 +3,23 @@ import type { CALENDAR, TIME_ZONE } from "./constants"
 import type { Temporal } from "@js-temporal/polyfill"
 
 export type Basedata = {
-	authors: Array<LdPerson>;
-	baseUrl: string;
-	calendar: Calendar;
-	charset: string;
-	googleVerification: string;
-	imageUrl: string;
-	language?: string;
-	license: string;
-	locale: string;
-	publishers: Array<LdOrganization>;
-	robots: string;
+	authors: Array<LdPerson>
+	baseUrl: string
+	calendar: Calendar
+	charset: string
+	googleVerification: string
+	imageUrl: string
+	language?: string
+	license: string
+	locale: string
+	publishers: Array<LdOrganization>
+	robots: string
 	siteName: string
-	siteTitle: string;
-	timeZone: keyof typeof TIME_ZONE;
-	twitterCard: TwitterCard;
-	type: string;
-	viewport: string;
+	siteTitle: string
+	timeZone: keyof typeof TIME_ZONE
+	twitterCard: TwitterCard
+	type: string
+	viewport: string
 }
 
 export type Calendar = typeof CALENDAR[keyof typeof CALENDAR]
@@ -55,53 +55,53 @@ export type ImageType =
 	| "image/avif"
 	| "image/svg"
 
-	export type LdArticle = {
-		"@type": "Article"
-		author?: Array<LdPerson>
-		datePublished?: string | Date
-		dateModified?: string | Date
-		description: string | undefined
-		headline: string | undefined
-		inLanguage?: string
-		license?: string
-		mainEntityOfPage?: string | undefined
-		potentialAction?: Array<ReadAction>
-		publisher: Array<LdOrganization>
-		teaches?: string
-		url: string | undefined
-		version?: number | string
-	}
-	
-	export type LdImage = {
-		"@type": "ImageObject"
+export type LdArticle = {
+	"@type": "Article"
+	author?: Array<LdPerson>
+	datePublished?: string | Date
+	dateModified?: string | Date
+	description: string | undefined
+	headline: string | undefined
+	inLanguage?: string
+	license?: string
+	mainEntityOfPage?: string | undefined
+	potentialAction?: Array<ReadAction>
+	publisher: Array<LdOrganization>
+	teaches?: string
+	url: string | undefined
+	version?: number | string
+}
+
+export type LdImage = {
+	"@type": "ImageObject"
+	"@id": string
+	acquireLicensePage?: string
+	contentUrl: string
+	copyrightNotice: string
+	creator?: {
 		"@id": string
-		acquireLicensePage?: string
-		contentUrl: string
-		copyrightNotice: string
-		creator?: {
-			"@id": string
-		}
-		creditText: string
-		height?: string | number | undefined
-		inLanguage: string
-		license: string
-		url: string
-		width?: string | number | undefined
 	}
-	
-	export type LdPerson = {
-		"@type"?: "Person" | string
-		name: string
-		jobTitle?: string
-		url?: string
-	}
-	
-	export type LdOrganization = {
-		"@type"?: "Organization" | string
-		name: string
-		url?: string
-	}
-	
+	creditText: string
+	height?: string | number | undefined
+	inLanguage: string
+	license: string
+	url: string
+	width?: string | number | undefined
+}
+
+export type LdPerson = {
+	"@type"?: "Person" | string
+	name: string
+	jobTitle?: string
+	url?: string
+}
+
+export type LdOrganization = {
+	"@type"?: "Organization" | string
+	name: string
+	url?: string
+}
+
 export type Messages = Partial<
 	Record<
 		| "customError"

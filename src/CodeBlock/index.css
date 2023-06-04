@@ -1,0 +1,12 @@
+figure.sb-code-block-figure {
+	align-items: var(--sb-code-block-figure-align-items, stretch);
+	display: var(--sb-code-block-figure-display, flex);
+	flex-direction: var(--sb-code-block-figure-flex-direction, column-reverse);
+	gap: var(--sb-code-block-figure-gap, 0);
+	justify-content: var(--sb-code-block-figure-justify-content, flex-start);
+	margin: var(--sb-code-block-figure-margin, 0 0 2rem);
+}
+
+figure.sb-code-block-figure figcaption {
+	text-align: var(--sb-code-block-figure-text-align, center);
+}

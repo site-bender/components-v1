@@ -1,0 +1,54 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import generateShortId from "../utilities/generateShortId";
+
+export type Link = HTMLAttributes<"a"> & {
+	label: string;
+};
+
+export type Props = HTMLAttributes<"nav"> & {
+	cssClasses?: Array<string>;
+	h2?: Partial<HTMLAttributes<"h2">>;
+	links: Array<Link>;
+	ul?: Partial<HTMLAttributes<"ul">>;
+};
+
+const { pathname } = Astro.url;
+
+const {
+	cssClasses = [],
+	h2 = {},
+	id,
+	links = [],
+	ul = {},
+	...attrs
+} = Astro.props;
+
+const labelId = id || generateShortId();
+const css = ["sb-nav", ...cssClasses].join(" ");
+---
+
+<nav aria-labelledby={labelId} class={css} {...attrs}>
+	<h2 class={`off-screen ${h2.class}`} id={labelId} {...h2}>
+		Links to more info
+	</h2>
+	<ul role="presentation" {...ul}>
+		{
+			links.map(({ href, label, ...linkAttrs }) =>
+				href === pathname ? (
+					<li>
+						<span aria-current="page" class="this-page">
+							{label}
+						</span>
+					</li>
+				) : (
+					<li>
+						<a href={href} {...linkAttrs}>
+							{label}
+						</a>
+					</li>
+				)
+			)
+		}
+	</ul>
+</nav>

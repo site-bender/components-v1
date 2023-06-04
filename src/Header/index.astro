@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import "./index.css";
+
+export type Props = HTMLAttributes<"header"> & {
+  cssClasses?: Array<string>;
+};
+
+const { cssClasses = [], ...attrs } = Astro.props;
+const css = ["sb-header", ...cssClasses].join(" ");
+---
+
+<header class={css} {...attrs}>
+  <slot />
+</header>

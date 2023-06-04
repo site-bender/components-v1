@@ -1,0 +1,29 @@
+---
+import type { Dataset } from "../../../types";
+import type { HTMLAttributes } from "astro/types";
+import "./index.css";
+
+export type Props = {
+  attrs?: HTMLAttributes<"a"> | undefined;
+  data?: Dataset | undefined;
+  ext?: Record<string, string> | undefined;
+  href?: string | undefined;
+  name: string;
+};
+
+const { attrs = {}, data, ext, href, name } = Astro.props;
+---
+
+{
+  href ? (
+    <a href={href} {...ext} {...attrs}>
+      <span class="sb-book-title" {...data} itemprop="name">
+        {name}
+      </span>
+    </a>
+  ) : (
+    <span class="sb-book-title" {...data} itemprop="name" {...attrs}>
+      {name}
+    </span>
+  )
+}

@@ -1,5 +1,6 @@
 ---
 import getLineNumberingWidth from "../utilities/getLineNumberingWidth";
+import "./index.css";
 
 export type Frontmatter = {
   anchor?: string;
@@ -42,7 +43,7 @@ const digits = count || getLineNumberingWidth(snippet.rawContent());
 
 <figure
   class="sb-code-block-figure"
-  style={`--line-number-width: ${digits}rem;`}
+  style={`--line-number-width: ${digits * 1.5}ch;`}
 >
   {
     hasCap ? (

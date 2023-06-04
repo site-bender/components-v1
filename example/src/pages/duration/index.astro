@@ -1,0 +1,80 @@
+---
+import Duration from "../../../../src/metadata/Duration/index.astro";
+import CodeBlock from "../../../../src/CodeBlock/index.astro";
+import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
+import Layout from "../_layouts/index.astro";
+import TableOfContents from "../_components/TableOfContents/index.astro";
+import * as typeTs from "./_assets/type.ts.md";
+import * as defaultExampleHtml from "./_assets/default-example.html.md";
+import * as defaultExampleAstro from "./_assets/default-example.astro.md";
+import * as withDataAttrsHtml from "./_assets/with-data-attrs.html.md";
+import * as withDataAttrsAstro from "./_assets/with-data-attrs.astro.md";
+---
+
+<Layout title="Duration">
+  <Fragment slot="tail">
+    <script set:html={copyToClipboardJs} />
+  </Fragment>
+  <main>
+    <article>
+      <h2>Duration</h2>
+      <p>
+        The <code>Duration</code> is used to express a duration in years, months,
+        days, hours, minutes, seconds, etc.
+      </p>
+      <p>
+        View the <a
+          href="https://en.wikipedia.org/wiki/ISO_8601#Durations"
+          rel="external">duration codes</a
+        >. View the <a href="/attributes">HTML Attributes</a>. View the <a
+          href="https://schema.org/Duration"
+          rel="external">Schema.org Duration properties</a
+        >.
+      </p>
+      <section>
+        <h3>Types</h3>
+        <CodeBlock snippet={typeTs} />
+        <p>
+          The <code>dataset</code> prop takes a map of attribute names (minus the
+          <code>data-</code>) and values and maps them to <code
+            >data-&lt;name&gt;</code
+          > attributes. See below.
+        </p>
+      </section>
+      <section>
+        <h3>Default example</h3>
+        <p>This is the minimum required to use the <code>Duration</code>:</p>
+        <CodeBlock snippet={defaultExampleAstro} />
+        <p>Here is the actual component:</p>
+        <p class="example">
+          <Duration duration="P3DT4H59M" />
+        </p>
+        <p>And here is the HTML created:</p>
+        <CodeBlock snippet={defaultExampleHtml} />
+      </section>
+      <section>
+        <h3>With <code>data-</code> and <code>id</code> example</h3>
+        <p>
+          We can also include <code>data-</code> attributes (and all normal HTML
+          attributes for the <code>input</code> element, such as <code
+            >checked</code
+          > or an <code>id</code>):
+        </p>
+        <CodeBlock snippet={withDataAttrsAstro} />
+        <p>Here is the actual component:</p>
+        <p class="example">
+          <Duration
+            dataset={{
+              alert: true,
+              name: "productLifetime",
+            }}
+            duration="P1Y1M1DT1H1M1.1S"
+            id="duration-id"
+          />
+        </p>
+        <p>And here is the HTML created:</p>
+        <CodeBlock snippet={withDataAttrsHtml} />
+      </section>
+    </article>
+  </main>
+</Layout>

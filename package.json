@@ -28,8 +28,8 @@
     "./duration": "./src/temporal/Duration/index.astro",
     "./email-field": "./src/EmailField/index.astro",
     "./email": "./src/metadata/Email/index.astro",
-    "./field-wrapper": "./src/wrappers/FieldWrapper/index.astro",
-    "./fieldset-wrapper": "./src/wrappers/FieldsetWrapper/index.astro",
+    "./field-wrapper": "./src/FieldWrapper/index.astro",
+    "./fieldset-wrapper": "./src/FieldsetWrapper/index.astro",
     "./fieldset": "./src/Fieldset/index.astro",
     "./figure": "./src/Figure/index.astro",
     "./form": "./src/Form/index.astro",
@@ -41,6 +41,7 @@
     "./instant": "./src/temporal/Instant/index.astro",
     "./meta": "./src/Meta/index.astro",
     "./metadata": "./src/metadata/Metadata/index.astro",
+    "./nav": "./src/Nav/index.astro",
     "./number-field": "./src/NumberField/index.astro",
     "./number": "./src/metadata/Number/index.astro",
     "./picture": "./src/Picture/index.astro",
@@ -57,7 +58,6 @@
     "./pull-quote": "./src/PullQuote/index.astro",
     "./source": "./src/Source/index.astro",
     "./string-field": "./src/StringField/index.astro",
-    "./supplemental-nav": "./src/SupplementalNav/index.astro",
     "./tel-field": "./src/TelField/index.astro",
     "./tel": "./src/metadata/Tel/index.astro",
     "./time-zone-field": "./src/temporal/TimeZoneField/index.astro",
@@ -77,17 +77,27 @@
     "check:exports": "npx find-unused-exports",
     "check:packages": "npx npm-check -u",
     "config:update": "dprint config update",
+    "dev": "cd example && astro dev",
     "fmt": "dprint fmt",
     "fmt:check": "dprint check",
     "lint": "deno lint",
-    "publish": "npm publish --access=public"
+    "publish": "npm publish --access=public",
+    "start": "cd example && astro start",
+    "test": "pnpm test:int",
+    "test:cov": "vitest run --coverage",
+    "test:int": "vitest"
   },
   "devDependencies": {
+    "@astrojs/mdx": "^0.19.6",
     "@js-temporal/polyfill": "^0.4.4",
-    "astro": "^2.4.1",
-    "exifr": "^7.1.3"
-  },
-  "peerDependencies": {
-    "astro": "^2.0.0-beta.0"
+    "@vitest/coverage-c8": "^0.31.4",
+    "astro": "^2.5.7",
+    "dprint": "^0.37.1",
+    "exifr": "^7.1.3",
+    "rollup": "^3.23.0",
+    "typescript": "^5.1.3",
+    "vite": "^4.3.9",
+    "vite-plugin-compress": "^2.1.1",
+    "vitest": "^0.31.4"
   }
 }

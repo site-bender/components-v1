@@ -1,32 +1,32 @@
-(function () {
-  function addCopyToClipboard() {
-    const blocks = document.querySelectorAll(".astro-code");
+;(function() {
+	function addCopyToClipboard () {
+		const blocks = document.querySelectorAll(".astro-code")
 
-    blocks?.forEach((block) => {
-      const button = document.createElement("button");
+		blocks?.forEach((block) => {
+			const button = document.createElement("button")
 
-      button.classList.add("copy-to-clipboard");
-      button.appendChild(document.createTextNode("copy"));
-      button.addEventListener("click", function () {
-        const code = block.querySelector("code");
+			button.classList.add("copy-to-clipboard")
+			button.appendChild(document.createTextNode("copy"))
+			button.addEventListener("click", function() {
+				const code = block.querySelector("code")
 
-        code &&
-          navigator.clipboard.writeText(
-            [...code.children].map((child) => child.innerText || "").join("\n")
-          );
+				code &&
+					navigator.clipboard.writeText(
+						[...code.children].map((child) => child.innerText || "").join("\n"),
+					)
 
-        this.innerText = "copied";
+				this.innerText = "copied"
 
-        setTimeout(() => {
-          this.innerText = "copy";
-        }, 3000);
-      });
+				setTimeout(() => {
+					this.innerText = "copy"
+				}, 3000)
+			})
 
-      block.appendChild(button);
-    });
+			block.appendChild(button)
+		})
 
-    console.info("« Clipboard copy enabled. »");
-  }
+		console.info("« Clipboard copy enabled. »")
+	}
 
-  globalThis.addEventListener("DOMContentLoaded", addCopyToClipboard);
-})();
+	globalThis.addEventListener("DOMContentLoaded", addCopyToClipboard)
+})()

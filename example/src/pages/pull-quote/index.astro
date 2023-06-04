@@ -1,0 +1,50 @@
+---
+import PullQuote from "../../../../src/PullQuote/index.astro";
+import CodeBlock from "../../../../src/CodeBlock/index.astro";
+import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
+import Layout from "../_layouts/index.astro";
+import * as typeTs from "./_assets/type.ts.md";
+import * as defaultExampleHtml from "./_assets/default-example.html.md";
+import * as defaultExampleAstro from "./_assets/default-example.astro.md";
+---
+
+<Layout title="PullQuote">
+  <Fragment slot="tail">
+    <script set:html={copyToClipboardJs} />
+  </Fragment>
+  <main>
+    <article>
+      <h2>PullQuote</h2>
+      <p>
+        The <code>PullQuote</code> is used to . If the <code>id</code> attribute
+        is not provided, a unique Base58 ID is generated preceded by an underscore
+        (to prevent IDs beginning with a digit), for example
+        <code>_DMwzFyG3PvJGrMZstX74JS</code>.
+      </p>
+      <section>
+        <h3>Types</h3>
+        <CodeBlock snippet={typeTs} />
+        <p>
+          The <code>dataset</code> prop takes a map of attribute names (minus the
+          <code>data-</code>) and values and maps them to <code
+            >data-&lt;name&gt;</code
+          > attributes. See below.
+        </p>
+      </section>
+      <section>
+        <h3>Default example</h3>
+        <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
+        <CodeBlock snippet={defaultExampleAstro} />
+        <p>Here is the actual component:</p>
+        <div class="example">
+          <PullQuote author="e.e. cummings">
+            i'd rather learn from one bird how to sing<br />
+            than teach ten thousand stars how not to dance
+          </PullQuote>
+        </div>
+        <p>And here is the HTML created:</p>
+        <CodeBlock snippet={defaultExampleHtml} />
+      </section>
+    </article>
+  </main>
+</Layout>

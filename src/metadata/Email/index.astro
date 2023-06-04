@@ -1,25 +1,60 @@
 ---
-export type Props = {
-	isHyperlink?: boolean;
-	itemprop?: string | null | undefined;
+import type { Dataset } from "../../types";
+import type {
+  ContactPointLeaf,
+  OrganizationLeaf,
+  PersonLeaf,
+} from "../../schema.org";
+import mapDataset from "../../utilities/mapDataset";
+import Microdata from "../../Microdata/index.astro";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"a"> & {
+  dataset?: Dataset;
+  isMailto?: boolean;
+  properties?: Partial<ContactPointLeaf | OrganizationLeaf | PersonLeaf>;
+  type?: "ContactPoint" | "Organization" | "Person";
+  useMicrodata?: boolean;
 };
 
-const { isHyperlink, itemprop } = Astro.props;
-const property = itemprop ? { itemprop } : {};
+const {
+  dataset,
+  isMailto,
+  properties,
+  useMicrodata,
+  type = "Person",
+  ...attrs
+} = Astro.props;
+const email = ((await Astro.slots.render("default")) || "").trim();
+const data = mapDataset(dataset);
+const meta = { "@type": type, ...properties };
 ---
 
-{
-	isHyperlink ? (
-		<a
-			class="sb-email-link"
-			href={`mailto:${await Astro.slots.render("default")}`}
-			{...property}
-		>
-			<slot />
-		</a>
-	) : (
-		<span class="sb-email-span" {...property}>
-			<slot />
-		</span>
-	)
-}
+<span itemscope itemtype={`https://schema.org/${type}`}>
+  {
+    properties ? (
+      useMicrodata ? (
+        <Microdata properties={meta} />
+      ) : (
+        <script
+          is:inline
+          set:html={JSON.stringify(meta, null, 2)}
+          type="application/json+ld"
+        />
+      )
+    ) : null
+  }
+  {
+    isMailto ? (
+      <a href={`mailto:${await Astro.slots.render("default")}`} {...attrs}>
+        <span class="sb-email-address" {...data} itemprop="email">
+          {email}
+        </span>
+      </a>
+    ) : (
+      <span class="sb-email-address" {...data} itemprop="email" {...attrs}>
+        {email}
+      </span>
+    )
+  }
+</span>

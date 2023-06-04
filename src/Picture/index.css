@@ -1,0 +1,8 @@
+.sb-picture img {
+	height: auto;
+}
+
+.off-screen {
+	position: absolute;
+	top: -10000px;
+}

@@ -1,0 +1,56 @@
+---
+import type { Dataset } from "../../../types";
+import type { HTMLAttributes } from "astro/types";
+import mapDataset from "../../../utilities/mapDataset";
+
+export type Props = HTMLAttributes<"span"> & {
+	cssClasses?: Array<string> | undefined;
+	dataset?: Dataset | undefined;
+	href?: string | undefined;
+	linkAttributes?: HTMLAttributes<"a"> | undefined;
+	num: string | Element;
+	useTabularNumerals?: boolean | undefined;
+};
+
+const {
+	cssClasses = [],
+	linkAttributes,
+	dataset,
+	href,
+	num,
+	useTabularNumerals,
+} = Astro.props;
+
+useTabularNumerals && import("./index.css");
+
+const css = [
+	"sb-monetary-amount",
+	...cssClasses,
+	...(useTabularNumerals ? ["tabular-nums"] : []),
+].join(" ");
+
+const ext = (href as string).includes("://") ? { rel: "external" } : {};
+const data = mapDataset(dataset);
+---
+
+{
+	href ? (
+		<a
+			class={css}
+			href={href}
+			itemprop="value"
+			{...data}
+			{...linkAttributes}
+			{...ext}
+			set:html={num}
+		/>
+	) : (
+		<span
+			class={css}
+			itemprop="value"
+			{...data}
+			{...linkAttributes}
+			set:html={num}
+		/>
+	)
+}

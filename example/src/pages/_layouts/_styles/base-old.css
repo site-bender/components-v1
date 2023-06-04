@@ -1,0 +1,458 @@
+body {
+	background-color: hsl(212, 25%, 98%);
+	background-color: var(--body-background-color, hsl(212, 25%, 98%));
+	color: hsl(212, 25%, 31%);
+	color: var(--body-color, hsl(212, 25%, 31%));
+	font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+		Arial, sans-serif;
+	font-family: var(
+		--font-body,
+		Inter,
+		Roboto,
+		"Helvetica Neue",
+		"Arial Nova",
+		"Nimbus Sans",
+		Arial,
+		sans-serif
+	);
+	font-size: 1rem;
+	font-size: var(--step-0, 1rem);
+	font-variant-numeric: oldstyle-nums proportional-nums;
+	font-variant-ligatures: historical-ligatures;
+	font-weight: 400;
+	font-weight: var(--body-font-weight, 400);
+	line-height: 1.4;
+	position: relative;
+	quotes: "“" "”" "‘" "’";
+}
+
+.off-screen {
+	position: absolute;
+	top: -10000px;
+}
+
+.print-only {
+	display: none;
+}
+
+.hide {
+	visibility: hidden;
+}
+
+.remove {
+	display: none;
+}
+
+.disabled {
+	border-color: var(--disabled-border-color) !important;
+	color: var(--disabled-color) !important;
+	cursor: not-allowed;
+}
+
+i {
+	font-style: italic;
+}
+
+b {
+	font-weight: bold;
+}
+
+mark {
+	background-color: var(--highlight-background-color);
+	color: var(--highlight-color);
+	margin: -5px -3px;
+	padding: 5px 3px;
+}
+
+h2,
+h3 {
+	font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052,
+		serif;
+	font-family: var(
+		--font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
+	font-variant-ligatures: historical-ligatures;
+	font-weight: 500;
+	padding: 0 0 0.5rem;
+}
+
+h1 {
+	font-size: 2.44rem;
+	font-size: var(--step-4, 2.44rem);
+	font-variant-ligatures: historical-ligatures;
+	font-weight: 400;
+	padding: 0 0 0.5rem;
+	text-transform: lowercase;
+}
+
+h2 {
+	font-size: 1.95rem;
+	font-size: var(--step-3, 1.95rem);
+}
+
+h3 {
+	color: var(--h3-color);
+	font-size: 1.56rem;
+	font-size: var(--step-2, 1.56rem);
+}
+
+h3 a,
+h3 a:visited {
+	color: var(--link-color);
+	font-size: 1.56rem;
+	font-size: var(--step-1, 1.56rem);
+}
+
+.subtitle {
+	color: var(--subtitle-color);
+	margin: 0 0 1rem;
+}
+
+p.subtitle {
+	margin: 0 0 2.5rem;
+}
+
+p.byline {
+	font-family: var(--font-titles);
+	font-style: italic;
+	margin: 0;
+}
+
+dl > dt {
+	font-size: var(--step-1)
+}
+
+main > article dl > dd {
+	margin-left: var(--space-m);
+	margin-top: 0.5rem;
+}
+
+dl,
+ol,
+p,
+ul {
+	margin: 0.5rem 0 1rem;
+}
+
+em {
+	font-style: italic;
+}
+
+em::after {
+	content: "\200a";
+}
+
+strong {
+	font-weight: 700;
+}
+
+a {
+	color: hsl(212, 57%, 32%);
+	color: var(--link-color, hsl(212, 57%, 32%));
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+a:visited {
+	color: hsl(325, 49%, 35%);
+	color: var(--link-color-visited, hsl(325, 49%, 35%));
+}
+
+a:focus,
+a:hover {
+	border-radius: 4px;
+	color: hsl(200, 82%, 40%);
+	color: var(--link-color-hover, hsl(200, 82%, 40%));
+	outline: 2px solid hsl(200, 82%, 40%);
+	outline-color: var(--link-color-outline, hsl(200, 82%, 40%));
+	outline-offset: 3px;
+	text-decoration: none;
+}
+
+a:active {
+	color: hsl(4, 57%, 52%);
+	color: var(--link-color-active, hsl(4, 57%, 52%));
+}
+
+a.image {
+	text-decoration: none;
+}
+
+a[rel*="external"]:not(.image)::after {
+	content: "\2009\00bb";
+}
+
+main > article figure > figcaption {
+	text-align: center;
+}
+
+blockquote.pull-quote {
+	background-color: var(--pull-quote-background-color);
+	border-radius: 5px;
+	color: var(--pull-quote-color);
+	display: flex;
+	flex-direction: column;
+	font-family: var(--pull-quote-font-family);
+	font-size: var(--step-1);
+	font-weight: 500;
+	justify-content: space-evenly;
+	margin: var(--box-margin);
+	padding: var(--pull-quote-padding);
+}
+
+blockquote.pull-quote .sb-pull-quote-author {
+	color: var(--pull-quote-sb-pull-quote-author-color);
+	display: block;
+	font-family: var(--pull-quote-sb-pull-quote-author-font-family);
+	font-size: var(--pull-quote-sb-pull-quote-author-font-size);
+	font-style: italic;
+	text-align: right;
+}
+
+hr {
+	border: none;
+	border-bottom: 1px double hsl(154, 7%, 19%);
+	border-color: var(--column-rule-color, hsl(154, 7%, 19%));
+	color: hsl(154, 7%, 19%);
+	color: var(--column-rule-color, hsl(154, 7%, 19%));
+	margin: 3rem auto;
+	margin: var(--space-xl, 3rem) auto;
+	overflow: visible;
+	text-align: center;
+	width: 10ch;
+}
+
+hr:after {
+	background-color: hsl(80, 9%, 87%);
+	background-color: var(--body-background-color, hsl(80, 9%, 87%));
+	color: hsl(154, 7%, 19%);
+	color: var(--column-rule-color, hsl(154, 7%, 19%));
+	content: " § ";
+	padding: 0 1ch;
+	position: relative;
+	top: 0.75rem;
+	top: calc(var(--space-s, 1.5rem) / 2);
+}
+
+body > header .logotype a {
+	background-color: hsl(212, 25%, 23%);
+	background-color: var(--header-link-background-color, hsl(212, 25%, 23%));
+	color: hsl(212, 25%, 98%);
+	color: var(--header-logotype-color, hsl(212, 25%, 98%));
+	text-decoration: none;
+	outline-color: hsl(56, 100%, 72%);
+	outline-color: var(--header-outline-color, hsl(56, 100%, 72%));
+}
+
+body > header .logotype a:focus,
+body > header .logotype a:hover {
+	color: hsl(56, 100%, 72%);
+	color: var(--header-logotype-color-hover, hsl(56, 100%, 72%));
+}
+
+body > header ol {
+	list-style-type: none;
+	padding: 0;
+}
+
+body > header ol li {
+	line-height: 1.5;
+}
+
+body > header nav li::after {
+	content: "\2002>\2002";
+}
+
+body > header nav a,
+body > header nav a:visited {
+	background-color: hsl(212, 25%, 23%);
+	background-color: var(--header-link-background-color, hsl(212, 25%, 23%));
+	color: hsl(56, 100%, 72%);
+	color: var(--header-link-color, hsl(56, 100%, 72%));
+	outline-color: hsl(56, 100%, 72%);
+	outline-color: var(--header-outline-color, hsl(56, 100%, 72%));
+	text-decoration: none;
+}
+
+header > a.secret {
+	background-color: hsl(212, 25%, 23%);
+	background-color: var(--header-background-color, hsl(212, 25%, 23%));
+	color: hsl(212, 25%, 98%);
+	color: var(--header-color, hsl(212, 25%, 98%));
+	outline-offset: 7px;
+	text-decoration: none;
+}
+
+header > a.secret:focus,
+header > a.secret:hover {
+	color: hsl(56, 100%, 72%);
+	color: var(--header-link-color, hsl(56, 100%, 72%));
+}
+
+main {
+	padding: 1rem 1.5rem;
+	padding: var(--main-padding, 1rem 1.5rem);
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+main {
+	animation-fill-mode: forwards;
+	animation-iteration-count: 1;
+	animation: fadeInAnimation ease-in-out 1s;
+	position: relative;
+}
+
+main > article {
+	margin: 5rem auto;
+	max-width: 48rem;
+}
+
+main > article * + * {
+	margin-top: 1rem;
+	margin-top: var(--space-s, 1rem);
+}
+
+main ol,
+main ul {
+	line-height: 1.5;
+	list-style-type: initial;
+	padding: 0 0 0 1.5rem;
+}
+
+main > article ol {
+	list-style-type: decimal;
+}
+
+main.background-image::before {
+	background-image: url(/images/01.svg);
+	background-image: var(--main-background-image, url(/images/01.svg));
+	background-repeat: no-repeat;
+	content: "";
+	filter: opacity(0.05);
+	isolation: isolate;
+	position: absolute;
+	top: -50vmin;
+	left: -30vmin;
+	width: max(100vmin, 80vw);
+	height: max(100vmin, 80vw);
+	z-index: -1000;
+}
+
+main > form.get-notified {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	max-width: 48rem;
+}
+
+body > footer {
+	background-color: hsl(212, 25%, 93%);
+	background-color: var(--footer-background-color, hsl(212, 25%, 93%));
+	border-top: 1px solid hsl(212, 25%, 83%);
+	border-top-color: var(--footer-border-color, hsl(212, 25%, 83%));
+	color: hsl(212, 25%, 15%);
+	color: var(--footer-color, hsl(212, 25%, 15%));
+	padding: 1rem 1.5rem;
+	padding: var(--footer-padding, 1rem 1.5rem);
+}
+
+body > footer ul {
+	list-style-type: none;
+	padding: 0 0 1rem;
+}
+
+body > footer ul li {
+	display: inline-block;
+	line-height: 1.5;
+	margin-right: 1rem;
+}
+
+body > footer {
+	padding-top: 2rem; /* unset */
+}
+
+#selector-text::after {
+	content: "Select a question to view the response. Selecting again hides the response.";
+	display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+	main.background-image::before {
+		filter: opacity(0.2);
+	}
+}
+
+.scratchcode-dark {
+	margin: 0;
+}
+
+section {
+	margin: 3rem 0 0;
+}
+
+section p {
+	margin: 1rem 0 0;
+}
+
+header a,
+header a:visited {
+	color: var(--color-icterine);
+}
+
+.toc {
+	column-width: 32ch;
+	width: calc(100vw - calc(var(--space-m) * 2));
+}
+
+details.components {
+	background-color: hsl(212, 25%, 93%);
+	border-bottom-color: hsl(212, 25%, 46%);
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	padding: 1rem 2.5rem;
+}
+
+details.components summary {
+	font-family: var(--font-titles);
+	font-size: var(--step-1);
+}
+
+.example {
+	border: 1px solid var(--color-gray-4);
+	border-radius: 4px;
+	margin: 1rem 0;
+	padding: 1rem;
+}
+
+header > h1.logo > a,
+header > h1.logo > a:visited,
+header > h1.logo > a:hover,
+header > h1.logo > a:focus,
+header > h1.logo > a:active {
+	color: var(--color-icterine);
+	text-decoration: none;
+}
+
+header > h1.logo > a:hover,
+header > h1.logo > a:focus,
+header > h1.logo > a:active {
+	outline: 2px solid var(--color-icterine);
+	outline-offset: 5px;
+}

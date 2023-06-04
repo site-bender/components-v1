@@ -1,27 +1,86 @@
 ---
-export type Props = {
-	href?: string | URL | null | undefined;
-	itemprop?: string | null | undefined;
-	useLiningNumbers?: boolean | undefined;
+import type { Dataset } from "../../types";
+import type { Float, Integer, MonetaryAmount, Number } from "../../schema.org";
+import type { NumberFormatOptions } from "./types";
+import mapDataset from "../../utilities/mapDataset";
+import Microdata from "../../Microdata/index.astro";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"a"> & {
+  cssClass?: string;
+  dataset?: Dataset;
+  href?: string | URL | null | undefined;
+  locale?: string;
+  options?: NumberFormatOptions;
+  properties?: Number | Integer | Float | MonetaryAmount | undefined;
+  type?: "Number" | "Integer" | "Float" | "MonetaryAmount";
+  useMicrodata?: boolean;
+  useTabularNumerals?: boolean | undefined;
+  value?: string | number | undefined;
 };
 
-const { href, itemprop, useLiningNumbers } = Astro.props;
-const property = itemprop ? { itemprop } : {};
-const cssClass = ["number", ...[useLiningNumbers ? ["lining"] : []]];
+const {
+  cssClass = "sb-number",
+  dataset,
+  href = "",
+  locale = "en-US",
+  options = {},
+  properties,
+  type = "Number",
+  useMicrodata,
+  useTabularNumerals,
+  value,
+  ...attrs
+} = Astro.props;
+
+useTabularNumerals && import("./index.css");
+
+const ext = (href as string).includes("://") ? { rel: "external" } : {};
+const data = mapDataset(dataset);
+const val = typeof value === "number" ? value : parseFloat(String(value));
+
+const num = Number.isNaN(val)
+  ? await Astro.slots.render("default")
+  : new Intl.NumberFormat(locale, options).format(val as number);
+
+const css = useTabularNumerals ? `${cssClass} tabular-nums` : cssClass;
+const meta =
+  typeof properties === "object"
+    ? {
+        "@context": "https://schema.org",
+        "@type": type,
+        ...(type === "MonetaryAmount" ? properties : {}),
+      }
+    : {};
 ---
 
-{
-	href ? (
-		<a
-			class={[...cssClass, "sb-number-link"].join(" ")}
-			href={href}
-			{...property}
-		>
-			<slot />
-		</a>
-	) : (
-		<span class={[...cssClass, "sb-number-span"].join(" ")} {...property}>
-			<slot />
-		</span>
-	)
-}
+<span itemscope itemtype={`https://schema.org/${type}`}>
+  {
+    type === "MonetaryAmount" ? (
+      useMicrodata ? (
+        <Microdata properties={meta} />
+      ) : (
+        <script
+          is:inline
+          set:html={JSON.stringify(meta, null, 2)}
+          type="application/json+ld"
+        />
+      )
+    ) : null
+  }
+  {
+    href ? (
+      <a
+        class={css}
+        href={href}
+        itemprop="value"
+        {...ext}
+        {...data}
+        {...attrs}
+        set:html={num}
+      />
+    ) : (
+      <span class={css} itemprop="value" {...data} {...attrs} set:html={num} />
+    )
+  }
+</span>

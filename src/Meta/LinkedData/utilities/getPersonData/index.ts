@@ -1,6 +1,9 @@
 import type { Basedata, Metadata } from "../../../../types"
 
-export default function getPersonData(basedata: Basedata, metadata: Metadata): unknown {
+export default function getPersonData(
+	basedata: Basedata,
+	metadata: Metadata,
+): unknown {
 	return {
 		"@type": "Person",
 		"@id": "https://cantankerouscoder.com/about/charles",

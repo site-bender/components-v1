@@ -48,7 +48,10 @@ export const DEFAULT_DATE_TIME_OPTIONS: DateTimeFormatOptions = {
 	formatMatcher: "basic",
 }
 
-export const DEFAULT_LOCALE = "en-NZ"
+export const DEFAULT_IMAGE_TYPES = process.env.DEFAULT_IMAGE_TYPES ||
+	["avif", "webp", "png"]
+
+export const DEFAULT_LOCALE = "en-US"
 
 export const DEFAULT_MONTH_DAY_OPTIONS: DateTimeFormatOptions = {
 	month: "long",
@@ -113,7 +116,8 @@ export const IMAGE_TYPE: Record<string, ImageType> = {
 export const INSTANT_MATCHER =
 	/^[12]\d{3}-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[12][0-9])))T(0[1-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.\d{3}|\.\d{6}|\.\d{9})?Z$/
 
-export const SITE_TITLE = "Craft Code: an artisanal code movement"
+export const SITE_TITLE =
+	"Sitebender Components: Astro components for Sitebender sites"
 
 export const TIME_ZONE = {
 	"Asia/Kabul": "+04:30",
