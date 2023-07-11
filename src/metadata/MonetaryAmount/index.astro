@@ -2,7 +2,6 @@
 import "./index.css";
 import type { NumberStyle } from "../Number/types";
 import Microdata from "../../Microdata/index.astro";
-import mapDataset from "../../utilities/mapDataset";
 
 const style: NumberStyle = "currency";
 
@@ -26,19 +25,14 @@ const num = Number.isNaN(val)
   ? await Astro.slots.render("default")
   : new Intl.NumberFormat(locale, opts).format(val as number);
 
-const css = [
-  "sb-monetary-amount",
-  ...cssClasses,
-  ...(useTabularNumerals ? ["tabular-nums"] : []),
-].join(" ");
-
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 const meta = {
   type: "MonetaryAmount",
   ....properties,
 	currency: opts.currency,
 	value: val,
 };
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 ---
 
 {
