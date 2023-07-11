@@ -3,7 +3,7 @@ import MonetaryAmount from "../../../../src/metadata/MonetaryAmount/index.astro"
 import CodeBlock from "../../../../src/CodeBlock/index.astro";
 import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
 import Layout from "../_layouts/index.astro";
-import TableOfContents from "../_components/TableOfContents/index.astro";
+import pageProperties from "./pageProperties";
 import * as typeTs from "./_assets/type.ts.md";
 import * as defaultExampleHtml from "./_assets/default-example.html.md";
 import * as defaultExampleAstro from "./_assets/default-example.astro.md";
@@ -17,7 +17,7 @@ import * as withLinkedDataHtml from "./_assets/with-linked-data.html.md";
 import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
 ---
 
-<Layout title="MonetaryAmount">
+<Layout pageProperties={pageProperties}>
   <Fragment slot="tail">
     <script set:html={copyToClipboardJs} />
   </Fragment>
@@ -43,7 +43,13 @@ import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
       </p>
       <section id="types">
         <h3>Types</h3>
-        <CodeBlock snippet={typeTs} />
+        <CodeBlock
+          snippet={typeTs}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "TypeScript",
+          }}
+        />
         <p>
           The <code>dataset</code> prop takes a map of attribute names (minus the
           <code>data-</code>) and values and maps them to <code
@@ -56,13 +62,25 @@ import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
         <p>
           This is the minimum required to use the <code>MonetaryAmount</code> component:
         </p>
-        <CodeBlock snippet={defaultExampleAstro} />
+        <CodeBlock
+          snippet={defaultExampleAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <MonetaryAmount value="42" />
-        </p>
+        </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={defaultExampleHtml} />
+        <CodeBlock
+          snippet={defaultExampleHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="dataset">
         <h3>
@@ -77,13 +95,19 @@ import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
           attribute to "external" if the link is to an external resource. You can
           override this by setting the <code>rel</code> prop directly.
         </p>
-        <CodeBlock snippet={withDataAttrsAstro} />
+        <CodeBlock
+          snippet={withDataAttrsAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>
           The <code>dataset</code> key-value pairs are whatever you want them to
           be.
         </p>
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <MonetaryAmount
             dataset={{
               type: "pocket-change",
@@ -94,13 +118,19 @@ import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
             value="42"
           />
           <p>And here is the HTML created:</p>
-          <CodeBlock snippet={withDataAttrsHtml} />
+          <CodeBlock
+            snippet={withDataAttrsHtml}
+            properties={{
+              codeSampleType: "code snippet",
+              programmingLanguage: "HTML",
+            }}
+          />
           <p>
             Note that HTML attributes will be added to the <code>a</code> element
             if an <code>href</code> attribute is included; otherwise, they will be
             added to the <code>span</code> element.
           </p>
-        </p>
+        </div>
       </section>
       <section id="tabular-numbers">
         <h3>Tabular numbers example</h3>
@@ -110,13 +140,25 @@ import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
           <code>value</code> attribute must be used and <code>value</code> must be
           a number, not a string. Otherwise, a string is acceptable.
         </p>
-        <CodeBlock snippet={tabularNumbersAstro} />
+        <CodeBlock
+          snippet={tabularNumbersAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <MonetaryAmount useTabularNumerals value={123_456_789} />
-        </p>
+        </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={tabularNumbersHtml} />
+        <CodeBlock
+          snippet={tabularNumbersHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="linked-data">
         <h3>Linked Data example</h3>
@@ -124,19 +166,24 @@ import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
           We can also include linked data as <code>application/json+ld</code> in
           a
           <code>script</code> element according the the Schema.org <a
-            href="https://schema.org/MonetaryAmount"
-            rel="external">MonetaryAmount</a
+            href="https://schema.org/MonetaryAmount">MonetaryAmount</a
           > object by including a <code>properties</code> object. Note: the <code
             >options</code
           > object is of type NumberFormatOptions (see <a href="#types">Types</a
           > above) and is used for formatting with <a
             href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat"
-            rel="external">Intl.NumberFormat</a
+            >Intl.NumberFormat</a
           >. Here we set the currency to euros (<code>EUR</code>).
         </p>
-        <CodeBlock snippet={withLinkedDataAstro} />
+        <CodeBlock
+          snippet={withLinkedDataAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <MonetaryAmount
             options={{
               currency: "EUR",
@@ -146,31 +193,39 @@ import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
               minValue: 1_000_000_000,
               name: "Bob's stash",
             }}
-            useJsonLd
             value={42_000_000_000}
           />
-        </p>
+        </div>
         <p>
           And here is the HTML created.
-          <a href="https://validator.schema.org/" rel="external"
-            >Validate the JSON here.</a
-          >
+          <a href="https://validator.schema.org/">Validate the JSON here.</a>
         </p>
-        <CodeBlock snippet={withLinkedDataHtml} />
+        <CodeBlock
+          snippet={withLinkedDataHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="microdata">
         <h3>Microdata example</h3>
         <p>
           We can also include microdata according the Schema.org <a
-            href="https://schema.org/MonetaryAmount"
-            rel="external">MonetaryAmount</a
+            href="https://schema.org/MonetaryAmount">MonetaryAmount</a
           > object. Here we set the currency to New Zealand dollars (<code
             >NZD</code
           >).
         </p>
-        <CodeBlock snippet={withMicrodataAstro} />
+        <CodeBlock
+          snippet={withMicrodataAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <MonetaryAmount
             options={{
               currency: "NZD",
@@ -182,14 +237,18 @@ import * as withLinkedDataAstro from "./_assets/with-linked-data.astro.md";
             }}
             value={42_000_000_000}
           />
-        </p>
+        </div>
         <p>
           And here is the HTML created.
-          <a href="https://validator.schema.org/" rel="external"
-            >Validate the output here.</a
-          >
+          <a href="https://validator.schema.org/">Validate the output here.</a>
         </p>
-        <CodeBlock snippet={withMicrodataHtml} />
+        <CodeBlock
+          snippet={withMicrodataHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
     </article>
   </main>

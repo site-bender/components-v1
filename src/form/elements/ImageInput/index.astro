@@ -1,0 +1,40 @@
+---
+// This will stupidly submit the form and can only be overridden with JS. Ugh.
+// Consider using the Button component and passing an image
+// unless the x and y coordinates are needed (probably not accessible)
+import createClassList from "../../../utilities/createClassList";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { ImageInput as Props } from "../../../types/form";
+
+const {
+	alt,
+	["class:list"]: elementClassList = [],
+	dataset: elementDataset,
+	field = "image-input",
+	form,
+	height,
+	id = generateShortId(),
+	labelledBy,
+	name,
+	src,
+	width,
+	...attrs
+} = Astro.props;
+---
+
+<input
+	{...attrs}
+	{alt}
+	aria-labelledby={labelledBy}
+	class:list={createClassList("sb-color-input", elementClassList)}
+	{...mapDataset(elementDataset)}
+	data-sb-input={field}
+	{form}
+	{height}
+	{id}
+	{name}
+	{src}
+	type="image"
+	{width}
+/>

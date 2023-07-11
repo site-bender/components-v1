@@ -1,0 +1,26 @@
+{
+	"sourceFile": "src/form/elements/YearInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 2,
+			"patches": [
+				{
+					"date": 1688855270880,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688855296341,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,9 +64,10 @@\n \t/>\n \t{\n \t\tlistId ? (\n \t\t\t<datalist\n-\t\t\t\tclass:list={createClassList(\"sb-year\", elementClassList)}\n+\t{...datalistAttrs}\n+\t\t\t\tclass:list={createClassList(\"sb-year\", datalistClassList)}\n \t\t\t\t{...mapDataset(elementDataset)}\n \t\t\t\tid={listId}\n \t\t\t>\n \t\t\t\t{years.map((year) => (\n"
+				},
+				{
+					"date": 1688855338981,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n \tautocorrect: _autocorrect,\n \t[\"class:list\"]: elementClassList = [],\n \tdatalist = {},\n \tdataset: elementDataset,\n-\tfield = \"year\",\n+\tfield = \"year-input\",\n \tform,\n \tid = generateShortId(),\n \tincludeBlank,\n \tlabelledBy,\n@@ -65,10 +65,11 @@\n \t{\n \t\tlistId ? (\n \t\t\t<datalist\n \t\t\t\t{...datalistAttrs}\n-\t\t\t\tclass:list={createClassList(\"sb-year\", datalistClassList)}\n-\t\t\t\t{...mapDataset(elementDataset)}\n+\t\t\t\tclass:list={createClassList(\"sb-datalist-color\", datalistClassList)}\n+\t\t\t\t{...mapDataset(datalistDataset)}\n+\t\t\t\tdata-sb-datalist={field}\n \t\t\t\tid={listId}\n \t\t\t>\n \t\t\t\t{years.map((year) => (\n \t\t\t\t\t<option value={year} />\n"
+				}
+			],
+			"date": 1688855270880,
+			"name": "Commit-0",
+			"content": "---\nimport createClassList from \"../../../utilities/createClassList\";\nimport createSelectOptions from \"../../../utilities/createSelectOptions\";\nimport generateShortId from \"../../../utilities/generateShortId\";\nimport mapDataset from \"../../../utilities/mapDataset\";\nimport type { BaseAttributes } from \"../../../types/html\";\nimport type { YearInput as Props } from \"../../../types/form\";\n\nconst {\n\tautocomplete,\n\tautocorrect: _autocorrect,\n\t[\"class:list\"]: elementClassList = [],\n\tdatalist = {},\n\tdataset: elementDataset,\n\tfield = \"year\",\n\tform,\n\tid = generateShortId(),\n\tincludeBlank,\n\tlabelledBy,\n\tname = \"year\",\n\trequired,\n\tvalue,\n\twrapper = {},\n\tyears,\n\t...attrs\n} = Astro.props;\n\nconst {\n\t[\"class:list\"]: datalistClassList = [],\n\tdataset: datalistDataset,\n\t...datalistAttrs\n} = datalist as BaseAttributes;\n\nconst {\n\t[\"class:list\"]: wrapperClassList = [],\n\tdataset: wrapperDataset,\n\t...wrapperAttrs\n} = wrapper as BaseAttributes;\n\nconst listId = years ? `${id}_datalist` : undefined;\n---\n\n<span\n\t{...wrapperAttrs}\n\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n\t{...mapDataset(wrapperDataset)}\n\tdata-sb-wrapper={field}\n>\n\t<input\n\t\t{...attrs}\n\t\tautocomplete={autocomplete}\n\t\taria-labelledby={labelledBy}\n\t\tclass:list={createClassList(\"sb-year\", elementClassList)}\n\t\t{...mapDataset(elementDataset)}\n\t\tdata-sb-input={field}\n\t\tid={id}\n\t\tform={form}\n\t\tlist={listId}\n\t\tname={name}\n\t\tpattern=\"[0-9]{1,4}\"\n\t\trequired={required}\n\t\ttype=\"text\"\n\t\tvalue={value}\n\t/>\n\t{\n\t\tlistId ? (\n\t\t\t<datalist\n\t\tclass:list={createClassList(\"sb-year\", elementClassList)}\n\t\t{...mapDataset(elementDataset)} id={listId}>\n\t\t\t\t{years.map((year) => (\n\t\t\t\t\t<option value={year} />\n\t\t\t\t))}\n\t\t\t</datalist>\n\t\t) : null\n\t}\n</span>\n"
+		}
+	]
+}

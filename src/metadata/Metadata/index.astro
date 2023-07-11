@@ -1,20 +1,20 @@
 ---
 export type Props = {
 	href?: string | URL | null | undefined;
-	itemprop?: string | null | undefined;
+	property?: string | null | undefined;
 };
 
-const { href, itemprop } = Astro.props;
-const property = itemprop ? { itemprop } : {};
+const { href, property } = Astro.props;
+const microdata = property ? { property } : {};
 ---
 
 {
 	href ? (
-		<a class="sb-metadata-link" href={href} {...property}>
+		<a class="sb-metadata-link" {href} {...microdata}>
 			<slot />
 		</a>
 	) : (
-		<span class="sb-metadata-span" {...property}>
+		<span class="sb-metadata-span" {...microdata}>
 			<slot />
 		</span>
 	)

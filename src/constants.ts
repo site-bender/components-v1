@@ -1,4 +1,5 @@
-import type { DateTimeFormatOptions, ImageType } from "./types"
+import type { Intl } from "@js-temporal/polyfill"
+import type { ImageMediaType } from "./types"
 
 export const CHARS = {
 	amp: "&",
@@ -28,7 +29,7 @@ export const CHARS = {
 	zw: "​",
 }
 
-export const DEFAULT_DATE_OPTIONS: DateTimeFormatOptions = {
+export const DEFAULT_DATE_OPTIONS: Intl.DateTimeFormatOptions = {
 	weekday: "long",
 	year: "numeric",
 	month: "long",
@@ -36,7 +37,7 @@ export const DEFAULT_DATE_OPTIONS: DateTimeFormatOptions = {
 	formatMatcher: "basic",
 }
 
-export const DEFAULT_DATE_TIME_OPTIONS: DateTimeFormatOptions = {
+export const DEFAULT_DATE_TIME_OPTIONS: Intl.DateTimeFormatOptions = {
 	weekday: "long",
 	year: "numeric",
 	month: "long",
@@ -48,18 +49,19 @@ export const DEFAULT_DATE_TIME_OPTIONS: DateTimeFormatOptions = {
 	formatMatcher: "basic",
 }
 
-export const DEFAULT_IMAGE_TYPES = process.env.DEFAULT_IMAGE_TYPES ||
+export const DEFAULT_IMAGE_TYPES =
+	process.env.DEFAULT_IMAGE_TYPES?.split(",") ||
 	["avif", "webp", "png"]
 
 export const DEFAULT_LOCALE = "en-US"
 
-export const DEFAULT_MONTH_DAY_OPTIONS: DateTimeFormatOptions = {
+export const DEFAULT_MONTH_DAY_OPTIONS: Intl.DateTimeFormatOptions = {
 	month: "long",
 	day: "numeric",
 	formatMatcher: "basic",
 }
 
-export const DEFAULT_TIME_OPTIONS: DateTimeFormatOptions = {
+export const DEFAULT_TIME_OPTIONS: Intl.DateTimeFormatOptions = {
 	hour: "numeric",
 	minute: "2-digit",
 	hour12: false,
@@ -67,13 +69,13 @@ export const DEFAULT_TIME_OPTIONS: DateTimeFormatOptions = {
 	formatMatcher: "basic",
 }
 
-export const DEFAULT_YEAR_MONTH_OPTIONS: DateTimeFormatOptions = {
+export const DEFAULT_YEAR_MONTH_OPTIONS: Intl.DateTimeFormatOptions = {
 	month: "long",
 	year: "numeric",
 	formatMatcher: "basic",
 }
 
-export const DEFAULT_ZONED_DATE_TIME_OPTIONS: DateTimeFormatOptions = {
+export const DEFAULT_ZONED_DATE_TIME_OPTIONS: Intl.DateTimeFormatOptions = {
 	weekday: "long",
 	year: "numeric",
 	month: "long",
@@ -105,7 +107,7 @@ export const CALENDAR = {
 export const DEFAULT_CALENDAR = CALENDAR.ISO8601
 export const DEFAULT_TIME_ZONE: keyof typeof TIME_ZONE = "Pacific/Auckland"
 
-export const IMAGE_TYPE: Record<string, ImageType> = {
+export const IMAGE_TYPE: Record<string, ImageMediaType> = {
 	avif: "image/avif",
 	jpeg: "image/jpeg",
 	png: "image/png",
@@ -115,6 +117,8 @@ export const IMAGE_TYPE: Record<string, ImageType> = {
 
 export const INSTANT_MATCHER =
 	/^[12]\d{3}-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[12][0-9])))T(0[1-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.\d{3}|\.\d{6}|\.\d{9})?Z$/
+
+export const MEMBER_FIELD_PIVOT = 3
 
 export const SITE_TITLE =
 	"Sitebender Components: Astro components for Sitebender sites"

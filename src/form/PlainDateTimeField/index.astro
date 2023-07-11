@@ -1,111 +1,166 @@
 ---
-import { Temporal } from "@js-temporal/polyfill";
-import FieldWrapper from "../FieldWrapper/index.astro";
+import createClassList from "../../utilities/createClassList";
 import generateShortId from "../../utilities/generateShortId";
 import mapDataset from "../../utilities/mapDataset";
-import PlainDateTime from "../../metadata/PlainDateTime/index.astro";
-import type { Calendar, DateTimeFormatOptions } from "../../types";
-import type { Dataset, Messages } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-import type { TIME_ZONE } from "../../constants";
-
-export type Props = Omit<HTMLAttributes<"input">, "value" | "slot"> & {
-  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
-  dataset?: Dataset;
-  day?: number | string;
-  help?: string;
-  hour?: number | string;
-  label: string;
-  locale?: string | Array<string>;
-  messages?: Messages;
-  microsecond?: number | string;
-  millisecond?: number | string;
-  minute?: number | string;
-  month?: number | string;
-  monthCode?: string;
-  name: string;
-  nanosecond?: number | string;
-  options?: DateTimeFormatOptions;
-  readonly?: boolean;
-  second?: number | string;
-  timeZone?: keyof typeof TIME_ZONE;
-  value?: string | Temporal.PlainDateTime | Temporal.PlainDateTimeLike;
-  year?: number | string;
-};
+import DateInput from "../elements/DateInput/index.astro";
+import TimeInput from "../elements/TimeInput/index.astro";
+import type { PlainDateTimeField as Props } from "../../types/form";
+import type { BaseAttributes } from "../../types/html";
 
 const {
-  calendar,
-  dataset,
-  day,
-  help,
-  hour,
-  id = `_${generateShortId()}`,
-  label,
-  locale,
-  messages,
-  microsecond,
-  millisecond,
-  minute,
-  month,
-  nanosecond,
-  options,
-  readonly,
-  second,
-  size,
-  timeZone,
-  value: rawValue,
-  year,
-  ...attrs
+	["aria-live"]: live = "assertive",
+	date = "",
+	dateAttrs = {},
+	disabled,
+	field = "plain-date-time-field",
+	form,
+	group = {},
+	help = {},
+	id = generateShortId(),
+	label = "Date and time",
+	legend = {},
+	maxDate,
+	maxTime,
+	message,
+	minDate,
+	minTime,
+	name,
+	outer = {},
+	required,
+	stepDate,
+	stepTime,
+	tag = {},
+	time = "",
+	timeAttrs = {},
 } = Astro.props;
 
-const labelId = `${id}-label`;
-const helpId = `${id}-help`;
-const data = mapDataset(dataset);
+const {
+	["class:list"]: dateClassList = [],
+	dataset: dateDataset,
+	...dateAttributes
+} = dateAttrs as BaseAttributes;
 
-const value = rawValue
-  ? Temporal.PlainDateTime.from(rawValue)
-  : Temporal.PlainDateTime.from({
-      ...(day == null ? {} : { day: Number(day) }),
-      ...(hour == null ? {} : { hour: Number(hour) }),
-      ...(microsecond == null ? {} : { microsecond: Number(microsecond) }),
-      ...(millisecond == null ? {} : { millisecond: Number(millisecond) }),
-      ...(minute == null ? {} : { minute: Number(minute) }),
-      ...(month == null ? {} : { month: Number(month) }),
-      ...(nanosecond == null ? {} : { nanosecond: Number(nanosecond) }),
-      ...(second == null ? {} : { second: Number(second) }),
-      ...(year == null ? {} : { year: Number(year) }),
-    });
+const {
+	["class:list"]: groupClassList = [],
+	dataset: groupDataset,
+	...groupAttrs
+} = group as BaseAttributes;
+
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
+
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const {
+	["class:list"]: timeClassList = [],
+	dataset: timeDataset,
+	...timeAttributes
+} = timeAttrs as BaseAttributes;
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const legendId = `${id}_legend`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
 ---
 
-<FieldWrapper
-  fieldType="sb-plain-date-time"
-  {...help ? { help } : {}}
-  helpId={helpId}
-  id={id as string}
-  label={label}
-  labelId={labelId}
-  {...messages ? { messages } : {}}
-  name={attrs.name}
-  readonly={readonly}
-  {...attrs.required ? { required: true } : {}}
+<fieldset
+	{...outerAttrs}
+	class:list={createClassList(
+		"sb-field",
+		"sb-plain-date-time-field",
+		outerClassList
+	)}
+	{...mapDataset(outerDataset)}
+	data-sb-field={field}
+	{...req}
+	{disabled}
+	{form}
+	{id}
+	{name}
 >
-  <Fragment slot="element">
-    {
-      readonly ? (
-        <div class="readonly sb-plain-date-time-readonly">
-          <PlainDateTime {...attrs} value={value} />
-        </div>
-      ) : (
-        <input
-          aria-labelledBy={`${labelId} ${helpId}`}
-          class="sb-plain-date-time-input"
-          {...data}
-          id={id as string}
-          {...attrs}
-          type="datetime-local"
-          value={value ? value.toJSON() : ""}
-        />
-      )
-    }
-  </Fragment>
-</FieldWrapper>
+	<legend
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={legendId}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</legend>
+	<div
+		class:list={createClassList("sb-group", groupClassList)}
+		{...mapDataset(groupDataset)}
+		data-sb-field-group={field}
+	>
+		<label data-sb-label-date={field} for={`${id}_date`}>
+			<span id={`${id}_date:label`}>Date</span>
+			<DateInput
+				{...dateAttrs}
+				data-sb-input-date={field}
+				{form}
+				id={`${id}_date`}
+				labelledBy={`${legendId} ${id}_date:label`}
+				{...maxDate ? { max: maxDate } : {}}
+				{...minDate ? { min: minDate } : {}}
+				name={`${name}:date`}
+				{required}
+				{...stepDate ? { step: stepDate } : {}}
+				value={date}
+			/>
+		</label>
+		<label data-sb-label-time={field} for={`${id}_time`}>
+			<span id={`${id}_time:label`}>Time</span>
+			<TimeInput
+				{...timeAttrs}
+				data-sb-input-time={field}
+				{form}
+				id={`${id}_time`}
+				labelledBy={`${legendId} ${id}_time:label`}
+				{...maxTime ? { max: maxTime } : {}}
+				{...minTime ? { min: minTime } : {}}
+				name={`${name}:time`}
+				{required}
+				{...stepTime ? { step: stepTime } : {}}
+				value={time}
+			/>
+		</label>
+	</div>
+</fieldset>

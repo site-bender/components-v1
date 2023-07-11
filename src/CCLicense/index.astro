@@ -42,36 +42,31 @@ const linkAttrs = {
   "aria-label": `Creative Commons ${license}`,
   class: "image",
   href,
-  rel: "external license",
+  rel: "license",
   ...a,
 };
 ---
 
 <div class="sb-cc-license" {...data} {...attrs}>
   <a {...linkAttrs}>
-    <CreativeCommons
-      fill={fill}
-      license={license}
-      size={size}
-      stroke={stroke}
-    />
+    <CreativeCommons {fill} {license} {size} {stroke} />
     {
       byAttribution ? (
-        <ByAttribution fill={fill} size={size} stroke={stroke} />
+        <ByAttribution {fill} {size} {stroke} />
       ) : (
-        <PublicDomainDedication fill={fill} size={size} stroke={stroke} />
+        <PublicDomainDedication {fill} {size} {stroke} />
       )
     }
     {
       byAttribution && nonCommercial ? (
-        <NonCommercial fill={fill} size={size} stroke={stroke} />
+        <NonCommercial {fill} {size} {stroke} />
       ) : null
     }
     {
       byAttribution && noDerivatives ? (
-        <NoDerivatives fill={fill} size={size} stroke={stroke} />
+        <NoDerivatives {fill} {size} {stroke} />
       ) : byAttribution && shareAlike ? (
-        <ShareAlike fill={fill} size={size} stroke={stroke} />
+        <ShareAlike {fill} {size} {stroke} />
       ) : null
     }
   </a>

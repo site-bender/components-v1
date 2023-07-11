@@ -1,76 +1,105 @@
 ---
-import Email from "../../metadata/Email/index.astro";
-import FieldWrapper from "../FieldWrapper/index.astro";
+import EmailInput from "../elements/EmailInput/index.astro";
+import createClassList from "../../utilities/createClassList";
 import generateShortId from "../../utilities/generateShortId";
 import mapDataset from "../../utilities/mapDataset";
-import type { Dataset, Messages } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-
-export type Props = HTMLAttributes<"input"> & {
-  dataset?: Dataset;
-  help?: string;
-  isHyperlink?: boolean;
-  label: string;
-  messages?: Messages;
-  name: string;
-  readonly?: boolean;
-  value?: string;
-};
+import type { EmailField as Props } from "../../types/form";
+import type { BaseAttributes } from "../../types/html";
 
 const {
-  dataset,
-  help,
-  isHyperlink,
-  id = `_${generateShortId()}`,
-  itemid,
-  itemprop,
-  itemref,
-  itemtype,
-  label,
-  messages,
-  readonly,
-  value,
-  ...attrs
+	["aria-live"]: live = "assertive",
+	autocorrect: _autocorrect,
+	datalist = {},
+	field = "email-field",
+	form,
+	help = {},
+	id = generateShortId(),
+	label = "Email address",
+	legend = {},
+	list,
+	message,
+	name,
+	outer = {},
+	placeholder: _placeholder,
+	required,
+	tag = {},
+	wrapper = {},
+	...attrs
 } = Astro.props;
 
-const labelId = `${id}-label`;
-const helpId = `${id}-help`;
-const data = mapDataset(dataset);
-const properties =
-  itemtype && itemprop ? { itemid, itemscope: true, itemtype } : {};
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
+
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const labelId = `${id}_label`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
 ---
 
-<FieldWrapper
-  fieldType="sb-email"
-  {...help ? { help } : {}}
-  helpId={helpId}
-  id={id as string}
-  label={label}
-  labelId={labelId}
-  {...messages ? { messages } : {}}
-  name={attrs.name}
-  readonly={readonly}
-  {...attrs.required ? { required: true } : {}}
+<div
+	{...outerAttrs}
+	class:list={createClassList("sb-field", "sb-email-field", outerClassList)}
+	{...mapDataset(outerDataset)}
+	data-sb-field={field}
+	{...req}
 >
-  <Fragment slot="element">
-    {
-      readonly ? (
-        <div class="readonly sb-email-readonly" {...properties}>
-          <Email itemprop={itemprop} {...(isHyperlink ? { isHyperlink } : {})}>
-            {value}
-          </Email>
-        </div>
-      ) : (
-        <input
-          aria-labelledBy={`${labelId} ${helpId}`}
-          class="sb-email-input"
-          {...data}
-          id={id as string}
-          {...attrs}
-          type="email"
-          {...(value ? { value } : {})}
-        />
-      )
-    }
-  </Fragment>
-</FieldWrapper>
+	<label
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={labelId}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</label>
+	<EmailInput
+		{...attrs}
+		{datalist}
+		{field}
+		{form}
+		{id}
+		{name}
+		{required}
+		{wrapper}
+	/>
+</div>

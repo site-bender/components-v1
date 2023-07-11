@@ -1,0 +1,18 @@
+{
+	"sourceFile": "src/old/FieldWrapper/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 0,
+			"patches": [
+				{
+					"date": 1688946120425,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				}
+			],
+			"date": 1688946120425,
+			"name": "Commit-0",
+			"content": "---\nimport type { Messages } from \"../../types\";\n\nexport type Props = {\n  fieldType: string;\n  help?: string;\n  helpId?: string;\n  id: string;\n  label: string;\n  labelId: string;\n  messages?: Messages;\n  name: string;\n  readonly?: boolean | null | undefined;\n  required?: boolean;\n  wrapInput?: boolean;\n};\n\nconst {\n  fieldType,\n  help = \"\",\n  helpId,\n  id,\n  label,\n  labelId,\n  // messages,\n  name,\n  readonly,\n  required,\n  wrapInput,\n} = Astro.props;\n\nconst optional = required || readonly ? \"\" : \" (optional)\";\nconst helpContent = (await Astro.slots.render(\"message\")) || help;\nconst labelContent =\n  (await Astro.slots.render(\"label\")) ||\n  `${label}<span hidden>:</span>${optional}`;\nconst cssClass = [\n  \"sb-form-field\",\n  `${fieldType}-wrapper`,\n  ...[required ? [\"required\"] : []],\n  ...[readonly ? [\"readonly\"] : []],\n]\n  .join(\" \")\n  .trim();\n---\n\n<div class={cssClass} id={`${id}-wrapper`}>\n  {\n    wrapInput ? (\n      <label for={id} id={labelId}>\n        <slot name=\"element\" />\n        <Fragment set:html={label} />\n      </label>\n    ) : (\n      <>\n        <label for={id} id={labelId} set:html={labelContent} />\n        <div class=\"sb-input-wrapper\">\n          <slot name=\"element\" />\n          <span />\n        </div>\n        {helpId ? (\n          <output\n            aria-live=\"assertive\"\n            id={helpId}\n            set:html={helpContent}\n            style={readonly ? \"display: none\" : \"\"}\n            name={`${name}Help`}\n          />\n        ) : null}\n      </>\n    )\n  }\n</div>\n"
+		}
+	]
+}

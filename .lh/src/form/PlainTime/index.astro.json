@@ -1,0 +1,18 @@
+{
+	"sourceFile": "src/form/PlainTime/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 0,
+			"patches": [
+				{
+					"date": 1688278216657,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				}
+			],
+			"date": 1688278216657,
+			"name": "Commit-0",
+			"content": "---\n---\n\n<div class=\"field\">\n\t<label for=\"plainTime\">\n\t\t<span>PlainTime</span>\n\t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n\t</label>\n\t<input\n\t\tdata-sb-plainTime\n\t\tform=\"validity-tester\"\n\t\tid=\"plainTime\"\n\t\tmax=\"17:30:00\"\n\t\tmin=\"05:00:00\"\n\t\tname=\"plainTime\"\n\t\trequired\n\t\tstep=\"1\"\n\t\ttype=\"time\"\n\t/>\n</div>\n"
+		}
+	]
+}

@@ -5,15 +5,22 @@ import {
   DEFAULT_LOCALE,
   DEFAULT_TIME_ZONE,
 } from "../../constants";
-import { Temporal, Intl } from "@js-temporal/polyfill";
-import type { Calendar, DateTimeFormatOptions } from "../../types";
+import { Intl, Temporal } from "@js-temporal/polyfill";
+import type { Thing } from "../../schema.org";
+import mapDataset from "../../utilities/mapDataset";
+import type { Dataset } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+import Microdata from "../../Microdata/index.astro";
 
-export type Props = {
-  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
+export type Props<T extends Thing> = HTMLAttributes<"time"> & {
+  calendar?: Temporal.CalendarLike;
+  cssClasses?: Array<string>;
+  dataset?: Dataset;
   day?: number | string;
   era?: string | undefined;
   eraYear?: string | undefined;
   hour?: number | string;
+  itemprop?: string | undefined;
   locale?: string | Array<string>;
   microsecond?: number | string;
   millisecond?: number | string;
@@ -21,18 +28,23 @@ export type Props = {
   month?: number | string;
   monthCode?: string;
   nanosecond?: number | string;
-  options?: DateTimeFormatOptions;
+  options?: Intl.DateTimeFormatOptions;
+  plainDateTime?: string | Temporal.PlainDateTimeLike;
+  properties?: Partial<T>;
   second?: number | string;
-  value?: string | Temporal.PlainDateTimeLike;
+  itemtype?: string;
   year?: number | string;
 };
 
 const {
   calendar = DEFAULT_CALENDAR,
+  ["class:list"]: classList = [],
+  dataset,
   day,
   era,
   eraYear,
   hour = 0,
+  itemprop,
   locale = DEFAULT_LOCALE,
   microsecond = 0,
   millisecond = 0,
@@ -41,13 +53,20 @@ const {
   monthCode,
   nanosecond = 0,
   options = {},
+  plainDateTime = Temporal.Now.plainDateTime(
+    Astro.props.calendar || DEFAULT_CALENDAR
+  ),
+  properties,
   second = 0,
-  value,
+  itemtype,
   year,
+  ...attrs
 } = Astro.props;
 
-const plainDateTime = value
-  ? (value as Temporal.PlainDateTime)
+const css = ["sb-plain-date-time", ...cssClasses].join(" ");
+const data = mapDataset(dataset);
+const value = plainDateTime
+  ? (plainDateTime as Temporal.PlainDateTime)
   : Temporal.PlainDateTime.from({
       calendar,
       day: Number(day),
@@ -62,12 +81,20 @@ const plainDateTime = value
     } as Temporal.PlainDateTimeLike);
 
 const opts = Object.assign({}, DEFAULT_DATE_TIME_OPTIONS, {
-  calendar: plainDateTime.calendarId.toString(),
+  calendar: value.calendarId.toString(),
   timeZone: DEFAULT_TIME_ZONE,
   ...options,
 });
+
+const label = new Intl.DateTimeFormat(locale, opts).format(value);
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const meta = {
+  type: itemtype,
+  ...(itemprop ? { [itemprop]: plainDateTime.toString() } : {}),
+  ...properties,
+};
 ---
 
-<time class="sb-plain-date-time" datetime={plainDateTime.toJSON()}
-  >{Intl.DateTimeFormat(locale, opts).format(plainDateTime)}</time
->
+{useMicrodata && type ? <Microdata as="span" properties={meta} /> : null}
+<time class={css} {...data} datetime={value.toJSON()} {...attrs}>{label}</time>

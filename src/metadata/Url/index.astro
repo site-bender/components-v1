@@ -1,25 +1,54 @@
 ---
-export type Props = {
-	isHyperlink?: boolean | undefined;
-	itemprop?: string | null | undefined;
+import type { Dataset } from "../../types";
+import type { Thing } from "../../schema.org";
+import mapDataset from "../../utilities/mapDataset";
+import Microdata from "../../Microdata/index.astro";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props<T extends Thing> = HTMLAttributes<"span"> & {
+	a?: HTMLAttributes<"a"> | undefined;
+	dataset?: Dataset;
+	itemprop?: string;
+	properties?: Partial<T>;
+	itemtype?: string;
+	useLink?: boolean;
 };
 
-const { isHyperlink, itemprop } = Astro.props;
-const property = itemprop ? { itemprop } : {};
+const {
+	a = {},
+	dataset,
+	itemprop,
+	properties,
+	type = "CreativeWork",
+	useLink,
+	...attrs
+} = Astro.props;
+const url = ((await Astro.slots.render("default")) || "").trim();
+const data = mapDataset(dataset);
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const meta = {
+	type,
+	...properties,
+};
+const href = a?.href ? a.href : url;
+
+// add country code with +, e.g., +64
+// add wait for dialtone with w
+// add one second pause (before extension) with p
 ---
 
+{useMicrodata ? <Microdata as="span" properties={meta} /> : null}
 {
-	isHyperlink ? (
-		<a
-			class="sb-url-link"
-			href={await Astro.slots.render("default")}
-			{...property}
-		>
-			<slot />
+	useLink ? (
+		<a {href} {...a}>
+			<span class="sb-href" {...data} {...attrs}>
+				{url}
+			</span>
 		</a>
 	) : (
-		<span class="sb-url-span" {...property}>
-			<slot />
+		<span class="sb-href" {...data} {...attrs}>
+			{url}
 		</span>
 	)
 }

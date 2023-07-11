@@ -1,60 +1,70 @@
 ---
-import type { Dataset } from "../../types";
-import type {
-  ContactPointLeaf,
-  OrganizationLeaf,
-  PersonLeaf,
-} from "../../schema.org";
-import mapDataset from "../../utilities/mapDataset";
 import Microdata from "../../Microdata/index.astro";
-import type { HTMLAttributes } from "astro/types";
-
-export type Props = HTMLAttributes<"a"> & {
-  dataset?: Dataset;
-  isMailto?: boolean;
-  properties?: Partial<ContactPointLeaf | OrganizationLeaf | PersonLeaf>;
-  type?: "ContactPoint" | "Organization" | "Person";
-  useMicrodata?: boolean;
-};
+import createClassList from "../../utilities/createClassList";
+import createMailto from "../../utilities/createMailto";
+import mapDataset from "../../utilities/mapDataset";
+import type { EmailProps as Props } from "../../types";
 
 const {
-  dataset,
-  isMailto,
-  properties,
-  useMicrodata,
-  type = "Person",
-  ...attrs
+	["class:list"]: classList = [],
+	dataset,
+	email,
+	link = {},
+	mailtoOptions,
+	properties,
+	type = "Person",
+	useMailto,
+	...attrs
 } = Astro.props;
-const email = ((await Astro.slots.render("default")) || "").trim();
-const data = mapDataset(dataset);
-const meta = { "@type": type, ...properties };
+
+const emailAddress = (
+	(await Astro.slots.render("default")) ||
+	email ||
+	""
+).trim();
+
+const {
+	["class:list"]: linkClassList = [],
+	dataset: linkDataset,
+	href,
+	...linkAttrs
+} = link as BaseAttributes;
+
+const mailto = href ? href : createMailto(emailAddress, mailtoOptions);
+const meta = {
+	type,
+	...properties,
+};
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 ---
 
-<span itemscope itemtype={`https://schema.org/${type}`}>
-  {
-    properties ? (
-      useMicrodata ? (
-        <Microdata properties={meta} />
-      ) : (
-        <script
-          is:inline
-          set:html={JSON.stringify(meta, null, 2)}
-          type="application/json+ld"
-        />
-      )
-    ) : null
-  }
-  {
-    isMailto ? (
-      <a href={`mailto:${await Astro.slots.render("default")}`} {...attrs}>
-        <span class="sb-email-address" {...data} itemprop="email">
-          {email}
-        </span>
-      </a>
-    ) : (
-      <span class="sb-email-address" {...data} itemprop="email" {...attrs}>
-        {email}
-      </span>
-    )
-  }
-</span>
+{useMicrodata ? <Microdata as="span" properties={meta} /> : null}
+{
+	useMailto ? (
+		<a
+			{...linkAttrs}
+			class:list={createClassList("sb-email-link", linkClassList)}
+			{...mapDataset(linkDataset)}
+			data-sb-email="link"
+			href={mailto}
+		>
+			<span
+				{...attrs}
+				class:list={createClassList("sb-email", classList)}
+				{...mapDataset(dataset)}
+				data-sb-email
+			>
+				{emailAddress}
+			</span>
+		</a>
+	) : (
+		<span
+			{...attrs}
+			class:list={createClassList("sb-email", classList)}
+			{...mapDataset(dataset)}
+			data-sb-email
+		>
+			{emailAddress}
+		</span>
+	)
+}

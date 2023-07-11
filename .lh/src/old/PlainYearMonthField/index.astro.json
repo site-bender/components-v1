@@ -1,0 +1,26 @@
+{
+	"sourceFile": "src/old/PlainYearMonthField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 2,
+			"patches": [
+				{
+					"date": 1688940959500,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688942597732,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n   fieldType=\"sb-year-month\"\n   {...help ? { help } : {}}\n   helpId={helpId}\n   id={id as string}\n-  label={label}\n+  {label}\n   labelId={labelId}\n   {...messages ? { messages } : {}}\n   name={attrs.name}\n   readonly={readonly}\n"
+				},
+				{
+					"date": 1688942636329,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n   {label}\n   labelId={labelId}\n   {...messages ? { messages } : {}}\n   name={attrs.name}\n-  readonly={readonly}\n+  {readonly}\n   {...attrs.required ? { required: true } : {}}\n >\n   <Fragment slot=\"element\">\n     {\n"
+				}
+			],
+			"date": 1688940959500,
+			"name": "Commit-0",
+			"content": "---\nimport FieldWrapper from \"../FieldWrapper/index.astro\";\nimport generateShortId from \"../../utilities/generateShortId\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport PlainYearMonth from \"../../metadata/PlainYearMonth/index.astro\";\nimport toPlainYearMonthString from \"../../utilities/toPlainYearMonthString\";\nimport type { Calendar, Dataset, Messages } from \"../../types\";\nimport type { HTMLAttributes } from \"astro/types\";\nimport type { Temporal } from \"@js-temporal/polyfill\";\nimport type { TIME_ZONE } from \"../../constants\";\n\nexport type Props = Omit<HTMLAttributes<\"input\">, \"slot\" | \"value\"> & {\n  calendar?: Calendar | Temporal.Calendar;\n  dataset?: Dataset;\n  day?: number | string;\n  era?: string | undefined;\n  eraYear?: string | undefined;\n  help?: string;\n  label: string;\n  locale?: string | Array<string>;\n  messages?: Messages;\n  month?: number | string;\n  monthCode?: string;\n  name: string;\n  readonly?: boolean;\n  timeZone?: keyof typeof TIME_ZONE;\n  value?: string | Temporal.PlainYearMonthLike | Temporal.PlainYearMonthLike;\n  year?: number | string;\n};\n\nconst {\n  calendar,\n  dataset,\n  day,\n  help,\n  id = `_${generateShortId()}`,\n  label,\n  locale,\n  messages,\n  month,\n  monthCode,\n  readonly,\n  value: rawValue,\n  year,\n  ...attrs\n} = Astro.props;\n\nconst labelId = `${id}-label`;\nconst helpId = `${id}-help`;\nconst data = mapDataset(dataset);\n\nconst value = rawValue\n  ? toPlainYearMonthString(rawValue)\n  : toPlainYearMonthString({\n      ...(monthCode ? { monthCode } : { month: Number(month) }),\n      year: Number(year),\n    });\n---\n\n<FieldWrapper\n  fieldType=\"sb-year-month\"\n  {...help ? { help } : {}}\n  helpId={helpId}\n  id={id as string}\n  label={label}\n  labelId={labelId}\n  {...messages ? { messages } : {}}\n  name={attrs.name}\n  readonly={readonly}\n  {...attrs.required ? { required: true } : {}}\n>\n  <Fragment slot=\"element\">\n    {\n      readonly ? (\n        <div class=\"readonly sb-plain-year-month-readonly\">\n          <PlainYearMonth {...attrs} {value} />\n        </div>\n      ) : (\n        <input\n          aria-labelledBy={`${labelId} ${helpId}`}\n          class=\"sb-plain-year-month-input\"\n          {...data}\n          id={id as string}\n          {...attrs}\n          type=\"month\"\n          {...(value ? { value } : {})}\n        />\n      )\n    }\n  </Fragment>\n</FieldWrapper>\n"
+		}
+	]
+}

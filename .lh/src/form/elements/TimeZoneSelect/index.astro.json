@@ -1,0 +1,50 @@
+{
+	"sourceFile": "src/form/elements/TimeZoneSelect/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 8,
+			"patches": [
+				{
+					"date": 1688615826543,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688778645536,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,13 @@\n ---\n \n <span\n \t{...wrapperAttrs}\n-\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n+\tclass:list={createClassList(\n+\t\t\"sb-wrapper\",\n+\t\t\"sb-time-zone-input\",\n+\t\twrapperClassList\n+\t)}\n \t{...mapDataset(wrapperDataset)}\n \tdata-sb-wrapper={field}\n >\n \t{\n"
+				},
+				{
+					"date": 1688879161806,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n ---\n-import type { BaseAttributes } from \"../../../types/html\";\n import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import getTimeZoneOptions from \"../../../utilities/getTimeZoneOptions\";\n import mapDataset from \"../../../utilities/mapDataset\";\n+import type { TimeZoneSelect as Props } from \"../../../types/html\";\n+import type { BaseAttributes } from \"../../../types/html\";\n \n const {\n \tautocomplete,\n \t[\"class:list\"]: elementClassList = [],\n"
+				},
+				{
+					"date": 1688940253547,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n \t\t\t\t\tform={form}\n \t\t\t\t\tid={id}\n \t\t\t\t\tlist={`${id}_list`}\n \t\t\t\t\tname={name}\n-\t\t\t\t\trequired={required}\n+\t\t\t\t\t{required}\n \t\t\t\t\ttype=\"text\"\n \t\t\t\t\tvalue={selected}\n \t\t\t\t/>\n \t\t\t\t<datalist id={`${id}_list`}>\n@@ -73,9 +73,9 @@\n \t\t\t\tdata-sb-select={field}\n \t\t\t\tform={form}\n \t\t\t\tid={id}\n \t\t\t\tname={name}\n-\t\t\t\trequired={required}\n+\t\t\t\t{required}\n \t\t\t>\n \t\t\t\t{includeBlank ? <option /> : null}\n \t\t\t\t<Fragment set:html={getTimeZoneOptions(countries, selected)} />\n \t\t\t</select>\n"
+				},
+				{
+					"date": 1688940875550,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \t\t\t\t\tclass:list={createClassList(\"sb-time-zone-input\", elementClassList)}\n \t\t\t\t\t{...mapDataset(elementDataset)}\n \t\t\t\t\tdata-sb-input={field}\n \t\t\t\t\tform={form}\n-\t\t\t\t\tid={id}\n+\t\t\t\t\t{id}\n \t\t\t\t\tlist={`${id}_list`}\n \t\t\t\t\tname={name}\n \t\t\t\t\t{required}\n \t\t\t\t\ttype=\"text\"\n@@ -71,9 +71,9 @@\n \t\t\t\tclass:list={createClassList(\"sb-time-zone-select\", elementClassList)}\n \t\t\t\t{...mapDataset(elementDataset)}\n \t\t\t\tdata-sb-select={field}\n \t\t\t\tform={form}\n-\t\t\t\tid={id}\n+\t\t\t\t{id}\n \t\t\t\tname={name}\n \t\t\t\t{required}\n \t\t\t>\n \t\t\t\t{includeBlank ? <option /> : null}\n"
+				},
+				{
+					"date": 1688940940005,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n \t\t\t\t\tautocomplete={autocomplete}\n \t\t\t\t\tclass:list={createClassList(\"sb-time-zone-input\", elementClassList)}\n \t\t\t\t\t{...mapDataset(elementDataset)}\n \t\t\t\t\tdata-sb-input={field}\n-\t\t\t\t\tform={form}\n+\t\t\t\t\t{form}\n \t\t\t\t\t{id}\n \t\t\t\t\tlist={`${id}_list`}\n \t\t\t\t\tname={name}\n \t\t\t\t\t{required}\n@@ -70,9 +70,9 @@\n \t\t\t\tautocomplete={autocomplete}\n \t\t\t\tclass:list={createClassList(\"sb-time-zone-select\", elementClassList)}\n \t\t\t\t{...mapDataset(elementDataset)}\n \t\t\t\tdata-sb-select={field}\n-\t\t\t\tform={form}\n+\t\t\t\t{form}\n \t\t\t\t{id}\n \t\t\t\tname={name}\n \t\t\t\t{required}\n \t\t\t>\n"
+				},
+				{
+					"date": 1688940976320,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n \t\t\t\t\tdata-sb-input={field}\n \t\t\t\t\t{form}\n \t\t\t\t\t{id}\n \t\t\t\t\tlist={`${id}_list`}\n-\t\t\t\t\tname={name}\n+\t\t\t\t\t{name}\n \t\t\t\t\t{required}\n \t\t\t\t\ttype=\"text\"\n \t\t\t\t\tvalue={selected}\n \t\t\t\t/>\n@@ -72,9 +72,9 @@\n \t\t\t\t{...mapDataset(elementDataset)}\n \t\t\t\tdata-sb-select={field}\n \t\t\t\t{form}\n \t\t\t\t{id}\n-\t\t\t\tname={name}\n+\t\t\t\t{name}\n \t\t\t\t{required}\n \t\t\t>\n \t\t\t\t{includeBlank ? <option /> : null}\n \t\t\t\t<Fragment set:html={getTimeZoneOptions(countries, selected)} />\n"
+				},
+				{
+					"date": 1688942203716,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \t\t\t<>\n \t\t\t\t<input\n \t\t\t\t\t{...attrs}\n \t\t\t\t\taria-labelledby={labelledBy}\n-\t\t\t\t\tautocomplete={autocomplete}\n+\t\t\t\t\t{autocomplete}\n \t\t\t\t\tclass:list={createClassList(\"sb-time-zone-input\", elementClassList)}\n \t\t\t\t\t{...mapDataset(elementDataset)}\n \t\t\t\t\tdata-sb-input={field}\n \t\t\t\t\t{form}\n@@ -66,9 +66,9 @@\n \t\t) : (\n \t\t\t<select\n \t\t\t\t{...attrs}\n \t\t\t\taria-labelledby={labelledBy}\n-\t\t\t\tautocomplete={autocomplete}\n+\t\t\t\t{autocomplete}\n \t\t\t\tclass:list={createClassList(\"sb-time-zone-select\", elementClassList)}\n \t\t\t\t{...mapDataset(elementDataset)}\n \t\t\t\tdata-sb-select={field}\n \t\t\t\t{form}\n"
+				},
+				{
+					"date": 1688945094968,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \tdataset: elementDataset,\n \tfield = \"time-zone\",\n \tform,\n \tid = generateShortId(),\n-\tincludeBlank,\n+\tincludeNull,\n \tlabelledBy,\n \tname,\n \trequired,\n \tselected,\n@@ -75,9 +75,9 @@\n \t\t\t\t{id}\n \t\t\t\t{name}\n \t\t\t\t{required}\n \t\t\t>\n-\t\t\t\t{includeBlank ? <option /> : null}\n+\t\t\t\t{includeNull ? <option /> : null}\n \t\t\t\t<Fragment set:html={getTimeZoneOptions(countries, selected)} />\n \t\t\t</select>\n \t\t)\n \t}\n"
+				}
+			],
+			"date": 1688615826543,
+			"name": "Commit-0",
+			"content": "---\nimport type { BaseAttributes } from \"../../../types/html\";\nimport createClassList from \"../../../utilities/createClassList\";\nimport generateShortId from \"../../../utilities/generateShortId\";\nimport getTimeZoneOptions from \"../../../utilities/getTimeZoneOptions\";\nimport mapDataset from \"../../../utilities/mapDataset\";\n\nconst {\n\tautocomplete,\n\t[\"class:list\"]: elementClassList = [],\n\tcountries,\n\tdataset: elementDataset,\n\tfield = \"time-zone\",\n\tform,\n\tid = generateShortId(),\n\tincludeBlank,\n\tlabelledBy,\n\tname,\n\trequired,\n\tselected,\n\tuseList,\n\twrapper = {},\n\t...attrs\n} = Astro.props;\n\nconst {\n\t[\"class:list\"]: wrapperClassList = [],\n\tdataset: wrapperDataset,\n\t...wrapperAttrs\n} = wrapper as BaseAttributes;\n---\n\n<span\n\t{...wrapperAttrs}\n\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n\t{...mapDataset(wrapperDataset)}\n\tdata-sb-wrapper={field}\n>\n\t{\n\t\tuseList ? (\n\t\t\t<>\n\t\t\t\t<input\n\t\t\t\t\t{...attrs}\n\t\t\t\t\taria-labelledby={labelledBy}\n\t\t\t\t\tautocomplete={autocomplete}\n\t\t\t\t\tclass:list={createClassList(\"sb-time-zone-input\", elementClassList)}\n\t\t\t\t\t{...mapDataset(elementDataset)}\n\t\t\t\t\tdata-sb-input={field}\n\t\t\t\t\tform={form}\n\t\t\t\t\tid={id}\n\t\t\t\t\tlist={`${id}_list`}\n\t\t\t\t\tname={name}\n\t\t\t\t\trequired={required}\n\t\t\t\t\ttype=\"text\"\n\t\t\t\t\tvalue={selected}\n\t\t\t\t/>\n\t\t\t\t<datalist id={`${id}_list`}>\n\t\t\t\t\t<Fragment set:html={getTimeZoneOptions(countries)} />\n\t\t\t\t</datalist>\n\t\t\t</>\n\t\t) : (\n\t\t\t<select\n\t\t\t\t{...attrs}\n\t\t\t\taria-labelledby={labelledBy}\n\t\t\t\tautocomplete={autocomplete}\n\t\t\t\tclass:list={createClassList(\"sb-time-zone-select\", elementClassList)}\n\t\t\t\t{...mapDataset(elementDataset)}\n\t\t\t\tdata-sb-select={field}\n\t\t\t\tform={form}\n\t\t\t\tid={id}\n\t\t\t\tname={name}\n\t\t\t\trequired={required}\n\t\t\t>\n\t\t\t\t{includeBlank ? <option /> : null}\n\t\t\t\t<Fragment set:html={getTimeZoneOptions(countries, selected)} />\n\t\t\t</select>\n\t\t)\n\t}\n</span>\n"
+		}
+	]
+}

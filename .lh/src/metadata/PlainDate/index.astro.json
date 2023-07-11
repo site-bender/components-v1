@@ -1,0 +1,18 @@
+{
+	"sourceFile": "src/metadata/PlainDate/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 0,
+			"patches": [
+				{
+					"date": 1689031744852,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				}
+			],
+			"date": 1689031744852,
+			"name": "Commit-0",
+			"content": "---\nimport {\n  DEFAULT_CALENDAR,\n  DEFAULT_DATE_OPTIONS,\n  DEFAULT_LOCALE,\n} from \"../../constants\";\nimport { Intl, Temporal } from \"@js-temporal/polyfill\";\nimport type { Thing } from \"../../schema.org\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport type { Dataset } from \"../../types\";\nimport type { HTMLAttributes } from \"astro/types\";\nimport Microdata from \"../../Microdata/index.astro\";\n\nexport type Props<T extends Thing> = HTMLAttributes<\"time\"> & {\n  calendar?: Temporal.CalendarLike;\n  cssClasses?: Array<string>;\n  dataset?: Dataset;\n  day?: number | string;\n  era?: string | undefined;\n  eraYear?: string | undefined;\n  itemprop?: string | undefined;\n  locale?: string | Array<string>;\n  month?: number | string;\n  monthCode?: string;\n  options?: Intl.DateTimeFormatOptions;\n  plainDate?: string | Temporal.PlainDateLike;\n  properties?: Partial<T>;\n  itemtype?: string;\n  year?: number | string;\n};\n\nconst {\n\t[\"class:list\"]: classList = [],\n  calendar = DEFAULT_CALENDAR,\n  dataset,\n  day,\n  era,\n  eraYear,\n  itemprop,\n  locale = DEFAULT_LOCALE,\n  month,\n  monthCode,\n  options = {},\n  plainDate = Temporal.Now.plainDate(Astro.props.calendar || DEFAULT_CALENDAR),\n  properties,\n  itemtype,\n  year,\n  ...attrs\n} = Astro.props;\n\nconst css = [\"sb-plain-date\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\nconst value = plainDate\n  ? plainDate instanceof Temporal.PlainDate\n    ? (plainDate as Temporal.PlainDate)\n    : Temporal.PlainDate.from(plainDate)\n  : Temporal.PlainDate.from({\n      ...(typeof calendar === \"string\"\n        ? { calendar: Temporal.Calendar.from(calendar) }\n        : { calendar }),\n      day: Number(day),\n      ...(monthCode ? { monthCode } : { month: Number(month) }),\n      ...(era && eraYear ? { era, eraYear } : { year: Number(year) }),\n    } as Temporal.PlainDateLike);\n\nconst opts = Object.assign({}, DEFAULT_DATE_OPTIONS, {\n  calendar: value.calendarId.toString(),\n  ...options,\n});\n\nconst label = new Intl.DateTimeFormat(locale, opts).format(value);\n\nconst useMicrodata = Boolean(import.meta.env.USE_MICRODATA);\nconst meta = {\n  type: itemtype,\n  ...(itemprop ? { [itemprop]: plainDate.toString() } : {}),\n  ...properties,\n};\n---\n\n{useMicrodata && type ? <Microdata as=\"span\" properties={meta} /> : null}\n<time class={css} {...data} datetime={value.toJSON()} {...attrs}>{label}</time>\n"
+		}
+	]
+}

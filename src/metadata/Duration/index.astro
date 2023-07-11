@@ -1,21 +1,69 @@
 ---
 import { Temporal } from "@js-temporal/polyfill";
+import createClassList from "../../utilities/createClassList";
 import formatDuration from "../../utilities/formatDuration";
 import mapDataset from "../../utilities/mapDataset";
-import type { Dataset } from "../../types";
-import type { HTMLAttributes } from "astro/types";
+import Microdata from "../../Microdata/index.astro";
+import type { BaseAttributes } from "../../types/html";
+import type { DurationProps as Props } from "../../types";
 
-export type Props = HTMLAttributes<"time"> & {
-  dataset?: Dataset;
-  duration: string | Temporal.DurationLike;
-};
+const {
+	["class:list"]: classList = [],
+	dataset,
+	duration,
+	itemprop = "duration",
+	outer = {},
+	properties = {},
+	...attrs
+} = Astro.props;
 
-const { dataset, duration = "PT0S", ...attrs } = Astro.props;
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
 
 const d = Temporal.Duration.from(duration);
-const data = mapDataset(dataset);
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+
+const meta = {
+	duration,
+	...properties,
+};
 ---
 
-<time class="sb-duration" {...data} datetime={d.toJSON()} {...attrs}
-  >{formatDuration(d)}</time
->
+{
+	useMicrodata && properties.type ? (
+		<Microdata
+			as="time"
+			{...outerAttrs}
+			class:list={createClassList("sb-duration-microdata", outerClassList)}
+			{...mapDataset(outerDataset)}
+			data-sb-duration="microdata"
+			properties={meta}
+		>
+			<meta
+				itemprop="duration"
+				itemtype="https://schema.org/Duration"
+				content={duration?.toString()}
+			/>
+			<span
+				{...attrs}
+				class:list={createClassList("sb-duration", classList)}
+				{...mapDataset(dataset)}
+				data-sb-duration="span"
+			>
+				{formatDuration(d)}
+			</span>
+		</Microdata>
+	) : (
+		<time
+			{...attrs}
+			class:list={createClassList("sb-duration", classList)}
+			{...mapDataset(dataset)}
+			data-sb-duration="time"
+		>
+			{formatDuration(d)}
+		</time>
+	)
+}

@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { WebSite } from "../schema.org";
+
+export type Props = HTMLAttributes<"head"> & {
+	charset?: string;
+	favicon?: string;
+	properties?: WebSite;
+	site?: string;
+	viewport?: string;
+};
+
+const {
+	charset = "UTF-8",
+	favicon = "/favicon.svg",
+	site,
+	title,
+	viewport = "width=device-width, initial-scale=1",
+} = Astro.props;
+---
+
+<head>
+	<meta charset={charset} />
+	<meta content={viewport} name="viewport" />
+
+	<title>{title ? `${title} :: ` : ""}{site}</title>
+
+	<link href={favicon} rel="icon" type={`image/${favicon.split(".").at(-1)}`} />
+
+	<slot />
+</head>

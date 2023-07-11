@@ -3,7 +3,7 @@ import Duration from "../../../../src/metadata/Duration/index.astro";
 import CodeBlock from "../../../../src/CodeBlock/index.astro";
 import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
 import Layout from "../_layouts/index.astro";
-import TableOfContents from "../_components/TableOfContents/index.astro";
+import pageProperties from "./pageProperties";
 import * as typeTs from "./_assets/type.ts.md";
 import * as defaultExampleHtml from "./_assets/default-example.html.md";
 import * as defaultExampleAstro from "./_assets/default-example.astro.md";
@@ -11,7 +11,7 @@ import * as withDataAttrsHtml from "./_assets/with-data-attrs.html.md";
 import * as withDataAttrsAstro from "./_assets/with-data-attrs.astro.md";
 ---
 
-<Layout title="Duration">
+<Layout pageProperties={pageProperties}>
   <Fragment slot="tail">
     <script set:html={copyToClipboardJs} />
   </Fragment>
@@ -23,17 +23,21 @@ import * as withDataAttrsAstro from "./_assets/with-data-attrs.astro.md";
         days, hours, minutes, seconds, etc.
       </p>
       <p>
-        View the <a
-          href="https://en.wikipedia.org/wiki/ISO_8601#Durations"
-          rel="external">duration codes</a
+        View the <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations"
+          >duration codes</a
         >. View the <a href="/attributes">HTML Attributes</a>. View the <a
-          href="https://schema.org/Duration"
-          rel="external">Schema.org Duration properties</a
+          href="https://schema.org/Duration">Schema.org Duration properties</a
         >.
       </p>
       <section>
         <h3>Types</h3>
-        <CodeBlock snippet={typeTs} />
+        <CodeBlock
+          snippet={typeTs}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "TypeScript",
+          }}
+        />
         <p>
           The <code>dataset</code> prop takes a map of attribute names (minus the
           <code>data-</code>) and values and maps them to <code
@@ -44,13 +48,25 @@ import * as withDataAttrsAstro from "./_assets/with-data-attrs.astro.md";
       <section>
         <h3>Default example</h3>
         <p>This is the minimum required to use the <code>Duration</code>:</p>
-        <CodeBlock snippet={defaultExampleAstro} />
+        <CodeBlock
+          snippet={defaultExampleAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <Duration duration="P3DT4H59M" />
-        </p>
+        </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={defaultExampleHtml} />
+        <CodeBlock
+          snippet={defaultExampleHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section>
         <h3>With <code>data-</code> and <code>id</code> example</h3>
@@ -60,9 +76,15 @@ import * as withDataAttrsAstro from "./_assets/with-data-attrs.astro.md";
             >checked</code
           > or an <code>id</code>):
         </p>
-        <CodeBlock snippet={withDataAttrsAstro} />
+        <CodeBlock
+          snippet={withDataAttrsAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <Duration
             dataset={{
               alert: true,
@@ -70,10 +92,113 @@ import * as withDataAttrsAstro from "./_assets/with-data-attrs.astro.md";
             }}
             duration="P1Y1M1DT1H1M1.1S"
             id="duration-id"
+            properties={{
+              type: "Movie",
+              actor: {
+                type: "Person",
+                name: "Tom Hanks",
+                url: "https://en.wikipedia.org/wiki/Tom_Hanks",
+              },
+              name: "Splash",
+              url: "https://en.wikipedia.org/wiki/Splash_(film)",
+            }}
           />
-        </p>
+        </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={withDataAttrsHtml} />
+        <CodeBlock
+          snippet={withDataAttrsHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
+      </section>
+      <section>
+        <h3>With <code>data-</code> and <code>id</code> example</h3>
+        <p>
+          We can also include <code>data-</code> attributes (and all normal HTML
+          attributes for the <code>input</code> element, such as <code
+            >checked</code
+          > or an <code>id</code>):
+        </p>
+        <CodeBlock
+          snippet={withDataAttrsAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
+        <p>Here is the actual component:</p>
+        <div class="example">
+          <Duration
+            dataset={{
+              alert: true,
+              name: "productLifetime",
+            }}
+            duration="P1Y1M1DT1H1M1.1S"
+            id="duration-id"
+            properties={{
+              type: "Movie",
+              actor: {
+                type: "Person",
+                name: "Tom Hanks",
+                url: "https://en.wikipedia.org/wiki/Tom_Hanks",
+              },
+              duration: "P1Y1M1DT1H1M1.1S",
+              name: "Splash",
+              url: "https://en.wikipedia.org/wiki/Splash_(film)",
+            }}
+          />
+        </div>
+        <p>And here is the HTML created:</p>
+        <CodeBlock
+          snippet={withDataAttrsHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
+      </section>
+      <section>
+        <h3>With microdata example</h3>
+        <p>
+          We can also include <code>data-</code> attributes (and all normal HTML
+          attributes for the <code>input</code> element, such as <code
+            >checked</code
+          > or an <code>id</code>):
+        </p>
+        <CodeBlock
+          snippet={withDataAttrsAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
+        <p>Here is the actual component:</p>
+        <div class="example">
+          <Duration
+            duration="PT1H51M"
+            id="duration-id"
+            properties={{
+              type: "Movie",
+              actor: {
+                type: "Person",
+                name: "Tom Hanks",
+                url: "https://en.wikipedia.org/wiki/Tom_Hanks",
+              },
+              name: "Splash",
+              url: "https://en.wikipedia.org/wiki/Splash_(film)",
+            }}
+          />
+        </div>
+        <p>And here is the HTML created:</p>
+        <CodeBlock
+          snippet={withDataAttrsHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
     </article>
   </main>

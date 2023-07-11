@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/utilities/createMailto/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1689043898057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1689043928016,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,7 @@\n+import type { MailtoOptions } from \"../../types\"\n+import compact from \"../compact\"\n+\n export default function createMailto(email: string, options: MailtoOptions = {}): string {\n \tconst { bcc, cc, subject, replyTo } = options;\n \n \tconst opts = compact([\n"
+                },
+                {
+                    "date": 1689043940404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n-import type { MailtoOptions } from \"../../types\"\n-import compact from \"../compact\"\n+import type { MailtoOptions } from \"../../types\";\n+import compact from \"../compact\";\n \n-export default function createMailto(email: string, options: MailtoOptions = {}): string {\n+export default function createMailto(\n+\temail: string,\n+\toptions: MailtoOptions = {}\n+): string {\n \tconst { bcc, cc, subject, replyTo } = options;\n \n \tconst opts = compact([\n \t\tsubject ? `subject=${subject}` : undefined,\n"
+                },
+                {
+                    "date": 1689044070759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,18 @@\n-import type { MailtoOptions } from \"../../types\";\n-import compact from \"../compact\";\n+import type { MailtoOptions } from \"../../types\"\n+import compact from \"../compact\"\n \n export default function createMailto(\n \temail: string,\n-\toptions: MailtoOptions = {}\n+\toptions: MailtoOptions = {},\n ): string {\n-\tconst { bcc, cc, subject, replyTo } = options;\n+\tconst { bcc, cc, subject, replyTo } = options\n \n \tconst opts = compact([\n \t\tsubject ? `subject=${subject}` : undefined,\n \t\tbcc ? `bcc=${bcc.join(\",\")}` : undefined,\n \t\tcc ? `cc=${cc.join(\",\")}` : undefined,\n \t\treplyTo ? `reply-to=${replyTo}` : undefined,\n-\t]);\n+\t])\n \n-\treturn `mailto:${email}${opts.length ? `?${opts.join(\"&\")}` : \"\"}`;\n+\treturn `mailto:${email}${opts.length ? `?${opts.join(\"&\")}` : \"\"}`\n }\n"
+                }
+            ],
+            "date": 1689043898057,
+            "name": "Commit-0",
+            "content": "export default function createMailto(email: string, options: MailtoOptions = {}): string {\n\tconst { bcc, cc, subject, replyTo } = options;\n\n\tconst opts = compact([\n\t\tsubject ? `subject=${subject}` : undefined,\n\t\tbcc ? `bcc=${bcc.join(\",\")}` : undefined,\n\t\tcc ? `cc=${cc.join(\",\")}` : undefined,\n\t\treplyTo ? `reply-to=${replyTo}` : undefined,\n\t]);\n\n\treturn `mailto:${email}${opts.length ? `?${opts.join(\"&\")}` : \"\"}`;\n}\n"
+        }
+    ]
+}

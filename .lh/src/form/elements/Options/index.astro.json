@@ -1,0 +1,22 @@
+{
+	"sourceFile": "src/form/elements/Options/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 1,
+			"patches": [
+				{
+					"date": 1688429971777,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688520187702,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { Options as Props } from \"../../../types/forms\";\n+import type { Options as Props } from \"../../../types/form\";\n \n const { options = [], selected } = Astro.props;\n ---\n \n"
+				}
+			],
+			"date": 1688429971777,
+			"name": "Commit-0",
+			"content": "---\nimport type { Options as Props } from \"../../../types/forms\";\n\nconst { options = [], selected } = Astro.props;\n---\n\n{\n\toptions.map(({ label, options, value }) =>\n\t\toptions ? (\n\t\t\t<optgroup label={label}>\n\t\t\t\t<Astro.self options={options} selected={selected} />\n\t\t\t</optgroup>\n\t\t) : (\n\t\t\t<option value={value} selected={selected === value}>\n\t\t\t\t{label}\n\t\t\t</option>\n\t\t)\n\t)\n}\n"
+		}
+	]
+}

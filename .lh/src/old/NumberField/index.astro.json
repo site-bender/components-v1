@@ -1,0 +1,26 @@
+{
+	"sourceFile": "src/old/NumberField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 2,
+			"patches": [
+				{
+					"date": 1688942597717,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688942636313,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,9 +64,9 @@\n       {label}\n       labelId={labelId}\n       {...(messages ? { messages } : {})}\n       name={attrs.name}\n-      readonly={readonly}\n+      {readonly}\n       {...(attrs.required ? { required: true } : {})}\n     >\n       <Fragment slot=\"element\">\n         <input\n"
+				},
+				{
+					"date": 1689031744880,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n };\n \n const {\n   as = \"div\",\n-  cssClasses = [],\n+\t[\"class:list\"]: classList = [],\n   dataset,\n   help,\n   id = `_${generateShortId()}`,\n   isInteger,\n"
+				}
+			],
+			"date": 1688942597717,
+			"name": "Commit-0",
+			"content": "---\nimport FieldWrapper from \"../FieldWrapper/index.astro\";\nimport generateShortId from \"../../utilities/generateShortId\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport Number from \"../../metadata/Number/index.astro\";\nimport type { NumberFormatOptions } from \"../../metadata/Number/types\";\nimport type { Dataset, Messages } from \"../../types\";\nimport type { HTMLAttributes, HTMLTag } from \"astro/types\";\n\nexport type Props<T> = HTMLAttributes<\"input\"> & {\n  as?: HTMLTag;\n  cssClasses?: Array<string>;\n  dataset?: Dataset;\n  help?: string;\n  isInteger?: boolean;\n  label: string;\n  locale?: string;\n  messages?: Messages;\n  name: string;\n  options?: NumberFormatOptions;\n  properties?: Partial<T>;\n  readonly?: boolean | null | undefined;\n  type?: \"Number\" | \"Integer\" | \"Float\";\n  useTabularNumerals?: boolean | undefined;\n  value?: string | number;\n};\n\nconst {\n  as = \"div\",\n  cssClasses = [],\n  dataset,\n  help,\n  id = `_${generateShortId()}`,\n  isInteger,\n  label,\n  messages,\n  readonly,\n  step: stepDefault,\n  useTabularNumerals,\n  value,\n  ...attrs\n} = Astro.props;\n\nconst data = mapDataset(dataset);\nconst helpId = `${id}-help`;\nconst labelId = `${id}-label`;\n\nconst step = stepDefault\n  ? { step: stepDefault }\n  : isInteger\n  ? { step: \"1\" }\n  : {};\n---\n\n{\n  readonly ? (\n    <Number email={value} {...data} {...Astro.props} />\n  ) : (\n    <FieldWrapper\n      fieldType=\"sb-number\"\n      {...(help ? { help } : {})}\n      helpId={helpId}\n      id={id as string}\n      {label}\n      labelId={labelId}\n      {...(messages ? { messages } : {})}\n      name={attrs.name}\n      readonly={readonly}\n      {...(attrs.required ? { required: true } : {})}\n    >\n      <Fragment slot=\"element\">\n        <input\n          aria-labelledBy={`${labelId} ${helpId}`}\n          class=\"sb-number-input\"\n          {...data}\n          id={id as string}\n          {...attrs}\n          {...step}\n          type=\"number\"\n          {...(value ? { value } : {})}\n        />\n      </Fragment>\n    </FieldWrapper>\n  )\n}\n"
+		}
+	]
+}

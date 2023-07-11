@@ -11,7 +11,7 @@ pre {
 
 pre,
 code {
-	font-family: var(--code-block-font-family);
+	font-family: var(--sb-code-block-font-family);
 }
 
 pre > code {
@@ -43,8 +43,8 @@ pre.astro-code {
 }
 
 pre.astro-code span.line::before {
-	border-right: var(--code-block-border-right);
-	color: var(--code-block-line-number-color);
+	border-right: var(--sb-code-block-border-right);
+	color: var(--sb-code-block-line-number-color);
 	content: counter(lines) "";
 	counter-increment: lines 1;
 	display: inline-block;

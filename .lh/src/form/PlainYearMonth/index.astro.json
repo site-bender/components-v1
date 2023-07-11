@@ -1,0 +1,18 @@
+{
+	"sourceFile": "src/form/PlainYearMonth/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 0,
+			"patches": [
+				{
+					"date": 1688278240873,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				}
+			],
+			"date": 1688278240873,
+			"name": "Commit-0",
+			"content": "---\n---\n\n<fieldset\n\tclass=\"field\"\n\tdata-sb-plain-year-month\n\tform=\"validity-tester\"\n\tid=\"plainYearMonth\"\n>\n\t<legend id=\"plainYearMonth-label\">\n\t\t<span>PlainYearMonth</span>\n\t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n\t</legend>\n\t<div class=\"group\">\n\t\t<label for=\"plainYearMonth-year\"\n\t\t\t>Year:\n\t\t\t<input\n\t\t\t\tdata-sb-plain-year-month=\"year\"\n\t\t\t\tform=\"validity-tester\"\n\t\t\t\tid=\"plainYearMonth-year\"\n\t\t\t\tname=\"plainYearMonth:year\"\n\t\t\t\tpattern=\"[12][0-9]{3}\"\n\t\t\t\trequired\n\t\t\t\tsize=\"5\"\n\t\t\t\ttype=\"text\"\n\t\t\t/>\n\t\t</label>\n\t\t<label for=\"plainYearMonth-month\"\n\t\t\t>Month:\n\t\t\t<select\n\t\t\t\tdata-sb-plain-year-month=\"month\"\n\t\t\t\tform=\"validity-tester\"\n\t\t\t\tid=\"plainYearMonth-month\"\n\t\t\t\tname=\"plainYearMonth:month\"\n\t\t\t\trequired\n\t\t\t>\n\t\t\t\t<option></option>\n\t\t\t\t<option value=\"0\">January</option>\n\t\t\t\t<option value=\"1\">February</option>\n\t\t\t\t<option value=\"2\">March</option>\n\t\t\t\t<option value=\"3\">April</option>\n\t\t\t\t<option value=\"4\">May</option>\n\t\t\t\t<option value=\"5\">June</option>\n\t\t\t\t<option value=\"6\">July</option>\n\t\t\t\t<option value=\"7\">August</option>\n\t\t\t\t<option value=\"8\">September</option>\n\t\t\t\t<option value=\"9\">October</option>\n\t\t\t\t<option value=\"10\">November</option>\n\t\t\t\t<option value=\"11\">December</option>\n\t\t\t</select>\n\t\t</label>\n\t</div>\n</fieldset>\n"
+		}
+	]
+}

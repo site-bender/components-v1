@@ -14,8 +14,7 @@
   </span>
 
   <script type="application/json+ld">{
-    "@context": "https://schema.org",
-    "@type": "MonetaryAmount",
+    type: "MonetaryAmount",
     "maxValue": 1000000000000,
     "minValue": 1000000000,
     "name": "Bob's stash"

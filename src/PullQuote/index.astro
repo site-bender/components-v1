@@ -13,17 +13,15 @@ export type Props = HTMLAttributes<"blockquote"> & {
 	cssClasses?: Array<string>;
 	dataset?: Dataset;
 	properties?: Partial<Quotation>;
-	useJsonLd?: boolean;
 };
 
 const {
 	author,
 	authorItemprop = "author",
 	authorType = "Person",
-	cssClasses = [],
+	["class:list"]: classList = [],
 	dataset,
 	properties,
-	useJsonLd,
 	...attrs
 } = Astro.props;
 
@@ -34,13 +32,11 @@ const css = ["sb-pull-quote", ...cssClasses].join(" ");
 const data = mapDataset(dataset);
 
 const meta = {
-	"@context": "https://schema.org",
-	"@type": "Quotation",
-	...(useJsonLd ? {} : { ...properties }),
+	type: "Quotation",
 };
 ---
 
-<Microdata class={css} element="figure" properties={meta}>
+<Microdata as="figure" class={css} properties={meta}>
 	<blockquote {...data} itemprop="text" set:html={quote} {...attrs} />
 	{
 		auth ? (
@@ -52,14 +48,6 @@ const meta = {
 			>
 				<span itemprop="name" set:html={auth} />
 			</figcaption>
-		) : null
-	}
-	{
-		useJsonLd ? (
-			<script
-				set:html={JSON.stringify({ ...meta, ...properties }, null, 2)}
-				type="application/json+ld"
-			/>
 		) : null
 	}
 </Microdata>

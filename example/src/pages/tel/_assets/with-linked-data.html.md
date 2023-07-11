@@ -7,7 +7,7 @@
 ```html
 <span itemscope="" itemtype="https://schema.org/ContactPoint">
   <script type="application/json+ld">{
-    "@type": "ContactPoint",
+    type: "ContactPoint",
     "contactType": "guru",
     "tel": "bob@dobbs.com",
     "name": "Church of the Subgenius"

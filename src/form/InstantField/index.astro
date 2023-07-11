@@ -1,90 +1,209 @@
 ---
-import { Temporal } from "@js-temporal/polyfill";
-import FieldWrapper from "../FieldWrapper/index.astro";
+import createClassList from "../../utilities/createClassList";
 import generateShortId from "../../utilities/generateShortId";
-import Instant from "../../metadata/Instant/index.astro";
 import mapDataset from "../../utilities/mapDataset";
-import type { Dataset, Messages } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-
-export type Props = Omit<HTMLAttributes<"input">, "slot" | "value"> & {
-  dataset?: Dataset;
-  epochMicroseconds?: bigint | number | undefined;
-  epochMilliseconds?: number | undefined;
-  epochNanoseconds?: bigint | number | undefined;
-  epochSeconds?: number | undefined;
-  help?: string;
-  label: string;
-  messages?: Messages;
-  name: string;
-  readonly?: boolean;
-  value?: string | Temporal.Instant;
-};
+import DateInput from "../elements/DateInput/index.astro";
+import TextInput from "../elements/TextInput/index.astro";
+import TimeInput from "../elements/TimeInput/index.astro";
+import TimeZoneSelect from "../elements/TimeZoneSelect/index.astro";
+import type { InstantField as Props } from "../../types/form";
+import type { BaseAttributes } from "../../types/html";
 
 const {
-  dataset,
-  epochMicroseconds,
-  epochMilliseconds,
-  epochNanoseconds,
-  epochSeconds,
-  help,
-  id = `_${generateShortId()}`,
-  label,
-  messages,
-  readonly,
-  size = 30,
-  value: rawValue,
-  ...attrs
+	["aria-live"]: live = "assertive",
+	countries,
+	date = "",
+	dateAttrs = {},
+	disabled,
+	field = "instant-field",
+	form,
+	fractionalSeconds = "",
+	fractionalSecondsAttrs = {},
+	group = {},
+	help = {},
+	id = generateShortId(),
+	label = "Timestamp",
+	legend = {},
+	maxDate,
+	maxTime,
+	message,
+	minDate,
+	minTime,
+	name,
+	outer = {},
+	required,
+	stepDate,
+	stepTime,
+	tag = {},
+	time = "",
+	timeAttrs = {},
+	timeZone = "",
+	timeZoneAttrs = {},
+	useList,
 } = Astro.props;
 
-const labelId = `${id}-label`;
-const helpId = `${id}-help`;
-const data = mapDataset(dataset);
+const {
+	["class:list"]: dateClassList = [],
+	dataset: dateDataset,
+	...dateAttributes
+} = dateAttrs as BaseAttributes;
 
-const value = rawValue
-  ? Temporal.Instant.from(rawValue)
-  : epochNanoseconds
-  ? Temporal.Instant.fromEpochNanoseconds(BigInt(epochNanoseconds))
-  : epochMicroseconds
-  ? Temporal.Instant.fromEpochMicroseconds(BigInt(epochMicroseconds))
-  : epochMilliseconds
-  ? Temporal.Instant.fromEpochMilliseconds(epochMilliseconds)
-  : epochSeconds
-  ? Temporal.Instant.fromEpochSeconds(epochSeconds)
-  : undefined;
+const {
+	["class:list"]: fractionalSecondClassList = [],
+	dataset: fractionalSecondDataset,
+	...fractionalSecondAttributes
+} = fractionalSecondsAttrs as BaseAttributes;
+
+const {
+	["class:list"]: groupClassList = [],
+	dataset: groupDataset,
+	...groupAttrs
+} = group as BaseAttributes;
+
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
+
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const {
+	["class:list"]: timeClassList = [],
+	dataset: timeDataset,
+	...timeAttributes
+} = timeAttrs as BaseAttributes;
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const legendId = `${id}_legend`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
 ---
 
-<FieldWrapper
-  fieldType="sb-instant"
-  {...help ? { help } : {}}
-  helpId={helpId}
-  id={id as string}
-  label={label}
-  labelId={labelId}
-  {...messages ? { messages } : {}}
-  name={attrs.name}
-  readonly={readonly}
-  {...attrs.required ? { required: true } : {}}
+<fieldset
+	{...outerAttrs}
+	class:list={createClassList("sb-field", "sb-instant-field", outerClassList)}
+	{...mapDataset(outerDataset)}
+	data-sb-field={field}
+	{...req}
+	{disabled}
+	{form}
+	{id}
+	{name}
 >
-  <Fragment slot="element">
-    {
-      readonly ? (
-        <div class="readonly sb-instant-readonly">
-          <Instant {...attrs} value={value?.toJSON() || ""} />
-        </div>
-      ) : (
-        <input
-          aria-labelledBy={`${labelId} ${helpId}`}
-          class="sb-instant-input"
-          {...data}
-          id={id as string}
-          pattern="[12][0-9]{3}-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[12][0-9])))T(0[1-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]{3}|\.[0-9]{6}|\.[0-9]{9})?Z"
-          {...attrs}
-          size={size}
-          type="text"
-          {...(value ? { value: value.toJSON() } : {})}
-        />
-      )
-    }
-  </Fragment>
-</FieldWrapper>
+	<legend
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={legendId}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</legend>
+	<div
+		class:list={createClassList("sb-group", groupClassList)}
+		{...mapDataset(groupDataset)}
+		data-sb-field-group={field}
+	>
+		<label data-sb-label-date={field} for={`${id}_date`}>
+			<span id={`${id}_date:label`}>Date</span>
+			<DateInput
+				{...dateAttrs}
+				data-sb-input-date={field}
+				{form}
+				id={`${id}_date`}
+				labelledBy={`${legendId} ${id}_date:label`}
+				{...maxDate ? { max: maxDate } : {}}
+				{...minDate ? { min: minDate } : {}}
+				name={`${name}:date`}
+				{required}
+				{...stepDate ? { step: stepDate } : {}}
+				value={date}
+			/>
+		</label>
+		<label data-sb-label-time={field} for={`${id}_time`}>
+			<span id={`${id}_time:label`}>Time</span>
+			<TimeInput
+				{...dateAttrs}
+				data-sb-input-time={field}
+				{form}
+				id={`${id}_time`}
+				labelledBy={`${legendId} ${id}_time:label`}
+				{...maxTime ? { max: maxTime } : {}}
+				{...minTime ? { min: minTime } : {}}
+				name={`${name}:time`}
+				{required}
+				{...stepTime ? { step: stepTime } : {}}
+				value={time}
+			/>
+		</label>
+		<label
+			data-sb-label-fractional-seconds={field}
+			for={`${id}_fractional-seconds`}
+		>
+			<span id={`${id}_fractional-seconds:label`}>Fractional seconds</span>
+			<TextInput
+				{...fractionalSecondsAttrs}
+				data-sb-input-fractional-seconds={field}
+				{form}
+				id={`${id}_fractionalSeconds`}
+				inputmode="numeric"
+				labelledBy={`${legendId} ${id}_fractional-seconds:label`}
+				name={`${name}:fractionalSeconds`}
+				pattern="[0-9]{0,9}"
+				value={fractionalSeconds}
+			/>
+		</label>
+		<label data-sb-label-time-zone={field} for={`${id}_time-zone`}>
+			<span id={`${id}_time-zone:label`}>Time zone</span>
+			<TimeZoneSelect
+				{...timeZoneAttrs}
+				{countries}
+				data-sb-input-time-zone={field}
+				{form}
+				id={`${id}_timeZone`}
+				includeNull
+				labelledBy={`${legendId} ${id}_time-zone:label`}
+				name={`${name}:timeZone`}
+				{required}
+				selected={timeZone}
+				{useList}
+			/>
+		</label>
+	</div>
+</fieldset>

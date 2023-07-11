@@ -1,25 +1,62 @@
 ---
-export type Props = {
-	isHyperlink?: boolean;
-	itemprop?: string | null | undefined;
+import type { Dataset } from "../../types";
+import type {
+	ContactPointLeaf,
+	OrganizationLeaf,
+	PersonLeaf,
+	PlaceLeaf,
+} from "../../schema.org";
+import mapDataset from "../../utilities/mapDataset";
+import Microdata from "../../Microdata/index.astro";
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"span"> & {
+	a?: HTMLAttributes<"a"> | undefined;
+	dataset?: Dataset;
+	itemprop?: string;
+	properties?: Partial<
+		ContactPointLeaf | OrganizationLeaf | PersonLeaf | PlaceLeaf
+	>;
+	type?: "ContactPoint" | "Organization" | "Person" | "Place";
+	useTel?: boolean;
 };
 
-const { isHyperlink, itemprop } = Astro.props;
-const property = itemprop ? { itemprop } : {};
+const {
+	a = {},
+	dataset,
+	itemprop,
+	properties,
+	type = "Person",
+	useTel,
+	...attrs
+} = Astro.props;
+const telephone = ((await Astro.slots.render("default")) || "").trim();
+const data = mapDataset(dataset);
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const meta = {
+	type,
+	telephone,
+	...properties,
+};
+const tel = a?.href ? a.href : `tel:${telephone}`;
+
+// add country code with +, e.g., +64
+// add wait for dialtone with w
+// add one second pause (before extension) with p
 ---
 
+{useMicrodata ? <Microdata as="span" properties={meta} /> : null}
 {
-	isHyperlink ? (
-		<a
-			class="sb-tel-link"
-			href={`tel:${await Astro.slots.render("default")}`}
-			{...property}
-		>
-			<slot />
+	useTel ? (
+		<a href={tel} {...a}>
+			<span class="sb-tel" {...data} {...attrs}>
+				{telephone}
+			</span>
 		</a>
 	) : (
-		<span class="sb-tel-span" {...property}>
-			<slot />
+		<span class="sb-tel" {...data} {...attrs}>
+			{telephone}
 		</span>
 	)
 }

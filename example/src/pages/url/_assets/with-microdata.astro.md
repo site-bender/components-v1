@@ -12,7 +12,6 @@
     name: "Church of the Subgenius",
   }}
   type="Organization"
-  useMicrodata
 >
   bob@dobbs.com
 </Url>

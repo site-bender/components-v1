@@ -1,0 +1,62 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import createSelectOptions from "../../../utilities/createSelectOptions";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { MonthFormat, MonthSelect as Props } from "../../../types/form";
+
+const {
+	autocomplete,
+	calendar = "iso8601",
+	["class:list"]: elementClassList = [],
+	dataset: elementDataset,
+	field = "day-select",
+	filter,
+	form,
+	format = "long",
+	id = generateShortId(),
+	includeNull,
+	labelledBy,
+	locales = ["en-NZ", "en-US", "en-GB"],
+	name = "day",
+	required,
+	selected,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+
+const days = new Array(31).fill(0).map((_, i) => ({
+	label: i + 1,
+	value: String(i + 1).padStart(2, "0"),
+}));
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	<select
+		{...attrs}
+		{autocomplete}
+		aria-labelledby={labelledBy}
+		class:list={createClassList("sb-day-select", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-select={field}
+		{id}
+		{form}
+		{name}
+		{required}
+	>
+		{includeNull ? <option /> : null}
+		<Fragment set:html={createSelectOptions(days, selected)} />
+	</select>
+</span>

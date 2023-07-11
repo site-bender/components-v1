@@ -1,93 +1,119 @@
 ---
-import FieldWrapper from "../FieldWrapper/index.astro";
+import Textarea from "../elements/Textarea/index.astro";
+import TextInput from "../elements/TextInput/index.astro";
+import createClassList from "../../utilities/createClassList";
 import generateShortId from "../../utilities/generateShortId";
 import mapDataset from "../../utilities/mapDataset";
-import Metadata from "../../metadata/Metadata/index.astro";
-import type { Dataset, Messages } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-
-export type Props = HTMLAttributes<"input"> &
-  HTMLAttributes<"textarea"> &
-  HTMLAttributes<"a"> & {
-    dataset?: Dataset;
-    help?: string;
-    label: string;
-    messages?: Messages;
-    name: string;
-    readonly?: boolean;
-    value?: string;
-  };
+import type { EmailField as Props } from "../../types/form";
+import type { BaseAttributes } from "../../types/html";
 
 const {
-  cols,
-  dataset,
-  dirname = `${Astro.props.name}:direction`,
-  help,
-  href,
-  id = `_${generateShortId()}`,
-  itemid,
-  itemprop,
-  itemref,
-  itemtype,
-  label,
-  messages,
-  readonly,
-  rows,
-  size,
-  value,
-  wrap,
-  ...attrs
+	["aria-live"]: live = "assertive",
+	autocorrect: _autocorrect,
+	datalist = {},
+	field = "string-field",
+	form,
+	help = {},
+	id = generateShortId(),
+	label = "Text",
+	legend = {},
+	list,
+	message,
+	name,
+	outer = {},
+	placeholder: _placeholder,
+	required,
+	rows,
+	tag = {},
+	value,
+	wrapper = {},
+	...attrs
 } = Astro.props;
 
-const isTextarea = rows != null;
-const labelId = `${id}-label`;
-const helpId = `${id}-help`;
-const data = mapDataset(dataset);
-const properties =
-  itemtype && itemprop ? { itemid, itemscope: true, itemtype } : {};
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
+
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const labelId = `${id}_label`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
+const text =
+	(Array.isArray(value) && value.join("\n")) ||
+	value ||
+	Astro.slots.render("default");
 ---
 
-<FieldWrapper
-  fieldType="sb-string"
-  {...help ? { help } : {}}
-  helpId={helpId}
-  id={id as string}
-  label={label}
-  labelId={labelId}
-  {...messages ? { messages } : {}}
-  name={attrs.name}
-  readonly={readonly}
-  {...attrs.required ? { required: true } : {}}
+<div
+	{...outerAttrs}
+	class:list={createClassList("sb-field", "sb-string-field", outerClassList)}
+	{...mapDataset(outerDataset)}
+	data-sb-field={field}
+	{...req}
 >
-  <Fragment slot="element">
-    {
-      readonly ? (
-        <div class="readonly sb-string-readonly" {...properties}>
-          <Metadata href={href} itemprop={itemprop}>
-            {value}
-          </Metadata>
-        </div>
-      ) : isTextarea ? (
-        <>
-          {/* prettier-ignore */}
-          <textarea aria-labelledBy={`${labelId} ${helpId}`} class="sb-string-textarea" {...(cols ? { cols: `${cols}` } : {})} {...data} dirname={dirname} id={id as string} {...attrs} rows={rows || 3} {...(wrap ? { wrap } : {})}>{value}</textarea>
-        </>
-      ) : (
-        <input
-          aria-labelledBy={`${labelId} ${helpId}`}
-          class="sb-string-input"
-          {...data}
-          dirname={dirname}
-          id={id as string}
-          {...attrs}
-          {...(size ? { size: `${size}` } : {})}
-          type="text"
-          {...(value ? { value } : {})}
-        />
-      )
-    }
-  </Fragment>
-  <Fragment slot="help">
-    <slot />
-  </Fragment>
-</FieldWrapper>
+	<label
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={labelId}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</label>
+	{
+		parseInt(rows as string) > 0 ? (
+			<Textarea {...attrs} {form} {id} {name} {required} {rows} {wrapper}>
+				<Fragment set:html={text} />
+			</Textarea>
+		) : (
+			<TextInput
+				{...attrs}
+				{datalist}
+				{form}
+				{id}
+				{name}
+				{required}
+				{wrapper}
+			/>
+		)
+	}
+</div>

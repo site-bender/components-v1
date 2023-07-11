@@ -1,0 +1,34 @@
+{
+	"sourceFile": "src/form/elements/FileUploadInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 4,
+			"patches": [
+				{
+					"date": 1688429922828,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688429971626,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { NumericalInput as Props } from \"../../../../types\";\n+import type { NumericalInput as Props } from \"../../../types/forms\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n \n"
+				},
+				{
+					"date": 1688520187581,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { NumericalInput as Props } from \"../../../types/forms\";\n+import type { NumericalInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n \n"
+				},
+				{
+					"date": 1688530912708,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,44 @@\n ---\n-import type { NumericalInput as Props } from \"../../../types/form\";\n+import type { FileUploadInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n-const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n+const {\n+\taccept,\n+\tcapture,\n+\tform,\n+\tid = generateShortId(),\n+\tlabelledBy,\n+\tmultiple,\n+\tvalue,\n+\twrapper = {},\n+} = Astro.props;\n \n-const css = [\"sb-numerical-input\", ...cssClasses].join(\" \");\n-const data = mapDataset(dataset);\n+const {\n+\t[\"class:list\"]: wrapperClassList = [],\n+\tdataset: wrapperDataset,\n+\t...wrapperAttrs\n+} = wrapper as BaseAttributes;\n ---\n \n-<span>\n+<span\n+\t{...wrapperAttrs}\n+\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n+\t{...mapDataset(wrapperDataset)}\n+\tdata-sb-input-wrapper\n+>\n \t<input\n-\t\t{...attrs}\n-\t\taria-labelledby={`${id}_label`}\n-\t\taria-describedby={`${id}_help`}\n-\t\tclass={css}\n-\t\t{...data}\n+\t\taccept={accept}\n+\t\t{...elementAttrs}\n+\t\taria-labelledby={labelledBy}\n+\t\tcapture={capture}\n+\t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n+\t\t{...mapDataset(elementDataset)}\n+\t\tdata-sb-file-input\n+\t\tform={form}\n \t\tid={id}\n-\t\tform={form}\n+\t\tmultiple={multiple}\n \t\tname={name}\n+\t\trequired={required}\n \t\ttype=\"number\"\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688530999384,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,17 +4,26 @@\n \n const {\n \taccept,\n \tcapture,\n+\telement = {},\n \tform,\n \tid = generateShortId(),\n \tlabelledBy,\n \tmultiple,\n+\tname,\n+\trequired,\n+\ttype: _type,\n \tvalue,\n \twrapper = {},\n } = Astro.props;\n \n const {\n+\t[\"class:list\"]: elementClassList = [],\n+\tdataset: elementDataset,\n+\t...elementAttrs\n+} = element as BaseAttributes;\n+const {\n \t[\"class:list\"]: wrapperClassList = [],\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n"
+				}
+			],
+			"date": 1688429922828,
+			"name": "Commit-0",
+			"content": "---\nimport type { NumericalInput as Props } from \"../../../../types\";\nimport mapDataset from \"../../../utilities/mapDataset\";\n\nconst { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n\nconst css = [\"sb-numerical-input\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\n---\n\n<span>\n\t<input\n\t\t{...attrs}\n\t\taria-labelledby={`${id}_label`}\n\t\taria-describedby={`${id}_help`}\n\t\tclass={css}\n\t\t{...data}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t\ttype=\"number\"\n\t/>\n</span>\n"
+		}
+	]
+}

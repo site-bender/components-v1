@@ -488,7 +488,7 @@ interface HTMLAttributes extends AriaAttributes, DOMAttributes, AstroBuiltinAttr
     | null;
   is?: string | undefined | null;
   itemid?: string | undefined | null;
-  itemprop?: string | undefined | null;
+  property?: string | undefined | null;
   itemref?: string | undefined | null;
   itemscope?: boolean | string | undefined | null;
   itemtype?: string | undefined | null;
@@ -506,7 +506,7 @@ interface HTMLAttributes extends AriaAttributes, DOMAttributes, AstroBuiltinAttr
   // WAI-ARIA
   role?: AriaRole | undefined | null;
 
-  // RDFa Attributes
+  // Microdata Attributes
   about?: string | undefined | null;
   datatype?: string | undefined | null;
   inlist?: any;

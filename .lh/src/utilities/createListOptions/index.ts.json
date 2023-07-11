@@ -1,0 +1,50 @@
+{
+	"sourceFile": "src/utilities/createListOptions/index.ts",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 8,
+			"patches": [
+				{
+					"date": 1688528498251,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688534703483,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n import type { DatalistOption } from \"../../types/form\"\n \n-export default function createListOptions(list: Array<DatalistOption>): string {\n+export default function createListOptions(\n+\tlist: Array<DatalistOption>,\n+\tselected: string | number,\n+): string {\n \treturn list\n \t\t.map(\n \t\t\t(item) =>\n \t\t\t\t`<option value=\"${item.value}\">${item.label || item.value}</option>`,\n"
+				},
+				{
+					"date": 1688534778397,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,10 @@\n ): string {\n \treturn list\n \t\t.map(\n \t\t\t(item) =>\n-\t\t\t\t`<option value=\"${item.value}\">${item.label || item.value}</option>`,\n+\t\t\t\t`<option value=\"${item.value}\"${\n+\t\t\t\t\titem.value === selected ? \" selected\" : \"\"\n+\t\t\t\t}>${item.label || item.value}</option>`,\n \t\t)\n \t\t.join(\"\\n\")\n }\n"
+				},
+				{
+					"date": 1688534799854,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n export default function createListOptions(\n \tlist: Array<DatalistOption>,\n \tselected: string | number,\n ): string {\n+\tconsole.log(\"selected\", selected)\n \treturn list\n \t\t.map(\n \t\t\t(item) =>\n \t\t\t\t`<option value=\"${item.value}\"${\n"
+				},
+				{
+					"date": 1688534828755,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \treturn list\n \t\t.map(\n \t\t\t(item) =>\n \t\t\t\t`<option value=\"${item.value}\"${\n-\t\t\t\t\titem.value === selected ? \" selected\" : \"\"\n+\t\t\t\t\tString(item.value) === selected ? \" selected\" : \"\"\n \t\t\t\t}>${item.label || item.value}</option>`,\n \t\t)\n \t\t.join(\"\\n\")\n }\n"
+				},
+				{
+					"date": 1688534843042,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \treturn list\n \t\t.map(\n \t\t\t(item) =>\n \t\t\t\t`<option value=\"${item.value}\"${\n-\t\t\t\t\tString(item.value) === selected ? \" selected\" : \"\"\n+\t\t\t\t\tString(item.value) === String(selected) ? \" selected\" : \"\"\n \t\t\t\t}>${item.label || item.value}</option>`,\n \t\t)\n \t\t.join(\"\\n\")\n }\n"
+				},
+				{
+					"date": 1688534853716,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n export default function createListOptions(\n \tlist: Array<DatalistOption>,\n \tselected: string | number,\n ): string {\n-\tconsole.log(\"selected\", selected)\n \treturn list\n \t\t.map(\n \t\t\t(item) =>\n \t\t\t\t`<option value=\"${item.value}\"${\n"
+				},
+				{
+					"date": 1688535031032,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import type { DatalistOption } from \"../../types/form\"\n \n export default function createListOptions(\n \tlist: Array<DatalistOption>,\n-\tselected: string | number,\n+\tselected?: string | number,\n ): string {\n \treturn list\n \t\t.map(\n \t\t\t(item) =>\n"
+				},
+				{
+					"date": 1688536959663,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,11 @@\n import type { DatalistOption } from \"../../types/form\"\n \n export default function createListOptions(\n \tlist: Array<DatalistOption>,\n-\tselected?: string | number,\n ): string {\n \treturn list\n \t\t.map(\n-\t\t\t(item) =>\n-\t\t\t\t`<option value=\"${item.value}\"${\n-\t\t\t\t\tString(item.value) === String(selected) ? \" selected\" : \"\"\n-\t\t\t\t}>${item.label || item.value}</option>`,\n+\t\t\t(item) => `<option value=\"${item.value}\"></option>`,\n \t\t)\n \t\t.join(\"\\n\")\n }\n"
+				}
+			],
+			"date": 1688528498251,
+			"name": "Commit-0",
+			"content": "import type { DatalistOption } from \"../../types/form\"\n\nexport default function createListOptions(list: Array<DatalistOption>): string {\n\treturn list\n\t\t.map(\n\t\t\t(item) =>\n\t\t\t\t`<option value=\"${item.value}\">${item.label || item.value}</option>`,\n\t\t)\n\t\t.join(\"\\n\")\n}\n"
+		}
+	]
+}

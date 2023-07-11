@@ -1,22 +1,6 @@
 ---
-import mapDataset from "../../utilities/mapDataset";
-import type { Dataset } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-import "./index.css";
-
-export type Props = HTMLAttributes<"fieldset"> & {
-  dataset?: Dataset;
-  legend?: string;
-};
-
-const { dataset, legend } = Astro.props;
-
-const label = legend ? legend : await Astro.slots.render("legend");
-const buttons = await Astro.slots.render("default");
-const data = mapDataset(dataset);
 ---
 
-<fieldset aria-label="Button bar" class="sb-button-bar" {...data}>
-  {legend && <legend set:html={label} />}
-  <Fragment set:html={buttons} />
+<fieldset>
+	<legend>Button bar</legend>
 </fieldset>

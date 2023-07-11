@@ -1,57 +1,127 @@
 ---
+import "./index.css";
 import Picture from "../Picture/index.astro";
-import type { ImageSource } from "../types";
+import createClassList from "../utilities/createClassList";
+import generateShortId from "../utilities/generateShortId";
+import mapDataset from "../utilities/mapDataset";
+import type { BaseAttributes } from "../types/html";
+import type { PictureProps } from "../types";
 
-export type Props = {
-  alt: string;
-  filename: string;
-  height?: number;
-  href?: string;
-  isInvertible?: boolean;
-  sources: Array<ImageSource>;
-  title: string;
-  width: number;
-};
+const {
+	["class:list"]: classList = [],
+	description = {},
+	heading = {},
+	id = generateShortId(),
+	level = 3,
+	link = {},
+	wrapper = {},
+  dataset,
+  href,
+  image = {},
+  isInvertible,
+  title,
+	...attrs
+} = Astro.props;
 
-const { alt, filename, height, href, isInvertible, sources, title, width } =
-  Astro.props;
+const { alt, filename, src, width, ...imageAttrs } = image;
 
-const description = await Astro.slots.render("default");
+const {
+	["class:list"]: descClassList = [],
+	dataset: descDataset,
+	...descAttrs
+} = description as BaseAttributes;
+
+const {
+	["class:list"]: headingClassList = [],
+	dataset: headingDataset,
+	...headingAttrs
+} = heading as BaseAttributes;
+
+const {
+	["class:list"]: linkClassList = [],
+	dataset: linkDataset,
+	...linkAttrs
+} = link as BaseAttributes;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+
+const classes = isInvertible
+	? createClassList("sb-card", "sb-allow-invert", classList)
+	: createClassList("sb-card", classList);
+
+const desc = await Astro.slots.render("default");
+const descId = `${id}_description`;
+const Elem = `h${level}`;
 ---
 
-<section class={`card${isInvertible ? " allow-invert" : ""}`}>
+<section
+	{...wrapperAttrs}
+	class:list={classes}
+	{...mapDataset(dataset)}
+	data-sb-card
+	{id}
+>
   {
     href ? (
-      <a class="group" href={href}>
-        <header>
-          <h3>{title}</h3>
-        </header>
-        <Picture
-          alt={alt}
-          filename={filename}
-          {...(height != null ? { height } : {})}
-          loading="eager"
-          sources={sources}
-          width={width}
-        />
+      <a
+				{...linkAttrs}
+				aria-describedby={descId}
+				class:list={createClassList("sb-card-link", linkClassList)}
+				data-sb-card="link"
+				{...mapDataset(linkDataset)}
+				{href}
+			>
+				<Elem
+					{...headingAttrs}
+					class:list={headingClassList}
+					{...mapDataset(headingDataset)}
+					data-sb-card="heading"
+				>
+					{title}
+				</Elem>
+        {image.filename ? (
+          <Picture
+            {...imageAttrs}
+            {alt}
+            {filename}
+            {src}
+            {width}
+          />
+        ) : null}
       </a>
     ) : (
-      <div class="group">
-        <header>
-          <h3>{title}</h3>
-        </header>
-        <Picture
-          alt={alt}
-          filename={filename}
-          {...(height != null ? { height } : {})}
-          loading="eager"
-          sources={sources}
-          width={width}
-        />
+      <div aria-describedby={descId}>
+				<Elem
+					{...headingAttrs}
+					class:list={headingClassList}
+					{...mapDataset(headingDataset)}
+					data-sb-card="heading"
+				>
+					{title}
+				</Elem>
+        {image.filename ? (
+          <Picture
+            {...imageAttrs}
+            {alt}
+            {filename}
+            {src}
+            {width}
+          />
+        ) : null}
       </div>
     )
   }
-  <div class="card-description">
-    <Fragment set:html={description} />
+  <div
+		{...descAttrs}
+		class:list={createClassList("sb-card-description", descClassList)}
+		data-sb-card="description"
+		{...mapDataset(descDataset)}
+		id={descId}
+	>
+    <Fragment set:html={desc} />
   </div>
 </section>

@@ -1,0 +1,18 @@
+{
+	"sourceFile": "src/metadata/Metadata/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 0,
+			"patches": [
+				{
+					"date": 1688942576558,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				}
+			],
+			"date": 1688942576558,
+			"name": "Commit-0",
+			"content": "---\nexport type Props = {\n\thref?: string | URL | null | undefined;\n\tproperty?: string | null | undefined;\n};\n\nconst { href, property } = Astro.props;\nconst microdata = property ? { property } : {};\n---\n\n{\n\thref ? (\n\t\t<a class=\"sb-metadata-link\" {href} {...microdata}>\n\t\t\t<slot />\n\t\t</a>\n\t) : (\n\t\t<span class=\"sb-metadata-span\" {...microdata}>\n\t\t\t<slot />\n\t\t</span>\n\t)\n}\n"
+		}
+	]
+}

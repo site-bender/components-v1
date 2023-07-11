@@ -1,0 +1,44 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { MonthInput as Props } from "../../../types/form";
+
+const {
+	autocomplete,
+	["class:list"]: elementClassList = [],
+	dataset: elementDataset,
+	field = "month-input",
+	form,
+	id = generateShortId(),
+	name,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	<input
+		{...attrs}
+		{autocomplete}
+		class:list={createClassList("sb-month-input", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-input={field}
+		{form}
+		{id}
+		{name}
+		type="month"
+	/>
+</span>

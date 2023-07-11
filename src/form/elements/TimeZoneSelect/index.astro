@@ -1,0 +1,84 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import generateShortId from "../../../utilities/generateShortId";
+import getTimeZoneOptions from "../../../utilities/getTimeZoneOptions";
+import mapDataset from "../../../utilities/mapDataset";
+import type { TimeZoneSelect as Props } from "../../../types/form";
+import type { BaseAttributes } from "../../../types/html";
+
+const {
+	autocomplete,
+	["class:list"]: elementClassList = [],
+	countries,
+	dataset: elementDataset,
+	field = "time-zone",
+	form,
+	id = generateShortId(),
+	includeNull,
+	labelledBy,
+	name,
+	required,
+	selected,
+	useList,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList(
+		"sb-wrapper",
+		"sb-time-zone-input",
+		wrapperClassList
+	)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	{
+		useList ? (
+			<>
+				<input
+					{...attrs}
+					aria-labelledby={labelledBy}
+					{autocomplete}
+					class:list={createClassList("sb-time-zone-input", elementClassList)}
+					{...mapDataset(elementDataset)}
+					data-sb-input={field}
+					{form}
+					{id}
+					list={`${id}_list`}
+					{name}
+					{required}
+					type="text"
+					value={selected}
+				/>
+				<datalist id={`${id}_list`}>
+					<Fragment set:html={getTimeZoneOptions(countries)} />
+				</datalist>
+			</>
+		) : (
+			<select
+				{...attrs}
+				aria-labelledby={labelledBy}
+				{autocomplete}
+				class:list={createClassList("sb-time-zone-select", elementClassList)}
+				{...mapDataset(elementDataset)}
+				data-sb-select={field}
+				{form}
+				{id}
+				{name}
+				{required}
+			>
+				{includeNull ? <option /> : null}
+				<Fragment set:html={getTimeZoneOptions(countries, selected)} />
+			</select>
+		)
+	}
+</span>

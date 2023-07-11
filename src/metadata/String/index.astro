@@ -1,0 +1,50 @@
+---
+import type { Dataset } from "../../types";
+import mapDataset from "../../utilities/mapDataset";
+import Microdata from "../../Microdata/index.astro";
+import type { HTMLAttributes, HTMLTag } from "astro/types";
+
+export type Props<T> = HTMLAttributes<"span"> & {
+  a?: HTMLAttributes<"a"> | undefined;
+  as?: HTMLTag;
+  cssClasses?: Array<string>;
+  dataset?: Dataset;
+  properties?: Partial<T>;
+  type?: string;
+  value?: string;
+};
+
+const {
+  a = {},
+  as = "span",
+  ["class:list"]: classList = [],
+  dataset,
+  properties = {},
+  type,
+  value = "",
+  ...attrs
+} = Astro.props;
+
+const css = ["sb-string", ...cssClasses].join(" ");
+const data = mapDataset(dataset);
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const meta = {
+  type,
+  ...properties,
+};
+const Element = as;
+const str = (await Astro.slots.render("default")) || value;
+---
+
+{
+  useMicrodata ? (
+    <Microdata as={as} class={css} {...data} {...attrs} properties={meta}>
+      {str}
+    </Microdata>
+  ) : (
+    <Element class={css} {...data} {...attrs} properties={meta}>
+      {value}
+    </Element>
+  )
+}

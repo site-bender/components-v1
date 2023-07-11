@@ -1,0 +1,26 @@
+{
+	"sourceFile": "src/form/UrlField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 2,
+			"patches": [
+				{
+					"date": 1688943708323,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688943719432,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import EmailInput from \"../elements/EmailInput/index.astro\";\n+import UrlInput from \"../elements/UrlInput/index.astro\";\n import createClassList from \"../../utilities/createClassList\";\n import generateShortId from \"../../utilities/generateShortId\";\n import mapDataset from \"../../utilities/mapDataset\";\n import type { EmailField as Props } from \"../../types/form\";\n@@ -91,9 +91,9 @@\n \t\t\trole=\"status\"\n \t\t\tset:html={hlp}\n \t\t/>\n \t</label>\n-\t<EmailInput\n+\t<UrlInput\n \t\t{...attrs}\n \t\t{datalist}\n \t\t{field}\n \t\t{form}\n"
+				},
+				{
+					"date": 1688946120533,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n \tdataset: tagDataset,\n \t...tagAttrs\n } = tag as BaseAttributes;\n \n-const hlp = (await Astro.slots.render(\"help\")) || message;\n+const hlp = (await Astro.slots.render(\"message\")) || message;\n const helpId = `${id}_help`;\n const lbl = (await Astro.slots.render(\"default\")) || label;\n const labelId = `${id}_label`;\n const req = required ? { \"data-sb-required\": \"\" } : {};\n"
+				}
+			],
+			"date": 1688943708323,
+			"name": "Commit-0",
+			"content": "---\nimport EmailInput from \"../elements/EmailInput/index.astro\";\nimport createClassList from \"../../utilities/createClassList\";\nimport generateShortId from \"../../utilities/generateShortId\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport type { EmailField as Props } from \"../../types/form\";\nimport type { BaseAttributes } from \"../../types/html\";\n\nconst {\n\t[\"aria-live\"]: live = \"assertive\",\n\tautocorrect: _autocorrect,\n\tdatalist = {},\n\tfield = \"url-field\",\n\tform,\n\thelp = {},\n\tid = generateShortId(),\n\tlabel = \"URL\",\n\tlegend = {},\n\tlist,\n\tmessage,\n\tname,\n\touter = {},\n\tplaceholder: _placeholder,\n\trequired,\n\ttag = {},\n\twrapper = {},\n\t...attrs\n} = Astro.props;\n\nconst {\n\t[\"class:list\"]: helpClassList = [],\n\tdataset: helpDataset,\n\t...helpAttrs\n} = help as BaseAttributes;\n\nconst {\n\t[\"class:list\"]: legendClassList = [],\n\tdataset: legendDataset,\n\t...legendAttrs\n} = legend as BaseAttributes;\n\nconst {\n\t[\"class:list\"]: outerClassList = [],\n\tdataset: outerDataset,\n\t...outerAttrs\n} = outer as BaseAttributes;\n\nconst {\n\t[\"class:list\"]: tagClassList = [],\n\tdataset: tagDataset,\n\t...tagAttrs\n} = tag as BaseAttributes;\n\nconst hlp = (await Astro.slots.render(\"help\")) || message;\nconst helpId = `${id}_help`;\nconst lbl = (await Astro.slots.render(\"default\")) || label;\nconst labelId = `${id}_label`;\nconst req = required ? { \"data-sb-required\": \"\" } : {};\nconst opt = required ? {} : { \"data-sb-optional\": \"\" };\n---\n\n<div\n\t{...outerAttrs}\n\tclass:list={createClassList(\"sb-field\", \"sb-url-field\", outerClassList)}\n\t{...mapDataset(outerDataset)}\n\tdata-sb-field={field}\n\t{...req}\n>\n\t<label\n\t\t{...legendAttrs}\n\t\tclass:list={createClassList(\"sb-label\", legendClassList)}\n\t\t{...mapDataset(legendDataset)}\n\t\tdata-sb-field-label={field}\n\t\tid={labelId}\n\t>\n\t\t<span\n\t\t\t{...tagAttrs}\n\t\t\tclass:list={createClassList(\"sb-label-tag\", tagClassList)}\n\t\t\t{...mapDataset(tagDataset)}\n\t\t\tdata-sb-field-label-tag={field}\n\t\t\t{...opt}\n\t\t\tset:html={lbl}\n\t\t/>\n\t\t<span\n\t\t\t{...helpAttrs}\n\t\t\taria-live={live}\n\t\t\tclass:list={createClassList(\"sb-help\", helpClassList)}\n\t\t\t{...mapDataset(helpDataset)}\n\t\t\tdata-sb-field-help={field}\n\t\t\tid={helpId}\n\t\t\trole=\"status\"\n\t\t\tset:html={hlp}\n\t\t/>\n\t</label>\n\t<EmailInput\n\t\t{...attrs}\n\t\t{datalist}\n\t\t{field}\n\t\t{form}\n\t\t{id}\n\t\t{name}\n\t\t{required}\n\t\t{wrapper}\n\t/>\n</div>\n"
+		}
+	]
+}

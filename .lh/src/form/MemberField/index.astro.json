@@ -1,0 +1,66 @@
+{
+	"sourceFile": "src/form/MemberField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 12,
+			"patches": [
+				{
+					"date": 1688429923083,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688532732494,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \n {\n \tcount > LIMIT ? (\n \t\t<div {...attrs} class={css} {...data}>\n-\t\t\t<Label\n+\t\t\t<label\n \t\t\t\t{...labelAttributes}\n \t\t\t\thelp={help}\n \t\t\t\thelpAttributes={helpAttributes}\n \t\t\t\thelpId={helpId}\n@@ -56,9 +56,9 @@\n \t\t\t\trequired={required}\n \t\t\t>\n \t\t\t\t<Fragment set:html={fieldLabel} />\n \t\t\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n-\t\t\t</Label>\n+\t\t\t</label>\n \t\t\t<Select\n \t\t\t\t{...elementAttributes}\n \t\t\t\tform={form}\n \t\t\t\tid={id}\n"
+				},
+				{
+					"date": 1688940236812,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n \t\t\t<Select\n \t\t\t\t{...elementAttributes}\n \t\t\t\tform={form}\n \t\t\t\tid={id}\n-\t\t\t\tincludeNull={includeNull}\n+\t\t\t\t{includeNull}\n \t\t\t\tname={name}\n \t\t\t\toptions={options}\n \t\t\t\tselected={selected}\n \t\t\t/>\n@@ -75,9 +75,9 @@\n \t\t\thelp={help}\n \t\t\thelpAttributes={helpAttributes}\n \t\t\thelpId={helpId}\n \t\t\tid={id}\n-\t\t\tincludeNull={includeNull}\n+\t\t\t{includeNull}\n \t\t\tlabelAttributes={labelAttributes}\n \t\t\tname={name}\n \t\t\toptions={options}\n \t\t\tselected={selected}\n"
+				},
+				{
+					"date": 1688940253418,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n \t\t\t\thelpId={helpId}\n \t\t\t\tfor={id}\n \t\t\t\tform={form}\n \t\t\t\tid={labelId}\n-\t\t\t\trequired={required}\n+\t\t\t\t{required}\n \t\t\t>\n \t\t\t\t<Fragment set:html={fieldLabel} />\n \t\t\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t\t\t</label>\n"
+				},
+				{
+					"date": 1688940875539,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \t\t\t</label>\n \t\t\t<Select\n \t\t\t\t{...elementAttributes}\n \t\t\t\tform={form}\n-\t\t\t\tid={id}\n+\t\t\t\t{id}\n \t\t\t\t{includeNull}\n \t\t\t\tname={name}\n \t\t\t\toptions={options}\n \t\t\t\tselected={selected}\n@@ -74,9 +74,9 @@\n \t\t\tform={form}\n \t\t\thelp={help}\n \t\t\thelpAttributes={helpAttributes}\n \t\t\thelpId={helpId}\n-\t\t\tid={id}\n+\t\t\t{id}\n \t\t\t{includeNull}\n \t\t\tlabelAttributes={labelAttributes}\n \t\t\tname={name}\n \t\t\toptions={options}\n"
+				},
+				{
+					"date": 1688940939903,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,18 +50,18 @@\n \t\t\t\thelp={help}\n \t\t\t\thelpAttributes={helpAttributes}\n \t\t\t\thelpId={helpId}\n \t\t\t\tfor={id}\n-\t\t\t\tform={form}\n+\t\t\t\t{form}\n \t\t\t\tid={labelId}\n \t\t\t\t{required}\n \t\t\t>\n \t\t\t\t<Fragment set:html={fieldLabel} />\n \t\t\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t\t\t</label>\n \t\t\t<Select\n \t\t\t\t{...elementAttributes}\n-\t\t\t\tform={form}\n+\t\t\t\t{form}\n \t\t\t\t{id}\n \t\t\t\t{includeNull}\n \t\t\t\tname={name}\n \t\t\t\toptions={options}\n@@ -70,9 +70,9 @@\n \t\t</div>\n \t) : (\n \t\t<RadioGroup\n \t\t\t{...elementAttributes}\n-\t\t\tform={form}\n+\t\t\t{form}\n \t\t\thelp={help}\n \t\t\thelpAttributes={helpAttributes}\n \t\t\thelpId={helpId}\n \t\t\t{id}\n"
+				},
+				{
+					"date": 1688940976258,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n \t\t\t\t{...elementAttributes}\n \t\t\t\t{form}\n \t\t\t\t{id}\n \t\t\t\t{includeNull}\n-\t\t\t\tname={name}\n+\t\t\t\t{name}\n \t\t\t\toptions={options}\n \t\t\t\tselected={selected}\n \t\t\t/>\n \t\t</div>\n@@ -77,9 +77,9 @@\n \t\t\thelpId={helpId}\n \t\t\t{id}\n \t\t\t{includeNull}\n \t\t\tlabelAttributes={labelAttributes}\n-\t\t\tname={name}\n+\t\t\t{name}\n \t\t\toptions={options}\n \t\t\tselected={selected}\n \t\t>\n \t\t\t<Fragment set:html={fieldLabel} />\n"
+				},
+				{
+					"date": 1688941025150,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,9 +64,9 @@\n \t\t\t\t{id}\n \t\t\t\t{includeNull}\n \t\t\t\t{name}\n \t\t\t\toptions={options}\n-\t\t\t\tselected={selected}\n+\t\t\t\t{selected}\n \t\t\t/>\n \t\t</div>\n \t) : (\n \t\t<RadioGroup\n@@ -79,9 +79,9 @@\n \t\t\t{includeNull}\n \t\t\tlabelAttributes={labelAttributes}\n \t\t\t{name}\n \t\t\toptions={options}\n-\t\t\tselected={selected}\n+\t\t\t{selected}\n \t\t>\n \t\t\t<Fragment set:html={fieldLabel} />\n \t\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t\t</RadioGroup>\n"
+				},
+				{
+					"date": 1688942389426,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \tcount > LIMIT ? (\n \t\t<div {...attrs} class={css} {...data}>\n \t\t\t<label\n \t\t\t\t{...labelAttributes}\n-\t\t\t\thelp={help}\n+\t\t\t\t{help}\n \t\t\t\thelpAttributes={helpAttributes}\n \t\t\t\thelpId={helpId}\n \t\t\t\tfor={id}\n \t\t\t\t{form}\n@@ -71,9 +71,9 @@\n \t) : (\n \t\t<RadioGroup\n \t\t\t{...elementAttributes}\n \t\t\t{form}\n-\t\t\thelp={help}\n+\t\t\t{help}\n \t\t\thelpAttributes={helpAttributes}\n \t\t\thelpId={helpId}\n \t\t\t{id}\n \t\t\t{includeNull}\n"
+				},
+				{
+					"date": 1688942430563,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n \t\t\t\t{form}\n \t\t\t\t{id}\n \t\t\t\t{includeNull}\n \t\t\t\t{name}\n-\t\t\t\toptions={options}\n+\t\t\t\t{options}\n \t\t\t\t{selected}\n \t\t\t/>\n \t\t</div>\n \t) : (\n@@ -78,9 +78,9 @@\n \t\t\t{id}\n \t\t\t{includeNull}\n \t\t\tlabelAttributes={labelAttributes}\n \t\t\t{name}\n-\t\t\toptions={options}\n+\t\t\t{options}\n \t\t\t{selected}\n \t\t>\n \t\t\t<Fragment set:html={fieldLabel} />\n \t\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n"
+				},
+				{
+					"date": 1688945320804,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,22 +43,41 @@\n ---\n \n {\n \tcount > LIMIT ? (\n-\t\t<div {...attrs} class={css} {...data}>\n-\t\t\t<label\n-\t\t\t\t{...labelAttributes}\n-\t\t\t\t{help}\n-\t\t\t\thelpAttributes={helpAttributes}\n-\t\t\t\thelpId={helpId}\n-\t\t\t\tfor={id}\n-\t\t\t\t{form}\n-\t\t\t\tid={labelId}\n-\t\t\t\t{required}\n-\t\t\t>\n-\t\t\t\t<Fragment set:html={fieldLabel} />\n-\t\t\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n-\t\t\t</label>\n+\t<div\n+\t{...outerAttrs}\n+\tclass:list={createClassList(\"sb-field\", \"sb-email-field\", outerClassList)}\n+\t{...mapDataset(outerDataset)}\n+\tdata-sb-field={field}\n+\t{...req}\n+>\n+\t<label\n+\t\t{...legendAttrs}\n+\t\tclass:list={createClassList(\"sb-label\", legendClassList)}\n+\t\t{...mapDataset(legendDataset)}\n+\t\tdata-sb-field-label={field}\n+\t\tid={labelId}\n+\t>\n+\t\t<span\n+\t\t\t{...tagAttrs}\n+\t\t\tclass:list={createClassList(\"sb-label-tag\", tagClassList)}\n+\t\t\t{...mapDataset(tagDataset)}\n+\t\t\tdata-sb-field-label-tag={field}\n+\t\t\t{...opt}\n+\t\t\tset:html={lbl}\n+\t\t/>\n+\t\t<span\n+\t\t\t{...helpAttrs}\n+\t\t\taria-live={live}\n+\t\t\tclass:list={createClassList(\"sb-help\", helpClassList)}\n+\t\t\t{...mapDataset(helpDataset)}\n+\t\t\tdata-sb-field-help={field}\n+\t\t\tid={helpId}\n+\t\t\trole=\"status\"\n+\t\t\tset:html={hlp}\n+\t\t/>\n+\t</label>\n \t\t\t<Select\n \t\t\t\t{...elementAttributes}\n \t\t\t\t{form}\n \t\t\t\t{id}\n"
+				},
+				{
+					"date": 1688945536583,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,20 +9,21 @@\n \n const {\n \tcssClasses = [],\n \tdataset,\n-\telementAttributes = {},\n \tform,\n-\thelp,\n-\thelpAttributes = {},\n+\tgroup = {},\n+\thelp = {},\n \tid = generateShortId(),\n \tincludeNull,\n \tlabel,\n-\tlabelAttributes = {},\n+\tlegend = {},\n+\tmessage,\n \tname,\n-\toptions = [] as Array<RadioGroupOption>,\n-\trequired = false,\n+\toptions = [],\n+\trequired,\n \tselected,\n+\twrapper = {},\n \t...attrs\n } = Astro.props;\n \n function getOptionsCount(opts: Array<RadioGroupOption>): number {\n@@ -77,9 +78,9 @@\n \t\t\t\t\tset:html={hlp}\n \t\t\t\t/>\n \t\t\t</label>\n \t\t\t<Select\n-\t\t\t\t{...elementAttributes}\n+\t\t\t\t{...attrs}\n \t\t\t\t{form}\n \t\t\t\t{id}\n \t\t\t\t{includeNull}\n \t\t\t\t{name}\n@@ -88,16 +89,14 @@\n \t\t\t/>\n \t\t</div>\n \t) : (\n \t\t<RadioGroup\n-\t\t\t{...elementAttributes}\n+\t\t\t{...attrs}\n \t\t\t{form}\n \t\t\t{help}\n-\t\t\thelpAttributes={helpAttributes}\n-\t\t\thelpId={helpId}\n \t\t\t{id}\n \t\t\t{includeNull}\n-\t\t\tlabelAttributes={labelAttributes}\n+\t\t\t{legend}\n \t\t\t{name}\n \t\t\t{options}\n \t\t\t{selected}\n \t\t>\n"
+				},
+				{
+					"date": 1688945604133,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,15 +91,20 @@\n \t) : (\n \t\t<RadioGroup\n \t\t\t{...attrs}\n \t\t\t{form}\n+\t\t\t{group}\n \t\t\t{help}\n \t\t\t{id}\n \t\t\t{includeNull}\n+\t\t\t{label}\n \t\t\t{legend}\n+\t\t\t{message}\n \t\t\t{name}\n \t\t\t{options}\n+\t\t\t{required}\n \t\t\t{selected}\n+\t\t\t{wrapper}\n \t\t>\n \t\t\t<Fragment set:html={fieldLabel} />\n \t\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t\t</RadioGroup>\n"
+				}
+			],
+			"date": 1688429923083,
+			"name": "Commit-0",
+			"content": "---\nimport type { MemberField as Props, RadioGroupOption } from \"../../../types\";\nimport Label from \"../elements/Label/index.astro\";\nimport RadioGroup from \"../elements/RadioGroup/index.astro\";\nimport Select from \"../elements/Select/index.astro\";\nimport generateShortId from \"../../utilities/generateShortId\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport { MEMBER_FIELD_PIVOT } from \"../../../constants\";\n\nconst {\n\tcssClasses = [],\n\tdataset,\n\telementAttributes = {},\n\tform,\n\thelp,\n\thelpAttributes = {},\n\tid = generateShortId(),\n\tincludeNull,\n\tlabel,\n\tlabelAttributes = {},\n\tname,\n\toptions = [] as Array<RadioGroupOption>,\n\trequired = false,\n\tselected,\n\t...attrs\n} = Astro.props;\n\nfunction getOptionsCount(opts: Array<RadioGroupOption>): number {\n\treturn opts.reduce(\n\t\t(acc, opt) => acc + (opt.options?.length ? opt.options.length + 1 : 1),\n\t\t0\n\t);\n}\n\nconst css = [\"sb-field\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\nconst helpId = `${id}_help`;\nconst fieldHelp = help || Astro.slots.render(\"help\");\nconst labelId = `${id}_label`;\nconst fieldLabel = label || Astro.slots.render(\"label\");\nconst count = getOptionsCount(options);\nconst LIMIT = import.meta.env.MEMBER_FIELD_PIVOT || MEMBER_FIELD_PIVOT;\n---\n\n{\n\tcount > LIMIT ? (\n\t\t<div {...attrs} class={css} {...data}>\n\t\t\t<Label\n\t\t\t\t{...labelAttributes}\n\t\t\t\thelp={help}\n\t\t\t\thelpAttributes={helpAttributes}\n\t\t\t\thelpId={helpId}\n\t\t\t\tfor={id}\n\t\t\t\tform={form}\n\t\t\t\tid={labelId}\n\t\t\t\trequired={required}\n\t\t\t>\n\t\t\t\t<Fragment set:html={fieldLabel} />\n\t\t\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n\t\t\t</Label>\n\t\t\t<Select\n\t\t\t\t{...elementAttributes}\n\t\t\t\tform={form}\n\t\t\t\tid={id}\n\t\t\t\tincludeNull={includeNull}\n\t\t\t\tname={name}\n\t\t\t\toptions={options}\n\t\t\t\tselected={selected}\n\t\t\t/>\n\t\t</div>\n\t) : (\n\t\t<RadioGroup\n\t\t\t{...elementAttributes}\n\t\t\tform={form}\n\t\t\thelp={help}\n\t\t\thelpAttributes={helpAttributes}\n\t\t\thelpId={helpId}\n\t\t\tid={id}\n\t\t\tincludeNull={includeNull}\n\t\t\tlabelAttributes={labelAttributes}\n\t\t\tname={name}\n\t\t\toptions={options}\n\t\t\tselected={selected}\n\t\t>\n\t\t\t<Fragment set:html={fieldLabel} />\n\t\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n\t\t</RadioGroup>\n\t)\n}\n"
+		}
+	]
+}

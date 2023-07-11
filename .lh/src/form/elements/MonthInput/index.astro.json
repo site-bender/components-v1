@@ -1,0 +1,94 @@
+{
+	"sourceFile": "src/form/elements/MonthInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 19,
+			"patches": [
+				{
+					"date": 1688535125455,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688535356179,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import generateShortId from \"../../../utilities/generateShortId\";\n import getMonths from \"../../../utilities/getMonths\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { BaseAttributes } from \"../../../types/html\";\n-import type { Month as Props } from \"../../../types/form\";\n+import type { MonthInput as Props } from \"../../../types/form\";\n \n const {\n \tcalendar = \"iso8601\",\n \telement = {},\n"
+				},
+				{
+					"date": 1688535450999,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import type { BaseAttributes } from \"../../../types/html\";\n import type { MonthInput as Props } from \"../../../types/form\";\n \n const {\n+\tautocomplete,\n \tcalendar = \"iso8601\",\n \telement = {},\n \tform,\n \tformat = \"long\",\n@@ -31,8 +32,9 @@\n ---\n \n <select\n \t{...elementAttrs}\n+\tautocomplete={autocomplete}\n \taria-labelledby={labelledBy}\n \tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t{...mapDataset(elementDataset)}\n \tdata-sb-month-input\n"
+				},
+				{
+					"date": 1688535699320,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n const {\n \tautocomplete,\n \tcalendar = \"iso8601\",\n \telement = {},\n+\tfilter,\n \tform,\n \tformat = \"long\",\n \tid = generateShortId(),\n \tincludeBlank,\n@@ -27,9 +28,9 @@\n \tdataset: elementDataset,\n \t...elementAttrs\n } = element as BaseAttributes;\n \n-const months = getMonths(calendar, locales, format);\n+const months = getMonths(calendar, locales, format, filter);\n ---\n \n <select\n \t{...elementAttrs}\n"
+				},
+				{
+					"date": 1688536988712,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n-import createListOptions from \"../../../utilities/createListOptions\";\n+import createSelectOptions from \"../../../utilities/createSelectOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import getMonths from \"../../../utilities/getMonths\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { BaseAttributes } from \"../../../types/html\";\n@@ -44,6 +44,6 @@\n \tname={name}\n \trequired={required}\n >\n \t{includeBlank ? <option /> : null}\n-\t<Fragment set:html={createListOptions(months, selected)} />\n+\t<Fragment set:html={createSelectOptions(months, selected)} />\n </select>\n"
+				},
+				{
+					"date": 1688600484442,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,15 +3,15 @@\n import createSelectOptions from \"../../../utilities/createSelectOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import getMonths from \"../../../utilities/getMonths\";\n import mapDataset from \"../../../utilities/mapDataset\";\n-import type { BaseAttributes } from \"../../../types/html\";\n import type { MonthInput as Props } from \"../../../types/form\";\n \n const {\n \tautocomplete,\n \tcalendar = \"iso8601\",\n-\telement = {},\n+\t[\"class:list\"]: elementClassList = [],\n+\tdataset: elementDataset,\n \tfilter,\n \tform,\n \tformat = \"long\",\n \tid = generateShortId(),\n@@ -20,21 +20,16 @@\n \tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n \tname = \"month\",\n \trequired,\n \tselected,\n+\t...attrs\n } = Astro.props;\n \n-const {\n-\t[\"class:list\"]: elementClassList = [],\n-\tdataset: elementDataset,\n-\t...elementAttrs\n-} = element as BaseAttributes;\n-\n const months = getMonths(calendar, locales, format, filter);\n ---\n \n <select\n-\t{...elementAttrs}\n+\t{...attrs}\n \tautocomplete={autocomplete}\n \taria-labelledby={labelledBy}\n \tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t{...mapDataset(elementDataset)}\n"
+				},
+				{
+					"date": 1688600913769,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n \tautocomplete,\n \tcalendar = \"iso8601\",\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n+\tfield = \"month-input\",\n \tfilter,\n \tform,\n \tformat = \"long\",\n \tid = generateShortId(),\n@@ -32,9 +33,9 @@\n \tautocomplete={autocomplete}\n \taria-labelledby={labelledBy}\n \tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t{...mapDataset(elementDataset)}\n-\tdata-sb-month-input\n+\tdata-sb-input={field}\n \tform={form}\n \tid={id}\n \tname={name}\n \trequired={required}\n"
+				},
+				{
+					"date": 1688600930511,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \tselected,\n \t...attrs\n } = Astro.props;\n \n-const months = getMonths(calendar, locales, format, filter);\n+const months = getMonths(calendar as string, locales, format, filter);\n ---\n \n <select\n \t{...attrs}\n"
+				},
+				{
+					"date": 1688601066162,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,14 @@\n \tselected,\n \t...attrs\n } = Astro.props;\n \n-const months = getMonths(calendar as string, locales, format, filter);\n+const months = getMonths(\n+\tcalendar as string,\n+\tlocales as Array<string>,\n+\tformat,\n+\tfilter\n+);\n ---\n \n <select\n \t{...attrs}\n"
+				},
+				{
+					"date": 1688601156931,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n \n const months = getMonths(\n \tcalendar as string,\n \tlocales as Array<string>,\n-\tformat,\n+\tformat as string,\n \tfilter\n );\n ---\n \n"
+				},
+				{
+					"date": 1688602534589,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,50 +1,29 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n-import createSelectOptions from \"../../../utilities/createSelectOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n-import getMonths from \"../../../utilities/getMonths\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { MonthInput as Props } from \"../../../types/form\";\n \n const {\n-\tautocomplete,\n-\tcalendar = \"iso8601\",\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n-\tfield = \"month-input\",\n-\tfilter,\n \tform,\n-\tformat = \"long\",\n \tid = generateShortId(),\n-\tincludeBlank,\n-\tlabelledBy,\n-\tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n-\tname = \"month\",\n-\trequired,\n-\tselected,\n+\tname,\n+\tfield = \"date-input\",\n \t...attrs\n } = Astro.props;\n-\n-const months = getMonths(\n-\tcalendar as string,\n-\tlocales as Array<string>,\n-\tformat as string,\n-\tfilter\n-);\n ---\n \n-<select\n-\t{...attrs}\n-\tautocomplete={autocomplete}\n-\taria-labelledby={labelledBy}\n-\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n-\t{...mapDataset(elementDataset)}\n-\tdata-sb-input={field}\n-\tform={form}\n-\tid={id}\n-\tname={name}\n-\trequired={required}\n->\n-\t{includeBlank ? <option /> : null}\n-\t<Fragment set:html={createSelectOptions(months, selected)} />\n-</select>\n+<span>\n+\t<input\n+\t\t{...attrs}\n+\t\tclass:list={createClassList(\"sb-date-input\", elementClassList)}\n+\t\t{...mapDataset(elementDataset)}\n+\t\tdata-sb-input={field}\n+\t\tid={id}\n+\t\tform={form}\n+\t\tname={name}\n+\t\ttype=\"month\"\n+\t/>\n+</span>\n"
+				},
+				{
+					"date": 1688603034635,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,17 @@\n \tdataset: elementDataset,\n \tform,\n \tid = generateShortId(),\n \tname,\n-\tfield = \"date-input\",\n+\tfield = \"month-input\",\n \t...attrs\n } = Astro.props;\n ---\n \n <span>\n \t<input\n \t\t{...attrs}\n-\t\tclass:list={createClassList(\"sb-date-input\", elementClassList)}\n+\t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tid={id}\n \t\tform={form}\n"
+				},
+				{
+					"date": 1688604297569,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,17 +6,29 @@\n \n const {\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n+\tfield = \"month-input\",\n \tform,\n \tid = generateShortId(),\n \tname,\n-\tfield = \"month-input\",\n+\twrapper = {},\n \t...attrs\n } = Astro.props;\n+\n+const {\n+\t[\"class:list\"]: wrapperClassList = [],\n+\tdataset: wrapperDataset,\n+\t...wrapperAttrs\n+} = wrapper as BaseAttributes;\n ---\n \n-<span>\n+<span\n+\t{...wrapperAttrs}\n+\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n+\t{...mapDataset(wrapperDataset)}\n+\tdata-sb-wrapper={field}\n+>\n \t<input\n \t\t{...attrs}\n \t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n"
+				},
+				{
+					"date": 1688604414711,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n+import type { BaseAttributes } from \"../../../types/html\";\n import type { MonthInput as Props } from \"../../../types/form\";\n \n const {\n \t[\"class:list\"]: elementClassList = [],\n"
+				},
+				{
+					"date": 1688613876912,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import type { BaseAttributes } from \"../../../types/html\";\n import type { MonthInput as Props } from \"../../../types/form\";\n \n const {\n+\tautocomplete,\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n \tfield = \"month-input\",\n \tform,\n@@ -30,8 +31,9 @@\n \tdata-sb-wrapper={field}\n >\n \t<input\n \t\t{...attrs}\n+\t\tautocomplete={autocomplete}\n \t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tid={id}\n"
+				},
+				{
+					"date": 1688616119993,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,10 @@\n \t\tautocomplete={autocomplete}\n \t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n+\t\tform={form}\n \t\tid={id}\n-\t\tform={form}\n \t\tname={name}\n \t\ttype=\"month\"\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688940875598,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tform={form}\n-\t\tid={id}\n+\t\t{id}\n \t\tname={name}\n \t\ttype=\"month\"\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688940940073,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n \t\tautocomplete={autocomplete}\n \t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n-\t\tform={form}\n+\t\t{form}\n \t\t{id}\n \t\tname={name}\n \t\ttype=\"month\"\n \t/>\n"
+				},
+				{
+					"date": 1688940976284,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,8 @@\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{form}\n \t\t{id}\n-\t\tname={name}\n+\t\t{name}\n \t\ttype=\"month\"\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688942203777,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \tdata-sb-wrapper={field}\n >\n \t<input\n \t\t{...attrs}\n-\t\tautocomplete={autocomplete}\n+\t\t{autocomplete}\n \t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{form}\n"
+				}
+			],
+			"date": 1688535125455,
+			"name": "Commit-0",
+			"content": "---\nimport createClassList from \"../../../utilities/createClassList\";\nimport createListOptions from \"../../../utilities/createListOptions\";\nimport generateShortId from \"../../../utilities/generateShortId\";\nimport getMonths from \"../../../utilities/getMonths\";\nimport mapDataset from \"../../../utilities/mapDataset\";\nimport type { BaseAttributes } from \"../../../types/html\";\nimport type { Month as Props } from \"../../../types/form\";\n\nconst {\n\tcalendar = \"iso8601\",\n\telement = {},\n\tform,\n\tformat = \"long\",\n\tid = generateShortId(),\n\tincludeBlank,\n\tlabelledBy,\n\tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n\tname = \"month\",\n\trequired,\n\tselected,\n} = Astro.props;\n\nconst {\n\t[\"class:list\"]: elementClassList = [],\n\tdataset: elementDataset,\n\t...elementAttrs\n} = element as BaseAttributes;\n\nconst months = getMonths(calendar, locales, format);\n---\n\n<select\n\t{...elementAttrs}\n\taria-labelledby={labelledBy}\n\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n\t{...mapDataset(elementDataset)}\n\tdata-sb-month-input\n\tform={form}\n\tid={id}\n\tname={name}\n\trequired={required}\n>\n\t{includeBlank ? <option /> : null}\n\t<Fragment set:html={createListOptions(months, selected)} />\n</select>\n"
+		}
+	]
+}

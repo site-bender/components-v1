@@ -1,0 +1,18 @@
+{
+	"sourceFile": "src/metadata/PlainTime/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 0,
+			"patches": [
+				{
+					"date": 1689031744850,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				}
+			],
+			"date": 1689031744850,
+			"name": "Commit-0",
+			"content": "---\nimport { DEFAULT_TIME_OPTIONS, DEFAULT_LOCALE } from \"../../constants\";\nimport { Intl, Temporal } from \"@js-temporal/polyfill\";\nimport type { Thing } from \"../../schema.org\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport type { Dataset } from \"../../types\";\nimport type { HTMLAttributes } from \"astro/types\";\nimport Microdata from \"../../Microdata/index.astro\";\n\nexport type Props<T extends Thing> = HTMLAttributes<\"time\"> & {\n  cssClasses?: Array<string>;\n  dataset?: Dataset;\n  hour?: number | string;\n  itemprop?: string | undefined;\n  locale?: string | Array<string>;\n  microsecond?: number | string;\n  millisecond?: number | string;\n  minute?: number | string;\n  nanosecond?: number | string;\n  options?: Intl.DateTimeFormatOptions;\n  plainTime?: string | Temporal.PlainTimeLike;\n  properties?: Partial<T>;\n  second?: number | string;\n  itemtype?: string;\n};\n\nconst {\n\t[\"class:list\"]: classList = [],\n  dataset,\n  hour = 0,\n  itemprop,\n  locale = DEFAULT_LOCALE,\n  microsecond = 0,\n  millisecond = 0,\n  minute = 0,\n  nanosecond = 0,\n  options = {},\n  plainTime = Temporal.Now.plainTimeISO(),\n  properties,\n  second = 0,\n  itemtype,\n  ...attrs\n} = Astro.props;\n\nconst css = [\"sb-plain-time\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\nconst value = plainTime\n  ? (plainTime as Temporal.PlainTime)\n  : new Temporal.PlainTime(\n      Number(hour),\n      Number(minute),\n      Number(second),\n      Number(millisecond),\n      Number(microsecond),\n      Number(nanosecond)\n    );\n\nconst opts = Object.assign({}, DEFAULT_TIME_OPTIONS, {\n  calendar: \"iso8601\",\n  ...options,\n});\n\nconst label = new Intl.DateTimeFormat(locale, opts).format(value);\n\nconst useMicrodata = Boolean(import.meta.env.USE_MICRODATA);\nconst meta = {\n  type: itemtype,\n  ...(itemprop ? { [itemprop]: plainTime.toString() } : {}),\n  ...properties,\n};\n---\n\n{useMicrodata && type ? <Microdata as=\"span\" properties={meta} /> : null}\n<time class={css} {...data} datetime={value.toJSON()} {...attrs}>{label}</time>\n"
+		}
+	]
+}

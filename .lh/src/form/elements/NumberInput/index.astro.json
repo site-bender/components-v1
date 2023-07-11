@@ -1,0 +1,90 @@
+{
+    "sourceFile": "src/form/elements/NumberInput/index.astro",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 18,
+            "patches": [
+                {
+                    "date": 1688604491711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688604679619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,15 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n+import createListOptions from \"../../../utilities/createListOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { BaseAttributes } from \"../../../types/html\";\n import type { NumberInput as Props } from \"../../../types/form\";\n \n const {\n \t[\"class:list\"]: elementClassList = [],\n+\tdatalist = {},\n \tdataset: elementDataset,\n \tfield = \"number-input\",\n \tform,\n \tid = generateShortId(),\n@@ -16,12 +18,21 @@\n \t...attrs\n } = Astro.props;\n \n const {\n+\t[\"class:list\"]: datalistClassList = [],\n+\tdataset: datalistDataset,\n+\t...datalistAttrs\n+} = datalist as BaseAttributes;\n+\n+const {\n \t[\"class:list\"]: wrapperClassList = [],\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n+\n+const listId = `${id}_list`;\n+const lst = list ? { list: listId } : {};\n ---\n \n <span\n \t{...wrapperAttrs}\n@@ -38,5 +49,18 @@\n \t\tform={form}\n \t\tname={name}\n \t\ttype=\"number\"\n \t/>\n+\t{\n+\t\tlist ? (\n+\t\t\t<datalist\n+\t\t\t\t{...datalistAttrs}\n+\t\t\t\tclass:list={createClassList(\"sb-datalist-color\", datalistClassList)}\n+\t\t\t\t{...mapDataset(datalistDataset)}\n+\t\t\t\tdata-sb-datalist={field}\n+\t\t\t\tid={listId}\n+\t\t\t>\n+\t\t\t\t<Fragment set:html={createListOptions(list)} />\n+\t\t\t</datalist>\n+\t\t) : null\n+\t}\n </span>\n"
+                },
+                {
+                    "date": 1688605022279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,21 @@\n import type { BaseAttributes } from \"../../../types/html\";\n import type { NumberInput as Props } from \"../../../types/form\";\n \n const {\n+\tautocomplete,\n \t[\"class:list\"]: elementClassList = [],\n \tdatalist = {},\n \tdataset: elementDataset,\n \tfield = \"number-input\",\n \tform,\n \tid = generateShortId(),\n+\tlabelledBy,\n+\tlist,\n \tname,\n+\trequired,\n+\ttype: _type,\n+\tvalue,\n \twrapper = {},\n \t...attrs\n } = Astro.props;\n \n@@ -41,15 +47,20 @@\n \tdata-sb-wrapper={field}\n >\n \t<input\n \t\t{...attrs}\n+\t\taria-labelledby={labelledBy}\n+\t\tautocomplete={autocomplete}\n \t\tclass:list={createClassList(\"sb-number-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tid={id}\n+\t\t{...lst}\n \t\tform={form}\n \t\tname={name}\n+\t\trequired={required}\n \t\ttype=\"number\"\n+\t\tvalue={value}\n \t/>\n \t{\n \t\tlist ? (\n \t\t\t<datalist\n"
+                },
+                {
+                    "date": 1688614490556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n \tid = generateShortId(),\n \tlabelledBy,\n \tlist,\n \tname,\n+\tplaceholder: _placeholder,\n \trequired,\n \ttype: _type,\n \tvalue,\n \twrapper = {},\n"
+                },
+                {
+                    "date": 1688614702753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n \t{\n \t\tlist ? (\n \t\t\t<datalist\n \t\t\t\t{...datalistAttrs}\n-\t\t\t\tclass:list={createClassList(\"sb-datalist-color\", datalistClassList)}\n+\t\t\t\tclass:list={createClassList(\"sb-datalist-number\", datalistClassList)}\n \t\t\t\t{...mapDataset(datalistDataset)}\n \t\t\t\tdata-sb-datalist={field}\n \t\t\t\tid={listId}\n \t\t\t>\n"
+                },
+                {
+                    "date": 1688616136181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,11 +53,11 @@\n \t\tautocomplete={autocomplete}\n \t\tclass:list={createClassList(\"sb-number-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n+\t\tform={form}\n \t\tid={id}\n \t\t{...lst}\n-\t\tform={form}\n \t\tname={name}\n \t\trequired={required}\n \t\ttype=\"number\"\n \t\tvalue={value}\n"
+                },
+                {
+                    "date": 1688782204630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n \tdataset: elementDataset,\n \tfield = \"number-input\",\n \tform,\n \tid = generateShortId(),\n+\tisInteger,\n \tlabelledBy,\n \tlist,\n \tname,\n \tplaceholder: _placeholder,\n"
+                },
+                {
+                    "date": 1688782274067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,11 @@\n } = wrapper as BaseAttributes;\n \n const listId = `${id}_list`;\n const lst = list ? { list: listId } : {};\n+const step = isInteger\n+\t? parseInt(String(Astro.props.step), 10) || 1\n+\t: Astro.props.step;\n ---\n \n <span\n \t{...wrapperAttrs}\n"
+                },
+                {
+                    "date": 1688782288800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,9 @@\n \t\tid={id}\n \t\t{...lst}\n \t\tname={name}\n \t\trequired={required}\n+\t\tstep={step}\n \t\ttype=\"number\"\n \t\tvalue={value}\n \t/>\n \t{\n"
+                },
+                {
+                    "date": 1688782372236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,10 @@\n const lst = list ? { list: listId } : {};\n const step = isInteger\n \t? parseInt(String(Astro.props.step), 10) || 1\n \t: Astro.props.step;\n+\n+console.log(\"step\", step);\n ---\n \n <span\n \t{...wrapperAttrs}\n"
+                },
+                {
+                    "date": 1688782442826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n \tlist,\n \tname,\n \tplaceholder: _placeholder,\n \trequired,\n+\tstep,\n \ttype: _type,\n \tvalue,\n \twrapper = {},\n \t...attrs\n@@ -39,11 +40,9 @@\n } = wrapper as BaseAttributes;\n \n const listId = `${id}_list`;\n const lst = list ? { list: listId } : {};\n-const step = isInteger\n-\t? parseInt(String(Astro.props.step), 10) || 1\n-\t: Astro.props.step;\n+const stp = isInteger ? parseInt(String(step), 10) || 1 : step;\n \n console.log(\"step\", step);\n ---\n \n@@ -64,9 +63,9 @@\n \t\tid={id}\n \t\t{...lst}\n \t\tname={name}\n \t\trequired={required}\n-\t\tstep={step}\n+\t\tstep={stp}\n \t\ttype=\"number\"\n \t\tvalue={value}\n \t/>\n \t{\n"
+                },
+                {
+                    "date": 1688940253536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n \t\tform={form}\n \t\tid={id}\n \t\t{...lst}\n \t\tname={name}\n-\t\trequired={required}\n+\t\t{required}\n \t\tstep={stp}\n \t\ttype=\"number\"\n \t\tvalue={value}\n \t/>\n"
+                },
+                {
+                    "date": 1688940875549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n \t\tclass:list={createClassList(\"sb-number-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tform={form}\n-\t\tid={id}\n+\t\t{id}\n \t\t{...lst}\n \t\tname={name}\n \t\t{required}\n \t\tstep={stp}\n"
+                },
+                {
+                    "date": 1688940940011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n \t\tautocomplete={autocomplete}\n \t\tclass:list={createClassList(\"sb-number-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n-\t\tform={form}\n+\t\t{form}\n \t\t{id}\n \t\t{...lst}\n \t\tname={name}\n \t\t{required}\n"
+                },
+                {
+                    "date": 1688940959529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n \t\tname={name}\n \t\t{required}\n \t\tstep={stp}\n \t\ttype=\"number\"\n-\t\tvalue={value}\n+\t\t{value}\n \t/>\n \t{\n \t\tlist ? (\n \t\t\t<datalist\n"
+                },
+                {
+                    "date": 1688940976289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n \t\tdata-sb-input={field}\n \t\t{form}\n \t\t{id}\n \t\t{...lst}\n-\t\tname={name}\n+\t\t{name}\n \t\t{required}\n \t\tstep={stp}\n \t\ttype=\"number\"\n \t\t{value}\n"
+                },
+                {
+                    "date": 1688941425057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \tlist,\n \tname,\n \tplaceholder: _placeholder,\n \trequired,\n-\tstep,\n+\tstep: stp,\n \ttype: _type,\n \tvalue,\n \twrapper = {},\n \t...attrs\n@@ -40,9 +40,9 @@\n } = wrapper as BaseAttributes;\n \n const listId = `${id}_list`;\n const lst = list ? { list: listId } : {};\n-const stp = isInteger ? parseInt(String(step), 10) || 1 : step;\n+const step = isInteger ? parseInt(String(stp), 10) || 1 : step;\n \n console.log(\"step\", step);\n ---\n \n@@ -63,9 +63,9 @@\n \t\t{id}\n \t\t{...lst}\n \t\t{name}\n \t\t{required}\n-\t\tstep={stp}\n+\t\t{step}\n \t\ttype=\"number\"\n \t\t{value}\n \t/>\n \t{\n"
+                },
+                {
+                    "date": 1688942203740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n >\n \t<input\n \t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n-\t\tautocomplete={autocomplete}\n+\t\t{autocomplete}\n \t\tclass:list={createClassList(\"sb-number-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{form}\n"
+                },
+                {
+                    "date": 1689115361302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,10 +41,8 @@\n \n const listId = `${id}_list`;\n const lst = list ? { list: listId } : {};\n const step = isInteger ? parseInt(String(stp), 10) || 1 : step;\n-\n-console.log(\"step\", step);\n ---\n \n <span\n \t{...wrapperAttrs}\n"
+                }
+            ],
+            "date": 1688604491711,
+            "name": "Commit-0",
+            "content": "---\nimport createClassList from \"../../../utilities/createClassList\";\nimport generateShortId from \"../../../utilities/generateShortId\";\nimport mapDataset from \"../../../utilities/mapDataset\";\nimport type { BaseAttributes } from \"../../../types/html\";\nimport type { NumberInput as Props } from \"../../../types/form\";\n\nconst {\n\t[\"class:list\"]: elementClassList = [],\n\tdataset: elementDataset,\n\tfield = \"number-input\",\n\tform,\n\tid = generateShortId(),\n\tname,\n\twrapper = {},\n\t...attrs\n} = Astro.props;\n\nconst {\n\t[\"class:list\"]: wrapperClassList = [],\n\tdataset: wrapperDataset,\n\t...wrapperAttrs\n} = wrapper as BaseAttributes;\n---\n\n<span\n\t{...wrapperAttrs}\n\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n\t{...mapDataset(wrapperDataset)}\n\tdata-sb-wrapper={field}\n>\n\t<input\n\t\t{...attrs}\n\t\tclass:list={createClassList(\"sb-number-input\", elementClassList)}\n\t\t{...mapDataset(elementDataset)}\n\t\tdata-sb-input={field}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t\ttype=\"number\"\n\t/>\n</span>\n"
+        }
+    ]
+}

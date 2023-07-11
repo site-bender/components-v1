@@ -1,0 +1,30 @@
+{
+	"sourceFile": "src/form/elements/Year/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 3,
+			"patches": [
+				{
+					"date": 1688338961678,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688339162818,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n ---\n-const { form, id, options = [] } = Astro.props;\n+const { form, id, name, options = [], ...attrs } = Astro.props;\n \n const listId = `${id}-datalist`;\n const list = options.length ? { list: listId } : {};\n ---\n \n <input\n-\tdata-sb-year-week=\"year\"\n+\t{...attrs}\n \tform={form}\n \tid={id}\n \t{...list}\n \tname=\"yearWeek:year\"\n"
+				},
+				{
+					"date": 1688795131478,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,30 +1,26 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n import createSelectOptions from \"../../../utilities/createSelectOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n-import getMonths from \"../../../utilities/getMonths\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { BaseAttributes } from \"../../../types/html\";\n import type { MonthFormat, MonthSelect as Props } from \"../../../types/form\";\n \n const {\n \tautocomplete,\n-\tcalendar = \"iso8601\",\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n-\tfield = \"month-select\",\n-\tfilter,\n+\tfield = \"year\",\n \tform,\n-\tformat = \"long\",\n \tid = generateShortId(),\n \tincludeBlank,\n \tlabelledBy,\n-\tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n-\tname = \"month\",\n+\tname = \"year\",\n \trequired,\n-\tselected,\n+\tvalue,\n \twrapper = {},\n+\tyears,\n \t...attrs\n } = Astro.props;\n \n const {\n@@ -32,34 +28,29 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const months = getMonths(\n-\tcalendar as string,\n-\tlocales as Array<string>,\n-\tformat as MonthFormat,\n-\tfilter\n-);\n+const listId = years ? `${id}_datalist` : undefined;\n ---\n \n <span\n \t{...wrapperAttrs}\n \tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n \t{...mapDataset(wrapperDataset)}\n \tdata-sb-wrapper={field}\n >\n-\t<select\n+\t<input\n \t\t{...attrs}\n \t\tautocomplete={autocomplete}\n \t\taria-labelledby={labelledBy}\n-\t\tclass:list={createClassList(\"sb-month-select\", elementClassList)}\n+\t\tclass:list={createClassList(\"sb-year\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n \t\tid={id}\n \t\tform={form}\n+\t\tlist={listId}\n \t\tname={name}\n+\t\tpattern=\"[0-9]{1,4}\"\n \t\trequired={required}\n \t>\n-\t\t{includeBlank ? <option /> : null}\n-\t\t<Fragment set:html={createSelectOptions(months, selected)} />\n-\t</select>\n+\t{listId ? (<datalist id={listId}>{years.map((year) => `<option value=\"${year}\">`).join(\"\\n\")}</datalist>) : null}\n </span>\n"
+				},
+				{
+					"date": 1688795194528,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,8 +50,9 @@\n \t\tlist={listId}\n \t\tname={name}\n \t\tpattern=\"[0-9]{1,4}\"\n \t\trequired={required}\n+\t\tvalue={value}\n \t/>\n \t{\n \t\tlistId ? (\n \t\t\t<datalist id={listId}>\n"
+				}
+			],
+			"date": 1688338961678,
+			"name": "Commit-0",
+			"content": "---\nconst { form, id, options = [] } = Astro.props;\n\nconst listId = `${id}-datalist`;\nconst list = options.length ? { list: listId } : {};\n---\n\n<input\n\tdata-sb-year-week=\"year\"\n\tform={form}\n\tid={id}\n\t{...list}\n\tname=\"yearWeek:year\"\n\tpattern=\"[12][0-9]{3}\"\n\trequired\n\tsize=\"7\"\n\ttype=\"text\"\n/>\n{\n\toptions.length ? (\n\t\t<datalist id={listId}>\n\t\t\t{options.map((opt) => (\n\t\t\t\t<option>{opt}</option>\n\t\t\t))}\n\t\t</datalist>\n\t) : null\n}\n"
+		}
+	]
+}

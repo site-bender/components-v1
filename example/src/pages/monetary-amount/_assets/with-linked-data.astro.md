@@ -14,7 +14,6 @@
     minValue: 1_000_000_000,
     name: "Bob's stash",
   }}
-  useJsonLd
   value={42_000_000_000}
 />
 ```

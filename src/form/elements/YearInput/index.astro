@@ -1,0 +1,89 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import createSelectOptions from "../../../utilities/createSelectOptions";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { YearInput as Props } from "../../../types/form";
+
+const {
+	autocomplete,
+	autocorrect: _autocorrect,
+	["class:list"]: elementClassList = [],
+	datalist = {},
+	dataset: elementDataset,
+	field = "year-input",
+	form,
+	id = generateShortId(),
+	labelledBy,
+	maxlength = 4,
+	minlength = 4,
+	name = "year",
+	pattern = "[1-9][0-9]{1,3}",
+	placeholder: _placeholder,
+	required,
+	size: sze,
+	type: _type,
+	value,
+	wrapper = {},
+	years,
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: datalistClassList = [],
+	dataset: datalistDataset,
+	...datalistAttrs
+} = datalist as BaseAttributes;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+
+const listId = years ? `${id}_datalist` : undefined;
+const size = sze || years ? 7 : 4;
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	<input
+		{...attrs}
+		{autocomplete}
+		aria-labelledby={labelledBy}
+		class:list={createClassList("sb-year", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-input={field}
+		{id}
+		{form}
+		list={listId}
+		{maxlength}
+		{minlength}
+		{name}
+		pattern={pattern}
+		{required}
+		{size}
+		type="text"
+		{value}
+	/>
+	{
+		listId ? (
+			<datalist
+				{...datalistAttrs}
+				class:list={createClassList("sb-datalist-color", datalistClassList)}
+				{...mapDataset(datalistDataset)}
+				data-sb-datalist={field}
+				id={listId}
+			>
+				{years.map((year) => (
+					<option value={year} />
+				))}
+			</datalist>
+		) : null
+	}
+</span>

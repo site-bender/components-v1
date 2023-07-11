@@ -1,0 +1,51 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { Textarea as Props } from "../../../types/form";
+
+const {
+	autocomplete,
+	autocorrect: _autocorrect,
+	["class:list"]: elementClassList = [],
+	dataset: elementDataset,
+	field = "textarea",
+	form,
+	id = generateShortId(),
+	labelledBy,
+	name,
+	placeholder: _placeholder,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+
+const content = value || (await Astro.slots.render("default"))?.trim() || "";
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	<textarea
+		{...attrs}
+		aria-labelledby={labelledBy}
+		{autocomplete}
+		class:list={createClassList("sb-textarea", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-textarea={field}
+		{form}
+		{id}
+		{name}
+		set:html={content as string}
+	/>
+</span>

@@ -1,0 +1,46 @@
+{
+	"sourceFile": "src/form/ZonedDateTimeField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 7,
+			"patches": [
+				{
+					"date": 1688336385469,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688343616197,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n \t</legend>\n \t<div class=\"group\">\n \t\t<label for=\"zonedDateTime-date\"\n-\t\t\t>Date:\n+\t\t\t>Date\n \t\t\t<input\n \t\t\t\tdata-sb-zoned-date-time-date\n \t\t\t\tform={form}\n \t\t\t\tid=\"zonedDateTime-date\"\n"
+				},
+				{
+					"date": 1688343631914,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,23 +15,23 @@\n \t\t\t\tform={form}\n \t\t\t\tid=\"zonedDateTime-date\"\n \t\t\t\tmax=\"2023-12-31\"\n \t\t\t\tmin=\"2023-01-01\"\n-\t\t\t\tname=\"zonedDateTime:date\"\n+\t\t\t\tname=\"zonedDateTimedate\"\n \t\t\t\trequired\n \t\t\t\tstep=\"7\"\n \t\t\t\ttype=\"date\"\n \t\t\t/>\n \t\t</label>\n \t\t<label for=\"zonedDateTime-time\"\n-\t\t\t>Time:\n+\t\t\t>Time\n \t\t\t<input\n \t\t\t\tdata-sb-zoned-date-time-time\n \t\t\t\tform={form}\n \t\t\t\tid=\"zonedDateTime-time\"\n \t\t\t\tmax=\"17:30\"\n \t\t\t\tmin=\"05:00\"\n-\t\t\t\tname=\"zonedDateTime:time\"\n+\t\t\t\tname=\"zonedDateTimetime\"\n \t\t\t\trequired\n \t\t\t\tstep=\"1\"\n \t\t\t\ttype=\"time\"\n \t\t\t/>\n@@ -41,9 +41,9 @@\n \t\t\t<select\n \t\t\t\tdata-sb-zoned-date-time-time-zone\n \t\t\t\tform={form}\n \t\t\t\tid=\"zonedDateTime-timeZone\"\n-\t\t\t\tname=\"zonedDateTime:timeZone\"\n+\t\t\t\tname=\"zonedDateTimetimeZone\"\n \t\t\t\trequired\n \t\t\t>\n \t\t\t\t<option></option>\n \t\t\t\t<option value=\"America/Argentina/Buenos_Aires\"\n"
+				},
+				{
+					"date": 1688343681546,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \t\t\t\ttype=\"time\"\n \t\t\t/>\n \t\t</label>\n \t\t<label for=\"zonedDateTime-timeZone\"\n-\t\t\t>TimeZone:\n+\t\t\t>TimeZone\n \t\t\t<select\n \t\t\t\tdata-sb-zoned-date-time-time-zone\n \t\t\t\tform={form}\n \t\t\t\tid=\"zonedDateTime-timeZone\"\n"
+				},
+				{
+					"date": 1688431139550,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \t<legend id=\"zonedDateTime-label\">\n \t\t<span>ZonedDateTime</span>\n \t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n \t</legend>\n-\t<div class=\"group\">\n+\t<div class:list={[\"sb-group\"]}>\n \t\t<label for=\"zonedDateTime-date\"\n \t\t\t>Date\n \t\t\t<input\n \t\t\t\tdata-sb-zoned-date-time-date\n"
+				},
+				{
+					"date": 1688447285014,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,14 @@\n ---\n const { form } = Astro.props;\n ---\n \n-<fieldset data-sb-zoned-date-time class=\"field\" form={form} id=\"zonedDateTime\">\n+<fieldset\n+\tdata-sb-zoned-date-time\n+\tclass:list={[\"sb-form-field\"]}\n+\tform={form}\n+\tid=\"zonedDateTime\"\n+>\n \t<legend id=\"zonedDateTime-label\">\n \t\t<span>ZonedDateTime</span>\n \t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n \t</legend>\n"
+				},
+				{
+					"date": 1688882186812,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,16 +13,16 @@\n \tcountries,\n \tdate = \"\",\n \tdateAttrs = {},\n \tdisabled,\n-\tfield = \"instant-field\",\n+\tfield = \"zoned-date-time-field\",\n \tform,\n \tfractionalSeconds = \"\",\n \tfractionalSecondsAttrs = {},\n \tgroup = {},\n \thelp = {},\n \tid = generateShortId(),\n-\tlabel = \"Timestamp\",\n+\tlabel = \"Date and time with time zone\",\n \tlegend = {},\n \tmaxDate,\n \tmaxTime,\n \tmessage,\n@@ -99,9 +99,9 @@\n ---\n \n <fieldset\n \t{...outerAttrs}\n-\tclass:list={createClassList(\"sb-field\", \"sb-instant-field\", outerClassList)}\n+\tclass:list={createClassList(\"sb-field\", \"sb-zoned-date-time-field\", outerClassList)}\n \t{...mapDataset(outerDataset)}\n \tdata-sb-field={field}\n \t{...req}\n \tdisabled={disabled}\n"
+				},
+				{
+					"date": 1688882196395,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -175,25 +175,8 @@\n \t\t\t\t{...stepTime ? { step: stepTime } : {}}\n \t\t\t\tvalue={time}\n \t\t\t/>\n \t\t</label>\n-\t\t<label\n-\t\t\tdata-sb-label-fractional-seconds={field}\n-\t\t\tfor={`${id}_fractional-seconds`}\n-\t\t>\n-\t\t\t<span id={`${id}_fractional-seconds:label`}>Fractional seconds</span>\n-\t\t\t<TextInput\n-\t\t\t\t{...fractionalSecondsAttrs}\n-\t\t\t\tdata-sb-input-fractional-seconds={field}\n-\t\t\t\tform={form}\n-\t\t\t\tid={`${id}_fractionalSeconds`}\n-\t\t\t\tinputmode=\"numeric\"\n-\t\t\t\tlabelledBy={`${legendId} ${id}_fractional-seconds:label`}\n-\t\t\t\tname={`${name}:fractionalSeconds`}\n-\t\t\t\tpattern=\"[0-9]{0,9}\"\n-\t\t\t\tvalue={fractionalSeconds}\n-\t\t\t/>\n-\t\t</label>\n \t\t<label data-sb-label-time-zone={field} for={`${id}_time-zone`}>\n \t\t\t<span id={`${id}_time-zone:label`}>Time zone</span>\n \t\t\t<TimeZoneSelect\n \t\t\t\t{...timeZoneAttrs}\n"
+				}
+			],
+			"date": 1688336385469,
+			"name": "Commit-0",
+			"content": "---\nconst { form } = Astro.props;\n---\n\n<fieldset data-sb-zoned-date-time class=\"field\" form={form} id=\"zonedDateTime\">\n\t<legend id=\"zonedDateTime-label\">\n\t\t<span>ZonedDateTime</span>\n\t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n\t</legend>\n\t<div class=\"group\">\n\t\t<label for=\"zonedDateTime-date\"\n\t\t\t>Date:\n\t\t\t<input\n\t\t\t\tdata-sb-zoned-date-time-date\n\t\t\t\tform={form}\n\t\t\t\tid=\"zonedDateTime-date\"\n\t\t\t\tmax=\"2023-12-31\"\n\t\t\t\tmin=\"2023-01-01\"\n\t\t\t\tname=\"zonedDateTime:date\"\n\t\t\t\trequired\n\t\t\t\tstep=\"7\"\n\t\t\t\ttype=\"date\"\n\t\t\t/>\n\t\t</label>\n\t\t<label for=\"zonedDateTime-time\"\n\t\t\t>Time:\n\t\t\t<input\n\t\t\t\tdata-sb-zoned-date-time-time\n\t\t\t\tform={form}\n\t\t\t\tid=\"zonedDateTime-time\"\n\t\t\t\tmax=\"17:30\"\n\t\t\t\tmin=\"05:00\"\n\t\t\t\tname=\"zonedDateTime:time\"\n\t\t\t\trequired\n\t\t\t\tstep=\"1\"\n\t\t\t\ttype=\"time\"\n\t\t\t/>\n\t\t</label>\n\t\t<label for=\"zonedDateTime-timeZone\"\n\t\t\t>TimeZone:\n\t\t\t<select\n\t\t\t\tdata-sb-zoned-date-time-time-zone\n\t\t\t\tform={form}\n\t\t\t\tid=\"zonedDateTime-timeZone\"\n\t\t\t\tname=\"zonedDateTime:timeZone\"\n\t\t\t\trequired\n\t\t\t>\n\t\t\t\t<option></option>\n\t\t\t\t<option value=\"America/Argentina/Buenos_Aires\"\n\t\t\t\t\t>America/Argentina/Buenos_Aires</option\n\t\t\t\t>\n\t\t\t\t<option value=\"Asia/Bangkok\">Asia/Bangkok</option>\n\t\t\t\t<option value=\"Australia/Perth\">Australia/Perth</option>\n\t\t\t\t<option value=\"Canada/Pacific\">Canada/Pacific</option>\n\t\t\t\t<option value=\"Europe/Monaco\">Europe/Monaco</option>\n\t\t\t</select>\n\t\t</label>\n\t</div>\n</fieldset>\n"
+		}
+	]
+}

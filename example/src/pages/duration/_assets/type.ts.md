@@ -11,7 +11,7 @@ interface TimeHTMLAttributes extends HTMLAttributes {
 
 export type Props = HTMLAttributes<"time"> & {
   dataset?: Dataset;
-  duration: string | Temporal.DurationLike;
+  duration: Temporal.Duration;
 };
 
 const { dataset, duration = "PT0S" } = Astro.props;

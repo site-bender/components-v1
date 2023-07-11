@@ -1,0 +1,114 @@
+{
+	"sourceFile": "src/form/elements/Checkbox/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 24,
+			"patches": [
+				{
+					"date": 1688428741227,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688429438995,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { CheckboxInput as Props } from \"../../../types\";\n+import type { CheckboxInput as Props } from \"../../../types/forms\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const {\n"
+				},
+				{
+					"date": 1688429541031,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n const labelCss = [\"sb-checkbox-label\", ...labelClasses].join(\" \");\n const labelData = mapDataset(labelDataset);\n ---\n \n-<label class={labelCss} {...labelData} id={labelId} {...labelAttributes}>\n+<label {...labelAttributes} class={labelCss} {...labelData} id={labelId}>\n \t<input\n \t\t{...attrs}\n \t\taria-describedby={legendId}\n \t\taria-labelledby={labelId}\n"
+				},
+				{
+					"date": 1688511815307,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,13 +10,9 @@\n \tlegendId,\n \tform,\n \tid = generateShortId(),\n \tlabel,\n-\tlabelAttributes: {\n-\t\tcssClasses: labelClasses = [],\n-\t\tdataset: labelDataset,\n-\t\t...labelAttributes\n-\t} = {},\n+\tlabelAttributes: { cssClasses: labelClasses = [], ...labelAttributes } = {},\n \tname,\n \ttype: _type,\n \tvalue,\n \t...attrs\n@@ -26,9 +22,9 @@\n const data = mapDataset(dataset);\n const lbl = label || (await Astro.slots.render(\"default\"));\n const labelId = `${id}_label`;\n const labelCss = [\"sb-checkbox-label\", ...labelClasses].join(\" \");\n-const labelData = mapDataset(labelDataset);\n+const labelData = mapDataset(labelAttributes.dataset);\n ---\n \n <label {...labelAttributes} class={labelCss} {...labelData} id={labelId}>\n \t<input\n"
+				},
+				{
+					"date": 1688512323426,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { CheckboxInput as Props } from \"../../../types/forms\";\n+import type { CheckboxInput as Props } from \"../../../types/form\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const {\n"
+				},
+				{
+					"date": 1688516575055,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,30 +4,45 @@\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const {\n \tchecked,\n-\tcssClasses = [],\n-\tdataset,\n-\tlegendId,\n+\telement = {},\n \tform,\n \tid = generateShortId(),\n \tlabel,\n-\tlabelAttributes: { cssClasses: labelClasses = [], ...labelAttributes } = {},\n \tname,\n+\trequired,\n \ttype: _type,\n \tvalue,\n+\twrapper = {},\n \t...attrs\n } = Astro.props;\n \n-const css = [\"sb-checkbox\", ...cssClasses].join(\" \");\n-const data = mapDataset(dataset);\n-const lbl = label || (await Astro.slots.render(\"default\"));\n-const labelId = `${id}_label`;\n-const labelCss = [\"sb-checkbox-label\", ...labelClasses].join(\" \");\n-const labelData = mapDataset(labelAttributes.dataset);\n+const {\n+\t[\"class:list\"]: elementClassList = [],\n+\tdataset: elementDataset,\n+\t...elementAttrs\n+} = element;\n+const {\n+\t[\"class:list\"]: wrapperClassList = [],\n+\tdataset: wrapperDataset,\n+\t...wrapperAttrs\n+} = wrapper;\n+\n+const elementData = mapDataset(elementDataset);\n+const wrapperData = mapDataset(wrapperDataset);\n+\n+const elementClasses = [\"sb-checkbox-input\", ...wrapperClassList];\n+const wrapperClasses = [\"sb-checkbox-label\", ...wrapperClassList];\n ---\n \n-<label {...labelAttributes} class={labelCss} {...labelData} id={labelId}>\n+<label\n+\t{...wrapperAttrs}\n+\tclass:list={wrapperClasses}\n+\t{...labelData}\n+\t{...wrapperData}\n+\tid={labelId}\n+>\n \t<input\n \t\t{...attrs}\n \t\taria-describedby={legendId}\n \t\taria-labelledby={labelId}\n"
+				},
+				{
+					"date": 1688516746780,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,12 @@\n const wrapperData = mapDataset(wrapperDataset);\n \n const elementClasses = [\"sb-checkbox-input\", ...wrapperClassList];\n const wrapperClasses = [\"sb-checkbox-label\", ...wrapperClassList];\n+\n+const describedBy = legendId ? { \"aria-describedby\": legendId } : {};\n+const labelId = `${id}_label`;\n+const lbl = (await Astro.slots.render(\"default\")) || label;\n ---\n \n <label\n \t{...wrapperAttrs}\n@@ -43,13 +47,13 @@\n \tid={labelId}\n >\n \t<input\n \t\t{...attrs}\n-\t\taria-describedby={legendId}\n+\t\t{...describedBy}\n \t\taria-labelledby={labelId}\n \t\tchecked={checked}\n-\t\tclass={css}\n-\t\t{...data}\n+\t\tclass:list={elementClasses}\n+\t\t{...elementData}\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n \t\ttype=\"checkbox\"\n"
+				},
+				{
+					"date": 1688517396659,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n const {\n \tchecked,\n \telement = {},\n \tform,\n+\tgroupLabelId,\n \tid = generateShortId(),\n \tlabel,\n \tname,\n \trequired,\n@@ -33,9 +34,9 @@\n \n const elementClasses = [\"sb-checkbox-input\", ...wrapperClassList];\n const wrapperClasses = [\"sb-checkbox-label\", ...wrapperClassList];\n \n-const describedBy = legendId ? { \"aria-describedby\": legendId } : {};\n+const describedBy = groupLabelId ? { \"aria-describedby\": groupLabelId } : {};\n const labelId = `${id}_label`;\n const lbl = (await Astro.slots.render(\"default\")) || label;\n ---\n \n"
+				},
+				{
+					"date": 1688517807603,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,8 @@\n \n <label\n \t{...wrapperAttrs}\n \tclass:list={wrapperClasses}\n-\t{...labelData}\n \t{...wrapperData}\n \tid={labelId}\n >\n \t<input\n"
+				},
+				{
+					"date": 1688517875690,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,9 @@\n <label\n \t{...wrapperAttrs}\n \tclass:list={wrapperClasses}\n \t{...wrapperData}\n+\tdata-sb-checkbox\n \tid={labelId}\n >\n \t<input\n \t\t{...attrs}\n@@ -52,8 +53,9 @@\n \t\taria-labelledby={labelId}\n \t\tchecked={checked}\n \t\tclass:list={elementClasses}\n \t\t{...elementData}\n+\t\tdata-sb-checkbox-input\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n \t\ttype=\"checkbox\"\n"
+				},
+				{
+					"date": 1688518370494,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n \trequired,\n \ttype: _type,\n \tvalue,\n \twrapper = {},\n-\t...attrs\n } = Astro.props;\n \n const {\n \t[\"class:list\"]: elementClassList = [],\n@@ -47,9 +46,9 @@\n \tdata-sb-checkbox\n \tid={labelId}\n >\n \t<input\n-\t\t{...attrs}\n+\t\t{...elementAttrs}\n \t\t{...describedBy}\n \t\taria-labelledby={labelId}\n \t\tchecked={checked}\n \t\tclass:list={elementClasses}\n"
+				},
+				{
+					"date": 1688518415656,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,8 +56,9 @@\n \t\tdata-sb-checkbox-input\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n+\t\trequired={required}\n \t\ttype=\"checkbox\"\n \t\tvalue={value}\n \t/>\n \t<Fragment set:html={lbl} />\n"
+				},
+				{
+					"date": 1688518666114,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n ---\n import type { CheckboxInput as Props } from \"../../../types/form\";\n+import type { BaseAttributes } from \"../../../types/html\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const {\n@@ -20,14 +21,14 @@\n const {\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n \t...elementAttrs\n-} = element;\n+} = element as BaseAttributes;\n const {\n \t[\"class:list\"]: wrapperClassList = [],\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n-} = wrapper;\n+} = wrapper as BaseAttributes;\n \n const elementData = mapDataset(elementDataset);\n const wrapperData = mapDataset(wrapperDataset);\n \n"
+				},
+				{
+					"date": 1688518714527,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \n const elementData = mapDataset(elementDataset);\n const wrapperData = mapDataset(wrapperDataset);\n \n-const elementClasses = [\"sb-checkbox-input\", ...wrapperClassList];\n+const elementClasses = [\"sb-checkbox-input\", ...elementClassList];\n const wrapperClasses = [\"sb-checkbox-label\", ...wrapperClassList];\n \n const describedBy = groupLabelId ? { \"aria-describedby\": groupLabelId } : {};\n const labelId = `${id}_label`;\n"
+				},
+				{
+					"date": 1688519219787,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n ---\n import type { CheckboxInput as Props } from \"../../../types/form\";\n import type { BaseAttributes } from \"../../../types/html\";\n+import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const {\n@@ -31,10 +32,10 @@\n \n const elementData = mapDataset(elementDataset);\n const wrapperData = mapDataset(wrapperDataset);\n \n-const elementClasses = [\"sb-checkbox-input\", ...elementClassList];\n-const wrapperClasses = [\"sb-checkbox-label\", ...wrapperClassList];\n+const elementClasses = createClassList(\"sb-checkbox-input\", elementClassList);\n+const wrapperClasses = createClassList(\"sb-checkbox-label\", wrapperClassList);\n \n const describedBy = groupLabelId ? { \"aria-describedby\": groupLabelId } : {};\n const labelId = `${id}_label`;\n const lbl = (await Astro.slots.render(\"default\")) || label;\n"
+				},
+				{
+					"date": 1688520368938,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,14 +29,14 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n+const elementClasses = createClassList(\"sb-checkbox-input\", elementClassList);\n+const wrapperClasses = createClassList(\"sb-checkbox-label\", wrapperClassList);\n+\n const elementData = mapDataset(elementDataset);\n const wrapperData = mapDataset(wrapperDataset);\n \n-const elementClasses = createClassList(\"sb-checkbox-input\", elementClassList);\n-const wrapperClasses = createClassList(\"sb-checkbox-label\", wrapperClassList);\n-\n const describedBy = groupLabelId ? { \"aria-describedby\": groupLabelId } : {};\n const labelId = `${id}_label`;\n const lbl = (await Astro.slots.render(\"default\")) || label;\n ---\n"
+				},
+				{
+					"date": 1688522388428,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n ---\n-import type { CheckboxInput as Props } from \"../../../types/form\";\n-import type { BaseAttributes } from \"../../../types/html\";\n import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n+import type { BaseAttributes } from \"../../../types/html\";\n+import type { CheckboxInput as Props } from \"../../../types/form\";\n \n const {\n \tchecked,\n \telement = {},\n"
+				},
+				{
+					"date": 1688523192670,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,33 +29,27 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const elementClasses = createClassList(\"sb-checkbox-input\", elementClassList);\n-const wrapperClasses = createClassList(\"sb-checkbox-label\", wrapperClassList);\n-\n-const elementData = mapDataset(elementDataset);\n-const wrapperData = mapDataset(wrapperDataset);\n-\n const describedBy = groupLabelId ? { \"aria-describedby\": groupLabelId } : {};\n const labelId = `${id}_label`;\n const lbl = (await Astro.slots.render(\"default\")) || label;\n ---\n \n <label\n \t{...wrapperAttrs}\n-\tclass:list={wrapperClasses}\n-\t{...wrapperData}\n+\tclass:list={createClassList(\"sb-checkbox-label\", wrapperClassList)}\n+\t{...mapDataset(wrapperDataset)}\n \tdata-sb-checkbox\n \tid={labelId}\n >\n \t<input\n \t\t{...elementAttrs}\n \t\t{...describedBy}\n \t\taria-labelledby={labelId}\n \t\tchecked={checked}\n-\t\tclass:list={elementClasses}\n-\t\t{...elementData}\n+\t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n+\t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-checkbox-input\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n"
+				},
+				{
+					"date": 1688523416403,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n >\n \t<input\n \t\t{...elementAttrs}\n \t\t{...describedBy}\n-\t\taria-labelledby={labelId}\n+\t\taria-labelledby={`${labelId}, ${legendId}`}\n \t\tchecked={checked}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-checkbox-input\n"
+				},
+				{
+					"date": 1688523426763,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n >\n \t<input\n \t\t{...elementAttrs}\n \t\t{...describedBy}\n-\t\taria-labelledby={`${labelId}, ${legendId}`}\n+\t\taria-labelledby={`${labelId}, ${labelId}`}\n \t\tchecked={checked}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-checkbox-input\n"
+				},
+				{
+					"date": 1688523515283,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,10 @@\n >\n \t<input\n \t\t{...elementAttrs}\n \t\t{...describedBy}\n-\t\taria-labelledby={`${labelId}, ${labelId}`}\n+\t\taria-labelledby={labelId}\n+\t\taria-labelledby={groupLabelId}\n \t\tchecked={checked}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-checkbox-input\n"
+				},
+				{
+					"date": 1688523568537,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,11 +43,9 @@\n \tid={labelId}\n >\n \t<input\n \t\t{...elementAttrs}\n-\t\t{...describedBy}\n-\t\taria-labelledby={labelId}\n-\t\taria-labelledby={groupLabelId}\n+\t\taria-labelledby={`${groupLabelId} ${labelId}`}\n \t\tchecked={checked}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-checkbox-input\n"
+				},
+				{
+					"date": 1688523770910,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n \tid={labelId}\n >\n \t<input\n \t\t{...elementAttrs}\n-\t\taria-labelledby={`${groupLabelId} ${labelId}`}\n+\t\taria-labelledby={labelId}\n \t\tchecked={checked}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-checkbox-input\n"
+				},
+				{
+					"date": 1688524104099,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,10 +29,10 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const describedBy = groupLabelId ? { \"aria-describedby\": groupLabelId } : {};\n const labelId = `${id}_label`;\n+const labelledBy = `${groupLabelId} ${labelId}`;\n const lbl = (await Astro.slots.render(\"default\")) || label;\n ---\n \n <label\n@@ -43,9 +43,9 @@\n \tid={labelId}\n >\n \t<input\n \t\t{...elementAttrs}\n-\t\taria-labelledby={labelId}\n+\t\taria-labelledby={labelledBy}\n \t\tchecked={checked}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-checkbox-input\n"
+				},
+				{
+					"date": 1688597378820,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n import type { CheckboxInput as Props } from \"../../../types/form\";\n \n const {\n \tchecked,\n-\telement = {},\n \tform,\n \tgroupLabelId,\n \tid = generateShortId(),\n \tlabel,\n@@ -16,15 +15,16 @@\n \trequired,\n \ttype: _type,\n \tvalue,\n \twrapper = {},\n+\t...attrs\n } = Astro.props;\n \n const {\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n \t...elementAttrs\n-} = element as BaseAttributes;\n+} = attrs as BaseAttributes;\n const {\n \t[\"class:list\"]: wrapperClassList = [],\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n"
+				}
+			],
+			"date": 1688428741227,
+			"name": "Commit-0",
+			"content": "---\nimport type { CheckboxInput as Props } from \"../../../types\";\nimport generateShortId from \"../../../utilities/generateShortId\";\nimport mapDataset from \"../../../utilities/mapDataset\";\n\nconst {\n\tchecked,\n\tcssClasses = [],\n\tdataset,\n\tlegendId,\n\tform,\n\tid = generateShortId(),\n\tlabel,\n\tlabelAttributes: {\n\t\tcssClasses: labelClasses = [],\n\t\tdataset: labelDataset,\n\t\t...labelAttributes\n\t} = {},\n\tname,\n\ttype: _type,\n\tvalue,\n\t...attrs\n} = Astro.props;\n\nconst css = [\"sb-checkbox\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\nconst lbl = label || (await Astro.slots.render(\"default\"));\nconst labelId = `${id}_label`;\nconst labelCss = [\"sb-checkbox-label\", ...labelClasses].join(\" \");\nconst labelData = mapDataset(labelDataset);\n---\n\n<label class={labelCss} {...labelData} id={labelId} {...labelAttributes}>\n\t<input\n\t\t{...attrs}\n\t\taria-describedby={legendId}\n\t\taria-labelledby={labelId}\n\t\tchecked={checked}\n\t\tclass={css}\n\t\t{...data}\n\t\tform={form}\n\t\tid={id}\n\t\tname={name}\n\t\ttype=\"checkbox\"\n\t\tvalue={value}\n\t/>\n\t<Fragment set:html={lbl} />\n</label>\n"
+		}
+	]
+}

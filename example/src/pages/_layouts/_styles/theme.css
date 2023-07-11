@@ -72,7 +72,8 @@
 	--sb-cc-license-fill-color: var(--color-gray-2);
 	--sb-cc-license-stroke-color: var(--color-y-ln-mn);
 
-	--code-block-font-family: var(--font-code);
+	--sb-code-block-font-family: var(--font-code);
+	--sb-code-block-line-number-color: var(--color-icterine);
 
 	--sb-fieldset-legend-font-size: var(--step-1);
 	--sb-fieldset-legend-font-size-nested: var(--step-0);

@@ -1,37 +1,87 @@
 ---
-import type { Dataset } from "../../types";
-import type { Book } from "../../schema.org";
-import mapDataset from "../../utilities/mapDataset";
+import "./index.css";
 import Microdata from "../../Microdata/index.astro";
-import type { HTMLAttributes } from "astro/types";
-import Content from "./Content/index.astro";
+import createClassList from "../../utilities/createClassList";
+import mapDataset from "../../utilities/mapDataset";
+import type { BaseAttributes } from "../../types/html";
+import type { BookTitleProps as Props } from "../../types";
 
-export type Props = HTMLAttributes<"a"> & {
-  dataset?: Dataset;
-  href?: string;
-  properties?: Partial<Book>;
-  useJsonLd?: boolean;
-};
+const {
+	["class:list"]: classList = [],
+	dataset,
+	href,
+	link = {},
+	outer = {},
+	properties = {},
+	title,
+	...attrs
+} = Astro.props;
 
-const name = ((await Astro.slots.render("default")) || "").trim();
-const { dataset, href, properties, useJsonLd, ...attrs } = Astro.props;
-const ext = href?.includes("://") ? { rel: "external" } : {};
-const data = mapDataset(dataset);
+const {
+	["class:list"]: linkClassList = [],
+	dataset: linkDataset,
+	...linkAttrs
+} = link as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const name = ((await Astro.slots.render("default")) || "").trim() || title;
+
 const meta = {
-  "@context": "https://schema.org",
-  "@type": "Book",
-  ...(useJsonLd ? {} : { ...properties }),
+	type: "Book",
+	name,
+	...properties,
 };
 ---
 
-<Microdata properties={meta}>
-  <Content attrs={attrs} data={data} ext={ext} href={href} name={name} />
-  {
-    useJsonLd ? (
-      <script
-        set:html={JSON.stringify({ ...meta, ...properties }, null, 2)}
-        type="application/json+ld"
-      />
-    ) : null
-  }
-</Microdata>
+{
+	href ? (
+		<a
+			{...linkAttrs}
+			class:list={createClassList("sb-book-title-link", linkClassList)}
+			{...mapDataset(linkDataset)}
+			data-sb-book-title="link"
+			{href}
+		>
+			<Microdata
+				as="span"
+				{...outerAttrs}
+				class:list={createClassList("sb-book-title-microdata", outerClassList)}
+				{...mapDataset(outerDataset)}
+				data-sb-book-title="microdata"
+				properties={meta}
+			>
+				<span
+					{...attrs}
+					class:list={createClassList("sb-book-title", classList)}
+					{...mapDataset(dataset)}
+					data-sb-book-title
+				>
+					{name}
+				</span>
+			</Microdata>
+		</a>
+	) : (
+		<Microdata
+			as="span"
+			{...outerAttrs}
+			class:list={createClassList("sb-book-title-microdata", outerClassList)}
+			{...mapDataset(outerDataset)}
+			data-sb-book-title="microdata"
+			properties={meta}
+		>
+			<span
+				{...attrs}
+				class:list={createClassList("sb-book-title", classList)}
+				{...mapDataset(dataset)}
+				data-sb-book-title
+			>
+				{name}
+			</span>
+		</Microdata>
+	)
+}

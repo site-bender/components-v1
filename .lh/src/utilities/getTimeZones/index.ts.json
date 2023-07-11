@@ -1,0 +1,22 @@
+{
+	"sourceFile": "src/utilities/getTimeZones/index.ts",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 1,
+			"patches": [
+				{
+					"date": 1688509920836,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688509964794,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,16 @@\n-import TIME_ZONES from \"./timezones\";\n+import TIME_ZONES from \"./timezones\"\n \n-export default getTimeZoneOptions (countries: Array<string> = [], selected: string): string {\n-\treturn TIME_ZONES.filter(({ countryCode }) => countries ? countries.includes(countryCode) : true\n-).map(\n-\t({ timeZone }) =>\n-\t\t`<option value=\"${timeZone}\"${\n-\t\t\tselected === timeZone ? \" selected\" : \"\"\n-\t\t}>${timeZone}</option>`\n-);\n+export default function getTimeZoneOptions(\n+\tcountries: Array<string> = [],\n+\tselected: string,\n+): string {\n+\treturn TIME_ZONES\n+\t\t.filter(({ countryCode }) =>\n+\t\t\tcountries ? countries.includes(countryCode) : true\n+\t\t).map(\n+\t\t\t({ timeZone }) =>\n+\t\t\t\t`<option value=\"${timeZone}\"${\n+\t\t\t\t\tselected === timeZone ? \" selected\" : \"\"\n+\t\t\t\t}>${timeZone}</option>`,\n+\t\t).join(\"\\n\")\n }\n"
+				}
+			],
+			"date": 1688509920836,
+			"name": "Commit-0",
+			"content": "import TIME_ZONES from \"./timezones\";\n\nexport default getTimeZoneOptions (countries: Array<string> = [], selected: string): string {\n\treturn TIME_ZONES.filter(({ countryCode }) => countries ? countries.includes(countryCode) : true\n).map(\n\t({ timeZone }) =>\n\t\t`<option value=\"${timeZone}\"${\n\t\t\tselected === timeZone ? \" selected\" : \"\"\n\t\t}>${timeZone}</option>`\n);\n}\n"
+		}
+	]
+}

@@ -1,0 +1,26 @@
+{
+	"sourceFile": "src/types/index.ts",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 2,
+			"patches": [
+				{
+					"date": 1688954703107,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688954736710,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import type { Dataset } from \"./html\"\n+import type { ImageObject } from \"../schema.org\";\n \n export type CreatePath = (\n \tfilename: string,\n \tsize: string,\n"
+				},
+				{
+					"date": 1688954796837,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,27 @@\n import type { ImageObject } from \"../schema.org\"\n import type { Dataset } from \"./html\"\n \n+export type ImageMediaType =\n+\t| \"image/jpeg\"\n+\t| \"image/png\"\n+\t| \"image/webp\"\n+\t| \"image/avif\"\n+\t| \"image/svg\"\n+\n+export type ImageSource = {\n+\tmedia?: string\n+\tsizes: Array<string>\n+\ttypes?: Array<ImageType>\n+}\n+\n+export type ImageType =\n+\t| \"jpeg\"\n+\t| \"png\"\n+\t| \"webp\"\n+\t| \"avif\"\n+\t| \"svg\"\n+\n export type CreatePath = (\n \tfilename: string,\n \tsize: string,\n \ttype: string,\n"
+				}
+			],
+			"date": 1688954703107,
+			"name": "Commit-0",
+			"content": "import type { Dataset } from \"./html\";\n\nexport type CreatePath = (\n  filename: string,\n  size: string,\n  type: string,\n  index: number\n) => string;\n\nexport type Props = {\n  alt: string;\n  createPath?: CreatePath | undefined;\n  cssClasses?: Array<string> | undefined;\n  dataset?: Dataset | undefined | undefined;\n  description?: string | undefined;\n  descriptionClass?: string | undefined;\n  filename: string;\n  height?: number | undefined;\n  href?: string | undefined;\n  linkAttributes?: HTMLAttributes<\"a\"> | undefined;\n  loading?: \"eager\" | \"lazy\" | undefined | undefined;\n  properties?: Partial<ImageObject> | undefined;\n  sources?: Array<ImageSource> | undefined;\n  src: string;\n  width: number;\n};\n"
+		}
+	]
+}

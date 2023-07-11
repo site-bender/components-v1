@@ -1,0 +1,113 @@
+---
+import PasswordInput from "../elements/PasswordInput/index.astro";
+import createClassList from "../../utilities/createClassList";
+import generateShortId from "../../utilities/generateShortId";
+import mapDataset from "../../utilities/mapDataset";
+import type { PasswordField as Props } from "../../types/form";
+import type { BaseAttributes } from "../../types/html";
+
+const {
+	allowAutocomplete,
+	allowUnmasked,
+	["aria-live"]: live = "assertive",
+	field = "password-field",
+	form,
+	help = {},
+	id = generateShortId(),
+	isNewPassword,
+	label = "Password",
+	legend = {},
+	message,
+	name,
+	outer = {},
+	required,
+	tag = {},
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
+
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const autocomplete = allowAutocomplete
+	? isNewPassword
+		? "new-password"
+		: "current-password"
+	: "off";
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const labelId = `${id}_label`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
+---
+
+<div
+	{...outerAttrs}
+	class:list={createClassList("sb-field", "sb-password-field", outerClassList)}
+	{...mapDataset(outerDataset)}
+	data-sb-field={field}
+	{...req}
+>
+	<label
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={labelId}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</label>
+	<PasswordInput
+		{...attrs}
+		allowUnmasked={allowUnmasked}
+		{autocomplete}
+		{field}
+		{form}
+		{id}
+		{required}
+		{name}
+		{value}
+		{wrapper}
+	/>
+</div>

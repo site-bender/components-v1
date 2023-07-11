@@ -1,0 +1,94 @@
+---
+import Boolean from "../../../../src/metadata/Boolean/index.astro";
+import CodeBlock from "../../../../src/CodeBlock/index.astro";
+import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
+import Layout from "../_layouts/index.astro";
+import pageProperties from "./pageProperties";
+import * as typeTs from "./_assets/type.ts.md";
+import * as withMicrodataHtml from "./_assets/with-microdata.html.md";
+import * as withMicrodataAstro from "./_assets/with-microdata.astro.md";
+---
+
+<Layout pageProperties={pageProperties}>
+	<Fragment slot="tail">
+		<script set:html={copyToClipboardJs} />
+	</Fragment>
+	<main>
+		<article>
+			<h2>Boolean</h2>
+			<ol class="page-contents">
+				<li><a href="#default">Default example</a></li>
+				<li>
+					<a href="#dataset">With href, id, and data- attributes example</a>
+				</li>
+				<li><a href="#linked-data">Linked Data example</a></li>
+				<li><a href="#microdata">Microdata example</a></li>
+			</ol>
+			<p></p>
+			<section id="types">
+				<h3>Types</h3>
+				<CodeBlock
+					snippet={typeTs}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "TypeScript",
+					}}
+				/>
+			</section>
+			<section id="microdata">
+				<h3>Microdata example</h3>
+				<p>
+					We can also include microdata according the the Schema.org <a
+						href="https://schema.org/Book">Book</a
+					> object:
+				</p>
+				<CodeBlock
+					snippet={withMicrodataAstro}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "AstroJS",
+					}}
+				/>
+				<p>Here is the actual component:</p>
+				<div class="example">
+					This is the
+					<Boolean
+						dataset={{
+							library: "home",
+						}}
+						itemprop="abridged"
+						labelFalse="unabridged"
+						labelTrue="abridged"
+						properties={{
+							author: {
+								type: "Person",
+								name: "Herman Melville",
+							},
+							bookFormat: "Paperback",
+							isbn: "9780393285000",
+							name: "Moby Dick, or the Whale",
+							numberOfPages: 736,
+							publisher: {
+								type: "Organization",
+								name: "W. W. Norton & Company",
+							},
+						}}
+						type="Book"
+						value={false}
+					>
+						Moby Dick
+					</Boolean>
+					version.
+				</div>
+				<p>And here is the HTML created:</p>
+				<CodeBlock
+					snippet={withMicrodataHtml}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "HTML",
+					}}
+				/>
+			</section>
+		</article>
+	</main>
+</Layout>

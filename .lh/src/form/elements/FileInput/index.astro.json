@@ -1,0 +1,70 @@
+{
+	"sourceFile": "src/form/elements/FileInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 13,
+			"patches": [
+				{
+					"date": 1688531076535,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688531106401,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n ---\n+import createClassList from \"../../../utilities/createClassList\";\n+import generateShortId from \"../../../utilities/generateShortId\";\n+import mapDataset from \"../../../utilities/mapDataset\";\n+import type { BaseAttributes } from \"../../../types/html\";\n import type { FileInput as Props } from \"../../../types/form\";\n-import mapDataset from \"../../../utilities/mapDataset\";\n \n const {\n \taccept,\n \tcapture,\n"
+				},
+				{
+					"date": 1688531188388,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,7 +50,7 @@\n \t\tid={id}\n \t\tmultiple={multiple}\n \t\tname={name}\n \t\trequired={required}\n-\t\ttype=\"number\"\n+\t\ttype=\"file\"\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688531197625,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,6 +51,7 @@\n \t\tmultiple={multiple}\n \t\tname={name}\n \t\trequired={required}\n \t\ttype=\"file\"\n+\t\tvalue={value}\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688598906190,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n const {\n \taccept,\n \tcapture,\n \telement = {},\n+\tfield = \"file-input\",\n \tform,\n \tid = generateShortId(),\n \tlabelledBy,\n \tmultiple,\n@@ -35,18 +36,18 @@\n <span\n \t{...wrapperAttrs}\n \tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n \t{...mapDataset(wrapperDataset)}\n-\tdata-sb-input-wrapper\n+\tdata-sb-wrapper={field}\n >\n \t<input\n \t\taccept={accept}\n \t\t{...elementAttrs}\n \t\taria-labelledby={labelledBy}\n \t\tcapture={capture}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n-\t\tdata-sb-file-input\n+\t\tdata-sb-input={field}\n \t\tform={form}\n \t\tid={id}\n \t\tmultiple={multiple}\n \t\tname={name}\n"
+				},
+				{
+					"date": 1688598985740,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,10 @@\n \n const {\n \taccept,\n \tcapture,\n-\telement = {},\n+\t[\"class:list\"]: elementClassList = [],\n+\tdataset: elementDataset,\n \tfield = \"file-input\",\n \tform,\n \tid = generateShortId(),\n \tlabelledBy,\n@@ -18,16 +19,12 @@\n \trequired,\n \ttype: _type,\n \tvalue,\n \twrapper = {},\n+\t...attrs\n } = Astro.props;\n \n const {\n-\t[\"class:list\"]: elementClassList = [],\n-\tdataset: elementDataset,\n-\t...elementAttrs\n-} = element as BaseAttributes;\n-const {\n \t[\"class:list\"]: wrapperClassList = [],\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n@@ -40,9 +37,9 @@\n \tdata-sb-wrapper={field}\n >\n \t<input\n \t\taccept={accept}\n-\t\t{...elementAttrs}\n+\t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n \t\tcapture={capture}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n"
+				},
+				{
+					"date": 1688940253532,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n \t\tform={form}\n \t\tid={id}\n \t\tmultiple={multiple}\n \t\tname={name}\n-\t\trequired={required}\n+\t\t{required}\n \t\ttype=\"file\"\n \t\tvalue={value}\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688940875553,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tform={form}\n-\t\tid={id}\n+\t\t{id}\n \t\tmultiple={multiple}\n \t\tname={name}\n \t\t{required}\n \t\ttype=\"file\"\n"
+				},
+				{
+					"date": 1688940939993,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n \t\tcapture={capture}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n-\t\tform={form}\n+\t\t{form}\n \t\t{id}\n \t\tmultiple={multiple}\n \t\tname={name}\n \t\t{required}\n"
+				},
+				{
+					"date": 1688940959506,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,7 +49,7 @@\n \t\tmultiple={multiple}\n \t\tname={name}\n \t\t{required}\n \t\ttype=\"file\"\n-\t\tvalue={value}\n+\t\t{value}\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688940976273,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \t\tdata-sb-input={field}\n \t\t{form}\n \t\t{id}\n \t\tmultiple={multiple}\n-\t\tname={name}\n+\t\t{name}\n \t\t{required}\n \t\ttype=\"file\"\n \t\t{value}\n \t/>\n"
+				},
+				{
+					"date": 1688941002980,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{form}\n \t\t{id}\n-\t\tmultiple={multiple}\n+\t\t{multiple}\n \t\t{name}\n \t\t{required}\n \t\ttype=\"file\"\n \t\t{value}\n"
+				},
+				{
+					"date": 1688942226053,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \t{...mapDataset(wrapperDataset)}\n \tdata-sb-wrapper={field}\n >\n \t<input\n-\t\taccept={accept}\n+\t\t{accept}\n \t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n \t\tcapture={capture}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n"
+				},
+				{
+					"date": 1688942245735,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n \t<input\n \t\t{accept}\n \t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n-\t\tcapture={capture}\n+\t\t{capture}\n \t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{form}\n"
+				}
+			],
+			"date": 1688531076535,
+			"name": "Commit-0",
+			"content": "---\nimport type { FileInput as Props } from \"../../../types/form\";\nimport mapDataset from \"../../../utilities/mapDataset\";\n\nconst {\n\taccept,\n\tcapture,\n\telement = {},\n\tform,\n\tid = generateShortId(),\n\tlabelledBy,\n\tmultiple,\n\tname,\n\trequired,\n\ttype: _type,\n\tvalue,\n\twrapper = {},\n} = Astro.props;\n\nconst {\n\t[\"class:list\"]: elementClassList = [],\n\tdataset: elementDataset,\n\t...elementAttrs\n} = element as BaseAttributes;\nconst {\n\t[\"class:list\"]: wrapperClassList = [],\n\tdataset: wrapperDataset,\n\t...wrapperAttrs\n} = wrapper as BaseAttributes;\n---\n\n<span\n\t{...wrapperAttrs}\n\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n\t{...mapDataset(wrapperDataset)}\n\tdata-sb-input-wrapper\n>\n\t<input\n\t\taccept={accept}\n\t\t{...elementAttrs}\n\t\taria-labelledby={labelledBy}\n\t\tcapture={capture}\n\t\tclass:list={createClassList(\"sb-checkbox-input\", elementClassList)}\n\t\t{...mapDataset(elementDataset)}\n\t\tdata-sb-file-input\n\t\tform={form}\n\t\tid={id}\n\t\tmultiple={multiple}\n\t\tname={name}\n\t\trequired={required}\n\t\ttype=\"number\"\n\t/>\n</span>\n"
+		}
+	]
+}

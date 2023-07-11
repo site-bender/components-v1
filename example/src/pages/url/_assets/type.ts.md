@@ -11,9 +11,8 @@ export type Dataset = Record<string, string | number | boolean>
 
 export type Props = HTMLAttributes<"a"> & {
   dataset?: Dataset;
-  isMailto?: boolean;
+  useMailto?: boolean;
   properties?: Partial<ContactPointLeaf | OrganizationLeaf | PersonLeaf>;
   type?: "ContactPoint" | "Organization" | "Person";
-  useMicrodata?: boolean;
 };
 ```

@@ -1,0 +1,42 @@
+{
+    "sourceFile": ".vscode/settings.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1688275993683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688277732629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,6 +30,7 @@\n   ],\n   \"editor.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n   \"editor.codeLensFontFamily\": \"Monaco, 'Andale Mono', monospace\",\n   \"editor.inlayHints.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n-  \"editor.tabSize\": 2\n-}\n\\ No newline at end of file\n+  \"editor.tabSize\": 2,\n+  \"editor.formatOnSave\": true\n+}\n"
+                },
+                {
+                    "date": 1688958569513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,33 +1,36 @@\n {\n-  \"files.exclude\": {\n-    \"pnpm-lock.yaml\": true,\n-    \".vscode\": true,\n-    \"example/.gitignore\": true,\n-    \"example/components.theme.dark.json\": true,\n-    \"example/pnpm-lock.yaml\": true,\n-    \"example/README.md\": true,\n-    \"example/node_modules\": true,\n-    \"example/.vscode\": true,\n-    \".history\": true,\n-    \".cache\": true,\n-    \"src/env.d.ts\": true,\n-    \".gitignore\": true,\n-    \".npmrc\": true,\n-    \"deno.jsonc\": true,\n-    \"dprint.json\": true,\n-    \"README.md\": true,\n-    \".lh\": true,\n-    \"node_modules\": true,\n-    \"tsconfig.json\": true,\n-    \"package.json\": true\n-  },\n-  \"deno.enable\": false,\n-  \"cSpell.words\": [\n-    \"Moby\"\n-  ],\n-  \"editor.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n-  \"editor.codeLensFontFamily\": \"Monaco, 'Andale Mono', monospace\",\n-  \"editor.inlayHints.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n-  \"editor.tabSize\": 2,\n-  \"editor.formatOnSave\": true\n+\t\"files.exclude\": {\n+\t\t\"pnpm-lock.yaml\": true,\n+\t\t\".vscode\": true,\n+\t\t\"example/.gitignore\": true,\n+\t\t\"example/components.theme.dark.json\": true,\n+\t\t\"example/pnpm-lock.yaml\": true,\n+\t\t\"example/README.md\": true,\n+\t\t\"example/node_modules\": true,\n+\t\t\"example/.vscode\": true,\n+\t\t\".history\": true,\n+\t\t\".cache\": true,\n+\t\t\"src/env.d.ts\": true,\n+\t\t\".gitignore\": true,\n+\t\t\".npmrc\": true,\n+\t\t\"deno.jsonc\": true,\n+\t\t\"dprint.json\": true,\n+\t\t\"README.md\": true,\n+\t\t\".lh\": true,\n+\t\t\"node_modules\": true,\n+\t\t\"tsconfig.json\": true,\n+\t\t\".depcheckrc\": true,\n+\t\t\".editorconfig\": true,\n+\t\t\".npmcheckrc\": true\n+\t},\n+\t\"deno.enable\": false,\n+\t\"cSpell.words\": [\n+\t\t\"DANGI\",\n+\t\t\"Moby\"\n+\t],\n+\t\"editor.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n+\t\"editor.codeLensFontFamily\": \"Monaco, 'Andale Mono', monospace\",\n+\t\"editor.inlayHints.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n+\t\"editor.tabSize\": 2,\n+\t\"editor.formatOnSave\": true\n }\n"
+                },
+                {
+                    "date": 1689044053430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,6 +31,7 @@\n \t\"editor.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n \t\"editor.codeLensFontFamily\": \"Monaco, 'Andale Mono', monospace\",\n \t\"editor.inlayHints.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n \t\"editor.tabSize\": 2,\n-\t\"editor.formatOnSave\": true\n+\t\"editor.formatOnSave\": true,\n+\t\"editor.defaultFormatter\": \"dprint.dprint\"\n }\n"
+                },
+                {
+                    "date": 1689117409900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,38 @@\n+{\n+\t\"files.exclude\": {\n+\t\t\"pnpm-lock.yaml\": true,\n+\t\t\".vscode\": true,\n+\t\t\"example/.gitignore\": true,\n+\t\t\"example/components.theme.dark.json\": true,\n+\t\t\"example/pnpm-lock.yaml\": true,\n+\t\t\"example/README.md\": true,\n+\t\t\"example/node_modules\": true,\n+\t\t\"example/.vscode\": true,\n+\t\t\".history\": true,\n+\t\t\".cache\": true,\n+\t\t\"src/env.d.ts\": true,\n+\t\t\".gitignore\": true,\n+\t\t\".npmrc\": true,\n+\t\t\"deno.jsonc\": true,\n+\t\t\"dprint.json\": true,\n+\t\t\"README.md\": true,\n+\t\t\".lh\": true,\n+\t\t\"node_modules\": true,\n+\t\t\"tsconfig.json\": true,\n+\t\t\".depcheckrc\": true,\n+\t\t\".editorconfig\": true,\n+\t\t\".npmcheckrc\": true\n+\t},\n+\t\"deno.enable\": false,\n+\t\"cSpell.words\": [\n+\t\t\"DANGI\",\n+\t\t\"Moby\"\n+\t],\n+\t\"editor.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n+\t\"editor.codeLensFontFamily\": \"Monaco, 'Andale Mono', monospace\",\n+\t\"editor.inlayHints.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n+\t\"editor.tabSize\": 2,\n+\t\"editor.formatOnSave\": true,\n+\t\"editor.defaultFormatter\": \"dprint.dprint\",\n+\t\"local-history.date.dateFormat\": \"DD-MM-YYYY hh:mm\"\n+}\n"
+                },
+                {
+                    "date": 1689117429898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,6 +33,7 @@\n \t\"editor.inlayHints.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n \t\"editor.tabSize\": 2,\n \t\"editor.formatOnSave\": true,\n \t\"editor.defaultFormatter\": \"dprint.dprint\",\n-\t\"local-history.date.dateFormat\": \"DD-MM-YYYY hh:mm\"\n+\t\"local-history.date.dateFormat\": \"DD-MM-YYYY hh:mm\",\n+\t\"typescript.format.semicolons\": \"remove\"\n }\n"
+                },
+                {
+                    "date": 1689117449027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,6 +35,7 @@\n \t\"editor.formatOnSave\": true,\n \t\"editor.defaultFormatter\": \"dprint.dprint\",\n \t\"local-history.date.dateFormat\": \"DD-MM-YYYY hh:mm\",\n \t\"typescript.format.semicolons\": \"remove\",\n-\t\"javascript.format.semicolons\": \"remove\"\n+\t\"javascript.format.semicolons\": \"remove\",\n+\t\"yaml.format.proseWrap\": \"always\"\n }\n"
+                }
+            ],
+            "date": 1688275993683,
+            "name": "Commit-0",
+            "content": "{\n  \"files.exclude\": {\n    \"pnpm-lock.yaml\": true,\n    \".vscode\": true,\n    \"example/.gitignore\": true,\n    \"example/components.theme.dark.json\": true,\n    \"example/pnpm-lock.yaml\": true,\n    \"example/README.md\": true,\n    \"example/node_modules\": true,\n    \"example/.vscode\": true,\n    \".history\": true,\n    \".cache\": true,\n    \"src/env.d.ts\": true,\n    \".gitignore\": true,\n    \".npmrc\": true,\n    \"deno.jsonc\": true,\n    \"dprint.json\": true,\n    \"README.md\": true,\n    \".lh\": true,\n    \"node_modules\": true,\n    \"tsconfig.json\": true,\n    \"package.json\": true\n  },\n  \"deno.enable\": false,\n  \"cSpell.words\": [\n    \"Moby\"\n  ],\n  \"editor.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n  \"editor.codeLensFontFamily\": \"Monaco, 'Andale Mono', monospace\",\n  \"editor.inlayHints.fontFamily\": \"Monaco, 'Andale Mono', monospace\",\n  \"editor.tabSize\": 2\n}"
+        }
+    ]
+}

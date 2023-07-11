@@ -1,0 +1,86 @@
+{
+	"sourceFile": "src/form/elements/Select/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 17,
+			"patches": [
+				{
+					"date": 1688429922820,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688429971588,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { Select as Props } from \"../../../../types\";\n+import type { Select as Props } from \"../../../types/forms\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import Opts from \"../Options/index.astro\";\n \n const {\n"
+				},
+				{
+					"date": 1688520187547,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { Select as Props } from \"../../../types/forms\";\n+import type { Select as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import Opts from \"../Options/index.astro\";\n \n const {\n"
+				},
+				{
+					"date": 1688611282741,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n ---\n import type { Select as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n-import Opts from \"../Options/index.astro\";\n+import Opts from \"./Options/index.astro\";\n \n const {\n \tcssClasses = [],\n \tdataset,\n"
+				},
+				{
+					"date": 1688611712041,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n ---\n+import createSelectOptions from \"../../../utilities/createSelectOptions\";\n+import mapDataset from \"../../../utilities/mapDataset\";\n import type { Select as Props } from \"../../../types/form\";\n-import mapDataset from \"../../../utilities/mapDataset\";\n-import Opts from \"./Options/index.astro\";\n \n const {\n \tcssClasses = [],\n \tdataset,\n@@ -22,17 +22,19 @@\n ---\n \n <span>\n \t<select\n-\t\taria-labelledby={`${id}_label`}\n-\t\taria-describedby={`${id}_help`}\n-\t\tclass={css}\n-\t\t{...data}\n+\t\t{...attrs}\n+\t\tautocomplete={autocomplete}\n+\t\taria-labelledby={labelledBy}\n+\t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n+\t\t{...mapDataset(elementDataset)}\n+\t\tdata-sb-input={field}\n+\t\tform={form}\n \t\tid={id}\n-\t\tform={form}\n \t\tname={name}\n-\t\t{...attrs}\n+\t\trequired={required}\n \t>\n \t\t{includeNull ? <option /> : null}\n-\t\t{opts || <Opts options={options} selected={selected} />}\n+\t\t<Fragment set:html={createSelectOptions(options, selected)} />\n \t</select>\n </span>\n"
+				},
+				{
+					"date": 1688611907758,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,21 +3,29 @@\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { Select as Props } from \"../../../types/form\";\n \n const {\n-\tcssClasses = [],\n-\tdataset,\n+\tautocomplete,\n+\t[\"class:list\"]: elementClassList = [],\n+\tdataset: elementDataset,\n+\tfield = \"field\",\n \tform,\n-\tid,\n-\tincludeNull,\n+\tid = generateShortId(),\n+\tincludeBlank,\n+\tlabelledBy,\n \tname,\n \toptions = [],\n+\trequired,\n \tselected,\n+\twrapper = {},\n \t...attrs\n } = Astro.props;\n \n-const css = [\"sb-select\", ...cssClasses].join(\" \");\n-const data = mapDataset(dataset);\n+const {\n+\t[\"class:list\"]: wrapperClassList = [],\n+\tdataset: wrapperDataset,\n+\t...wrapperAttrs\n+} = wrapper as BaseAttributes;\n \n const opts = await Astro.slots.render(\"default\");\n ---\n \n@@ -25,16 +33,22 @@\n \t<select\n \t\t{...attrs}\n \t\tautocomplete={autocomplete}\n \t\taria-labelledby={labelledBy}\n-\t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n+\t\tclass:list={createClassList(\"sb-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n \t\trequired={required}\n \t>\n \t\t{includeNull ? <option /> : null}\n-\t\t<Fragment set:html={createSelectOptions(options, selected)} />\n+\t\t{\n+\t\t\topts ? (\n+\t\t\t\topts\n+\t\t\t) : (\n+\t\t\t\t<Fragment set:html={createSelectOptions(options, selected)} />\n+\t\t\t)\n+\t\t}\n \t</select>\n </span>\n"
+				},
+				{
+					"date": 1688612185986,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n ---\n import createSelectOptions from \"../../../utilities/createSelectOptions\";\n+import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n+import type { BaseAttributes } from \"../../../types/html\";\n import type { Select as Props } from \"../../../types/form\";\n \n const {\n \tautocomplete,\n"
+				},
+				{
+					"date": 1688612199627,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n ---\n+import createClassList from \"../../../utilities/createClassList\";\n import createSelectOptions from \"../../../utilities/createSelectOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { BaseAttributes } from \"../../../types/html\";\n"
+				},
+				{
+					"date": 1688612217731,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \t\tid={id}\n \t\tname={name}\n \t\trequired={required}\n \t>\n-\t\t{includeNull ? <option /> : null}\n+\t\t{includeBlank ? <option /> : null}\n \t\t{\n \t\t\topts ? (\n \t\t\t\topts\n \t\t\t) : (\n"
+				},
+				{
+					"date": 1688612363630,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,14 @@\n \n const opts = await Astro.slots.render(\"default\");\n ---\n \n-<span>\n+<span\n+\t{...wrapperAttrs}\n+\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n+\t{...mapDataset(wrapperDataset)}\n+\tdata-sb-wrapper={field}\n+>\n \t<select\n \t\t{...attrs}\n \t\tautocomplete={autocomplete}\n \t\taria-labelledby={labelledBy}\n"
+				},
+				{
+					"date": 1688612408145,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n \t\tautocomplete={autocomplete}\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n-\t\tdata-sb-input={field}\n+\t\tdata-sb-select={field}\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n \t\trequired={required}\n"
+				},
+				{
+					"date": 1688612427499,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n const {\n \tautocomplete,\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n-\tfield = \"field\",\n+\tfield = \"select\",\n \tform,\n \tid = generateShortId(),\n \tincludeBlank,\n \tlabelledBy,\n"
+				},
+				{
+					"date": 1688940253527,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n \t\tdata-sb-select={field}\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n-\t\trequired={required}\n+\t\t{required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n \t\t{\n \t\t\topts ? (\n"
+				},
+				{
+					"date": 1688940875561,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n \t\tclass:list={createClassList(\"sb-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n \t\tform={form}\n-\t\tid={id}\n+\t\t{id}\n \t\tname={name}\n \t\t{required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n"
+				},
+				{
+					"date": 1688940939991,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n-\t\tform={form}\n+\t\t{form}\n \t\t{id}\n \t\tname={name}\n \t\t{required}\n \t>\n"
+				},
+				{
+					"date": 1688940976278,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n \t\t{form}\n \t\t{id}\n-\t\tname={name}\n+\t\t{name}\n \t\t{required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n \t\t{\n"
+				},
+				{
+					"date": 1688942203712,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n \tdata-sb-wrapper={field}\n >\n \t<select\n \t\t{...attrs}\n-\t\tautocomplete={autocomplete}\n+\t\t{autocomplete}\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n"
+				},
+				{
+					"date": 1688945095029,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \tdataset: elementDataset,\n \tfield = \"select\",\n \tform,\n \tid = generateShortId(),\n-\tincludeBlank,\n+\tincludeNull,\n \tlabelledBy,\n \tname,\n \toptions = [],\n \trequired,\n@@ -49,9 +49,9 @@\n \t\t{id}\n \t\t{name}\n \t\t{required}\n \t>\n-\t\t{includeBlank ? <option /> : null}\n+\t\t{includeNull ? <option /> : null}\n \t\t{\n \t\t\topts ? (\n \t\t\t\topts\n \t\t\t) : (\n"
+				}
+			],
+			"date": 1688429922820,
+			"name": "Commit-0",
+			"content": "---\nimport type { Select as Props } from \"../../../../types\";\nimport mapDataset from \"../../../utilities/mapDataset\";\nimport Opts from \"../Options/index.astro\";\n\nconst {\n\tcssClasses = [],\n\tdataset,\n\tform,\n\tid,\n\tincludeNull,\n\tname,\n\toptions = [],\n\tselected,\n\t...attrs\n} = Astro.props;\n\nconst css = [\"sb-select\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\n\nconst opts = await Astro.slots.render(\"default\");\n---\n\n<span>\n\t<select\n\t\taria-labelledby={`${id}_label`}\n\t\taria-describedby={`${id}_help`}\n\t\tclass={css}\n\t\t{...data}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t\t{...attrs}\n\t>\n\t\t{includeNull ? <option /> : null}\n\t\t{opts || <Opts options={options} selected={selected} />}\n\t</select>\n</span>\n"
+		}
+	]
+}

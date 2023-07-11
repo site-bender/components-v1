@@ -1,27 +1,48 @@
 ---
-const pages = (await Astro.glob("/src/pages/*/index.astro"))
-  .map(({ url }) => url?.split("/")[1])
-  .filter((str) => str?.charAt(0) !== "_");
+import Microdata from "../../../../../src/Microdata/index.astro";
 
-const components = pages.map((page) => {
-  return {
-    path: `/${page}`,
-    label: page
-      ?.split("-")
-      .map(
-        ([upper, ...lower]) => `${upper?.toLocaleUpperCase()}${lower.join("")}`
-      )
-      .join(""),
-  };
-});
+const pages = (await Astro.glob("/src/pages/*/index.astro"))
+  .map(({ description, title, url }) => {
+    const path = url?.split("/")[1];
+    const label = title
+      ? title
+      : path
+          ?.split("-")
+          .map(
+            ([upper, ...lower]) =>
+              `${upper?.toLocaleUpperCase()}${lower.join("")}`
+          )
+          .join("");
+
+    return {
+      description,
+      label,
+      path,
+    };
+  })
+  .filter((item) => !item?.path?.startsWith("_"));
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+
+const { origin } = Astro.url;
 ---
 
 <ul class="toc">
   {
-    components.map(({ path, label }) => (
-      <li>
-        <a href={path}>{label}</a>
-      </li>
-    ))
+    pages.map(({ description, label, path }) => {
+      const meta = {
+        ...(description ? { description } : {}),
+        name: label,
+        type: "SiteNavigationElement",
+        url: `${origin}/${path}`,
+      };
+
+      return (
+        <li>
+          {useMicrodata ? <Microdata as="span" properties={meta} /> : null}
+          <a href={`/${path}`}>{label}</a>
+        </li>
+      );
+    })
   }
 </ul>

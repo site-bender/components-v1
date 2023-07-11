@@ -1,0 +1,79 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import createListOptions from "../../../utilities/createListOptions";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { TextInput as Props } from "../../../types/form";
+
+const {
+	autocomplete,
+	autocorrect: _autocorrect,
+	["class:list"]: elementClassList = [],
+	datalist = {},
+	dataset: elementDataset,
+	field = "url-input",
+	form,
+	id = generateShortId(),
+	labelledBy,
+	list,
+	name,
+	placeholder: _placeholder,
+	required,
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: datalistClassList = [],
+	dataset: datalistDataset,
+	...datalistAttrs
+} = datalist as BaseAttributes;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+
+const listId = `${id}_list`;
+const lst = list ? { list: listId } : {};
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	<input
+		{...attrs}
+		aria-labelledby={labelledBy}
+		{autocomplete}
+		class:list={createClassList("sb-url-input", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-input={field}
+		{form}
+		{id}
+		{...lst}
+		{name}
+		{required}
+		type="url"
+		{value}
+	/>
+	{
+		list ? (
+			<datalist
+				{...datalistAttrs}
+				class:list={createClassList("sb-datalist-url", datalistClassList)}
+				{...mapDataset(datalistDataset)}
+				data-sb-datalist={field}
+				id={listId}
+			>
+				<Fragment set:html={createListOptions(list)} />
+			</datalist>
+		) : null
+	}
+</span>

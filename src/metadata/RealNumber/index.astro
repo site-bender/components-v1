@@ -1,31 +1,14 @@
 ---
-import type { Dataset } from "../../types";
-import type { NumberFormatOptions, NumberStyle } from "../Number/types";
-import type { HTMLAttributes } from "astro/types";
+import type { NumberProps as Props } from "../../types";
 import Number from "../Number/index.astro";
 
-export type Props = HTMLAttributes<"a"> & {
-  dataset?: Dataset;
-  href?: string | URL | null | undefined;
-  locale?: string;
-  options?: NumberFormatOptions;
-  useTabularNumerals?: boolean | undefined;
-  value?: string | number | undefined;
-};
-
-const style: NumberStyle = "currency";
-
 const {
-  options = {
-    currency: "NZD",
-    style,
-  },
-  value,
-  ...attrs
+	type: _type,
+	value: val,
+	...attrs
 } = Astro.props;
 
-const val = typeof value === "number" ? value : parseFloat(String(value));
-const opts = { ...options, style };
+const value = typeof val === "number" ? val : parseFloat(String(val));
 ---
 
-<Number cssClass="sb-monetary-amount" options={opts} {...attrs} value={val} />
+<Number {...attrs} type="Float" {value} />

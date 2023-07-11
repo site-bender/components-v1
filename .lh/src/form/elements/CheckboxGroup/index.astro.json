@@ -1,0 +1,182 @@
+{
+	"sourceFile": "src/form/elements/CheckboxGroup/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 41,
+			"patches": [
+				{
+					"date": 1688429922974,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688429971766,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { CheckboxGroup as Props } from \"../../../../types\";\n+import type { CheckboxGroup as Props } from \"../../../types/forms\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import Checkbox from \"../Checkbox/index.astro\";\n \n"
+				},
+				{
+					"date": 1688520187536,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { CheckboxGroup as Props } from \"../../../types/forms\";\n+import type { CheckboxGroup as Props } from \"../../../types/form\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import Checkbox from \"../Checkbox/index.astro\";\n \n"
+				},
+				{
+					"date": 1688520851150,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n ---\n import type { CheckboxGroup as Props } from \"../../../types/form\";\n+import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import Checkbox from \"../Checkbox/index.astro\";\n \n@@ -8,52 +9,85 @@\n \t[\"aria-live\"]: live = \"assertive\",\n \tcssClasses = [],\n \tdataset,\n \tform,\n-\thelp,\n-\thelpAttributes = {},\n+\tmessage,\n+\thelp = {},\n \tid = generateShortId(),\n \tlabel,\n-\tlabelAttributes = {},\n+\tlegend,\n \tname,\n \toptions,\n \trequired,\n \tselected = [],\n \t...attrs\n } = Astro.props;\n \n-const css = [\"sb-checkbox-group\", ...cssClasses].join(\" \");\n-const data = mapDataset(dataset);\n-const hlp = help || (await Astro.slots.render(\"help\"));\n+const {\n+\t[\"class:list\"]: helpClassList = [],\n+\tdataset: helpDataset,\n+\t...helpAttrs\n+} = help as BaseAttributes;\n+\n+const {\n+\t[\"class:list\"]: legendClassList = [],\n+\tdataset: legendDataset,\n+\t...legendAttrs\n+} = legend as BaseAttributes;\n+\n+const {\n+\t[\"class:list\"]: wrapperClassList = [],\n+\tdataset: wrapperDataset,\n+\t...wrapperAttrs\n+} = wrapper as BaseAttributes;\n+\n+const helpClasses = createClassList(\"sb-checkbox-group-help\", helpClassList);\n+const legendClasses = createClassList(\n+\t\"sb-checkbox-group-legend\",\n+\tlegendClassList\n+);\n+const wrapperClasses = createClassList(\n+\t\"sb-checkbox-group-label\",\n+\twrapperClassList\n+);\n+\n+const helpData = mapDataset(helpDataset);\n+const legendData = mapDataset(legendDataset);\n+const wrapperData = mapDataset(wrapperDataset);\n+\n+const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const legend = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n const req = required ? { dataset: { required } } : {};\n const opt = required ? {} : { \"data-sb-optional\": \"\" };\n ---\n \n <fieldset\n-\t{...attrs}\n-\tclass={css}\n-\t{...data}\n+\t{...wrapperAttrs}\n+\tclass:list={wrapperClasses}\n+\t{...wrapperData}\n+\tdata-sb-checkbox-group\n \tform={form}\n \tid={id}\n \tname={name}\n \t{...req}\n >\n \t<legend\n-\t\t{...labelAttributes}\n+\t\t{...legendAttrs}\n \t\taria-live={live}\n-\t\tclass={css}\n-\t\t{...data}\n+\t\tclass:list={legendClasses}\n+\t\t{...legendData}\n+\t\tdata-sb-checkbox-group=\"legend\"\n \t\tid={legendId}\n \t\t{...opt}\n \t>\n \t\t<span class=\"sb-label-content\" set:html={legend} />\n \t\t<span\n \t\t\t{...helpAttributes}\n \t\t\taria-live={live}\n \t\t\tclass=\"sb-help\"\n+\t\t\t{...helpData}\n \t\t\tid={helpId}\n \t\t\trole=\"status\"\n \t\t\tset:html={hlp}\n \t\t/>\n@@ -66,12 +100,12 @@\n \t\t\t\t\t\t{...attrs}\n \t\t\t\t\t\tchecked={selected?.includes(value)}\n \t\t\t\t\t\tform={form}\n \t\t\t\t\t\tlegendId={legendId}\n-\t\t\t\t\t\tname={name}\n+\t\t\t\t\t\tname={name || n}\n \t\t\t\t\t\tvalue={value}\n \t\t\t\t\t>\n-\t\t\t\t\t\t{label}\n+\t\t\t\t\t\t<Fragment set:html={label} />\n \t\t\t\t\t</Checkbox>\n \t\t\t\t);\n \t\t\t})\n \t\t}\n"
+				},
+				{
+					"date": 1688521073232,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n const wrapperData = mapDataset(wrapperDataset);\n \n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n-const legend = label || (await Astro.slots.render(\"default\"));\n+const lbl = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n const req = required ? { dataset: { required } } : {};\n const opt = required ? {} : { \"data-sb-optional\": \"\" };\n ---\n@@ -80,9 +80,9 @@\n \t\tdata-sb-checkbox-group=\"legend\"\n \t\tid={legendId}\n \t\t{...opt}\n \t>\n-\t\t<span class=\"sb-label-content\" set:html={legend} />\n+\t\t<span class=\"sb-label-content\" set:html={lbl} />\n \t\t<span\n \t\t\t{...helpAttributes}\n \t\t\taria-live={live}\n \t\t\tclass=\"sb-help\"\n"
+				},
+				{
+					"date": 1688521088398,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \tmessage,\n \thelp = {},\n \tid = generateShortId(),\n \tlabel,\n-\tlegend,\n+\tlegend = {},\n \tname,\n \toptions,\n \trequired,\n \tselected = [],\n"
+				},
+				{
+					"date": 1688521099174,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n \tname,\n \toptions,\n \trequired,\n \tselected = [],\n+\twrapper = {},\n \t...attrs\n } = Astro.props;\n \n const {\n"
+				},
+				{
+					"date": 1688521114709,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n \t\t{...opt}\n \t>\n \t\t<span class=\"sb-label-content\" set:html={lbl} />\n \t\t<span\n-\t\t\t{...helpAttributes}\n+\t\t\t{...helpAttrs}\n \t\t\taria-live={live}\n \t\t\tclass=\"sb-help\"\n \t\t\t{...helpData}\n \t\t\tid={helpId}\n"
+				},
+				{
+					"date": 1688521167228,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,12 +45,9 @@\n const legendClasses = createClassList(\n \t\"sb-checkbox-group-legend\",\n \tlegendClassList\n );\n-const wrapperClasses = createClassList(\n-\t\"sb-checkbox-group-label\",\n-\twrapperClassList\n-);\n+const wrapperClasses = createClassList(\"sb-checkbox-group\", wrapperClassList);\n \n const helpData = mapDataset(helpDataset);\n const legendData = mapDataset(legendDataset);\n const wrapperData = mapDataset(wrapperDataset);\n"
+				},
+				{
+					"date": 1688521298664,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,10 @@\n const helpData = mapDataset(helpDataset);\n const legendData = mapDataset(legendDataset);\n const wrapperData = mapDataset(wrapperDataset);\n \n+console.log(\"legendData\", legendData);\n+\n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n"
+				},
+				{
+					"date": 1688521338856,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,11 @@\n const helpData = mapDataset(helpDataset);\n const legendData = mapDataset(legendDataset);\n const wrapperData = mapDataset(wrapperDataset);\n \n+console.log(\"helpData\", helpData);\n console.log(\"legendData\", legendData);\n+console.log(\"wrapperData\", wrapperData);\n \n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n"
+				},
+				{
+					"date": 1688521438410,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,11 +51,11 @@\n const helpData = mapDataset(helpDataset);\n const legendData = mapDataset(legendDataset);\n const wrapperData = mapDataset(wrapperDataset);\n \n-console.log(\"helpData\", helpData);\n-console.log(\"legendData\", legendData);\n-console.log(\"wrapperData\", wrapperData);\n+console.log(\"helpAttrs\", helpAttrs);\n+console.log(\"legendAttrs\", legendAttrs);\n+console.log(\"wrapperAttrs\", wrapperAttrs);\n \n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n"
+				},
+				{
+					"date": 1688521558775,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,11 +51,15 @@\n const helpData = mapDataset(helpDataset);\n const legendData = mapDataset(legendDataset);\n const wrapperData = mapDataset(wrapperDataset);\n \n-console.log(\"helpAttrs\", helpAttrs);\n-console.log(\"legendAttrs\", legendAttrs);\n console.log(\"wrapperAttrs\", wrapperAttrs);\n+console.log(\"wrapperClasses\", wrapperClasses);\n+console.log(\"wrapperData\", wrapperData);\n+console.log(\"form\", form);\n+console.log(\"id\", id);\n+console.log(\"name\", name);\n+console.log(\"req\", req);\n \n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n"
+				},
+				{
+					"date": 1688521569199,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,22 +51,22 @@\n const helpData = mapDataset(helpDataset);\n const legendData = mapDataset(legendDataset);\n const wrapperData = mapDataset(wrapperDataset);\n \n+const hlp = message || (await Astro.slots.render(\"help\"));\n+const helpId = `${id}_help`;\n+const lbl = label || (await Astro.slots.render(\"default\"));\n+const legendId = `${id}_legend`;\n+const req = required ? { dataset: { required } } : {};\n+const opt = required ? {} : { \"data-sb-optional\": \"\" };\n+\n console.log(\"wrapperAttrs\", wrapperAttrs);\n console.log(\"wrapperClasses\", wrapperClasses);\n console.log(\"wrapperData\", wrapperData);\n console.log(\"form\", form);\n console.log(\"id\", id);\n console.log(\"name\", name);\n console.log(\"req\", req);\n-\n-const hlp = message || (await Astro.slots.render(\"help\"));\n-const helpId = `${id}_help`;\n-const lbl = label || (await Astro.slots.render(\"default\"));\n-const legendId = `${id}_legend`;\n-const req = required ? { dataset: { required } } : {};\n-const opt = required ? {} : { \"data-sb-optional\": \"\" };\n ---\n \n <fieldset\n \t{...wrapperAttrs}\n"
+				},
+				{
+					"date": 1688521646426,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n-const req = required ? { dataset: { required } } : {};\n+const req = required ? { \"data-required\" } } : {};\n const opt = required ? {} : { \"data-sb-optional\": \"\" };\n \n console.log(\"wrapperAttrs\", wrapperAttrs);\n console.log(\"wrapperClasses\", wrapperClasses);\n@@ -75,9 +75,9 @@\n \tdata-sb-checkbox-group\n \tform={form}\n \tid={id}\n \tname={name}\n-\t{...req}\n+\t{required ? data-required : undefined}\n >\n \t<legend\n \t\t{...legendAttrs}\n \t\taria-live={live}\n"
+				},
+				{
+					"date": 1688521669458,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,9 @@\n \tdata-sb-checkbox-group\n \tform={form}\n \tid={id}\n \tname={name}\n-\t{required ? data-required : undefined}\n+\t{...req}\n >\n \t<legend\n \t\t{...legendAttrs}\n \t\taria-live={live}\n"
+				},
+				{
+					"date": 1688521700063,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,8 @@\n \tdata-sb-checkbox-group\n \tform={form}\n \tid={id}\n \tname={name}\n-\t{...req}\n >\n \t<legend\n \t\t{...legendAttrs}\n \t\taria-live={live}\n"
+				},
+				{
+					"date": 1688521716886,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n-const req = required ? { \"data-required\" } } : {};\n+const req = required ? { \"data-required\" } : {};\n const opt = required ? {} : { \"data-sb-optional\": \"\" };\n \n console.log(\"wrapperAttrs\", wrapperAttrs);\n console.log(\"wrapperClasses\", wrapperClasses);\n"
+				},
+				{
+					"date": 1688521729330,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n-const req = required ? { \"data-required\" } : {};\n+const req = required ? { \"data-required\": \"\" } : {};\n const opt = required ? {} : { \"data-sb-optional\": \"\" };\n \n console.log(\"wrapperAttrs\", wrapperAttrs);\n console.log(\"wrapperClasses\", wrapperClasses);\n"
+				},
+				{
+					"date": 1688521784172,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,8 +75,9 @@\n \tdata-sb-checkbox-group\n \tform={form}\n \tid={id}\n \tname={name}\n+\t{...req}\n >\n \t<legend\n \t\t{...legendAttrs}\n \t\taria-live={live}\n"
+				},
+				{
+					"date": 1688521804809,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n-const req = required ? { \"data-required\": \"\" } : {};\n+const req = required ? { \"data-sb-required\": \"\" } : {};\n const opt = required ? {} : { \"data-sb-optional\": \"\" };\n \n console.log(\"wrapperAttrs\", wrapperAttrs);\n console.log(\"wrapperClasses\", wrapperClasses);\n@@ -72,12 +72,12 @@\n \t{...wrapperAttrs}\n \tclass:list={wrapperClasses}\n \t{...wrapperData}\n \tdata-sb-checkbox-group\n+\t{...req}\n \tform={form}\n \tid={id}\n \tname={name}\n-\t{...req}\n >\n \t<legend\n \t\t{...legendAttrs}\n \t\taria-live={live}\n"
+				},
+				{
+					"date": 1688521877928,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,16 +57,8 @@\n const lbl = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n const req = required ? { \"data-sb-required\": \"\" } : {};\n const opt = required ? {} : { \"data-sb-optional\": \"\" };\n-\n-console.log(\"wrapperAttrs\", wrapperAttrs);\n-console.log(\"wrapperClasses\", wrapperClasses);\n-console.log(\"wrapperData\", wrapperData);\n-console.log(\"form\", form);\n-console.log(\"id\", id);\n-console.log(\"name\", name);\n-console.log(\"req\", req);\n ---\n \n <fieldset\n \t{...wrapperAttrs}\n"
+				},
+				{
+					"date": 1688522127156,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,13 +9,13 @@\n \t[\"aria-live\"]: live = \"assertive\",\n \tcssClasses = [],\n \tdataset,\n \tform,\n-\tmessage,\n \thelp = {},\n \tid = generateShortId(),\n \tlabel,\n \tlegend = {},\n+\tmessage,\n \tname,\n \toptions,\n \trequired,\n \tselected = [],\n"
+				},
+				{
+					"date": 1688522357216,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n import Checkbox from \"../Checkbox/index.astro\";\n \n const {\n \t[\"aria-live\"]: live = \"assertive\",\n-\tcssClasses = [],\n \tdataset,\n \tform,\n \thelp = {},\n \tid = generateShortId(),\n"
+				},
+				{
+					"date": 1688522372430,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n ---\n import type { CheckboxGroup as Props } from \"../../../types/form\";\n+import type { BaseAttributes } from \"../../../types/html\";\n import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import Checkbox from \"../Checkbox/index.astro\";\n"
+				},
+				{
+					"date": 1688522389870,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n ---\n-import type { CheckboxGroup as Props } from \"../../../types/form\";\n-import type { BaseAttributes } from \"../../../types/html\";\n+import Checkbox from \"../Checkbox/index.astro\";\n import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n-import Checkbox from \"../Checkbox/index.astro\";\n+import type { BaseAttributes } from \"../../../types/html\";\n+import type { CheckboxGroup as Props } from \"../../../types/form\";\n \n const {\n \t[\"aria-live\"]: live = \"assertive\",\n \tdataset,\n"
+				},
+				{
+					"date": 1688522459380,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n import type { CheckboxGroup as Props } from \"../../../types/form\";\n \n const {\n \t[\"aria-live\"]: live = \"assertive\",\n-\tdataset,\n \tform,\n \thelp = {},\n \tid = generateShortId(),\n \tlabel,\n@@ -19,9 +18,8 @@\n \toptions,\n \trequired,\n \tselected = [],\n \twrapper = {},\n-\t...attrs\n } = Astro.props;\n \n const {\n \t[\"class:list\"]: helpClassList = [],\n@@ -40,9 +38,13 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const helpClasses = createClassList(\"sb-checkbox-group-help\", helpClassList);\n+const helpClasses = createClassList(\n+\t\"sb-help\",\n+\t\"sb-checkbox-group-help\",\n+\thelpClassList\n+);\n const legendClasses = createClassList(\n \t\"sb-checkbox-group-legend\",\n \tlegendClassList\n );\n@@ -82,9 +84,9 @@\n \t\t<span class=\"sb-label-content\" set:html={lbl} />\n \t\t<span\n \t\t\t{...helpAttrs}\n \t\t\taria-live={live}\n-\t\t\tclass=\"sb-help\"\n+\t\t\tclass:list={helpClasses}\n \t\t\t{...helpData}\n \t\t\tid={helpId}\n \t\t\trole=\"status\"\n \t\t\tset:html={hlp}\n"
+				},
+				{
+					"date": 1688522499039,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,8 +86,9 @@\n \t\t\t{...helpAttrs}\n \t\t\taria-live={live}\n \t\t\tclass:list={helpClasses}\n \t\t\t{...helpData}\n+\t\t\tdata-sb-help\n \t\t\tid={helpId}\n \t\t\trole=\"status\"\n \t\t\tset:html={hlp}\n \t\t/>\n"
+				},
+				{
+					"date": 1688522781455,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n \n const {\n \t[\"aria-live\"]: live = \"assertive\",\n \tform,\n+\tgroup = {},\n \thelp = {},\n \tid = generateShortId(),\n \tlabel,\n \tlegend = {},\n@@ -21,8 +22,14 @@\n \twrapper = {},\n } = Astro.props;\n \n const {\n+\t[\"class:list\"]: groupClassList = [],\n+\tdataset: groupDataset,\n+\t...groupAttrs\n+} = group as BaseAttributes;\n+\n+const {\n \t[\"class:list\"]: helpClassList = [],\n \tdataset: helpDataset,\n \t...helpAttrs\n } = help as BaseAttributes;\n@@ -38,23 +45,8 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const helpClasses = createClassList(\n-\t\"sb-help\",\n-\t\"sb-checkbox-group-help\",\n-\thelpClassList\n-);\n-const legendClasses = createClassList(\n-\t\"sb-checkbox-group-legend\",\n-\tlegendClassList\n-);\n-const wrapperClasses = createClassList(\"sb-checkbox-group\", wrapperClassList);\n-\n-const helpData = mapDataset(helpDataset);\n-const legendData = mapDataset(legendDataset);\n-const wrapperData = mapDataset(wrapperDataset);\n-\n const hlp = message || (await Astro.slots.render(\"help\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n@@ -63,10 +55,10 @@\n ---\n \n <fieldset\n \t{...wrapperAttrs}\n-\tclass:list={wrapperClasses}\n-\t{...wrapperData}\n+\tclass:list={createClassList(\"sb-checkbox-group\", wrapperClassList)}\n+\t{...mapDataset(wrapperDataset)}\n \tdata-sb-checkbox-group\n \t{...req}\n \tform={form}\n \tid={id}\n@@ -74,27 +66,34 @@\n >\n \t<legend\n \t\t{...legendAttrs}\n \t\taria-live={live}\n-\t\tclass:list={legendClasses}\n-\t\t{...legendData}\n+\t\tclass:list={createClassList(\"sb-checkbox-group-legend\", legendClassList)}\n+\t\t{...mapDataset(legendDataset)}\n \t\tdata-sb-checkbox-group=\"legend\"\n \t\tid={legendId}\n \t\t{...opt}\n \t>\n \t\t<span class=\"sb-label-content\" set:html={lbl} />\n \t\t<span\n \t\t\t{...helpAttrs}\n \t\t\taria-live={live}\n-\t\t\tclass:list={helpClasses}\n-\t\t\t{...helpData}\n+\t\t\tclass:list={createClassList(\n+\t\t\t\t\"sb-help\",\n+\t\t\t\t\"sb-checkbox-group-help\",\n+\t\t\t\thelpClassList\n+\t\t\t)}\n+\t\t\t{...mapDataset(helpDataset)}\n \t\t\tdata-sb-help\n \t\t\tid={helpId}\n \t\t\trole=\"status\"\n \t\t\tset:html={hlp}\n \t\t/>\n \t</legend>\n-\t<div class=\"sb-group\">\n+\t<div\n+\t\tclass:list={createClassList(\"sb-group\", groupClassList)}\n+\t\t{...mapDataset(groupDataset)}\n+\t>\n \t\t{\n \t\t\toptions.map(({ form: f, label, name: n, value, ...attrs }) => {\n \t\t\t\treturn (\n \t\t\t\t\t<Checkbox\n"
+				},
+				{
+					"date": 1688522919746,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,10 +72,14 @@\n \t\tdata-sb-checkbox-group=\"legend\"\n \t\tid={legendId}\n \t\t{...opt}\n \t>\n-\t\t<span class=\"sb-label-content\" set:html={lbl} />\n \t\t<span\n+\t\t\tclass=\"sb-label-content\"\n+\t\t\tdata-sb-checkbox-group=\"label-content\"\n+\t\t\tset:html={lbl}\n+\t\t/>\n+\t\t<span\n \t\t\t{...helpAttrs}\n \t\t\taria-live={live}\n \t\t\tclass:list={createClassList(\n \t\t\t\t\"sb-help\",\n@@ -83,16 +87,19 @@\n \t\t\t\thelpClassList\n \t\t\t)}\n \t\t\t{...mapDataset(helpDataset)}\n \t\t\tdata-sb-help\n+\t\t\tdata-sb-checkbox-group=\"help\"\n \t\t\tid={helpId}\n \t\t\trole=\"status\"\n \t\t\tset:html={hlp}\n \t\t/>\n \t</legend>\n \t<div\n \t\tclass:list={createClassList(\"sb-group\", groupClassList)}\n \t\t{...mapDataset(groupDataset)}\n+\t\tdata-sb-group\n+\t\tdata-sb-checbox-group=\"group\"\n \t>\n \t\t{\n \t\t\toptions.map(({ form: f, label, name: n, value, ...attrs }) => {\n \t\t\t\treturn (\n"
+				},
+				{
+					"date": 1688522977314,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,8 +105,9 @@\n \t\t\t\treturn (\n \t\t\t\t\t<Checkbox\n \t\t\t\t\t\t{...attrs}\n \t\t\t\t\t\tchecked={selected?.includes(value)}\n+\t\t\t\t\t\tdataset={{ \"sb-checkbox-group\": \"checkbox\" }}\n \t\t\t\t\t\tform={form}\n \t\t\t\t\t\tlegendId={legendId}\n \t\t\t\t\t\tname={name || n}\n \t\t\t\t\t\tvalue={value}\n"
+				},
+				{
+					"date": 1688523103105,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,9 +105,9 @@\n \t\t\t\treturn (\n \t\t\t\t\t<Checkbox\n \t\t\t\t\t\t{...attrs}\n \t\t\t\t\t\tchecked={selected?.includes(value)}\n-\t\t\t\t\t\tdataset={{ \"sb-checkbox-group\": \"checkbox\" }}\n+\t\t\t\t\t\twrapper={{ dataset: { \"sb-checkbox-group\": \"checkbox\" } }}\n \t\t\t\t\t\tform={form}\n \t\t\t\t\t\tlegendId={legendId}\n \t\t\t\t\t\tname={name || n}\n \t\t\t\t\t\tvalue={value}\n"
+				},
+				{
+					"date": 1688523297156,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,13 +105,14 @@\n \t\t\t\treturn (\n \t\t\t\t\t<Checkbox\n \t\t\t\t\t\t{...attrs}\n \t\t\t\t\t\tchecked={selected?.includes(value)}\n-\t\t\t\t\t\twrapper={{ dataset: { \"sb-checkbox-group\": \"checkbox\" } }}\n \t\t\t\t\t\tform={form}\n+\t\t\t\t\t\tgroupLabelId={legendId}\n \t\t\t\t\t\tlegendId={legendId}\n \t\t\t\t\t\tname={name || n}\n \t\t\t\t\t\tvalue={value}\n+\t\t\t\t\t\twrapper={{ dataset: { \"sb-checkbox-group\": \"checkbox\" } }}\n \t\t\t\t\t>\n \t\t\t\t\t\t<Fragment set:html={label} />\n \t\t\t\t\t</Checkbox>\n \t\t\t\t);\n"
+				},
+				{
+					"date": 1688597671725,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import Checkbox from \"../Checkbox/index.astro\";\n+import CheckboxInput from \"../CheckboxInput/index.astro\";\n import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { BaseAttributes } from \"../../../types/html\";\n@@ -102,9 +102,9 @@\n \t>\n \t\t{\n \t\t\toptions.map(({ form: f, label, name: n, value, ...attrs }) => {\n \t\t\t\treturn (\n-\t\t\t\t\t<Checkbox\n+\t\t\t\t\t<CheckboxInput\n \t\t\t\t\t\t{...attrs}\n \t\t\t\t\t\tchecked={selected?.includes(value)}\n \t\t\t\t\t\tform={form}\n \t\t\t\t\t\tgroupLabelId={legendId}\n@@ -113,9 +113,9 @@\n \t\t\t\t\t\tvalue={value}\n \t\t\t\t\t\twrapper={{ dataset: { \"sb-checkbox-group\": \"checkbox\" } }}\n \t\t\t\t\t>\n \t\t\t\t\t\t<Fragment set:html={label} />\n-\t\t\t\t\t</Checkbox>\n+\t\t\t\t\t</CheckboxInput>\n \t\t\t\t);\n \t\t\t})\n \t\t}\n \t</div>\n"
+				},
+				{
+					"date": 1688597909075,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,8 +73,9 @@\n \t\tid={legendId}\n \t\t{...opt}\n \t>\n \t\t<span\n+\t\t\t{...groupAttrs}\n \t\t\tclass=\"sb-label-content\"\n \t\t\tdata-sb-checkbox-group=\"label-content\"\n \t\t\tset:html={lbl}\n \t\t/>\n"
+				},
+				{
+					"date": 1688610216358,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -108,12 +108,11 @@\n \t\t\t\t\t\t{...attrs}\n \t\t\t\t\t\tchecked={selected?.includes(value)}\n \t\t\t\t\t\tform={form}\n \t\t\t\t\t\tgroupLabelId={legendId}\n-\t\t\t\t\t\tlegendId={legendId}\n \t\t\t\t\t\tname={name || n}\n \t\t\t\t\t\tvalue={value}\n-\t\t\t\t\t\twrapper={{ dataset: { \"sb-checkbox-group\": \"checkbox\" } }}\n+\t\t\t\t\t\twrapper={{ dataset: { \"sb-checkbox-group\": \"checkbox-input\" } }}\n \t\t\t\t\t>\n \t\t\t\t\t\t<Fragment set:html={label} />\n \t\t\t\t\t</CheckboxInput>\n \t\t\t\t);\n"
+				},
+				{
+					"date": 1688621967111,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,8 @@\n \tname={name}\n >\n \t<legend\n \t\t{...legendAttrs}\n-\t\taria-live={live}\n \t\tclass:list={createClassList(\"sb-checkbox-group-legend\", legendClassList)}\n \t\t{...mapDataset(legendDataset)}\n \t\tdata-sb-checkbox-group=\"legend\"\n \t\tid={legendId}\n"
+				},
+				{
+					"date": 1688940875593,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \t{...mapDataset(wrapperDataset)}\n \tdata-sb-checkbox-group\n \t{...req}\n \tform={form}\n-\tid={id}\n+\t{id}\n \tname={name}\n >\n \t<legend\n \t\t{...legendAttrs}\n"
+				},
+				{
+					"date": 1688940940035,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n \tclass:list={createClassList(\"sb-checkbox-group\", wrapperClassList)}\n \t{...mapDataset(wrapperDataset)}\n \tdata-sb-checkbox-group\n \t{...req}\n-\tform={form}\n+\t{form}\n \t{id}\n \tname={name}\n >\n \t<legend\n@@ -105,9 +105,9 @@\n \t\t\t\treturn (\n \t\t\t\t\t<CheckboxInput\n \t\t\t\t\t\t{...attrs}\n \t\t\t\t\t\tchecked={selected?.includes(value)}\n-\t\t\t\t\t\tform={form}\n+\t\t\t\t\t\t{form}\n \t\t\t\t\t\tgroupLabelId={legendId}\n \t\t\t\t\t\tname={name || n}\n \t\t\t\t\t\tvalue={value}\n \t\t\t\t\t\twrapper={{ dataset: { \"sb-checkbox-group\": \"checkbox-input\" } }}\n"
+				},
+				{
+					"date": 1688940959576,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -108,9 +108,9 @@\n \t\t\t\t\t\tchecked={selected?.includes(value)}\n \t\t\t\t\t\t{form}\n \t\t\t\t\t\tgroupLabelId={legendId}\n \t\t\t\t\t\tname={name || n}\n-\t\t\t\t\t\tvalue={value}\n+\t\t\t\t\t\t{value}\n \t\t\t\t\t\twrapper={{ dataset: { \"sb-checkbox-group\": \"checkbox-input\" } }}\n \t\t\t\t\t>\n \t\t\t\t\t\t<Fragment set:html={label} />\n \t\t\t\t\t</CheckboxInput>\n"
+				},
+				{
+					"date": 1688940976337,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n \tdata-sb-checkbox-group\n \t{...req}\n \t{form}\n \t{id}\n-\tname={name}\n+\t{name}\n >\n \t<legend\n \t\t{...legendAttrs}\n \t\tclass:list={createClassList(\"sb-checkbox-group-legend\", legendClassList)}\n"
+				},
+				{
+					"date": 1688946120398,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const hlp = message || (await Astro.slots.render(\"help\"));\n+const hlp = message || (await Astro.slots.render(\"message\"));\n const helpId = `${id}_help`;\n const lbl = label || (await Astro.slots.render(\"default\"));\n const legendId = `${id}_legend`;\n const req = required ? { \"data-sb-required\": \"\" } : {};\n"
+				}
+			],
+			"date": 1688429922974,
+			"name": "Commit-0",
+			"content": "---\nimport type { CheckboxGroup as Props } from \"../../../../types\";\nimport generateShortId from \"../../../utilities/generateShortId\";\nimport mapDataset from \"../../../utilities/mapDataset\";\nimport Checkbox from \"../Checkbox/index.astro\";\n\nconst {\n\t[\"aria-live\"]: live = \"assertive\",\n\tcssClasses = [],\n\tdataset,\n\tform,\n\thelp,\n\thelpAttributes = {},\n\tid = generateShortId(),\n\tlabel,\n\tlabelAttributes = {},\n\tname,\n\toptions,\n\trequired,\n\tselected = [],\n\t...attrs\n} = Astro.props;\n\nconst css = [\"sb-checkbox-group\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\nconst hlp = help || (await Astro.slots.render(\"help\"));\nconst helpId = `${id}_help`;\nconst legend = label || (await Astro.slots.render(\"default\"));\nconst legendId = `${id}_legend`;\nconst req = required ? { dataset: { required } } : {};\nconst opt = required ? {} : { \"data-sb-optional\": \"\" };\n---\n\n<fieldset\n\t{...attrs}\n\tclass={css}\n\t{...data}\n\tform={form}\n\tid={id}\n\tname={name}\n\t{...req}\n>\n\t<legend\n\t\t{...labelAttributes}\n\t\taria-live={live}\n\t\tclass={css}\n\t\t{...data}\n\t\tid={legendId}\n\t\t{...opt}\n\t>\n\t\t<span class=\"sb-label-content\" set:html={legend} />\n\t\t<span\n\t\t\t{...helpAttributes}\n\t\t\taria-live={live}\n\t\t\tclass=\"sb-help\"\n\t\t\tid={helpId}\n\t\t\trole=\"status\"\n\t\t\tset:html={hlp}\n\t\t/>\n\t</legend>\n\t<div class=\"sb-group\">\n\t\t{\n\t\t\toptions.map(({ form: f, label, name: n, value, ...attrs }) => {\n\t\t\t\treturn (\n\t\t\t\t\t<Checkbox\n\t\t\t\t\t\t{...attrs}\n\t\t\t\t\t\tchecked={selected?.includes(value)}\n\t\t\t\t\t\tform={form}\n\t\t\t\t\t\tlegendId={legendId}\n\t\t\t\t\t\tname={name}\n\t\t\t\t\t\tvalue={value}\n\t\t\t\t\t>\n\t\t\t\t\t\t{label}\n\t\t\t\t\t</Checkbox>\n\t\t\t\t);\n\t\t\t})\n\t\t}\n\t</div>\n</fieldset>\n"
+		}
+	]
+}

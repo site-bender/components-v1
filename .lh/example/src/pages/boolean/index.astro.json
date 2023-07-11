@@ -1,0 +1,18 @@
+{
+    "sourceFile": "example/src/pages/boolean/index.astro",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1689037236582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1689037236582,
+            "name": "Commit-0",
+            "content": "---\nimport Boolean from \"../../../../src/metadata/Boolean/index.astro\";\nimport CodeBlock from \"../../../../src/CodeBlock/index.astro\";\nimport copyToClipboardJs from \"../../../../src/CodeBlock/copyToClipboard.js?raw\";\nimport Layout from \"../_layouts/index.astro\";\nimport pageProperties from \"./pageProperties\";\nimport * as typeTs from \"./_assets/type.ts.md\";\nimport * as withMicrodataHtml from \"./_assets/with-microdata.html.md\";\nimport * as withMicrodataAstro from \"./_assets/with-microdata.astro.md\";\n---\n\n<Layout pageProperties={pageProperties}>\n\t<Fragment slot=\"tail\">\n\t\t<script set:html={copyToClipboardJs} />\n\t</Fragment>\n\t<main>\n\t\t<article>\n\t\t\t<h2>Boolean</h2>\n\t\t\t<ol class=\"page-contents\">\n\t\t\t\t<li><a href=\"#default\">Default example</a></li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"#dataset\">With href, id, and data- attributes example</a>\n\t\t\t\t</li>\n\t\t\t\t<li><a href=\"#linked-data\">Linked Data example</a></li>\n\t\t\t\t<li><a href=\"#microdata\">Microdata example</a></li>\n\t\t\t</ol>\n\t\t\t<p></p>\n\t\t\t<section id=\"types\">\n\t\t\t\t<h3>Types</h3>\n\t\t\t\t<CodeBlock\n\t\t\t\t\tsnippet={typeTs}\n\t\t\t\t\tproperties={{\n\t\t\t\t\t\tcodeSampleType: \"code snippet\",\n\t\t\t\t\t\tprogrammingLanguage: \"TypeScript\",\n\t\t\t\t\t}}\n\t\t\t\t/>\n\t\t\t</section>\n\t\t\t<section id=\"microdata\">\n\t\t\t\t<h3>Microdata example</h3>\n\t\t\t\t<p>\n\t\t\t\t\tWe can also include microdata according the the Schema.org <a\n\t\t\t\t\t\thref=\"https://schema.org/Book\">Book</a\n\t\t\t\t\t> object:\n\t\t\t\t</p>\n\t\t\t\t<CodeBlock\n\t\t\t\t\tsnippet={withMicrodataAstro}\n\t\t\t\t\tproperties={{\n\t\t\t\t\t\tcodeSampleType: \"code snippet\",\n\t\t\t\t\t\tprogrammingLanguage: \"AstroJS\",\n\t\t\t\t\t}}\n\t\t\t\t/>\n\t\t\t\t<p>Here is the actual component:</p>\n\t\t\t\t<div class=\"example\">\n\t\t\t\t\tThis is the\n\t\t\t\t\t<Boolean\n\t\t\t\t\t\tdataset={{\n\t\t\t\t\t\t\tlibrary: \"home\",\n\t\t\t\t\t\t}}\n\t\t\t\t\t\titemprop=\"abridged\"\n\t\t\t\t\t\tlabelFalse=\"unabridged\"\n\t\t\t\t\t\tlabelTrue=\"abridged\"\n\t\t\t\t\t\tproperties={{\n\t\t\t\t\t\t\tauthor: {\n\t\t\t\t\t\t\t\ttype: \"Person\",\n\t\t\t\t\t\t\t\tname: \"Herman Melville\",\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tbookFormat: \"Paperback\",\n\t\t\t\t\t\t\tisbn: \"9780393285000\",\n\t\t\t\t\t\t\tname: \"Moby Dick, or the Whale\",\n\t\t\t\t\t\t\tnumberOfPages: 736,\n\t\t\t\t\t\t\tpublisher: {\n\t\t\t\t\t\t\t\ttype: \"Organization\",\n\t\t\t\t\t\t\t\tname: \"W. W. Norton & Company\",\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t}}\n\t\t\t\t\t\ttype=\"Book\"\n\t\t\t\t\t\tvalue={false}\n\t\t\t\t\t>\n\t\t\t\t\t\tMoby Dick\n\t\t\t\t\t</Boolean>\n\t\t\t\t\tversion.\n\t\t\t\t</div>\n\t\t\t\t<p>And here is the HTML created:</p>\n\t\t\t\t<CodeBlock\n\t\t\t\t\tsnippet={withMicrodataHtml}\n\t\t\t\t\tproperties={{\n\t\t\t\t\t\tcodeSampleType: \"code snippet\",\n\t\t\t\t\t\tprogrammingLanguage: \"HTML\",\n\t\t\t\t\t}}\n\t\t\t\t/>\n\t\t\t</section>\n\t\t</article>\n\t</main>\n</Layout>\n"
+        }
+    ]
+}

@@ -3,12 +3,13 @@ import PullQuote from "../../../../src/PullQuote/index.astro";
 import CodeBlock from "../../../../src/CodeBlock/index.astro";
 import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
 import Layout from "../_layouts/index.astro";
+import pageProperties from "./pageProperties";
 import * as typeTs from "./_assets/type.ts.md";
 import * as defaultExampleHtml from "./_assets/default-example.html.md";
 import * as defaultExampleAstro from "./_assets/default-example.astro.md";
 ---
 
-<Layout title="PullQuote">
+<Layout pageProperties={pageProperties}>
   <Fragment slot="tail">
     <script set:html={copyToClipboardJs} />
   </Fragment>
@@ -23,7 +24,13 @@ import * as defaultExampleAstro from "./_assets/default-example.astro.md";
       </p>
       <section>
         <h3>Types</h3>
-        <CodeBlock snippet={typeTs} />
+        <CodeBlock
+          snippet={typeTs}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "TypeScript",
+          }}
+        />
         <p>
           The <code>dataset</code> prop takes a map of attribute names (minus the
           <code>data-</code>) and values and maps them to <code
@@ -34,7 +41,13 @@ import * as defaultExampleAstro from "./_assets/default-example.astro.md";
       <section>
         <h3>Default example</h3>
         <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
-        <CodeBlock snippet={defaultExampleAstro} />
+        <CodeBlock
+          snippet={defaultExampleAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
         <div class="example">
           <PullQuote author="e.e. cummings">
@@ -43,7 +56,13 @@ import * as defaultExampleAstro from "./_assets/default-example.astro.md";
           </PullQuote>
         </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={defaultExampleHtml} />
+        <CodeBlock
+          snippet={defaultExampleHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
     </article>
   </main>

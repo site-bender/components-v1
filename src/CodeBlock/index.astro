@@ -1,60 +1,97 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+import type { Dataset } from "../types";
+import createClassList from "../utilities/createClassList";
 import getLineNumberingWidth from "../utilities/getLineNumberingWidth";
+import mapDataset from "../utilities/mapDataset";
+import Microdata from "../Microdata/index.astro";
+import type { SoftwareSourceCode } from "../schema.org";
 import "./index.css";
 
 export type Frontmatter = {
-  anchor?: string;
-  aria?: string;
-  blurb?: string;
-  client?: string;
-  content?: Array<string>;
-  description?: string;
-  label?: string;
-  layout?: string;
-  page?: string;
-  publishedOn?: string;
-  rel?: string;
-  tags?: Array<string>;
-  thumbnail?: string;
-  title?: string;
+	anchor?: string;
+	aria?: string;
+	blurb?: string;
+	client?: string;
+	content?: Array<string>;
+	dataset?: Dataset;
+	description?: string;
+	label?: string;
+	layout?: string;
+	page?: string;
+	publishedOn?: string;
+	rel?: string;
+	tags?: Array<string>;
+	thumbnail?: string;
+	title?: string;
 };
 
 export type MDXInstance<T> = {
-  compiledContent: () => string;
-  file: string;
-  frontmatter: T;
-  publishedOn?: string;
-  rawContent: () => string;
-  title?: string;
-  url: string | undefined;
+	compiledContent: () => string;
+	file: string;
+	frontmatter: T;
+	publishedOn?: string;
+	rawContent: () => string;
+	title?: string;
+	url: string | undefined;
 };
 
 export type Props<T> = {
-  count?: number;
-  snippet: MDXInstance<T>;
+	caption?: string;
+	count?: number;
+	dataset?: Dataset | undefined;
+	figcaptionAttributes?: HTMLAttributes<"figcaption">;
+	index?: number;
+	isIndexed?: boolean;
+	properties?: Partial<SoftwareSourceCode>;
+	snippet: MDXInstance<T>;
 };
 
-const { count, snippet } = Astro.props;
+const {
+	caption,
+	count,
+	["class:list"]: classList = [],
+	dataset,
+	figcaptionAttributes = {},
+	index,
+	isIndexed,
+	properties,
+	snippet,
+	style: styl = "",
+	...attrs
+} = Astro.props;
 
-const cap = snippet.frontmatter.caption;
-const hasCap = Boolean(cap || Astro.slots.caption);
+const indexed = isIndexed ? { class: "indexed" } : {};
+const cap =
+	caption ||
+	snippet.frontmatter.caption ||
+	(await Astro.slots.render("caption"));
+const data = mapDataset(dataset);
 const digits = count || getLineNumberingWidth(snippet.rawContent());
+const style = `${styl} --line-number-width: ${digits * 1.5}ch;`;
+
+const meta = {
+	type: "SoftwareSourceCode",
+	...properties,
+};
 ---
 
-<figure
-  class="sb-code-block-figure"
-  style={`--line-number-width: ${digits * 1.5}ch;`}
+<Microdata
+	as="figure"
+	class:list={createClassList("sb-code-block", classList)}
+	properties={meta}
+	{...data}
+	{...indexed}
+	{style}
+	{...attrs}
 >
-  {
-    hasCap ? (
-      <figcaption>
-        {Astro.slots.caption ? (
-          <slot name="caption" />
-        ) : (
-          <Fragment set:html={cap} />
-        )}
-      </figcaption>
-    ) : null
-  }
-  <Fragment set:html={snippet.compiledContent()} />
-</figure>
+	{
+		cap && (
+			<figcaption {...figcaptionAttributes}>
+				{index ? `Figure ${index}: ` : ""}
+				<Fragment set:html={cap} />
+			</figcaption>
+		)
+	}
+	<Fragment set:html={snippet.compiledContent()} />
+</Microdata>

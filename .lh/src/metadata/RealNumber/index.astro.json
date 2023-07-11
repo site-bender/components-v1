@@ -1,0 +1,74 @@
+{
+    "sourceFile": "src/metadata/RealNumber/index.astro",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 14,
+            "patches": [
+                {
+                    "date": 1688941984819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1689050190052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,30 +1,15 @@\n ---\n-import type { Dataset } from \"../../types\";\n-import type { Float } from \"../../schema.org\";\n-import type { NumberFormatOptions } from \"../Number/types\";\n-import type { HTMLAttributes } from \"astro/types\";\n+import type { NumberProps as Props } from \"../../types\";\n import Number from \"../Number/index.astro\";\n \n-export type Props = HTMLAttributes<\"span\"> & {\n-  a?: HTMLAttributes<\"a\">;\n-  dataset?: Dataset;\n-  locale?: string;\n-  options?: NumberFormatOptions;\n-  properties?: Partial<Float>;\n-  useTabularNumerals?: boolean | undefined;\n-  value?: string | number | undefined;\n-};\n+const {\n+\ttype: _type,\n+\tvalue: val,\n+\t...attrs\n+} = Astro.props;\n \n-const { options = {}, useTabularNumerals, value: val, ...rest } = Astro.props;\n \n-const css = [\"sb-float\", ...(useTabularNumerals ? [\"tabular-nums\"] : [])];\n-\n-const attrs = {\n-  ...rest,\n-  \"class:list\": css,\n-};\n-\n const value = typeof val === \"number\" ? val : parseFloat(String(val));\n ---\n \n-<Number {options} {...attrs} type=\"float\" {value} />\n+<Number {...attrs} type=\"Float\" {value} />\n"
+                },
+                {
+                    "date": 1689050345443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n ---\n-import type { NumberProps as Props } from \"../../types\";\n+import type { RealNumberProps as Props } from \"../../types\";\n import Number from \"../Number/index.astro\";\n \n const {\n+\tdecimalPlaces,\n \ttype: _type,\n \tvalue: val,\n \t...attrs\n } = Astro.props;\n"
+                },
+                {
+                    "date": 1689050422937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n \t...attrs\n } = Astro.props;\n \n \n-const value = typeof val === \"number\" ? val : parseFloat(String(val));\n+const v = typeof val === \"number\" ? val : parseFloat(String(val));\n+const value = decimalPlaces ? Math.round(v, decimalPlaces) : v\n ---\n \n <Number {...attrs} type=\"Float\" {value} />\n"
+                },
+                {
+                    "date": 1689050508035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n \tvalue: val,\n \t...attrs\n } = Astro.props;\n \n+console.log(\"decimalPlaces\", decimalPlaces)\n \n const v = typeof val === \"number\" ? val : parseFloat(String(val));\n const value = decimalPlaces ? Math.round(v, decimalPlaces) : v\n ---\n"
+                },
+                {
+                    "date": 1689050552961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n \n console.log(\"decimalPlaces\", decimalPlaces)\n \n const v = typeof val === \"number\" ? val : parseFloat(String(val));\n-const value = decimalPlaces ? Math.round(v, decimalPlaces) : v\n+const value = decimalPlaces ? Math.round(v, parseInt(String(decimalPlaces), 10) : v\n ---\n \n <Number {...attrs} type=\"Float\" {value} />\n"
+                },
+                {
+                    "date": 1689050573418,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n \n console.log(\"decimalPlaces\", decimalPlaces)\n \n const v = typeof val === \"number\" ? val : parseFloat(String(val));\n-const value = decimalPlaces ? Math.round(v, parseInt(String(decimalPlaces), 10) : v\n+const value = decimalPlaces ? Math.round(v, parseInt(String(decimalPlaces), 10)) : v\n ---\n \n <Number {...attrs} type=\"Float\" {value} />\n"
+                },
+                {
+                    "date": 1689050594488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n } = Astro.props;\n \n console.log(\"decimalPlaces\", decimalPlaces)\n \n-const v = typeof val === \"number\" ? val : parseFloat(String(val));\n-const value = decimalPlaces ? Math.round(v, parseInt(String(decimalPlaces), 10)) : v\n+const value = typeof val === \"number\" ? val : parseFloat(String(val));\n+// const value = decimalPlaces ? Math.round(v, parseInt(String(decimalPlaces), 10)) : v\n ---\n \n <Number {...attrs} type=\"Float\" {value} />\n"
+                },
+                {
+                    "date": 1689050873612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,17 @@\n import type { RealNumberProps as Props } from \"../../types\";\n import Number from \"../Number/index.astro\";\n \n const {\n-\tdecimalPlaces,\n+\tdecimals,\n \ttype: _type,\n \tvalue: val,\n \t...attrs\n } = Astro.props;\n \n-console.log(\"decimalPlaces\", decimalPlaces)\n+const d = parseInt(String(decimals);\n \n-const value = typeof val === \"number\" ? val : parseFloat(String(val));\n-// const value = decimalPlaces ? Math.round(v, parseInt(String(decimalPlaces), 10)) : v\n+const v = typeof val === \"number\" ? val : parseFloat(String(val));\n+const value = d ? Math.round(v * Math.pow(10, d)) / Math.pow(10, d) : v\n ---\n \n <Number {...attrs} type=\"Float\" {value} />\n"
+                },
+                {
+                    "date": 1689050883595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \tvalue: val,\n \t...attrs\n } = Astro.props;\n \n-const d = parseInt(String(decimals);\n+const d = parseInt(String(decimals));\n \n const v = typeof val === \"number\" ? val : parseFloat(String(val));\n const value = d ? Math.round(v * Math.pow(10, d)) / Math.pow(10, d) : v\n ---\n"
+                },
+                {
+                    "date": 1689051009568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,11 @@\n } = Astro.props;\n \n const d = parseInt(String(decimals));\n \n+function round\n+\n const v = typeof val === \"number\" ? val : parseFloat(String(val));\n-const value = d ? Math.round(v * Math.pow(10, d)) / Math.pow(10, d) : v\n+const value = d ? v.toFixed(d): v\n ---\n \n <Number {...attrs} type=\"Float\" {value} />\n"
+                },
+                {
+                    "date": 1689051023310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,8 @@\n } = Astro.props;\n \n const d = parseInt(String(decimals));\n \n-function round\n-\n const v = typeof val === \"number\" ? val : parseFloat(String(val));\n const value = d ? v.toFixed(d): v\n ---\n \n"
+                },
+                {
+                    "date": 1689051056327,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,7 +12,9 @@\n const d = parseInt(String(decimals));\n \n const v = typeof val === \"number\" ? val : parseFloat(String(val));\n const value = d ? v.toFixed(d): v\n+\n+console.log(\"value\", value)\n ---\n \n <Number {...attrs} type=\"Float\" {value} />\n"
+                },
+                {
+                    "date": 1689051342813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,16 @@\n ---\n-import type { RealNumberProps as Props } from \"../../types\";\n+import type { NumberProps as Props } from \"../../types\";\n import Number from \"../Number/index.astro\";\n \n const {\n-\tdecimals,\n \ttype: _type,\n \tvalue: val,\n \t...attrs\n } = Astro.props;\n \n const d = parseInt(String(decimals));\n \n-const v = typeof val === \"number\" ? val : parseFloat(String(val));\n-const value = d ? v.toFixed(d): v\n-\n-console.log(\"value\", value)\n+const value = typeof val === \"number\" ? val : parseFloat(String(val));\n ---\n \n <Number {...attrs} type=\"Float\" {value} />\n"
+                },
+                {
+                    "date": 1689051367256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,8 @@\n \tvalue: val,\n \t...attrs\n } = Astro.props;\n \n-const d = parseInt(String(decimals));\n-\n const value = typeof val === \"number\" ? val : parseFloat(String(val));\n ---\n \n <Number {...attrs} type=\"Float\" {value} />\n"
+                }
+            ],
+            "date": 1688941984819,
+            "name": "Commit-0",
+            "content": "---\nimport type { Dataset } from \"../../types\";\nimport type { Float } from \"../../schema.org\";\nimport type { NumberFormatOptions } from \"../Number/types\";\nimport type { HTMLAttributes } from \"astro/types\";\nimport Number from \"../Number/index.astro\";\n\nexport type Props = HTMLAttributes<\"span\"> & {\n  a?: HTMLAttributes<\"a\">;\n  dataset?: Dataset;\n  locale?: string;\n  options?: NumberFormatOptions;\n  properties?: Partial<Float>;\n  useTabularNumerals?: boolean | undefined;\n  value?: string | number | undefined;\n};\n\nconst { options = {}, useTabularNumerals, value: val, ...rest } = Astro.props;\n\nconst css = [\"sb-float\", ...(useTabularNumerals ? [\"tabular-nums\"] : [])];\n\nconst attrs = {\n  ...rest,\n  \"class:list\": css,\n};\n\nconst value = typeof val === \"number\" ? val : parseFloat(String(val));\n---\n\n<Number {options} {...attrs} type=\"float\" {value} />\n"
+        }
+    ]
+}

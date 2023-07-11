@@ -1,0 +1,57 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { PasswordInput as Props } from "../../../types/form";
+import "./script.astro";
+
+const {
+	allowUnmasked,
+	autocomplete,
+	["class:list"]: elementClassList = [],
+	dataset: elementDataset,
+	field = "password-input",
+	form,
+	id = generateShortId(),
+	labelledBy,
+	name,
+	required,
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+
+const masking = allowUnmasked ? { "data-sb-unmaskable": "" } : {};
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	<input
+		{...attrs}
+		aria-labelledby={labelledBy}
+		{autocomplete}
+		class:list={createClassList("sb-password-input", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-input={field}
+		{...masking}
+		{form}
+		{id}
+		{name}
+		{required}
+		spellcheck="false"
+		type="password"
+		{value}
+	/>
+</span>

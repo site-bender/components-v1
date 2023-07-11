@@ -1,0 +1,54 @@
+{
+	"sourceFile": "src/form/StringField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 9,
+			"patches": [
+				{
+					"date": 1688429923129,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688430152996,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n ---\n import type { HTMLAttributes } from \"astro/types\";\n import type { StringField as Props } from \"../../../types\";\n-import TextualInput from \"../elements/TextualInput/index.astro\";\n+import TextInput from \"../elements/TextInput/index.astro\";\n import Label from \"../elements/Label/index.astro\";\n import Textarea from \"../elements/Textarea/index.astro\";\n import generateShortId from \"../../utilities/generateShortId\";\n import mapDataset from \"../../utilities/mapDataset\";\n@@ -57,8 +57,8 @@\n \t\t\t<Textarea form={form} id={id} name={name}>\n \t\t\t\t<Fragment set:html={text} />\n \t\t\t</Textarea>\n \t\t) : (\n-\t\t\t<TextualInput form={form} id={id} name={name} type=\"text\" />\n+\t\t\t<TextInput form={form} id={id} name={name} type=\"text\" />\n \t\t)\n \t}\n </div>\n"
+				},
+				{
+					"date": 1688532734989,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n console.log(name, required);\n ---\n \n <div {...attrs} class={css} {...data}>\n-\t<Label\n+\t<label\n \t\t{...labelAttributes}\n \t\thelp={help}\n \t\thelpAttributes={helpAttributes}\n \t\thelpId={helpId}\n@@ -50,9 +50,9 @@\n \t\trequired={required}\n \t>\n \t\t<Fragment set:html={fieldLabel} />\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n-\t</Label>\n+\t</label>\n \t{\n \t\tparseInt(rows as string) > 0 ? (\n \t\t\t<Textarea form={form} id={id} name={name}>\n \t\t\t\t<Fragment set:html={text} />\n"
+				},
+				{
+					"date": 1688940253590,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \t\thelpId={helpId}\n \t\tfor={id}\n \t\tform={form}\n \t\tid={labelId}\n-\t\trequired={required}\n+\t\t{required}\n \t>\n \t\t<Fragment set:html={fieldLabel} />\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t</label>\n"
+				},
+				{
+					"date": 1688940875634,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,12 +53,12 @@\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t</label>\n \t{\n \t\tparseInt(rows as string) > 0 ? (\n-\t\t\t<Textarea form={form} id={id} name={name}>\n+\t\t\t<Textarea form={form} {id} name={name}>\n \t\t\t\t<Fragment set:html={text} />\n \t\t\t</Textarea>\n \t\t) : (\n-\t\t\t<TextInput form={form} id={id} name={name} type=\"text\" />\n+\t\t\t<TextInput form={form} {id} name={name} type=\"text\" />\n \t\t)\n \t}\n </div>\n"
+				},
+				{
+					"date": 1688940940293,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,21 +44,21 @@\n \t\thelp={help}\n \t\thelpAttributes={helpAttributes}\n \t\thelpId={helpId}\n \t\tfor={id}\n-\t\tform={form}\n+\t\t{form}\n \t\tid={labelId}\n \t\t{required}\n \t>\n \t\t<Fragment set:html={fieldLabel} />\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t</label>\n \t{\n \t\tparseInt(rows as string) > 0 ? (\n-\t\t\t<Textarea form={form} {id} name={name}>\n+\t\t\t<Textarea {form} {id} name={name}>\n \t\t\t\t<Fragment set:html={text} />\n \t\t\t</Textarea>\n \t\t) : (\n-\t\t\t<TextInput form={form} {id} name={name} type=\"text\" />\n+\t\t\t<TextInput {form} {id} name={name} type=\"text\" />\n \t\t)\n \t}\n </div>\n"
+				},
+				{
+					"date": 1688940976392,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,12 +53,12 @@\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t</label>\n \t{\n \t\tparseInt(rows as string) > 0 ? (\n-\t\t\t<Textarea {form} {id} name={name}>\n+\t\t\t<Textarea {form} {id} {name}>\n \t\t\t\t<Fragment set:html={text} />\n \t\t\t</Textarea>\n \t\t) : (\n-\t\t\t<TextInput {form} {id} name={name} type=\"text\" />\n+\t\t\t<TextInput {form} {id} {name} type=\"text\" />\n \t\t)\n \t}\n </div>\n"
+				},
+				{
+					"date": 1688942389434,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n \n <div {...attrs} class={css} {...data}>\n \t<label\n \t\t{...labelAttributes}\n-\t\thelp={help}\n+\t\t{help}\n \t\thelpAttributes={helpAttributes}\n \t\thelpId={helpId}\n \t\tfor={id}\n \t\t{form}\n"
+				},
+				{
+					"date": 1688943827871,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,13 +9,13 @@\n const {\n \t[\"aria-live\"]: live = \"assertive\",\n \tautocorrect: _autocorrect,\n \tdatalist = {},\n-\tfield = \"email-field\",\n+\tfield = \"string-field\",\n \tform,\n \thelp = {},\n \tid = generateShortId(),\n-\tlabel = \"Email address\",\n+\tlabel = \"Text\",\n \tlegend = {},\n \tlist,\n \tmessage,\n \tname,\n@@ -60,9 +60,9 @@\n ---\n \n <div\n \t{...outerAttrs}\n-\tclass:list={createClassList(\"sb-field\", \"sb-email-field\", outerClassList)}\n+\tclass:list={createClassList(\"sb-field\", \"sb-string-field\", outerClassList)}\n \t{...mapDataset(outerDataset)}\n \tdata-sb-field={field}\n \t{...req}\n >\n"
+				},
+				{
+					"date": 1688943914739,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n ---\n-import EmailInput from \"../elements/EmailInput/index.astro\";\n+import Textarea from \"../elements/Textarea/index.astro\";\n+import TextInput from \"../elements/TextInput/index.astro\";\n import createClassList from \"../../utilities/createClassList\";\n import generateShortId from \"../../utilities/generateShortId\";\n import mapDataset from \"../../utilities/mapDataset\";\n import type { EmailField as Props } from \"../../types/form\";\n@@ -8,8 +9,9 @@\n \n const {\n \t[\"aria-live\"]: live = \"assertive\",\n \tautocorrect: _autocorrect,\n+\tcols,\n \tdatalist = {},\n \tfield = \"string-field\",\n \tform,\n \thelp = {},\n@@ -21,8 +23,9 @@\n \tname,\n \touter = {},\n \tplaceholder: _placeholder,\n \trequired,\n+\trows,\n \ttag = {},\n \twrapper = {},\n \t...attrs\n } = Astro.props;\n@@ -91,15 +94,24 @@\n \t\t\trole=\"status\"\n \t\t\tset:html={hlp}\n \t\t/>\n \t</label>\n-\t<EmailInput\n+\t<!-- <EmailInput\n \t\t{...attrs}\n \t\t{datalist}\n \t\t{field}\n \t\t{form}\n \t\t{id}\n \t\t{name}\n \t\t{required}\n \t\t{wrapper}\n-\t/>\n+\t/> -->\n+\t{\n+\t\tparseInt(rows as string) > 0 ? (\n+\t\t\t<Textarea {form} {id} {name}>\n+\t\t\t\t<Fragment set:html={text} />\n+\t\t\t</Textarea>\n+\t\t) : (\n+\t\t\t<TextInput {form} {id} {name} type=\"text\" />\n+\t\t)\n+\t}\n </div>\n"
+				}
+			],
+			"date": 1688429923129,
+			"name": "Commit-0",
+			"content": "---\nimport type { HTMLAttributes } from \"astro/types\";\nimport type { StringField as Props } from \"../../../types\";\nimport TextualInput from \"../elements/TextualInput/index.astro\";\nimport Label from \"../elements/Label/index.astro\";\nimport Textarea from \"../elements/Textarea/index.astro\";\nimport generateShortId from \"../../utilities/generateShortId\";\nimport mapDataset from \"../../utilities/mapDataset\";\n\nconst {\n\tcssClasses = [],\n\tdataset,\n\telementAttributes = {},\n\tform,\n\thelp,\n\thelpAttributes = {},\n\tid = generateShortId(),\n\tlabel,\n\tlabelAttributes = {},\n\tname,\n\trequired = false,\n\tvalue,\n\t...attrs\n} = Astro.props;\n\nconst css = [\"sb-field\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\nconst helpId = `${id}_help`;\nconst labelId = `${id}_label`;\nconst fieldLabel = label || Astro.slots.render(\"label\");\nconst fieldHelp = help || Astro.slots.render(\"help\");\nconst { rows } = elementAttributes as HTMLAttributes<\"textarea\">;\nconst text =\n\t(Array.isArray(value) && value.join(\"\\n\")) ||\n\tvalue ||\n\tAstro.slots.render(\"default\");\n\nconsole.log(name, required);\n---\n\n<div {...attrs} class={css} {...data}>\n\t<Label\n\t\t{...labelAttributes}\n\t\thelp={help}\n\t\thelpAttributes={helpAttributes}\n\t\thelpId={helpId}\n\t\tfor={id}\n\t\tform={form}\n\t\tid={labelId}\n\t\trequired={required}\n\t>\n\t\t<Fragment set:html={fieldLabel} />\n\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n\t</Label>\n\t{\n\t\tparseInt(rows as string) > 0 ? (\n\t\t\t<Textarea form={form} id={id} name={name}>\n\t\t\t\t<Fragment set:html={text} />\n\t\t\t</Textarea>\n\t\t) : (\n\t\t\t<TextualInput form={form} id={id} name={name} type=\"text\" />\n\t\t)\n\t}\n</div>\n"
+		}
+	]
+}

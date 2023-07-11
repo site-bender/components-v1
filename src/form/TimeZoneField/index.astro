@@ -1,80 +1,116 @@
 ---
-import { TIME_ZONE } from "../../constants";
-import FieldWrapper from "../FieldWrapper/index.astro";
+import TimeZoneSelect from "../elements/TimeZoneSelect/index.astro";
+import createClassList from "../../utilities/createClassList";
 import generateShortId from "../../utilities/generateShortId";
 import mapDataset from "../../utilities/mapDataset";
-import TimeZone from "../../metadata/TimeZone/index.astro";
-import toTimeZoneString from "../../utilities/toTimeZoneString";
-import type { Dataset, Messages } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-import type { Temporal } from "@js-temporal/polyfill";
-
-export type Props = Omit<HTMLAttributes<"select">, "slot" | "value"> & {
-  dataset?: Dataset;
-  help?: string;
-  label: string;
-  messages?: Messages;
-  name: string;
-  readonly?: boolean;
-  value?: string | Temporal.TimeZone;
-};
+import type { BaseAttributes } from "../../types/html";
+import type { TimeZoneField as Props } from "../../types/form";
 
 const {
-  dataset,
-  help,
-  id = `_${generateShortId()}`,
-  label,
-  messages,
-  readonly,
-  value: rawValue,
-  ...attrs
+	["aria-live"]: live = "assertive",
+	autocomplete,
+	autocorrect: _autocorrect,
+	countries,
+	field = "time-zone-field",
+	form,
+	help = {},
+	id = generateShortId(),
+	includeNull,
+	label = "Time zone",
+	legend = {},
+	message,
+	name,
+	outer = {},
+	required,
+	tag = {},
+	type: _type,
+	useList,
+	value,
+	wrapper = {},
+	...attrs
 } = Astro.props;
 
-const labelId = `${id}-label`;
-const helpId = `${id}-help`;
-const data = mapDataset(dataset);
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
 
-const value =
-  rawValue && typeof rawValue === "string"
-    ? rawValue
-    : toTimeZoneString(rawValue);
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const labelId = `${id}_label`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
 ---
 
-<FieldWrapper
-  fieldType="sb-time-zone"
-  {...help ? { help } : {}}
-  helpId={helpId}
-  id={id as string}
-  label={label}
-  labelId={labelId}
-  {...messages ? { messages } : {}}
-  name={attrs.name}
-  readonly={readonly}
-  {...attrs.required ? { required: true } : {}}
+<div
+	{...outerAttrs}
+	class:list={createClassList(
+		"sb-field",
+		"sb-plain-date-field",
+		outerClassList
+	)}
+	{...mapDataset(outerDataset)}
+	data-sb-field={field}
+	{...req}
 >
-  <Fragment slot="element">
-    {
-      readonly ? (
-        <div class="readonly sb-time-zone-readonly">
-          <TimeZone {...attrs} value={value as string} />
-        </div>
-      ) : (
-        <select
-          aria-labelledBy={`${labelId} ${helpId}`}
-          class="sb-time-zone-select"
-          {...data}
-          id={id as string}
-          {...attrs}
-        >
-          {Object.keys(TIME_ZONE)
-            .sort()
-            .map((key) => (
-              <option selected={value === key} value={key}>
-                {key}
-              </option>
-            ))}
-        </select>
-      )
-    }
-  </Fragment>
-</FieldWrapper>
+	<label
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={labelId}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</label>
+	<TimeZoneSelect
+		{...attrs}
+		{autocomplete}
+		{countries}
+		{form}
+		{id}
+		{includeNull}
+		{label}
+		{name}
+		{required}
+		selected={value}
+		{useList}
+		{wrapper}
+	/>
+</div>

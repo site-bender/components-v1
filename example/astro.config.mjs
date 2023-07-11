@@ -13,4 +13,11 @@ export default defineConfig({
 		},
 	},
 	site: "https://craft-code.dev/",
+	vite: {
+		server: {
+			fs: {
+				allow: [".."],
+			},
+		},
+	},
 })

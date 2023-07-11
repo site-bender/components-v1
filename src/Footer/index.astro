@@ -1,15 +1,22 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import type { Dataset } from "../types";
+import createClassList from "../utilities/createClassList";
+import mapDataset from "../utilities/mapDataset";
 import "./index.css";
 
 export type Props = HTMLAttributes<"footer"> & {
-  cssClasses?: Array<string>;
+	dataset?: Dataset | undefined;
 };
 
-const { cssClasses = [], ...attrs } = Astro.props;
-const css = ["sb-footer", ...cssClasses].join(" ");
+const { ["class:list"]: classList = [], dataset, ...attrs } = Astro.props;
+const data = mapDataset(dataset);
 ---
 
-<footer class={css} {...attrs}>
-  <slot />
+<footer
+	class:list={createClassList("sb-footer", classList)}
+	{...data}
+	{...attrs}
+>
+	<slot />
 </footer>

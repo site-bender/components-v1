@@ -1,18 +1,64 @@
 ---
-import { Temporal } from "@js-temporal/polyfill";
+import { Intl, Temporal } from "@js-temporal/polyfill";
+import createClassList from "../../utilities/createClassList";
+import mapDataset from "../../utilities/mapDataset";
+import Microdata from "../../Microdata/index.astro";
+import type { InstantProps as Props } from "../../types";
 
-export type Props = {
-	value: string | Temporal.Instant | Temporal.ZonedDateTime;
+const {
+	["class:list"]: classList = [],
+	dataset,
+	instant,
+	itemprop,
+	locale,
+	microdata = {},
+	options = {},
+	properties,
+	type,
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: microdataClassList = [],
+	dataset: microdataDataset,
+	...microdataAttrs
+} = microdata as BaseAttributes;
+
+const value =
+	instant instanceof Temporal.ZonedDateTime
+		? instant.toInstant()
+		: typeof instant === "string"
+		? Temporal.Instant.from(instant)
+		: instant;
+
+const label = new Intl.DateTimeFormat(locale, options).format(value);
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const meta = {
+	type,
+	...(itemprop ? { [itemprop]: value.toString() } : {}),
+	...properties,
 };
-
-const { value } = Astro.props;
-
-const instant =
-	value instanceof Temporal.ZonedDateTime
-		? value.toInstant()
-		: typeof value === "string"
-		? Temporal.Instant.from(value)
-		: value;
 ---
 
-<time class="sb-instant" datetime={instant.toJSON()}>{instant.toJSON()}</time>
+{
+	useMicrodata && type ? (
+		<Microdata
+			as="span"
+			{...microdataAttrs}
+			class:list={createClassList("sb-instant-metadata", microdataClassList)}
+			{...mapDataset(microdataDataset)}
+			data-sb-instant="microdata"
+			properties={meta}
+		/>
+	) : null
+}
+<time
+	{...attrs}
+	class:list={createClassList("sb-instant", classList)}
+	{...mapDataset(dataset)}
+	data-sb-instant
+	datetime={value.toString()}
+>
+	{label}
+</time>

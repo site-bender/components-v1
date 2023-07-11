@@ -1,0 +1,50 @@
+{
+	"sourceFile": "src/form/elements/RadioGroup/RadioInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 8,
+			"patches": [
+				{
+					"date": 1688610586978,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688610732074,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n ---\n+import createClassList from \"../../../../utilities/createClassList\";\n import generateShortId from \"../../../../utilities/generateShortId\";\n import mapDataset from \"../../../../utilities/mapDataset\";\n import type { BaseAttributes } from \"../../../../types/html\";\n import type { RadioInput as Props } from \"../../../../types/form\";\n"
+				},
+				{
+					"date": 1688610745508,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n \tdata-sb-wrapper={field}\n \tid={labelId}\n >\n \t<input\n-\t\t{...elementAttrs}\n+\t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n \t\tchecked={checked}\n \t\tclass:list={createClassList(\"sb-radio-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n"
+				},
+				{
+					"date": 1688940253530,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n \t\tdata-sb-input={field}\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n-\t\trequired={required}\n+\t\t{required}\n \t\ttype=\"radio\"\n \t\tvalue={value}\n \t/>\n \t<Fragment set:html={lbl} />\n"
+				},
+				{
+					"date": 1688940875606,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n \t\tclass:list={createClassList(\"sb-radio-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tform={form}\n-\t\tid={id}\n+\t\t{id}\n \t\tname={name}\n \t\t{required}\n \t\ttype=\"radio\"\n \t\tvalue={value}\n"
+				},
+				{
+					"date": 1688940940134,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \t\tchecked={checked}\n \t\tclass:list={createClassList(\"sb-radio-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n-\t\tform={form}\n+\t\t{form}\n \t\t{id}\n \t\tname={name}\n \t\t{required}\n \t\ttype=\"radio\"\n"
+				},
+				{
+					"date": 1688940959718,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,8 @@\n \t\t{id}\n \t\tname={name}\n \t\t{required}\n \t\ttype=\"radio\"\n-\t\tvalue={value}\n+\t\t{value}\n \t/>\n \t<Fragment set:html={lbl} />\n </label>\n"
+				},
+				{
+					"date": 1688940976485,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{form}\n \t\t{id}\n-\t\tname={name}\n+\t\t{name}\n \t\t{required}\n \t\ttype=\"radio\"\n \t\t{value}\n \t/>\n"
+				},
+				{
+					"date": 1688942183665,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n >\n \t<input\n \t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n-\t\tchecked={checked}\n+\t\t{checked}\n \t\tclass:list={createClassList(\"sb-radio-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{form}\n"
+				}
+			],
+			"date": 1688610586977,
+			"name": "Commit-0",
+			"content": "---\nimport generateShortId from \"../../../../utilities/generateShortId\";\nimport mapDataset from \"../../../../utilities/mapDataset\";\nimport type { BaseAttributes } from \"../../../../types/html\";\nimport type { RadioInput as Props } from \"../../../../types/form\";\n\nconst {\n\tchecked,\n\t[\"class:list\"]: elementClassList = [],\n\tdataset: elementDataset,\n\tfield = \"radio-input\",\n\tform,\n\tgroupLabelId,\n\tid = generateShortId(),\n\tlabel,\n\tname,\n\trequired,\n\ttype: _type,\n\tvalue,\n\twrapper = {},\n\t...attrs\n} = Astro.props;\n\nconst {\n\t[\"class:list\"]: wrapperClassList = [],\n\tdataset: wrapperDataset,\n\t...wrapperAttrs\n} = wrapper as BaseAttributes;\n\nconst labelId = `${id}_label`;\nconst labelledBy = `${groupLabelId} ${labelId}`;\nconst lbl = (await Astro.slots.render(\"default\")) || label;\n---\n\n<label\n\t{...wrapperAttrs}\n\tclass:list={createClassList(\"sb-radio-label\", wrapperClassList)}\n\t{...mapDataset(wrapperDataset)}\n\tdata-sb-wrapper={field}\n\tid={labelId}\n>\n\t<input\n\t\t{...elementAttrs}\n\t\taria-labelledby={labelledBy}\n\t\tchecked={checked}\n\t\tclass:list={createClassList(\"sb-radio-input\", elementClassList)}\n\t\t{...mapDataset(elementDataset)}\n\t\tdata-sb-input={field}\n\t\tform={form}\n\t\tid={id}\n\t\tname={name}\n\t\trequired={required}\n\t\ttype=\"radio\"\n\t\tvalue={value}\n\t/>\n\t<Fragment set:html={lbl} />\n</label>\n"
+		}
+	]
+}

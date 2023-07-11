@@ -1,4 +1,27 @@
 ---
+import type { SubsetField as Props } from "../../types/form";
+import CheckboxGroup from "../elements/CheckboxGroup/index.astro";
+import generateShortId from "../../utilities/generateShortId";
+
+const {
+	form,
+	help: hlp = {},
+	id = generateShortId(),
+	label: lbl,
+	labelAttrs = {},
+	legend = {},
+	message,
+	name,
+	options = [],
+	selected,
+	...attrs
+} = Astro.props;
+
+const label = Astro.slots.render("default") || lbl;
+const help = Astro.slots.render("message") || hlp;
 ---
 
-<p>SubsetField</p>
+<CheckboxGroup {...attrs} {form} {message} {id} {name} {options} {selected}>
+	<Fragment {...legend} set:html={label} />
+	<Fragment {...help} slot="message" set:html={help} />
+</CheckboxGroup>

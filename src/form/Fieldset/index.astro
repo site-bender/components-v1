@@ -1,13 +1,6 @@
 ---
-export type Props = {
-  legend?: string;
-};
-
-const { legend } = Astro.props;
-import "./index.css";
 ---
 
-<fieldset class="sb-fieldset">
-  {legend ? <legend>{legend}</legend> : null}
-  <slot />
+<fieldset>
+	<legend>Fieldset</legend>
 </fieldset>

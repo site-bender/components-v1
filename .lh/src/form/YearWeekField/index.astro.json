@@ -1,0 +1,166 @@
+{
+	"sourceFile": "src/form/YearWeekField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 37,
+			"patches": [
+				{
+					"date": 1688278884064,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688278899807,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n \t\t\t\t\t\t.fill(0)\n \t\t\t\t\t\t.map((_, i) => {\n \t\t\t\t\t\t\tconst w = String(i).padStart(2, \" \")\n \n-\t\t\t\t\t\t\treturn <option value={`W${w}`}>{`W${w}`}</option>)\n+\t\t\t\t\t\t\treturn <option value={`W${w}`}>{`W${w}`}</option>\n \t\t\t\t\t\t}\n \t\t\t\t}\n \t\t\t</select>\n \t\t</label>\n"
+				},
+				{
+					"date": 1688278914885,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,15 +35,13 @@\n \t\t\t\trequired\n \t\t\t>\n \t\t\t\t{includeBlank ? <option /> : null}\n \t\t\t\t{\n-\t\t\t\t\tnew Array(53)\n-\t\t\t\t\t\t.fill(0)\n-\t\t\t\t\t\t.map((_, i) => {\n-\t\t\t\t\t\t\tconst w = String(i).padStart(2, \" \")\n+\t\t\t\t\tnew Array(53).fill(0).map((_, i) => {\n+\t\t\t\t\t\tconst w = String(i).padStart(2, \" \");\n \n-\t\t\t\t\t\t\treturn <option value={`W${w}`}>{`W${w}`}</option>\n-\t\t\t\t\t\t}\n+\t\t\t\t\t\treturn <option value={`W${w}`}>{`W${w}`}</option>;\n+\t\t\t\t\t})\n \t\t\t\t}\n \t\t\t</select>\n \t\t</label>\n \t</div>\n"
+				},
+				{
+					"date": 1688278931482,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \t\t\t>\n \t\t\t\t{includeBlank ? <option /> : null}\n \t\t\t\t{\n \t\t\t\t\tnew Array(53).fill(0).map((_, i) => {\n-\t\t\t\t\t\tconst w = String(i).padStart(2, \" \");\n+\t\t\t\t\t\tconst w = String(i + 1).padStart(2, \" \");\n \n \t\t\t\t\t\treturn <option value={`W${w}`}>{`W${w}`}</option>;\n \t\t\t\t\t})\n \t\t\t\t}\n"
+				},
+				{
+					"date": 1688278957666,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \t\t\t>\n \t\t\t\t{includeBlank ? <option /> : null}\n \t\t\t\t{\n \t\t\t\t\tnew Array(53).fill(0).map((_, i) => {\n-\t\t\t\t\t\tconst w = String(i + 1).padStart(2, \" \");\n+\t\t\t\t\t\tconst w = String(i + 1).padStart(2, \"0\");\n \n \t\t\t\t\t\treturn <option value={`W${w}`}>{`W${w}`}</option>;\n \t\t\t\t\t})\n \t\t\t\t}\n"
+				},
+				{
+					"date": 1688336376793,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,12 @@\n // Most years have 52 weeks, but if the year starts on a Thursday\n // or is a leap year that starts on a Wednesday, that particular year\n // will have 53 numbered weeks.\n \n-const { includeBlank } = Astro.props;\n+const { form, includeBlank } = Astro.props;\n ---\n \n-<fieldset data-sb-year-week class=\"field\" form=\"validity-tester\" id=\"yearWeek\">\n+<fieldset data-sb-year-week class=\"field\" form={form} id=\"yearWeek\">\n \t<legend id=\"yearWeek-label\">\n \t\t<span>YearWeek</span>\n \t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n \t</legend>\n@@ -15,9 +15,9 @@\n \t\t<label for=\"yearWeek-year\"\n \t\t\t>Year:\n \t\t\t<input\n \t\t\t\tdata-sb-year-week=\"year\"\n-\t\t\t\tform=\"validity-tester\"\n+\t\t\t\tform={form}\n \t\t\t\tid=\"yearWeek-year\"\n \t\t\t\tname=\"yearWeek:year\"\n \t\t\t\tpattern=\"[12][0-9]{3}\"\n \t\t\t\trequired\n@@ -28,9 +28,9 @@\n \t\t<label for=\"yearWeek-week\"\n \t\t\t>Week:\n \t\t\t<select\n \t\t\t\tdata-sb-year-week=\"week\"\n-\t\t\t\tform=\"validity-tester\"\n+\t\t\t\tform={form}\n \t\t\t\tid=\"yearWeek-week\"\n \t\t\t\tname=\"yearWeek:week\"\n \t\t\t\trequired\n \t\t\t>\n"
+				},
+				{
+					"date": 1688337406665,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,13 @@\n // Most years have 52 weeks, but if the year starts on a Thursday\n // or is a leap year that starts on a Wednesday, that particular year\n // will have 53 numbered weeks.\n \n-const { form, includeBlank } = Astro.props;\n+const {\n+\tform,\n+\tincludeBlank,\n+\toptions = new Array(40).fill(0).map((_, i) => 2000 + i),\n+} = Astro.props;\n ---\n \n <fieldset data-sb-year-week class=\"field\" form={form} id=\"yearWeek\">\n \t<legend id=\"yearWeek-label\">\n@@ -23,8 +27,17 @@\n \t\t\t\trequired\n \t\t\t\tsize=\"5\"\n \t\t\t\ttype=\"text\"\n \t\t\t/>\n+\t\t\t{\n+\t\t\t\toptions ? (\n+\t\t\t\t\t<datalist form={form} id=\"yearWeek-year-datalist\">\n+\t\t\t\t\t\t{options.map((opt) => (\n+\t\t\t\t\t\t\t<option>{opt}</option>\n+\t\t\t\t\t\t))}\n+\t\t\t\t\t</datalist>\n+\t\t\t\t) : null\n+\t\t\t}\n \t\t</label>\n \t\t<label for=\"yearWeek-week\"\n \t\t\t>Week:\n \t\t\t<select\n"
+				},
+				{
+					"date": 1688337462418,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n \t\t\t<input\n \t\t\t\tdata-sb-year-week=\"year\"\n \t\t\t\tform={form}\n \t\t\t\tid=\"yearWeek-year\"\n+\t\t\t\t{...options ? { list: \"yearWeek-year-datalist\" } : {}}\n \t\t\t\tname=\"yearWeek:year\"\n \t\t\t\tpattern=\"[12][0-9]{3}\"\n \t\t\t\trequired\n \t\t\t\tsize=\"5\"\n"
+				},
+				{
+					"date": 1688337511778,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n \tform,\n \tincludeBlank,\n \toptions = new Array(40).fill(0).map((_, i) => 2000 + i),\n } = Astro.props;\n+\n+const list = options ? { list: \"yearWeek-year-datalist\" } : {};\n ---\n \n <fieldset data-sb-year-week class=\"field\" form={form} id=\"yearWeek\">\n \t<legend id=\"yearWeek-label\">\n@@ -21,9 +23,9 @@\n \t\t\t<input\n \t\t\t\tdata-sb-year-week=\"year\"\n \t\t\t\tform={form}\n \t\t\t\tid=\"yearWeek-year\"\n-\t\t\t\t{...options ? { list: \"yearWeek-year-datalist\" } : {}}\n+\t\t\t\t{...list}\n \t\t\t\tname=\"yearWeek:year\"\n \t\t\t\tpattern=\"[12][0-9]{3}\"\n \t\t\t\trequired\n \t\t\t\tsize=\"5\"\n"
+				},
+				{
+					"date": 1688337548822,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \tincludeBlank,\n \toptions = new Array(40).fill(0).map((_, i) => 2000 + i),\n } = Astro.props;\n \n-const list = options ? { list: \"yearWeek-year-datalist\" } : {};\n+const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n ---\n \n <fieldset data-sb-year-week class=\"field\" form={form} id=\"yearWeek\">\n \t<legend id=\"yearWeek-label\">\n"
+				},
+				{
+					"date": 1688337576909,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n \toptions = new Array(40).fill(0).map((_, i) => 2000 + i),\n } = Astro.props;\n \n const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n+console.log(\"list\", list);\n ---\n \n <fieldset data-sb-year-week class=\"field\" form={form} id=\"yearWeek\">\n \t<legend id=\"yearWeek-label\">\n"
+				},
+				{
+					"date": 1688337623891,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \t\t\t\tsize=\"5\"\n \t\t\t\ttype=\"text\"\n \t\t\t/>\n \t\t\t{\n-\t\t\t\toptions ? (\n+\t\t\t\toptions.length ? (\n \t\t\t\t\t<datalist form={form} id=\"yearWeek-year-datalist\">\n \t\t\t\t\t\t{options.map((opt) => (\n \t\t\t\t\t\t\t<option>{opt}</option>\n \t\t\t\t\t\t))}\n"
+				},
+				{
+					"date": 1688337667353,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \toptions = new Array(40).fill(0).map((_, i) => 2000 + i),\n } = Astro.props;\n \n const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n-console.log(\"list\", list);\n+console.log(\"list\", list, options);\n ---\n \n <fieldset data-sb-year-week class=\"field\" form={form} id=\"yearWeek\">\n \t<legend id=\"yearWeek-label\">\n"
+				},
+				{
+					"date": 1688337712412,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n \toptions = new Array(40).fill(0).map((_, i) => 2000 + i),\n } = Astro.props;\n \n const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n-console.log(\"list\", list, options);\n ---\n \n <fieldset data-sb-year-week class=\"field\" form={form} id=\"yearWeek\">\n \t<legend id=\"yearWeek-label\">\n"
+				},
+				{
+					"date": 1688337734891,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n const {\n \tform,\n \tincludeBlank,\n-\toptions = new Array(40).fill(0).map((_, i) => 2000 + i),\n+\toptions = new Array(20).fill(0).map((_, i) => 2013 + i),\n } = Astro.props;\n \n const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n ---\n"
+				},
+				{
+					"date": 1688337763048,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,9 @@\n // Most years have 52 weeks, but if the year starts on a Thursday\n // or is a leap year that starts on a Wednesday, that particular year\n // will have 53 numbered weeks.\n \n-const {\n-\tform,\n-\tincludeBlank,\n-\toptions = new Array(20).fill(0).map((_, i) => 2013 + i),\n-} = Astro.props;\n+const { form, includeBlank, options = [] } = Astro.props;\n \n const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n ---\n \n"
+				},
+				{
+					"date": 1688338688328,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t\t\t\t{...list}\n \t\t\t\tname=\"yearWeek:year\"\n \t\t\t\tpattern=\"[12][0-9]{3}\"\n \t\t\t\trequired\n-\t\t\t\tsize=\"5\"\n+\t\t\t\tsize=\"7\"\n \t\t\t\ttype=\"text\"\n \t\t\t/>\n \t\t\t{\n \t\t\t\toptions.length ? (\n"
+				},
+				{
+					"date": 1688338702075,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t\t\t\t{...list}\n \t\t\t\tname=\"yearWeek:year\"\n \t\t\t\tpattern=\"[12][0-9]{3}\"\n \t\t\t\trequired\n-\t\t\t\tsize=\"7\"\n+\t\t\t\tsize=\"6\"\n \t\t\t\ttype=\"text\"\n \t\t\t/>\n \t\t\t{\n \t\t\t\toptions.length ? (\n"
+				},
+				{
+					"date": 1688338728121,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t\t\t\t{...list}\n \t\t\t\tname=\"yearWeek:year\"\n \t\t\t\tpattern=\"[12][0-9]{3}\"\n \t\t\t\trequired\n-\t\t\t\tsize=\"6\"\n+\t\t\t\tsize=\"7\"\n \t\t\t\ttype=\"text\"\n \t\t\t/>\n \t\t\t{\n \t\t\t\toptions.length ? (\n"
+				},
+				{
+					"date": 1688339160895,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n ---\n // Most years have 52 weeks, but if the year starts on a Thursday\n // or is a leap year that starts on a Wednesday, that particular year\n // will have 53 numbered weeks.\n+import Year from \"../elements/Year/index.astro\";\n \n const { form, includeBlank, options = [] } = Astro.props;\n \n const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n@@ -15,28 +16,15 @@\n \t</legend>\n \t<div class=\"group\">\n \t\t<label for=\"yearWeek-year\"\n \t\t\t>Year:\n-\t\t\t<input\n+\t\t\t<Year\n \t\t\t\tdata-sb-year-week=\"year\"\n \t\t\t\tform={form}\n \t\t\t\tid=\"yearWeek-year\"\n-\t\t\t\t{...list}\n \t\t\t\tname=\"yearWeek:year\"\n-\t\t\t\tpattern=\"[12][0-9]{3}\"\n-\t\t\t\trequired\n-\t\t\t\tsize=\"7\"\n-\t\t\t\ttype=\"text\"\n+\t\t\t\toptions={options}\n \t\t\t/>\n-\t\t\t{\n-\t\t\t\toptions.length ? (\n-\t\t\t\t\t<datalist form={form} id=\"yearWeek-year-datalist\">\n-\t\t\t\t\t\t{options.map((opt) => (\n-\t\t\t\t\t\t\t<option>{opt}</option>\n-\t\t\t\t\t\t))}\n-\t\t\t\t\t</datalist>\n-\t\t\t\t) : null\n-\t\t\t}\n \t\t</label>\n \t\t<label for=\"yearWeek-week\"\n \t\t\t>Week:\n \t\t\t<select\n"
+				},
+				{
+					"date": 1688343700561,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n \t</legend>\n \t<div class=\"group\">\n \t\t<label for=\"yearWeek-year\"\n-\t\t\t>Year:\n+\t\t\t>Year\n \t\t\t<Year\n \t\t\t\tdata-sb-year-week=\"year\"\n \t\t\t\tform={form}\n \t\t\t\tid=\"yearWeek-year\"\n"
+				},
+				{
+					"date": 1688343927220,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n \t\t\t\toptions={options}\n \t\t\t/>\n \t\t</label>\n \t\t<label for=\"yearWeek-week\"\n-\t\t\t>Week:\n+\t\t\t>Week\n \t\t\t<select\n \t\t\t\tdata-sb-year-week=\"week\"\n \t\t\t\tform={form}\n \t\t\t\tid=\"yearWeek-week\"\n"
+				},
+				{
+					"date": 1688431139588,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \t<legend id=\"yearWeek-label\">\n \t\t<span>YearWeek</span>\n \t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n \t</legend>\n-\t<div class=\"group\">\n+\t<div class:list={[\"sb-group\"]}>\n \t\t<label for=\"yearWeek-year\"\n \t\t\t>Year\n \t\t\t<Year\n \t\t\t\tdata-sb-year-week=\"year\"\n"
+				},
+				{
+					"date": 1688447285162,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,14 @@\n \n const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n ---\n \n-<fieldset data-sb-year-week class=\"field\" form={form} id=\"yearWeek\">\n+<fieldset\n+\tdata-sb-year-week\n+\tclass:list={[\"sb-form-field\"]}\n+\tform={form}\n+\tid=\"yearWeek\"\n+>\n \t<legend id=\"yearWeek-label\">\n \t\t<span>YearWeek</span>\n \t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n \t</legend>\n"
+				},
+				{
+					"date": 1688621733640,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n ---\n // Most years have 52 weeks, but if the year starts on a Thursday\n // or is a leap year that starts on a Wednesday, that particular year\n // will have 53 numbered weeks.\n-import Year from \"../elements/Year/index.astro\";\n+import Year from \"../elements/__Year/index.astro\";\n \n const { form, includeBlank, options = [] } = Astro.props;\n \n const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n"
+				},
+				{
+					"date": 1688880239924,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,53 +1,168 @@\n ---\n // Most years have 52 weeks, but if the year starts on a Thursday\n // or is a leap year that starts on a Wednesday, that particular year\n // will have 53 numbered weeks.\n-import Year from \"../elements/__Year/index.astro\";\n+---\n+import createClassList from \"../../utilities/createClassList\";\n+import generateShortId from \"../../utilities/generateShortId\";\n+import mapDataset from \"../../utilities/mapDataset\";\n+import MonthSelect from \"../elements/MonthSelect/index.astro\";\n+import YearInput from \"../elements/YearInput/index.astro\";\n+import type { BaseAttributes } from \"../../../types/html\";\n+import type { PlainYearMonth as Props } from \"../../../types/form\";\n \n-const { form, includeBlank, options = [] } = Astro.props;\n+const {\n+\t[\"aria-live\"]: live = \"assertive\",\n+\tdisabled,\n+\tfield = \"plain-year-month-field\",\n+\tform,\n+\tgroup = {},\n+\thelp = {},\n+\tid = generateShortId(),\n+\tlabel = \"Month and year\",\n+\tlegend = {},\n+\tmessage,\n+\tmonth = \"\",\n+\tmonthAttrs = {},\n+\tmonths,\n+\tname = \"plainYearMonth\",\n+\touter = {},\n+\trequired,\n+\ttag = {},\n+\twrapper = {},\n+\tyear = \"\",\n+\tyearAttrs = {},\n+\tyears,\n+} = Astro.props;\n \n-const list = options.length ? { list: \"yearWeek-year-datalist\" } : {};\n+const {\n+\t[\"class:list\"]: groupClassList = [],\n+\tdataset: groupDataset,\n+\t...groupAttrs\n+} = group as BaseAttributes;\n+\n+const {\n+\t[\"class:list\"]: helpClassList = [],\n+\tdataset: helpDataset,\n+\t...helpAttrs\n+} = help as BaseAttributes;\n+\n+const {\n+\t[\"class:list\"]: legendClassList = [],\n+\tdataset: legendDataset,\n+\t...legendAttrs\n+} = legend as BaseAttributes;\n+\n+const {\n+\t[\"class:list\"]: monthClassList = [],\n+\tdataset: monthDataset,\n+\t...monthAttributes\n+} = monthAttrs as BaseAttributes;\n+\n+const {\n+\t[\"class:list\"]: outerClassList = [],\n+\tdataset: outerDataset,\n+\t...outerAttrs\n+} = outer as BaseAttributes;\n+\n+const {\n+\t[\"class:list\"]: tagClassList = [],\n+\tdataset: tagDataset,\n+\t...tagAttrs\n+} = tag as BaseAttributes;\n+\n+const {\n+\t[\"class:list\"]: yearClassList = [],\n+\tdataset: yearDataset,\n+\t...yearAttributes\n+} = yearAttrs as BaseAttributes;\n+\n+const hlp = (await Astro.slots.render(\"help\")) || message;\n+const helpId = `${id}_help`;\n+const lbl = (await Astro.slots.render(\"default\")) || label;\n+const legendId = `${id}_legend`;\n+const monthId = `${id}-month`;\n+const monthName = `${name}:month`;\n+const yearId = `${id}-year`;\n+const yearName = `${name}:year`;\n+const req = required ? { \"data-sb-required\": \"\" } : {};\n+const opt = required ? {} : { \"data-sb-optional\": \"\" };\n ---\n \n <fieldset\n-\tdata-sb-year-week\n-\tclass:list={[\"sb-form-field\"]}\n+\t{...outerAttrs}\n+\tclass:list={createClassList(\n+\t\t\"sb-field\",\n+\t\t\"sb-plain-year-month-field\",\n+\t\touterClassList\n+\t)}\n+\t{...mapDataset(outerDataset)}\n+\tdata-sb-field={field}\n+\t{...req}\n+\tdisabled={disabled}\n \tform={form}\n-\tid=\"yearWeek\"\n+\tid={id}\n+\tname={name}\n >\n-\t<legend id=\"yearWeek-label\">\n-\t\t<span>YearWeek</span>\n-\t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n+\t<legend\n+\t\t{...legendAttrs}\n+\t\tclass:list={createClassList(\"sb-label\", legendClassList)}\n+\t\t{...mapDataset(legendDataset)}\n+\t\tdata-sb-field-label={field}\n+\t\tid={legendId}\n+\t>\n+\t\t<span\n+\t\t\t{...tagAttrs}\n+\t\t\tclass:list={createClassList(\"sb-label-tag\", tagClassList)}\n+\t\t\t{...mapDataset(tagDataset)}\n+\t\t\tdata-sb-field-label-tag={field}\n+\t\t\t{...opt}\n+\t\t\tset:html={lbl}\n+\t\t/>\n+\t\t<span\n+\t\t\t{...helpAttrs}\n+\t\t\taria-live={live}\n+\t\t\tclass:list={createClassList(\"sb-help\", helpClassList)}\n+\t\t\t{...mapDataset(helpDataset)}\n+\t\t\tdata-sb-field-help={field}\n+\t\t\tid={helpId}\n+\t\t\trole=\"status\"\n+\t\t\tset:html={hlp}\n+\t\t/>\n \t</legend>\n-\t<div class:list={[\"sb-group\"]}>\n-\t\t<label for=\"yearWeek-year\"\n-\t\t\t>Year\n-\t\t\t<Year\n-\t\t\t\tdata-sb-year-week=\"year\"\n+\t<div\n+\t\tclass:list={createClassList(\"sb-group\", groupClassList)}\n+\t\t{...mapDataset(groupDataset)}\n+\t\tdata-sb-field-group={field}\n+\t>\n+\t\t<label data-sb-label-time={field} for={`${id}_year`}>\n+\t\t\t<span id={`${id}_year:label`}>Year</span>\n+\t\t\t<YearInput\n+\t\t\t\t{...yearAttrs}\n+\t\t\t\tdata-sb-input-year={field}\n \t\t\t\tform={form}\n-\t\t\t\tid=\"yearWeek-year\"\n-\t\t\t\tname=\"yearWeek:year\"\n-\t\t\t\toptions={options}\n+\t\t\t\tid={`${id}_year`}\n+\t\t\t\tlabelledBy={`${legendId} ${id}_year:label`}\n+\t\t\t\tname={`${name}:year`}\n+\t\t\t\trequired={required}\n+\t\t\t\tvalue={year}\n+\t\t\t\tyears={years}\n \t\t\t/>\n \t\t</label>\n-\t\t<label for=\"yearWeek-week\"\n-\t\t\t>Week\n-\t\t\t<select\n-\t\t\t\tdata-sb-year-week=\"week\"\n+\t\t<label data-sb-label-month={field} for={`${id}_month`}>\n+\t\t\t<span id={`${id}_month:label`}>Month</span>\n+\t\t\t<MonthSelect\n+\t\t\t\t{...monthAttrs}\n+\t\t\t\tdata-sb-select-month={field}\n \t\t\t\tform={form}\n-\t\t\t\tid=\"yearWeek-week\"\n-\t\t\t\tname=\"yearWeek:week\"\n-\t\t\t\trequired\n-\t\t\t>\n-\t\t\t\t{includeBlank ? <option /> : null}\n-\t\t\t\t{\n-\t\t\t\t\tnew Array(53).fill(0).map((_, i) => {\n-\t\t\t\t\t\tconst w = String(i + 1).padStart(2, \"0\");\n-\n-\t\t\t\t\t\treturn <option value={`W${w}`}>{`W${w}`}</option>;\n-\t\t\t\t\t})\n-\t\t\t\t}\n-\t\t\t</select>\n+\t\t\t\tid={`${id}_month`}\n+\t\t\t\tlabelledBy={`${legendId} ${id}_month:label`}\n+\t\t\t\tmonths={months}\n+\t\t\t\tname={`${name}:month`}\n+\t\t\t\trequired={required}\n+\t\t\t\tvalue={month}\n+\t\t\t/>\n \t\t</label>\n \t</div>\n </fieldset>\n+\n"
+				},
+				{
+					"date": 1688880253025,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n ---\n // Most years have 52 weeks, but if the year starts on a Thursday\n // or is a leap year that starts on a Wednesday, that particular year\n // will have 53 numbered weeks.\n----\n import createClassList from \"../../utilities/createClassList\";\n import generateShortId from \"../../utilities/generateShortId\";\n import mapDataset from \"../../utilities/mapDataset\";\n import MonthSelect from \"../elements/MonthSelect/index.astro\";\n"
+				},
+				{
+					"date": 1688880268360,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \tform,\n \tgroup = {},\n \thelp = {},\n \tid = generateShortId(),\n-\tlabel = \"Month and year\",\n+\tlabel = \"Year and week\",\n \tlegend = {},\n \tmessage,\n \tmonth = \"\",\n \tmonthAttrs = {},\n"
+				},
+				{
+					"date": 1688881992246,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n // will have 53 numbered weeks.\n import createClassList from \"../../utilities/createClassList\";\n import generateShortId from \"../../utilities/generateShortId\";\n import mapDataset from \"../../utilities/mapDataset\";\n-import MonthSelect from \"../elements/MonthSelect/index.astro\";\n+import WeekSelect from \"../elements/WeekSelect/index.astro\";\n import YearInput from \"../elements/YearInput/index.astro\";\n import type { BaseAttributes } from \"../../../types/html\";\n import type { PlainYearMonth as Props } from \"../../../types/form\";\n \n@@ -149,9 +149,9 @@\n \t\t\t/>\n \t\t</label>\n \t\t<label data-sb-label-month={field} for={`${id}_month`}>\n \t\t\t<span id={`${id}_month:label`}>Month</span>\n-\t\t\t<MonthSelect\n+\t\t\t<WeekSelect\n \t\t\t\t{...monthAttrs}\n \t\t\t\tdata-sb-select-month={field}\n \t\t\t\tform={form}\n \t\t\t\tid={`${id}_month`}\n"
+				},
+				{
+					"date": 1688882606687,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -97,9 +97,9 @@\n \t)}\n \t{...mapDataset(outerDataset)}\n \tdata-sb-field={field}\n \t{...req}\n-\tdisabled={disabled}\n+\tdisabled\n \tform={form}\n \tid={id}\n \tname={name}\n >\n@@ -148,9 +148,9 @@\n \t\t\t\tyears={years}\n \t\t\t/>\n \t\t</label>\n \t\t<label data-sb-label-month={field} for={`${id}_month`}>\n-\t\t\t<span id={`${id}_month:label`}>Month</span>\n+\t\t\t<span id={`${id}_month:label`}>Week</span>\n \t\t\t<WeekSelect\n \t\t\t\t{...monthAttrs}\n \t\t\t\tdata-sb-select-month={field}\n \t\t\t\tform={form}\n@@ -163,5 +163,4 @@\n \t\t\t/>\n \t\t</label>\n \t</div>\n </fieldset>\n-\n"
+				},
+				{
+					"date": 1688882712000,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -97,9 +97,9 @@\n \t)}\n \t{...mapDataset(outerDataset)}\n \tdata-sb-field={field}\n \t{...req}\n-\tdisabled\n+\tdisabled={disabled}\n \tform={form}\n \tid={id}\n \tname={name}\n >\n"
+				},
+				{
+					"date": 1688940253585,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -142,9 +142,9 @@\n \t\t\t\tform={form}\n \t\t\t\tid={`${id}_year`}\n \t\t\t\tlabelledBy={`${legendId} ${id}_year:label`}\n \t\t\t\tname={`${name}:year`}\n-\t\t\t\trequired={required}\n+\t\t\t\t{required}\n \t\t\t\tvalue={year}\n \t\t\t\tyears={years}\n \t\t\t/>\n \t\t</label>\n@@ -157,9 +157,9 @@\n \t\t\t\tid={`${id}_month`}\n \t\t\t\tlabelledBy={`${legendId} ${id}_month:label`}\n \t\t\t\tmonths={months}\n \t\t\t\tname={`${name}:month`}\n-\t\t\t\trequired={required}\n+\t\t\t\t{required}\n \t\t\t\tvalue={month}\n \t\t\t/>\n \t\t</label>\n \t</div>\n"
+				},
+				{
+					"date": 1688940281365,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -97,9 +97,9 @@\n \t)}\n \t{...mapDataset(outerDataset)}\n \tdata-sb-field={field}\n \t{...req}\n-\tdisabled={disabled}\n+\t{disabled}\n \tform={form}\n \tid={id}\n \tname={name}\n >\n"
+				},
+				{
+					"date": 1688940875647,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,9 +99,9 @@\n \tdata-sb-field={field}\n \t{...req}\n \t{disabled}\n \tform={form}\n-\tid={id}\n+\t{id}\n \tname={name}\n >\n \t<legend\n \t\t{...legendAttrs}\n"
+				},
+				{
+					"date": 1688940940151,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -98,9 +98,9 @@\n \t{...mapDataset(outerDataset)}\n \tdata-sb-field={field}\n \t{...req}\n \t{disabled}\n-\tform={form}\n+\t{form}\n \t{id}\n \tname={name}\n >\n \t<legend\n@@ -138,9 +138,9 @@\n \t\t\t<span id={`${id}_year:label`}>Year</span>\n \t\t\t<YearInput\n \t\t\t\t{...yearAttrs}\n \t\t\t\tdata-sb-input-year={field}\n-\t\t\t\tform={form}\n+\t\t\t\t{form}\n \t\t\t\tid={`${id}_year`}\n \t\t\t\tlabelledBy={`${legendId} ${id}_year:label`}\n \t\t\t\tname={`${name}:year`}\n \t\t\t\t{required}\n@@ -152,9 +152,9 @@\n \t\t\t<span id={`${id}_month:label`}>Week</span>\n \t\t\t<WeekSelect\n \t\t\t\t{...monthAttrs}\n \t\t\t\tdata-sb-select-month={field}\n-\t\t\t\tform={form}\n+\t\t\t\t{form}\n \t\t\t\tid={`${id}_month`}\n \t\t\t\tlabelledBy={`${legendId} ${id}_month:label`}\n \t\t\t\tmonths={months}\n \t\t\t\tname={`${name}:month`}\n"
+				},
+				{
+					"date": 1688940976390,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n \t{...req}\n \t{disabled}\n \t{form}\n \t{id}\n-\tname={name}\n+\t{name}\n >\n \t<legend\n \t\t{...legendAttrs}\n \t\tclass:list={createClassList(\"sb-label\", legendClassList)}\n"
+				},
+				{
+					"date": 1688942494183,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -155,9 +155,9 @@\n \t\t\t\tdata-sb-select-month={field}\n \t\t\t\t{form}\n \t\t\t\tid={`${id}_month`}\n \t\t\t\tlabelledBy={`${legendId} ${id}_month:label`}\n-\t\t\t\tmonths={months}\n+\t\t\t\t{months}\n \t\t\t\tname={`${name}:month`}\n \t\t\t\t{required}\n \t\t\t\tvalue={month}\n \t\t\t/>\n"
+				},
+				{
+					"date": 1688946120547,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,9 @@\n \tdataset: yearDataset,\n \t...yearAttributes\n } = yearAttrs as BaseAttributes;\n \n-const hlp = (await Astro.slots.render(\"help\")) || message;\n+const hlp = (await Astro.slots.render(\"message\")) || message;\n const helpId = `${id}_help`;\n const lbl = (await Astro.slots.render(\"default\")) || label;\n const legendId = `${id}_legend`;\n const monthId = `${id}-month`;\n"
+				}
+			],
+			"date": 1688278884064,
+			"name": "Commit-0",
+			"content": "---\n// Most years have 52 weeks, but if the year starts on a Thursday\n// or is a leap year that starts on a Wednesday, that particular year\n// will have 53 numbered weeks.\n\nconst { includeBlank } = Astro.props;\n---\n\n<fieldset data-sb-year-week class=\"field\" form=\"validity-tester\" id=\"yearWeek\">\n\t<legend id=\"yearWeek-label\">\n\t\t<span>YearWeek</span>\n\t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n\t</legend>\n\t<div class=\"group\">\n\t\t<label for=\"yearWeek-year\"\n\t\t\t>Year:\n\t\t\t<input\n\t\t\t\tdata-sb-year-week=\"year\"\n\t\t\t\tform=\"validity-tester\"\n\t\t\t\tid=\"yearWeek-year\"\n\t\t\t\tname=\"yearWeek:year\"\n\t\t\t\tpattern=\"[12][0-9]{3}\"\n\t\t\t\trequired\n\t\t\t\tsize=\"5\"\n\t\t\t\ttype=\"text\"\n\t\t\t/>\n\t\t</label>\n\t\t<label for=\"yearWeek-week\"\n\t\t\t>Week:\n\t\t\t<select\n\t\t\t\tdata-sb-year-week=\"week\"\n\t\t\t\tform=\"validity-tester\"\n\t\t\t\tid=\"yearWeek-week\"\n\t\t\t\tname=\"yearWeek:week\"\n\t\t\t\trequired\n\t\t\t>\n\t\t\t\t{includeBlank ? <option /> : null}\n\t\t\t\t{\n\t\t\t\t\tnew Array(53)\n\t\t\t\t\t\t.fill(0)\n\t\t\t\t\t\t.map((_, i) => {\n\t\t\t\t\t\t\tconst w = String(i).padStart(2, \" \")\n\n\t\t\t\t\t\t\treturn <option value={`W${w}`}>{`W${w}`}</option>)\n\t\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t</select>\n\t\t</label>\n\t</div>\n</fieldset>\n"
+		}
+	]
+}

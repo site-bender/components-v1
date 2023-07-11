@@ -1,33 +1,34 @@
 ---
 // Validate at https://validator.schema.org/
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLTag, Polymorphic } from "astro/types";
 
-export type Props<T> = HTMLAttributes<"div"> & {
-  element?: string;
-  itemprop?: string;
+export type Props<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+  as: Tag;
+  property?: string | null | undefined;
   properties: T;
+  value?: string;
 };
 
-const { element, itemprop, properties = {}, ...attrs } = Astro.props;
-
-const item = itemprop ? { itemprop } : {};
-
 const {
-  ["@context"]: context = "https://schema.org",
-  ["@type"]: type,
-  ...other
-} = properties;
+  as: Element,
+  property,
+  properties: props = {},
+  value,
+  ...attrs
+} = Astro.props;
 
-const Element = element || "span";
+const item = property ? { property } : {};
+const { type, ...properties } = props;
+const itemtype = `https://schema.org/${type}`;
 ---
 
-<Element {...item} itemscope itemtype={`${context}/${type}`} {...attrs}>
+<Element {...item} itemscope itemtype={itemtype} {...attrs}>
   {
-    Object.entries(other).map(([itemprop, content]) =>
+    Object.entries(properties).map(([property, content]) =>
       typeof content === "object" ? (
-        <Astro.self itemprop={itemprop} properties={content} />
+        <Astro.self as="span" itemprop={property} properties={content} />
       ) : (
-        <meta content={content as string} itemprop={itemprop} />
+        <meta content={content as string} itemprop={property} />
       )
     )
   }

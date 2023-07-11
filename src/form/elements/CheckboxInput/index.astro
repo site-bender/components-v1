@@ -1,0 +1,58 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { CheckboxInput as Props } from "../../../types/form";
+
+const {
+	checked,
+	["class:list"]: elementClassList = [],
+	dataset: elementDataset,
+	field = "checkbox-input",
+	form,
+	groupLabelId,
+	id = generateShortId(),
+	label,
+	name,
+	required,
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+
+const labelId = `${id}_label`;
+const labelledBy = `${groupLabelId} ${labelId}`;
+const lbl = (await Astro.slots.render("default")) || label;
+---
+
+<label
+	{...wrapperAttrs}
+	class:list={createClassList("sb-checkbox-label", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+	id={labelId}
+>
+	<input
+		{...attrs}
+		aria-labelledby={labelledBy}
+		{checked}
+		class:list={createClassList("sb-checkbox-input", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-input={field}
+		{form}
+		{id}
+		{name}
+		{required}
+		type="checkbox"
+		{value}
+	/>
+	<Fragment set:html={lbl} />
+</label>

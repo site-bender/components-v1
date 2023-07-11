@@ -1,0 +1,22 @@
+{
+	"sourceFile": "src/old/TimeZoneField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 1,
+			"patches": [
+				{
+					"date": 1688942597717,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688942636330,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n   {label}\n   labelId={labelId}\n   {...messages ? { messages } : {}}\n   name={attrs.name}\n-  readonly={readonly}\n+  {readonly}\n   {...attrs.required ? { required: true } : {}}\n >\n   <Fragment slot=\"element\">\n     {\n"
+				}
+			],
+			"date": 1688942597717,
+			"name": "Commit-0",
+			"content": "---\nimport { TIME_ZONE } from \"../../constants\";\nimport FieldWrapper from \"../FieldWrapper/index.astro\";\nimport generateShortId from \"../../utilities/generateShortId\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport TimeZone from \"../../metadata/TimeZone/index.astro\";\nimport toTimeZoneString from \"../../utilities/toTimeZoneString\";\nimport type { Dataset, Messages } from \"../../types\";\nimport type { HTMLAttributes } from \"astro/types\";\nimport type { Temporal } from \"@js-temporal/polyfill\";\n\nexport type Props = Omit<HTMLAttributes<\"select\">, \"slot\" | \"value\"> & {\n  dataset?: Dataset;\n  help?: string;\n  label: string;\n  messages?: Messages;\n  name: string;\n  readonly?: boolean;\n  value?: string | Temporal.TimeZone;\n};\n\nconst {\n  dataset,\n  help,\n  id = `_${generateShortId()}`,\n  label,\n  messages,\n  readonly,\n  value: rawValue,\n  ...attrs\n} = Astro.props;\n\nconst labelId = `${id}-label`;\nconst helpId = `${id}-help`;\nconst data = mapDataset(dataset);\n\nconst value =\n  rawValue && typeof rawValue === \"string\"\n    ? rawValue\n    : toTimeZoneString(rawValue);\n---\n\n<FieldWrapper\n  fieldType=\"sb-time-zone\"\n  {...help ? { help } : {}}\n  helpId={helpId}\n  id={id as string}\n  {label}\n  labelId={labelId}\n  {...messages ? { messages } : {}}\n  name={attrs.name}\n  readonly={readonly}\n  {...attrs.required ? { required: true } : {}}\n>\n  <Fragment slot=\"element\">\n    {\n      readonly ? (\n        <div class=\"readonly sb-time-zone-readonly\">\n          <TimeZone {...attrs} value={value as string} />\n        </div>\n      ) : (\n        <select\n          aria-labelledBy={`${labelId} ${helpId}`}\n          class=\"sb-time-zone-select\"\n          {...data}\n          id={id as string}\n          {...attrs}\n        >\n          {Object.keys(TIME_ZONE)\n            .sort()\n            .map((key) => (\n              <option selected={value === key} value={key}>\n                {key}\n              </option>\n            ))}\n        </select>\n      )\n    }\n  </Fragment>\n</FieldWrapper>\n"
+		}
+	]
+}

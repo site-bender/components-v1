@@ -3,15 +3,16 @@ import Instant from "../../../../src/metadata/Instant/index.astro";
 import CodeBlock from "../../../../src/CodeBlock/index.astro";
 import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
 import Layout from "../_layouts/index.astro";
-import TableOfContents from "../_components/TableOfContents/index.astro";
+import pageProperties from "./pageProperties";
 import * as typeTs from "./_assets/type.ts.md";
 import * as defaultExampleHtml from "./_assets/default-example.html.md";
 import * as defaultExampleAstro from "./_assets/default-example.astro.md";
-import TestForm from "../_components/TestForm/index.astro";
-import TestFormScript from "../_scripts/TestFormScript.astro";
+import * as withFormattingHtml from "./_assets/with-formatting.html.md";
+import * as withFormattingAstro from "./_assets/with-formatting.astro.md";
+import { Temporal } from "@js-temporal/polyfill";
 ---
 
-<Layout title="Instant">
+<Layout pageProperties={pageProperties}>
   <Fragment slot="tail">
     <script set:html={copyToClipboardJs} />
   </Fragment>
@@ -26,7 +27,13 @@ import TestFormScript from "../_scripts/TestFormScript.astro";
       </p>
       <section>
         <h3>Types</h3>
-        <CodeBlock snippet={typeTs} />
+        <CodeBlock
+          snippet={typeTs}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "TypeScript",
+          }}
+        />
         <p>
           The <code>dataset</code> prop takes a map of attribute names (minus the
           <code>data-</code>) and values and maps them to <code
@@ -37,15 +44,67 @@ import TestFormScript from "../_scripts/TestFormScript.astro";
       <section>
         <h3>Default example</h3>
         <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
-        <CodeBlock snippet={defaultExampleAstro} />
+        <CodeBlock
+          snippet={defaultExampleAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <TestForm>
-          <Instant />
-        </TestForm>
+        <div class="example">
+          <Instant instant={Temporal.Now.instant()} />
+        </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={defaultExampleHtml} />
+        <CodeBlock
+          snippet={defaultExampleHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
+      </section>
+      <section>
+        <h3>Example with formatting options</h3>
+        <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
+        <CodeBlock
+          snippet={withFormattingAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
+        <p>Here is the actual component:</p>
+        <div class="example">
+          <Instant
+            instant={Temporal.Now.instant()}
+            locale="en-US"
+            itemprop="expires"
+            options={{
+              year: "numeric",
+              month: "numeric",
+              day: "numeric",
+              hour: "numeric",
+              minute: "numeric",
+              second: "numeric",
+              hour12: false,
+            }}
+            properties={{
+              type: "CreativeWork",
+              name: "Bob's Blues",
+            }}
+            type="CreativeWork"
+          />
+        </div>
+        <p>And here is the HTML created:</p>
+        <CodeBlock
+          snippet={withFormattingHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
     </article>
-    <TestFormScript />
   </main>
 </Layout>

@@ -1,0 +1,18 @@
+{
+	"sourceFile": "src/metadata/Url/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 0,
+			"patches": [
+				{
+					"date": 1688942576558,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				}
+			],
+			"date": 1688942576558,
+			"name": "Commit-0",
+			"content": "---\nimport type { Dataset } from \"../../types\";\nimport type { Thing } from \"../../schema.org\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport Microdata from \"../../Microdata/index.astro\";\nimport type { HTMLAttributes } from \"astro/types\";\n\nexport type Props<T extends Thing> = HTMLAttributes<\"span\"> & {\n\ta?: HTMLAttributes<\"a\"> | undefined;\n\tdataset?: Dataset;\n\titemprop?: string;\n\tproperties?: Partial<T>;\n\titemtype?: string;\n\tuseLink?: boolean;\n};\n\nconst {\n\ta = {},\n\tdataset,\n\titemprop,\n\tproperties,\n\ttype = \"CreativeWork\",\n\tuseLink,\n\t...attrs\n} = Astro.props;\nconst url = ((await Astro.slots.render(\"default\")) || \"\").trim();\nconst data = mapDataset(dataset);\n\nconst useMicrodata = Boolean(import.meta.env.USE_MICRODATA);\nconst meta = {\n\ttype,\n\t...properties,\n};\nconst href = a?.href ? a.href : url;\n\n// add country code with +, e.g., +64\n// add wait for dialtone with w\n// add one second pause (before extension) with p\n---\n\n{useMicrodata ? <Microdata as=\"span\" properties={meta} /> : null}\n{\n\tuseLink ? (\n\t\t<a {href} {...a}>\n\t\t\t<span class=\"sb-href\" {...data} {...attrs}>\n\t\t\t\t{url}\n\t\t\t</span>\n\t\t</a>\n\t) : (\n\t\t<span class=\"sb-href\" {...data} {...attrs}>\n\t\t\t{url}\n\t\t</span>\n\t)\n}\n"
+		}
+	]
+}

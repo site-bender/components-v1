@@ -3,7 +3,7 @@ import CCLicense from "../../../../src/CCLicense/index.astro";
 import CodeBlock from "../../../../src/CodeBlock/index.astro";
 import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
 import Layout from "../_layouts/index.astro";
-import TableOfContents from "../_components/TableOfContents/index.astro";
+import pageProperties from "./pageProperties";
 import * as typeTs from "./_assets/type.ts.md";
 import * as defaultExampleHtml from "./_assets/default-example.html.md";
 import * as defaultExampleAstro from "./_assets/default-example.astro.md";
@@ -29,7 +29,7 @@ import * as byNcSaHtml from "./_assets/by-nc-sa.html.md";
 import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
 ---
 
-<Layout title="CCLicense">
+<Layout pageProperties={pageProperties}>
   <Fragment slot="tail">
     <script set:html={copyToClipboardJs} />
   </Fragment>
@@ -42,7 +42,13 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
       </p>
       <section id="types">
         <h3>Types</h3>
-        <CodeBlock snippet={typeTs} />
+        <CodeBlock
+          snippet={typeTs}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "TypeScript",
+          }}
+        />
         <p>
           The <code>dataset</code> prop takes a map of attribute names (minus the
           <code>data-</code>) and values and maps them to <code
@@ -56,7 +62,13 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           This is the minimum required to use the <code>CCLicense</code>. It
           defaults to a public domain dedication (CC0 1.0 Universal).
         </p>
-        <CodeBlock snippet={defaultExampleAstro} />
+        <CodeBlock
+          snippet={defaultExampleAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
         <div class="example">
           <CCLicense />
@@ -65,7 +77,13 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           And here is the HTML created. Rather than show the complex SVG paths,
           we've simply substituted the Astro subcomponents.
         </p>
-        <CodeBlock snippet={defaultExampleHtml} />
+        <CodeBlock
+          snippet={defaultExampleHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="size-and-dataset">
         <h3>
@@ -78,7 +96,13 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           > attributes via <code>dataset</code>. Typically, the CSS properties
           would be set in a separate theme stylesheet, but just for example:
         </p>
-        <CodeBlock snippet={withDataAttrsAstro} />
+        <CodeBlock
+          snippet={withDataAttrsAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
         <div class="example">
           <CCLicense
@@ -96,11 +120,23 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           And here is the HTML created. Rather than show the complex SVG paths,
           we've simply substituted the Astro subcomponents.
         </p>
-        <CodeBlock snippet={withDataAttrsHtml} />
+        <CodeBlock
+          snippet={withDataAttrsHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="attribution">
         <h3>Attribution example</h3>
-        <CodeBlock snippet={byAstro} />
+        <CodeBlock
+          snippet={byAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
         <div class="example">
           <CCLicense byAttribution />
@@ -109,11 +145,23 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           And here is the HTML created. Rather than show the complex SVG paths,
           we've simply substituted the Astro subcomponents.
         </p>
-        <CodeBlock snippet={byHtml} />
+        <CodeBlock
+          snippet={byHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="attribution-non-commercial">
         <h3>Attribution-NonCommercial example</h3>
-        <CodeBlock snippet={byNcAstro} />
+        <CodeBlock
+          snippet={byNcAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
         <div class="example">
           <CCLicense byAttribution nonCommercial />
@@ -122,11 +170,23 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           And here is the HTML created. Rather than show the complex SVG paths,
           we've simply substituted the Astro subcomponents.
         </p>
-        <CodeBlock snippet={byNcHtml} />
+        <CodeBlock
+          snippet={byNcHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="attribution-no-derivatives">
         <h3>Attribution-NoDerivatives example</h3>
-        <CodeBlock snippet={byNdAstro} />
+        <CodeBlock
+          snippet={byNdAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
         <div class="example">
           <CCLicense byAttribution noDerivatives />
@@ -135,11 +195,23 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           And here is the HTML created. Rather than show the complex SVG paths,
           we've simply substituted the Astro subcomponents.
         </p>
-        <CodeBlock snippet={byNdHtml} />
+        <CodeBlock
+          snippet={byNdHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="attribution-share-alike">
         <h3>Attribution-ShareAlike example</h3>
-        <CodeBlock snippet={bySaAstro} />
+        <CodeBlock
+          snippet={bySaAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
         <div class="example">
           <CCLicense byAttribution shareAlike />
@@ -148,11 +220,23 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           And here is the HTML created. Rather than show the complex SVG paths,
           we've simply substituted the Astro subcomponents.
         </p>
-        <CodeBlock snippet={bySaHtml} />
+        <CodeBlock
+          snippet={bySaHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="attribution-non-commercial-share-alike">
         <h3>Attribution-NonCommercial-ShareAlike example</h3>
-        <CodeBlock snippet={byNcSaAstro} />
+        <CodeBlock
+          snippet={byNcSaAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
         <div class="example">
           <CCLicense byAttribution nonCommercial shareAlike />
@@ -161,11 +245,23 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           And here is the HTML created. Rather than show the complex SVG paths,
           we've simply substituted the Astro subcomponents.
         </p>
-        <CodeBlock snippet={byNcSaHtml} />
+        <CodeBlock
+          snippet={byNcSaHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="attribution-non-commercial-no-derivatives">
         <h3>Attribution-NonCommercial-ShareAlike example</h3>
-        <CodeBlock snippet={byNcNdAstro} />
+        <CodeBlock
+          snippet={byNcNdAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
         <div class="example">
           <CCLicense byAttribution nonCommercial noDerivatives />
@@ -174,7 +270,13 @@ import * as byNcSaAstro from "./_assets/by-nc-sa.astro.md";
           And here is the HTML created. Rather than show the complex SVG paths,
           we've simply substituted the Astro subcomponents.
         </p>
-        <CodeBlock snippet={byNcNdHtml} />
+        <CodeBlock
+          snippet={byNcNdHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
     </article>
   </main>

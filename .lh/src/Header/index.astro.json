@@ -1,0 +1,26 @@
+{
+	"sourceFile": "src/Header/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 2,
+			"patches": [
+				{
+					"date": 1689031842361,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1689032037792,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,10 @@\n export type Props = HTMLAttributes<\"header\"> & {\n \tdataset?: Dataset | undefined;\n };\n \n-const { cssClasses = [], dataset, ...attrs } = Astro.props;\n+const {\n+\t[\"class:list\"]: classList = [], dataset, ...attrs } = Astro.props;\n const css = [\"sb-header\", ...cssClasses].join(\" \");\n const data = mapDataset(dataset);\n ---\n \n"
+				},
+				{
+					"date": 1689032243428,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,11 +9,10 @@\n \tdataset?: Dataset | undefined;\n };\n \n const { [\"class:list\"]: classList = [], dataset, ...attrs } = Astro.props;\n-const css = [\"sb-header\", ...cssClasses].join(\" \");\n const data = mapDataset(dataset);\n ---\n \n-<header class={css} {...data} {...attrs}>\n+<header class:list={createClassList(\"sb-figure\", classList)} {...data} {...attrs}>\n \t<slot />\n </header>\n"
+				}
+			],
+			"date": 1689031842361,
+			"name": "Commit-0",
+			"content": "---\nimport type { HTMLAttributes } from \"astro/types\";\nimport type { Dataset } from \"../types\";\nimport createClassList from \"../utilities/createClassList\";\nimport mapDataset from \"../utilities/mapDataset\";\nimport \"./index.css\";\n\nexport type Props = HTMLAttributes<\"header\"> & {\n  dataset?: Dataset | undefined;\n};\n\nconst { cssClasses = [], dataset, ...attrs } = Astro.props;\nconst css = [\"sb-header\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\n---\n\n<header class={css} {...data} {...attrs}>\n  <slot />\n</header>\n"
+		}
+	]
+}

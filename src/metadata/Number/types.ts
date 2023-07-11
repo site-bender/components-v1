@@ -1,3 +1,25 @@
+import type { TIME_ZONE } from "../../constants"
+
+export type Calendar =
+	| "buddhist"
+	| "chinese"
+	| "coptic"
+	| "dangi"
+	| "ethioaa"
+	| "ethiopic"
+	| "gregory"
+	| "hebrew"
+	| "indian"
+	| "islamic-civil"
+	| "islamic-rgsa"
+	| "islamic-tbla"
+	| "islamic-umalqura"
+	| "islamic"
+	| "iso8601"
+	| "japanese"
+	| "persian"
+	| "roc"
+
 export type NumberFormatOptions = {
 	compactDisplay?: "short" | "long"
 	currency?: CurrencyCode
@@ -15,6 +37,35 @@ export type NumberFormatOptions = {
 	style?: NumberStyle
 	unit?: Unit
 	unitDisplay?: "short" | "long" | "narrow"
+}
+
+export type DateTimeFormatOptions = {
+	dateStyle?: "full" | "long" | "medium" | "short"
+	timeStyle?: "full" | "long" | "medium" | "short"
+	calendar?: Calendar
+	dayPeriod?: "narrow" | "short" | "long"
+	numberingSystem?: NumberingSystem
+	localeMatcher?: "best fit" | "lookup"
+	timeZone?: keyof typeof TIME_ZONE
+	hour12?: boolean
+	hourCycle?: "h11" | "h12" | "h23" | "h24"
+	formatMatcher?: "best fit" | "basic"
+	weekday?: "long" | "short" | "narrow"
+	era?: "long" | "short" | "narrow"
+	year?: "numeric" | "2-digit"
+	month?: "numeric" | "2-digit" | "long" | "short" | "narrow"
+	day?: "numeric" | "2-digit"
+	hour?: "numeric" | "2-digit"
+	minute?: "numeric" | "2-digit"
+	second?: "numeric" | "2-digit"
+	fractionalSecondDigits?: number
+	timeZoneName?:
+		| "long"
+		| "short"
+		| "shortOffset"
+		| "longOffset"
+		| "shortGeneric"
+		| "longGeneric"
 }
 
 export type NumberStyle = "decimal" | "currency" | "percent" | "unit"

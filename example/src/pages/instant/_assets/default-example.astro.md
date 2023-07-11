@@ -1,9 +1,9 @@
 ---
-  caption: "Default xxx example"
+  caption: "Default Instant example"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
-```html
-
+```jsx
+<Instant instant={Temporal.Now.instant()} />
 ```

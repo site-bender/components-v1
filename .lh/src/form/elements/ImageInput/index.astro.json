@@ -1,0 +1,102 @@
+{
+	"sourceFile": "src/form/elements/ImageInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 21,
+			"patches": [
+				{
+					"date": 1688429922954,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688429971728,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { NumericalInput as Props } from \"../../../../types\";\n+import type { NumericalInput as Props } from \"../../../types/forms\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n \n"
+				},
+				{
+					"date": 1688520187676,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { NumericalInput as Props } from \"../../../types/forms\";\n+import type { NumericalInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n \n"
+				},
+				{
+					"date": 1688532213023,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,26 @@\n ---\n import type { NumericalInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n-const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n+const { alt, element = {}, height, src, width } = Astro.props;\n \n-const css = [\"sb-numerical-input\", ...cssClasses].join(\" \");\n-const data = mapDataset(dataset);\n+const {\n+\t[\"class:list\"]: elementClassList = [],\n+\tdataset: elementDataset,\n+\t...elementAttrs\n+} = element as BaseAttributes;\n ---\n \n <span>\n \t<input\n-\t\t{...attrs}\n-\t\taria-labelledby={`${id}_label`}\n-\t\taria-describedby={`${id}_help`}\n-\t\tclass={css}\n-\t\t{...data}\n+\t\t{...elementAttrs}\n+\t\taria-labelledby={labelledBy}\n+\t\tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n+\t\t{...mapDataset(elementDataset)}\n+\t\tdata-sb-image-input\n \t\tid={id}\n \t\tform={form}\n \t\tname={name}\n-\t\ttype=\"number\"\n+\t\ttype=\"image\"\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688532231772,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,14 +13,16 @@\n \n <span>\n \t<input\n \t\t{...elementAttrs}\n+\t\talt={alt}\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-image-input\n \t\tid={id}\n \t\tform={form}\n \t\tname={name}\n+\t\tsrc={src}\n \t\ttype=\"image\"\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688532251022,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,11 +18,13 @@\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-image-input\n+\t\theight={height}\n \t\tid={id}\n \t\tform={form}\n \t\tname={name}\n \t\tsrc={src}\n \t\ttype=\"image\"\n+\t\twidth={width}\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688532308080,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n ---\n import type { NumericalInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n-const { alt, element = {}, height, src, width } = Astro.props;\n+const { alt, element = {}, height, labelledBy, src, width } = Astro.props;\n \n const {\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n"
+				},
+				{
+					"date": 1688532333977,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n ---\n-import type { NumericalInput as Props } from \"../../../types/form\";\n+import createClassList from \"../../../utilities/createClassList\";\n import mapDataset from \"../../../utilities/mapDataset\";\n+import type { ImageInput as Props } from \"../../../types/form\";\n \n const { alt, element = {}, height, labelledBy, src, width } = Astro.props;\n \n const {\n"
+				},
+				{
+					"date": 1688532353939,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,19 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n+import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { ImageInput as Props } from \"../../../types/form\";\n \n-const { alt, element = {}, height, labelledBy, src, width } = Astro.props;\n+const {\n+\talt,\n+\telement = {},\n+\theight,\n+\tid = generateShortId(),\n+\tlabelledBy,\n+\tsrc,\n+\twidth,\n+} = Astro.props;\n \n const {\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n"
+				},
+				{
+					"date": 1688532362449,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n \n const {\n \talt,\n \telement = {},\n+\tform,\n \theight,\n \tid = generateShortId(),\n \tlabelledBy,\n \tsrc,\n"
+				},
+				{
+					"date": 1688532368445,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n \tform,\n \theight,\n \tid = generateShortId(),\n \tlabelledBy,\n+\tname,\n \tsrc,\n \twidth,\n } = Astro.props;\n \n"
+				},
+				{
+					"date": 1688532668317,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,21 +22,19 @@\n \t...elementAttrs\n } = element as BaseAttributes;\n ---\n \n-<span>\n-\t<input\n-\t\t{...elementAttrs}\n-\t\talt={alt}\n-\t\taria-labelledby={labelledBy}\n-\t\tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n-\t\t{...mapDataset(elementDataset)}\n-\t\tdata-sb-image-input\n-\t\theight={height}\n-\t\tid={id}\n-\t\tform={form}\n-\t\tname={name}\n-\t\tsrc={src}\n-\t\ttype=\"image\"\n-\t\twidth={width}\n-\t/>\n-</span>\n+<input\n+\t{...elementAttrs}\n+\talt={alt}\n+\taria-labelledby={labelledBy}\n+\tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n+\t{...mapDataset(elementDataset)}\n+\tdata-sb-image-input\n+\theight={height}\n+\tid={id}\n+\tform={form}\n+\tname={name}\n+\tsrc={src}\n+\ttype=\"image\"\n+\twidth={width}\n+/>\n"
+				},
+				{
+					"date": 1688599583984,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,32 +5,29 @@\n import type { ImageInput as Props } from \"../../../types/form\";\n \n const {\n \talt,\n-\telement = {},\n+\t[\"class:list\"]: elementClassList = [],\n+\tdataset: elementDataset,\n+\tfield = \"image-input\",\n \tform,\n \theight,\n \tid = generateShortId(),\n \tlabelledBy,\n \tname,\n \tsrc,\n \twidth,\n+\t...attrs\n } = Astro.props;\n-\n-const {\n-\t[\"class:list\"]: elementClassList = [],\n-\tdataset: elementDataset,\n-\t...elementAttrs\n-} = element as BaseAttributes;\n ---\n \n <input\n-\t{...elementAttrs}\n+\t{...attrs}\n \talt={alt}\n \taria-labelledby={labelledBy}\n \tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n \t{...mapDataset(elementDataset)}\n-\tdata-sb-image-input\n+\tdata-sb-input={field}\n \theight={height}\n \tid={id}\n \tform={form}\n \tname={name}\n"
+				},
+				{
+					"date": 1688600397245,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n ---\n+// This will stupidly submit the form and can only be overridden with JS. Ugh.\n+// Consider using the Button component and passing an image\n+// unless the x and y coordinates are needed (probably not accessible)\n import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { ImageInput as Props } from \"../../../types/form\";\n"
+				},
+				{
+					"date": 1688616108070,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,11 +29,11 @@\n \taria-labelledby={labelledBy}\n \tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n \t{...mapDataset(elementDataset)}\n \tdata-sb-input={field}\n+\tform={form}\n \theight={height}\n \tid={id}\n-\tform={form}\n \tname={name}\n \tsrc={src}\n \ttype=\"image\"\n \twidth={width}\n"
+				},
+				{
+					"date": 1688940624150,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n ---\n \n <input\n \t{...attrs}\n-\talt={alt}\n+\t{alt}\n \taria-labelledby={labelledBy}\n \tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n \t{...mapDataset(elementDataset)}\n \tdata-sb-input={field}\n"
+				},
+				{
+					"date": 1688940658122,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,8 @@\n \tform={form}\n \theight={height}\n \tid={id}\n \tname={name}\n-\tsrc={src}\n+\t{src}\n \ttype=\"image\"\n \twidth={width}\n />\n"
+				},
+				{
+					"date": 1688940690532,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,6 +35,6 @@\n \tid={id}\n \tname={name}\n \t{src}\n \ttype=\"image\"\n-\twidth={width}\n+\t{width}\n />\n"
+				},
+				{
+					"date": 1688940705803,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n \tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n \t{...mapDataset(elementDataset)}\n \tdata-sb-input={field}\n \tform={form}\n-\theight={height}\n+\t{height}\n \tid={id}\n \tname={name}\n \t{src}\n \ttype=\"image\"\n"
+				},
+				{
+					"date": 1688940875558,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \t{...mapDataset(elementDataset)}\n \tdata-sb-input={field}\n \tform={form}\n \t{height}\n-\tid={id}\n+\t{id}\n \tname={name}\n \t{src}\n \ttype=\"image\"\n \t{width}\n"
+				},
+				{
+					"date": 1688940940043,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \taria-labelledby={labelledBy}\n \tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n \t{...mapDataset(elementDataset)}\n \tdata-sb-input={field}\n-\tform={form}\n+\t{form}\n \t{height}\n \t{id}\n \tname={name}\n \t{src}\n"
+				},
+				{
+					"date": 1688940976314,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \tdata-sb-input={field}\n \t{form}\n \t{height}\n \t{id}\n-\tname={name}\n+\t{name}\n \t{src}\n \ttype=\"image\"\n \t{width}\n />\n"
+				}
+			],
+			"date": 1688429922954,
+			"name": "Commit-0",
+			"content": "---\nimport type { NumericalInput as Props } from \"../../../../types\";\nimport mapDataset from \"../../../utilities/mapDataset\";\n\nconst { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n\nconst css = [\"sb-numerical-input\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\n---\n\n<span>\n\t<input\n\t\t{...attrs}\n\t\taria-labelledby={`${id}_label`}\n\t\taria-describedby={`${id}_help`}\n\t\tclass={css}\n\t\t{...data}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t\ttype=\"number\"\n\t/>\n</span>\n"
+		}
+	]
+}

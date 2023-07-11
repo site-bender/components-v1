@@ -1,0 +1,55 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { FileInput as Props } from "../../../types/form";
+
+const {
+	accept,
+	capture,
+	["class:list"]: elementClassList = [],
+	dataset: elementDataset,
+	field = "file-input",
+	form,
+	id = generateShortId(),
+	labelledBy,
+	multiple,
+	name,
+	required,
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	<input
+		{accept}
+		{...attrs}
+		aria-labelledby={labelledBy}
+		{capture}
+		class:list={createClassList("sb-checkbox-input", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-input={field}
+		{form}
+		{id}
+		{multiple}
+		{name}
+		{required}
+		type="file"
+		{value}
+	/>
+</span>

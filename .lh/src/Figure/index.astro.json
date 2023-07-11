@@ -1,0 +1,26 @@
+{
+	"sourceFile": "src/Figure/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 2,
+			"patches": [
+				{
+					"date": 1689031744850,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1689031793190,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n ---\n import type { HTMLAttributes } from \"astro/types\";\n import type { Dataset } from \"../types\";\n+import createClassList from \"../utilities/createClassList\";\n import mapDataset from \"../utilities/mapDataset\";\n import \"./index.css\";\n \n export type Props = HTMLAttributes<\"figure\"> & {\n"
+				},
+				{
+					"date": 1689032221190,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,13 +24,12 @@\n } = Astro.props;\n \n const indexed = isIndexed ? { class: \"indexed\" } : {};\n const cap = caption ? caption : await Astro.slots.render(\"caption\");\n-const css = [\"sb-figure\", ...cssClasses].join(\" \");\n const data = mapDataset(dataset);\n ---\n \n-<figure class={css} {...data} {...indexed} {...attrs}>\n+<figure class:list={createClassList(\"sb-figure\", classList)} {...data} {...indexed} {...attrs}>\n \t{\n \t\tcap && (\n \t\t\t<figcaption {...figcaptionAttributes}>\n \t\t\t\t{index ? `Figure ${index}: ` : \"\"}\n"
+				}
+			],
+			"date": 1689031744850,
+			"name": "Commit-0",
+			"content": "---\nimport type { HTMLAttributes } from \"astro/types\";\nimport type { Dataset } from \"../types\";\nimport mapDataset from \"../utilities/mapDataset\";\nimport \"./index.css\";\n\nexport type Props = HTMLAttributes<\"figure\"> & {\n  caption?: string;\n  dataset?: Dataset | undefined;\n  figcaptionAttributes?: HTMLAttributes<\"figcaption\">;\n  index?: number;\n  isIndexed?: boolean;\n};\n\nconst {\n  caption,\n\t[\"class:list\"]: classList = [],\n  dataset,\n  figcaptionAttributes = {},\n  index,\n  isIndexed,\n  ...attrs\n} = Astro.props;\n\nconst indexed = isIndexed ? { class: \"indexed\" } : {};\nconst cap = caption ? caption : await Astro.slots.render(\"caption\");\nconst css = [\"sb-figure\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\n---\n\n<figure class={css} {...data} {...indexed} {...attrs}>\n  {\n    cap && (\n      <figcaption {...figcaptionAttributes}>\n        {index ? `Figure ${index}: ` : \"\"}\n        <Fragment set:html={cap} />\n      </figcaption>\n    )\n  }\n  <slot />\n</figure>\n"
+		}
+	]
+}

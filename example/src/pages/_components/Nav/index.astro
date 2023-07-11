@@ -5,7 +5,11 @@ const { pathname } = Astro.url;
 ---
 
 {
-	pathname === "/" ? null : (
+	pathname === "/" ? (
+		<nav>
+			<TableOfContents />
+		</nav>
+	) : (
 		<nav>
 			<details class="components">
 				<summary>Components</summary>

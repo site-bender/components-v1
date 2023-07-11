@@ -1,41 +1,74 @@
 ---
-import { DEFAULT_YEAR_MONTH_OPTIONS, DEFAULT_LOCALE } from "../../constants";
-import { Temporal, Intl } from "@js-temporal/polyfill";
-import type { DateTimeFormatOptions } from "../../types";
+import {
+  DEFAULT_CALENDAR,
+  DEFAULT_YEAR_MONTH_OPTIONS,
+  DEFAULT_LOCALE,
+} from "../../constants";
+import { Intl, Temporal } from "@js-temporal/polyfill";
+import type { Thing } from "../../schema.org";
+import mapDataset from "../../utilities/mapDataset";
+import type { Dataset } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+import Microdata from "../../Microdata/index.astro";
 
-export type Props = {
+export type Props<T extends Thing> = HTMLAttributes<"time"> & {
+  calendar?: Temporal.CalendarLike;
+  cssClasses?: Array<string>;
+  dataset?: Dataset;
   era?: string | undefined;
   eraYear?: string | undefined;
+  itemprop?: string | undefined;
   locale?: string | Array<string>;
   month?: number | string;
   monthCode?: string;
-  options?: DateTimeFormatOptions;
-  value?: string | Temporal.PlainYearMonth | Temporal.PlainYearMonthLike;
+  options?: Intl.DateTimeFormatOptions;
+  plainYearMonth?: string | Temporal.PlainYearMonthLike;
+  properties?: Partial<T>;
+  itemtype?: string;
   year?: number | string;
 };
 
 const {
+  calendar = DEFAULT_CALENDAR,
+  ["class:list"]: classList = [],
+  dataset,
+  itemprop,
   locale = DEFAULT_LOCALE,
   month,
   monthCode,
   options = {},
-  value,
+  plainYearMonth = Temporal.PlainYearMonth.from(
+    Temporal.Now.plainDate(Astro.props.calendar || DEFAULT_CALENDAR)
+  ),
+  properties,
+  itemtype,
   year,
+  ...attrs
 } = Astro.props;
 
-const plainYearMonth = value
-  ? Temporal.PlainYearMonth.from(value)
+const css = ["sb-plain-date-time", ...cssClasses].join(" ");
+const data = mapDataset(dataset);
+const value = plainYearMonth
+  ? Temporal.PlainYearMonth.from(plainYearMonth)
   : Temporal.PlainYearMonth.from({
       ...(monthCode ? { monthCode } : { month: Number(month) }),
       year: Number(year),
     });
 
 const opts = Object.assign({}, DEFAULT_YEAR_MONTH_OPTIONS, {
-  calendar: plainYearMonth.calendarId.toString(),
+  calendar: value.calendarId.toString(),
   ...options,
 });
+
+const label = new Intl.DateTimeFormat(locale, opts).format(value);
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const meta = {
+  type: itemtype,
+  ...(itemprop ? { [itemprop]: plainYearMonth.toString() } : {}),
+  ...properties,
+};
 ---
 
-<time class="sb-plain-year-month" datetime={plainYearMonth.toJSON()}
-  >{Intl.DateTimeFormat(locale, opts).format(plainYearMonth)}</time
->
+{useMicrodata && type ? <Microdata as="span" properties={meta} /> : null}
+<time class={css} {...data} datetime={value.toJSON()} {...attrs}>{label}</time>

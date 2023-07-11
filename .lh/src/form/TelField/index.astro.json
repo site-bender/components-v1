@@ -1,0 +1,42 @@
+{
+	"sourceFile": "src/form/TelField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 6,
+			"patches": [
+				{
+					"date": 1688429923100,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688430152880,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,48 @@\n+---\n+import type { Field as Props } from \"../../../types\";\n+import TextInput from \"../elements/TextInput/index.astro\";\n+import Label from \"../elements/Label/index.astro\";\n+import generateShortId from \"../../utilities/generateShortId\";\n+\n+const {\n+\tcssClasses = [],\n+\tform,\n+\thelp,\n+\thelpAttributes = {},\n+\tid = generateShortId(),\n+\telementAttributes = {},\n+\tlabel,\n+\tlabelAttributes = {},\n+\tname,\n+\trequired = false,\n+} = Astro.props;\n+\n+const css = [\"sb-field\", ...cssClasses].join(\" \");\n+const helpId = `${id}_help`;\n+const fieldHelp = help || Astro.slots.render(\"help\");\n+const labelId = `${id}_label`;\n+const fieldLabel = label || Astro.slots.render(\"default\");\n+---\n+\n+<div class={css}>\n+\t<Label\n+\t\t{...labelAttributes}\n+\t\thelp={help}\n+\t\thelpAttributes={helpAttributes}\n+\t\thelpId={helpId}\n+\t\tfor={id}\n+\t\tform={form}\n+\t\tid={labelId}\n+\t\trequired={required}\n+\t>\n+\t\t<Fragment set:html={fieldLabel} />\n+\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n+\t</Label>\n+\t<TextInput\n+\t\tform={form}\n+\t\tid={id}\n+\t\tname={name}\n+\t\ttype=\"tel\"\n+\t\t{...elementAttributes}\n+\t/>\n+</div>\n"
+				},
+				{
+					"date": 1688532735779,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n const fieldLabel = label || Astro.slots.render(\"default\");\n ---\n \n <div class={css}>\n-\t<Label\n+\t<label\n \t\t{...labelAttributes}\n \t\thelp={help}\n \t\thelpAttributes={helpAttributes}\n \t\thelpId={helpId}\n@@ -36,61 +36,13 @@\n \t\trequired={required}\n \t>\n \t\t<Fragment set:html={fieldLabel} />\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n-\t</Label>\n+\t</label>\n \t<TextInput\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n \t\ttype=\"tel\"\n \t\t{...elementAttributes}\n \t/>\n </div>\n----\n-import type { Field as Props } from \"../../../types\";\n-import TextualInput from \"../elements/TextualInput/index.astro\";\n-import Label from \"../elements/Label/index.astro\";\n-import generateShortId from \"../../utilities/generateShortId\";\n-\n-const {\n-\tcssClasses = [],\n-\tform,\n-\thelp,\n-\thelpAttributes = {},\n-\tid = generateShortId(),\n-\telementAttributes = {},\n-\tlabel,\n-\tlabelAttributes = {},\n-\tname,\n-\trequired = false,\n-} = Astro.props;\n-\n-const css = [\"sb-field\", ...cssClasses].join(\" \");\n-const helpId = `${id}_help`;\n-const fieldHelp = help || Astro.slots.render(\"help\");\n-const labelId = `${id}_label`;\n-const fieldLabel = label || Astro.slots.render(\"default\");\n----\n-\n-<div class={css}>\n-\t<Label\n-\t\t{...labelAttributes}\n-\t\thelp={help}\n-\t\thelpAttributes={helpAttributes}\n-\t\thelpId={helpId}\n-\t\tfor={id}\n-\t\tform={form}\n-\t\tid={labelId}\n-\t\trequired={required}\n-\t>\n-\t\t<Fragment set:html={fieldLabel} />\n-\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n-\t</Label>\n-\t<TextualInput\n-\t\tform={form}\n-\t\tid={id}\n-\t\tname={name}\n-\t\ttype=\"tel\"\n-\t\t{...elementAttributes}\n-\t/>\n-</div>\n"
+				},
+				{
+					"date": 1688940253431,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \t\thelpId={helpId}\n \t\tfor={id}\n \t\tform={form}\n \t\tid={labelId}\n-\t\trequired={required}\n+\t\t{required}\n \t>\n \t\t<Fragment set:html={fieldLabel} />\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t</label>\n"
+				},
+				{
+					"date": 1688940875612,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t</label>\n \t<TextInput\n \t\tform={form}\n-\t\tid={id}\n+\t\t{id}\n \t\tname={name}\n \t\ttype=\"tel\"\n \t\t{...elementAttributes}\n \t/>\n"
+				},
+				{
+					"date": 1688940940131,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,13 +30,13 @@\n \t\thelp={help}\n \t\thelpAttributes={helpAttributes}\n \t\thelpId={helpId}\n \t\tfor={id}\n-\t\tform={form}\n+\t\t{form}\n \t\tid={labelId}\n \t\t{required}\n \t>\n \t\t<Fragment set:html={fieldLabel} />\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t</label>\n-\t<TextInput form={form} {id} name={name} type=\"tel\" {...elementAttributes} />\n+\t<TextInput {form} {id} name={name} type=\"tel\" {...elementAttributes} />\n </div>\n"
+				},
+				{
+					"date": 1688940976178,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,6 +37,6 @@\n \t>\n \t\t<Fragment set:html={fieldLabel} />\n \t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n \t</label>\n-\t<TextInput {form} {id} name={name} type=\"tel\" {...elementAttributes} />\n+\t<TextInput {form} {id} {name} type=\"tel\" {...elementAttributes} />\n </div>\n"
+				}
+			],
+			"date": 1688429923100,
+			"name": "Commit-0",
+			"content": "---\nimport type { Field as Props } from \"../../../types\";\nimport TextualInput from \"../elements/TextualInput/index.astro\";\nimport Label from \"../elements/Label/index.astro\";\nimport generateShortId from \"../../utilities/generateShortId\";\n\nconst {\n\tcssClasses = [],\n\tform,\n\thelp,\n\thelpAttributes = {},\n\tid = generateShortId(),\n\telementAttributes = {},\n\tlabel,\n\tlabelAttributes = {},\n\tname,\n\trequired = false,\n} = Astro.props;\n\nconst css = [\"sb-field\", ...cssClasses].join(\" \");\nconst helpId = `${id}_help`;\nconst fieldHelp = help || Astro.slots.render(\"help\");\nconst labelId = `${id}_label`;\nconst fieldLabel = label || Astro.slots.render(\"default\");\n---\n\n<div class={css}>\n\t<Label\n\t\t{...labelAttributes}\n\t\thelp={help}\n\t\thelpAttributes={helpAttributes}\n\t\thelpId={helpId}\n\t\tfor={id}\n\t\tform={form}\n\t\tid={labelId}\n\t\trequired={required}\n\t>\n\t\t<Fragment set:html={fieldLabel} />\n\t\t<Fragment set:html={fieldHelp} slot=\"help\" />\n\t</Label>\n\t<TextualInput\n\t\tform={form}\n\t\tid={id}\n\t\tname={name}\n\t\ttype=\"tel\"\n\t\t{...elementAttributes}\n\t/>\n</div>\n"
+		}
+	]
+}

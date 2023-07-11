@@ -1,100 +1,110 @@
 ---
-import FieldWrapper from "../FieldWrapper/index.astro";
+import DateInput from "../elements/DateInput/index.astro";
+import createClassList from "../../utilities/createClassList";
 import generateShortId from "../../utilities/generateShortId";
 import mapDataset from "../../utilities/mapDataset";
-import PlainDate from "../../metadata/PlainDate/index.astro";
-import toPlainDateString from "../../utilities/toPlainDateString";
-import type {
-  Calendar,
-  DateTimeFormatOptions,
-  Dataset,
-  Messages,
-} from "../../types";
-import type { HTMLAttributes } from "astro/types";
-import type { Temporal } from "@js-temporal/polyfill";
-import type { TIME_ZONE } from "../../constants";
-
-export type Props = Omit<HTMLAttributes<"input">, "slot" | "value"> & {
-  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
-  dataset?: Dataset;
-  day?: number | string;
-  help?: string;
-  label: string;
-  locale?: string | Array<string>;
-  messages?: Messages;
-  month?: number | string;
-  monthCode?: string;
-  name: string;
-  options?: DateTimeFormatOptions;
-  readonly?: boolean;
-  timeZone?: keyof typeof TIME_ZONE;
-  value?: string | Temporal.PlainDate;
-  year?: number | string;
-};
+import type { BaseAttributes } from "../../types/html";
+import type { PlainDateField as Props } from "../../types/form";
 
 const {
-  calendar,
-  dataset,
-  day,
-  help,
-  id = `_${generateShortId()}`,
-  label,
-  locale,
-  messages,
-  month,
-  monthCode,
-  options,
-  readonly,
-  value: rawValue,
-  year,
-  ...attrs
+	["aria-live"]: live = "assertive",
+	datalist = {},
+	field = "plain-date-field",
+	form,
+	help = {},
+	id = generateShortId(),
+	label = "Date",
+	legend = {},
+	list,
+	message,
+	name,
+	outer = {},
+	required,
+	tag = {},
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
 } = Astro.props;
 
-const labelId = `${id}-label`;
-const helpId = `${id}-help`;
-const data = mapDataset(dataset);
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
 
-const value = rawValue
-  ? typeof rawValue === "string"
-    ? rawValue
-    : toPlainDateString(rawValue)
-  : toPlainDateString(undefined, {
-      day: Number(day),
-      month: Number(month),
-      year: Number(year),
-    });
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const labelledBy = `${id}_label`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
 ---
 
-<FieldWrapper
-  fieldType="sb-plain-date"
-  {...help ? { help } : {}}
-  helpId={helpId}
-  id={id as string}
-  label={label}
-  labelId={labelId}
-  {...messages ? { messages } : {}}
-  name={attrs.name}
-  readonly={readonly}
-  {...attrs.required ? { required: true } : {}}
+<div
+	{...outerAttrs}
+	class:list={createClassList(
+		"sb-field",
+		"sb-plain-date-field",
+		outerClassList
+	)}
+	{...mapDataset(outerDataset)}
+	data-sb-field={field}
+	{...req}
 >
-  <Fragment slot="element">
-    {
-      readonly ? (
-        <div class="readonly sb-plain-date-readonly">
-          <PlainDate {...attrs} value={value} />
-        </div>
-      ) : (
-        <input
-          aria-labelledBy={`${labelId} ${helpId}`}
-          class="sb-plain-date-input"
-          {...data}
-          id={id as string}
-          pattern="\d{4}-\d{2}-\d{2}"
-          {...attrs}
-          type="date"
-          {...(value ? { value } : {})}
-        />
-      )
-    }
-  </Fragment>
-</FieldWrapper>
+	<label
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={labelledBy}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</label>
+	<DateInput
+		{...attrs}
+		data-sb-field-element={field}
+		{form}
+		{id}
+		{labelledBy}
+		{name}
+		{required}
+		{value}
+		{wrapper}
+	/>
+</div>

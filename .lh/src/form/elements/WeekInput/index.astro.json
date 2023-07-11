@@ -1,0 +1,38 @@
+{
+	"sourceFile": "src/form/elements/WeekInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 5,
+			"patches": [
+				{
+					"date": 1688602984640,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688603050148,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,17 @@\n \tdataset: elementDataset,\n \tform,\n \tid = generateShortId(),\n \tname,\n-\tfield = \"date-input\",\n+\tfield = \"week-input\",\n \t...attrs\n } = Astro.props;\n ---\n \n <span>\n \t<input\n \t\t{...attrs}\n-\t\tclass:list={createClassList(\"sb-date-input\", elementClassList)}\n+\t\tclass:list={createClassList(\"sb-week-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tid={id}\n \t\tform={form}\n"
+				},
+				{
+					"date": 1688603058119,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n-import type { TimeInput as Props } from \"../../../types/form\";\n+import type { WeekInput as Props } from \"../../../types/form\";\n \n const {\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n"
+				},
+				{
+					"date": 1688605246564,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n+import type { BaseAttributes } from \"../../../types/html\";\n import type { WeekInput as Props } from \"../../../types/form\";\n \n const {\n \t[\"class:list\"]: elementClassList = [],\n@@ -10,13 +11,25 @@\n \tform,\n \tid = generateShortId(),\n \tname,\n \tfield = \"week-input\",\n+\twrapper = {},\n \t...attrs\n } = Astro.props;\n+\n+const {\n+\t[\"class:list\"]: wrapperClassList = [],\n+\tdataset: wrapperDataset,\n+\t...wrapperAttrs\n+} = wrapper as BaseAttributes;\n ---\n \n-<span>\n+<span\n+\t{...wrapperAttrs}\n+\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n+\t{...mapDataset(wrapperDataset)}\n+\tdata-sb-wrapper={field}\n+>\n \t<input\n \t\t{...attrs}\n \t\tclass:list={createClassList(\"sb-week-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n"
+				},
+				{
+					"date": 1688614310999,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,12 +5,14 @@\n import type { BaseAttributes } from \"../../../types/html\";\n import type { WeekInput as Props } from \"../../../types/form\";\n \n const {\n+\tautocomplete,\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n \tform,\n \tid = generateShortId(),\n+\tlabelledBy,\n \tname,\n \tfield = \"week-input\",\n \twrapper = {},\n \t...attrs\n@@ -30,8 +32,10 @@\n \tdata-sb-wrapper={field}\n >\n \t<input\n \t\t{...attrs}\n+\t\taria-labelledby={labelledBy}\n+\t\tautocomplete={autocomplete}\n \t\tclass:list={createClassList(\"sb-week-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tid={id}\n"
+				},
+				{
+					"date": 1688616532760,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,13 +8,13 @@\n const {\n \tautocomplete,\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n+\tfield = \"week-input\",\n \tform,\n \tid = generateShortId(),\n \tlabelledBy,\n \tname,\n-\tfield = \"week-input\",\n \twrapper = {},\n \t...attrs\n } = Astro.props;\n \n"
+				}
+			],
+			"date": 1688602984640,
+			"name": "Commit-0",
+			"content": "---\nimport createClassList from \"../../../utilities/createClassList\";\nimport generateShortId from \"../../../utilities/generateShortId\";\nimport mapDataset from \"../../../utilities/mapDataset\";\nimport type { TimeInput as Props } from \"../../../types/form\";\n\nconst {\n\t[\"class:list\"]: elementClassList = [],\n\tdataset: elementDataset,\n\tform,\n\tid = generateShortId(),\n\tname,\n\tfield = \"date-input\",\n\t...attrs\n} = Astro.props;\n---\n\n<span>\n\t<input\n\t\t{...attrs}\n\t\tclass:list={createClassList(\"sb-date-input\", elementClassList)}\n\t\t{...mapDataset(elementDataset)}\n\t\tdata-sb-input={field}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t\ttype=\"week\"\n\t/>\n</span>\n"
+		}
+	]
+}

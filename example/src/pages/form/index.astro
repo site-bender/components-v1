@@ -1,9 +1,15 @@
 ---
 import Form from "../../../../src/form/Form/index.astro";
+import EmailField from "../../../../src/form/EmailField/index.astro";
+import MemberField from "../../../../src/form/MemberField/index.astro";
+import StringField from "../../../../src/form/StringField/index.astro";
+import SubsetField from "../../../../src/form/SubsetField/index.astro";
+import TelField from "../../../../src/form/TelField/index.astro";
+import UrlField from "../../../../src/form/UrlField/index.astro";
 import CodeBlock from "../../../../src/CodeBlock/index.astro";
 import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
 import Layout from "../_layouts/index.astro";
-import TableOfContents from "../_components/TableOfContents/index.astro";
+import pageProperties from "./pageProperties";
 import * as typeTs from "./_assets/type.ts.md";
 import * as defaultExampleHtml from "./_assets/default-example.html.md";
 import * as defaultExampleAstro from "./_assets/default-example.astro.md";
@@ -11,41 +17,102 @@ import TestForm from "../_components/TestForm/index.astro";
 import TestFormScript from "../_scripts/TestFormScript.astro";
 ---
 
-<Layout title="Form">
-  <Fragment slot="tail">
-    <script set:html={copyToClipboardJs} />
-  </Fragment>
-  <main>
-    <article>
-      <h2>Form</h2>
-      <p>
-        The <code>Form</code> is used to . If the <code>id</code> attribute is not
-        provided, a unique Base58 ID is generated preceded by an underscore (to prevent
-        IDs beginning with a digit), for example
-        <code>_DMwzFyG3PvJGrMZstX74JS</code>.
-      </p>
-      <section>
-        <h3>Types</h3>
-        <CodeBlock snippet={typeTs} />
-        <p>
-          The <code>dataset</code> prop takes a map of attribute names (minus the
-          <code>data-</code>) and values and maps them to <code
-            >data-&lt;name&gt;</code
-          > attributes. See below.
-        </p>
-      </section>
-      <section>
-        <h3>Default example</h3>
-        <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
-        <CodeBlock snippet={defaultExampleAstro} />
-        <p>Here is the actual component:</p>
-        <TestForm>
-          <Form name="isTrue" />
-        </TestForm>
-        <p>And here is the HTML created:</p>
-        <CodeBlock snippet={defaultExampleHtml} />
-      </section>
-    </article>
-    <TestFormScript />
-  </main>
+<Layout pageProperties={pageProperties}>
+	<Fragment slot="tail">
+		<script set:html={copyToClipboardJs} />
+	</Fragment>
+	<main>
+		<article>
+			<h2>Form</h2>
+			<p>
+				The <code>Form</code> is used to . If the <code>id</code> attribute is not
+				provided, a unique Base58 ID is generated preceded by an underscore (to prevent
+				IDs beginning with a digit), for example
+				<code>_DMwzFyG3PvJGrMZstX74JS</code>.
+			</p>
+			<section>
+				<h3>Types</h3>
+				<CodeBlock
+					snippet={typeTs}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "TypeScript",
+					}}
+				/>
+				<p>
+					The <code>dataset</code> prop takes a map of attribute names (minus the
+					<code>data-</code>) and values and maps them to <code
+						>data-&lt;name&gt;</code
+					> attributes. See below.
+				</p>
+			</section>
+			<section>
+				<h3 id="defaultExampleLabel">Default example</h3>
+				<p>This is the minimum required to use the <code>CodeBlock</code>:</p>
+				<CodeBlock
+					snippet={defaultExampleAstro}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "AstroJS",
+					}}
+				/>
+				<p>Here is the actual component:</p>
+				<TestForm>
+					<Form action="#" labelledBy="defaultExampleLabel" name="testForm" />
+				</TestForm>
+				<p>And here is the HTML created:</p>
+				<CodeBlock
+					snippet={defaultExampleHtml}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "HTML",
+					}}
+				/>
+			</section>
+			<section id="example">
+				<h3 id="testFormLabel">Test form</h3>
+				<Form
+					action="#"
+					id="testForm"
+					labelledBy="testFormLabel"
+					name="testForm"
+				>
+					{
+						(form: string) => (
+							<>
+								<EmailField {form} />
+								<MemberField
+									{form}
+									options={[
+										{ label: "Bob", value: "Dobbs" },
+										{ label: "Sam", value: "Spade" },
+										{ label: "Jane", value: "Doe" },
+										{ label: "Debbie", value: "Downer" },
+									]}
+								>
+									Choose yer partner
+								</MemberField>
+								<SubsetField
+									{form}
+									options={[
+										{ label: "Bob", value: "Dobbs" },
+										{ label: "Sam", value: "Spade" },
+										{ label: "Jane", value: "Doe" },
+										{ label: "Debbie", value: "Downer" },
+									]}
+								>
+									Choose yer friends
+								</SubsetField>
+								<StringField {form} />
+								<StringField {form} rows="6" />
+								<TelField {form} />
+								<UrlField {form} />
+							</>
+						)
+					}
+				</Form>
+			</section>
+		</article>
+		<TestFormScript />
+	</main>
 </Layout>

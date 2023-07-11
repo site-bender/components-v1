@@ -1,0 +1,70 @@
+{
+	"sourceFile": "src/utilities/getMonths/index.ts",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 13,
+			"patches": [
+				{
+					"date": 1688533470415,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688533679091,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n-export default getMonths () {\n+import { Intl, Temporal } from \"@js-temporal/polyfill\";\n+\n+export default function getMonths (calendar: string, locales: Array<string>, format: \"2-digit\" | \"long\" | \"numeric\" | \"short\") {\n \tconst cal = Temporal.Calendar.from(calendar);\n-const d = Temporal.Now.plainDate(cal);\n-const formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n+\tconst d = Temporal.Now.plainDate(cal);\n+\tconst formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n  return new Array(d.monthsInYear).fill(null).map((value) => ({\n \tlabel: formatter.format(cal.dateFromFields({ year, month, day }),\n \tvalue,\n }));\n"
+				},
+				{
+					"date": 1688533720178,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,10 @@\n export default function getMonths (calendar: string, locales: Array<string>, format: \"2-digit\" | \"long\" | \"numeric\" | \"short\") {\n \tconst cal = Temporal.Calendar.from(calendar);\n \tconst d = Temporal.Now.plainDate(cal);\n \tconst formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n+\n  return new Array(d.monthsInYear).fill(null).map((value) => ({\n \tlabel: formatter.format(cal.dateFromFields({ year, month, day }),\n \tvalue,\n-}));\n+});\n }\n"
+				},
+				{
+					"date": 1688533748394,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,11 @@\n export default function getMonths (calendar: string, locales: Array<string>, format: \"2-digit\" | \"long\" | \"numeric\" | \"short\") {\n \tconst cal = Temporal.Calendar.from(calendar);\n \tconst d = Temporal.Now.plainDate(cal);\n \tconst formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n+\tconst { day, month, year } = d\n \n  return new Array(d.monthsInYear).fill(null).map((value) => ({\n-\tlabel: formatter.format(cal.dateFromFields({ year, month, day }),\n-\tvalue,\n-});\n+\t\tlabel: formatter.format(cal.dateFromFields({ year, month, day }),\n+\t\tvalue,\n+\t});\n }\n"
+				},
+				{
+					"date": 1688533785192,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \tconst d = Temporal.Now.plainDate(cal);\n \tconst formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n \tconst { day, month, year } = d\n \n- return new Array(d.monthsInYear).fill(null).map((value) => ({\n-\t\tlabel: formatter.format(cal.dateFromFields({ year, month, day }),\n+ return new Array(d.monthsInYear).fill(null).map((value: number) => ({\n+\t\tlabel: formatter.format(cal.dateFromFields({ year, month, day })),\n \t\tvalue,\n \t});\n }\n"
+				},
+				{
+					"date": 1688533791356,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,6 @@\n \n  return new Array(d.monthsInYear).fill(null).map((value: number) => ({\n \t\tlabel: formatter.format(cal.dateFromFields({ year, month, day })),\n \t\tvalue,\n-\t});\n+\t})\n }\n"
+				},
+				{
+					"date": 1688533958458,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,14 @@\n export default function getMonths (calendar: string, locales: Array<string>, format: \"2-digit\" | \"long\" | \"numeric\" | \"short\") {\n \tconst cal = Temporal.Calendar.from(calendar);\n \tconst d = Temporal.Now.plainDate(cal);\n \tconst formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n-\tconst { day, month, year } = d\n \n- return new Array(d.monthsInYear).fill(null).map((value: number) => ({\n+ return new Array(d.monthsInYear).fill(null).map((_, i) => {\n+\t\tconst month = i + 1;\n+\t\tconst { day, year } = d;\n+\n+\treturn {\n \t\tlabel: formatter.format(cal.dateFromFields({ year, month, day })),\n \t\tvalue,\n-\t})\n+\t}}\n }\n"
+				},
+				{
+					"date": 1688533979220,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,14 @@\n export default function getMonths (calendar: string, locales: Array<string>, format: \"2-digit\" | \"long\" | \"numeric\" | \"short\") {\n \tconst cal = Temporal.Calendar.from(calendar);\n \tconst d = Temporal.Now.plainDate(cal);\n \tconst formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n+\tconst { day, year } = d;\n \n  return new Array(d.monthsInYear).fill(null).map((_, i) => {\n-\t\tconst month = i + 1;\n-\t\tconst { day, year } = d;\n+\tconst month = i + 1;\n \n \treturn {\n \t\tlabel: formatter.format(cal.dateFromFields({ year, month, day })),\n-\t\tvalue,\n+\t\tvalue: month,\n \t}}\n }\n"
+				},
+				{
+					"date": 1688534011123,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,12 @@\n \tconst formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n \tconst { day, year } = d;\n \n  return new Array(d.monthsInYear).fill(null).map((_, i) => {\n-\tconst month = i + 1;\n+\t\tconst month = i + 1;\n \n-\treturn {\n-\t\tlabel: formatter.format(cal.dateFromFields({ year, month, day })),\n-\t\tvalue: month,\n-\t}}\n+\t\treturn {\n+\t\t\tlabel: formatter.format(cal.dateFromFields({ year, month, day })),\n+\t\t\tvalue: month,\n+\t\t}\n+\t}\n }\n"
+				},
+				{
+					"date": 1688534151818,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,24 @@\n-import { Intl, Temporal } from \"@js-temporal/polyfill\";\n+import { Intl, Temporal } from \"@js-temporal/polyfill\"\n \n-export default function getMonths (calendar: string, locales: Array<string>, format: \"2-digit\" | \"long\" | \"numeric\" | \"short\") {\n-\tconst cal = Temporal.Calendar.from(calendar);\n-\tconst d = Temporal.Now.plainDate(cal);\n-\tconst formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n-\tconst { day, year } = d;\n+export default function getMonths(\n+\tcalendar: string,\n+\tlocales: Array<string>,\n+\tformat: \"2-digit\" | \"long\" | \"numeric\" | \"short\",\n+) {\n+\tconst cal = Temporal.Calendar.from(calendar)\n+\tconst d = Temporal.Now.plainDate(cal)\n+\tconst formatter = new Intl.DateTimeFormat(locales, {\n+\t\tcalendar,\n+\t\tmonth: format,\n+\t})\n+\tconst { day, year } = d\n \n- return new Array(d.monthsInYear).fill(null).map((_, i) => {\n-\t\tconst month = i + 1;\n+\treturn new Array(d.monthsInYear).fill(null).map((_, i) => {\n+\t\tconst month = i + 1\n \n \t\treturn {\n \t\t\tlabel: formatter.format(cal.dateFromFields({ year, month, day })),\n \t\t\tvalue: month,\n \t\t}\n-\t}\n+\t})\n }\n"
+				},
+				{
+					"date": 1688535803069,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n export default function getMonths(\n \tcalendar: string,\n \tlocales: Array<string>,\n \tformat: \"2-digit\" | \"long\" | \"numeric\" | \"short\",\n+\tfilter?: Array<string | number>,\n ) {\n \tconst cal = Temporal.Calendar.from(calendar)\n \tconst d = Temporal.Now.plainDate(cal)\n \tconst formatter = new Intl.DateTimeFormat(locales, {\n@@ -15,10 +16,14 @@\n \n \treturn new Array(d.monthsInYear).fill(null).map((_, i) => {\n \t\tconst month = i + 1\n \n-\t\treturn {\n+\t\tconst out = {\n \t\t\tlabel: formatter.format(cal.dateFromFields({ year, month, day })),\n \t\t\tvalue: month,\n \t\t}\n+\n+\t\treturn filter\n+\t\t\t? out.filter(({ value }) => filter.includes(parseInt(value, 10)))\n+\t\t\t: out\n \t})\n }\n"
+				},
+				{
+					"date": 1688535845788,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,17 +13,17 @@\n \t\tmonth: format,\n \t})\n \tconst { day, year } = d\n \n-\treturn new Array(d.monthsInYear).fill(null).map((_, i) => {\n+\tconst options = new Array(d.monthsInYear).fill(null).map((_, i) => {\n \t\tconst month = i + 1\n \n-\t\tconst out = {\n+\t\treturn {\n \t\t\tlabel: formatter.format(cal.dateFromFields({ year, month, day })),\n \t\t\tvalue: month,\n \t\t}\n+\t})\n \n-\t\treturn filter\n-\t\t\t? out.filter(({ value }) => filter.includes(parseInt(value, 10)))\n-\t\t\t: out\n-\t})\n+\treturn filter\n+\t\t? options.filter(({ value }) => filter.includes(parseInt(value, 10)))\n+\t\t: options\n }\n"
+				},
+				{
+					"date": 1688535861367,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,7 +23,9 @@\n \t\t}\n \t})\n \n \treturn filter\n-\t\t? options.filter(({ value }) => filter.includes(parseInt(value, 10)))\n+\t\t? options.filter(({ value }) =>\n+\t\t\tfilter.includes(parseInt(String(value), 10))\n+\t\t)\n \t\t: options\n }\n"
+				},
+				{
+					"date": 1688535979515,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,7 @@\n \t\t}\n \t})\n \n \treturn filter\n-\t\t? options.filter(({ value }) =>\n-\t\t\tfilter.includes(parseInt(String(value), 10))\n-\t\t)\n+\t\t? options.filter(({ value }) => filter.includes(value))\n \t\t: options\n }\n"
+				}
+			],
+			"date": 1688533470415,
+			"name": "Commit-0",
+			"content": "export default getMonths () {\n\tconst cal = Temporal.Calendar.from(calendar);\nconst d = Temporal.Now.plainDate(cal);\nconst formatter = new Intl.DateTimeFormat(locales, { calendar, month: format });\n return new Array(d.monthsInYear).fill(null).map((value) => ({\n\tlabel: formatter.format(cal.dateFromFields({ year, month, day }),\n\tvalue,\n}));\n}\n"
+		}
+	]
+}

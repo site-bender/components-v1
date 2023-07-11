@@ -1,0 +1,22 @@
+{
+	"sourceFile": "src/form/elements/PasswordInput/script.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 1,
+			"patches": [
+				{
+					"date": 1688605774458,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688792947246,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n <script>\n \t(function () {\n \t\tglobalThis.addEventListener(\"DOMContentLoaded\", function () {\n \t\t\tconst passwordFields = document.querySelectorAll(\n-\t\t\t\t\"input[data-unmaskable]\"\n+\t\t\t\t\"input[data-sb-unmaskable]\"\n \t\t\t);\n \n \t\t\t[...passwordFields].forEach((element) => {\n \t\t\t\tconst button = document.createElement(\"button\");\n"
+				}
+			],
+			"date": 1688605774458,
+			"name": "Commit-0",
+			"content": "---\n---\n\n<script>\n\t(function () {\n\t\tglobalThis.addEventListener(\"DOMContentLoaded\", function () {\n\t\t\tconst passwordFields = document.querySelectorAll(\n\t\t\t\t\"input[data-unmaskable]\"\n\t\t\t);\n\n\t\t\t[...passwordFields].forEach((element) => {\n\t\t\t\tconst button = document.createElement(\"button\");\n\t\t\t\tbutton.classList.add(\"sb-password-visibility\");\n\t\t\t\tbutton.setAttribute(\"aria-label\", \"Show password\");\n\t\t\t\tbutton.setAttribute(\"type\", \"button\");\n\t\t\t\tbutton.appendChild(document.createTextNode(\"Show\"));\n\n\t\t\t\tbutton.addEventListener(\"click\", function () {\n\t\t\t\t\tif (element.getAttribute(\"type\") === \"password\") {\n\t\t\t\t\t\tthis.setAttribute(\"aria-label\", \"Hide password\");\n\t\t\t\t\t\tthis.innerText = \"Hide\";\n\t\t\t\t\t\telement.setAttribute(\"type\", \"text\");\n\t\t\t\t\t} else {\n\t\t\t\t\t\tthis.setAttribute(\"aria-label\", \"Show password\");\n\t\t\t\t\t\tthis.innerText = \"Show\";\n\t\t\t\t\t\telement.setAttribute(\"type\", \"password\");\n\t\t\t\t\t}\n\t\t\t\t});\n\n\t\t\t\telement.parentNode?.appendChild(button);\n\t\t\t});\n\t\t});\n\t})();\n</script>\n"
+		}
+	]
+}

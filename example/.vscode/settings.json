@@ -1,0 +1,15 @@
+{
+	"files.exclude": {
+		".lh": true,
+		".vscode": true,
+		"dist": true,
+		".env": true,
+		".gitignore": true,
+		"astro.config.mjs": true,
+		"components.theme.dark.json": true,
+		"pnpm-lock.yaml": true,
+		"tsconfig.json": true,
+		"README.md": true,
+		"src/env.d.ts": true
+	}
+}

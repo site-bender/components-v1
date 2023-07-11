@@ -1,91 +1,168 @@
 ---
-import FieldWrapper from "../FieldWrapper/index.astro";
+import createClassList from "../../utilities/createClassList";
 import generateShortId from "../../utilities/generateShortId";
 import mapDataset from "../../utilities/mapDataset";
-import PlainYearMonth from "../../metadata/PlainYearMonth/index.astro";
-import toPlainYearMonthString from "../../utilities/toPlainYearMonthString";
-import type { Calendar, Dataset, Messages } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-import type { Temporal } from "@js-temporal/polyfill";
-import type { TIME_ZONE } from "../../constants";
-
-export type Props = Omit<HTMLAttributes<"input">, "slot" | "value"> & {
-  calendar?: Calendar | Temporal.Calendar;
-  dataset?: Dataset;
-  day?: number | string;
-  era?: string | undefined;
-  eraYear?: string | undefined;
-  help?: string;
-  label: string;
-  locale?: string | Array<string>;
-  messages?: Messages;
-  month?: number | string;
-  monthCode?: string;
-  name: string;
-  readonly?: boolean;
-  timeZone?: keyof typeof TIME_ZONE;
-  value?: string | Temporal.PlainYearMonthLike | Temporal.PlainYearMonthLike;
-  year?: number | string;
-};
+import WeekSelect from "../elements/WeekSelect/index.astro";
+import YearInput from "../elements/YearInput/index.astro";
+import type { BaseAttributes } from "../../../types/html";
+import type { PlainYearMonth as Props } from "../../../types/form";
 
 const {
-  calendar,
-  dataset,
-  day,
-  help,
-  id = `_${generateShortId()}`,
-  label,
-  locale,
-  messages,
-  month,
-  monthCode,
-  readonly,
-  value: rawValue,
-  year,
-  ...attrs
+	["aria-live"]: live = "assertive",
+	calendar = "iso8601",
+	disabled,
+	field = "year-week-field",
+	form,
+	format,
+	group = {},
+	help = {},
+	id = generateShortId(),
+	includeNull,
+	label = "Year and week",
+	legend = {},
+	locales = ["en-NZ", "en-US", "en-GB"],
+	message,
+	name = "plainYearMonth",
+	outer = {},
+	required,
+	tag = {},
+	week = "",
+	weekAttrs = {},
+	weeks,
+	wrapper = {},
+	year = "",
+	yearAttrs = {},
+	years,
 } = Astro.props;
 
-const labelId = `${id}-label`;
-const helpId = `${id}-help`;
-const data = mapDataset(dataset);
+const {
+	["class:list"]: groupClassList = [],
+	dataset: groupDataset,
+	...groupAttrs
+} = group as BaseAttributes;
 
-const value = rawValue
-  ? toPlainYearMonthString(rawValue)
-  : toPlainYearMonthString({
-      ...(monthCode ? { monthCode } : { month: Number(month) }),
-      year: Number(year),
-    });
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
+
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: weekClassList = [],
+	dataset: weekDataset,
+	...weekAttributes
+} = weekAttrs as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const {
+	["class:list"]: yearClassList = [],
+	dataset: yearDataset,
+	...yearAttributes
+} = yearAttrs as BaseAttributes;
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const legendId = `${id}_legend`;
+const weekId = `${id}-week`;
+const weekName = `${name}:week`;
+const yearId = `${id}-year`;
+const yearName = `${name}:year`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
 ---
 
-<FieldWrapper
-  fieldType="sb-year-month"
-  {...help ? { help } : {}}
-  helpId={helpId}
-  id={id as string}
-  label={label}
-  labelId={labelId}
-  {...messages ? { messages } : {}}
-  name={attrs.name}
-  readonly={readonly}
-  {...attrs.required ? { required: true } : {}}
+<fieldset
+	{...outerAttrs}
+	class:list={createClassList(
+		"sb-field",
+		"sb-plain-year-week-field",
+		outerClassList
+	)}
+	{...mapDataset(outerDataset)}
+	data-sb-field={field}
+	{...req}
+	{disabled}
+	{form}
+	{id}
+	{name}
 >
-  <Fragment slot="element">
-    {
-      readonly ? (
-        <div class="readonly sb-plain-year-month-readonly">
-          <PlainYearMonth {...attrs} value={value} />
-        </div>
-      ) : (
-        <input
-          aria-labelledBy={`${labelId} ${helpId}`}
-          class="sb-plain-year-month-input"
-          {...data}
-          id={id as string}
-          {...attrs}
-          type="month"
-          {...(value ? { value } : {})}
-        />
-      )
-    }
-  </Fragment>
-</FieldWrapper>
+	<legend
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={legendId}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</legend>
+	<div
+		class:list={createClassList("sb-group", groupClassList)}
+		{...mapDataset(groupDataset)}
+		data-sb-field-group={field}
+	>
+		<label data-sb-label-time={field} for={`${id}_year`}>
+			<span id={`${id}_year:label`}>Year</span>
+			<YearInput
+				{...yearAttrs}
+				data-sb-input-year={field}
+				{form}
+				id={`${id}_year`}
+				labelledBy={`${legendId} ${id}_year:label`}
+				name={`${name}:year`}
+				{required}
+				value={year}
+				years={years}
+			/>
+		</label>
+		<label data-sb-label-week={field} for={`${id}_week`}>
+			<span id={`${id}_week:label`}>Month</span>
+			<WeekSelect
+				{...weekAttrs}
+				data-sb-select-week={field}
+				{form}
+				id={`${id}_week`}
+				{includeNull}
+				labelledBy={`${legendId} ${id}_week:label`}
+				name={`${name}:week`}
+				{required}
+				value={week}
+				weeks={weeks}
+			/>
+		</label>
+	</div>
+</fieldset>

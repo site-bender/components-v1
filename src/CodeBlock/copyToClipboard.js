@@ -1,3 +1,4 @@
+// deno-lint-ignore no-extra-semi
 ;(function() {
 	function addCopyToClipboard () {
 		const blocks = document.querySelectorAll(".astro-code")

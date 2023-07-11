@@ -1,77 +1,56 @@
 ---
-import type { Dataset } from "../../types";
-import type { MonetaryAmount } from "../../schema.org";
-import type { NumberFormatOptions, NumberStyle } from "../Number/types";
-import type { HTMLAttributes } from "astro/types";
+import "./index.css";
+import type { NumberStyle } from "../Number/types";
 import Microdata from "../../Microdata/index.astro";
-import Content from "./Content/index.astro";
-
-export type Props = HTMLAttributes<"a"> & {
-  cssClasses?: Array<string>;
-  dataset?: Dataset;
-  href?: string | undefined;
-  locale?: string;
-  options?: NumberFormatOptions;
-  properties?: Partial<MonetaryAmount> | undefined;
-  useJsonLd?: boolean;
-  useTabularNumerals?: boolean | undefined;
-  value?: string | number | undefined;
-};
+import mapDataset from "../../utilities/mapDataset";
 
 const style: NumberStyle = "currency";
 
 const {
-  cssClasses,
-  dataset,
-  href = "",
-  locale = "en-US",
-  options = {
-    currency: "USD",
-    currencyDisplay: "narrowSymbol",
-    style,
-  },
-  properties,
-  type = "Number",
-  useJsonLd,
-  useTabularNumerals,
+  options: opts = {},
+  properties = {},
   value,
   ...attrs
 } = Astro.props;
 
 const val = typeof value === "number" ? value : parseFloat(String(value));
-const opts = { ...options, style };
+const options = {
+	currency: "USD",
+	currencyDisplay: "narrowSymbol",
+	maximumFractionalDigis: 2,
+	style,
+	...opts,
+};
 
 const num = Number.isNaN(val)
   ? await Astro.slots.render("default")
   : new Intl.NumberFormat(locale, opts).format(val as number);
 
-const meta =
-  typeof properties === "object"
-    ? {
-        "@context": "https://schema.org",
-        "@type": "MonetaryAmount",
-        ...(useJsonLd
-          ? {}
-          : { ...properties, currency: options.currency, value: val }),
-      }
-    : {};
+const css = [
+  "sb-monetary-amount",
+  ...cssClasses,
+  ...(useTabularNumerals ? ["tabular-nums"] : []),
+].join(" ");
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const meta = {
+  type: "MonetaryAmount",
+  ....properties,
+	currency: opts.currency,
+	value: val,
+};
 ---
 
-<Microdata properties={meta}>
-  <Content
-    cssClasses={cssClasses}
-    dataset={dataset}
-    href={href}
-    linkAttributes={attrs}
-    num={num}
-    useTabularNumerals={useTabularNumerals}
-  />
-  {
-    useJsonLd ? (
-      <script
-        set:html={JSON.stringify({ ...meta, ...properties }, null, 2)}
-        type="application/json+ld"
-      />
-    ) : null
-  }
-</Microdata>
+{
+  useMicrodata ? (
+    <Microdata as="span" properties={meta}>
+      <Number {...attrs} {...options} set:html={num}>
+				<slot />
+			</Number>
+    </Microdata>
+  ) : (
+      <Number {...attrs} {...options} set:html={num}>
+				<slot />
+			</Number>
+  )
+}

@@ -1,0 +1,54 @@
+{
+	"sourceFile": "src/Picture/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 9,
+			"patches": [
+				{
+					"date": 1688940624143,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688940641762,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,9 +67,9 @@\n         <picture class={css} {...data}>\n           {sources.map((source: ImageSource) => (\n             <Source\n               createPath={createPath}\n-              filename={filename}\n+              {filename}\n               source={source}\n             />\n           ))}\n           <img\n@@ -93,9 +93,9 @@\n       </a>\n     ) : (\n       <picture class={css} {...data}>\n         {sources.map((source: ImageSource) => (\n-          <Source createPath={createPath} filename={filename} source={source} />\n+          <Source createPath={createPath} {filename} source={source} />\n         ))}\n         <img\n           {alt}\n           {...describedById}\n"
+				},
+				{
+					"date": 1688940658117,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n             {...describedById}\n             decoding=\"async\"\n             {...(h ? { height: h } : {})}\n             loading={loading}\n-            src={src}\n+            {src}\n             {...(width != null ? { width } : {})}\n             {...attrs}\n           />\n           {desc ? (\n@@ -101,9 +101,9 @@\n           {...describedById}\n           decoding=\"async\"\n           {...(h ? { height: h } : {})}\n           loading={loading}\n-          src={src}\n+          {src}\n           {...(width != null ? { width } : {})}\n           {...attrs}\n         />\n         {desc ? (\n"
+				},
+				{
+					"date": 1688942656191,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n           {sources.map((source: ImageSource) => (\n             <Source\n               createPath={createPath}\n               {filename}\n-              source={source}\n+              {source}\n             />\n           ))}\n           <img\n             {alt}\n@@ -93,9 +93,9 @@\n       </a>\n     ) : (\n       <picture class={css} {...data}>\n         {sources.map((source: ImageSource) => (\n-          <Source createPath={createPath} {filename} source={source} />\n+          <Source createPath={createPath} {filename} {source} />\n         ))}\n         <img\n           {alt}\n           {...describedById}\n"
+				},
+				{
+					"date": 1688958429048,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,35 +1,11 @@\n ---\n import exifr from \"exifr\";\n import generateShortId from \"../utilities/generateShortId\";\n-import type { HTMLAttributes } from \"astro/types\";\n-import type { ImageObject } from \"../schema.org\";\n-import type { CreatePath } from \"./Source/index.astro\";\n-import Source from \"./Source/index.astro\";\n-import type { ImageSource } from \"../types\";\n-import type { Dataset } from \"../types\";\n-import mapDataset from \"../utilities/mapDataset\";\n import Microdata from \"../Microdata/index.astro\";\n+import type { PictureProps as Props } from \"../types\";\n import \"./index.css\";\n \n-export type Props = {\n-  alt: string;\n-  createPath?: CreatePath | undefined;\n-  cssClasses?: Array<string> | undefined;\n-  dataset?: Dataset | undefined | undefined;\n-  description?: string | undefined;\n-  descriptionClass?: string | undefined;\n-  filename: string;\n-  height?: number | undefined;\n-  href?: string | undefined;\n-  linkAttributes?: HTMLAttributes<\"a\"> | undefined;\n-  loading?: \"eager\" | \"lazy\" | undefined | undefined;\n-  properties?: Partial<ImageObject> | undefined;\n-  sources?: Array<ImageSource> | undefined;\n-  src: string;\n-  width: number;\n-};\n-\n const {\n   alt,\n   createPath,\n   cssClasses = [],\n"
+				},
+				{
+					"date": 1688958475082,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n ---\n import exifr from \"exifr\";\n import generateShortId from \"../utilities/generateShortId\";\n+import mapDataset from \"../utilities/mapDataset\";\n import Microdata from \"../Microdata/index.astro\";\n import type { PictureProps as Props } from \"../types\";\n import \"./index.css\";\n \n"
+				},
+				{
+					"date": 1688959568583,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,15 +8,14 @@\n \n const {\n   alt,\n   createPath,\n-  cssClasses = [],\n   dataset,\n   description,\n   descriptionClass = \"off-screen\",\n   filename,\n   height = 0,\n-  linkAttributes = {},\n+  link = {},\n   loading = \"lazy\",\n   properties,\n   sources = [],\n   src,\n@@ -38,10 +37,10 @@\n ---\n \n <Microdata as=\"span\" properties={meta}>\n   {\n-    linkAttributes.href ? (\n-      <a {...linkAttributes}>\n+    link.href ? (\n+      <a {...link}>\n         <picture class={css} {...data}>\n           {sources.map((source: ImageSource) => (\n             <Source\n               createPath={createPath}\n"
+				},
+				{
+					"date": 1689031973035,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n ---\n import exifr from \"exifr\";\n+import createClassList from \"../utilities/createClassList\";\n import generateShortId from \"../utilities/generateShortId\";\n import mapDataset from \"../utilities/mapDataset\";\n import Microdata from \"../Microdata/index.astro\";\n import type { PictureProps as Props } from \"../types\";\n"
+				},
+				{
+					"date": 1689032054320,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n import \"./index.css\";\n \n const {\n   alt,\n+\t[\"class:list\"]: classList = [],\n   createPath,\n   dataset,\n   description,\n   descriptionClass = \"off-screen\",\n"
+				},
+				{
+					"date": 1689032332646,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n \n const tags = await exifr.parse(`public${src}`);\n const aspectRatio = (tags?.ImageHeight || 0) / (tags?.ImageWidth || 1);\n const h = height || Math.floor(aspectRatio * width);\n-const css = [\"sb-picture\", ...cssClasses].join(\" \");\n const meta = {\n   type: \"ImageObject\",\n };\n ---\n@@ -41,9 +40,9 @@\n <Microdata as=\"span\" properties={meta}>\n   {\n     link.href ? (\n       <a {...link}>\n-        <picture class={css} {...data}>\n+        <picture class:list={createClassList(\"sb-picture\", classList)} {...data}>\n           {sources.map((source: ImageSource) => (\n             <Source\n               createPath={createPath}\n               {filename}\n@@ -69,9 +68,9 @@\n           ) : null}\n         </picture>\n       </a>\n     ) : (\n-      <picture class={css} {...data}>\n+      <picture class:list={createClassList(\"sb-picture\", classList)} {...data}>\n         {sources.map((source: ImageSource) => (\n           <Source createPath={createPath} {filename} {source} />\n         ))}\n         <img\n"
+				}
+			],
+			"date": 1688940624143,
+			"name": "Commit-0",
+			"content": "---\nimport exifr from \"exifr\";\nimport generateShortId from \"../utilities/generateShortId\";\nimport type { HTMLAttributes } from \"astro/types\";\nimport type { ImageObject } from \"../schema.org\";\nimport type { CreatePath } from \"./Source/index.astro\";\nimport Source from \"./Source/index.astro\";\nimport type { ImageSource } from \"../types\";\nimport type { Dataset } from \"../types\";\nimport mapDataset from \"../utilities/mapDataset\";\nimport Microdata from \"../Microdata/index.astro\";\nimport \"./index.css\";\n\nexport type Props = {\n  alt: string;\n  createPath?: CreatePath | undefined;\n  cssClasses?: Array<string> | undefined;\n  dataset?: Dataset | undefined | undefined;\n  description?: string | undefined;\n  descriptionClass?: string | undefined;\n  filename: string;\n  height?: number | undefined;\n  href?: string | undefined;\n  linkAttributes?: HTMLAttributes<\"a\"> | undefined;\n  loading?: \"eager\" | \"lazy\" | undefined | undefined;\n  properties?: Partial<ImageObject> | undefined;\n  sources?: Array<ImageSource> | undefined;\n  src: string;\n  width: number;\n};\n\nconst {\n  alt,\n  createPath,\n  cssClasses = [],\n  dataset,\n  description,\n  descriptionClass = \"off-screen\",\n  filename,\n  height = 0,\n  linkAttributes = {},\n  loading = \"lazy\",\n  properties,\n  sources = [],\n  src,\n  width,\n  ...attrs\n} = Astro.props;\n\nconst data = mapDataset(dataset);\nconst desc = (await Astro.slots.render(\"description\")) || description;\nconst describedById = desc ? { describedById: generateShortId() } : {};\n\nconst tags = await exifr.parse(`public${src}`);\nconst aspectRatio = (tags?.ImageHeight || 0) / (tags?.ImageWidth || 1);\nconst h = height || Math.floor(aspectRatio * width);\nconst css = [\"sb-picture\", ...cssClasses].join(\" \");\nconst meta = {\n  type: \"ImageObject\",\n};\n---\n\n<Microdata as=\"span\" properties={meta}>\n  {\n    linkAttributes.href ? (\n      <a {...linkAttributes}>\n        <picture class={css} {...data}>\n          {sources.map((source: ImageSource) => (\n            <Source\n              createPath={createPath}\n              filename={filename}\n              source={source}\n            />\n          ))}\n          <img\n            {alt}\n            {...describedById}\n            decoding=\"async\"\n            {...(h ? { height: h } : {})}\n            loading={loading}\n            src={src}\n            {...(width != null ? { width } : {})}\n            {...attrs}\n          />\n          {desc ? (\n            <div\n              class={descriptionClass}\n              id={describedById?.describedById}\n              set:html={desc}\n            />\n          ) : null}\n        </picture>\n      </a>\n    ) : (\n      <picture class={css} {...data}>\n        {sources.map((source: ImageSource) => (\n          <Source createPath={createPath} filename={filename} source={source} />\n        ))}\n        <img\n          {alt}\n          {...describedById}\n          decoding=\"async\"\n          {...(h ? { height: h } : {})}\n          loading={loading}\n          src={src}\n          {...(width != null ? { width } : {})}\n          {...attrs}\n        />\n        {desc ? (\n          <div\n            class={descriptionClass}\n            id={describedById?.describedById}\n            set:html={desc}\n          />\n        ) : null}\n      </picture>\n    )\n  }\n</Microdata>\n"
+		}
+	]
+}

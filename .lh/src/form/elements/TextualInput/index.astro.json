@@ -1,0 +1,22 @@
+{
+	"sourceFile": "src/form/elements/TextualInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 1,
+			"patches": [
+				{
+					"date": 1688429922978,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688429971732,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { TextualInput as Props } from \"../../../../types\";\n+import type { TextualInput as Props } from \"../../../types/forms\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n \n"
+				}
+			],
+			"date": 1688429922978,
+			"name": "Commit-0",
+			"content": "---\nimport type { TextualInput as Props } from \"../../../../types\";\nimport mapDataset from \"../../../utilities/mapDataset\";\n\nconst { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n\nconst css = [\"sb-input\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\n---\n\n<span>\n\t<input\n\t\t{...attrs}\n\t\taria-labelledby={`${id}_label`}\n\t\tclass={css}\n\t\t{...data}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t/>\n</span>\n"
+		}
+	]
+}

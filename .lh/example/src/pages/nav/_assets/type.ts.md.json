@@ -1,0 +1,18 @@
+{
+    "sourceFile": "example/src/pages/nav/_assets/type.ts.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1689049692930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1689049692930,
+            "name": "Commit-0",
+            "content": "---\n  caption: \"Nav props\"\n---\n\n<!-- markdownlint-disable MD041 -->\n<!-- dprint-ignore -->\n```ts\nexport type Dataset = Record<string, string | number | boolean>\n\nexport type LinkProps = {\n  cssClasses?: Array<string>;\n  dataset?: Dataset | undefined | null;\n  href: string;\n  label?: string;\n  properties?: SiteNavigationElement;\n};\n\nexport type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {\n  cssClasses?: Array<string>;\n  dataset?: Dataset | undefined | null;\n  h2?: Partial<HTMLAttributes<\"h2\">>;\n  links: Array<LinkProps>;\n  properties?: SiteNavigationElementLeaf;\n  title?: string;\n  ul?: Partial<HTMLAttributes<\"ul\">>;\n};\n```\n"
+        }
+    ]
+}

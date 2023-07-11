@@ -1,0 +1,54 @@
+{
+	"sourceFile": "src/form/elements/DaySelect/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 9,
+			"patches": [
+				{
+					"date": 1688792591498,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688792722341,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,12 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const days = new Array(32).fill(0).map((_, i) => i + 1);\n+const days = new Array(32).fill(0).map((_, i) => ({\n+\tlabel: String(i + 1).padStart(2, \"0\"),\n+\tvalue: i + 1,\n+}));\n ---\n \n <span\n \t{...wrapperAttrs}\n"
+				},
+				{
+					"date": 1688792740275,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n const days = new Array(32).fill(0).map((_, i) => ({\n-\tlabel: String(i + 1).padStart(2, \"0\"),\n-\tvalue: i + 1,\n+\tlabel: i + 1,\n+\tvalue: String(i + 1).padStart(2, \"0\"),\n }));\n ---\n \n <span\n"
+				},
+				{
+					"date": 1688792750359,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const days = new Array(32).fill(0).map((_, i) => ({\n+const days = new Array(31).fill(0).map((_, i) => ({\n \tlabel: i + 1,\n \tvalue: String(i + 1).padStart(2, \"0\"),\n }));\n ---\n"
+				},
+				{
+					"date": 1688940253528,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n \t\tdata-sb-select={field}\n \t\tid={id}\n \t\tform={form}\n \t\tname={name}\n-\t\trequired={required}\n+\t\t{required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n \t\t<Fragment set:html={createSelectOptions(days, selected)} />\n \t</select>\n"
+				},
+				{
+					"date": 1688940875555,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-day-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n-\t\tid={id}\n+\t\t{id}\n \t\tform={form}\n \t\tname={name}\n \t\t{required}\n \t>\n"
+				},
+				{
+					"date": 1688940940037,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \t\tclass:list={createClassList(\"sb-day-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n \t\t{id}\n-\t\tform={form}\n+\t\t{form}\n \t\tname={name}\n \t\t{required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n"
+				},
+				{
+					"date": 1688940976269,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n \t\t{id}\n \t\t{form}\n-\t\tname={name}\n+\t\t{name}\n \t\t{required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n \t\t<Fragment set:html={createSelectOptions(days, selected)} />\n"
+				},
+				{
+					"date": 1688942203708,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n \tdata-sb-wrapper={field}\n >\n \t<select\n \t\t{...attrs}\n-\t\tautocomplete={autocomplete}\n+\t\t{autocomplete}\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-day-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n"
+				},
+				{
+					"date": 1688945095031,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tfilter,\n \tform,\n \tformat = \"long\",\n \tid = generateShortId(),\n-\tincludeBlank,\n+\tincludeNull,\n \tlabelledBy,\n \tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n \tname = \"day\",\n \trequired,\n@@ -55,8 +55,8 @@\n \t\t{form}\n \t\t{name}\n \t\t{required}\n \t>\n-\t\t{includeBlank ? <option /> : null}\n+\t\t{includeNull ? <option /> : null}\n \t\t<Fragment set:html={createSelectOptions(days, selected)} />\n \t</select>\n </span>\n"
+				}
+			],
+			"date": 1688792591498,
+			"name": "Commit-0",
+			"content": "---\nimport createClassList from \"../../../utilities/createClassList\";\nimport createSelectOptions from \"../../../utilities/createSelectOptions\";\nimport generateShortId from \"../../../utilities/generateShortId\";\nimport mapDataset from \"../../../utilities/mapDataset\";\nimport type { BaseAttributes } from \"../../../types/html\";\nimport type { MonthFormat, MonthSelect as Props } from \"../../../types/form\";\n\nconst {\n\tautocomplete,\n\tcalendar = \"iso8601\",\n\t[\"class:list\"]: elementClassList = [],\n\tdataset: elementDataset,\n\tfield = \"day-select\",\n\tfilter,\n\tform,\n\tformat = \"long\",\n\tid = generateShortId(),\n\tincludeBlank,\n\tlabelledBy,\n\tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n\tname = \"day\",\n\trequired,\n\tselected,\n\twrapper = {},\n\t...attrs\n} = Astro.props;\n\nconst {\n\t[\"class:list\"]: wrapperClassList = [],\n\tdataset: wrapperDataset,\n\t...wrapperAttrs\n} = wrapper as BaseAttributes;\n\nconst days = new Array(32).fill(0).map((_, i) => i + 1);\n---\n\n<span\n\t{...wrapperAttrs}\n\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n\t{...mapDataset(wrapperDataset)}\n\tdata-sb-wrapper={field}\n>\n\t<select\n\t\t{...attrs}\n\t\tautocomplete={autocomplete}\n\t\taria-labelledby={labelledBy}\n\t\tclass:list={createClassList(\"sb-day-select\", elementClassList)}\n\t\t{...mapDataset(elementDataset)}\n\t\tdata-sb-select={field}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t\trequired={required}\n\t>\n\t\t{includeBlank ? <option /> : null}\n\t\t<Fragment set:html={createSelectOptions(days, selected)} />\n\t</select>\n</span>\n"
+		}
+	]
+}

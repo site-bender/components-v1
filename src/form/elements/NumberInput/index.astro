@@ -1,0 +1,82 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import createListOptions from "../../../utilities/createListOptions";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { NumberInput as Props } from "../../../types/form";
+
+const {
+	autocomplete,
+	["class:list"]: elementClassList = [],
+	datalist = {},
+	dataset: elementDataset,
+	field = "number-input",
+	form,
+	id = generateShortId(),
+	isInteger,
+	labelledBy,
+	list,
+	name,
+	placeholder: _placeholder,
+	required,
+	step: stp,
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: datalistClassList = [],
+	dataset: datalistDataset,
+	...datalistAttrs
+} = datalist as BaseAttributes;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+
+const listId = `${id}_list`;
+const lst = list ? { list: listId } : {};
+const step = isInteger ? parseInt(String(stp), 10) || 1 : step;
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	<input
+		{...attrs}
+		aria-labelledby={labelledBy}
+		{autocomplete}
+		class:list={createClassList("sb-number-input", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-input={field}
+		{form}
+		{id}
+		{...lst}
+		{name}
+		{required}
+		{step}
+		type="number"
+		{value}
+	/>
+	{
+		list ? (
+			<datalist
+				{...datalistAttrs}
+				class:list={createClassList("sb-datalist-number", datalistClassList)}
+				{...mapDataset(datalistDataset)}
+				data-sb-datalist={field}
+				id={listId}
+			>
+				<Fragment set:html={createListOptions(list)} />
+			</datalist>
+		) : null
+	}
+</span>

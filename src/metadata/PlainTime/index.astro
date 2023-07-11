@@ -1,34 +1,51 @@
 ---
 import { DEFAULT_TIME_OPTIONS, DEFAULT_LOCALE } from "../../constants";
-import { Temporal, Intl } from "@js-temporal/polyfill";
-import type { DateTimeFormatOptions } from "../../types";
+import { Intl, Temporal } from "@js-temporal/polyfill";
+import type { Thing } from "../../schema.org";
+import mapDataset from "../../utilities/mapDataset";
+import type { Dataset } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+import Microdata from "../../Microdata/index.astro";
 
-export type Props = {
+export type Props<T extends Thing> = HTMLAttributes<"time"> & {
+  cssClasses?: Array<string>;
+  dataset?: Dataset;
   hour?: number | string;
+  itemprop?: string | undefined;
   locale?: string | Array<string>;
   microsecond?: number | string;
   millisecond?: number | string;
   minute?: number | string;
   nanosecond?: number | string;
-  options?: DateTimeFormatOptions;
+  options?: Intl.DateTimeFormatOptions;
+  plainTime?: string | Temporal.PlainTimeLike;
+  properties?: Partial<T>;
   second?: number | string;
-  value?: string | Temporal.PlainTimeLike;
+  itemtype?: string;
 };
 
 const {
+  ["class:list"]: classList = [],
+  dataset,
   hour = 0,
+  itemprop,
   locale = DEFAULT_LOCALE,
   microsecond = 0,
   millisecond = 0,
   minute = 0,
   nanosecond = 0,
   options = {},
+  plainTime = Temporal.Now.plainTimeISO(),
+  properties,
   second = 0,
-  value,
+  itemtype,
+  ...attrs
 } = Astro.props;
 
-const plainTime = value
-  ? (value as Temporal.PlainTime)
+const css = ["sb-plain-time", ...cssClasses].join(" ");
+const data = mapDataset(dataset);
+const value = plainTime
+  ? (plainTime as Temporal.PlainTime)
   : new Temporal.PlainTime(
       Number(hour),
       Number(minute),
@@ -42,8 +59,16 @@ const opts = Object.assign({}, DEFAULT_TIME_OPTIONS, {
   calendar: "iso8601",
   ...options,
 });
+
+const label = new Intl.DateTimeFormat(locale, opts).format(value);
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const meta = {
+  type: itemtype,
+  ...(itemprop ? { [itemprop]: plainTime.toString() } : {}),
+  ...properties,
+};
 ---
 
-<time class="sb-plain-time" datetime={plainTime.toJSON()}
-  >{Intl.DateTimeFormat(locale, opts).format(plainTime)}</time
->
+{useMicrodata && type ? <Microdata as="span" properties={meta} /> : null}
+<time class={css} {...data} datetime={value.toJSON()} {...attrs}>{label}</time>

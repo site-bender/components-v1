@@ -210,10 +210,6 @@ form.sb-form .sb-form-field *[readonly] {
 	padding-left: 0;
 }
 
-form.sb-form .sb-duration-field label {
-	margin-bottom: var(--space-xs);
-}
-
 form.sb-form
 	.sb-fieldset-wrapper
 	input[type="number"]
@@ -314,16 +310,6 @@ form fieldset.sb-fieldset-wrapper legend {
 	display: block;
 	font-family: var(--duration-field-font-family);
 	padding: 0;
-}
-
-form fieldset.sb-fieldset-wrapper div.sb-duration-field {
-	column-gap: 1.25rem;
-	column-width: 12.5rem;
-	width: 100%;
-}
-
-form fieldset.sb-fieldset-wrapper div.sb-duration-field > * {
-	width: fit-content;
 }
 
 form fieldset.sb-fieldset-wrapper input {

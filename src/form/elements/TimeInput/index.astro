@@ -1,0 +1,50 @@
+---
+import createClassList from "../../../utilities/createClassList";
+import generateShortId from "../../../utilities/generateShortId";
+import mapDataset from "../../../utilities/mapDataset";
+import type { BaseAttributes } from "../../../types/html";
+import type { TimeInput as Props } from "../../../types/form";
+
+const {
+	autocomplete,
+	["class:list"]: elementClassList = [],
+	dataset: elementDataset,
+	field = "time-input",
+	form,
+	id = generateShortId(),
+	labelledBy,
+	name,
+	required,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props;
+
+const {
+	["class:list"]: wrapperClassList = [],
+	dataset: wrapperDataset,
+	...wrapperAttrs
+} = wrapper as BaseAttributes;
+---
+
+<span
+	{...wrapperAttrs}
+	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
+	{...mapDataset(wrapperDataset)}
+	data-sb-wrapper={field}
+>
+	<input
+		{...attrs}
+		aria-labelledby={labelledBy}
+		{autocomplete}
+		class:list={createClassList("sb-time-input", elementClassList)}
+		{...mapDataset(elementDataset)}
+		data-sb-input={field}
+		{form}
+		{id}
+		{name}
+		{required}
+		type="time"
+		{value}
+	/>
+</span>

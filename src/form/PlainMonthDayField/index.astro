@@ -1,146 +1,171 @@
 ---
 import { Temporal } from "@js-temporal/polyfill";
-import FieldWrapper from "../FieldWrapper/index.astro";
+import createClassList from "../../utilities/createClassList";
 import generateShortId from "../../utilities/generateShortId";
 import mapDataset from "../../utilities/mapDataset";
-import PlainMonthDay from "../../metadata/PlainMonthDay/index.astro";
-import type { Calendar, DateTimeFormatOptions } from "../../types";
-import type { Dataset, Messages } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-
-export type Props = Omit<HTMLAttributes<"input">, "value" | "slot"> & {
-  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
-  dataset?: Dataset;
-  day?: number | string;
-  era?: string | undefined;
-  eraYear?: number | undefined;
-  help?: string;
-  label: string;
-  locale?: string | Array<string>;
-  messages?: Messages;
-  month?: number | string;
-  monthCode?: string;
-  name: string;
-  options?: DateTimeFormatOptions;
-  readonly?: boolean;
-  timeZone?: Temporal.TimeZone;
-  value?: string | Temporal.PlainMonthDay | Temporal.PlainMonthDayLike;
-  year?: number | string;
-};
-
-const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+import MonthSelect from "../elements/MonthSelect/index.astro";
+import DaySelect from "../elements/DaySelect/index.astro";
+import type { BaseAttributes } from "../../types/html";
+import "./script.astro";
 
 const {
-  calendar,
-  dataset,
-  day,
-  era,
-  eraYear,
-  help,
-  id = `_${generateShortId()}`,
-  label,
-  locale,
-  messages,
-  month,
-  monthCode,
-  options,
-  readonly,
-  size,
-  timeZone = tz,
-  value: rawValue,
-  year,
-  ...attrs
+	allowedMonths,
+	["aria-live"]: live = "assertive",
+	calendar = "iso8601",
+	dayAttrs = {},
+	disabled,
+	field = "plain-month-day-field",
+	form,
+	format,
+	group = {},
+	help = {},
+	id = generateShortId(),
+	label = "Month and day",
+	legend = {},
+	locales = ["en-NZ", "en-US", "en-GB"],
+	maxDay,
+	message,
+	monthAttrs = {},
+	months,
+	name,
+	outer = {},
+	required,
+	stepDay,
+	tag = {},
+	value,
+	wrapper = {},
 } = Astro.props;
 
-const labelId = `${id}-label`;
-const helpId = `${id}-help`;
-const data = mapDataset(dataset);
+const {
+	["class:list"]: dayClassList = [],
+	dataset: dayDataset,
+	...dayAttributes
+} = dayAttrs as BaseAttributes;
 
-const value = rawValue
-  ? Temporal.PlainMonthDay.from(rawValue)
-  : Temporal.PlainMonthDay.from({
-      ...(calendar ? { calendar: Temporal.Calendar.from(calendar) } : {}),
-      ...(day == null ? {} : { day: Number(day) }),
-      ...(era && eraYear
-        ? { era, eraYear }
-        : year == null
-        ? {}
-        : { year: Number(year) }),
-      ...(monthCode
-        ? { monthCode }
-        : month == null
-        ? {}
-        : { month: Number(month) }),
-    });
+const {
+	["class:list"]: groupClassList = [],
+	dataset: groupDataset,
+	...groupAttrs
+} = group as BaseAttributes;
 
-const MONTH = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
+
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: monthClassList = [],
+	dataset: monthDataset,
+	...monthAttributes
+} = monthAttrs as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const legendId = `${id}_legend`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
+
+const { day, monthCode } = value ? Temporal.PlainMonthDay.from(value) : {};
+const month = day ? parseInt(monthCode.substring(1), 10) : undefined;
 ---
 
-<FieldWrapper
-  fieldType="sb-plain-month-day"
-  {...help ? { help } : {}}
-  helpId={helpId}
-  id={id as string}
-  label={label}
-  labelId={labelId}
-  {...messages ? { messages } : {}}
-  name={attrs.name}
-  readonly={readonly}
-  {...attrs.required ? { required: true } : {}}
+<fieldset
+	{...outerAttrs}
+	class:list={createClassList(
+		"sb-field",
+		"sb-plain-month-day-field",
+		outerClassList
+	)}
+	{...mapDataset(outerDataset)}
+	data-sb-calendar={calendar}
+	data-sb-field={field}
+	{...req}
+	{disabled}
+	{form}
+	{id}
+	{name}
+	style="width: 40vw"
 >
-  <Fragment slot="element">
-    {
-      readonly ? (
-        <div class="readonly sb-plain-month-day-readonly">
-          <PlainMonthDay {...attrs} value={value} />
-        </div>
-      ) : (
-        <div class="multiple-input" {...data}>
-          <select
-            aria-labelledBy={`${labelId} ${helpId}`}
-            class="sb-plain-month-day-month-select"
-            id={`${id}-month`}
-            {...attrs}
-          >
-            {[...Array(12).keys()].map((key) => (
-              <option
-                selected={key + 1 === value.getISOFields().isoMonth}
-                value={key + 1}
-              >
-                {MONTH.at(key)}
-              </option>
-            ))}
-          </select>
-          <select
-            aria-labelledBy={`${labelId} ${helpId}`}
-            class="sb-plain-month-day-day-select"
-            id={`${id}-day`}
-            {...attrs}
-          >
-            {[...Array(32).keys()].slice(1).map((key) => (
-              <option
-                selected={key === value.getISOFields().isoDay}
-                value={key}
-              >
-                {key}
-              </option>
-            ))}
-          </select>
-        </div>
-      )
-    }
-  </Fragment>
-</FieldWrapper>
+	<legend
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={legendId}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</legend>
+	<div
+		class:list={createClassList("sb-group", groupClassList)}
+		{...mapDataset(groupDataset)}
+		data-sb-field-group={field}
+	>
+		<label data-sb-label-month={field} for={`${id}_month`}>
+			<span id={`${id}_month:label`}>Month</span>
+			<MonthSelect
+				{...monthAttrs}
+				calendar={calendar}
+				data-sb-select-month={field}
+				{months}
+				{form}
+				format={format}
+				id={`${id}_month`}
+				labelledBy={`${legendId} ${id}_month:label`}
+				{locales}
+				name={`${name}:month`}
+				{required}
+				value={month}
+			/>
+		</label>
+		<label data-sb-label-day={field} for={`${id}_day`}>
+			<span id={`${id}_day:label`}>Day</span>
+			<DaySelect
+				{...dayAttrs}
+				data-sb-select-day={field}
+				{form}
+				id={`${id}_day`}
+				labelledBy={`${legendId} ${id}_day:label`}
+				name={`${name}:day`}
+				{required}
+				selected={day}
+			/>
+		</label>
+	</div>
+</fieldset>

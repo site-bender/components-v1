@@ -1,29 +1,46 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import type { Dataset } from "../types";
+import createClassList from "../utilities/createClassList";
+import mapDataset from "../utilities/mapDataset";
 import "./index.css";
 
 export type Props = HTMLAttributes<"figure"> & {
-  caption?: string;
-  cssClasses?: Array<string>;
-  index?: number;
-  isIndexed?: boolean;
+	caption?: string;
+	dataset?: Dataset | undefined;
+	figcaptionAttributes?: HTMLAttributes<"figcaption">;
+	index?: number;
+	isIndexed?: boolean;
 };
 
-const { caption, cssClasses = [], index, isIndexed, ...attrs } = Astro.props;
+const {
+	caption,
+	["class:list"]: classList = [],
+	dataset,
+	figcaptionAttributes = {},
+	index,
+	isIndexed,
+	...attrs
+} = Astro.props;
 
 const indexed = isIndexed ? { class: "indexed" } : {};
 const cap = caption ? caption : await Astro.slots.render("caption");
-const css = ["sb-figure", ...cssClasses].join(" ");
+const data = mapDataset(dataset);
 ---
 
-<figure class={css} {...indexed} {...attrs}>
-  {
-    cap && (
-      <figcaption>
-        {index ? `Figure ${index}: ` : ""}
-        <Fragment set:html={cap} />
-      </figcaption>
-    )
-  }
-  <slot />
+<figure
+	class:list={createClassList("sb-figure", classList)}
+	{...data}
+	{...indexed}
+	{...attrs}
+>
+	{
+		cap && (
+			<figcaption {...figcaptionAttributes}>
+				{index ? `Figure ${index}: ` : ""}
+				<Fragment set:html={cap} />
+			</figcaption>
+		)
+	}
+	<slot />
 </figure>

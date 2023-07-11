@@ -1,54 +1,103 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import type { Dataset } from "../types";
+import mapDataset from "../utilities/mapDataset";
 import generateShortId from "../utilities/generateShortId";
+import type { SiteNavigationElementLeaf } from "../schema.org";
+import Microdata from "../Microdata/index.astro";
+import type { SiteNavigationElement } from "../schema.org";
+import Link from "../Link/index.astro";
 
-export type Link = HTMLAttributes<"a"> & {
-	label: string;
+export type LinkProps = {
+	cssClasses?: Array<string>;
+	dataset?: Dataset | undefined;
+	href: string;
+	label?: string;
+	properties?: SiteNavigationElement;
 };
 
 export type Props = HTMLAttributes<"nav"> & {
 	cssClasses?: Array<string>;
+	dataset?: Dataset | undefined;
 	h2?: Partial<HTMLAttributes<"h2">>;
-	links: Array<Link>;
+	links: Array<LinkProps>;
+	properties?: SiteNavigationElementLeaf;
+	title?: string;
 	ul?: Partial<HTMLAttributes<"ul">>;
 };
 
 const { pathname } = Astro.url;
 
 const {
-	cssClasses = [],
+	["class:list"]: classList = [],
+	dataset,
 	h2 = {},
 	id,
 	links = [],
+	properties,
+	title = "Links to more info",
 	ul = {},
 	...attrs
 } = Astro.props;
 
-const labelId = id || generateShortId();
+const labelledBy = id || generateShortId();
 const css = ["sb-nav", ...cssClasses].join(" ");
+const data = mapDataset(dataset);
+const navAttrs: Record<string, unknown> = attrs; // TODO: FIXME
+
+const meta = {
+	type: "SiteNavigationElement",
+};
 ---
 
-<nav aria-labelledby={labelId} class={css} {...attrs}>
-	<h2 class={`off-screen ${h2.class}`} id={labelId} {...h2}>
-		Links to more info
+<Microdata
+	aria-labelledby={labelledBy}
+	as="nav"
+	class={css}
+	{...data}
+	properties={meta}
+	{...navAttrs}
+>
+	<h2
+		class={`off-screen${h2.class ? ` ${h2.class}` : ""}`}
+		id={labelledBy}
+		{...h2}
+	>
+		{title}
 	</h2>
 	<ul role="presentation" {...ul}>
 		{
-			links.map(({ href, label, ...linkAttrs }) =>
-				href === pathname ? (
-					<li>
-						<span aria-current="page" class="this-page">
-							{label}
-						</span>
-					</li>
-				) : (
-					<li>
-						<a href={href} {...linkAttrs}>
-							{label}
-						</a>
-					</li>
-				)
+			links.map(
+				({
+					cssClasses,
+					dataset,
+					href,
+					label,
+					properties,
+					...linkProps
+				}: LinkProps) => {
+					const data = mapDataset(dataset);
+
+					return href === pathname ? (
+						<li {...data}>
+							<span aria-current="page" class="this-page">
+								{label}
+							</span>
+						</li>
+					) : (
+						<li {...data}>
+							<Link
+								cssClasses={cssClasses}
+								{...data}
+								{href}
+								{label}
+								{properties}
+								{...(linkProps as Record<string, unknown>)}
+							/>
+						</li>
+					);
+				}
 			)
 		}
 	</ul>
-</nav>
+</Microdata>

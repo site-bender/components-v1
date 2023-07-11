@@ -1,0 +1,74 @@
+{
+	"sourceFile": "src/form/elements/PasswordInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 14,
+			"patches": [
+				{
+					"date": 1688429922888,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688429971669,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { PasswordInput as Props } from \"../../../../types\";\n+import type { PasswordInput as Props } from \"../../../types/forms\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import \"./script.astro\";\n \n const {\n"
+				},
+				{
+					"date": 1688520187598,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { PasswordInput as Props } from \"../../../types/forms\";\n+import type { PasswordInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import \"./script.astro\";\n \n const {\n"
+				},
+				{
+					"date": 1688605488631,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,36 +1,52 @@\n ---\n+import createClassList from \"../../../utilities/createClassList\";\n+import createListOptions from \"../../../utilities/createListOptions\";\n+import generateShortId from \"../../../utilities/generateShortId\";\n+import mapDataset from \"../../../utilities/mapDataset\";\n+import type { BaseAttributes } from \"../../../types/html\";\n import type { PasswordInput as Props } from \"../../../types/form\";\n-import mapDataset from \"../../../utilities/mapDataset\";\n import \"./script.astro\";\n \n const {\n \tallowUnmasked,\n-\tcssClasses = [],\n-\tdataset,\n+\tautocomplete,\n+\t[\"class:list\"]: elementClassList = [],\n+\tdataset: elementDataset,\n+\tfield = \"password-input\",\n \tform,\n-\tid,\n+\tid = generateShortId(),\n+\tlabelledBy,\n \tname,\n+\trequired,\n \ttype: _type,\n+\tvalue,\n+\twrapper = {},\n \t...attrs\n } = Astro.props;\n \n const masking = allowUnmasked ? { \"data-unmaskable\": \"\" } : {};\n-const css = [\"sb-password-input\", ...cssClasses].join(\" \");\n-const data = mapDataset(dataset);\n ---\n \n-<span>\n+<span\n+\t{...wrapperAttrs}\n+\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n+\t{...mapDataset(wrapperDataset)}\n+\tdata-sb-wrapper={field}\n+>\n \t<input\n \t\t{...attrs}\n-\t\taria-labelledby={`${id}_label`}\n-\t\taria-describedby={`${id}_help`}\n-\t\tclass={css}\n-\t\t{...data}\n-\t\t{...masking}\n+\t\taria-labelledby={labelledBy}\n+\t\tautocomplete={autocomplete}\n+\t\tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n+\t\t{...mapDataset(elementDataset)}\n+\t\tdata-sb-input={field}\n+\t\tform={form}\n \t\tid={id}\n-\t\tform={form}\n+\t\t{...lst}\n \t\tname={name}\n+\t\trequired={required}\n \t\tspellcheck=\"off\"\n \t\ttype=\"password\"\n+\t\tvalue={value}\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688605558006,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,14 +36,14 @@\n \t<input\n \t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n \t\tautocomplete={autocomplete}\n-\t\tclass:list={createClassList(\"sb-color-input\", elementClassList)}\n+\t\tclass:list={createClassList(\"sb-password-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n+\t\t{...masking}\n \t\tform={form}\n \t\tid={id}\n-\t\t{...lst}\n \t\tname={name}\n \t\trequired={required}\n \t\tspellcheck=\"off\"\n \t\ttype=\"password\"\n"
+				},
+				{
+					"date": 1688605740740,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,14 @@\n \twrapper = {},\n \t...attrs\n } = Astro.props;\n \n+const {\n+\t[\"class:list\"]: wrapperClassList = [],\n+\tdataset: wrapperDataset,\n+\t...wrapperAttrs\n+} = wrapper as BaseAttributes;\n+\n const masking = allowUnmasked ? { \"data-unmaskable\": \"\" } : {};\n ---\n \n <span\n"
+				},
+				{
+					"date": 1688606632113,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n-import createListOptions from \"../../../utilities/createListOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { BaseAttributes } from \"../../../types/html\";\n import type { PasswordInput as Props } from \"../../../types/form\";\n"
+				},
+				{
+					"date": 1688607107595,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n \t\trequired={required}\n-\t\tspellcheck=\"off\"\n+\t\tspellcheck=\"false\"\n \t\ttype=\"password\"\n \t\tvalue={value}\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688792947251,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const masking = allowUnmasked ? { \"data-unmaskable\": \"\" } : {};\n+const masking = allowUnmasked ? { \"data-sb-unmaskable\": \"\" } : {};\n ---\n \n <span\n \t{...wrapperAttrs}\n"
+				},
+				{
+					"date": 1688940253550,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n \t\t{...masking}\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n-\t\trequired={required}\n+\t\t{required}\n \t\tspellcheck=\"false\"\n \t\ttype=\"password\"\n \t\tvalue={value}\n \t/>\n"
+				},
+				{
+					"date": 1688940875575,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{...masking}\n \t\tform={form}\n-\t\tid={id}\n+\t\t{id}\n \t\tname={name}\n \t\t{required}\n \t\tspellcheck=\"false\"\n \t\ttype=\"password\"\n"
+				},
+				{
+					"date": 1688940940040,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n \t\tclass:list={createClassList(\"sb-password-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{...masking}\n-\t\tform={form}\n+\t\t{form}\n \t\t{id}\n \t\tname={name}\n \t\t{required}\n \t\tspellcheck=\"false\"\n"
+				},
+				{
+					"date": 1688940959525,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,7 @@\n \t\tname={name}\n \t\t{required}\n \t\tspellcheck=\"false\"\n \t\ttype=\"password\"\n-\t\tvalue={value}\n+\t\t{value}\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688940976311,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n \t\tdata-sb-input={field}\n \t\t{...masking}\n \t\t{form}\n \t\t{id}\n-\t\tname={name}\n+\t\t{name}\n \t\t{required}\n \t\tspellcheck=\"false\"\n \t\ttype=\"password\"\n \t\t{value}\n"
+				},
+				{
+					"date": 1688942203724,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n >\n \t<input\n \t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n-\t\tautocomplete={autocomplete}\n+\t\t{autocomplete}\n \t\tclass:list={createClassList(\"sb-password-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{...masking}\n"
+				}
+			],
+			"date": 1688429922888,
+			"name": "Commit-0",
+			"content": "---\nimport type { PasswordInput as Props } from \"../../../../types\";\nimport mapDataset from \"../../../utilities/mapDataset\";\nimport \"./script.astro\";\n\nconst {\n\tallowUnmasked,\n\tcssClasses = [],\n\tdataset,\n\tform,\n\tid,\n\tname,\n\ttype: _type,\n\t...attrs\n} = Astro.props;\n\nconst masking = allowUnmasked ? { \"data-unmaskable\": \"\" } : {};\nconst css = [\"sb-password-input\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\n---\n\n<span>\n\t<input\n\t\t{...attrs}\n\t\taria-labelledby={`${id}_label`}\n\t\taria-describedby={`${id}_help`}\n\t\tclass={css}\n\t\t{...data}\n\t\t{...masking}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t\tspellcheck=\"off\"\n\t\ttype=\"password\"\n\t/>\n</span>\n"
+		}
+	]
+}

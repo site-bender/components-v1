@@ -3,49 +3,115 @@ import Card from "../../../../src/Card/index.astro";
 import CodeBlock from "../../../../src/CodeBlock/index.astro";
 import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
 import Layout from "../_layouts/index.astro";
-import TableOfContents from "../_components/TableOfContents/index.astro";
+import pageProperties from "./pageProperties";
 import * as typeTs from "./_assets/type.ts.md";
 import * as defaultExampleHtml from "./_assets/default-example.html.md";
 import * as defaultExampleAstro from "./_assets/default-example.astro.md";
-import TestForm from "../_components/TestForm/index.astro";
-import TestFormScript from "../_scripts/TestFormScript.astro";
+import * as withImageHtml from "./_assets/with-image.html.md";
+import * as withImageAstro from "./_assets/with-image.astro.md";
 ---
 
-<Layout title="Card">
-  <Fragment slot="tail">
-    <script set:html={copyToClipboardJs} />
-  </Fragment>
-  <main>
-    <article>
-      <h2>Card</h2>
-      <p>
-        The <code>Card</code> is used to . If the <code>id</code> attribute is not
-        provided, a unique Base58 ID is generated preceded by an underscore (to prevent
-        IDs beginning with a digit), for example
-        <code>_DMwzFyG3PvJGrMZstX74JS</code>.
-      </p>
-      <section>
-        <h3>Types</h3>
-        <CodeBlock snippet={typeTs} />
-        <p>
-          The <code>dataset</code> prop takes a map of attribute names (minus the
-          <code>data-</code>) and values and maps them to <code
-            >data-&lt;name&gt;</code
-          > attributes. See below.
-        </p>
-      </section>
-      <section>
-        <h3>Default example</h3>
-        <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
-        <CodeBlock snippet={defaultExampleAstro} />
-        <p>Here is the actual component:</p>
-        <TestForm>
-          <Card name="isTrue" />
-        </TestForm>
-        <p>And here is the HTML created:</p>
-        <CodeBlock snippet={defaultExampleHtml} />
-      </section>
-    </article>
-    <TestFormScript />
-  </main>
+<Layout pageProperties={pageProperties}>
+	<Fragment slot="tail">
+		<script set:html={copyToClipboardJs} />
+	</Fragment>
+	<main>
+		<article>
+			<h2>Card</h2>
+			<p>
+				The <code>Card</code> is used to . If the <code>id</code> attribute is not
+				provided, a unique Base58 ID is generated preceded by an underscore (to prevent
+				IDs beginning with a digit), for example
+				<code>_DMwzFyG3PvJGrMZstX74JS</code>.
+			</p>
+			<section>
+				<h3>Types</h3>
+				<CodeBlock
+					snippet={typeTs}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "TypeScript",
+					}}
+				/>
+				<p>
+					The <code>dataset</code> prop takes a map of attribute names (minus the
+					<code>data-</code>) and values and maps them to <code
+						>data-&lt;name&gt;</code
+					> attributes. See below.
+				</p>
+			</section>
+			<section>
+				<h3>Default example</h3>
+				<p>This is the minimum required to use the <code>Card</code>:</p>
+				<CodeBlock
+					snippet={defaultExampleAstro}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "AstroJS",
+					}}
+				/>
+				<p>Here is the actual component:</p>
+				<div class="example">
+					<Card title="Since feeling is first">
+						<p>
+							Since feeling is first, who pays any attention to the syntax of
+							things will never wholly kiss you; wholly to be a fool. While
+							Spring is in the world my blood approves, and kisses are a better
+							fate than wisdom.
+						</p>
+					</Card>
+				</div>
+				<p>And here is the HTML created:</p>
+				<CodeBlock
+					snippet={defaultExampleHtml}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "HTML",
+					}}
+				/>
+			</section>
+			<section>
+				<h3>Example with image</h3>
+				<p>
+					You can pass an <code>image</code> object with the properties shown in
+					the type above to include an image via the <code>Picture</code> component:
+				</p>
+				<CodeBlock
+					snippet={withImageAstro}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "AstroJS",
+					}}
+				/>
+				<p>Here is the actual component:</p>
+				<div class="example">
+					<Card
+						image={{
+							alt: "Black hole sun",
+							src: "/images/darkness-at-noon.png",
+							filename: "darkness-at-noon",
+							width: 380,
+						}}
+						href="https://google.com/"
+						title="The hole in the sun"
+					>
+						<p>
+							In my eyes, indisposed—on disguises no one knows—hides the face,
+							lies the snake in the sun in my disgrace. Boiling heat, summer
+							stench: 'neath the black, the sky looks dead. Call my name through
+							the cream and I'll hear you scream again.
+						</p>
+					</Card>
+				</div>
+				<p>And here is the HTML created:</p>
+				<CodeBlock
+					snippet={withImageHtml}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "HTML",
+					}}
+				/>
+			</section>
+		</article>
+	</main>
 </Layout>

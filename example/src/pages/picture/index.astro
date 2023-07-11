@@ -3,12 +3,15 @@ import Picture from "../../../../src/Picture/index.astro";
 import CodeBlock from "../../../../src/CodeBlock/index.astro";
 import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
 import Layout from "../_layouts/index.astro";
+import pageProperties from "./pageProperties";
 import * as typeTs from "./_assets/type.ts.md";
 import * as defaultExampleHtml from "./_assets/default-example.html.md";
 import * as defaultExampleAstro from "./_assets/default-example.astro.md";
+import * as withSourcseHtml from "./_assets/with-sources.html.md";
+import * as withSourcseAstro from "./_assets/with-sources.astro.md";
 ---
 
-<Layout title="Picture">
+<Layout pageProperties={pageProperties}>
   <Fragment slot="tail">
     <script set:html={copyToClipboardJs} />
   </Fragment>
@@ -23,7 +26,13 @@ import * as defaultExampleAstro from "./_assets/default-example.astro.md";
       </p>
       <section>
         <h3>Types</h3>
-        <CodeBlock snippet={typeTs} />
+        <CodeBlock
+          snippet={typeTs}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "TypeScript",
+          }}
+        />
         <p>
           The <code>dataset</code> prop takes a map of attribute names (minus the
           <code>data-</code>) and values and maps them to <code
@@ -34,19 +43,62 @@ import * as defaultExampleAstro from "./_assets/default-example.astro.md";
       <section>
         <h3>Default example</h3>
         <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
-        <CodeBlock snippet={defaultExampleAstro} />
+        <CodeBlock
+          snippet={defaultExampleAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <Picture
-            alt="Yes"
+            alt="Black hole sun"
             filename="darkness-at-noon"
-            sources={[]}
             src="/images/darkness-at-noon.png"
             width={768}
           />
-        </p>
+        </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={defaultExampleHtml} />
+        <CodeBlock
+          snippet={defaultExampleHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
+      </section>
+      <section>
+        <h3>Example with <code>sources</code></h3>
+        <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
+        <CodeBlock
+          snippet={withSourcseAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
+        <p>Here is the actual component:</p>
+        <div class="example">
+          <Picture
+            alt="Black hole sun"
+            filename="darkness-at-noon"
+            sources={[
+              { media: "(min-width: 500px)", sizes: ["768", "1536", "2034"] },
+              { media: "(max-width: 499px)", sizes: ["380"] },
+            ]}
+            src="/images/darkness-at-noon.png"
+            width={768}
+          />
+        </div>
+        <p>And here is the HTML created:</p>
+        <CodeBlock
+          snippet={withSourcseHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
     </article>
   </main>

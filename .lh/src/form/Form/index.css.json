@@ -1,0 +1,242 @@
+{
+	"sourceFile": "src/form/Form/index.css",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 56,
+			"patches": [
+				{
+					"date": 1688279513257,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688336575800,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n }\n \n fieldset.field > legend {\n \talign-items: flex-start;\n+\tborder: none;\n \tdisplay: flex;\n \tflex-direction: column;\n \tgap: 0.5rem;\n \tjustify-content: space-between;\n"
+				},
+				{
+					"date": 1688336588796,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n }\n \n fieldset.field > legend {\n \talign-items: flex-start;\n+\tbackground-color: transparent;\n \tborder: none;\n \tdisplay: flex;\n \tflex-direction: column;\n \tgap: 0.5rem;\n"
+				},
+				{
+					"date": 1688336607159,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n \tmargin: 0.5rem 0;\n }\n \n fieldset.field {\n+\tbackground-color: transparent;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n \tmargin-top: 1.5rem;\n"
+				},
+				{
+					"date": 1688336615432,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \tmargin: 0.5rem 0;\n }\n \n fieldset.field {\n-\tbackground-color: transparent;\n+\tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n \tmargin-top: 1.5rem;\n"
+				},
+				{
+					"date": 1688336649663,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,4 @@\n-body {\n-\tdisplay: grid;\n-\tgrid-template-columns: 1fr 1fr;\n-\tpadding: 3rem;\n-}\n-\n form {\n \talign-items: flex-start;\n \tdisplay: flex;\n \tflex-direction: column;\n@@ -26,9 +20,9 @@\n }\n \n fieldset.field > legend {\n \talign-items: flex-start;\n-\tbackground-color: transparent;\n+\tbackground-color: unset;\n \tborder: none;\n \tdisplay: flex;\n \tflex-direction: column;\n \tgap: 0.5rem;\n"
+				},
+				{
+					"date": 1688336675747,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,18 +68,8 @@\n \tfont-weight: bold;\n \tmargin-bottom: 0.3rem;\n }\n \n-code {\n-\tdisplay: block;\n-\tmargin: 2rem 0 2rem 3rem;\n-}\n-\n-pre {\n-\tfont-family: sans-serif;\n-\tfont-size: 1.2rem;\n-}\n-\n input,\n select,\n textarea {\n \tborder: 2px solid forestgreen;\n"
+				},
+				{
+					"date": 1688336832779,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \tfont-size: 1.2rem;\n \tfont-weight: bold;\n \tleft: -5px;\n \tposition: absolute;\n-\ttop: -1.7rem;\n+\ttop: -2.5rem;\n }\n \n fieldset.field > legend {\n \tmargin-top: 0;\n@@ -44,9 +44,9 @@\n \tdisplay: flex;\n \tflex-wrap: wrap;\n \tgap: 0.7rem;\n \tjustify-content: flex-start;\n-\tmargin-top: 0.5rem;\n+\tmargin: 0;\n }\n \n [data-sb-instant] .group {\n \talign-items: flex-start;\n"
+				},
+				{
+					"date": 1688336854763,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n \tdisplay: flex;\n \tflex-direction: column;\n \tgap: 1rem;\n \tjustify-content: flex-start;\n+\tmargin: 1.5rem 0;\n }\n \n .field {\n \tmargin: 0.5rem 0;\n"
+				},
+				{
+					"date": 1688336881699,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin-top: 1.5rem;\n+\tmargin: 1.5rem 0 1rem;;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688336903724,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin: 1.5rem 0 1rem;;\n+\tmargin: 1.5rem 0 0;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688336921208,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin: 1.5rem 0 0;\n+\tmargin: 3rem 0;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688336929425,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin: 3rem 0;\n+\tmargin: 2rem 0;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688336942202,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \tmargin: 1.5rem 0;\n }\n \n .field {\n-\tmargin: 0.5rem 0;\n+\tmargin: 1rem 0;\n }\n \n fieldset.field {\n \tbackground-color: unset;\n"
+				},
+				{
+					"date": 1688336951308,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin: 2rem 0;\n+\tmargin: 1rem 0;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688336970915,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,17 +7,17 @@\n \tmargin: 1.5rem 0;\n }\n \n .field {\n-\tmargin: 1rem 0;\n+\tmargin: 1rem 0 2rem;\n }\n \n fieldset.field {\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin: 1rem 0;\n+\tmargin: 1rem 0 2rem;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688337031592,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin: 1rem 0 2rem;\n+\tmargin: 2rem 0 2rem;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688337040068,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \tmargin: 1.5rem 0;\n }\n \n .field {\n-\tmargin: 1rem 0 2rem;\n+\tmargin: 1rem 0 1.5rem;\n }\n \n fieldset.field {\n \tbackground-color: unset;\n"
+				},
+				{
+					"date": 1688337050114,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin: 2rem 0 2rem;\n+\tmargin: 2rem 0 1rem;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688337057226,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin: 2rem 0 1rem;\n+\tmargin: 2rem 0 0;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688337066121,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tbackground-color: unset;\n \tborder: 1px dotted gray;\n \tborder-radius: 4px;\n \tpadding: 1rem;\n-\tmargin: 2rem 0 0;\n+\tmargin: 2.5rem 0 0;\n \tposition: relative;\n }\n \n fieldset.field > legend {\n"
+				},
+				{
+					"date": 1688343452397,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,4 +94,12 @@\n \tcolor: slateblue;\n \tfont-weight: 500;\n \tmargin: 0.5rem 0;\n }\n+\n+[for=\"plainDateTime-date\"] {\n+\talign-items: flex-start;\n+\tdisplay: flex;\n+\tflex-direction: column;\n+\tgap: 0.3rem;\n+\tjustify-content: space-between;\n+}\n"
+				},
+				{
+					"date": 1688343473589,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n \tfont-weight: 500;\n \tmargin: 0.5rem 0;\n }\n \n-[for=\"plainDateTime-date\"] {\n+[for=\"plainDateTime\"] {\n \talign-items: flex-start;\n \tdisplay: flex;\n \tflex-direction: column;\n \tgap: 0.3rem;\n"
+				},
+				{
+					"date": 1688343488572,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n \tfont-weight: 500;\n \tmargin: 0.5rem 0;\n }\n \n-[for=\"plainDateTime\"] {\n+[for^=\"plainDateTime\"] {\n \talign-items: flex-start;\n \tdisplay: flex;\n \tflex-direction: column;\n \tgap: 0.3rem;\n"
+				},
+				{
+					"date": 1688343520351,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n \tfont-weight: 500;\n \tmargin: 0.5rem 0;\n }\n \n-[for^=\"plainDateTime\"] {\n+.group > label[for^=\"plainDateTime\"] {\n \talign-items: flex-start;\n \tdisplay: flex;\n \tflex-direction: column;\n \tgap: 0.3rem;\n"
+				},
+				{
+					"date": 1688343539763,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n \tfont-weight: 500;\n \tmargin: 0.5rem 0;\n }\n \n-.group > label[for^=\"plainDateTime\"] {\n+.group > label {\n \talign-items: flex-start;\n \tdisplay: flex;\n \tflex-direction: column;\n \tgap: 0.3rem;\n"
+				},
+				{
+					"date": 1688344008328,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,11 @@\n }\n \n fieldset.field {\n \tbackground-color: unset;\n-\tborder: 1px dotted gray;\n+\tborder: none;\n \tborder-radius: 4px;\n-\tpadding: 1rem;\n+\tpadding: 0;\n \tmargin: 2.5rem 0 0;\n \tposition: relative;\n }\n \n"
+				},
+				{
+					"date": 1688344015463,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n fieldset.field {\n \tbackground-color: unset;\n \tborder: none;\n \tborder-radius: 4px;\n-\tpadding: 0;\n+\tpadding: 0.5rem 0;\n \tmargin: 2.5rem 0 0;\n \tposition: relative;\n }\n \n"
+				},
+				{
+					"date": 1688344226615,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,8 +57,9 @@\n .group > label {\n \talign-items: center;\n \tdisplay: flex;\n \tfont-family: sans-serif;\n+\tfont-size: 1.2rem;\n \tgap: 0.3rem;\n \tjustify-content: flex-start;\n }\n \n"
+				},
+				{
+					"date": 1688344337333,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n \ttext-align: right;\n }\n \n input[data-sb-duration] {\n-\twidth: 5ch;\n+\twidth: 7ch;\n }\n \n blockquote {\n \tmargin: 0 0 0 2rem;\n"
+				},
+				{
+					"date": 1688344655688,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,14 +54,15 @@\n \tflex-direction: column;\n }\n \n .group > label {\n-\talign-items: center;\n+\talign-items: flex-start;\n \tdisplay: flex;\n+\tflex-direction: column;\n \tfont-family: sans-serif;\n \tfont-size: 1.2rem;\n \tgap: 0.3rem;\n-\tjustify-content: flex-start;\n+\tjustify-content: space-between;\n }\n \n :not(.group) > label {\n \tdisplay: block;\n@@ -95,12 +96,4 @@\n \tcolor: slateblue;\n \tfont-weight: 500;\n \tmargin: 0.5rem 0;\n }\n-\n-.group > label {\n-\talign-items: flex-start;\n-\tdisplay: flex;\n-\tflex-direction: column;\n-\tgap: 0.3rem;\n-\tjustify-content: space-between;\n-}\n"
+				},
+				{
+					"date": 1688344705938,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,8 +63,12 @@\n \tgap: 0.3rem;\n \tjustify-content: space-between;\n }\n \n+fieldset[data-sb-duration] .group > label {\n+\talign-items: flex-end;\n+}\n+\n :not(.group) > label {\n \tdisplay: block;\n \tfont-family: sans-serif;\n \tfont-size: 1.2rem;\n"
+				},
+				{
+					"date": 1688344725564,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,12 +63,8 @@\n \tgap: 0.3rem;\n \tjustify-content: space-between;\n }\n \n-fieldset[data-sb-duration] .group > label {\n-\talign-items: flex-end;\n-}\n-\n :not(.group) > label {\n \tdisplay: block;\n \tfont-family: sans-serif;\n \tfont-size: 1.2rem;\n"
+				},
+				{
+					"date": 1688347654955,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n \tjustify-content: space-between;\n \tfont-family: sans-serif;\n \tfont-size: 1.2rem;\n \tfont-weight: bold;\n-\tleft: -5px;\n+\tleft: -8px;\n \tposition: absolute;\n \ttop: -2.5rem;\n }\n \n"
+				},
+				{
+					"date": 1688422092750,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \tfont-size: 1.2rem;\n \tfont-weight: bold;\n \tleft: -8px;\n \tposition: absolute;\n-\ttop: -2.5rem;\n+\ttop: -1.8rem;\n }\n \n fieldset.field > legend {\n \tmargin-top: 0;\n"
+				},
+				{
+					"date": 1688422102876,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \tfont-size: 1.2rem;\n \tfont-weight: bold;\n \tleft: -8px;\n \tposition: absolute;\n-\ttop: -1.8rem;\n+\ttop: -1.6rem;\n }\n \n fieldset.field > legend {\n \tmargin-top: 0;\n"
+				},
+				{
+					"date": 1688422118305,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \tfont-size: 1.2rem;\n \tfont-weight: bold;\n \tleft: -8px;\n \tposition: absolute;\n-\ttop: -1.6rem;\n+\ttop: -1.5rem;\n }\n \n fieldset.field > legend {\n \tmargin-top: 0;\n"
+				},
+				{
+					"date": 1688422619554,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \tmargin: 1.5rem 0;\n }\n \n .field {\n-\tmargin: 1rem 0 1.5rem;\n+\tmargin: 1rem 0 1rem;\n }\n \n fieldset.field {\n \tbackground-color: unset;\n"
+				},
+				{
+					"date": 1688422627933,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \tmargin: 1.5rem 0;\n }\n \n .field {\n-\tmargin: 1rem 0 1rem;\n+\tmargin: 1rem 0;\n }\n \n fieldset.field {\n \tbackground-color: unset;\n"
+				},
+				{
+					"date": 1688447304446,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,22 +6,22 @@\n \tjustify-content: flex-start;\n \tmargin: 1.5rem 0;\n }\n \n-.field {\n+.sb-form-field {\n \tmargin: 1rem 0;\n }\n \n-fieldset.field {\n+fieldset.sb-form-field {\n \tbackground-color: unset;\n \tborder: none;\n \tborder-radius: 4px;\n \tpadding: 0.5rem 0;\n \tmargin: 2.5rem 0 0;\n \tposition: relative;\n }\n \n-fieldset.field > legend {\n+fieldset.sb-form-field > legend {\n \talign-items: flex-start;\n \tbackground-color: unset;\n \tborder: none;\n \tdisplay: flex;\n@@ -35,9 +35,9 @@\n \tposition: absolute;\n \ttop: -1.5rem;\n }\n \n-fieldset.field > legend {\n+fieldset.sb-form-field > legend {\n \tmargin-top: 0;\n }\n \n .group {\n"
+				},
+				{
+					"date": 1688527305547,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,8 +83,12 @@\n input[type=number] {\n \ttext-align: right;\n }\n \n+input[type=color] {\n+\tborder: 3px solid green;\n+}\n+\n input[data-sb-duration] {\n \twidth: 7ch;\n }\n \n"
+				},
+				{
+					"date": 1688527328352,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,8 +85,9 @@\n }\n \n input[type=color] {\n \tborder: 3px solid green;\n+\tmin-height: 2.4rem;\n }\n \n input[data-sb-duration] {\n \twidth: 7ch;\n"
+				},
+				{
+					"date": 1688527376910,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n \ttext-align: right;\n }\n \n input[type=color] {\n-\tborder: 3px solid green;\n+\tborder: 2px solid green;\n \tmin-height: 2.4rem;\n }\n \n input[data-sb-duration] {\n"
+				},
+				{
+					"date": 1688527386379,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,8 @@\n \ttext-align: right;\n }\n \n input[type=color] {\n-\tborder: 2px solid green;\n \tmin-height: 2.4rem;\n }\n \n input[data-sb-duration] {\n"
+				},
+				{
+					"date": 1688527429631,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,8 +85,9 @@\n }\n \n input[type=color] {\n \tmin-height: 2.4rem;\n+\tpadding: 0.5rem 0.25rem;\n }\n \n input[data-sb-duration] {\n \twidth: 7ch;\n"
+				},
+				{
+					"date": 1688528145890,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,8 +84,9 @@\n \ttext-align: right;\n }\n \n input[type=color] {\n+\tall: revert;\n \tmin-height: 2.4rem;\n \tpadding: 0.5rem 0.25rem;\n }\n \n"
+				},
+				{
+					"date": 1688528159260,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,8 +85,9 @@\n }\n \n input[type=color] {\n \tall: revert;\n+\tborder: 2px solid forestgreen;\n \tmin-height: 2.4rem;\n \tpadding: 0.5rem 0.25rem;\n }\n \n"
+				},
+				{
+					"date": 1688528169582,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,10 +86,10 @@\n \n input[type=color] {\n \tall: revert;\n \tborder: 2px solid forestgreen;\n-\tmin-height: 2.4rem;\n-\tpadding: 0.5rem 0.25rem;\n+\tborder-radius: 4px;\n+\tpadding: 0.3rem 0.6rem;\n }\n \n input[data-sb-duration] {\n \twidth: 7ch;\n"
+				},
+				{
+					"date": 1688528265867,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,8 +87,9 @@\n input[type=color] {\n \tall: revert;\n \tborder: 2px solid forestgreen;\n \tborder-radius: 4px;\n+\tmin-height: 3.4rem;\n \tpadding: 0.3rem 0.6rem;\n }\n \n input[data-sb-duration] {\n"
+				},
+				{
+					"date": 1688528272793,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,8 @@\n \tall: revert;\n \tborder: 2px solid forestgreen;\n \tborder-radius: 4px;\n \tmin-height: 3.4rem;\n-\tpadding: 0.3rem 0.6rem;\n }\n \n input[data-sb-duration] {\n \twidth: 7ch;\n"
+				},
+				{
+					"date": 1688528284678,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n input[type=color] {\n \tall: revert;\n \tborder: 2px solid forestgreen;\n \tborder-radius: 4px;\n-\tmin-height: 3.4rem;\n+\tmin-height: 3rem;\n }\n \n input[data-sb-duration] {\n \twidth: 7ch;\n"
+				},
+				{
+					"date": 1688613838173,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -103,4 +103,8 @@\n \tcolor: slateblue;\n \tfont-weight: 500;\n \tmargin: 0.5rem 0;\n }\n+\n+textarea {\n+\tresize: revert;\n+}\n"
+				},
+				{
+					"date": 1688781142959,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n \tgap: 0.3rem;\n \tjustify-content: space-between;\n }\n \n-:not(.group) > label {\n+:not(.sb-group) > label {\n \tdisplay: block;\n \tfont-family: sans-serif;\n \tfont-size: 1.2rem;\n \tfont-weight: bold;\n"
+				},
+				{
+					"date": 1688781158534,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n \talign-items: flex-start;\n \tflex-direction: column;\n }\n \n-.group > label {\n+.sb-group > label {\n \talign-items: flex-start;\n \tdisplay: flex;\n \tflex-direction: column;\n \tfont-family: sans-serif;\n"
+				},
+				{
+					"date": 1688781163982,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n \tjustify-content: flex-start;\n \tmargin: 0;\n }\n \n-[data-sb-instant] .group {\n+[data-sb-instant] .sb-group {\n \talign-items: flex-start;\n \tflex-direction: column;\n }\n \n"
+				},
+				{
+					"date": 1688781170511,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n fieldset.sb-form-field > legend {\n \tmargin-top: 0;\n }\n \n-.group {\n+.sb-group {\n \talign-items: center;\n \tdisplay: flex;\n \tflex-wrap: wrap;\n \tgap: 0.7rem;\n"
+				},
+				{
+					"date": 1688781202020,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,22 +6,22 @@\n \tjustify-content: flex-start;\n \tmargin: 1.5rem 0;\n }\n \n-.sb-form-field {\n+.sb-field {\n \tmargin: 1rem 0;\n }\n \n-fieldset.sb-form-field {\n+fieldset.sb-field {\n \tbackground-color: unset;\n \tborder: none;\n \tborder-radius: 4px;\n \tpadding: 0.5rem 0;\n \tmargin: 2.5rem 0 0;\n \tposition: relative;\n }\n \n-fieldset.sb-form-field > legend {\n+fieldset.sb-field > legend {\n \talign-items: flex-start;\n \tbackground-color: unset;\n \tborder: none;\n \tdisplay: flex;\n@@ -35,9 +35,9 @@\n \tposition: absolute;\n \ttop: -1.5rem;\n }\n \n-fieldset.sb-form-field > legend {\n+fieldset.sb-field > legend {\n \tmargin-top: 0;\n }\n \n .sb-group {\n"
+				}
+			],
+			"date": 1688279513257,
+			"name": "Commit-0",
+			"content": "body {\n\tdisplay: grid;\n\tgrid-template-columns: 1fr 1fr;\n\tpadding: 3rem;\n}\n\nform {\n\talign-items: flex-start;\n\tdisplay: flex;\n\tflex-direction: column;\n\tgap: 1rem;\n\tjustify-content: flex-start;\n}\n\n.field {\n\tmargin: 0.5rem 0;\n}\n\nfieldset.field {\n\tborder: 1px dotted gray;\n\tborder-radius: 4px;\n\tpadding: 1rem;\n\tmargin-top: 1.5rem;\n\tposition: relative;\n}\n\nfieldset.field > legend {\n\talign-items: flex-start;\n\tdisplay: flex;\n\tflex-direction: column;\n\tgap: 0.5rem;\n\tjustify-content: space-between;\n\tfont-family: sans-serif;\n\tfont-size: 1.2rem;\n\tfont-weight: bold;\n\tleft: -5px;\n\tposition: absolute;\n\ttop: -1.7rem;\n}\n\nfieldset.field > legend {\n\tmargin-top: 0;\n}\n\n.group {\n\talign-items: center;\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 0.7rem;\n\tjustify-content: flex-start;\n\tmargin-top: 0.5rem;\n}\n\n[data-sb-instant] .group {\n\talign-items: flex-start;\n\tflex-direction: column;\n}\n\n.group > label {\n\talign-items: center;\n\tdisplay: flex;\n\tfont-family: sans-serif;\n\tgap: 0.3rem;\n\tjustify-content: flex-start;\n}\n\n:not(.group) > label {\n\tdisplay: block;\n\tfont-family: sans-serif;\n\tfont-size: 1.2rem;\n\tfont-weight: bold;\n\tmargin-bottom: 0.3rem;\n}\n\ncode {\n\tdisplay: block;\n\tmargin: 2rem 0 2rem 3rem;\n}\n\npre {\n\tfont-family: sans-serif;\n\tfont-size: 1.2rem;\n}\n\ninput,\nselect,\ntextarea {\n\tborder: 2px solid forestgreen;\n\tborder-radius: 4px;\n\tpadding: 0.3rem 0.6rem;\n}\n\ninput[type=number] {\n\ttext-align: right;\n}\n\ninput[data-sb-duration] {\n\twidth: 5ch;\n}\n\nblockquote {\n\tmargin: 0 0 0 2rem;\n}\n\n.help {\n\tcolor: slateblue;\n\tfont-weight: 500;\n\tmargin: 0.5rem 0;\n}\n"
+		}
+	]
+}

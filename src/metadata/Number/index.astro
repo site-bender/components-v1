@@ -1,86 +1,82 @@
 ---
-import type { Dataset } from "../../types";
-import type { Float, Integer, MonetaryAmount, Number } from "../../schema.org";
-import type { NumberFormatOptions } from "./types";
+import type { NumberProps as Props } from "../../types";
+import createClassList from "../../utilities/createClassList";
 import mapDataset from "../../utilities/mapDataset";
-import Microdata from "../../Microdata/index.astro";
-import type { HTMLAttributes } from "astro/types";
-
-export type Props = HTMLAttributes<"a"> & {
-  cssClass?: string;
-  dataset?: Dataset;
-  href?: string | URL | null | undefined;
-  locale?: string;
-  options?: NumberFormatOptions;
-  properties?: Number | Integer | Float | MonetaryAmount | undefined;
-  type?: "Number" | "Integer" | "Float" | "MonetaryAmount";
-  useMicrodata?: boolean;
-  useTabularNumerals?: boolean | undefined;
-  value?: string | number | undefined;
-};
+import type { LinkAttributes } from "../../types";
 
 const {
-  cssClass = "sb-number",
-  dataset,
-  href = "",
-  locale = "en-US",
-  options = {},
-  properties,
-  type = "Number",
-  useMicrodata,
-  useTabularNumerals,
-  value,
-  ...attrs
+	["class:list"]: classList = [],
+	dataset,
+	itemprop,
+	link = {},
+	locales = ["en-US"],
+	options = {},
+	type = "Number",
+	useTabularNumerals,
+	value,
+	...attrs
 } = Astro.props;
 
 useTabularNumerals && import("./index.css");
 
-const ext = (href as string).includes("://") ? { rel: "external" } : {};
-const data = mapDataset(dataset);
+const sbType = `sb-${type.toLocaleLowerCase()}`;
+const data = { [sbType]: "" };
+const linkData = { [sbType]: "link" };
+
+const {
+	["class:list"]: linkClassList = [],
+	dataset: linkDataset,
+	href,
+	...linkAttrs
+} = link as LinkAttributes;
+
+const classes = [
+	sbType,
+	...(useTabularNumerals ? ["sb-tabular-nums"] : []),
+	...classList,
+];
+const ext = href?.includes("://") ? { rel: "external" } : {};
 const val = typeof value === "number" ? value : parseFloat(String(value));
 
 const num = Number.isNaN(val)
-  ? await Astro.slots.render("default")
-  : new Intl.NumberFormat(locale, options).format(val as number);
+	? await Astro.slots.render("default")
+	: new Intl.NumberFormat(locales, {
+			...options,
+			maximumSignificantDigits: 6,
+	  }).format(val as number);
 
-const css = useTabularNumerals ? `${cssClass} tabular-nums` : cssClass;
-const meta =
-  typeof properties === "object"
-    ? {
-        "@context": "https://schema.org",
-        "@type": type,
-        ...(type === "MonetaryAmount" ? properties : {}),
-      }
-    : {};
+const prop = itemprop
+	? { itemprop, itemtype: `https://schema.org/${type}` }
+	: {};
 ---
 
-<span itemscope itemtype={`https://schema.org/${type}`}>
-  {
-    type === "MonetaryAmount" ? (
-      useMicrodata ? (
-        <Microdata properties={meta} />
-      ) : (
-        <script
-          is:inline
-          set:html={JSON.stringify(meta, null, 2)}
-          type="application/json+ld"
-        />
-      )
-    ) : null
-  }
-  {
-    href ? (
-      <a
-        class={css}
-        href={href}
-        itemprop="value"
-        {...ext}
-        {...data}
-        {...attrs}
-        set:html={num}
-      />
-    ) : (
-      <span class={css} itemprop="value" {...data} {...attrs} set:html={num} />
-    )
-  }
-</span>
+{
+	href ? (
+		<a
+			{...linkAttrs}
+			class:list={createClassList(`${sbType}-link`, linkClassList)}
+			{...mapDataset(linkDataset)}
+			{...mapDataset(linkData)}
+			{href}
+			{...ext}
+		>
+			<span
+				{...attrs}
+				class:list={classes}
+				{...mapDataset(dataset)}
+				{...mapDataset(data)}
+				{...prop}
+				set:html={num}
+			/>
+		</a>
+	) : (
+		<span
+			{...attrs}
+			class:list={classes}
+			{...mapDataset(dataset)}
+			{...mapDataset(data)}
+			{...prop}
+			set:html={num}
+		/>
+	)
+}

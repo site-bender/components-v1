@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { WebPage, WebSite } from "../schema.org";
+import Microdata from "../Microdata/index.astro";
+
+export type Props = HTMLAttributes<"body"> & {
+	pageProperties?: Partial<WebPage> | undefined;
+	site?: string;
+	siteProperties?: Partial<WebSite> | undefined;
+};
+
+const { pageProperties, site, siteProperties, title, ...attrs } = Astro.props;
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const name = site || import.meta.env.SITE_NAME;
+
+const { origin } = Astro.url;
+
+const siteMeta = {
+	type: "WebSite",
+	name,
+	url: origin,
+	...siteProperties,
+};
+
+const pageMeta = {
+	type: "WebPage",
+	name: title,
+	url: Astro.url.href,
+	...pageProperties,
+};
+---
+
+<body {...attrs}>
+	{
+		useMicrodata ? (
+			<>
+				<Microdata as="span" properties={siteMeta} />
+				<Microdata as="span" properties={pageMeta} />
+			</>
+		) : null
+	}
+	<slot />
+</body>

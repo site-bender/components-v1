@@ -1,69 +1,85 @@
 ---
 import exifr from "exifr";
+import createClassList from "../utilities/createClassList";
 import generateShortId from "../utilities/generateShortId";
-import type { Dataset } from "../types";
-import type { HTMLAttributes } from "astro/types";
-import type { ImageObject } from "../schema.org";
-import Source from "./Source/index.astro";
-import type { ImageSource } from "../types";
+import mapDataset from "../utilities/mapDataset";
+import Microdata from "../Microdata/index.astro";
+import type { PictureProps as Props } from "../types";
 import "./index.css";
-
-export type Props = HTMLAttributes<"img"> & {
-  alt: string;
-  cssClasses?: Array<string>;
-  dataset?: Dataset;
-  description?: string;
-  descriptionClass?: string;
-  filename: string;
-  height?: number;
-  href?: string;
-  linkAttributes?: HTMLAttributes<"a">;
-  loading?: "eager" | "lazy" | undefined;
-  properties?: Partial<ImageObject>;
-  sources: Array<ImageSource>;
-  src: string;
-  useJsonLd?: boolean;
-  width: number;
-};
 
 const {
   alt,
-  cssClasses = [],
+	["class:list"]: classList = [],
+  createPath,
+  dataset,
   description,
   descriptionClass = "off-screen",
   filename,
   height = 0,
-  linkAttributes = {},
+  link = {},
   loading = "lazy",
-  sources,
+  properties,
+  sources = [],
   src,
   width,
   ...attrs
 } = Astro.props;
 
+const data = mapDataset(dataset);
 const desc = (await Astro.slots.render("description")) || description;
 const describedById = desc ? { describedById: generateShortId() } : {};
 
 const tags = await exifr.parse(`public${src}`);
 const aspectRatio = (tags?.ImageHeight || 0) / (tags?.ImageWidth || 1);
 const h = height || Math.floor(aspectRatio * width);
-const css = ["sb-picture", ...cssClasses].join(" ");
+const meta = {
+  type: "ImageObject",
+};
 ---
 
-{
-  linkAttributes.href ? (
-    <a {...linkAttributes}>
-      <picture class={css}>
+<Microdata as="span" properties={meta}>
+  {
+    link.href ? (
+      <a {...link}>
+        <picture class:list={createClassList("sb-picture", classList)} {...data}>
+          {sources.map((source: ImageSource) => (
+            <Source
+              createPath={createPath}
+              {filename}
+              {source}
+            />
+          ))}
+          <img
+            {alt}
+            {...describedById}
+            decoding="async"
+            {...(h ? { height: h } : {})}
+            loading={loading}
+            {src}
+            {...(width != null ? { width } : {})}
+            {...attrs}
+          />
+          {desc ? (
+            <div
+              class={descriptionClass}
+              id={describedById?.describedById}
+              set:html={desc}
+            />
+          ) : null}
+        </picture>
+      </a>
+    ) : (
+      <picture class:list={createClassList("sb-picture", classList)} {...data}>
         {sources.map((source: ImageSource) => (
-          <Source filename={filename} source={source} />
+          <Source createPath={createPath} {filename} {source} />
         ))}
         <img
-          alt={alt}
+          {alt}
           {...describedById}
           decoding="async"
           {...(h ? { height: h } : {})}
           loading={loading}
-          src={src}
+          {src}
           {...(width != null ? { width } : {})}
           {...attrs}
         />
@@ -75,29 +91,6 @@ const css = ["sb-picture", ...cssClasses].join(" ");
           />
         ) : null}
       </picture>
-    </a>
-  ) : (
-    <picture class={css}>
-      {sources.map((source: ImageSource) => (
-        <Source filename={filename} source={source} />
-      ))}
-      <img
-        alt={alt}
-        {...describedById}
-        decoding="async"
-        {...(h ? { height: h } : {})}
-        loading={loading}
-        src={src}
-        {...(width != null ? { width } : {})}
-        {...attrs}
-      />
-      {desc ? (
-        <div
-          class={descriptionClass}
-          id={describedById?.describedById}
-          set:html={desc}
-        />
-      ) : null}
-    </picture>
-  )
-}
+    )
+  }
+</Microdata>

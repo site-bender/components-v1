@@ -1,0 +1,70 @@
+{
+	"sourceFile": "src/form/elements/MonthSelect/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 13,
+			"patches": [
+				{
+					"date": 1688601630752,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688601946348,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import createSelectOptions from \"../../../utilities/createSelectOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import getMonths from \"../../../utilities/getMonths\";\n import mapDataset from \"../../../utilities/mapDataset\";\n-import type { MonthFormat, MonthInput as Props } from \"../../../types/form\";\n+import type { MonthFormat, MonthSelect as Props } from \"../../../types/form\";\n \n const {\n \tautocomplete,\n \tcalendar = \"iso8601\",\n"
+				},
+				{
+					"date": 1688604351968,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,30 +21,44 @@\n \tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n \tname = \"month\",\n \trequired,\n \tselected,\n+\twrapper = {},\n \t...attrs\n } = Astro.props;\n \n+const {\n+\t[\"class:list\"]: wrapperClassList = [],\n+\tdataset: wrapperDataset,\n+\t...wrapperAttrs\n+} = wrapper as BaseAttributes;\n+\n const months = getMonths(\n \tcalendar as string,\n \tlocales as Array<string>,\n \tformat as MonthFormat,\n \tfilter\n );\n ---\n \n-<select\n-\t{...attrs}\n-\tautocomplete={autocomplete}\n-\taria-labelledby={labelledBy}\n-\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n-\t{...mapDataset(elementDataset)}\n-\tdata-sb-input={field}\n-\tform={form}\n-\tid={id}\n-\tname={name}\n-\trequired={required}\n+<span\n+\t{...wrapperAttrs}\n+\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n+\t{...mapDataset(wrapperDataset)}\n+\tdata-sb-wrapper={field}\n >\n-\t{includeBlank ? <option /> : null}\n-\t<Fragment set:html={createSelectOptions(months, selected)} />\n-</select>\n+\t<select\n+\t\t{...attrs}\n+\t\tautocomplete={autocomplete}\n+\t\taria-labelledby={labelledBy}\n+\t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n+\t\t{...mapDataset(elementDataset)}\n+\t\tdata-sb-input={field}\n+\t\tform={form}\n+\t\tid={id}\n+\t\tname={name}\n+\t\trequired={required}\n+\t>\n+\t\t{includeBlank ? <option /> : null}\n+\t\t<Fragment set:html={createSelectOptions(months, selected)} />\n+\t</select>\n+</span>\n"
+				},
+				{
+					"date": 1688604387732,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import createSelectOptions from \"../../../utilities/createSelectOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import getMonths from \"../../../utilities/getMonths\";\n import mapDataset from \"../../../utilities/mapDataset\";\n+import type { BaseAttributes } from \"../../../types/html\";\n import type { MonthFormat, MonthSelect as Props } from \"../../../types/form\";\n \n const {\n \tautocomplete,\n"
+				},
+				{
+					"date": 1688614452102,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n \tautocomplete,\n \tcalendar = \"iso8601\",\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n-\tfield = \"month-input\",\n+\tfield = \"month-select\",\n \tfilter,\n \tform,\n \tformat = \"long\",\n \tid = generateShortId(),\n"
+				},
+				{
+					"date": 1688614470855,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,11 +50,11 @@\n \t<select\n \t\t{...attrs}\n \t\tautocomplete={autocomplete}\n \t\taria-labelledby={labelledBy}\n-\t\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n+\t\tclass:list={createClassList(\"sb-month-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n-\t\tdata-sb-input={field}\n+\t\tdata-sb-select={field}\n \t\tform={form}\n \t\tid={id}\n \t\tname={name}\n \t\trequired={required}\n"
+				},
+				{
+					"date": 1688616127849,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,10 +53,10 @@\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-month-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n+\t\tid={id}\n \t\tform={form}\n-\t\tid={id}\n \t\tname={name}\n \t\trequired={required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n"
+				},
+				{
+					"date": 1688878328204,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,15 +12,15 @@\n \tcalendar = \"iso8601\",\n \t[\"class:list\"]: elementClassList = [],\n \tdataset: elementDataset,\n \tfield = \"month-select\",\n-\tfilter,\n \tform,\n \tformat = \"long\",\n \tid = generateShortId(),\n \tincludeBlank,\n \tlabelledBy,\n \tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n+\tmonths,\n \tname = \"month\",\n \trequired,\n \tselected,\n \twrapper = {},\n@@ -32,13 +32,13 @@\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n \n-const months = getMonths(\n+const mnths = getMonths(\n \tcalendar as string,\n \tlocales as Array<string>,\n \tformat as MonthFormat,\n-\tfilter\n+\tmonths\n );\n ---\n \n <span\n@@ -59,7 +59,7 @@\n \t\tname={name}\n \t\trequired={required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n-\t\t<Fragment set:html={createSelectOptions(months, selected)} />\n+\t\t<Fragment set:html={createSelectOptions(mnths, selected)} />\n \t</select>\n </span>\n"
+				},
+				{
+					"date": 1688940253592,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n \t\tdata-sb-select={field}\n \t\tid={id}\n \t\tform={form}\n \t\tname={name}\n-\t\trequired={required}\n+\t\t{required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n \t\t<Fragment set:html={createSelectOptions(mnths, selected)} />\n \t</select>\n"
+				},
+				{
+					"date": 1688940875611,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-month-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n-\t\tid={id}\n+\t\t{id}\n \t\tform={form}\n \t\tname={name}\n \t\t{required}\n \t>\n"
+				},
+				{
+					"date": 1688940940062,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n \t\tclass:list={createClassList(\"sb-month-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n \t\t{id}\n-\t\tform={form}\n+\t\t{form}\n \t\tname={name}\n \t\t{required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n"
+				},
+				{
+					"date": 1688940976488,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n \t\t{id}\n \t\t{form}\n-\t\tname={name}\n+\t\t{name}\n \t\t{required}\n \t>\n \t\t{includeBlank ? <option /> : null}\n \t\t<Fragment set:html={createSelectOptions(mnths, selected)} />\n"
+				},
+				{
+					"date": 1688942203789,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n \tdata-sb-wrapper={field}\n >\n \t<select\n \t\t{...attrs}\n-\t\tautocomplete={autocomplete}\n+\t\t{autocomplete}\n \t\taria-labelledby={labelledBy}\n \t\tclass:list={createClassList(\"sb-month-select\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-select={field}\n"
+				},
+				{
+					"date": 1688945094980,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \tfield = \"month-select\",\n \tform,\n \tformat = \"long\",\n \tid = generateShortId(),\n-\tincludeBlank,\n+\tincludeNull,\n \tlabelledBy,\n \tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n \tmonths,\n \tname = \"month\",\n@@ -58,8 +58,8 @@\n \t\t{form}\n \t\t{name}\n \t\t{required}\n \t>\n-\t\t{includeBlank ? <option /> : null}\n+\t\t{includeNull ? <option /> : null}\n \t\t<Fragment set:html={createSelectOptions(mnths, selected)} />\n \t</select>\n </span>\n"
+				}
+			],
+			"date": 1688601630752,
+			"name": "Commit-0",
+			"content": "---\nimport createClassList from \"../../../utilities/createClassList\";\nimport createSelectOptions from \"../../../utilities/createSelectOptions\";\nimport generateShortId from \"../../../utilities/generateShortId\";\nimport getMonths from \"../../../utilities/getMonths\";\nimport mapDataset from \"../../../utilities/mapDataset\";\nimport type { MonthFormat, MonthInput as Props } from \"../../../types/form\";\n\nconst {\n\tautocomplete,\n\tcalendar = \"iso8601\",\n\t[\"class:list\"]: elementClassList = [],\n\tdataset: elementDataset,\n\tfield = \"month-input\",\n\tfilter,\n\tform,\n\tformat = \"long\",\n\tid = generateShortId(),\n\tincludeBlank,\n\tlabelledBy,\n\tlocales = [\"en-NZ\", \"en-US\", \"en-GB\"],\n\tname = \"month\",\n\trequired,\n\tselected,\n\t...attrs\n} = Astro.props;\n\nconst months = getMonths(\n\tcalendar as string,\n\tlocales as Array<string>,\n\tformat as MonthFormat,\n\tfilter\n);\n---\n\n<select\n\t{...attrs}\n\tautocomplete={autocomplete}\n\taria-labelledby={labelledBy}\n\tclass:list={createClassList(\"sb-month-input\", elementClassList)}\n\t{...mapDataset(elementDataset)}\n\tdata-sb-input={field}\n\tform={form}\n\tid={id}\n\tname={name}\n\trequired={required}\n>\n\t{includeBlank ? <option /> : null}\n\t<Fragment set:html={createSelectOptions(months, selected)} />\n</select>\n"
+		}
+	]
+}

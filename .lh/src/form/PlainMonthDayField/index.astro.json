@@ -1,0 +1,38 @@
+{
+	"sourceFile": "src/form/PlainMonthDayField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 5,
+			"patches": [
+				{
+					"date": 1688336334765,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688447285180,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n ---\n const { form } = Astro.props;\n ---\n \n-<div class=\"field\">\n+<div class:list={[\"sb-form-field\"]}>\n \t<label for=\"plainMonthDay\">\n \t\t<span>PlainMonthDay</span>\n \t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n \t</label>\n"
+				},
+				{
+					"date": 1688791053412,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,7 +14,8 @@\n \t\tmax=\"9999-12-31\"\n \t\tmin=\"9999-01-01\"\n \t\tname=\"plainMonthDay\"\n \t\trequired\n+\t\tstyle=\"width: 6ch\"\n \t\ttype=\"date\"\n \t/>\n </div>\n"
+				},
+				{
+					"date": 1688791063169,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,8 @@\n \t\tmax=\"9999-12-31\"\n \t\tmin=\"9999-01-01\"\n \t\tname=\"plainMonthDay\"\n \t\trequired\n-\t\tstyle=\"width: 6ch\"\n+\t\tstyle=\"width: 12ch\"\n \t\ttype=\"date\"\n \t/>\n </div>\n"
+				},
+				{
+					"date": 1688791073449,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,8 @@\n \t\tmax=\"9999-12-31\"\n \t\tmin=\"9999-01-01\"\n \t\tname=\"plainMonthDay\"\n \t\trequired\n-\t\tstyle=\"width: 10ch\"\n+\t\tstyle=\"width: 9ch\"\n \t\ttype=\"date\"\n \t/>\n </div>\n"
+				},
+				{
+					"date": 1688791078735,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,8 @@\n \t\tmax=\"9999-12-31\"\n \t\tmin=\"9999-01-01\"\n \t\tname=\"plainMonthDay\"\n \t\trequired\n-\t\tstyle=\"width: 9ch\"\n+\t\tstyle=\"width: 9.3ch\"\n \t\ttype=\"date\"\n \t/>\n </div>\n"
+				}
+			],
+			"date": 1688336334765,
+			"name": "Commit-0",
+			"content": "---\nconst { form } = Astro.props;\n---\n\n<div class=\"field\">\n\t<label for=\"plainMonthDay\">\n\t\t<span>PlainMonthDay</span>\n\t\t<ul aria-live=\"assertive\" class=\"help\" role=\"status\"></ul>\n\t</label>\n\t<input\n\t\tdata-sb-plain-month-day\n\t\tform={form}\n\t\tid=\"plainMonthDay\"\n\t\tmax=\"9999-12-31\"\n\t\tmin=\"9999-01-01\"\n\t\tname=\"plainMonthDay\"\n\t\trequired\n\t\ttype=\"date\"\n\t/>\n</div>\n"
+		}
+	]
+}

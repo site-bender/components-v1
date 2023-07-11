@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/form/TrileanField/index.astro",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1689036663061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1689036669653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n ---\n ---\n \n-<label></label>\n-<input type=\"checkbox\" /> trilean\n+<label>\n+\t<input type=\"checkbox\" /> trilean\n+</label>\n"
+                }
+            ],
+            "date": 1689036663061,
+            "name": "Commit-0",
+            "content": "---\n---\n\n<label></label>\n<input type=\"checkbox\" /> trilean\n"
+        }
+    ]
+}

@@ -10,7 +10,7 @@
     aria-label="Creative Commons Attribution-NoDerivatives 4.0 International License"
     class="image"
     href="https://creativecommons.org/licenses/by-nd/4.0/"
-    rel="external license"
+   rel="license"
   >
     <CreativeCommons fill={fill} size={size} stroke={stroke}>
       <title>

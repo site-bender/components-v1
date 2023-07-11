@@ -1,91 +1,104 @@
 ---
-import FieldWrapper from "../FieldWrapper/index.astro";
+import NumberInput from "../elements/NumberInput/index.astro";
+import createClassList from "../../utilities/createClassList";
 import generateShortId from "../../utilities/generateShortId";
 import mapDataset from "../../utilities/mapDataset";
-import Number from "../../metadata/Number/index.astro";
-import type { Dataset, Messages } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-
-export type Props = HTMLAttributes<"input"> &
-  HTMLAttributes<"a"> & {
-    dataset?: Dataset;
-    help?: string;
-    isInteger?: boolean;
-    label: string;
-    messages?: Messages;
-    name: string;
-    readonly?: boolean | null | undefined;
-    useTabularNumerals?: boolean | undefined;
-    value?: string | number;
-  };
+import type { BaseAttributes } from "../../types/html";
 
 const {
-  dataset,
-  help,
-  href,
-  id = `_${generateShortId()}`,
-  isInteger,
-  itemid,
-  itemprop,
-  itemref,
-  itemtype,
-  label,
-  messages,
-  readonly,
-  step: stepDefault,
-  useTabularNumerals,
-  value,
-  ...attrs
+	["aria-live"]: live = "assertive",
+	datalist = {},
+	field = "number-field",
+	form,
+	help = {},
+	id = generateShortId(),
+	label = "Number",
+	legend = {},
+	list,
+	message,
+	name,
+	outer = {},
+	placehoder: _placeholder,
+	required,
+	tag = {},
+	wrapper = {},
+	...attrs
 } = Astro.props;
 
-const labelId = `${id}-label`;
-const helpId = `${id}-help`;
-const data = mapDataset(dataset);
-const step = stepDefault
-  ? { step: stepDefault }
-  : isInteger
-  ? { step: "1" }
-  : {};
-const properties =
-  itemtype && itemprop ? { itemid, itemscope: true, itemtype } : {};
+const {
+	["class:list"]: helpClassList = [],
+	dataset: helpDataset,
+	...helpAttrs
+} = help as BaseAttributes;
+
+const {
+	["class:list"]: legendClassList = [],
+	dataset: legendDataset,
+	...legendAttrs
+} = legend as BaseAttributes;
+
+const {
+	["class:list"]: outerClassList = [],
+	dataset: outerDataset,
+	...outerAttrs
+} = outer as BaseAttributes;
+
+const {
+	["class:list"]: tagClassList = [],
+	dataset: tagDataset,
+	...tagAttrs
+} = tag as BaseAttributes;
+
+const hlp = (await Astro.slots.render("message")) || message;
+const helpId = `${id}_help`;
+const lbl = (await Astro.slots.render("default")) || label;
+const labelledBy = `${id}_label`;
+const req = required ? { "data-sb-required": "" } : {};
+const opt = required ? {} : { "data-sb-optional": "" };
 ---
 
-<FieldWrapper
-  fieldType="sb-number"
-  {...help ? { help } : {}}
-  helpId={helpId}
-  id={id as string}
-  label={label}
-  labelId={labelId}
-  {...messages ? { messages } : {}}
-  name={attrs.name}
-  readonly={readonly}
-  {...attrs.required ? { required: true } : {}}
+<div
+	{...outerAttrs}
+	class:list={createClassList("sb-field", "sb-number-field", outerClassList)}
+	{...mapDataset(outerDataset)}
+	data-sb-field={field}
+	{...req}
 >
-  <Fragment slot="element">
-    {
-      readonly ? (
-        <div class="readonly sb-number-readonly" {...properties}>
-          <Number
-            href={href}
-            useTabularNumerals={useTabularNumerals}
-            itemprop={itemprop}
-          >
-            {value}
-          </Number>
-        </div>
-      ) : (
-        <input
-          aria-labelledBy={`${labelId} ${helpId}`}
-          class="sb-number-input"
-          {...data}
-          id={id as string}
-          {...attrs}
-          {...step}
-          type="number"
-          {...(value ? { value } : {})}
-        />
-      )
-    }
-  </Fragment>
-</FieldWrapper>
+	<label
+		{...legendAttrs}
+		class:list={createClassList("sb-label", legendClassList)}
+		{...mapDataset(legendDataset)}
+		data-sb-field-label={field}
+		id={labelledBy}
+	>
+		<span
+			{...tagAttrs}
+			class:list={createClassList("sb-label-tag", tagClassList)}
+			{...mapDataset(tagDataset)}
+			data-sb-field-label-tag={field}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			{...helpAttrs}
+			aria-live={live}
+			class:list={createClassList("sb-help", helpClassList)}
+			{...mapDataset(helpDataset)}
+			data-sb-field-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</label>
+	<NumberInput
+		{...attrs}
+		{datalist}
+		{field}
+		{form}
+		{id}
+		{labelledBy}
+		{name}
+		{required}
+		{wrapper}
+	/>
+</div>

@@ -3,7 +3,7 @@ import Number from "../../../../src/metadata/Number/index.astro";
 import CodeBlock from "../../../../src/CodeBlock/index.astro";
 import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
 import Layout from "../_layouts/index.astro";
-import TableOfContents from "../_components/TableOfContents/index.astro";
+import pageProperties from "./pageProperties";
 import * as typeTs from "./_assets/type.ts.md";
 import * as defaultExampleHtml from "./_assets/default-example.html.md";
 import * as defaultExampleAstro from "./_assets/default-example.astro.md";
@@ -15,7 +15,7 @@ import * as currencyHtml from "./_assets/currency.html.md";
 import * as currencyAstro from "./_assets/currency.astro.md";
 ---
 
-<Layout title="Number">
+<Layout pageProperties={pageProperties}>
   <Fragment slot="tail">
     <script set:html={copyToClipboardJs} />
   </Fragment>
@@ -36,7 +36,13 @@ import * as currencyAstro from "./_assets/currency.astro.md";
       </p>
       <section id="default">
         <h3>Types</h3>
-        <CodeBlock snippet={typeTs} />
+        <CodeBlock
+          snippet={typeTs}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "TypeScript",
+          }}
+        />
         <p>
           The <code>dataset</code> prop takes a map of attribute names (minus the
           <code>data-</code>) and values and maps them to <code
@@ -47,13 +53,25 @@ import * as currencyAstro from "./_assets/currency.astro.md";
       <section>
         <h3>Default example</h3>
         <p>This is the minimum required to use the <code>Number</code>:</p>
-        <CodeBlock snippet={defaultExampleAstro} />
+        <CodeBlock
+          snippet={defaultExampleAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
-          <Number value="42" />
-        </p>
+        <div class="example">
+          <Number value="42" dataset={{ bob: "dobbs" }} />
+        </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={defaultExampleHtml} />
+        <CodeBlock
+          snippet={defaultExampleHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="dataset">
         <h3>
@@ -65,13 +83,19 @@ import * as currencyAstro from "./_assets/currency.astro.md";
           such as the <code>em</code> element, avoid the <code>value</code> prop
           and pass the value in as the content of the <code>Number</code> component.
         </p>
-        <CodeBlock snippet={withDataAttrsAstro} />
+        <CodeBlock
+          snippet={withDataAttrsAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>
           The <code>dataset</code> key-value pairs are whatever you want them to
           be.
         </p>
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <Number
             dataset={{
               type: "work",
@@ -81,13 +105,19 @@ import * as currencyAstro from "./_assets/currency.astro.md";
             <em>42</em>
           </Number>
           <p>And here is the HTML created:</p>
-          <CodeBlock snippet={withDataAttrsHtml} />
+          <CodeBlock
+            snippet={withDataAttrsHtml}
+            properties={{
+              codeSampleType: "code snippet",
+              programmingLanguage: "HTML",
+            }}
+          />
           <p>
             Note that HTML attributes will be added to the <code>a</code> element
             if an <code>href</code> attribute is included; otherwise, they will be
             added to the <code>span</code> element.
           </p>
-        </p>
+        </div>
       </section>
       <section id="tabular-numbers">
         <h3>Tabular numbers example</h3>
@@ -97,20 +127,46 @@ import * as currencyAstro from "./_assets/currency.astro.md";
           <code>value</code> attribute must be used and <code>value</code> must be
           a number, not a string. Otherwise, a string is acceptable.
         </p>
-        <CodeBlock snippet={tabularNumbersAstro} />
+        <CodeBlock
+          snippet={tabularNumbersAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
-          <Number useTabularNumerals value={123_456_789} />
-        </p>
+        <div class="example">
+          <Number
+						link={{
+							dataset: { bob: "dobbs" },
+							href: "https://google.com/",
+						}}
+						type="Integer"
+						useTabularNumerals
+						value={123_456_789}
+					/>
+        </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={tabularNumbersHtml} />
+        <CodeBlock
+          snippet={tabularNumbersHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
       <section id="tabular-numbers">
         <h3>Currency example</h3>
         <p>In Euros in France.</p>
-        <CodeBlock snippet={currencyAstro} />
+        <CodeBlock
+          snippet={currencyAstro}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "AstroJS",
+          }}
+        />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <Number
             locale="en-US"
             options={{
@@ -120,9 +176,15 @@ import * as currencyAstro from "./_assets/currency.astro.md";
             useTabularNumerals
             value={123_456_789.99}
           />
-        </p>
+        </div>
         <p>And here is the HTML created:</p>
-        <CodeBlock snippet={currencyHtml} />
+        <CodeBlock
+          snippet={currencyHtml}
+          properties={{
+            codeSampleType: "code snippet",
+            programmingLanguage: "HTML",
+          }}
+        />
       </section>
     </article>
   </main>

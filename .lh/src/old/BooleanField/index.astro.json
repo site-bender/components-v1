@@ -1,0 +1,22 @@
+{
+	"sourceFile": "src/old/BooleanField/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 1,
+			"patches": [
+				{
+					"date": 1688942845384,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1689031655231,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n };\n \n const {\n \tas,\n-\tcssClasses = [],\n+\t[\"class:list\"]: classList = [],\n \tdataset,\n \thelp,\n \tid = `_${generateShortId()}`,\n \titemprop,\n"
+				}
+			],
+			"date": 1688942845384,
+			"name": "Commit-0",
+			"content": "---\nimport \"./index.css\";\nimport Boolean from \"../../metadata/Boolean/index.astro\";\nimport FieldWrapper from \"../FieldWrapper/index.astro\";\nimport generateShortId from \"../../utilities/generateShortId\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport type { Dataset, Messages } from \"../../types\";\nimport type { HTMLAttributes, HTMLTag } from \"astro/types\";\n\nexport type Props<T> = Omit<HTMLAttributes<\"input\">, \"value\"> & {\n  as?: HTMLTag;\n  cssClasses?: Array<string>;\n  dataset?: Dataset;\n  help?: string;\n  itemprop?: string | undefined;\n  itemtype?: string;\n  label?: string;\n  labelFalse?: string;\n  labelTrue?: string;\n  messages?: Messages;\n  name: string;\n  properties?: Partial<T>;\n  readonly?: boolean;\n  value?: boolean | string;\n};\n\nconst {\n  as,\n  cssClasses = [],\n  dataset,\n  help,\n  id = `_${generateShortId()}`,\n  itemprop,\n  itemtype,\n  label,\n  labelFalse = \"\",\n  labelTrue,\n  properties = {},\n  readonly,\n  value,\n  ...attrs\n} = Astro.props;\n\nconst css = [\"sb-boolean-input\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\nconst labelledBy = `${id}-label`;\nconst lbl =\n  label || (await Astro.slots.render(\"default\")) || labelTrue || \"Yes\";\n---\n\n{\n  readonly ? (\n    <Boolean {...Astro.props} />\n  ) : (\n    <FieldWrapper\n      fieldType=\"sb-boolean\"\n      id={id as string}\n      label={lbl}\n      labelId={labelledBy}\n      name={attrs.name}\n      {...(attrs.required ? { required: true } : {})}\n      wrapInput\n    >\n      <Fragment slot=\"element\">\n        <input\n          aria-labelledBy={labelledBy}\n          class={css}\n          {...data}\n          id={id as string}\n          {...attrs}\n          type=\"checkbox\"\n          {...(value ? { value } : {})}\n        />\n      </Fragment>\n    </FieldWrapper>\n  )\n}\n"
+		}
+	]
+}

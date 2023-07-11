@@ -1,0 +1,62 @@
+{
+	"sourceFile": "src/form/elements/TextInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 11,
+			"patches": [
+				{
+					"date": 1688430152849,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688520187682,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { TextInput as Props } from \"../../../types/forms\";\n+import type { TextInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n \n"
+				},
+				{
+					"date": 1688614501301,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,47 @@\n ---\n+import createClassList from \"../../../utilities/createClassList\";\n+import generateShortId from \"../../../utilities/generateShortId\";\n+import mapDataset from \"../../../utilities/mapDataset\";\n+import type { BaseAttributes } from \"../../../types/html\";\n import type { TextInput as Props } from \"../../../types/form\";\n-import mapDataset from \"../../../utilities/mapDataset\";\n \n-const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n+const {\n+\tautocomplete,\n+\t[\"class:list\"]: elementClassList = [],\n+\tdataset: elementDataset,\n+\tfield = \"text-input\",\n+\tform,\n+\tid = generateShortId(),\n+\tlabelledBy,\n+\tname,\n+\tplaceholder: _placeholder,\n+\twrapper = {},\n+\t...attrs\n+} = Astro.props;\n \n-const css = [\"sb-input\", ...cssClasses].join(\" \");\n-const data = mapDataset(dataset);\n+const {\n+\t[\"class:list\"]: wrapperClassList = [],\n+\tdataset: wrapperDataset,\n+\t...wrapperAttrs\n+} = wrapper as BaseAttributes;\n ---\n \n-<span>\n+<span\n+\t{...wrapperAttrs}\n+\tclass:list={createClassList(\"sb-input-wrapper\", wrapperClassList)}\n+\t{...mapDataset(wrapperDataset)}\n+\tdata-sb-wrapper={field}\n+>\n \t<input\n \t\t{...attrs}\n-\t\taria-labelledby={`${id}_label`}\n-\t\tclass={css}\n-\t\t{...data}\n+\t\taria-labelledby={labelledBy}\n+\t\tautocomplete={autocomplete}\n+\t\tclass:list={createClassList(\"sb-time-input\", elementClassList)}\n+\t\t{...mapDataset(elementDataset)}\n+\t\tdata-sb-input={field}\n \t\tid={id}\n \t\tform={form}\n \t\tname={name}\n+\t\ttype=\"time\"\n \t/>\n </span>\n"
+				},
+				{
+					"date": 1688614668577,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,30 +1,46 @@\n ---\n import createClassList from \"../../../utilities/createClassList\";\n+import createListOptions from \"../../../utilities/createListOptions\";\n import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n import type { BaseAttributes } from \"../../../types/html\";\n import type { TextInput as Props } from \"../../../types/form\";\n \n const {\n \tautocomplete,\n+\tautocorrect: _autocorrect,\n \t[\"class:list\"]: elementClassList = [],\n+\tdatalist = {},\n \tdataset: elementDataset,\n \tfield = \"text-input\",\n \tform,\n \tid = generateShortId(),\n \tlabelledBy,\n+\tlist,\n \tname,\n \tplaceholder: _placeholder,\n+\trequired,\n+\ttype: _type,\n+\tvalue,\n \twrapper = {},\n \t...attrs\n } = Astro.props;\n \n const {\n+\t[\"class:list\"]: datalistClassList = [],\n+\tdataset: datalistDataset,\n+\t...datalistAttrs\n+} = datalist as BaseAttributes;\n+\n+const {\n \t[\"class:list\"]: wrapperClassList = [],\n \tdataset: wrapperDataset,\n \t...wrapperAttrs\n } = wrapper as BaseAttributes;\n+\n+const listId = `${id}_list`;\n+const lst = list ? { list: listId } : {};\n ---\n \n <span\n \t{...wrapperAttrs}\n@@ -35,13 +51,29 @@\n \t<input\n \t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n \t\tautocomplete={autocomplete}\n-\t\tclass:list={createClassList(\"sb-time-input\", elementClassList)}\n+\t\tclass:list={createClassList(\"sb-text-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tid={id}\n+\t\t{...lst}\n \t\tform={form}\n \t\tname={name}\n-\t\ttype=\"time\"\n+\t\trequired={required}\n+\t\ttype=\"text\"\n+\t\tvalue={value}\n \t/>\n+\t{\n+\t\tlist ? (\n+\t\t\t<datalist\n+\t\t\t\t{...datalistAttrs}\n+\t\t\t\tclass:list={createClassList(\"sb-datalist-color\", datalistClassList)}\n+\t\t\t\t{...mapDataset(datalistDataset)}\n+\t\t\t\tdata-sb-datalist={field}\n+\t\t\t\tid={listId}\n+\t\t\t>\n+\t\t\t\t<Fragment set:html={createListOptions(list)} />\n+\t\t\t</datalist>\n+\t\t) : null\n+\t}\n </span>\n"
+				},
+				{
+					"date": 1688614682669,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n \t{\n \t\tlist ? (\n \t\t\t<datalist\n \t\t\t\t{...datalistAttrs}\n-\t\t\t\tclass:list={createClassList(\"sb-datalist-color\", datalistClassList)}\n+\t\t\t\tclass:list={createClassList(\"sb-datalist-text\", datalistClassList)}\n \t\t\t\t{...mapDataset(datalistDataset)}\n \t\t\t\tdata-sb-datalist={field}\n \t\t\t\tid={listId}\n \t\t\t>\n"
+				},
+				{
+					"date": 1688616206291,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,11 +54,11 @@\n \t\tautocomplete={autocomplete}\n \t\tclass:list={createClassList(\"sb-text-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n+\t\tform={form}\n \t\tid={id}\n \t\t{...lst}\n-\t\tform={form}\n \t\tname={name}\n \t\trequired={required}\n \t\ttype=\"text\"\n \t\tvalue={value}\n"
+				},
+				{
+					"date": 1688940253545,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n \t\tform={form}\n \t\tid={id}\n \t\t{...lst}\n \t\tname={name}\n-\t\trequired={required}\n+\t\t{required}\n \t\ttype=\"text\"\n \t\tvalue={value}\n \t/>\n \t{\n"
+				},
+				{
+					"date": 1688940875572,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n \t\tclass:list={createClassList(\"sb-text-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\tform={form}\n-\t\tid={id}\n+\t\t{id}\n \t\t{...lst}\n \t\tname={name}\n \t\t{required}\n \t\ttype=\"text\"\n"
+				},
+				{
+					"date": 1688940940049,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n \t\tautocomplete={autocomplete}\n \t\tclass:list={createClassList(\"sb-text-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n-\t\tform={form}\n+\t\t{form}\n \t\t{id}\n \t\t{...lst}\n \t\tname={name}\n \t\t{required}\n"
+				},
+				{
+					"date": 1688940959541,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \t\t{...lst}\n \t\tname={name}\n \t\t{required}\n \t\ttype=\"text\"\n-\t\tvalue={value}\n+\t\t{value}\n \t/>\n \t{\n \t\tlist ? (\n \t\t\t<datalist\n"
+				},
+				{
+					"date": 1688940976294,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n \t\tdata-sb-input={field}\n \t\t{form}\n \t\t{id}\n \t\t{...lst}\n-\t\tname={name}\n+\t\t{name}\n \t\t{required}\n \t\ttype=\"text\"\n \t\t{value}\n \t/>\n"
+				},
+				{
+					"date": 1688942203735,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n >\n \t<input\n \t\t{...attrs}\n \t\taria-labelledby={labelledBy}\n-\t\tautocomplete={autocomplete}\n+\t\t{autocomplete}\n \t\tclass:list={createClassList(\"sb-text-input\", elementClassList)}\n \t\t{...mapDataset(elementDataset)}\n \t\tdata-sb-input={field}\n \t\t{form}\n"
+				}
+			],
+			"date": 1688430152849,
+			"name": "Commit-0",
+			"content": "---\nimport type { TextInput as Props } from \"../../../types/forms\";\nimport mapDataset from \"../../../utilities/mapDataset\";\n\nconst { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n\nconst css = [\"sb-input\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\n---\n\n<span>\n\t<input\n\t\t{...attrs}\n\t\taria-labelledby={`${id}_label`}\n\t\tclass={css}\n\t\t{...data}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t/>\n</span>\n"
+		}
+	]
+}

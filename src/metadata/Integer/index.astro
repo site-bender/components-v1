@@ -1,33 +1,16 @@
 ---
-import type { Dataset } from "../../types";
-import type { Integer } from "../../schema.org";
-import type { NumberFormatOptions } from "../Number/types";
-import type { HTMLAttributes } from "astro/types";
+import type { NumberProps as Props } from "../../types";
 import Number from "../Number/index.astro";
 
-export type Props = HTMLAttributes<"a"> & {
-  dataset?: Dataset;
-  href?: string | URL | null | undefined;
-  locale?: string;
-  options?: NumberFormatOptions;
-  properties?: Partial<Integer>;
-  useTabularNumerals?: boolean | undefined;
-  value?: string | number | undefined;
-};
-
-const { options = {}, value, ...attrs } = Astro.props;
+const {
+	type: _type,
+	value,
+	...attrs
+} = Astro.props;
 
 const val = Math.round(
   typeof value === "number" ? value : parseInt(String(value), 10)
 );
-console.log("val", val);
-const opts = { ...options };
 ---
 
-<Number
-  cssClass="sb-integer"
-  options={opts}
-  {...attrs}
-  type="Integer"
-  value={val}
-/>
+<Number {...attrs} type="Integer" value={val} />

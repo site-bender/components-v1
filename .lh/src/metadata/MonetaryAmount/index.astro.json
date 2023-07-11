@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/metadata/MonetaryAmount/index.astro",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1689031744852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1689115427066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,8 @@\n import Microdata from \"../../Microdata/index.astro\";\n import mapDataset from \"../../utilities/mapDataset\";\n \n export type Props = HTMLAttributes<\"span\"> & {\n-  a?: HTMLAttributes<\"a\">;\n-  cssClasses?: Array<string>;\n   dataset?: Dataset;\n   locale?: string;\n   options?: NumberFormatOptions;\n   properties?: Partial<MonetaryAmount> | undefined;\n"
+                },
+                {
+                    "date": 1689117931517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,42 +1,32 @@\n ---\n import \"./index.css\";\n-import type { Dataset } from \"../../types\";\n import type { MonetaryAmount } from \"../../schema.org\";\n import type { NumberFormatOptions, NumberStyle } from \"../Number/types\";\n import type { HTMLAttributes } from \"astro/types\";\n import Microdata from \"../../Microdata/index.astro\";\n import mapDataset from \"../../utilities/mapDataset\";\n \n-export type Props = HTMLAttributes<\"span\"> & {\n-  dataset?: Dataset;\n-  locale?: string;\n-  options?: NumberFormatOptions;\n-  properties?: Partial<MonetaryAmount> | undefined;\n-  useTabularNumerals?: boolean | undefined;\n-  value?: string | number | undefined;\n-};\n-\n const style: NumberStyle = \"currency\";\n \n const {\n   a,\n   [\"class:list\"]: classList = [],\n   dataset,\n   locale = \"en-US\",\n-  options = {\n-    currency: \"USD\",\n-    currencyDisplay: \"narrowSymbol\",\n-    style,\n-  },\n+  options = {},\n   properties = {},\n   useTabularNumerals,\n   value,\n   ...attrs\n } = Astro.props;\n \n const val = typeof value === \"number\" ? value : parseFloat(String(value));\n-const opts = { ...options, style };\n+const opts = {\n+    currency: \"USD\",\n+    currencyDisplay: \"narrowSymbol\",\n+\t\tmaximumFractionalDigis: 2,\n+    style, ...options };\n \n const num = Number.isNaN(val)\n   ? await Astro.slots.render(\"default\")\n   : new Intl.NumberFormat(locale, opts).format(val as number);\n"
+                },
+                {
+                    "date": 1689117967817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,14 @@\n } = Astro.props;\n \n const val = typeof value === \"number\" ? value : parseFloat(String(value));\n const opts = {\n-    currency: \"USD\",\n-    currencyDisplay: \"narrowSymbol\",\n-\t\tmaximumFractionalDigis: 2,\n-    style, ...options };\n+\tcurrency: \"USD\",\n+\tcurrencyDisplay: \"narrowSymbol\",\n+\tmaximumFractionalDigis: 2,\n+\tstyle,\n+\t...options,\n+};\n \n const num = Number.isNaN(val)\n   ? await Astro.slots.render(\"default\")\n   : new Intl.NumberFormat(locale, opts).format(val as number);\n"
+                }
+            ],
+            "date": 1689031744852,
+            "name": "Commit-0",
+            "content": "---\nimport \"./index.css\";\nimport type { Dataset } from \"../../types\";\nimport type { MonetaryAmount } from \"../../schema.org\";\nimport type { NumberFormatOptions, NumberStyle } from \"../Number/types\";\nimport type { HTMLAttributes } from \"astro/types\";\nimport Microdata from \"../../Microdata/index.astro\";\nimport mapDataset from \"../../utilities/mapDataset\";\n\nexport type Props = HTMLAttributes<\"span\"> & {\n  a?: HTMLAttributes<\"a\">;\n  cssClasses?: Array<string>;\n  dataset?: Dataset;\n  locale?: string;\n  options?: NumberFormatOptions;\n  properties?: Partial<MonetaryAmount> | undefined;\n  useTabularNumerals?: boolean | undefined;\n  value?: string | number | undefined;\n};\n\nconst style: NumberStyle = \"currency\";\n\nconst {\n  a,\n\t[\"class:list\"]: classList = [],\n  dataset,\n  locale = \"en-US\",\n  options = {\n    currency: \"USD\",\n    currencyDisplay: \"narrowSymbol\",\n    style,\n  },\n  properties = {},\n  useTabularNumerals,\n  value,\n  ...attrs\n} = Astro.props;\n\nconst val = typeof value === \"number\" ? value : parseFloat(String(value));\nconst opts = { ...options, style };\n\nconst num = Number.isNaN(val)\n  ? await Astro.slots.render(\"default\")\n  : new Intl.NumberFormat(locale, opts).format(val as number);\n\nconst css = [\n  \"sb-monetary-amount\",\n  ...cssClasses,\n  ...(useTabularNumerals ? [\"tabular-nums\"] : []),\n].join(\" \");\n\nconst data = mapDataset(dataset);\nconst ext =\n  a?.href && (a.href as string).includes(\"://\") ? { rel: \"external\" } : {};\n\nconst useMicrodata = Boolean(import.meta.env.USE_MICRODATA);\nconst meta = {\n  type: \"MonetaryAmount\",\n  ...{ ...properties, currency: options.currency, value: val },\n};\n---\n\n{\n  useMicrodata ? (\n    <Microdata as=\"span\" properties={meta}>\n      {a?.href ? (\n        <a\n          class={css}\n          href={a.href}\n          itemprop=\"value\"\n          {...data}\n          {...attrs}\n          {...ext}\n          set:html={num}\n        />\n      ) : (\n        <span\n          class={css}\n          itemprop=\"value\"\n          {...data}\n          {...attrs}\n          set:html={num}\n        />\n      )}\n    </Microdata>\n  ) : (\n    <>\n      {a?.href ? (\n        <a\n          class={css}\n          href={a.href}\n          {...data}\n          {...attrs}\n          {...ext}\n          set:html={num}\n        />\n      ) : (\n        <span class={css} {...data} {...attrs} set:html={num} />\n      )}\n    </>\n  )\n}\n"
+        }
+    ]
+}

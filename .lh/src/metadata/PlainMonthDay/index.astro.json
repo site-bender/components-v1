@@ -1,0 +1,18 @@
+{
+	"sourceFile": "src/metadata/PlainMonthDay/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 0,
+			"patches": [
+				{
+					"date": 1689031744851,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				}
+			],
+			"date": 1689031744851,
+			"name": "Commit-0",
+			"content": "---\nimport {\n  DEFAULT_CALENDAR,\n  DEFAULT_MONTH_DAY_OPTIONS,\n  DEFAULT_LOCALE,\n} from \"../../constants\";\nimport { Intl, Temporal } from \"@js-temporal/polyfill\";\nimport type { Thing } from \"../../schema.org\";\nimport mapDataset from \"../../utilities/mapDataset\";\nimport type { Dataset } from \"../../types\";\nimport type { HTMLAttributes } from \"astro/types\";\nimport Microdata from \"../../Microdata/index.astro\";\n\nexport type Props<T extends Thing> = HTMLAttributes<\"time\"> & {\n  calendar?: Temporal.CalendarLike;\n  cssClasses?: Array<string>;\n  dataset?: Dataset;\n  day?: number | string;\n  itemprop?: string | undefined;\n  locale?: string | Array<string>;\n  month?: number | string;\n  monthCode?: string;\n  options?: Intl.DateTimeFormatOptions;\n  plainMonthDay?: string | Temporal.PlainMonthDayLike;\n  properties?: Partial<T>;\n  itemtype?: string;\n  year?: string | number;\n};\n\nconst {\n  calendar = DEFAULT_CALENDAR,\n\t[\"class:list\"]: classList = [],\n  dataset,\n  day,\n  itemprop,\n  locale = DEFAULT_LOCALE,\n  month,\n  monthCode,\n  options = {},\n  plainMonthDay = Temporal.PlainMonthDay.from(\n    Temporal.Now.plainDate(Astro.props.calendar || DEFAULT_CALENDAR)\n  ),\n  properties,\n  itemtype,\n  year,\n  ...attrs\n} = Astro.props;\n\nconst css = [\"sb-plain-date-time\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\nconst value = plainMonthDay\n  ? (plainMonthDay as Temporal.PlainMonthDay)\n  : Temporal.PlainMonthDay.from(\n      {\n        ...(calendar ? { calendar } : {}),\n        day: Number(day),\n        ...(monthCode\n          ? { monthCode }\n          : { month: Number(month), year: Number(year) }),\n      },\n      { overflow: \"reject\" }\n    );\n\nconst opts = Object.assign({}, DEFAULT_MONTH_DAY_OPTIONS, {\n  calendar: value.calendarId.toString(),\n  ...options,\n});\n\nconst label = new Intl.DateTimeFormat(locale, opts).format(value);\n\nconst useMicrodata = Boolean(import.meta.env.USE_MICRODATA);\nconst meta = {\n  type: itemtype,\n  ...(itemprop ? { [itemprop]: plainMonthDay.toString() } : {}),\n  ...properties,\n};\n---\n\n{useMicrodata && type ? <Microdata as=\"span\" properties={meta} /> : null}\n<time class={css} {...data} datetime={value.toJSON()} {...attrs}>{label}</time>\n"
+		}
+	]
+}

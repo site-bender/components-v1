@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"html">;
+
+const { dir = "ltr", lang = "en" } = Astro.props;
+---
+
+<html {dir} {lang}>
+	<slot />
+
+
+</html>

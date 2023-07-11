@@ -6,15 +6,22 @@ import {
   DEFAULT_ZONED_DATE_TIME_OPTIONS,
   TIME_ZONE,
 } from "../../constants";
-import { Temporal, Intl } from "@js-temporal/polyfill";
-import type { Calendar, DateTimeFormatOptions } from "../../types";
+import { Intl, Temporal } from "@js-temporal/polyfill";
+import type { Thing } from "../../schema.org";
+import mapDataset from "../../utilities/mapDataset";
+import type { Dataset } from "../../types";
+import type { HTMLAttributes } from "astro/types";
+import Microdata from "../../Microdata/index.astro";
 
-export type Props = {
-  calendar?: Calendar | Temporal.Calendar | Temporal.CalendarLike;
+export type Props<T extends Thing> = HTMLAttributes<"time"> & {
+  calendar?: Temporal.CalendarLike;
+  cssClasses?: Array<string>;
+  dataset?: Dataset;
   day?: number | string;
   era?: string | undefined;
   eraYear?: number | undefined;
   hour?: number | string;
+  itemprop?: string | undefined;
   locale?: string | Array<string>;
   microsecond?: number | string;
   millisecond?: number | string;
@@ -23,19 +30,24 @@ export type Props = {
   monthCode?: string;
   nanosecond?: number | string;
   offset?: string;
-  options?: DateTimeFormatOptions;
+  options?: Intl.DateTimeFormatOptions;
+  properties?: Partial<T>;
   second?: number | string;
   timeZone?: keyof typeof TIME_ZONE | Temporal.TimeZoneLike;
-  value?: string | Temporal.ZonedDateTimeLike;
+  itemtype?: string;
   year?: number | string;
+  zonedDateTime?: string | Temporal.ZonedDateTimeLike;
 };
 
 const {
   calendar = DEFAULT_CALENDAR,
+  ["class:list"]: classList = [],
+  dataset,
   day,
   era,
   eraYear,
   hour = 0,
+  itemprop,
   locale = DEFAULT_LOCALE,
   microsecond = 0,
   millisecond = 0,
@@ -44,15 +56,23 @@ const {
   monthCode,
   nanosecond = 0,
   offset,
-  options = {},
+  options,
+  properties,
   second = 0,
   timeZone = DEFAULT_TIME_ZONE,
-  value: rawValue,
+  itemtype,
   year,
+  zonedDateTime = Temporal.Now.zonedDateTime(
+    Astro.props.calendar || DEFAULT_CALENDAR,
+    Astro.props.timeZone || DEFAULT_TIME_ZONE
+  ),
+  ...attrs
 } = Astro.props;
 
-const value = rawValue
-  ? Temporal.ZonedDateTime.from(rawValue)
+const css = ["sb-zoned-date-time", ...cssClasses].join(" ");
+const data = mapDataset(dataset);
+const value = zonedDateTime
+  ? Temporal.ZonedDateTime.from(zonedDateTime)
   : Temporal.ZonedDateTime.from({
       calendar: Temporal.Calendar.from(calendar),
       ...(day == null ? {} : { day: Number(day) }),
@@ -77,12 +97,17 @@ const value = rawValue
       ...(year == null ? {} : { year: Number(year) }),
     });
 
-const opts = Object.assign({}, DEFAULT_ZONED_DATE_TIME_OPTIONS, {
-  calendar: value.calendarId.toString(),
-  ...options,
-});
+const opts = options || DEFAULT_ZONED_DATE_TIME_OPTIONS;
+
+const label = value.toLocaleString(locale, opts);
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const meta = {
+  type: itemtype,
+  ...(itemprop ? { [itemprop]: zonedDateTime.toString() } : {}),
+  ...properties,
+};
 ---
 
-<time class="sb-zoned-date-time" datetime={value.toJSON()}
-  >{Intl.DateTimeFormat(locale, opts).format(value)}</time
->
+{useMicrodata && type ? <Microdata as="span" properties={meta} /> : null}
+<time class={css} {...data} datetime={value.toJSON()} {...attrs}>{label}</time>

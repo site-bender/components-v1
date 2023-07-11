@@ -1,0 +1,18 @@
+{
+	"sourceFile": "src/utilities/generateShortId/index.ts",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 0,
+			"patches": [
+				{
+					"date": 1688592180969,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				}
+			],
+			"date": 1688592180969,
+			"name": "Commit-0",
+			"content": "import * as crypto from \"crypto\"\n\nconst BASE58 = \"123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz\"\nconst len = BigInt(BASE58.length)\n\nfunction convertBigIntToBase58 (bigInt: bigint, out = \"\"): string {\n\treturn bigInt > 0\n\t\t? convertBigIntToBase58(\n\t\t\tbigInt / len,\n\t\t\tBASE58[parseInt((bigInt % len).toString(), 10)] + out,\n\t\t)\n\t\t: out\n}\n\nfunction convertUUIDToBase58 (uuid: string): string {\n\tconst bigInt = BigInt(\"0x\" + uuid.replace(/-/g, \"\"))\n\n\treturn convertBigIntToBase58(bigInt)\n}\n\nfunction generateShortIdRecursive (\n\tuuid = crypto.randomUUID(),\n\tminChars = 12,\n): string {\n\tconst out = convertUUIDToBase58(uuid)\n\n\treturn `${out.length > minChars ? out : generateShortIdRecursive()}`\n}\n\nexport default function generateShortId(\n\tuuid = crypto.randomUUID(),\n\tminChars = 12,\n): string {\n\treturn `_${generateShortIdRecursive(uuid, minChars)}`\n}\n"
+		}
+	]
+}

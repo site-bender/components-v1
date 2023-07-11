@@ -1,0 +1,70 @@
+{
+	"sourceFile": "src/form/elements/HiddenInput/index.astro",
+	"activeCommit": 0,
+	"commits": [
+		{
+			"activePatchIndex": 13,
+			"patches": [
+				{
+					"date": 1688429922916,
+					"content": "Index: \n===================================================================\n--- \n+++ \n"
+				},
+				{
+					"date": 1688429971683,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { NumericalInput as Props } from \"../../../../types\";\n+import type { NumericalInput as Props } from \"../../../types/forms\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n \n"
+				},
+				{
+					"date": 1688520187618,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n ---\n-import type { NumericalInput as Props } from \"../../../types/forms\";\n+import type { NumericalInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n \n"
+				},
+				{
+					"date": 1688531498025,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,21 @@\n ---\n-import type { NumericalInput as Props } from \"../../../types/form\";\n+import type { HiddenInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n-const { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n+const { dataset, form, id, name, ...attrs } = Astro.props;\n \n const css = [\"sb-numerical-input\", ...cssClasses].join(\" \");\n const data = mapDataset(dataset);\n ---\n \n-<span>\n-\t<input\n-\t\t{...attrs}\n-\t\taria-labelledby={`${id}_label`}\n-\t\taria-describedby={`${id}_help`}\n-\t\tclass={css}\n-\t\t{...data}\n-\t\tid={id}\n-\t\tform={form}\n-\t\tname={name}\n-\t\ttype=\"number\"\n-\t/>\n-</span>\n+<input\n+\t{...attrs}\n+\taria-labelledby={`${id}_label`}\n+\taria-describedby={`${id}_help`}\n+\tclass={css}\n+\t{...data}\n+\tid={id}\n+\tform={form}\n+\tname={name}\n+\ttype=\"hidden\"\n+/>\n"
+				},
+				{
+					"date": 1688531609144,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,32 @@\n ---\n import type { HiddenInput as Props } from \"../../../types/form\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n-const { dataset, form, id, name, ...attrs } = Astro.props;\n+const {\n+\telement = {},\n+\tform,\n+\tid = generateShortId(),\n+\tname,\n+\ttype: _type,\n+\tvalue,\n+} = Astro.props;\n \n+const {\n+\t[\"class:list\"]: _elementClassList,\n+\tdataset: elementDataset,\n+\t...elementAttrs\n+} = element as BaseAttributes;\n+\n const css = [\"sb-numerical-input\", ...cssClasses].join(\" \");\n const data = mapDataset(dataset);\n ---\n \n <input\n-\t{...attrs}\n-\taria-labelledby={`${id}_label`}\n-\taria-describedby={`${id}_help`}\n-\tclass={css}\n-\t{...data}\n+\t{...elementAttrs}\n+\t{...mapDataset(elementDataset)}\n \tid={id}\n \tform={form}\n \tname={name}\n \ttype=\"hidden\"\n+\tvalue={value}\n />\n"
+				},
+				{
+					"date": 1688531755962,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,8 @@\n \t[\"class:list\"]: _elementClassList,\n \tdataset: elementDataset,\n \t...elementAttrs\n } = element as BaseAttributes;\n-\n-const css = [\"sb-numerical-input\", ...cssClasses].join(\" \");\n-const data = mapDataset(dataset);\n ---\n \n <input\n \t{...elementAttrs}\n"
+				},
+				{
+					"date": 1688531835508,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n \n <input\n \t{...elementAttrs}\n \t{...mapDataset(elementDataset)}\n+\tsb-hidden-input\n \tid={id}\n \tform={form}\n \tname={name}\n \ttype=\"hidden\"\n"
+				},
+				{
+					"date": 1688531847871,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n <input\n \t{...elementAttrs}\n \t{...mapDataset(elementDataset)}\n-\tsb-hidden-input\n+\tdata-sb-hidden-input\n \tid={id}\n \tform={form}\n \tname={name}\n \ttype=\"hidden\"\n"
+				},
+				{
+					"date": 1688599387425,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,26 @@\n ---\n import type { HiddenInput as Props } from \"../../../types/form\";\n+import generateShortId from \"../../../utilities/generateShortId\";\n import mapDataset from \"../../../utilities/mapDataset\";\n \n const {\n-\telement = {},\n+\t[\"class:list\"]: _elementClassList,\n+\tdataset: elementDataset,\n+\tfield = \"hidden-input\",\n \tform,\n \tid = generateShortId(),\n \tname,\n \ttype: _type,\n \tvalue,\n+\t...attrs\n } = Astro.props;\n-\n-const {\n-\t[\"class:list\"]: _elementClassList,\n-\tdataset: elementDataset,\n-\t...elementAttrs\n-} = element as BaseAttributes;\n ---\n \n <input\n-\t{...elementAttrs}\n+\t{...attrs}\n \t{...mapDataset(elementDataset)}\n-\tdata-sb-hidden-input\n+\tdata-sb-input={field}\n \tid={id}\n \tform={form}\n \tname={name}\n \ttype=\"hidden\"\n"
+				},
+				{
+					"date": 1688616099352,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,10 @@\n <input\n \t{...attrs}\n \t{...mapDataset(elementDataset)}\n \tdata-sb-input={field}\n+\tform={form}\n \tid={id}\n-\tform={form}\n \tname={name}\n \ttype=\"hidden\"\n \tvalue={value}\n />\n"
+				},
+				{
+					"date": 1688940875577,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \t{...attrs}\n \t{...mapDataset(elementDataset)}\n \tdata-sb-input={field}\n \tform={form}\n-\tid={id}\n+\t{id}\n \tname={name}\n \ttype=\"hidden\"\n \tvalue={value}\n />\n"
+				},
+				{
+					"date": 1688940940016,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n <input\n \t{...attrs}\n \t{...mapDataset(elementDataset)}\n \tdata-sb-input={field}\n-\tform={form}\n+\t{form}\n \t{id}\n \tname={name}\n \ttype=\"hidden\"\n \tvalue={value}\n"
+				},
+				{
+					"date": 1688940959543,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,6 +23,6 @@\n \t{form}\n \t{id}\n \tname={name}\n \ttype=\"hidden\"\n-\tvalue={value}\n+\t{value}\n />\n"
+				},
+				{
+					"date": 1688940976280,
+					"content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,8 @@\n \t{...mapDataset(elementDataset)}\n \tdata-sb-input={field}\n \t{form}\n \t{id}\n-\tname={name}\n+\t{name}\n \ttype=\"hidden\"\n \t{value}\n />\n"
+				}
+			],
+			"date": 1688429922916,
+			"name": "Commit-0",
+			"content": "---\nimport type { NumericalInput as Props } from \"../../../../types\";\nimport mapDataset from \"../../../utilities/mapDataset\";\n\nconst { cssClasses = [], dataset, form, id, name, ...attrs } = Astro.props;\n\nconst css = [\"sb-numerical-input\", ...cssClasses].join(\" \");\nconst data = mapDataset(dataset);\n---\n\n<span>\n\t<input\n\t\t{...attrs}\n\t\taria-labelledby={`${id}_label`}\n\t\taria-describedby={`${id}_help`}\n\t\tclass={css}\n\t\t{...data}\n\t\tid={id}\n\t\tform={form}\n\t\tname={name}\n\t\ttype=\"number\"\n\t/>\n</span>\n"
+		}
+	]
+}
