@@ -1,15 +1,15 @@
 ---
-import createClassList from "../../../utilities/createClassList";
-import createSelectOptions from "../../../utilities/createSelectOptions";
-import generateShortId from "../../../utilities/generateShortId";
-import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
-import type { Select as Props } from "../../../types/form";
+import createClassList from "../../../utilities/createClassList"
+import createSelectOptions from "../../../utilities/createSelectOptions"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
+import type { Select as Props } from "../../../types/form"
 
 const {
 	autocomplete,
 	["class:list"]: elementClassList = [],
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "select",
 	form,
 	id = generateShortId(),
@@ -21,15 +21,15 @@ const {
 	selected,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
 const {
 	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
+	dataset: wrapperDataset = {},
 	...wrapperAttrs
-} = wrapper as BaseAttributes;
+} = wrapper
 
-const opts = await Astro.slots.render("default");
+const opts = await Astro.slots.render("default")
 ---
 
 <span

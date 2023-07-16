@@ -1,11 +1,12 @@
 ---
-import type { HiddenInput as Props } from "../../../types/form";
-import generateShortId from "../../../utilities/generateShortId";
-import mapDataset from "../../../utilities/mapDataset";
+import type { HiddenInput as Props } from "../../../types/form"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
 
 const {
 	["class:list"]: _elementClassList,
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "hidden-input",
 	form,
 	id = generateShortId(),
@@ -13,7 +14,7 @@ const {
 	type: _type,
 	value,
 	...attrs
-} = Astro.props;
+} = Astro.props
 ---
 
 <input

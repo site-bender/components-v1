@@ -1,9 +1,10 @@
 ---
-  caption: "Default xxx example"
+caption: "Default xxx example"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ```html
 
 ```

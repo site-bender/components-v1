@@ -1,14 +1,14 @@
 ---
-import createClassList from "../../../utilities/createClassList";
-import generateShortId from "../../../utilities/generateShortId";
-import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
-import type { DateInput as Props } from "../../../types/form";
+import createClassList from "../../../utilities/createClassList"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
+import type { DateInput as Props } from "../../../types/form"
 
 const {
 	autocomplete,
 	["class:list"]: elementClassList = [],
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "date-input",
 	form,
 	id = generateShortId(),
@@ -18,13 +18,13 @@ const {
 	value,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
 const {
 	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
+	dataset: wrapperDataset = {},
 	...wrapperAttrs
-} = wrapper as BaseAttributes;
+} = wrapper
 ---
 
 <span

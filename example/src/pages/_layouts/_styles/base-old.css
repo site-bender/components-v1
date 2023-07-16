@@ -124,7 +124,7 @@ p.byline {
 }
 
 dl > dt {
-	font-size: var(--step-1)
+	font-size: var(--step-1);
 }
 
 main > article dl > dd {

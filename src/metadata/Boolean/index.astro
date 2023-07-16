@@ -1,5 +1,6 @@
 ---
 import createClassList from "../../utilities/createClassList";
+import mapAttributes from "../../utilities/mapAttributes"
 import mapDataset from "../../utilities/mapDataset";
 import Microdata from "../../Microdata/index.astro";
 import type { BooleanProps as Props } from "../../types";
@@ -20,9 +21,9 @@ const {
 
 const {
 	["class:list"]: microdataClassList = [],
-	dataset: microdataDataset,
+	dataset: microdataDataset = {},
 	...microdataAttrs
-} = microdata as BaseAttributes;
+} = microdata;
 
 const label = value ? labelTrue : labelFalse;
 const Element = as;

@@ -1,9 +1,10 @@
 ---
-  caption: "Default CCLicense output"
+caption: "Default CCLicense output"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ```xml
 <p class="sb-cc-license">
   <a

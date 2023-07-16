@@ -1,54 +1,67 @@
 ---
-import type { Dataset } from "../../types";
-import type { Thing } from "../../schema.org";
-import mapDataset from "../../utilities/mapDataset";
 import Microdata from "../../Microdata/index.astro";
-import type { HTMLAttributes } from "astro/types";
-
-export type Props<T extends Thing> = HTMLAttributes<"span"> & {
-	a?: HTMLAttributes<"a"> | undefined;
-	dataset?: Dataset;
-	itemprop?: string;
-	properties?: Partial<T>;
-	itemtype?: string;
-	useLink?: boolean;
-};
+import createClassList from "../../utilities/createClassList";
+import mapAttributes from "../../utilities/mapAttributes"
+import mapDataset from "../../utilities/mapDataset";
+import type { UrlProps as Props } from "../../types";
 
 const {
-	a = {},
+	as = "span",
+	["class:list"]: classList = [],
 	dataset,
-	itemprop,
+	link = {},
+	microdata = {},
 	properties,
-	type = "CreativeWork",
+	url,
 	useLink,
 	...attrs
 } = Astro.props;
-const url = ((await Astro.slots.render("default")) || "").trim();
-const data = mapDataset(dataset);
+
+const address = (
+	(await Astro.slots.render("default")) ||
+	url ||
+	""
+).trim();
+
+const {
+	["class:list"]: linkClassList = [],
+	dataset: linkDataset = {},
+	...linkAttrs
+} = link;
+
+const Element = as;
+const href = link.href || address;
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
-const meta = {
-	type,
-	...properties,
-};
-const href = a?.href ? a.href : url;
-
-// add country code with +, e.g., +64
-// add wait for dialtone with w
-// add one second pause (before extension) with p
 ---
 
-{useMicrodata ? <Microdata as="span" properties={meta} /> : null}
+{useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	useLink ? (
-		<a {href} {...a}>
-			<span class="sb-href" {...data} {...attrs}>
-				{url}
-			</span>
+		<a
+			{...linkAttrs}
+			class:list={createClassList("sb-url-link", linkClassList)}
+			{...mapDataset(linkDataset)}
+			data-sb-url="link"
+			{href}
+		>
+			<Element
+				{...attrs}
+				class:list={createClassList("sb-url", classList)}
+				{...mapDataset(dataset)}
+				data-sb-url
+			>
+				{address}
+			</Element>
 		</a>
 	) : (
-		<span class="sb-href" {...data} {...attrs}>
-			{url}
-		</span>
+		<Element
+			{...attrs}
+			class:list={createClassList("sb-url", classList)}
+			{...mapDataset(dataset)}
+			data-sb-url
+		>
+			{address}
+		</Element>
 	)
 }

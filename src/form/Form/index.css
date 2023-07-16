@@ -80,11 +80,11 @@ textarea {
 	padding: 0.3rem 0.6rem;
 }
 
-input[type=number] {
+input[type="number"] {
 	text-align: right;
 }
 
-input[type=color] {
+input[type="color"] {
 	all: revert;
 	border: 2px solid forestgreen;
 	border-radius: 4px;

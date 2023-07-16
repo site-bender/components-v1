@@ -1,32 +1,32 @@
 ---
-import "./script.astro";
-import "./index.css";
-import createClassList from "../../utilities/createClassList";
-import generateShortId from "../../utilities/generateShortId";
-import mapDataset from "../../utilities/mapDataset";
-import type { Form as Props } from "../../types/form";
+import "./script.astro"
+import "./index.css"
+import createClassList from "../../utilities/createClassList"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import mapDataset from "../../utilities/mapDataset"
+import type { Form as Props } from "../../types/form"
 
 const {
 	action,
 	autocorrect: _autocorrect,
-	["class:list"]: classList = [],
-	dataset,
 	form: _form,
 	id: form = generateShortId(),
 	labelledBy,
 	method = "post",
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const content = await Astro.slots.render("default", [form]);
+const formAttrs = mapAttributes(attrs, ["sb-form"])
+
+const content = await Astro.slots.render("default", [form])
 ---
 
 <form
-	{...attrs}
+	{...formAttrs}
 	aria-labelledBy={labelledBy}
-	action={action}
-	class:list={createClassList("sb-form", classList)}
-	{...mapDataset(dataset)}
+	{action}
+	data-sb-form
 	id={form}
 	{method}
 >

@@ -2,9 +2,9 @@
 import { Temporal } from "@js-temporal/polyfill";
 import createClassList from "../../utilities/createClassList";
 import formatDuration from "../../utilities/formatDuration";
+import mapAttributes from "../../utilities/mapAttributes"
 import mapDataset from "../../utilities/mapDataset";
 import Microdata from "../../Microdata/index.astro";
-import type { BaseAttributes } from "../../types/html";
 import type { DurationProps as Props } from "../../types";
 
 const {
@@ -12,16 +12,14 @@ const {
 	dataset,
 	duration,
 	itemprop = "duration",
-	outer = {},
+	outer: {
+		["class:list"]: outerClassList = [],
+		dataset: outerDataset = {},
+		...outerAttrs
+	}  = {},
 	properties = {},
 	...attrs
 } = Astro.props;
-
-const {
-	["class:list"]: outerClassList = [],
-	dataset: outerDataset,
-	...outerAttrs
-} = outer as BaseAttributes;
 
 const d = Temporal.Duration.from(duration);
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);

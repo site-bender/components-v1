@@ -2,35 +2,31 @@
 import "./index.css";
 import type { NumberStyle } from "../Number/types";
 import Microdata from "../../Microdata/index.astro";
+import Number from "../Number/index.astro";
 
 const style: NumberStyle = "currency";
 
 const {
   options: opts = {},
   properties = {},
-  value,
   ...attrs
 } = Astro.props;
 
-const val = typeof value === "number" ? value : parseFloat(String(value));
 const options = {
 	currency: "USD",
 	currencyDisplay: "narrowSymbol",
-	maximumFractionalDigis: 2,
 	style,
 	...opts,
 };
-
-const num = Number.isNaN(val)
-  ? await Astro.slots.render("default")
-  : new Intl.NumberFormat(locale, opts).format(val as number);
 
 const meta = {
   type: "MonetaryAmount",
   ...properties,
 	currency: opts.currency,
-	value: val,
+	value: (await Astro.slots.render("default")) || Astro.props.value,
 };
+
+const amount = parseFloat(String(Astro.props.value || meta.value).replaceAll(/[^.0-9]/g, ""))
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 ---
@@ -38,12 +34,24 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 {
   useMicrodata ? (
     <Microdata as="span" properties={meta}>
-      <Number {...attrs} {...options} set:html={num}>
+      <Number
+				{...attrs}
+				data-sb-currency={options.currency}
+				data-sb-amount={amount}
+				{options}
+				type="MonetaryAmount"
+			>
 				<slot />
 			</Number>
     </Microdata>
   ) : (
-      <Number {...attrs} {...options} set:html={num}>
+      <Number
+				{...attrs}
+				data-sb-currency={options.currency}
+				data-sb-amount={amount}
+				{options}
+				type="MonetaryAmount"
+			>
 				<slot />
 			</Number>
   )

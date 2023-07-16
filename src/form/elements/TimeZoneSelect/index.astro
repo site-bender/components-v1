@@ -2,15 +2,15 @@
 import createClassList from "../../../utilities/createClassList";
 import generateShortId from "../../../utilities/generateShortId";
 import getTimeZoneOptions from "../../../utilities/getTimeZoneOptions";
+import mapAttributes from "../../../utilities/mapAttributes"
 import mapDataset from "../../../utilities/mapDataset";
 import type { TimeZoneSelect as Props } from "../../../types/form";
-import type { BaseAttributes } from "../../../types/html";
 
 const {
 	autocomplete,
 	["class:list"]: elementClassList = [],
 	countries,
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "time-zone",
 	form,
 	id = generateShortId(),
@@ -26,9 +26,9 @@ const {
 
 const {
 	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
+	dataset: wrapperDataset = {},
 	...wrapperAttrs
-} = wrapper as BaseAttributes;
+} = wrapper;
 ---
 
 <span

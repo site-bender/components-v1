@@ -11,74 +11,73 @@ import { Temporal } from "@js-temporal/polyfill";
 ---
 
 <Layout pageProperties={pageProperties}>
-  <Fragment slot="tail">
-    <script set:html={copyToClipboardJs} />
-  </Fragment>
-  <main>
-    <article>
-      <h2>TimeZone</h2>
-      <p>
-        The <code>TimeZone</code> is used to . If the <code>id</code> attribute is
-        not provided, a unique Base58 ID is generated preceded by an underscore (to
-        prevent IDs beginning with a digit), for example
-        <code>_DMwzFyG3PvJGrMZstX74JS</code>.
-      </p>
-      <section>
-        <h3>Types</h3>
-        <CodeBlock
-          snippet={typeTs}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "TypeScript",
-          }}
-        />
-        <p>
-          The <code>dataset</code> prop takes a map of attribute names (minus the
-          <code>data-</code>) and values and maps them to <code
-            >data-&lt;name&gt;</code
-          > attributes. See below.
-        </p>
-      </section>
-      <section>
-        <h3>Default example</h3>
-        <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
-        <CodeBlock
-          snippet={defaultExampleAstro}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "AstroJS",
-          }}
-        />
-        <p>Here is the actual component:</p>
-        <p class="example">
-          <TimeZone
-            display="both"
-            dataset={{
-              title: "Guru",
-            }}
-            itemprop="eventSchedule"
-            properties={{
-              type: "Event",
-              name: "Happening",
-              eventSchedule: {
-                type: "Schedule",
-                scheduleTimezone: "Africa/Cairo",
-              },
-            }}
-            timeZone={new Temporal.TimeZone("Africa/Cairo")}
-            type="Event"
-          />
-          />
-        </p>
-        <p>And here is the HTML created:</p>
-        <CodeBlock
-          snippet={defaultExampleHtml}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "HTML",
-          }}
-        />
-      </section>
-    </article>
-  </main>
+	<Fragment slot="tail">
+		<script set:html={copyToClipboardJs} />
+	</Fragment>
+	<main>
+		<article>
+			<h2>TimeZone</h2>
+			<p>
+				The <code>TimeZone</code> is used to . If the <code>id</code> attribute is
+				not provided, a unique Base58 ID is generated preceded by an underscore (to
+				prevent IDs beginning with a digit), for example
+				<code>_DMwzFyG3PvJGrMZstX74JS</code>.
+			</p>
+			<section>
+				<h3>Types</h3>
+				<CodeBlock
+					snippet={typeTs}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "TypeScript",
+					}}
+				/>
+				<p>
+					The <code>dataset</code> prop takes a map of attribute names (minus the
+					<code>data-</code>) and values and maps them to <code
+						>data-&lt;name&gt;</code
+					> attributes. See below.
+				</p>
+			</section>
+			<section>
+				<h3>Default example</h3>
+				<p>This is the minimum required to use the <code>CodeBlock</code>:</p>
+				<CodeBlock
+					snippet={defaultExampleAstro}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "AstroJS",
+					}}
+				/>
+				<p>Here is the actual component:</p>
+				<div class="example">
+					<TimeZone
+						display="both"
+						dataset={{
+							title: "Guru",
+						}}
+						itemprop="eventSchedule"
+						properties={{
+							type: "Event",
+							name: "Happening",
+							eventSchedule: {
+								type: "Schedule",
+								scheduleTimezone: "Africa/Cairo",
+							},
+						}}
+						timeZone={new Temporal.TimeZone("Africa/Cairo")}
+						type="Event"
+					/>
+				</div>
+				<p>And here is the HTML created:</p>
+				<CodeBlock
+					snippet={defaultExampleHtml}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "HTML",
+					}}
+				/>
+			</section>
+		</article>
+	</main>
 </Layout>

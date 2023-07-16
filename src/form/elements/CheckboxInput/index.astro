@@ -1,14 +1,14 @@
 ---
-import createClassList from "../../../utilities/createClassList";
-import generateShortId from "../../../utilities/generateShortId";
-import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
-import type { CheckboxInput as Props } from "../../../types/form";
+import createClassList from "../../../utilities/createClassList"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
+import type { CheckboxInput as Props } from "../../../types/form"
 
 const {
 	checked,
 	["class:list"]: elementClassList = [],
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "checkbox-input",
 	form,
 	groupLabelId,
@@ -20,17 +20,17 @@ const {
 	value,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
 const {
 	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
+	dataset: wrapperDataset = {},
 	...wrapperAttrs
-} = wrapper as BaseAttributes;
+} = wrapper
 
-const labelId = `${id}_label`;
-const labelledBy = `${groupLabelId} ${labelId}`;
-const lbl = (await Astro.slots.render("default")) || label;
+const labelId = `${id}_label`
+const labelledBy = `${groupLabelId} ${labelId}`
+const lbl = (await Astro.slots.render("default")) || label
 ---
 
 <label

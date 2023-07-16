@@ -1,13 +1,10 @@
 ---
-import NumberInput from "../elements/NumberInput/index.astro";
-import createClassList from "../../utilities/createClassList";
-import generateShortId from "../../utilities/generateShortId";
-import mapDataset from "../../utilities/mapDataset";
-import type { BaseAttributes } from "../../types/html";
+import NumberInput from "../elements/NumberInput/index.astro"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
 
 const {
 	["aria-live"]: live = "assertive",
-	datalist = {},
 	field = "number-field",
 	form,
 	help = {},
@@ -23,58 +20,25 @@ const {
 	tag = {},
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const {
-	["class:list"]: helpClassList = [],
-	dataset: helpDataset,
-	...helpAttrs
-} = help as BaseAttributes;
+const helpAttrs = mapAttributes(help, ["sb-help"])
+const legendAttrs = mapAttributes(legend, ["sb-label"])
+const outerAttrs = mapAttributes(outer, ["sb-field", "sb-number-field"])
+const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
 
-const {
-	["class:list"]: legendClassList = [],
-	dataset: legendDataset,
-	...legendAttrs
-} = legend as BaseAttributes;
-
-const {
-	["class:list"]: outerClassList = [],
-	dataset: outerDataset,
-	...outerAttrs
-} = outer as BaseAttributes;
-
-const {
-	["class:list"]: tagClassList = [],
-	dataset: tagDataset,
-	...tagAttrs
-} = tag as BaseAttributes;
-
-const hlp = (await Astro.slots.render("message")) || message;
-const helpId = `${id}_help`;
-const lbl = (await Astro.slots.render("default")) || label;
-const labelledBy = `${id}_label`;
-const req = required ? { "data-sb-required": "" } : {};
-const opt = required ? {} : { "data-sb-optional": "" };
+const hlp = (await Astro.slots.render("message")) || message
+const helpId = `${id}_help`
+const lbl = (await Astro.slots.render("default")) || label
+const labelledBy = `${id}_label`
+const req = required ? { "data-sb-required": "" } : {}
+const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
-<div
-	{...outerAttrs}
-	class:list={createClassList("sb-field", "sb-number-field", outerClassList)}
-	{...mapDataset(outerDataset)}
-	data-sb-field={field}
-	{...req}
->
-	<label
-		{...legendAttrs}
-		class:list={createClassList("sb-label", legendClassList)}
-		{...mapDataset(legendDataset)}
-		data-sb-field-label={field}
-		id={labelledBy}
-	>
+<div {...outerAttrs} data-sb-field={field} {...req}>
+	<label {...legendAttrs} data-sb-field-label={field} id={labelledBy}>
 		<span
 			{...tagAttrs}
-			class:list={createClassList("sb-label-tag", tagClassList)}
-			{...mapDataset(tagDataset)}
 			data-sb-field-label-tag={field}
 			{...opt}
 			set:html={lbl}
@@ -82,8 +46,6 @@ const opt = required ? {} : { "data-sb-optional": "" };
 		<span
 			{...helpAttrs}
 			aria-live={live}
-			class:list={createClassList("sb-help", helpClassList)}
-			{...mapDataset(helpDataset)}
 			data-sb-field-help={field}
 			id={helpId}
 			role="status"
@@ -92,7 +54,7 @@ const opt = required ? {} : { "data-sb-optional": "" };
 	</label>
 	<NumberInput
 		{...attrs}
-		{datalist}
+		{list}
 		{field}
 		{form}
 		{id}

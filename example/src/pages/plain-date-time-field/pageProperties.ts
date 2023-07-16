@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"PlainDateTimeField: @sitebender/components Astro components library API documentation for the PlainDateTimeField metadata component\.",
+		"PlainDateTimeField: @sitebender/components Astro components library API documentation for the PlainDateTimeField metadata component.",
 	name: "PlainDateTimeField",
 	alternateName: "PlainDateTimeField",
 } as WebPage

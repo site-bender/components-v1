@@ -1,11 +1,10 @@
 ---
-import createClassList from "../../utilities/createClassList";
-import generateShortId from "../../utilities/generateShortId";
-import mapDataset from "../../utilities/mapDataset";
-import DateInput from "../elements/DateInput/index.astro";
-import TimeInput from "../elements/TimeInput/index.astro";
-import type { PlainDateTimeField as Props } from "../../types/form";
-import type { BaseAttributes } from "../../types/html";
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import DateInput from "../elements/DateInput/index.astro"
+import TimeInput from "../elements/TimeInput/index.astro"
+import type { PlainDateTimeField as Props } from "../../types/form"
+import type { HTMLAttributes } from "../../types/html"
 
 const {
 	["aria-live"]: live = "assertive",
@@ -32,66 +31,29 @@ const {
 	tag = {},
 	time = "",
 	timeAttrs = {},
-} = Astro.props;
+} = Astro.props
 
-const {
-	["class:list"]: dateClassList = [],
-	dataset: dateDataset,
-	...dateAttributes
-} = dateAttrs as BaseAttributes;
+const dateAttributes = mapAttributes(dateAttrs as HTMLAttributes, [])
+const timeAttributes = mapAttributes(timeAttrs as HTMLAttributes, [])
+const groupAttrs = mapAttributes(group, ["sb-group"])
+const helpAttrs = mapAttributes(help, ["sb-help"])
+const legendAttrs = mapAttributes(legend, ["sb-label"])
+const outerAttrs = mapAttributes(outer, [
+	"sb-field",
+	"sb-plain-date-time-field",
+])
+const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
 
-const {
-	["class:list"]: groupClassList = [],
-	dataset: groupDataset,
-	...groupAttrs
-} = group as BaseAttributes;
-
-const {
-	["class:list"]: helpClassList = [],
-	dataset: helpDataset,
-	...helpAttrs
-} = help as BaseAttributes;
-
-const {
-	["class:list"]: legendClassList = [],
-	dataset: legendDataset,
-	...legendAttrs
-} = legend as BaseAttributes;
-
-const {
-	["class:list"]: outerClassList = [],
-	dataset: outerDataset,
-	...outerAttrs
-} = outer as BaseAttributes;
-
-const {
-	["class:list"]: tagClassList = [],
-	dataset: tagDataset,
-	...tagAttrs
-} = tag as BaseAttributes;
-
-const {
-	["class:list"]: timeClassList = [],
-	dataset: timeDataset,
-	...timeAttributes
-} = timeAttrs as BaseAttributes;
-
-const hlp = (await Astro.slots.render("message")) || message;
-const helpId = `${id}_help`;
-const lbl = (await Astro.slots.render("default")) || label;
-const legendId = `${id}_legend`;
-const req = required ? { "data-sb-required": "" } : {};
-const opt = required ? {} : { "data-sb-optional": "" };
+const hlp = (await Astro.slots.render("message")) || message
+const helpId = `${id}_help`
+const lbl = (await Astro.slots.render("default")) || label
+const legendId = `${id}_legend`
+const req = required ? { "data-sb-required": "" } : {}
+const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
 <fieldset
 	{...outerAttrs}
-	class:list={createClassList(
-		"sb-field",
-		"sb-plain-date-time-field",
-		outerClassList
-	)}
-	{...mapDataset(outerDataset)}
 	data-sb-field={field}
 	{...req}
 	{disabled}
@@ -99,17 +61,9 @@ const opt = required ? {} : { "data-sb-optional": "" };
 	{id}
 	{name}
 >
-	<legend
-		{...legendAttrs}
-		class:list={createClassList("sb-label", legendClassList)}
-		{...mapDataset(legendDataset)}
-		data-sb-field-label={field}
-		id={legendId}
-	>
+	<legend {...legendAttrs} data-sb-field-label={field} id={legendId}>
 		<span
 			{...tagAttrs}
-			class:list={createClassList("sb-label-tag", tagClassList)}
-			{...mapDataset(tagDataset)}
 			data-sb-field-label-tag={field}
 			{...opt}
 			set:html={lbl}
@@ -117,23 +71,17 @@ const opt = required ? {} : { "data-sb-optional": "" };
 		<span
 			{...helpAttrs}
 			aria-live={live}
-			class:list={createClassList("sb-help", helpClassList)}
-			{...mapDataset(helpDataset)}
 			data-sb-field-help={field}
 			id={helpId}
 			role="status"
 			set:html={hlp}
 		/>
 	</legend>
-	<div
-		class:list={createClassList("sb-group", groupClassList)}
-		{...mapDataset(groupDataset)}
-		data-sb-field-group={field}
-	>
+	<div {...groupAttrs} data-sb-field-group={field}>
 		<label data-sb-label-date={field} for={`${id}_date`}>
 			<span id={`${id}_date:label`}>Date</span>
 			<DateInput
-				{...dateAttrs}
+				{...dateAttributes}
 				data-sb-input-date={field}
 				{form}
 				id={`${id}_date`}
@@ -149,7 +97,7 @@ const opt = required ? {} : { "data-sb-optional": "" };
 		<label data-sb-label-time={field} for={`${id}_time`}>
 			<span id={`${id}_time:label`}>Time</span>
 			<TimeInput
-				{...timeAttrs}
+				{...timeAttributes}
 				data-sb-input-time={field}
 				{form}
 				id={`${id}_time`}

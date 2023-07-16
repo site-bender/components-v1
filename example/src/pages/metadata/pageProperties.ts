@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"Metadata: @sitebender/components Astro components library API documentation for the Metadata metadata component\.",
+		"Metadata: @sitebender/components Astro components library API documentation for the Metadata metadata component.",
 	name: "Metadata",
 	alternateName: "Metadata",
 } as WebPage

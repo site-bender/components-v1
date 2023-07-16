@@ -1,73 +1,79 @@
 ---
-import mapDataset from "../utilities/mapDataset";
-import type { Dataset } from "../types";
-import type { HTMLAttributes } from "astro/types";
-import ByAttribution from "./ByAttribution/index.astro";
-import CreativeCommons from "./CreativeCommons/index.astro";
-import NoDerivatives from "./NoDerivatives/index.astro";
-import NonCommercial from "./NonCommercial/index.astro";
-import PublicDomainDedication from "./PublicDomainDedication/index.astro";
-import ShareAlike from "./ShareAlike/index.astro";
-import getLicense from "./getLicense";
-
-export type Props = HTMLAttributes<"p"> & {
-  a?: HTMLAttributes<"a">;
-  dataset?: Dataset;
-  fill?: string;
-  byAttribution?: boolean;
-  noDerivatives?: boolean;
-  nonCommercial?: boolean;
-  shareAlike?: boolean;
-  size?: string;
-  stroke?: string;
-};
+import ByAttribution from "./ByAttribution/index.astro"
+import CreativeCommons from "./CreativeCommons/index.astro"
+import NoDerivatives from "./NoDerivatives/index.astro"
+import NonCommercial from "./NonCommercial/index.astro"
+import PublicDomainDedication from "./PublicDomainDedication/index.astro"
+import ShareAlike from "./ShareAlike/index.astro"
+import getLicense from "./getLicense"
+import createClassList from "../utilities/createClassList"
+import mapAttributes from "../utilities/mapAttributes"
+import mapDataset from "../utilities/mapDataset"
+import type { CCLicenseProps as Props } from "../types"
+import type { BaseAttributes } from "../types/html"
 
 const {
-  a = {},
-  dataset,
-  fill = "var(--sb-cc-license-fill-color, white)",
-  byAttribution,
-  noDerivatives,
-  nonCommercial,
-  shareAlike,
-  size = "2rem",
-  stroke = "var(--sb-cc-license-stroke-color, black)",
-  ...attrs
-} = Astro.props;
-const data = mapDataset(dataset);
+	["class:list"]: classList = [],
+	byAttribution,
+	dataset,
+	fill = "var(--sb-cc-license-fill-color, white)",
+	link = {},
+	noDerivatives,
+	nonCommercial,
+	shareAlike,
+	size = "2rem",
+	stroke = "var(--sb-cc-license-stroke-color, black)",
+	...attrs
+} = Astro.props
 
-const { href, license } = getLicense(Astro.props);
+const {
+	["class:list"]: linkClassList = [],
+	dataset: linkDataset = {},
+	...linkAttributes
+} = link
+
+const { href, license } = getLicense(Astro.props)
 
 const linkAttrs = {
-  "aria-label": `Creative Commons ${license}`,
-  class: "image",
-  href,
-  rel: "license",
-  ...a,
-};
+	"aria-label": `Creative Commons ${license}`,
+	"class": "image",
+	href,
+	"rel": "license",
+	...linkAttributes,
+}
 ---
 
-<div class="sb-cc-license" {...data} {...attrs}>
-  <a {...linkAttrs}>
-    <CreativeCommons {fill} {license} {size} {stroke} />
-    {
-      byAttribution ? (
-        <ByAttribution {fill} {size} {stroke} />
-      ) : (
-        <PublicDomainDedication {fill} {size} {stroke} />
-      )
-    }
-    {
-      byAttribution && nonCommercial ? (
-        <NonCommercial {fill} {size} {stroke} />
-      ) : null
-    }
-    {
-      byAttribution && noDerivatives ? (
-        <NoDerivatives {fill} {size} {stroke} />
-      ) : byAttribution && shareAlike ? (
-        <ShareAlike {fill} {size} {stroke} />
-      ) : null
-    }
-  </a>
+<div
+	{...attrs}
+	class:list={createClassList("sb-cc-license", ...classList)}
+	{...mapDataset(dataset)}
+	data-sb-cc-licencse
+>
+	<a
+		{...linkAttrs}
+		class:list={createClassList("sb-cc-license-link", linkClassList)}
+		{...mapDataset(linkDataset)}
+		data-sb-cc-license="link"
+	>
+		<CreativeCommons {fill} {license} {size} {stroke} />
+		{
+			byAttribution ? (
+				<ByAttribution {fill} {size} {stroke} />
+			) : (
+				<PublicDomainDedication {fill} {size} {stroke} />
+			)
+		}
+		{
+			byAttribution && nonCommercial ? (
+				<NonCommercial {fill} {size} {stroke} />
+			) : null
+		}
+		{
+			byAttribution && noDerivatives ? (
+				<NoDerivatives {fill} {size} {stroke} />
+			) : byAttribution && shareAlike ? (
+				<ShareAlike {fill} {size} {stroke} />
+			) : null
+		}
+	</a>
 </div>

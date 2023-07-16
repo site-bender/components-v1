@@ -1,93 +1,83 @@
 ---
-import createClassList from "../../utilities/createClassList";
-import generateShortId from "../../utilities/generateShortId";
-import mapDataset from "../../utilities/mapDataset";
-import DateInput from "../elements/DateInput/index.astro";
-import TimeInput from "../elements/TimeInput/index.astro";
-import TimeZoneSelect from "../elements/TimeZoneSelect/index.astro";
-import type { ZonedDateTimeField as Props } from "../../types/form";
-import type { BaseAttributes } from "../../types/html";
+import createClassList from "../../utilities/createClassList"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import mapDataset from "../../utilities/mapDataset"
+import DateInput from "../elements/DateInput/index.astro"
+import TimeInput from "../elements/TimeInput/index.astro"
+import TimeZoneSelect from "../elements/TimeZoneSelect/index.astro"
+import type { ZonedDateTimeField as Props } from "../../types/form"
 
 const {
 	["aria-live"]: live = "assertive",
 	countries,
 	date = "",
-	dateAttrs = {},
+	dateAttrs: {
+		["class:list"]: dateClassList = [],
+		dataset: dateDataset = {},
+		...dateAttributes
+	} = {},
 	disabled,
 	field = "zoned-date-time-field",
 	form,
-	group = {},
-	help = {},
+	group: {
+		["class:list"]: groupClassList = [],
+		dataset: groupDataset = {},
+		...groupAttrs
+	} = {},
+	help: {
+		["class:list"]: helpClassList = [],
+		dataset: helpDataset = {},
+		...helpAttrs
+	} = {},
 	id = generateShortId(),
 	includeNull,
 	label = "Date and time with time zone",
-	legend = {},
+	legend: {
+		["class:list"]: legendClassList = [],
+		dataset: legendDataset = {},
+		...legendAttrs
+	} = {},
 	maxDate,
 	maxTime,
 	message,
 	minDate,
 	minTime,
 	name,
-	outer = {},
+	outer: {
+		["class:list"]: outerClassList = [],
+		dataset: outerDataset = {},
+		...outerAttrs
+	} = {},
 	required,
 	stepDate,
 	stepTime,
-	tag = {},
+	tag: {
+		["class:list"]: tagClassList = [],
+		dataset: tagDataset = {},
+		...tagAttrs
+	} = {},
 	time = "",
-	timeAttrs = {},
+	timeAttrs: {
+		["class:list"]: timeClassList = [],
+		dataset: timeDataset = {},
+		...timeAttributes
+	} = {},
 	timeZone = "",
-	timeZoneAttrs = {},
+	timeZoneAttrs: {
+		["class:list"]: timeZoneClassList = [],
+		dataset: timeZoneDataset = {},
+		...timeZoneAttributes
+	} = {},
 	useList,
-} = Astro.props;
+} = Astro.props
 
-const {
-	["class:list"]: dateClassList = [],
-	dataset: dateDataset,
-	...dateAttributes
-} = dateAttrs as BaseAttributes;
-
-const {
-	["class:list"]: groupClassList = [],
-	dataset: groupDataset,
-	...groupAttrs
-} = group as BaseAttributes;
-
-const {
-	["class:list"]: helpClassList = [],
-	dataset: helpDataset,
-	...helpAttrs
-} = help as BaseAttributes;
-
-const {
-	["class:list"]: legendClassList = [],
-	dataset: legendDataset,
-	...legendAttrs
-} = legend as BaseAttributes;
-
-const {
-	["class:list"]: outerClassList = [],
-	dataset: outerDataset,
-	...outerAttrs
-} = outer as BaseAttributes;
-
-const {
-	["class:list"]: tagClassList = [],
-	dataset: tagDataset,
-	...tagAttrs
-} = tag as BaseAttributes;
-
-const {
-	["class:list"]: timeClassList = [],
-	dataset: timeDataset,
-	...timeAttributes
-} = timeAttrs as BaseAttributes;
-
-const hlp = (await Astro.slots.render("message")) || message;
-const helpId = `${id}_help`;
-const lbl = (await Astro.slots.render("default")) || label;
-const legendId = `${id}_legend`;
-const req = required ? { "data-sb-required": "" } : {};
-const opt = required ? {} : { "data-sb-optional": "" };
+const hlp = (await Astro.slots.render("message")) || message
+const helpId = `${id}_help`
+const lbl = (await Astro.slots.render("default")) || label
+const legendId = `${id}_legend`
+const req = required ? { "data-sb-required": "" } : {}
+const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
 <fieldset
@@ -139,7 +129,7 @@ const opt = required ? {} : { "data-sb-optional": "" };
 		<label data-sb-label-date={field} for={`${id}_date`}>
 			<span id={`${id}_date:label`}>Date</span>
 			<DateInput
-				{...dateAttrs}
+				{...dateAttributes}
 				data-sb-input-date={field}
 				{form}
 				id={`${id}_date`}
@@ -155,7 +145,7 @@ const opt = required ? {} : { "data-sb-optional": "" };
 		<label data-sb-label-time={field} for={`${id}_time`}>
 			<span id={`${id}_time:label`}>Time</span>
 			<TimeInput
-				{...dateAttrs}
+				{...timeAttributes}
 				data-sb-input-time={field}
 				{form}
 				id={`${id}_time`}
@@ -171,7 +161,7 @@ const opt = required ? {} : { "data-sb-optional": "" };
 		<label data-sb-label-time-zone={field} for={`${id}_time-zone`}>
 			<span id={`${id}_time-zone:label`}>Time zone</span>
 			<TimeZoneSelect
-				{...timeZoneAttrs}
+				{...timeZoneAttributes}
 				{countries}
 				data-sb-input-time-zone={field}
 				{form}

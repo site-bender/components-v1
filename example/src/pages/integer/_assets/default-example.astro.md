@@ -1,9 +1,10 @@
 ---
-  caption: "Default Integer example"
+caption: "Default Instant example"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ```jsx
-<Integer value="42" />
+<Instant instant={Temporal.Now.instant()} />
 ```

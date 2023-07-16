@@ -1,8 +1,9 @@
 ---
-import type { Button as Props } from "../../../types/form";
-import createClassList from "../../../utilities/createClassList";
-import generateShortId from "../../../utilities/generateShortId";
-import mapDataset from "../../../utilities/mapDataset";
+import type { Button as Props } from "../../../types/form"
+import createClassList from "../../../utilities/createClassList"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
 
 const {
 	["class:list"]: classList = [],
@@ -11,9 +12,9 @@ const {
 	label = "Activate",
 	type = "button",
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const lbl = (await Astro.slots.render("default")) || label;
+const lbl = (await Astro.slots.render("default")) || label
 ---
 
 <button

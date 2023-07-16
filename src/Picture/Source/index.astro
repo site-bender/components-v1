@@ -1,34 +1,19 @@
 ---
-import type { ImageType } from "../types";
-import { DEFAULT_IMAGE_TYPES } from "../../constants";
-
-function makePath(filename: string, size: string, type: string, index: number) {
-	return `/images/${size}/${filename}.${type} ${index + 1}x`;
-}
+import type { ImageType } from "../../types"
+import { DEFAULT_IMAGE_TYPES } from "../../constants"
+import getSrcset from "./getSrcset"
 
 const {
-	createPath = makePath,
+	createPath,
 	filename,
 	source: { media, sizes, types = DEFAULT_IMAGE_TYPES },
-} = Astro.props;
-
-function getSrcset(
-	filename: string,
-	type: ImageType,
-	sizes: Array<string>
-): string {
-	return sizes
-		.map((size: string, index: number) =>
-			createPath(filename, size, type, index)
-		)
-		.join(", ");
-}
+} = Astro.props
 
 const sources = types.map((type: ImageType) => ({
 	media,
-	srcset: getSrcset(filename, type as ImageType, sizes),
+	srcset: getSrcset(createPath, filename, type as ImageType, sizes),
 	type: `image/${type.toString()}`,
-}));
+}))
 ---
 
 <>

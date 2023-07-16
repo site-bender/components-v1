@@ -1,9 +1,10 @@
 ---
-  caption: "Default MonetaryAmount example"
+caption: "Default Instant example"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ```jsx
-<MonetaryAmount value="42" />
+<Instant instant={Temporal.Now.instant()} />
 ```

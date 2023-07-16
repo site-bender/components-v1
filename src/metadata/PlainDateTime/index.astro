@@ -1,40 +1,15 @@
 ---
+import Microdata from "../../Microdata/index.astro"
+import createClassList from "../../utilities/createClassList"
+import mapAttributes from "../../utilities/mapAttributes"
+import mapDataset from "../../utilities/mapDataset"
+import type { PlainDateTimeProps as Props } from "../../types"
 import {
   DEFAULT_CALENDAR,
   DEFAULT_DATE_TIME_OPTIONS,
-  DEFAULT_LOCALE,
-  DEFAULT_TIME_ZONE,
-} from "../../constants";
-import { Intl, Temporal } from "@js-temporal/polyfill";
-import type { Thing } from "../../schema.org";
-import mapDataset from "../../utilities/mapDataset";
-import type { Dataset } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-import Microdata from "../../Microdata/index.astro";
-
-export type Props<T extends Thing> = HTMLAttributes<"time"> & {
-  calendar?: Temporal.CalendarLike;
-  cssClasses?: Array<string>;
-  dataset?: Dataset;
-  day?: number | string;
-  era?: string | undefined;
-  eraYear?: string | undefined;
-  hour?: number | string;
-  itemprop?: string | undefined;
-  locale?: string | Array<string>;
-  microsecond?: number | string;
-  millisecond?: number | string;
-  minute?: number | string;
-  month?: number | string;
-  monthCode?: string;
-  nanosecond?: number | string;
-  options?: Intl.DateTimeFormatOptions;
-  plainDateTime?: string | Temporal.PlainDateTimeLike;
-  properties?: Partial<T>;
-  second?: number | string;
-  itemtype?: string;
-  year?: number | string;
-};
+  DEFAULT_LOCALES,
+} from "../../constants"
+import { Intl, Temporal } from "@js-temporal/polyfill"
 
 const {
   calendar = DEFAULT_CALENDAR,
@@ -44,8 +19,8 @@ const {
   era,
   eraYear,
   hour = 0,
-  itemprop,
-  locale = DEFAULT_LOCALE,
+  locales = DEFAULT_LOCALES,
+  microdata = {},
   microsecond = 0,
   millisecond = 0,
   minute = 0,
@@ -56,45 +31,46 @@ const {
   plainDateTime = Temporal.Now.plainDateTime(
     Astro.props.calendar || DEFAULT_CALENDAR
   ),
-  properties,
+  properties = {},
   second = 0,
   itemtype,
   year,
   ...attrs
-} = Astro.props;
+} = Astro.props
 
-const css = ["sb-plain-date-time", ...cssClasses].join(" ");
-const data = mapDataset(dataset);
-const value = plainDateTime
-  ? (plainDateTime as Temporal.PlainDateTime)
-  : Temporal.PlainDateTime.from({
-      calendar,
-      day: Number(day),
-      hour: Number(hour),
-      microsecond: Number(microsecond),
-      millisecond: Number(millisecond),
-      minute: Number(minute),
-      ...(monthCode ? { monthCode } : { month: Number(month) }),
-      nanosecond: Number(nanosecond),
-      second: Number(second),
-      ...(era && eraYear ? { era, eraYear } : { year: Number(year) }),
-    } as Temporal.PlainDateTimeLike);
+const val = plainDateTime || {
+  calendar,
+  day,
+  hour: Number(hour),
+  microsecond: Number(microsecond),
+  millisecond: Number(millisecond),
+  minute: Number(minute),
+  ...(monthCode ? { monthCode } : { month }),
+  nanosecond: Number(nanosecond),
+  second: Number(second),
+  ...(era ? { era, eraYear } : { year }),
+}
 
-const opts = Object.assign({}, DEFAULT_DATE_TIME_OPTIONS, {
+const value = Temporal.PlainDateTime.from(val)
+
+const opts = {
+  ...DEFAULT_DATE_TIME_OPTIONS,
   calendar: value.calendarId.toString(),
-  timeZone: DEFAULT_TIME_ZONE,
   ...options,
-});
+}
 
-const label = new Intl.DateTimeFormat(locale, opts).format(value);
+const label = new Intl.DateTimeFormat(locales, opts).format(value)
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
-const meta = {
-  type: itemtype,
-  ...(itemprop ? { [itemprop]: plainDateTime.toString() } : {}),
-  ...properties,
-};
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-{useMicrodata && type ? <Microdata as="span" properties={meta} /> : null}
-<time class={css} {...data} datetime={value.toJSON()} {...attrs}>{label}</time>
+{useMicrodata ? <Microdata {microdata} {properties} /> : null}
+<time
+  {...attrs}
+  class:list={createClassList("sb-plain-date-time", ...classList)}
+  {...mapDataset(dataset)}
+  data-sb-plain-time
+  datetime={value.toString()}
+>
+  {label}
+</time>

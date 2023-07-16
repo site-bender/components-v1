@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"EmailField: @sitebender/components Astro components library API documentation for the EmailField metadata component\.",
+		"EmailField: @sitebender/components Astro components library API documentation for the EmailField metadata component.",
 	name: "EmailField",
 	alternateName: "EmailField",
 } as WebPage

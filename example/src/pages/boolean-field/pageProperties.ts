@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"BooleanField: @sitebender/components Astro components library API documentation for the BooleanField metadata component\.",
+		"BooleanField: @sitebender/components Astro components library API documentation for the BooleanField metadata component.",
 	name: "BooleanField",
 	alternateName: "BooleanField",
 } as WebPage

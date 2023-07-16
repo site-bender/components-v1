@@ -1,3 +1,5 @@
+// eslint-disable
+
 /** Used at the top-level node to indicate the context for the JSON-LD objects used. The context provided in this type is compatible with the keys and URLs in the rest of this generated file. */
 export type WithContext<T extends Thing> = T & {
 	"@context": "https://schema.org"
@@ -31,42 +33,40 @@ export type DateTime = string
 
 interface EmployeeRoleBase extends OrganizationRoleBase {
 	/** The base salary of the job or of an employee in an EmployeeRole. */
-	"baseSalary"?: SchemaValue<
+	baseSalary?: SchemaValue<
 		MonetaryAmount | Number | PriceSpecification | IdReference,
 		"baseSalary"
 	>
 	/** The currency (coded using {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217}) used for the main salary information in this job posting or for this employee. */
-	"salaryCurrency"?: SchemaValue<Text, "salaryCurrency">
+	salaryCurrency?: SchemaValue<Text, "salaryCurrency">
 }
-type EmployeeRoleLeaf<TContent, TProperty extends string> =
-	& EmployeeRoleBase
-	& {
-		type: "EmployeeRole"
-	}
-	& {
-		[key in TProperty]: TContent
-	}
+type EmployeeRoleLeaf<TContent, TProperty extends string> = EmployeeRoleBase & {
+	type: "EmployeeRole"
+} & {
+	[key in TProperty]: TContent
+}
 /** A subclass of OrganizationRole used to describe employee relationships. */
-export type EmployeeRole<TContent = never, TProperty extends string = never> =
-	EmployeeRoleLeaf<TContent, TProperty>
+export type EmployeeRole<
+	TContent = never,
+	TProperty extends string = never
+> = EmployeeRoleLeaf<TContent, TProperty>
 
 interface LinkRoleBase extends RoleBase {
 	/** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
-	"inLanguage"?: SchemaValue<Language | Text | IdReference, "inLanguage">
+	inLanguage?: SchemaValue<Language | Text | IdReference, "inLanguage">
 	/** Indicates the relationship type of a Web link. */
-	"linkRelationship"?: SchemaValue<Text, "linkRelationship">
+	linkRelationship?: SchemaValue<Text, "linkRelationship">
 }
-type LinkRoleLeaf<TContent, TProperty extends string> =
-	& LinkRoleBase
-	& {
-		type: "LinkRole"
-	}
-	& {
-		[key in TProperty]: TContent
-	}
+type LinkRoleLeaf<TContent, TProperty extends string> = LinkRoleBase & {
+	type: "LinkRole"
+} & {
+	[key in TProperty]: TContent
+}
 /** A Role that represents a Web link, e.g. as expressed via the 'url' property. Its linkRelationship property can indicate URL-based and plain textual link types, e.g. those in IANA link registry or others such as 'amphtml'. This structure provides a placeholder where details from HTML's link element can be represented outside of HTML, e.g. in JSON-LD feeds. */
-export type LinkRole<TContent = never, TProperty extends string = never> =
-	LinkRoleLeaf<TContent, TProperty>
+export type LinkRole<
+	TContent = never,
+	TProperty extends string = never
+> = LinkRoleLeaf<TContent, TProperty>
 
 /**
  * Data type: Number.
@@ -79,64 +79,61 @@ export type Number = Float | Integer | number | `${number}`
 
 interface OrganizationRoleBase extends RoleBase {
 	/** A number associated with a role in an organization, for example, the number on an athlete's jersey. */
-	"numberedPosition"?: SchemaValue<Number, "numberedPosition">
+	numberedPosition?: SchemaValue<Number, "numberedPosition">
 }
-type OrganizationRoleLeaf<TContent, TProperty extends string> =
-	& OrganizationRoleBase
-	& {
-		type: "OrganizationRole"
-	}
-	& {
-		[key in TProperty]: TContent
-	}
+type OrganizationRoleLeaf<
+	TContent,
+	TProperty extends string
+> = OrganizationRoleBase & {
+	type: "OrganizationRole"
+} & {
+	[key in TProperty]: TContent
+}
 /** A subclass of Role used to describe roles within organizations. */
 export type OrganizationRole<
 	TContent = never,
-	TProperty extends string = never,
+	TProperty extends string = never
 > =
 	| OrganizationRoleLeaf<TContent, TProperty>
 	| EmployeeRole<TContent, TProperty>
 
 interface PerformanceRoleBase extends RoleBase {
 	/** The name of a character played in some acting or performing role, i.e. in a PerformanceRole. */
-	"characterName"?: SchemaValue<Text, "characterName">
+	characterName?: SchemaValue<Text, "characterName">
 }
-type PerformanceRoleLeaf<TContent, TProperty extends string> =
-	& PerformanceRoleBase
-	& {
-		type: "PerformanceRole"
-	}
-	& {
-		[key in TProperty]: TContent
-	}
+type PerformanceRoleLeaf<
+	TContent,
+	TProperty extends string
+> = PerformanceRoleBase & {
+	type: "PerformanceRole"
+} & {
+	[key in TProperty]: TContent
+}
 /** A PerformanceRole is a Role that some entity places with regard to a theatrical performance, e.g. in a Movie, TVSeries etc. */
 export type PerformanceRole<
 	TContent = never,
-	TProperty extends string = never,
+	TProperty extends string = never
 > = PerformanceRoleLeaf<TContent, TProperty>
 
 interface RoleBase extends ThingBase {
 	/** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"endDate"?: SchemaValue<Date | DateTime, "endDate">
+	endDate?: SchemaValue<Date | DateTime, "endDate">
 	/**
 	 * A position played, performed or filled by a person or organization, as part of an organization. For example, an athlete in a SportsTeam might play in the position named 'Quarterback'.
 	 *
 	 * @deprecated Consider using https://schema.org/roleName instead.
 	 */
-	"namedPosition"?: SchemaValue<Text | URL, "namedPosition">
+	namedPosition?: SchemaValue<Text | URL, "namedPosition">
 	/** A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'. */
-	"roleName"?: SchemaValue<Text | URL, "roleName">
+	roleName?: SchemaValue<Text | URL, "roleName">
 	/** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"startDate"?: SchemaValue<Date | DateTime, "startDate">
+	startDate?: SchemaValue<Date | DateTime, "startDate">
 }
-type RoleLeaf<TContent, TProperty extends string> =
-	& RoleBase
-	& {
-		type: "Role"
-	}
-	& {
-		[key in TProperty]: TContent
-	}
+type RoleLeaf<TContent, TProperty extends string> = RoleBase & {
+	type: "Role"
+} & {
+	[key in TProperty]: TContent
+}
 /**
  * Represents additional information about a relationship or property. For example a Role can be used to say that a 'member' role linking some SportsTeam to a player occurred during a particular time period. Or that a Person's 'actor' role in a Movie was for some particular characterName. Such properties can be attached to a Role entity, which is then associated with the main entities using ordinary properties like 'member' or 'actor'.
  *
@@ -164,7 +161,7 @@ export type DataType = Boolean | Date | DateTime | Number | Text | Time
 
 interface _3DModelBase extends MediaObjectBase {
 	/** Whether the 3DModel allows resizing. For example, room layout applications often do not allow 3DModel elements to be resized to reflect reality. */
-	"isResizable"?: SchemaValue<Boolean, "isResizable">
+	isResizable?: SchemaValue<Boolean, "isResizable">
 }
 interface _3DModelLeaf extends _3DModelBase {
 	type: "3DModel"
@@ -191,54 +188,54 @@ export type AcceptAction = AcceptActionLeaf
 
 interface AccommodationBase extends PlaceBase {
 	/** Category of an {@link https://schema.org/Accommodation Accommodation}, following real estate conventions, e.g. RESO (see {@link https://ddwiki.reso.org/display/DDW17/PropertySubType+Field PropertySubType}, and {@link https://ddwiki.reso.org/display/DDW17/PropertyType+Field PropertyType} fields for suggested values). */
-	"accommodationCategory"?: SchemaValue<Text, "accommodationCategory">
+	accommodationCategory?: SchemaValue<Text, "accommodationCategory">
 	/** A floorplan of some {@link https://schema.org/Accommodation Accommodation}. */
-	"accommodationFloorPlan"?: SchemaValue<
+	accommodationFloorPlan?: SchemaValue<
 		FloorPlan | IdReference,
 		"accommodationFloorPlan"
 	>
 	/** An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs. */
-	"amenityFeature"?: SchemaValue<
+	amenityFeature?: SchemaValue<
 		LocationFeatureSpecification | IdReference,
 		"amenityFeature"
 	>
 	/** The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text. If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property. */
-	"bed"?: SchemaValue<BedDetails | BedType | Text | IdReference, "bed">
+	bed?: SchemaValue<BedDetails | BedType | Text | IdReference, "bed">
 	/** The floor level for an {@link https://schema.org/Accommodation Accommodation} in a multi-storey building. Since counting systems {@link https://en.wikipedia.org/wiki/Storey#Consecutive_number_floor_designations vary internationally}, the local system should be used where possible. */
-	"floorLevel"?: SchemaValue<Text, "floorLevel">
+	floorLevel?: SchemaValue<Text, "floorLevel">
 	/** The size of the accommodation, e.g. in square meter or squarefoot. Typical unit code(s): MTK for square meter, FTK for square foot, or YDK for square yard */
-	"floorSize"?: SchemaValue<QuantitativeValue | IdReference, "floorSize">
+	floorSize?: SchemaValue<QuantitativeValue | IdReference, "floorSize">
 	/** Length of the lease for some {@link https://schema.org/Accommodation Accommodation}, either particular to some {@link https://schema.org/Offer Offer} or in some cases intrinsic to the property. */
-	"leaseLength"?: SchemaValue<
+	leaseLength?: SchemaValue<
 		Duration | QuantitativeValue | IdReference,
 		"leaseLength"
 	>
 	/** The total integer number of bathrooms in some {@link https://schema.org/Accommodation Accommodation}, following real estate conventions as {@link https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field documented in RESO}: "The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.". See also {@link https://schema.org/numberOfRooms numberOfRooms}. */
-	"numberOfBathroomsTotal"?: SchemaValue<Integer, "numberOfBathroomsTotal">
+	numberOfBathroomsTotal?: SchemaValue<Integer, "numberOfBathroomsTotal">
 	/** The total integer number of bedrooms in a some {@link https://schema.org/Accommodation Accommodation}, {@link https://schema.org/ApartmentComplex ApartmentComplex} or {@link https://schema.org/FloorPlan FloorPlan}. */
-	"numberOfBedrooms"?: SchemaValue<
+	numberOfBedrooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfBedrooms"
 	>
 	/** Number of full bathrooms - The total number of full and ¾ bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
-	"numberOfFullBathrooms"?: SchemaValue<Number, "numberOfFullBathrooms">
+	numberOfFullBathrooms?: SchemaValue<Number, "numberOfFullBathrooms">
 	/** Number of partial bathrooms - The total number of half and ¼ bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
-	"numberOfPartialBathrooms"?: SchemaValue<Number, "numberOfPartialBathrooms">
+	numberOfPartialBathrooms?: SchemaValue<Number, "numberOfPartialBathrooms">
 	/** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
-	"numberOfRooms"?: SchemaValue<
+	numberOfRooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfRooms"
 	>
 	/** The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person). Typical unit code(s): C62 for person */
-	"occupancy"?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
+	occupancy?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
 	/** Indications regarding the permitted usage of the accommodation. */
-	"permittedUsage"?: SchemaValue<Text, "permittedUsage">
+	permittedUsage?: SchemaValue<Text, "permittedUsage">
 	/** Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value. */
-	"petsAllowed"?: SchemaValue<Boolean | Text, "petsAllowed">
+	petsAllowed?: SchemaValue<Boolean | Text, "petsAllowed">
 	/** A page providing information on how to book a tour of some {@link https://schema.org/Place Place}, such as an {@link https://schema.org/Accommodation Accommodation} or {@link https://schema.org/ApartmentComplex ApartmentComplex} in a real estate setting, as well as other kinds of tours as appropriate. */
-	"tourBookingPage"?: SchemaValue<URL, "tourBookingPage">
+	tourBookingPage?: SchemaValue<URL, "tourBookingPage">
 	/** The year an {@link https://schema.org/Accommodation Accommodation} was constructed. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/YearBuilt+Field YearBuilt field in RESO}. */
-	"yearBuilt"?: SchemaValue<Number, "yearBuilt">
+	yearBuilt?: SchemaValue<Number, "yearBuilt">
 }
 interface AccommodationLeaf extends AccommodationBase {
 	type: "Accommodation"
@@ -279,43 +276,40 @@ export type AchieveAction =
 
 interface ActionBase extends ThingBase {
 	/** Indicates the current disposition of the Action. */
-	"actionStatus"?: SchemaValue<ActionStatusType | IdReference, "actionStatus">
+	actionStatus?: SchemaValue<ActionStatusType | IdReference, "actionStatus">
 	/** The direct performer or driver of the action (animate or inanimate). E.g. _John_ wrote a book. */
-	"agent"?: SchemaValue<Organization | Person | IdReference, "agent">
+	agent?: SchemaValue<Organization | Person | IdReference, "agent">
 	/**
 	 * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. E.g. John wrote a book from January to _December_. For media, including audio and video, it's the time offset of the end of a clip within a larger file.
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"endTime"?: SchemaValue<DateTime | Time, "endTime">
+	endTime?: SchemaValue<DateTime | Time, "endTime">
 	/** For failed actions, more information on the cause of the failure. */
-	"error"?: SchemaValue<Thing | IdReference, "error">
+	error?: SchemaValue<Thing | IdReference, "error">
 	/** The object that helped the agent perform the action. E.g. John wrote a book with _a pen_. */
-	"instrument"?: SchemaValue<Thing | IdReference, "instrument">
+	instrument?: SchemaValue<Thing | IdReference, "instrument">
 	/** The location of, for example, where an event is happening, where an organization is located, or where an action takes place. */
-	"location"?: SchemaValue<
+	location?: SchemaValue<
 		Place | PostalAddress | Text | VirtualLocation | IdReference,
 		"location"
 	>
 	/** The object upon which the action is carried out, whose state is kept intact or changed. Also known as the semantic roles patient, affected or undergoer (which change their state) or theme (which doesn't). E.g. John read _a book_. */
-	"object"?: SchemaValue<Thing | IdReference, "object">
+	object?: SchemaValue<Thing | IdReference, "object">
 	/** Other co-agents that participated in the action indirectly. E.g. John wrote a book with _Steve_. */
-	"participant"?: SchemaValue<
-		Organization | Person | IdReference,
-		"participant"
-	>
+	participant?: SchemaValue<Organization | Person | IdReference, "participant">
 	/** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
-	"provider"?: SchemaValue<Organization | Person | IdReference, "provider">
+	provider?: SchemaValue<Organization | Person | IdReference, "provider">
 	/** The result produced in the action. E.g. John wrote _a book_. */
-	"result"?: SchemaValue<Thing | IdReference, "result">
+	result?: SchemaValue<Thing | IdReference, "result">
 	/**
 	 * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. E.g. John wrote a book from _January_ to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"startTime"?: SchemaValue<DateTime | Time, "startTime">
+	startTime?: SchemaValue<DateTime | Time, "startTime">
 	/** Indicates a target EntryPoint, or url, for an Action. */
-	"target"?: SchemaValue<EntryPoint | URL | IdReference, "target">
+	target?: SchemaValue<EntryPoint | URL | IdReference, "target">
 }
 interface ActionLeaf extends ActionBase {
 	type: "Action"
@@ -346,14 +340,11 @@ export type Action =
 
 interface ActionAccessSpecificationBase extends ThingBase {
 	/** The end of the availability of the product or service included in the offer. */
-	"availabilityEnds"?: SchemaValue<Date | DateTime | Time, "availabilityEnds">
+	availabilityEnds?: SchemaValue<Date | DateTime | Time, "availabilityEnds">
 	/** The beginning of the availability of the product or service included in the offer. */
-	"availabilityStarts"?: SchemaValue<
-		Date | DateTime | Time,
-		"availabilityStarts"
-	>
+	availabilityStarts?: SchemaValue<Date | DateTime | Time, "availabilityStarts">
 	/** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
-	"category"?: SchemaValue<
+	category?: SchemaValue<
 		CategoryCode | PhysicalActivityCategory | Text | Thing | URL | IdReference,
 		"category"
 	>
@@ -362,26 +353,23 @@ interface ActionAccessSpecificationBase extends ThingBase {
 	 *
 	 * See also {@link https://schema.org/ineligibleRegion ineligibleRegion}.
 	 */
-	"eligibleRegion"?: SchemaValue<
+	eligibleRegion?: SchemaValue<
 		GeoShape | Place | Text | IdReference,
 		"eligibleRegion"
 	>
 	/** An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it. */
-	"expectsAcceptanceOf"?: SchemaValue<
-		Offer | IdReference,
-		"expectsAcceptanceOf"
-	>
+	expectsAcceptanceOf?: SchemaValue<Offer | IdReference, "expectsAcceptanceOf">
 	/**
 	 * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.
 	 *
 	 * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
 	 */
-	"ineligibleRegion"?: SchemaValue<
+	ineligibleRegion?: SchemaValue<
 		GeoShape | Place | Text | IdReference,
 		"ineligibleRegion"
 	>
 	/** Indicates if use of the media require a subscription (either paid or free). Allowed values are `true` or `false` (note that an earlier version had 'yes', 'no'). */
-	"requiresSubscription"?: SchemaValue<
+	requiresSubscription?: SchemaValue<
 		Boolean | MediaSubscription | IdReference,
 		"requiresSubscription"
 	>
@@ -478,7 +466,7 @@ interface AggregateOfferBase extends OfferBase {
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
 	 */
-	"highPrice"?: SchemaValue<Number | Text, "highPrice">
+	highPrice?: SchemaValue<Number | Text, "highPrice">
 	/**
 	 * The lowest price of all offers available.
 	 *
@@ -486,11 +474,11 @@ interface AggregateOfferBase extends OfferBase {
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
 	 */
-	"lowPrice"?: SchemaValue<Number | Text, "lowPrice">
+	lowPrice?: SchemaValue<Number | Text, "lowPrice">
 	/** The number of offers for the product. */
-	"offerCount"?: SchemaValue<Integer, "offerCount">
+	offerCount?: SchemaValue<Integer, "offerCount">
 	/** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"offers"?: SchemaValue<Demand | Offer | IdReference, "offers">
+	offers?: SchemaValue<Demand | Offer | IdReference, "offers">
 }
 interface AggregateOfferLeaf extends AggregateOfferBase {
 	type: "AggregateOffer"
@@ -504,11 +492,11 @@ export type AggregateOffer = AggregateOfferLeaf
 
 interface AggregateRatingBase extends RatingBase {
 	/** The item that is being reviewed/rated. */
-	"itemReviewed"?: SchemaValue<Thing | IdReference, "itemReviewed">
+	itemReviewed?: SchemaValue<Thing | IdReference, "itemReviewed">
 	/** The count of total number of ratings. */
-	"ratingCount"?: SchemaValue<Integer, "ratingCount">
+	ratingCount?: SchemaValue<Integer, "ratingCount">
 	/** The count of total number of reviews. */
-	"reviewCount"?: SchemaValue<Integer, "reviewCount">
+	reviewCount?: SchemaValue<Integer, "reviewCount">
 }
 interface AggregateRatingLeaf extends AggregateRatingBase {
 	type: "AggregateRating"
@@ -524,12 +512,12 @@ export type AgreeAction = AgreeActionLeaf
 
 interface AirlineBase extends OrganizationBase {
 	/** The type of boarding policy used by the airline (e.g. zone-based or group-based). */
-	"boardingPolicy"?: SchemaValue<
+	boardingPolicy?: SchemaValue<
 		BoardingPolicyType | IdReference,
 		"boardingPolicy"
 	>
 	/** IATA identifier for an airline or airport. */
-	"iataCode"?: SchemaValue<Text, "iataCode">
+	iataCode?: SchemaValue<Text, "iataCode">
 }
 interface AirlineLeaf extends AirlineBase {
 	type: "Airline"
@@ -539,9 +527,9 @@ export type Airline = AirlineLeaf | string
 
 interface AirportBase extends CivicStructureBase {
 	/** IATA identifier for an airline or airport. */
-	"iataCode"?: SchemaValue<Text, "iataCode">
+	iataCode?: SchemaValue<Text, "iataCode">
 	/** ICAO identifier for an airport. */
-	"icaoCode"?: SchemaValue<Text, "icaoCode">
+	icaoCode?: SchemaValue<Text, "icaoCode">
 }
 interface AirportLeaf extends AirportBase {
 	type: "Airport"
@@ -551,15 +539,15 @@ export type Airport = AirportLeaf | string
 
 interface AlignmentObjectBase extends ThingBase {
 	/** A category of alignment between the learning resource and the framework node. Recommended values include: 'requires', 'textComplexity', 'readingLevel', and 'educationalSubject'. */
-	"alignmentType"?: SchemaValue<Text, "alignmentType">
+	alignmentType?: SchemaValue<Text, "alignmentType">
 	/** The framework to which the resource being described is aligned. */
-	"educationalFramework"?: SchemaValue<Text, "educationalFramework">
+	educationalFramework?: SchemaValue<Text, "educationalFramework">
 	/** The description of a node in an established educational framework. */
-	"targetDescription"?: SchemaValue<Text, "targetDescription">
+	targetDescription?: SchemaValue<Text, "targetDescription">
 	/** The name of a node in an established educational framework. */
-	"targetName"?: SchemaValue<Text, "targetName">
+	targetName?: SchemaValue<Text, "targetName">
 	/** The URL of a node in an established educational framework. */
-	"targetUrl"?: SchemaValue<URL, "targetUrl">
+	targetUrl?: SchemaValue<URL, "targetUrl">
 }
 interface AlignmentObjectLeaf extends AlignmentObjectBase {
 	type: "AlignmentObject"
@@ -582,8 +570,7 @@ export type AllocateAction =
 	| AuthorizeAction
 	| RejectAction
 
-interface AmpStoryBase extends CreativeWorkBase, MediaObjectBase {
-}
+interface AmpStoryBase extends CreativeWorkBase, MediaObjectBase {}
 interface AmpStoryLeaf extends AmpStoryBase {
 	type: "AmpStory"
 }
@@ -610,27 +597,24 @@ export type AnalysisNewsArticle = AnalysisNewsArticleLeaf
 
 interface AnatomicalStructureBase extends MedicalEntityBase {
 	/** If applicable, a description of the pathophysiology associated with the anatomical system, including potential abnormal changes in the mechanical, physical, and biochemical functions of the system. */
-	"associatedPathophysiology"?: SchemaValue<Text, "associatedPathophysiology">
+	associatedPathophysiology?: SchemaValue<Text, "associatedPathophysiology">
 	/** Location in the body of the anatomical structure. */
-	"bodyLocation"?: SchemaValue<Text, "bodyLocation">
+	bodyLocation?: SchemaValue<Text, "bodyLocation">
 	/** Other anatomical structures to which this structure is connected. */
-	"connectedTo"?: SchemaValue<AnatomicalStructure | IdReference, "connectedTo">
+	connectedTo?: SchemaValue<AnatomicalStructure | IdReference, "connectedTo">
 	/** An image containing a diagram that illustrates the structure and/or its component substructures and/or connections with other structures. */
-	"diagram"?: SchemaValue<ImageObject | IdReference, "diagram">
+	diagram?: SchemaValue<ImageObject | IdReference, "diagram">
 	/** The anatomical or organ system that this structure is part of. */
-	"partOfSystem"?: SchemaValue<AnatomicalSystem | IdReference, "partOfSystem">
+	partOfSystem?: SchemaValue<AnatomicalSystem | IdReference, "partOfSystem">
 	/** A medical condition associated with this anatomy. */
-	"relatedCondition"?: SchemaValue<
+	relatedCondition?: SchemaValue<
 		MedicalCondition | IdReference,
 		"relatedCondition"
 	>
 	/** A medical therapy related to this anatomy. */
-	"relatedTherapy"?: SchemaValue<MedicalTherapy | IdReference, "relatedTherapy">
+	relatedTherapy?: SchemaValue<MedicalTherapy | IdReference, "relatedTherapy">
 	/** Component (sub-)structure(s) that comprise this anatomical structure. */
-	"subStructure"?: SchemaValue<
-		AnatomicalStructure | IdReference,
-		"subStructure"
-	>
+	subStructure?: SchemaValue<AnatomicalStructure | IdReference, "subStructure">
 }
 interface AnatomicalStructureLeaf extends AnatomicalStructureBase {
 	type: "AnatomicalStructure"
@@ -648,24 +632,24 @@ export type AnatomicalStructure =
 
 interface AnatomicalSystemBase extends MedicalEntityBase {
 	/** If applicable, a description of the pathophysiology associated with the anatomical system, including potential abnormal changes in the mechanical, physical, and biochemical functions of the system. */
-	"associatedPathophysiology"?: SchemaValue<Text, "associatedPathophysiology">
+	associatedPathophysiology?: SchemaValue<Text, "associatedPathophysiology">
 	/** Specifying something physically contained by something else. Typically used here for the underlying anatomical structures, such as organs, that comprise the anatomical system. */
-	"comprisedOf"?: SchemaValue<
+	comprisedOf?: SchemaValue<
 		AnatomicalStructure | AnatomicalSystem | IdReference,
 		"comprisedOf"
 	>
 	/** A medical condition associated with this anatomy. */
-	"relatedCondition"?: SchemaValue<
+	relatedCondition?: SchemaValue<
 		MedicalCondition | IdReference,
 		"relatedCondition"
 	>
 	/** Related anatomical structure(s) that are not part of the system but relate or connect to it, such as vascular bundles associated with an organ system. */
-	"relatedStructure"?: SchemaValue<
+	relatedStructure?: SchemaValue<
 		AnatomicalStructure | IdReference,
 		"relatedStructure"
 	>
 	/** A medical therapy related to this anatomy. */
-	"relatedTherapy"?: SchemaValue<MedicalTherapy | IdReference, "relatedTherapy">
+	relatedTherapy?: SchemaValue<MedicalTherapy | IdReference, "relatedTherapy">
 }
 interface AnatomicalSystemLeaf extends AnatomicalSystemBase {
 	type: "AnatomicalSystem"
@@ -681,7 +665,7 @@ export type AnimalShelter = AnimalShelterLeaf | string
 
 interface AnswerBase extends CommentBase {
 	/** A step-by-step or full explanation about Answer. Can outline how this Answer was achieved or contain more broad clarification or statement about it. */
-	"answerExplanation"?: SchemaValue<
+	answerExplanation?: SchemaValue<
 		Comment | WebContent | IdReference,
 		"answerExplanation"
 	>
@@ -694,12 +678,12 @@ export type Answer = AnswerLeaf
 
 interface ApartmentBase extends AccommodationBase {
 	/** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
-	"numberOfRooms"?: SchemaValue<
+	numberOfRooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfRooms"
 	>
 	/** The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person). Typical unit code(s): C62 for person */
-	"occupancy"?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
+	occupancy?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
 }
 interface ApartmentLeaf extends ApartmentBase {
 	type: "Apartment"
@@ -709,24 +693,24 @@ export type Apartment = ApartmentLeaf | string
 
 interface ApartmentComplexBase extends ResidenceBase {
 	/** Indicates the total (available plus unavailable) number of accommodation units in an {@link https://schema.org/ApartmentComplex ApartmentComplex}, or the number of accommodation units for a specific {@link https://schema.org/FloorPlan FloorPlan} (within its specific {@link https://schema.org/ApartmentComplex ApartmentComplex}). See also {@link https://schema.org/numberOfAvailableAccommodationUnits numberOfAvailableAccommodationUnits}. */
-	"numberOfAccommodationUnits"?: SchemaValue<
+	numberOfAccommodationUnits?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"numberOfAccommodationUnits"
 	>
 	/** Indicates the number of available accommodation units in an {@link https://schema.org/ApartmentComplex ApartmentComplex}, or the number of accommodation units for a specific {@link https://schema.org/FloorPlan FloorPlan} (within its specific {@link https://schema.org/ApartmentComplex ApartmentComplex}). See also {@link https://schema.org/numberOfAccommodationUnits numberOfAccommodationUnits}. */
-	"numberOfAvailableAccommodationUnits"?: SchemaValue<
+	numberOfAvailableAccommodationUnits?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"numberOfAvailableAccommodationUnits"
 	>
 	/** The total integer number of bedrooms in a some {@link https://schema.org/Accommodation Accommodation}, {@link https://schema.org/ApartmentComplex ApartmentComplex} or {@link https://schema.org/FloorPlan FloorPlan}. */
-	"numberOfBedrooms"?: SchemaValue<
+	numberOfBedrooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfBedrooms"
 	>
 	/** Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value. */
-	"petsAllowed"?: SchemaValue<Boolean | Text, "petsAllowed">
+	petsAllowed?: SchemaValue<Boolean | Text, "petsAllowed">
 	/** A page providing information on how to book a tour of some {@link https://schema.org/Place Place}, such as an {@link https://schema.org/Accommodation Accommodation} or {@link https://schema.org/ApartmentComplex ApartmentComplex} in a real estate setting, as well as other kinds of tours as appropriate. */
-	"tourBookingPage"?: SchemaValue<URL, "tourBookingPage">
+	tourBookingPage?: SchemaValue<URL, "tourBookingPage">
 }
 interface ApartmentComplexLeaf extends ApartmentComplexBase {
 	type: "ApartmentComplex"
@@ -740,15 +724,15 @@ interface APIReferenceBase extends TechArticleBase {
 	 *
 	 * @deprecated Consider using https://schema.org/executableLibraryName instead.
 	 */
-	"assembly"?: SchemaValue<Text, "assembly">
+	assembly?: SchemaValue<Text, "assembly">
 	/** Associated product/technology version. E.g., .NET Framework 4.5. */
-	"assemblyVersion"?: SchemaValue<Text, "assemblyVersion">
+	assemblyVersion?: SchemaValue<Text, "assemblyVersion">
 	/** Library file name, e.g., mscorlib.dll, system.web.dll. */
-	"executableLibraryName"?: SchemaValue<Text, "executableLibraryName">
+	executableLibraryName?: SchemaValue<Text, "executableLibraryName">
 	/** Indicates whether API is managed or unmanaged. */
-	"programmingModel"?: SchemaValue<Text, "programmingModel">
+	programmingModel?: SchemaValue<Text, "programmingModel">
 	/** Type of app development: phone, Metro style, desktop, XBox, etc. */
-	"targetPlatform"?: SchemaValue<Text, "targetPlatform">
+	targetPlatform?: SchemaValue<Text, "targetPlatform">
 }
 interface APIReferenceLeaf extends APIReferenceBase {
 	type: "APIReference"
@@ -787,12 +771,12 @@ export type Aquarium = AquariumLeaf | string
 
 interface ArchiveComponentBase extends CreativeWorkBase {
 	/** {@link https://schema.org/ArchiveOrganization ArchiveOrganization} that holds, keeps or maintains the {@link https://schema.org/ArchiveComponent ArchiveComponent}. */
-	"holdingArchive"?: SchemaValue<
+	holdingArchive?: SchemaValue<
 		ArchiveOrganization | IdReference,
 		"holdingArchive"
 	>
 	/** Current location of the item. */
-	"itemLocation"?: SchemaValue<
+	itemLocation?: SchemaValue<
 		Place | PostalAddress | Text | IdReference,
 		"itemLocation"
 	>
@@ -805,7 +789,7 @@ export type ArchiveComponent = ArchiveComponentLeaf
 
 interface ArchiveOrganizationBase extends LocalBusinessBase {
 	/** Collection, {@link https://en.wikipedia.org/wiki/Fonds fonds}, or item held, kept or maintained by an {@link https://schema.org/ArchiveOrganization ArchiveOrganization}. */
-	"archiveHeld"?: SchemaValue<ArchiveComponent | IdReference, "archiveHeld">
+	archiveHeld?: SchemaValue<ArchiveComponent | IdReference, "archiveHeld">
 }
 interface ArchiveOrganizationLeaf extends ArchiveOrganizationBase {
 	type: "ArchiveOrganization"
@@ -821,12 +805,12 @@ export type ArriveAction = ArriveActionLeaf
 
 interface ArteryBase extends AnatomicalStructureBase {
 	/** The branches that comprise the arterial structure. */
-	"arterialBranch"?: SchemaValue<
+	arterialBranch?: SchemaValue<
 		AnatomicalStructure | IdReference,
 		"arterialBranch"
 	>
 	/** The area to which the artery supplies blood. */
-	"supplyTo"?: SchemaValue<AnatomicalStructure | IdReference, "supplyTo">
+	supplyTo?: SchemaValue<AnatomicalStructure | IdReference, "supplyTo">
 }
 interface ArteryLeaf extends ArteryBase {
 	type: "Artery"
@@ -842,17 +826,17 @@ export type ArtGallery = ArtGalleryLeaf | string
 
 interface ArticleBase extends CreativeWorkBase {
 	/** The actual body of the article. */
-	"articleBody"?: SchemaValue<Text, "articleBody">
+	articleBody?: SchemaValue<Text, "articleBody">
 	/** Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc. */
-	"articleSection"?: SchemaValue<Text, "articleSection">
+	articleSection?: SchemaValue<Text, "articleSection">
 	/** For an {@link https://schema.org/Article Article}, typically a {@link https://schema.org/NewsArticle NewsArticle}, the backstory property provides a textual summary giving a brief explanation of why and how an article was created. In a journalistic setting this could include information about reporting process, methods, interviews, data sources, etc. */
-	"backstory"?: SchemaValue<CreativeWork | Text | IdReference, "backstory">
+	backstory?: SchemaValue<CreativeWork | Text | IdReference, "backstory">
 	/** The page on which the work ends; for example "138" or "xvi". */
-	"pageEnd"?: SchemaValue<Integer | Text, "pageEnd">
+	pageEnd?: SchemaValue<Integer | Text, "pageEnd">
 	/** The page on which the work starts; for example "135" or "xiii". */
-	"pageStart"?: SchemaValue<Integer | Text, "pageStart">
+	pageStart?: SchemaValue<Integer | Text, "pageStart">
 	/** Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49". */
-	"pagination"?: SchemaValue<Text, "pagination">
+	pagination?: SchemaValue<Text, "pagination">
 	/**
 	 * Indicates sections of a Web page that are particularly 'speakable' in the sense of being highlighted as being especially appropriate for text-to-speech conversion. Other sections of a page may also be usefully spoken in particular circumstances; the 'speakable' property serves to indicate the parts most likely to be generally useful for speech.
 	 *
@@ -866,12 +850,12 @@ interface ArticleBase extends CreativeWorkBase {
 	 *
 	 * For more sophisticated markup of speakable sections beyond simple ID references, either CSS selectors or XPath expressions to pick out document section(s) as speakable. For this we define a supporting type, {@link https://schema.org/SpeakableSpecification SpeakableSpecification} which is defined to be a possible value of the _speakable_ property.
 	 */
-	"speakable"?: SchemaValue<
+	speakable?: SchemaValue<
 		SpeakableSpecification | URL | IdReference,
 		"speakable"
 	>
 	/** The number of words in the text of the Article. */
-	"wordCount"?: SchemaValue<Integer, "wordCount">
+	wordCount?: SchemaValue<Integer, "wordCount">
 }
 interface ArticleLeaf extends ArticleBase {
 	type: "Article"
@@ -893,7 +877,7 @@ export type Article =
 
 interface AskActionBase extends CommunicateActionBase {
 	/** A sub property of object. A question. */
-	"question"?: SchemaValue<Question | IdReference, "question">
+	question?: SchemaValue<Question | IdReference, "question">
 }
 interface AskActionLeaf extends AskActionBase {
 	type: "AskAction"
@@ -947,9 +931,9 @@ export type Attorney = AttorneyLeaf | string
 
 interface AudienceBase extends ThingBase {
 	/** The target group associated with a given audience (e.g. veterans, car owners, musicians, etc.). */
-	"audienceType"?: SchemaValue<Text, "audienceType">
+	audienceType?: SchemaValue<Text, "audienceType">
 	/** The geographic area associated with the audience. */
-	"geographicArea"?: SchemaValue<
+	geographicArea?: SchemaValue<
 		AdministrativeArea | IdReference,
 		"geographicArea"
 	>
@@ -968,9 +952,9 @@ export type Audience =
 
 interface AudiobookBase extends BookBase, AudioObjectBase {
 	/** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
-	"duration"?: SchemaValue<Duration | IdReference, "duration">
+	duration?: SchemaValue<Duration | IdReference, "duration">
 	/** A person who reads (performs) the audiobook. */
-	"readBy"?: SchemaValue<Person | IdReference, "readBy">
+	readBy?: SchemaValue<Person | IdReference, "readBy">
 }
 interface AudiobookLeaf extends AudiobookBase {
 	type: "Audiobook"
@@ -980,11 +964,11 @@ export type Audiobook = AudiobookLeaf
 
 interface AudioObjectBase extends MediaObjectBase {
 	/** The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the {@link https://schema.org/encodingFormat encodingFormat}. */
-	"caption"?: SchemaValue<MediaObject | Text | IdReference, "caption">
+	caption?: SchemaValue<MediaObject | Text | IdReference, "caption">
 	/** Represents textual captioning from a {@link https://schema.org/MediaObject MediaObject}, e.g. text of a 'meme'. */
-	"embeddedTextCaption"?: SchemaValue<Text, "embeddedTextCaption">
+	embeddedTextCaption?: SchemaValue<Text, "embeddedTextCaption">
 	/** If this MediaObject is an AudioObject or VideoObject, the transcript of that object. */
-	"transcript"?: SchemaValue<Text, "transcript">
+	transcript?: SchemaValue<Text, "transcript">
 }
 interface AudioObjectLeaf extends AudioObjectBase {
 	type: "AudioObject"
@@ -1000,7 +984,7 @@ export type AudioObjectSnapshot = AudioObjectSnapshotLeaf
 
 interface AuthorizeActionBase extends ActionBase {
 	/** A sub property of participant. The participant who is at the receiving end of the action. */
-	"recipient"?: SchemaValue<
+	recipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"recipient"
 	>
@@ -1046,8 +1030,7 @@ export type AutomotiveBusiness =
 	| MotorcycleRepair
 	| string
 
-interface AutoPartsStoreBase extends LocalBusinessBase, LocalBusinessBase {
-}
+interface AutoPartsStoreBase extends LocalBusinessBase, LocalBusinessBase {}
 interface AutoPartsStoreLeaf extends AutoPartsStoreBase {
 	type: "AutoPartsStore"
 }
@@ -1086,17 +1069,17 @@ export type Bakery = BakeryLeaf | string
 
 interface BankAccountBase extends FinancialProductBase {
 	/** A minimum amount that has to be paid in every month. */
-	"accountMinimumInflow"?: SchemaValue<
+	accountMinimumInflow?: SchemaValue<
 		MonetaryAmount | IdReference,
 		"accountMinimumInflow"
 	>
 	/** An overdraft is an extension of credit from a lending institution when an account reaches zero. An overdraft allows the individual to continue withdrawing money even if the account has no funds in it. Basically the bank allows people to borrow a set amount of money. */
-	"accountOverdraftLimit"?: SchemaValue<
+	accountOverdraftLimit?: SchemaValue<
 		MonetaryAmount | IdReference,
 		"accountOverdraftLimit"
 	>
 	/** The type of a bank account. */
-	"bankAccountType"?: SchemaValue<Text | URL, "bankAccountType">
+	bankAccountType?: SchemaValue<Text | URL, "bankAccountType">
 }
 interface BankAccountLeaf extends BankAccountBase {
 	type: "BankAccount"
@@ -1146,9 +1129,9 @@ export type BedAndBreakfast = BedAndBreakfastLeaf | string
 
 interface BedDetailsBase extends ThingBase {
 	/** The quantity of the given bed type available in the HotelRoom, Suite, House, or Apartment. */
-	"numberOfBeds"?: SchemaValue<Number, "numberOfBeds">
+	numberOfBeds?: SchemaValue<Number, "numberOfBeds">
 	/** The type of bed to which the BedDetail refers, i.e. the type of bed available in the quantity indicated by quantity. */
-	"typeOfBed"?: SchemaValue<BedType | Text | IdReference, "typeOfBed">
+	typeOfBed?: SchemaValue<BedType | Text | IdReference, "typeOfBed">
 }
 interface BedDetailsLeaf extends BedDetailsBase {
 	type: "BedDetails"
@@ -1181,61 +1164,61 @@ export type BikeStore = BikeStoreLeaf | string
 
 interface BioChemEntityBase extends ThingBase {
 	/** Disease associated to this BioChemEntity. Such disease can be a MedicalCondition or a URL. If you want to add an evidence supporting the association, please use PropertyValue. */
-	"associatedDisease"?: SchemaValue<
+	associatedDisease?: SchemaValue<
 		MedicalCondition | PropertyValue | URL | IdReference,
 		"associatedDisease"
 	>
 	/** A BioChemEntity that is known to interact with this item. */
-	"bioChemInteraction"?: SchemaValue<
+	bioChemInteraction?: SchemaValue<
 		BioChemEntity | IdReference,
 		"bioChemInteraction"
 	>
 	/** A similar BioChemEntity, e.g., obtained by fingerprint similarity algorithms. */
-	"bioChemSimilarity"?: SchemaValue<
+	bioChemSimilarity?: SchemaValue<
 		BioChemEntity | IdReference,
 		"bioChemSimilarity"
 	>
 	/** A role played by the BioChemEntity within a biological context. */
-	"biologicalRole"?: SchemaValue<DefinedTerm | IdReference, "biologicalRole">
+	biologicalRole?: SchemaValue<DefinedTerm | IdReference, "biologicalRole">
 	/** A {@link https://schema.org/Grant Grant} that directly or indirectly provide funding or sponsorship for this item. See also {@link https://schema.org/ownershipFundingInfo ownershipFundingInfo}. */
-	"funding"?: SchemaValue<Grant | IdReference, "funding">
+	funding?: SchemaValue<Grant | IdReference, "funding">
 	/** Indicates a BioChemEntity that (in some sense) has this BioChemEntity as a part. */
-	"hasBioChemEntityPart"?: SchemaValue<
+	hasBioChemEntityPart?: SchemaValue<
 		BioChemEntity | IdReference,
 		"hasBioChemEntityPart"
 	>
 	/** Molecular function performed by this BioChemEntity; please use PropertyValue if you want to include any evidence. */
-	"hasMolecularFunction"?: SchemaValue<
+	hasMolecularFunction?: SchemaValue<
 		DefinedTerm | PropertyValue | URL | IdReference,
 		"hasMolecularFunction"
 	>
 	/** A common representation such as a protein sequence or chemical structure for this entity. For images use schema.org/image. */
-	"hasRepresentation"?: SchemaValue<
+	hasRepresentation?: SchemaValue<
 		PropertyValue | Text | URL | IdReference,
 		"hasRepresentation"
 	>
 	/** Another BioChemEntity encoding by this one. */
-	"isEncodedByBioChemEntity"?: SchemaValue<
+	isEncodedByBioChemEntity?: SchemaValue<
 		Gene | IdReference,
 		"isEncodedByBioChemEntity"
 	>
 	/** Biological process this BioChemEntity is involved in; please use PropertyValue if you want to include any evidence. */
-	"isInvolvedInBiologicalProcess"?: SchemaValue<
+	isInvolvedInBiologicalProcess?: SchemaValue<
 		DefinedTerm | PropertyValue | URL | IdReference,
 		"isInvolvedInBiologicalProcess"
 	>
 	/** Subcellular location where this BioChemEntity is located; please use PropertyValue if you want to include any evidence. */
-	"isLocatedInSubcellularLocation"?: SchemaValue<
+	isLocatedInSubcellularLocation?: SchemaValue<
 		DefinedTerm | PropertyValue | URL | IdReference,
 		"isLocatedInSubcellularLocation"
 	>
 	/** Indicates a BioChemEntity that is (in some sense) a part of this BioChemEntity. */
-	"isPartOfBioChemEntity"?: SchemaValue<
+	isPartOfBioChemEntity?: SchemaValue<
 		BioChemEntity | IdReference,
 		"isPartOfBioChemEntity"
 	>
 	/** The taxonomic grouping of the organism that expresses, encodes, or in some way related to the BioChemEntity. */
-	"taxonomicRange"?: SchemaValue<
+	taxonomicRange?: SchemaValue<
 		DefinedTerm | Taxon | Text | URL | IdReference,
 		"taxonomicRange"
 	>
@@ -1253,15 +1236,15 @@ export type BioChemEntity =
 
 interface BlogBase extends CreativeWorkBase {
 	/** A posting that is part of this blog. */
-	"blogPost"?: SchemaValue<BlogPosting | IdReference, "blogPost">
+	blogPost?: SchemaValue<BlogPosting | IdReference, "blogPost">
 	/**
 	 * Indicates a post that is part of a {@link https://schema.org/Blog Blog}. Note that historically, what we term a "Blog" was once known as a "weblog", and that what we term a "BlogPosting" is now often colloquially referred to as a "blog".
 	 *
 	 * @deprecated Consider using https://schema.org/blogPost instead.
 	 */
-	"blogPosts"?: SchemaValue<BlogPosting | IdReference, "blogPosts">
+	blogPosts?: SchemaValue<BlogPosting | IdReference, "blogPosts">
 	/** The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication. */
-	"issn"?: SchemaValue<Text, "issn">
+	issn?: SchemaValue<Text, "issn">
 }
 interface BlogLeaf extends BlogBase {
 	type: "Blog"
@@ -1310,12 +1293,12 @@ export type BoatTerminal = BoatTerminalLeaf | string
 
 interface BoatTripBase extends TripBase {
 	/** The terminal or port from which the boat arrives. */
-	"arrivalBoatTerminal"?: SchemaValue<
+	arrivalBoatTerminal?: SchemaValue<
 		BoatTerminal | IdReference,
 		"arrivalBoatTerminal"
 	>
 	/** The terminal or port from which the boat departs. */
-	"departureBoatTerminal"?: SchemaValue<
+	departureBoatTerminal?: SchemaValue<
 		BoatTerminal | IdReference,
 		"departureBoatTerminal"
 	>
@@ -1383,17 +1366,17 @@ export type Bone = BoneLeaf
 
 interface BookBase extends CreativeWorkBase {
 	/** Indicates whether the book is an abridged edition. */
-	"abridged"?: SchemaValue<Boolean, "abridged">
+	abridged?: SchemaValue<Boolean, "abridged">
 	/** The edition of the book. */
-	"bookEdition"?: SchemaValue<Text, "bookEdition">
+	bookEdition?: SchemaValue<Text, "bookEdition">
 	/** The format of the book. */
-	"bookFormat"?: SchemaValue<BookFormatType | IdReference, "bookFormat">
+	bookFormat?: SchemaValue<BookFormatType | IdReference, "bookFormat">
 	/** The illustrator of the book. */
-	"illustrator"?: SchemaValue<Person | IdReference, "illustrator">
+	illustrator?: SchemaValue<Person | IdReference, "illustrator">
 	/** The ISBN of the book. */
-	"isbn"?: SchemaValue<Text, "isbn">
+	isbn?: SchemaValue<Text, "isbn">
 	/** The number of pages in the book. */
-	"numberOfPages"?: SchemaValue<Integer, "numberOfPages">
+	numberOfPages?: SchemaValue<Integer, "numberOfPages">
 }
 interface BookLeaf extends BookBase {
 	type: "Book"
@@ -1438,7 +1421,7 @@ export type BookStore = BookStoreLeaf | string
 
 interface BorrowActionBase extends TransferActionBase {
 	/** A sub property of participant. The person that lends the object being borrowed. */
-	"lender"?: SchemaValue<Organization | Person | IdReference, "lender">
+	lender?: SchemaValue<Organization | Person | IdReference, "lender">
 }
 interface BorrowActionLeaf extends BorrowActionBase {
 	type: "BorrowAction"
@@ -1465,16 +1448,16 @@ export type BrainStructure = BrainStructureLeaf
 
 interface BrandBase extends ThingBase {
 	/** The overall rating, based on a collection of reviews or ratings, of the item. */
-	"aggregateRating"?: SchemaValue<
+	aggregateRating?: SchemaValue<
 		AggregateRating | IdReference,
 		"aggregateRating"
 	>
 	/** An associated logo. */
-	"logo"?: SchemaValue<ImageObject | URL | IdReference, "logo">
+	logo?: SchemaValue<ImageObject | URL | IdReference, "logo">
 	/** A review of the item. */
-	"review"?: SchemaValue<Review | IdReference, "review">
+	review?: SchemaValue<Review | IdReference, "review">
 	/** A slogan or motto associated with the item. */
-	"slogan"?: SchemaValue<Text, "slogan">
+	slogan?: SchemaValue<Text, "slogan">
 }
 interface BrandLeaf extends BrandBase {
 	type: "Brand"
@@ -1506,23 +1489,23 @@ export type Bridge = BridgeLeaf | string
 
 interface BroadcastChannelBase extends ThingBase {
 	/** The unique address by which the BroadcastService can be identified in a provider lineup. In US, this is typically a number. */
-	"broadcastChannelId"?: SchemaValue<Text, "broadcastChannelId">
+	broadcastChannelId?: SchemaValue<Text, "broadcastChannelId">
 	/** The frequency used for over-the-air broadcasts. Numeric values or simple ranges, e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM". */
-	"broadcastFrequency"?: SchemaValue<
+	broadcastFrequency?: SchemaValue<
 		BroadcastFrequencySpecification | Text | IdReference,
 		"broadcastFrequency"
 	>
 	/** The type of service required to have access to the channel (e.g. Standard or Premium). */
-	"broadcastServiceTier"?: SchemaValue<Text, "broadcastServiceTier">
+	broadcastServiceTier?: SchemaValue<Text, "broadcastServiceTier">
 	/** Genre of the creative work, broadcast channel or group. */
-	"genre"?: SchemaValue<Text | URL, "genre">
+	genre?: SchemaValue<Text | URL, "genre">
 	/** The CableOrSatelliteService offering the channel. */
-	"inBroadcastLineup"?: SchemaValue<
+	inBroadcastLineup?: SchemaValue<
 		CableOrSatelliteService | IdReference,
 		"inBroadcastLineup"
 	>
 	/** The BroadcastService offered on this channel. */
-	"providesBroadcastService"?: SchemaValue<
+	providesBroadcastService?: SchemaValue<
 		BroadcastService | IdReference,
 		"providesBroadcastService"
 	>
@@ -1538,16 +1521,16 @@ export type BroadcastChannel =
 
 interface BroadcastEventBase extends PublicationEventBase {
 	/** The event being broadcast such as a sporting event or awards ceremony. */
-	"broadcastOfEvent"?: SchemaValue<Event | IdReference, "broadcastOfEvent">
+	broadcastOfEvent?: SchemaValue<Event | IdReference, "broadcastOfEvent">
 	/** True if the broadcast is of a live event. */
-	"isLiveBroadcast"?: SchemaValue<Boolean, "isLiveBroadcast">
+	isLiveBroadcast?: SchemaValue<Boolean, "isLiveBroadcast">
 	/** Languages in which subtitles/captions are available, in {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard format}. */
-	"subtitleLanguage"?: SchemaValue<
+	subtitleLanguage?: SchemaValue<
 		Language | Text | IdReference,
 		"subtitleLanguage"
 	>
 	/** The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.). */
-	"videoFormat"?: SchemaValue<Text, "videoFormat">
+	videoFormat?: SchemaValue<Text, "videoFormat">
 }
 interface BroadcastEventLeaf extends BroadcastEventBase {
 	type: "BroadcastEvent"
@@ -1557,21 +1540,20 @@ export type BroadcastEvent = BroadcastEventLeaf
 
 interface BroadcastFrequencySpecificationBase extends ThingBase {
 	/** The frequency in MHz for a particular broadcast. */
-	"broadcastFrequencyValue"?: SchemaValue<
+	broadcastFrequencyValue?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"broadcastFrequencyValue"
 	>
 	/** The modulation (e.g. FM, AM, etc) used by a particular broadcast service. */
-	"broadcastSignalModulation"?: SchemaValue<
+	broadcastSignalModulation?: SchemaValue<
 		QualitativeValue | Text | IdReference,
 		"broadcastSignalModulation"
 	>
 	/** The subchannel used for the broadcast. */
-	"broadcastSubChannel"?: SchemaValue<Text, "broadcastSubChannel">
+	broadcastSubChannel?: SchemaValue<Text, "broadcastSubChannel">
 }
 interface BroadcastFrequencySpecificationLeaf
-	extends BroadcastFrequencySpecificationBase
-{
+	extends BroadcastFrequencySpecificationBase {
 	type: "BroadcastFrequencySpecification"
 }
 /** The frequency in MHz and the modulation used for a particular BroadcastService. */
@@ -1584,36 +1566,36 @@ interface BroadcastServiceBase extends ServiceBase {
 	 *
 	 * @deprecated Consider using https://schema.org/serviceArea instead.
 	 */
-	"area"?: SchemaValue<Place | IdReference, "area">
+	area?: SchemaValue<Place | IdReference, "area">
 	/** The media network(s) whose content is broadcast on this station. */
-	"broadcastAffiliateOf"?: SchemaValue<
+	broadcastAffiliateOf?: SchemaValue<
 		Organization | IdReference,
 		"broadcastAffiliateOf"
 	>
 	/** The name displayed in the channel guide. For many US affiliates, it is the network name. */
-	"broadcastDisplayName"?: SchemaValue<Text, "broadcastDisplayName">
+	broadcastDisplayName?: SchemaValue<Text, "broadcastDisplayName">
 	/** The organization owning or operating the broadcast service. */
-	"broadcaster"?: SchemaValue<Organization | IdReference, "broadcaster">
+	broadcaster?: SchemaValue<Organization | IdReference, "broadcaster">
 	/** The frequency used for over-the-air broadcasts. Numeric values or simple ranges, e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM". */
-	"broadcastFrequency"?: SchemaValue<
+	broadcastFrequency?: SchemaValue<
 		BroadcastFrequencySpecification | Text | IdReference,
 		"broadcastFrequency"
 	>
 	/** The timezone in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 format} for which the service bases its broadcasts. */
-	"broadcastTimezone"?: SchemaValue<Text, "broadcastTimezone">
+	broadcastTimezone?: SchemaValue<Text, "broadcastTimezone">
 	/** A {@link https://en.wikipedia.org/wiki/Call_sign callsign}, as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles. */
-	"callSign"?: SchemaValue<Text, "callSign">
+	callSign?: SchemaValue<Text, "callSign">
 	/** A broadcast channel of a broadcast service. */
-	"hasBroadcastChannel"?: SchemaValue<
+	hasBroadcastChannel?: SchemaValue<
 		BroadcastChannel | IdReference,
 		"hasBroadcastChannel"
 	>
 	/** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
-	"inLanguage"?: SchemaValue<Language | Text | IdReference, "inLanguage">
+	inLanguage?: SchemaValue<Language | Text | IdReference, "inLanguage">
 	/** A broadcast service to which the broadcast service may belong to such as regional variations of a national channel. */
-	"parentService"?: SchemaValue<BroadcastService | IdReference, "parentService">
+	parentService?: SchemaValue<BroadcastService | IdReference, "parentService">
 	/** The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.). */
-	"videoFormat"?: SchemaValue<Text, "videoFormat">
+	videoFormat?: SchemaValue<Text, "videoFormat">
 }
 interface BroadcastServiceLeaf extends BroadcastServiceBase {
 	type: "BroadcastService"
@@ -1635,17 +1617,14 @@ export type BuddhistTemple = BuddhistTempleLeaf | string
 
 interface BusinessAudienceBase extends AudienceBase {
 	/** The number of employees in an organization, e.g. business. */
-	"numberOfEmployees"?: SchemaValue<
+	numberOfEmployees?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"numberOfEmployees"
 	>
 	/** The size of the business in annual revenue. */
-	"yearlyRevenue"?: SchemaValue<
-		QuantitativeValue | IdReference,
-		"yearlyRevenue"
-	>
+	yearlyRevenue?: SchemaValue<QuantitativeValue | IdReference, "yearlyRevenue">
 	/** The age of the business. */
-	"yearsInOperation"?: SchemaValue<
+	yearsInOperation?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"yearsInOperation"
 	>
@@ -1696,7 +1675,7 @@ export type BusinessFunction = BusinessFunctionLeaf
 
 interface BusOrCoachBase extends VehicleBase {
 	/** The ACRISS Car Classification Code is a code used by many car rental companies, for classifying vehicles. ACRISS stands for Association of Car Rental Industry Systems and Standards. */
-	"acrissCode"?: SchemaValue<Text, "acrissCode">
+	acrissCode?: SchemaValue<Text, "acrissCode">
 	/**
 	 * The permitted total weight of cargo and installations (e.g. a roof rack) on top of the vehicle.
 	 *
@@ -1705,7 +1684,7 @@ interface BusOrCoachBase extends VehicleBase {
 	 * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}
 	 * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"roofLoad"?: SchemaValue<QuantitativeValue | IdReference, "roofLoad">
+	roofLoad?: SchemaValue<QuantitativeValue | IdReference, "roofLoad">
 }
 interface BusOrCoachLeaf extends BusOrCoachBase {
 	type: "BusOrCoach"
@@ -1737,16 +1716,16 @@ export type BusStop = BusStopLeaf | string
 
 interface BusTripBase extends TripBase {
 	/** The stop or station from which the bus arrives. */
-	"arrivalBusStop"?: SchemaValue<
+	arrivalBusStop?: SchemaValue<
 		BusStation | BusStop | IdReference,
 		"arrivalBusStop"
 	>
 	/** The name of the bus (e.g. Bolt Express). */
-	"busName"?: SchemaValue<Text, "busName">
+	busName?: SchemaValue<Text, "busName">
 	/** The unique identifier for the bus. */
-	"busNumber"?: SchemaValue<Text, "busNumber">
+	busNumber?: SchemaValue<Text, "busNumber">
 	/** The stop or station from which the bus departs. */
-	"departureBusStop"?: SchemaValue<
+	departureBusStop?: SchemaValue<
 		BusStation | BusStop | IdReference,
 		"departureBusStop"
 	>
@@ -1759,19 +1738,19 @@ export type BusTrip = BusTripLeaf
 
 interface BuyActionBase extends TradeActionBase {
 	/** An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. */
-	"seller"?: SchemaValue<Organization | Person | IdReference, "seller">
+	seller?: SchemaValue<Organization | Person | IdReference, "seller">
 	/**
 	 * 'vendor' is an earlier term for 'seller'.
 	 *
 	 * @deprecated Consider using https://schema.org/seller instead.
 	 */
-	"vendor"?: SchemaValue<Organization | Person | IdReference, "vendor">
+	vendor?: SchemaValue<Organization | Person | IdReference, "vendor">
 	/**
 	 * The warranty promise(s) included in the offer.
 	 *
 	 * @deprecated Consider using https://schema.org/warranty instead.
 	 */
-	"warrantyPromise"?: SchemaValue<
+	warrantyPromise?: SchemaValue<
 		WarrantyPromise | IdReference,
 		"warrantyPromise"
 	>
@@ -1794,8 +1773,7 @@ interface CafeOrCoffeeShopLeaf extends FoodEstablishmentBase {
 /** A cafe or coffee shop. */
 export type CafeOrCoffeeShop = CafeOrCoffeeShopLeaf | string
 
-interface CampgroundBase extends CivicStructureBase, LodgingBusinessBase {
-}
+interface CampgroundBase extends CivicStructureBase, LodgingBusinessBase {}
 interface CampgroundLeaf extends CampgroundBase {
 	type: "Campground"
 }
@@ -1839,7 +1817,7 @@ export type CancelAction = CancelActionLeaf
 
 interface CarBase extends VehicleBase {
 	/** The ACRISS Car Classification Code is a code used by many car rental companies, for classifying vehicles. ACRISS stands for Association of Car Rental Industry Systems and Standards. */
-	"acrissCode"?: SchemaValue<Text, "acrissCode">
+	acrissCode?: SchemaValue<Text, "acrissCode">
 	/**
 	 * The permitted total weight of cargo and installations (e.g. a roof rack) on top of the vehicle.
 	 *
@@ -1848,7 +1826,7 @@ interface CarBase extends VehicleBase {
 	 * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}
 	 * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"roofLoad"?: SchemaValue<QuantitativeValue | IdReference, "roofLoad">
+	roofLoad?: SchemaValue<QuantitativeValue | IdReference, "roofLoad">
 }
 interface CarLeaf extends CarBase {
 	type: "Car"
@@ -1877,9 +1855,9 @@ export type Casino = CasinoLeaf | string
 
 interface CategoryCodeBase extends DefinedTermBase {
 	/** A short textual code that uniquely identifies the value. */
-	"codeValue"?: SchemaValue<Text, "codeValue">
+	codeValue?: SchemaValue<Text, "codeValue">
 	/** A {@link https://schema.org/CategoryCodeSet CategoryCodeSet} that contains this category code. */
-	"inCodeSet"?: SchemaValue<CategoryCodeSet | URL | IdReference, "inCodeSet">
+	inCodeSet?: SchemaValue<CategoryCodeSet | URL | IdReference, "inCodeSet">
 }
 interface CategoryCodeLeaf extends CategoryCodeBase {
 	type: "CategoryCode"
@@ -1889,7 +1867,7 @@ export type CategoryCode = CategoryCodeLeaf | MedicalCode
 
 interface CategoryCodeSetBase extends DefinedTermSetBase {
 	/** A Category code contained in this code set. */
-	"hasCategoryCode"?: SchemaValue<CategoryCode | IdReference, "hasCategoryCode">
+	hasCategoryCode?: SchemaValue<CategoryCode | IdReference, "hasCategoryCode">
 }
 interface CategoryCodeSetLeaf extends CategoryCodeSetBase {
 	type: "CategoryCodeSet"
@@ -1905,39 +1883,39 @@ export type CatholicChurch = CatholicChurchLeaf | string
 
 interface CDCPMDRecordBase extends ThingBase {
 	/** collectiondate - Date for which patient counts are reported. */
-	"cvdCollectionDate"?: SchemaValue<DateTime | Text, "cvdCollectionDate">
+	cvdCollectionDate?: SchemaValue<DateTime | Text, "cvdCollectionDate">
 	/** Name of the County of the NHSN facility that this data record applies to. Use {@link https://schema.org/cvdFacilityId cvdFacilityId} to identify the facility. To provide other details, {@link https://schema.org/healthcareReportingData healthcareReportingData} can be used on a {@link https://schema.org/Hospital Hospital} entry. */
-	"cvdFacilityCounty"?: SchemaValue<Text, "cvdFacilityCounty">
+	cvdFacilityCounty?: SchemaValue<Text, "cvdFacilityCounty">
 	/** Identifier of the NHSN facility that this data record applies to. Use {@link https://schema.org/cvdFacilityCounty cvdFacilityCounty} to indicate the county. To provide other details, {@link https://schema.org/healthcareReportingData healthcareReportingData} can be used on a {@link https://schema.org/Hospital Hospital} entry. */
-	"cvdFacilityId"?: SchemaValue<Text, "cvdFacilityId">
+	cvdFacilityId?: SchemaValue<Text, "cvdFacilityId">
 	/** numbeds - HOSPITAL INPATIENT BEDS: Inpatient beds, including all staffed, licensed, and overflow (surge) beds used for inpatients. */
-	"cvdNumBeds"?: SchemaValue<Number, "cvdNumBeds">
+	cvdNumBeds?: SchemaValue<Number, "cvdNumBeds">
 	/** numbedsocc - HOSPITAL INPATIENT BED OCCUPANCY: Total number of staffed inpatient beds that are occupied. */
-	"cvdNumBedsOcc"?: SchemaValue<Number, "cvdNumBedsOcc">
+	cvdNumBedsOcc?: SchemaValue<Number, "cvdNumBedsOcc">
 	/** numc19died - DEATHS: Patients with suspected or confirmed COVID-19 who died in the hospital, ED, or any overflow location. */
-	"cvdNumC19Died"?: SchemaValue<Number, "cvdNumC19Died">
+	cvdNumC19Died?: SchemaValue<Number, "cvdNumC19Died">
 	/** numc19hopats - HOSPITAL ONSET: Patients hospitalized in an NHSN inpatient care location with onset of suspected or confirmed COVID-19 14 or more days after hospitalization. */
-	"cvdNumC19HOPats"?: SchemaValue<Number, "cvdNumC19HOPats">
+	cvdNumC19HOPats?: SchemaValue<Number, "cvdNumC19HOPats">
 	/** numc19hosppats - HOSPITALIZED: Patients currently hospitalized in an inpatient care location who have suspected or confirmed COVID-19. */
-	"cvdNumC19HospPats"?: SchemaValue<Number, "cvdNumC19HospPats">
+	cvdNumC19HospPats?: SchemaValue<Number, "cvdNumC19HospPats">
 	/** numc19mechventpats - HOSPITALIZED and VENTILATED: Patients hospitalized in an NHSN inpatient care location who have suspected or confirmed COVID-19 and are on a mechanical ventilator. */
-	"cvdNumC19MechVentPats"?: SchemaValue<Number, "cvdNumC19MechVentPats">
+	cvdNumC19MechVentPats?: SchemaValue<Number, "cvdNumC19MechVentPats">
 	/** numc19ofmechventpats - ED/OVERFLOW and VENTILATED: Patients with suspected or confirmed COVID-19 who are in the ED or any overflow location awaiting an inpatient bed and on a mechanical ventilator. */
-	"cvdNumC19OFMechVentPats"?: SchemaValue<Number, "cvdNumC19OFMechVentPats">
+	cvdNumC19OFMechVentPats?: SchemaValue<Number, "cvdNumC19OFMechVentPats">
 	/** numc19overflowpats - ED/OVERFLOW: Patients with suspected or confirmed COVID-19 who are in the ED or any overflow location awaiting an inpatient bed. */
-	"cvdNumC19OverflowPats"?: SchemaValue<Number, "cvdNumC19OverflowPats">
+	cvdNumC19OverflowPats?: SchemaValue<Number, "cvdNumC19OverflowPats">
 	/** numicubeds - ICU BEDS: Total number of staffed inpatient intensive care unit (ICU) beds. */
-	"cvdNumICUBeds"?: SchemaValue<Number, "cvdNumICUBeds">
+	cvdNumICUBeds?: SchemaValue<Number, "cvdNumICUBeds">
 	/** numicubedsocc - ICU BED OCCUPANCY: Total number of staffed inpatient ICU beds that are occupied. */
-	"cvdNumICUBedsOcc"?: SchemaValue<Number, "cvdNumICUBedsOcc">
+	cvdNumICUBedsOcc?: SchemaValue<Number, "cvdNumICUBedsOcc">
 	/** numtotbeds - ALL HOSPITAL BEDS: Total number of all inpatient and outpatient beds, including all staffed, ICU, licensed, and overflow (surge) beds used for inpatients or outpatients. */
-	"cvdNumTotBeds"?: SchemaValue<Number, "cvdNumTotBeds">
+	cvdNumTotBeds?: SchemaValue<Number, "cvdNumTotBeds">
 	/** numvent - MECHANICAL VENTILATORS: Total number of ventilators available. */
-	"cvdNumVent"?: SchemaValue<Number, "cvdNumVent">
+	cvdNumVent?: SchemaValue<Number, "cvdNumVent">
 	/** numventuse - MECHANICAL VENTILATORS IN USE: Total number of ventilators in use. */
-	"cvdNumVentUse"?: SchemaValue<Number, "cvdNumVentUse">
+	cvdNumVentUse?: SchemaValue<Number, "cvdNumVentUse">
 	/** Publication date of an online listing. */
-	"datePosted"?: SchemaValue<Date | DateTime, "datePosted">
+	datePosted?: SchemaValue<Date | DateTime, "datePosted">
 }
 interface CDCPMDRecordLeaf extends CDCPMDRecordBase {
 	type: "CDCPMDRecord"
@@ -1953,11 +1931,11 @@ export type Cemetery = CemeteryLeaf | string
 
 interface ChapterBase extends CreativeWorkBase {
 	/** The page on which the work ends; for example "138" or "xvi". */
-	"pageEnd"?: SchemaValue<Integer | Text, "pageEnd">
+	pageEnd?: SchemaValue<Integer | Text, "pageEnd">
 	/** The page on which the work starts; for example "135" or "xiii". */
-	"pageStart"?: SchemaValue<Integer | Text, "pageStart">
+	pageStart?: SchemaValue<Integer | Text, "pageStart">
 	/** Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49". */
-	"pagination"?: SchemaValue<Text, "pagination">
+	pagination?: SchemaValue<Text, "pagination">
 }
 interface ChapterLeaf extends ChapterBase {
 	type: "Chapter"
@@ -2005,11 +1983,11 @@ export type CheckoutPage = CheckoutPageLeaf
 
 interface ChemicalSubstanceBase extends BioChemEntityBase {
 	/** The chemical composition describes the identity and relative ratio of the chemical elements that make up the substance. */
-	"chemicalComposition"?: SchemaValue<Text, "chemicalComposition">
+	chemicalComposition?: SchemaValue<Text, "chemicalComposition">
 	/** A role played by the BioChemEntity within a chemical context. */
-	"chemicalRole"?: SchemaValue<DefinedTerm | IdReference, "chemicalRole">
+	chemicalRole?: SchemaValue<DefinedTerm | IdReference, "chemicalRole">
 	/** Intended use of the BioChemEntity by humans. */
-	"potentialUse"?: SchemaValue<DefinedTerm | IdReference, "potentialUse">
+	potentialUse?: SchemaValue<DefinedTerm | IdReference, "potentialUse">
 }
 interface ChemicalSubstanceLeaf extends ChemicalSubstanceBase {
 	type: "ChemicalSubstance"
@@ -2031,13 +2009,13 @@ export type ChildrensEvent = ChildrensEventLeaf
 
 interface ChooseActionBase extends ActionBase {
 	/** A sub property of object. The options subject to this action. */
-	"actionOption"?: SchemaValue<Text | Thing | IdReference, "actionOption">
+	actionOption?: SchemaValue<Text | Thing | IdReference, "actionOption">
 	/**
 	 * A sub property of object. The options subject to this action.
 	 *
 	 * @deprecated Consider using https://schema.org/actionOption instead.
 	 */
-	"option"?: SchemaValue<Text | Thing | IdReference, "option">
+	option?: SchemaValue<Text | Thing | IdReference, "option">
 }
 interface ChooseActionLeaf extends ChooseActionBase {
 	type: "ChooseAction"
@@ -2071,7 +2049,7 @@ interface CivicStructureBase extends PlaceBase {
 	 * - Here is an example: `<time itemprop="openingHours" datetime="Tu,Th 16:00-20:00">Tuesdays and Thursdays 4-8pm</time>`.
 	 * - If a business is open 7 days a week, then it can be specified as `<time itemprop="openingHours" datetime="Mo-Su">Monday through Sunday, all day</time>`.
 	 */
-	"openingHours"?: SchemaValue<Text, "openingHours">
+	openingHours?: SchemaValue<Text, "openingHours">
 }
 interface CivicStructureLeaf extends CivicStructureBase {
 	type: "CivicStructure"
@@ -2114,14 +2092,14 @@ export type CivicStructure =
 
 interface ClaimBase extends CreativeWorkBase {
 	/** Indicates an occurrence of a {@link https://schema.org/Claim Claim} in some {@link https://schema.org/CreativeWork CreativeWork}. */
-	"appearance"?: SchemaValue<CreativeWork | IdReference, "appearance">
+	appearance?: SchemaValue<CreativeWork | IdReference, "appearance">
 	/** For a {@link https://schema.org/Claim Claim} interpreted from {@link https://schema.org/MediaObject MediaObject} content sed to indicate a claim contained, implied or refined from the content of a {@link https://schema.org/MediaObject MediaObject}. */
-	"claimInterpreter"?: SchemaValue<
+	claimInterpreter?: SchemaValue<
 		Organization | Person | IdReference,
 		"claimInterpreter"
 	>
 	/** Indicates the first known occurrence of a {@link https://schema.org/Claim Claim} in some {@link https://schema.org/CreativeWork CreativeWork}. */
-	"firstAppearance"?: SchemaValue<CreativeWork | IdReference, "firstAppearance">
+	firstAppearance?: SchemaValue<CreativeWork | IdReference, "firstAppearance">
 }
 interface ClaimLeaf extends ClaimBase {
 	type: "Claim"
@@ -2137,7 +2115,7 @@ export type Claim = ClaimLeaf
 
 interface ClaimReviewBase extends ReviewBase {
 	/** A short summary of the specific claims reviewed in a ClaimReview. */
-	"claimReviewed"?: SchemaValue<Text, "claimReviewed">
+	claimReviewed?: SchemaValue<Text, "claimReviewed">
 }
 interface ClaimReviewLeaf extends ClaimReviewBase {
 	type: "ClaimReview"
@@ -2147,7 +2125,7 @@ export type ClaimReview = ClaimReviewLeaf
 
 interface ClassBase extends ThingBase {
 	/** Relates a term (i.e. a property, class or enumeration) to one that supersedes it. */
-	"supersededBy"?: SchemaValue<
+	supersededBy?: SchemaValue<
 		Class | Enumeration | Property | IdReference,
 		"supersededBy"
 	>
@@ -2160,38 +2138,35 @@ export type Class = ClassLeaf
 
 interface ClipBase extends CreativeWorkBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/**
 	 * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/actor instead.
 	 */
-	"actors"?: SchemaValue<Person | IdReference, "actors">
+	actors?: SchemaValue<Person | IdReference, "actors">
 	/** Position of the clip within an ordered group of clips. */
-	"clipNumber"?: SchemaValue<Integer | Text, "clipNumber">
+	clipNumber?: SchemaValue<Integer | Text, "clipNumber">
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/**
 	 * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/director instead.
 	 */
-	"directors"?: SchemaValue<Person | IdReference, "directors">
+	directors?: SchemaValue<Person | IdReference, "directors">
 	/** The end time of the clip expressed as the number of seconds from the beginning of the work. */
-	"endOffset"?: SchemaValue<HyperTocEntry | Number | IdReference, "endOffset">
+	endOffset?: SchemaValue<HyperTocEntry | Number | IdReference, "endOffset">
 	/** The composer of the soundtrack. */
-	"musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
+	musicBy?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
 	/** The episode to which this clip belongs. */
-	"partOfEpisode"?: SchemaValue<Episode | IdReference, "partOfEpisode">
+	partOfEpisode?: SchemaValue<Episode | IdReference, "partOfEpisode">
 	/** The season to which this episode belongs. */
-	"partOfSeason"?: SchemaValue<CreativeWorkSeason | IdReference, "partOfSeason">
+	partOfSeason?: SchemaValue<CreativeWorkSeason | IdReference, "partOfSeason">
 	/** The series to which this episode or season belongs. */
-	"partOfSeries"?: SchemaValue<CreativeWorkSeries | IdReference, "partOfSeries">
+	partOfSeries?: SchemaValue<CreativeWorkSeries | IdReference, "partOfSeries">
 	/** The start time of the clip expressed as the number of seconds from the beginning of the work. */
-	"startOffset"?: SchemaValue<
-		HyperTocEntry | Number | IdReference,
-		"startOffset"
-	>
+	startOffset?: SchemaValue<HyperTocEntry | Number | IdReference, "startOffset">
 }
 interface ClipLeaf extends ClipBase {
 	type: "Clip"
@@ -2217,7 +2192,7 @@ export type Code = CodeLeaf
 
 interface CollectionBase extends CreativeWorkBase {
 	/** The number of items in the {@link https://schema.org/Collection Collection}. */
-	"collectionSize"?: SchemaValue<Integer, "collectionSize">
+	collectionSize?: SchemaValue<Integer, "collectionSize">
 }
 interface CollectionLeaf extends CollectionBase {
 	type: "Collection"
@@ -2249,8 +2224,7 @@ interface ComedyEventLeaf extends EventBase {
 /** Event type: Comedy event. */
 export type ComedyEvent = ComedyEventLeaf
 
-interface ComicCoverArtBase extends VisualArtworkBase, ComicStoryBase {
-}
+interface ComicCoverArtBase extends VisualArtworkBase, ComicStoryBase {}
 interface ComicCoverArtLeaf extends ComicCoverArtBase {
 	type: "ComicCoverArt"
 }
@@ -2259,17 +2233,17 @@ export type ComicCoverArt = ComicCoverArtLeaf
 
 interface ComicIssueBase extends PublicationIssueBase {
 	/** The primary artist for a work in a medium other than pencils or digital line art--for example, if the primary artwork is done in watercolors or digital paints. */
-	"artist"?: SchemaValue<Person | IdReference, "artist">
+	artist?: SchemaValue<Person | IdReference, "artist">
 	/** The individual who adds color to inked drawings. */
-	"colorist"?: SchemaValue<Person | IdReference, "colorist">
+	colorist?: SchemaValue<Person | IdReference, "colorist">
 	/** The individual who traces over the pencil drawings in ink after pencils are complete. */
-	"inker"?: SchemaValue<Person | IdReference, "inker">
+	inker?: SchemaValue<Person | IdReference, "inker">
 	/** The individual who adds lettering, including speech balloons and sound effects, to artwork. */
-	"letterer"?: SchemaValue<Person | IdReference, "letterer">
+	letterer?: SchemaValue<Person | IdReference, "letterer">
 	/** The individual who draws the primary narrative artwork. */
-	"penciler"?: SchemaValue<Person | IdReference, "penciler">
+	penciler?: SchemaValue<Person | IdReference, "penciler">
 	/** A description of the variant cover for the issue, if the issue is a variant printing. For example, "Bryan Hitch Variant Cover" or "2nd Printing Variant". */
-	"variantCover"?: SchemaValue<Text, "variantCover">
+	variantCover?: SchemaValue<Text, "variantCover">
 }
 interface ComicIssueLeaf extends ComicIssueBase {
 	type: "ComicIssue"
@@ -2285,15 +2259,15 @@ export type ComicSeries = ComicSeriesLeaf
 
 interface ComicStoryBase extends CreativeWorkBase {
 	/** The primary artist for a work in a medium other than pencils or digital line art--for example, if the primary artwork is done in watercolors or digital paints. */
-	"artist"?: SchemaValue<Person | IdReference, "artist">
+	artist?: SchemaValue<Person | IdReference, "artist">
 	/** The individual who adds color to inked drawings. */
-	"colorist"?: SchemaValue<Person | IdReference, "colorist">
+	colorist?: SchemaValue<Person | IdReference, "colorist">
 	/** The individual who traces over the pencil drawings in ink after pencils are complete. */
-	"inker"?: SchemaValue<Person | IdReference, "inker">
+	inker?: SchemaValue<Person | IdReference, "inker">
 	/** The individual who adds lettering, including speech balloons and sound effects, to artwork. */
-	"letterer"?: SchemaValue<Person | IdReference, "letterer">
+	letterer?: SchemaValue<Person | IdReference, "letterer">
 	/** The individual who draws the primary narrative artwork. */
-	"penciler"?: SchemaValue<Person | IdReference, "penciler">
+	penciler?: SchemaValue<Person | IdReference, "penciler">
 }
 interface ComicStoryLeaf extends ComicStoryBase {
 	type: "ComicStory"
@@ -2303,11 +2277,11 @@ export type ComicStory = ComicStoryLeaf | ComicCoverArt
 
 interface CommentBase extends CreativeWorkBase {
 	/** The number of downvotes this question, answer or comment has received from the community. */
-	"downvoteCount"?: SchemaValue<Integer, "downvoteCount">
+	downvoteCount?: SchemaValue<Integer, "downvoteCount">
 	/** The parent of a question, answer or item in general. */
-	"parentItem"?: SchemaValue<Comment | IdReference, "parentItem">
+	parentItem?: SchemaValue<Comment | IdReference, "parentItem">
 	/** The number of upvotes this question, answer or comment has received from the community. */
-	"upvoteCount"?: SchemaValue<Integer, "upvoteCount">
+	upvoteCount?: SchemaValue<Integer, "upvoteCount">
 }
 interface CommentLeaf extends CommentBase {
 	type: "Comment"
@@ -2317,7 +2291,7 @@ export type Comment = CommentLeaf | Answer | CorrectionComment | Question
 
 interface CommentActionBase extends CommunicateActionBase {
 	/** A sub property of result. The Comment created or sent as a result of this action. */
-	"resultComment"?: SchemaValue<Comment | IdReference, "resultComment">
+	resultComment?: SchemaValue<Comment | IdReference, "resultComment">
 }
 interface CommentActionLeaf extends CommentActionBase {
 	type: "CommentAction"
@@ -2327,17 +2301,17 @@ export type CommentAction = CommentActionLeaf
 
 interface CommunicateActionBase extends ActionBase {
 	/** The subject matter of the content. */
-	"about"?: SchemaValue<Thing | IdReference, "about">
+	about?: SchemaValue<Thing | IdReference, "about">
 	/** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
-	"inLanguage"?: SchemaValue<Language | Text | IdReference, "inLanguage">
+	inLanguage?: SchemaValue<Language | Text | IdReference, "inLanguage">
 	/**
 	 * A sub property of instrument. The language used on this action.
 	 *
 	 * @deprecated Consider using https://schema.org/inLanguage instead.
 	 */
-	"language"?: SchemaValue<Language | IdReference, "language">
+	language?: SchemaValue<Language | IdReference, "language">
 	/** A sub property of participant. The participant who is at the receiving end of the action. */
-	"recipient"?: SchemaValue<
+	recipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"recipient"
 	>
@@ -2375,19 +2349,18 @@ export type CompleteDataFeed = CompleteDataFeedLeaf
 
 interface CompoundPriceSpecificationBase extends PriceSpecificationBase {
 	/** This property links to all {@link https://schema.org/UnitPriceSpecification UnitPriceSpecification} nodes that apply in parallel for the {@link https://schema.org/CompoundPriceSpecification CompoundPriceSpecification} node. */
-	"priceComponent"?: SchemaValue<
+	priceComponent?: SchemaValue<
 		UnitPriceSpecification | IdReference,
 		"priceComponent"
 	>
 	/** Defines the type of a price specified for an offered product, for example a list price, a (temporary) sale price or a manufacturer suggested retail price. If multiple prices are specified for an offer the {@link https://schema.org/priceType priceType} property can be used to identify the type of each such specified price. The value of priceType can be specified as a value from enumeration PriceTypeEnumeration or as a free form text string for price types that are not already predefined in PriceTypeEnumeration. */
-	"priceType"?: SchemaValue<
+	priceType?: SchemaValue<
 		PriceTypeEnumeration | Text | IdReference,
 		"priceType"
 	>
 }
 interface CompoundPriceSpecificationLeaf
-	extends CompoundPriceSpecificationBase
-{
+	extends CompoundPriceSpecificationBase {
 	type: "CompoundPriceSpecification"
 }
 /** A compound price specification is one that bundles multiple prices that all apply in combination for different dimensions of consumption. Use the name property of the attached unit price specification for indicating the dimension of a price component (e.g. "electricity" or "final cleaning"). */
@@ -2424,12 +2397,12 @@ export type Consortium = ConsortiumLeaf | string
 
 interface ConstraintNodeBase extends ThingBase {
 	/** Indicates a property used as a constraint. For example, in the definition of a {@link https://schema.org/StatisticalVariable StatisticalVariable}. The value is a property, either from within Schema.org or from other compatible (e.g. RDF) systems such as DataCommons.org or Wikidata.org. */
-	"constraintProperty"?: SchemaValue<
+	constraintProperty?: SchemaValue<
 		Property | URL | IdReference,
 		"constraintProperty"
 	>
 	/** Indicates the number of constraints property values defined for a particular {@link https://schema.org/ConstraintNode ConstraintNode} such as {@link https://schema.org/StatisticalVariable StatisticalVariable}. This helps applications understand if they have access to a sufficiently complete description of a {@link https://schema.org/StatisticalVariable StatisticalVariable} or other construct that is defined using properties on template-style nodes. */
-	"numConstraints"?: SchemaValue<Integer, "numConstraints">
+	numConstraints?: SchemaValue<Integer, "numConstraints">
 }
 interface ConstraintNodeLeaf extends ConstraintNodeBase {
 	type: "ConstraintNode"
@@ -2439,15 +2412,12 @@ export type ConstraintNode = ConstraintNodeLeaf | StatisticalVariable
 
 interface ConsumeActionBase extends ActionBase {
 	/** A set of requirements that must be fulfilled in order to perform an Action. If more than one value is specified, fulfilling one set of requirements will allow the Action to be performed. */
-	"actionAccessibilityRequirement"?: SchemaValue<
+	actionAccessibilityRequirement?: SchemaValue<
 		ActionAccessSpecification | IdReference,
 		"actionAccessibilityRequirement"
 	>
 	/** An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it. */
-	"expectsAcceptanceOf"?: SchemaValue<
-		Offer | IdReference,
-		"expectsAcceptanceOf"
-	>
+	expectsAcceptanceOf?: SchemaValue<Offer | IdReference, "expectsAcceptanceOf">
 }
 interface ConsumeActionLeaf extends ConsumeActionBase {
 	type: "ConsumeAction"
@@ -2473,33 +2443,30 @@ export type ContactPage = ContactPageLeaf
 
 interface ContactPointBase extends ThingBase {
 	/** The geographic area where a service or offered item is provided. */
-	"areaServed"?: SchemaValue<
+	areaServed?: SchemaValue<
 		AdministrativeArea | GeoShape | Place | Text | IdReference,
 		"areaServed"
 	>
 	/** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/inLanguage inLanguage}. */
-	"availableLanguage"?: SchemaValue<
+	availableLanguage?: SchemaValue<
 		Language | Text | IdReference,
 		"availableLanguage"
 	>
 	/** An option available on this contact point (e.g. a toll-free number or support for hearing-impaired callers). */
-	"contactOption"?: SchemaValue<
-		ContactPointOption | IdReference,
-		"contactOption"
-	>
+	contactOption?: SchemaValue<ContactPointOption | IdReference, "contactOption">
 	/** A person or organization can have different contact points, for different purposes. For example, a sales contact point, a PR contact point and so on. This property is used to specify the kind of contact point. */
-	"contactType"?: SchemaValue<Text, "contactType">
+	contactType?: SchemaValue<Text, "contactType">
 	/** Email address. */
-	"email"?: SchemaValue<Text, "email">
+	email?: SchemaValue<Text, "email">
 	/** The fax number. */
-	"faxNumber"?: SchemaValue<Text, "faxNumber">
+	faxNumber?: SchemaValue<Text, "faxNumber">
 	/** The hours during which this service or contact is available. */
-	"hoursAvailable"?: SchemaValue<
+	hoursAvailable?: SchemaValue<
 		OpeningHoursSpecification | IdReference,
 		"hoursAvailable"
 	>
 	/** The product or service this support contact point is related to (such as product support for a particular product line). This can be a specific product or product line (e.g. "iPhone") or a general category of products or services (e.g. "smartphones"). */
-	"productSupported"?: SchemaValue<
+	productSupported?: SchemaValue<
 		Product | Text | IdReference,
 		"productSupported"
 	>
@@ -2508,12 +2475,12 @@ interface ContactPointBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/areaServed instead.
 	 */
-	"serviceArea"?: SchemaValue<
+	serviceArea?: SchemaValue<
 		AdministrativeArea | GeoShape | Place | IdReference,
 		"serviceArea"
 	>
 	/** The telephone number. */
-	"telephone"?: SchemaValue<Text, "telephone">
+	telephone?: SchemaValue<Text, "telephone">
 }
 export interface ContactPointLeaf extends ContactPointBase {
 	type: "ContactPoint"
@@ -2563,14 +2530,14 @@ export type Conversation = ConversationLeaf
 
 interface CookActionBase extends ActionBase {
 	/** A sub property of location. The specific food establishment where the action occurred. */
-	"foodEstablishment"?: SchemaValue<
+	foodEstablishment?: SchemaValue<
 		FoodEstablishment | Place | IdReference,
 		"foodEstablishment"
 	>
 	/** A sub property of location. The specific food event where the action occurred. */
-	"foodEvent"?: SchemaValue<FoodEvent | IdReference, "foodEvent">
+	foodEvent?: SchemaValue<FoodEvent | IdReference, "foodEvent">
 	/** A sub property of instrument. The recipe/instructions used to perform the action. */
-	"recipe"?: SchemaValue<Recipe | IdReference, "recipe">
+	recipe?: SchemaValue<Recipe | IdReference, "recipe">
 }
 interface CookActionLeaf extends CookActionBase {
 	type: "CookAction"
@@ -2580,7 +2547,7 @@ export type CookAction = CookActionLeaf
 
 interface CorporationBase extends OrganizationBase {
 	/** The exchange traded instrument associated with a Corporation object. The tickerSymbol is expressed as an exchange and an instrument name separated by a space character. For the exchange component of the tickerSymbol attribute, we recommend using the controlled vocabulary of Market Identifier Codes (MIC) specified in ISO 15022. */
-	"tickerSymbol"?: SchemaValue<Text, "tickerSymbol">
+	tickerSymbol?: SchemaValue<Text, "tickerSymbol">
 }
 interface CorporationLeaf extends CorporationBase {
 	type: "Corporation"
@@ -2602,49 +2569,46 @@ export type Country = CountryLeaf | string
 
 interface CourseBase extends CreativeWorkBase, LearningResourceBase {
 	/** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/inLanguage inLanguage}. */
-	"availableLanguage"?: SchemaValue<
+	availableLanguage?: SchemaValue<
 		Language | Text | IdReference,
 		"availableLanguage"
 	>
 	/** The identifier for the {@link https://schema.org/Course Course} used by the course {@link https://schema.org/provider provider} (e.g. CS101 or 6.001). */
-	"courseCode"?: SchemaValue<Text, "courseCode">
+	courseCode?: SchemaValue<Text, "courseCode">
 	/** Requirements for taking the Course. May be completion of another {@link https://schema.org/Course Course} or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using {@link https://schema.org/AlignmentObject AlignmentObject}. */
-	"coursePrerequisites"?: SchemaValue<
+	coursePrerequisites?: SchemaValue<
 		AlignmentObject | Course | Text | IdReference,
 		"coursePrerequisites"
 	>
 	/** A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program. */
-	"educationalCredentialAwarded"?: SchemaValue<
+	educationalCredentialAwarded?: SchemaValue<
 		EducationalOccupationalCredential | Text | URL | IdReference,
 		"educationalCredentialAwarded"
 	>
 	/** A financial aid type or program which students may use to pay for tuition or fees associated with the program. */
-	"financialAidEligible"?: SchemaValue<
+	financialAidEligible?: SchemaValue<
 		DefinedTerm | Text | IdReference,
 		"financialAidEligible"
 	>
 	/** An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students. */
-	"hasCourseInstance"?: SchemaValue<
+	hasCourseInstance?: SchemaValue<
 		CourseInstance | IdReference,
 		"hasCourseInstance"
 	>
 	/** The number of credits or units awarded by a Course or required to complete an EducationalOccupationalProgram. */
-	"numberOfCredits"?: SchemaValue<
+	numberOfCredits?: SchemaValue<
 		Integer | StructuredValue | IdReference,
 		"numberOfCredits"
 	>
 	/** A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program. */
-	"occupationalCredentialAwarded"?: SchemaValue<
+	occupationalCredentialAwarded?: SchemaValue<
 		EducationalOccupationalCredential | Text | URL | IdReference,
 		"occupationalCredentialAwarded"
 	>
 	/** Indicates (typically several) Syllabus entities that lay out what each section of the overall course will cover. */
-	"syllabusSections"?: SchemaValue<Syllabus | IdReference, "syllabusSections">
+	syllabusSections?: SchemaValue<Syllabus | IdReference, "syllabusSections">
 	/** The total number of students that have enrolled in the history of the course. */
-	"totalHistoricalEnrollment"?: SchemaValue<
-		Integer,
-		"totalHistoricalEnrollment"
-	>
+	totalHistoricalEnrollment?: SchemaValue<Integer, "totalHistoricalEnrollment">
 }
 interface CourseLeaf extends CourseBase {
 	type: "Course"
@@ -2654,13 +2618,13 @@ export type Course = CourseLeaf
 
 interface CourseInstanceBase extends EventBase {
 	/** The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous). */
-	"courseMode"?: SchemaValue<Text | URL, "courseMode">
+	courseMode?: SchemaValue<Text | URL, "courseMode">
 	/** Represents the length and pace of a course, expressed as a {@link https://schema.org/Schedule Schedule}. */
-	"courseSchedule"?: SchemaValue<Schedule | IdReference, "courseSchedule">
+	courseSchedule?: SchemaValue<Schedule | IdReference, "courseSchedule">
 	/** The amount of work expected of students taking the course, often provided as a figure per week or per month, and may be broken down by type. For example, "2 hours of lectures, 1 hour of lab work and 3 hours of independent study per week". */
-	"courseWorkload"?: SchemaValue<Text, "courseWorkload">
+	courseWorkload?: SchemaValue<Text, "courseWorkload">
 	/** A person assigned to instruct or provide instructional assistance for the {@link https://schema.org/CourseInstance CourseInstance}. */
-	"instructor"?: SchemaValue<Person | IdReference, "instructor">
+	instructor?: SchemaValue<Person | IdReference, "instructor">
 }
 interface CourseInstanceLeaf extends CourseInstanceBase {
 	type: "CourseInstance"
@@ -2701,99 +2665,96 @@ export type CreateAction =
 
 interface CreativeWorkBase extends ThingBase {
 	/** The subject matter of the content. */
-	"about"?: SchemaValue<Thing | IdReference, "about">
+	about?: SchemaValue<Thing | IdReference, "about">
 	/** An abstract is a short description that summarizes a {@link https://schema.org/CreativeWork CreativeWork}. */
-	"abstract"?: SchemaValue<Text, "abstract">
+	abstract?: SchemaValue<Text, "abstract">
 	/** Indicates that the resource is compatible with the referenced accessibility API. Values should be drawn from the {@link https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityAPI-vocabulary approved vocabulary}. */
-	"accessibilityAPI"?: SchemaValue<Text, "accessibilityAPI">
+	accessibilityAPI?: SchemaValue<Text, "accessibilityAPI">
 	/** Identifies input methods that are sufficient to fully control the described resource. Values should be drawn from the {@link https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityControl-vocabulary approved vocabulary}. */
-	"accessibilityControl"?: SchemaValue<Text, "accessibilityControl">
+	accessibilityControl?: SchemaValue<Text, "accessibilityControl">
 	/** Content features of the resource, such as accessible media, alternatives and supported enhancements for accessibility. Values should be drawn from the {@link https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityFeature-vocabulary approved vocabulary}. */
-	"accessibilityFeature"?: SchemaValue<Text, "accessibilityFeature">
+	accessibilityFeature?: SchemaValue<Text, "accessibilityFeature">
 	/** A characteristic of the described resource that is physiologically dangerous to some users. Related to WCAG 2.0 guideline 2.3. Values should be drawn from the {@link https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityHazard-vocabulary approved vocabulary}. */
-	"accessibilityHazard"?: SchemaValue<Text, "accessibilityHazard">
+	accessibilityHazard?: SchemaValue<Text, "accessibilityHazard">
 	/** A human-readable summary of specific accessibility features or deficiencies, consistent with the other accessibility metadata but expressing subtleties such as "short descriptions are present but long descriptions will be needed for non-visual users" or "short descriptions are present and no long descriptions are needed." */
-	"accessibilitySummary"?: SchemaValue<Text, "accessibilitySummary">
+	accessibilitySummary?: SchemaValue<Text, "accessibilitySummary">
 	/** The human sensory perceptual system or cognitive faculty through which a person may process or perceive information. Values should be drawn from the {@link https://www.w3.org/2021/a11y-discov-vocab/latest/#accessMode-vocabulary approved vocabulary}. */
-	"accessMode"?: SchemaValue<Text, "accessMode">
+	accessMode?: SchemaValue<Text, "accessMode">
 	/** A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource. Values should be drawn from the {@link https://www.w3.org/2021/a11y-discov-vocab/latest/#accessModeSufficient-vocabulary approved vocabulary}. */
-	"accessModeSufficient"?: SchemaValue<
+	accessModeSufficient?: SchemaValue<
 		ItemList | IdReference,
 		"accessModeSufficient"
 	>
 	/** Specifies the Person that is legally accountable for the CreativeWork. */
-	"accountablePerson"?: SchemaValue<Person | IdReference, "accountablePerson">
+	accountablePerson?: SchemaValue<Person | IdReference, "accountablePerson">
 	/** Indicates a page documenting how licenses can be purchased or otherwise acquired, for the current item. */
-	"acquireLicensePage"?: SchemaValue<
+	acquireLicensePage?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"acquireLicensePage"
 	>
 	/** The overall rating, based on a collection of reviews or ratings, of the item. */
-	"aggregateRating"?: SchemaValue<
+	aggregateRating?: SchemaValue<
 		AggregateRating | IdReference,
 		"aggregateRating"
 	>
 	/** A secondary title of the CreativeWork. */
-	"alternativeHeadline"?: SchemaValue<Text, "alternativeHeadline">
+	alternativeHeadline?: SchemaValue<Text, "alternativeHeadline">
 	/** Indicates a page or other link involved in archival of a {@link https://schema.org/CreativeWork CreativeWork}. In the case of {@link https://schema.org/MediaReview MediaReview}, the items in a {@link https://schema.org/MediaReviewItem MediaReviewItem} may often become inaccessible, but be archived by archival, journalistic, activist, or law enforcement organizations. In such cases, the referenced page may not directly publish the content. */
-	"archivedAt"?: SchemaValue<URL | WebPage | IdReference, "archivedAt">
+	archivedAt?: SchemaValue<URL | WebPage | IdReference, "archivedAt">
 	/** The item being described is intended to assess the competency or learning outcome defined by the referenced term. */
-	"assesses"?: SchemaValue<DefinedTerm | Text | IdReference, "assesses">
+	assesses?: SchemaValue<DefinedTerm | Text | IdReference, "assesses">
 	/** A media object that encodes this CreativeWork. This property is a synonym for encoding. */
-	"associatedMedia"?: SchemaValue<MediaObject | IdReference, "associatedMedia">
+	associatedMedia?: SchemaValue<MediaObject | IdReference, "associatedMedia">
 	/** An intended audience, i.e. a group for whom something was created. */
-	"audience"?: SchemaValue<Audience | IdReference, "audience">
+	audience?: SchemaValue<Audience | IdReference, "audience">
 	/** An embedded audio object. */
-	"audio"?: SchemaValue<
+	audio?: SchemaValue<
 		AudioObject | Clip | MusicRecording | IdReference,
 		"audio"
 	>
 	/** The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably. */
-	"author"?: SchemaValue<Organization | Person | IdReference, "author">
+	author?: SchemaValue<Organization | Person | IdReference, "author">
 	/** An award won by or for this item. */
-	"award"?: SchemaValue<Text, "award">
+	award?: SchemaValue<Text, "award">
 	/**
 	 * Awards won by or for this item.
 	 *
 	 * @deprecated Consider using https://schema.org/award instead.
 	 */
-	"awards"?: SchemaValue<Text, "awards">
+	awards?: SchemaValue<Text, "awards">
 	/** Fictional person connected with a creative work. */
-	"character"?: SchemaValue<Person | IdReference, "character">
+	character?: SchemaValue<Person | IdReference, "character">
 	/** A citation or reference to another creative work, such as another publication, web page, scholarly article, etc. */
-	"citation"?: SchemaValue<CreativeWork | Text | IdReference, "citation">
+	citation?: SchemaValue<CreativeWork | Text | IdReference, "citation">
 	/** Comments, typically from users. */
-	"comment"?: SchemaValue<Comment | IdReference, "comment">
+	comment?: SchemaValue<Comment | IdReference, "comment">
 	/** The number of comments this CreativeWork (e.g. Article, Question or Answer) has received. This is most applicable to works published in Web sites with commenting system; additional comments may exist elsewhere. */
-	"commentCount"?: SchemaValue<Integer, "commentCount">
+	commentCount?: SchemaValue<Integer, "commentCount">
 	/**
 	 * Conditions that affect the availability of, or method(s) of access to, an item. Typically used for real world items such as an {@link https://schema.org/ArchiveComponent ArchiveComponent} held by an {@link https://schema.org/ArchiveOrganization ArchiveOrganization}. This property is not suitable for use as a general Web access control mechanism. It is expressed only in natural language.
 	 *
 	 * For example "Available by appointment from the Reading Room" or "Accessible only from logged-in accounts ".
 	 */
-	"conditionsOfAccess"?: SchemaValue<Text, "conditionsOfAccess">
+	conditionsOfAccess?: SchemaValue<Text, "conditionsOfAccess">
 	/** The location depicted or described in the content. For example, the location in a photograph or painting. */
-	"contentLocation"?: SchemaValue<Place | IdReference, "contentLocation">
+	contentLocation?: SchemaValue<Place | IdReference, "contentLocation">
 	/** Official rating of a piece of content—for example, 'MPAA PG-13'. */
-	"contentRating"?: SchemaValue<Rating | Text | IdReference, "contentRating">
+	contentRating?: SchemaValue<Rating | Text | IdReference, "contentRating">
 	/** The specific time described by a creative work, for works (e.g. articles, video objects etc.) that emphasise a particular moment within an Event. */
-	"contentReferenceTime"?: SchemaValue<DateTime, "contentReferenceTime">
+	contentReferenceTime?: SchemaValue<DateTime, "contentReferenceTime">
 	/** A secondary contributor to the CreativeWork or Event. */
-	"contributor"?: SchemaValue<
-		Organization | Person | IdReference,
-		"contributor"
-	>
+	contributor?: SchemaValue<Organization | Person | IdReference, "contributor">
 	/** The party holding the legal copyright to the CreativeWork. */
-	"copyrightHolder"?: SchemaValue<
+	copyrightHolder?: SchemaValue<
 		Organization | Person | IdReference,
 		"copyrightHolder"
 	>
 	/** Text of a notice appropriate for describing the copyright aspects of this Creative Work, ideally indicating the owner of the copyright for the Work. */
-	"copyrightNotice"?: SchemaValue<Text, "copyrightNotice">
+	copyrightNotice?: SchemaValue<Text, "copyrightNotice">
 	/** The year during which the claimed copyright for the CreativeWork was first asserted. */
-	"copyrightYear"?: SchemaValue<Number, "copyrightYear">
+	copyrightYear?: SchemaValue<Number, "copyrightYear">
 	/** Indicates a correction to a {@link https://schema.org/CreativeWork CreativeWork}, either via a {@link https://schema.org/CorrectionComment CorrectionComment}, textually or in another document. */
-	"correction"?: SchemaValue<
+	correction?: SchemaValue<
 		CorrectionComment | Text | URL | IdReference,
 		"correction"
 	>
@@ -2804,24 +2765,24 @@ interface CreativeWorkBase extends ThingBase {
 	 *
 	 * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
 	 */
-	"countryOfOrigin"?: SchemaValue<Country | IdReference, "countryOfOrigin">
+	countryOfOrigin?: SchemaValue<Country | IdReference, "countryOfOrigin">
 	/** The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle. */
-	"creativeWorkStatus"?: SchemaValue<
+	creativeWorkStatus?: SchemaValue<
 		DefinedTerm | Text | IdReference,
 		"creativeWorkStatus"
 	>
 	/** The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. */
-	"creator"?: SchemaValue<Organization | Person | IdReference, "creator">
+	creator?: SchemaValue<Organization | Person | IdReference, "creator">
 	/** Text that can be used to credit person(s) and/or organization(s) associated with a published Creative Work. */
-	"creditText"?: SchemaValue<Text, "creditText">
+	creditText?: SchemaValue<Text, "creditText">
 	/** The date on which the CreativeWork was created or the item was added to a DataFeed. */
-	"dateCreated"?: SchemaValue<Date | DateTime, "dateCreated">
+	dateCreated?: SchemaValue<Date | DateTime, "dateCreated">
 	/** The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed. */
-	"dateModified"?: SchemaValue<Date | DateTime, "dateModified">
+	dateModified?: SchemaValue<Date | DateTime, "dateModified">
 	/** Date of first broadcast/publication. */
-	"datePublished"?: SchemaValue<Date | DateTime, "datePublished">
+	datePublished?: SchemaValue<Date | DateTime, "datePublished">
 	/** A link to the page containing the comments of the CreativeWork. */
-	"discussionUrl"?: SchemaValue<URL, "discussionUrl">
+	discussionUrl?: SchemaValue<URL, "discussionUrl">
 	/**
 	 * An {@link https://eidr.org/ EIDR} (Entertainment Identifier Registry) {@link https://schema.org/identifier identifier} representing a specific edit / edition for a work of film or television.
 	 *
@@ -2829,30 +2790,30 @@ interface CreativeWorkBase extends ThingBase {
 	 *
 	 * Since schema.org types like {@link https://schema.org/Movie Movie} and {@link https://schema.org/TVEpisode TVEpisode} can be used for both works and their multiple expressions, it is possible to use {@link https://schema.org/titleEIDR titleEIDR} alone (for a general description), or alongside {@link https://schema.org/editEIDR editEIDR} for a more edit-specific description.
 	 */
-	"editEIDR"?: SchemaValue<Text | URL, "editEIDR">
+	editEIDR?: SchemaValue<Text | URL, "editEIDR">
 	/** Specifies the Person who edited the CreativeWork. */
-	"editor"?: SchemaValue<Person | IdReference, "editor">
+	editor?: SchemaValue<Person | IdReference, "editor">
 	/**
 	 * An alignment to an established educational framework.
 	 *
 	 * This property should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource {@link https://schema.org/teaches teaches} or {@link https://schema.org/assesses assesses} a competency.
 	 */
-	"educationalAlignment"?: SchemaValue<
+	educationalAlignment?: SchemaValue<
 		AlignmentObject | IdReference,
 		"educationalAlignment"
 	>
 	/** The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators. */
-	"educationalLevel"?: SchemaValue<
+	educationalLevel?: SchemaValue<
 		DefinedTerm | Text | URL | IdReference,
 		"educationalLevel"
 	>
 	/** The purpose of a work in the context of education; for example, 'assignment', 'group work'. */
-	"educationalUse"?: SchemaValue<
+	educationalUse?: SchemaValue<
 		DefinedTerm | Text | IdReference,
 		"educationalUse"
 	>
 	/** A media object that encodes this CreativeWork. This property is a synonym for associatedMedia. */
-	"encoding"?: SchemaValue<MediaObject | IdReference, "encoding">
+	encoding?: SchemaValue<MediaObject | IdReference, "encoding">
 	/**
 	 * Media type typically expressed using a MIME format (see {@link http://www.iana.org/assignments/media-types/media-types.xhtml IANA site} and {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types MDN reference}), e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.
 	 *
@@ -2860,48 +2821,48 @@ interface CreativeWorkBase extends ThingBase {
 	 *
 	 * Unregistered or niche encoding and file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia/Wikidata entry.
 	 */
-	"encodingFormat"?: SchemaValue<Text | URL, "encodingFormat">
+	encodingFormat?: SchemaValue<Text | URL, "encodingFormat">
 	/**
 	 * A media object that encodes this CreativeWork.
 	 *
 	 * @deprecated Consider using https://schema.org/encoding instead.
 	 */
-	"encodings"?: SchemaValue<MediaObject | IdReference, "encodings">
+	encodings?: SchemaValue<MediaObject | IdReference, "encodings">
 	/** A creative work that this work is an example/instance/realization/derivation of. */
-	"exampleOfWork"?: SchemaValue<CreativeWork | IdReference, "exampleOfWork">
+	exampleOfWork?: SchemaValue<CreativeWork | IdReference, "exampleOfWork">
 	/** Date the content expires and is no longer useful or available. For example a {@link https://schema.org/VideoObject VideoObject} or {@link https://schema.org/NewsArticle NewsArticle} whose availability or relevance is time-limited, or a {@link https://schema.org/ClaimReview ClaimReview} fact check whose publisher wants to indicate that it may no longer be relevant (or helpful to highlight) after some date. */
-	"expires"?: SchemaValue<Date | DateTime, "expires">
+	expires?: SchemaValue<Date | DateTime, "expires">
 	/**
 	 * Media type, typically MIME format (see {@link http://www.iana.org/assignments/media-types/media-types.xhtml IANA site}) of the content, e.g. application/zip of a SoftwareApplication binary. In cases where a CreativeWork has several media type representations, 'encoding' can be used to indicate each MediaObject alongside particular fileFormat information. Unregistered or niche file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia entry.
 	 *
 	 * @deprecated Consider using https://schema.org/encodingFormat instead.
 	 */
-	"fileFormat"?: SchemaValue<Text | URL, "fileFormat">
+	fileFormat?: SchemaValue<Text | URL, "fileFormat">
 	/** A person or organization that supports (sponsors) something through some kind of financial contribution. */
-	"funder"?: SchemaValue<Organization | Person | IdReference, "funder">
+	funder?: SchemaValue<Organization | Person | IdReference, "funder">
 	/** A {@link https://schema.org/Grant Grant} that directly or indirectly provide funding or sponsorship for this item. See also {@link https://schema.org/ownershipFundingInfo ownershipFundingInfo}. */
-	"funding"?: SchemaValue<Grant | IdReference, "funding">
+	funding?: SchemaValue<Grant | IdReference, "funding">
 	/** Genre of the creative work, broadcast channel or group. */
-	"genre"?: SchemaValue<Text | URL, "genre">
+	genre?: SchemaValue<Text | URL, "genre">
 	/** Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense). */
-	"hasPart"?: SchemaValue<CreativeWork | IdReference, "hasPart">
+	hasPart?: SchemaValue<CreativeWork | IdReference, "hasPart">
 	/** Headline of the article. */
-	"headline"?: SchemaValue<Text, "headline">
+	headline?: SchemaValue<Text, "headline">
 	/** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
-	"inLanguage"?: SchemaValue<Language | Text | IdReference, "inLanguage">
+	inLanguage?: SchemaValue<Language | Text | IdReference, "inLanguage">
 	/** The number of interactions for the CreativeWork using the WebSite or SoftwareApplication. The most specific child type of InteractionCounter should be used. */
-	"interactionStatistic"?: SchemaValue<
+	interactionStatistic?: SchemaValue<
 		InteractionCounter | IdReference,
 		"interactionStatistic"
 	>
 	/** The predominant mode of learning supported by the learning resource. Acceptable values are 'active', 'expositive', or 'mixed'. */
-	"interactivityType"?: SchemaValue<Text, "interactivityType">
+	interactivityType?: SchemaValue<Text, "interactivityType">
 	/** Used to indicate a specific claim contained, implied, translated or refined from the content of a {@link https://schema.org/MediaObject MediaObject} or other {@link https://schema.org/CreativeWork CreativeWork}. The interpreting party can be indicated using {@link https://schema.org/claimInterpreter claimInterpreter}. */
-	"interpretedAsClaim"?: SchemaValue<Claim | IdReference, "interpretedAsClaim">
+	interpretedAsClaim?: SchemaValue<Claim | IdReference, "interpretedAsClaim">
 	/** A flag to signal that the item, event, or place is accessible for free. */
-	"isAccessibleForFree"?: SchemaValue<Boolean, "isAccessibleForFree">
+	isAccessibleForFree?: SchemaValue<Boolean, "isAccessibleForFree">
 	/** A resource from which this work is derived or from which it is a modification or adaptation. */
-	"isBasedOn"?: SchemaValue<
+	isBasedOn?: SchemaValue<
 		CreativeWork | Product | URL | IdReference,
 		"isBasedOn"
 	>
@@ -2910,146 +2871,140 @@ interface CreativeWorkBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/isBasedOn instead.
 	 */
-	"isBasedOnUrl"?: SchemaValue<
+	isBasedOnUrl?: SchemaValue<
 		CreativeWork | Product | URL | IdReference,
 		"isBasedOnUrl"
 	>
 	/** Indicates whether this content is family friendly. */
-	"isFamilyFriendly"?: SchemaValue<Boolean, "isFamilyFriendly">
+	isFamilyFriendly?: SchemaValue<Boolean, "isFamilyFriendly">
 	/** Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of. */
-	"isPartOf"?: SchemaValue<CreativeWork | URL | IdReference, "isPartOf">
+	isPartOf?: SchemaValue<CreativeWork | URL | IdReference, "isPartOf">
 	/** Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property. */
-	"keywords"?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
+	keywords?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
 	/** The predominant type or kind characterizing the learning resource. For example, 'presentation', 'handout'. */
-	"learningResourceType"?: SchemaValue<
+	learningResourceType?: SchemaValue<
 		DefinedTerm | Text | IdReference,
 		"learningResourceType"
 	>
 	/** A license document that applies to this content, typically indicated by URL. */
-	"license"?: SchemaValue<CreativeWork | URL | IdReference, "license">
+	license?: SchemaValue<CreativeWork | URL | IdReference, "license">
 	/** The location where the CreativeWork was created, which may not be the same as the location depicted in the CreativeWork. */
-	"locationCreated"?: SchemaValue<Place | IdReference, "locationCreated">
+	locationCreated?: SchemaValue<Place | IdReference, "locationCreated">
 	/** Indicates the primary entity described in some page or other CreativeWork. */
-	"mainEntity"?: SchemaValue<Thing | IdReference, "mainEntity">
+	mainEntity?: SchemaValue<Thing | IdReference, "mainEntity">
 	/** A maintainer of a {@link https://schema.org/Dataset Dataset}, software package ({@link https://schema.org/SoftwareApplication SoftwareApplication}), or other {@link https://schema.org/Project Project}. A maintainer is a {@link https://schema.org/Person Person} or {@link https://schema.org/Organization Organization} that manages contributions to, and/or publication of, some (typically complex) artifact. It is common for distributions of software and data to be based on "upstream" sources. When {@link https://schema.org/maintainer maintainer} is applied to a specific version of something e.g. a particular version or packaging of a {@link https://schema.org/Dataset Dataset}, it is always possible that the upstream source has a different maintainer. The {@link https://schema.org/isBasedOn isBasedOn} property can be used to indicate such relationships between datasets to make the different maintenance roles clear. Similarly in the case of software, a package may have dedicated maintainers working on integration into software distributions such as Ubuntu, as well as upstream maintainers of the underlying work. */
-	"maintainer"?: SchemaValue<Organization | Person | IdReference, "maintainer">
+	maintainer?: SchemaValue<Organization | Person | IdReference, "maintainer">
 	/** A material that something is made from, e.g. leather, wool, cotton, paper. */
-	"material"?: SchemaValue<Product | Text | URL | IdReference, "material">
+	material?: SchemaValue<Product | Text | URL | IdReference, "material">
 	/** The quantity of the materials being described or an expression of the physical space they occupy. */
-	"materialExtent"?: SchemaValue<
+	materialExtent?: SchemaValue<
 		QuantitativeValue | Text | IdReference,
 		"materialExtent"
 	>
 	/** Indicates that the CreativeWork contains a reference to, but is not necessarily about a concept. */
-	"mentions"?: SchemaValue<Thing | IdReference, "mentions">
+	mentions?: SchemaValue<Thing | IdReference, "mentions">
 	/** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"offers"?: SchemaValue<Demand | Offer | IdReference, "offers">
+	offers?: SchemaValue<Demand | Offer | IdReference, "offers">
 	/** A pattern that something has, for example 'polka dot', 'striped', 'Canadian flag'. Values are typically expressed as text, although links to controlled value schemes are also supported. */
-	"pattern"?: SchemaValue<DefinedTerm | Text | IdReference, "pattern">
+	pattern?: SchemaValue<DefinedTerm | Text | IdReference, "pattern">
 	/** The position of an item in a series or sequence of items. */
-	"position"?: SchemaValue<Integer | Text, "position">
+	position?: SchemaValue<Integer | Text, "position">
 	/** The person or organization who produced the work (e.g. music album, movie, TV/radio series etc.). */
-	"producer"?: SchemaValue<Organization | Person | IdReference, "producer">
+	producer?: SchemaValue<Organization | Person | IdReference, "producer">
 	/** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
-	"provider"?: SchemaValue<Organization | Person | IdReference, "provider">
+	provider?: SchemaValue<Organization | Person | IdReference, "provider">
 	/** A publication event associated with the item. */
-	"publication"?: SchemaValue<PublicationEvent | IdReference, "publication">
+	publication?: SchemaValue<PublicationEvent | IdReference, "publication">
 	/** The publisher of the creative work. */
-	"publisher"?: SchemaValue<Organization | Person | IdReference, "publisher">
+	publisher?: SchemaValue<Organization | Person | IdReference, "publisher">
 	/** The publishing division which published the comic. */
-	"publisherImprint"?: SchemaValue<
-		Organization | IdReference,
-		"publisherImprint"
-	>
+	publisherImprint?: SchemaValue<Organization | IdReference, "publisherImprint">
 	/**
 	 * The publishingPrinciples property indicates (typically via {@link https://schema.org/URL URL}) a document describing the editorial principles of an {@link https://schema.org/Organization Organization} (or individual, e.g. a {@link https://schema.org/Person Person} writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a {@link https://schema.org/CreativeWork CreativeWork} (e.g. {@link https://schema.org/NewsArticle NewsArticle}) the principles are those of the party primarily responsible for the creation of the {@link https://schema.org/CreativeWork CreativeWork}.
 	 *
 	 * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a {@link https://schema.org/funder funder}) can be expressed using schema.org terminology.
 	 */
-	"publishingPrinciples"?: SchemaValue<
+	publishingPrinciples?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"publishingPrinciples"
 	>
 	/** The Event where the CreativeWork was recorded. The CreativeWork may capture all or part of the event. */
-	"recordedAt"?: SchemaValue<Event | IdReference, "recordedAt">
+	recordedAt?: SchemaValue<Event | IdReference, "recordedAt">
 	/** The place and time the release was issued, expressed as a PublicationEvent. */
-	"releasedEvent"?: SchemaValue<PublicationEvent | IdReference, "releasedEvent">
+	releasedEvent?: SchemaValue<PublicationEvent | IdReference, "releasedEvent">
 	/** A review of the item. */
-	"review"?: SchemaValue<Review | IdReference, "review">
+	review?: SchemaValue<Review | IdReference, "review">
 	/**
 	 * Review of the item.
 	 *
 	 * @deprecated Consider using https://schema.org/review instead.
 	 */
-	"reviews"?: SchemaValue<Review | IdReference, "reviews">
+	reviews?: SchemaValue<Review | IdReference, "reviews">
 	/** Indicates (by URL or string) a particular version of a schema used in some CreativeWork. This property was created primarily to indicate the use of a specific schema.org release, e.g. `10.0` as a simple string, or more explicitly via URL, `https://schema.org/docs/releases.html#v10.0`. There may be situations in which other schemas might usefully be referenced this way, e.g. `http://dublincore.org/specifications/dublin-core/dces/1999-07-02/` but this has not been carefully explored in the community. */
-	"schemaVersion"?: SchemaValue<Text | URL, "schemaVersion">
+	schemaVersion?: SchemaValue<Text | URL, "schemaVersion">
 	/** Indicates the date on which the current structured data was generated / published. Typically used alongside {@link https://schema.org/sdPublisher sdPublisher} */
-	"sdDatePublished"?: SchemaValue<Date, "sdDatePublished">
+	sdDatePublished?: SchemaValue<Date, "sdDatePublished">
 	/** A license document that applies to this structured data, typically indicated by URL. */
-	"sdLicense"?: SchemaValue<CreativeWork | URL | IdReference, "sdLicense">
+	sdLicense?: SchemaValue<CreativeWork | URL | IdReference, "sdLicense">
 	/** Indicates the party responsible for generating and publishing the current structured data markup, typically in cases where the structured data is derived automatically from existing published content but published on a different site. For example, student projects and open data initiatives often re-publish existing content with more explicitly structured metadata. The {@link https://schema.org/sdPublisher sdPublisher} property helps make such practices more explicit. */
-	"sdPublisher"?: SchemaValue<
-		Organization | Person | IdReference,
-		"sdPublisher"
-	>
+	sdPublisher?: SchemaValue<Organization | Person | IdReference, "sdPublisher">
 	/** A standardized size of a product or creative work, specified either through a simple textual string (for example 'XL', '32Wx34L'), a QuantitativeValue with a unitCode, or a comprehensive and structured {@link https://schema.org/SizeSpecification SizeSpecification}; in other cases, the {@link https://schema.org/width width}, {@link https://schema.org/height height}, {@link https://schema.org/depth depth} and {@link https://schema.org/weight weight} properties may be more applicable. */
-	"size"?: SchemaValue<
+	size?: SchemaValue<
 		DefinedTerm | QuantitativeValue | SizeSpecification | Text | IdReference,
 		"size"
 	>
 	/** The Organization on whose behalf the creator was working. */
-	"sourceOrganization"?: SchemaValue<
+	sourceOrganization?: SchemaValue<
 		Organization | IdReference,
 		"sourceOrganization"
 	>
 	/** The "spatial" property can be used in cases when more specific properties (e.g. {@link https://schema.org/locationCreated locationCreated}, {@link https://schema.org/spatialCoverage spatialCoverage}, {@link https://schema.org/contentLocation contentLocation}) are not known to be appropriate. */
-	"spatial"?: SchemaValue<Place | IdReference, "spatial">
+	spatial?: SchemaValue<Place | IdReference, "spatial">
 	/** The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York. */
-	"spatialCoverage"?: SchemaValue<Place | IdReference, "spatialCoverage">
+	spatialCoverage?: SchemaValue<Place | IdReference, "spatialCoverage">
 	/** A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event. */
-	"sponsor"?: SchemaValue<Organization | Person | IdReference, "sponsor">
+	sponsor?: SchemaValue<Organization | Person | IdReference, "sponsor">
 	/** The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term. */
-	"teaches"?: SchemaValue<DefinedTerm | Text | IdReference, "teaches">
+	teaches?: SchemaValue<DefinedTerm | Text | IdReference, "teaches">
 	/** The "temporal" property can be used in cases where more specific properties (e.g. {@link https://schema.org/temporalCoverage temporalCoverage}, {@link https://schema.org/dateCreated dateCreated}, {@link https://schema.org/dateModified dateModified}, {@link https://schema.org/datePublished datePublished}) are not known to be appropriate. */
-	"temporal"?: SchemaValue<DateTime | Text, "temporal">
+	temporal?: SchemaValue<DateTime | Text, "temporal">
 	/**
 	 * The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in {@link https://en.wikipedia.org/wiki/ISO_8601#Time_intervals ISO 8601 time interval format}. In the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL. Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945".
 	 *
 	 * Open-ended date ranges can be written with ".." in place of the end date. For example, "2015-11/.." indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated.
 	 */
-	"temporalCoverage"?: SchemaValue<DateTime | Text | URL, "temporalCoverage">
+	temporalCoverage?: SchemaValue<DateTime | Text | URL, "temporalCoverage">
 	/** The textual content of this CreativeWork. */
-	"text"?: SchemaValue<Text, "text">
+	text?: SchemaValue<Text, "text">
 	/** Thumbnail image for an image or video. */
-	"thumbnail"?: SchemaValue<ImageObject | IdReference, "thumbnail">
+	thumbnail?: SchemaValue<ImageObject | IdReference, "thumbnail">
 	/** A thumbnail image relevant to the Thing. */
-	"thumbnailUrl"?: SchemaValue<URL, "thumbnailUrl">
+	thumbnailUrl?: SchemaValue<URL, "thumbnailUrl">
 	/** Approximate or typical time it usually takes to work with or through the content of this work for the typical or target audience. */
-	"timeRequired"?: SchemaValue<Duration | IdReference, "timeRequired">
+	timeRequired?: SchemaValue<Duration | IdReference, "timeRequired">
 	/** The work that this work has been translated from. E.g. 物种起源 is a translationOf “On the Origin of Species”. */
-	"translationOfWork"?: SchemaValue<
+	translationOfWork?: SchemaValue<
 		CreativeWork | IdReference,
 		"translationOfWork"
 	>
 	/** Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market, or that translates during some event. */
-	"translator"?: SchemaValue<Organization | Person | IdReference, "translator">
+	translator?: SchemaValue<Organization | Person | IdReference, "translator">
 	/** The typical expected age range, e.g. '7-9', '11-'. */
-	"typicalAgeRange"?: SchemaValue<Text, "typicalAgeRange">
+	typicalAgeRange?: SchemaValue<Text, "typicalAgeRange">
 	/**
 	 * The schema.org {@link https://schema.org/usageInfo usageInfo} property indicates further information about a {@link https://schema.org/CreativeWork CreativeWork}. This property is applicable both to works that are freely available and to those that require payment or other transactions. It can reference additional information, e.g. community expectations on preferred linking and citation conventions, as well as purchasing details. For something that can be commercially licensed, usageInfo can provide detailed, resource-specific information about licensing options.
 	 *
 	 * This property can be used alongside the license property which indicates license(s) applicable to some piece of content. The usageInfo property can provide information about other licensing options, e.g. acquiring commercial usage rights for an image that is also available under non-commercial creative commons licenses.
 	 */
-	"usageInfo"?: SchemaValue<CreativeWork | URL | IdReference, "usageInfo">
+	usageInfo?: SchemaValue<CreativeWork | URL | IdReference, "usageInfo">
 	/** The version of the CreativeWork embodied by a specified resource. */
-	"version"?: SchemaValue<Number | Text, "version">
+	version?: SchemaValue<Number | Text, "version">
 	/** An embedded video object. */
-	"video"?: SchemaValue<Clip | VideoObject | IdReference, "video">
+	video?: SchemaValue<Clip | VideoObject | IdReference, "video">
 	/** Example/instance/realization/derivation of the concept of this creative work. E.g. the paperback edition, first edition, or e-book. */
-	"workExample"?: SchemaValue<CreativeWork | IdReference, "workExample">
+	workExample?: SchemaValue<CreativeWork | IdReference, "workExample">
 	/** A work that is a translation of the content of this work. E.g. 西遊記 has an English workTranslation “Journey to the West”, a German workTranslation “Monkeys Pilgerfahrt” and a Vietnamese translation Tây du ký bình khảo. */
-	"workTranslation"?: SchemaValue<CreativeWork | IdReference, "workTranslation">
+	workTranslation?: SchemaValue<CreativeWork | IdReference, "workTranslation">
 }
 interface CreativeWorkLeaf extends CreativeWorkBase {
 	type: "CreativeWork"
@@ -3133,34 +3088,34 @@ export type CreativeWork =
 
 interface CreativeWorkSeasonBase extends CreativeWorkBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"endDate"?: SchemaValue<Date | DateTime, "endDate">
+	endDate?: SchemaValue<Date | DateTime, "endDate">
 	/** An episode of a TV, radio or game media within a series or season. */
-	"episode"?: SchemaValue<Episode | IdReference, "episode">
+	episode?: SchemaValue<Episode | IdReference, "episode">
 	/**
 	 * An episode of a TV/radio series or season.
 	 *
 	 * @deprecated Consider using https://schema.org/episode instead.
 	 */
-	"episodes"?: SchemaValue<Episode | IdReference, "episodes">
+	episodes?: SchemaValue<Episode | IdReference, "episodes">
 	/** The number of episodes in this season or series. */
-	"numberOfEpisodes"?: SchemaValue<Integer, "numberOfEpisodes">
+	numberOfEpisodes?: SchemaValue<Integer, "numberOfEpisodes">
 	/** The series to which this episode or season belongs. */
-	"partOfSeries"?: SchemaValue<CreativeWorkSeries | IdReference, "partOfSeries">
+	partOfSeries?: SchemaValue<CreativeWorkSeries | IdReference, "partOfSeries">
 	/** The production company or studio responsible for the item, e.g. series, video game, episode etc. */
-	"productionCompany"?: SchemaValue<
+	productionCompany?: SchemaValue<
 		Organization | IdReference,
 		"productionCompany"
 	>
 	/** Position of the season within an ordered group of seasons. */
-	"seasonNumber"?: SchemaValue<Integer | Text, "seasonNumber">
+	seasonNumber?: SchemaValue<Integer | Text, "seasonNumber">
 	/** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"startDate"?: SchemaValue<Date | DateTime, "startDate">
+	startDate?: SchemaValue<Date | DateTime, "startDate">
 	/** The trailer of a movie or TV/radio series, season, episode, etc. */
-	"trailer"?: SchemaValue<VideoObject | IdReference, "trailer">
+	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface CreativeWorkSeasonLeaf extends CreativeWorkSeasonBase {
 	type: "CreativeWorkSeason"
@@ -3174,11 +3129,11 @@ export type CreativeWorkSeason =
 
 interface CreativeWorkSeriesBase extends CreativeWorkBase, ThingBase {
 	/** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"endDate"?: SchemaValue<Date | DateTime, "endDate">
+	endDate?: SchemaValue<Date | DateTime, "endDate">
 	/** The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication. */
-	"issn"?: SchemaValue<Text, "issn">
+	issn?: SchemaValue<Text, "issn">
 	/** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"startDate"?: SchemaValue<Date | DateTime, "startDate">
+	startDate?: SchemaValue<Date | DateTime, "startDate">
 }
 interface CreativeWorkSeriesLeaf extends CreativeWorkSeriesBase {
 	type: "CreativeWorkSeries"
@@ -3200,8 +3155,7 @@ export type CreativeWorkSeries =
 	| TVSeries
 	| VideoGameSeries
 
-interface CreditCardBase extends LoanOrCreditBase, PaymentCardBase {
-}
+interface CreditCardBase extends LoanOrCreditBase, PaymentCardBase {}
 interface CreditCardLeaf extends CreditCardBase {
 	type: "CreditCard"
 }
@@ -3253,9 +3207,9 @@ export type DanceGroup = DanceGroupLeaf | string
 
 interface DataCatalogBase extends CreativeWorkBase {
 	/** A dataset contained in this catalog. */
-	"dataset"?: SchemaValue<Dataset | IdReference, "dataset">
+	dataset?: SchemaValue<Dataset | IdReference, "dataset">
 	/** A subproperty of {@link https://schema.org/measurementTechnique measurementTechnique} that can be used for specifying specific methods, in particular via {@link https://schema.org/MeasurementMethodEnum MeasurementMethodEnum}. */
-	"measurementMethod"?: SchemaValue<
+	measurementMethod?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementMethod"
 	>
@@ -3268,7 +3222,7 @@ interface DataCatalogBase extends CreativeWorkBase {
 	 *
 	 * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}. The value can also be from an enumeration, organized as a {@link https://schema.org/MeasurementMetholdEnumeration MeasurementMetholdEnumeration}.
 	 */
-	"measurementTechnique"?: SchemaValue<
+	measurementTechnique?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementTechnique"
 	>
@@ -3281,7 +3235,7 @@ export type DataCatalog = DataCatalogLeaf
 
 interface DataDownloadBase extends MediaObjectBase {
 	/** A subproperty of {@link https://schema.org/measurementTechnique measurementTechnique} that can be used for specifying specific methods, in particular via {@link https://schema.org/MeasurementMethodEnum MeasurementMethodEnum}. */
-	"measurementMethod"?: SchemaValue<
+	measurementMethod?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementMethod"
 	>
@@ -3294,7 +3248,7 @@ interface DataDownloadBase extends MediaObjectBase {
 	 *
 	 * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}. The value can also be from an enumeration, organized as a {@link https://schema.org/MeasurementMetholdEnumeration MeasurementMetholdEnumeration}.
 	 */
-	"measurementTechnique"?: SchemaValue<
+	measurementTechnique?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementTechnique"
 	>
@@ -3307,7 +3261,7 @@ export type DataDownload = DataDownloadLeaf
 
 interface DataFeedBase extends DatasetBase {
 	/** An item within a data feed. Data feeds may have many elements. */
-	"dataFeedElement"?: SchemaValue<
+	dataFeedElement?: SchemaValue<
 		DataFeedItem | Text | Thing | IdReference,
 		"dataFeedElement"
 	>
@@ -3320,13 +3274,13 @@ export type DataFeed = DataFeedLeaf | CompleteDataFeed
 
 interface DataFeedItemBase extends ThingBase {
 	/** The date on which the CreativeWork was created or the item was added to a DataFeed. */
-	"dateCreated"?: SchemaValue<Date | DateTime, "dateCreated">
+	dateCreated?: SchemaValue<Date | DateTime, "dateCreated">
 	/** The datetime the item was removed from the DataFeed. */
-	"dateDeleted"?: SchemaValue<Date | DateTime, "dateDeleted">
+	dateDeleted?: SchemaValue<Date | DateTime, "dateDeleted">
 	/** The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed. */
-	"dateModified"?: SchemaValue<Date | DateTime, "dateModified">
+	dateModified?: SchemaValue<Date | DateTime, "dateModified">
 	/** An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists'). */
-	"item"?: SchemaValue<Thing | IdReference, "item">
+	item?: SchemaValue<Thing | IdReference, "item">
 }
 interface DataFeedItemLeaf extends DataFeedItemBase {
 	type: "DataFeedItem"
@@ -3340,33 +3294,33 @@ interface DatasetBase extends CreativeWorkBase {
 	 *
 	 * @deprecated Consider using https://schema.org/includedInDataCatalog instead.
 	 */
-	"catalog"?: SchemaValue<DataCatalog | IdReference, "catalog">
+	catalog?: SchemaValue<DataCatalog | IdReference, "catalog">
 	/**
 	 * The range of temporal applicability of a dataset, e.g. for a 2011 census dataset, the year 2011 (in ISO 8601 time interval format).
 	 *
 	 * @deprecated Consider using https://schema.org/temporalCoverage instead.
 	 */
-	"datasetTimeInterval"?: SchemaValue<DateTime, "datasetTimeInterval">
+	datasetTimeInterval?: SchemaValue<DateTime, "datasetTimeInterval">
 	/** A downloadable form of this dataset, at a specific location, in a specific format. This property can be repeated if different variations are available. There is no expectation that different downloadable distributions must contain exactly equivalent information (see also {@link https://www.w3.org/TR/vocab-dcat-3/#Class:Distribution DCAT} on this point). Different distributions might include or exclude different subsets of the entire dataset, for example. */
-	"distribution"?: SchemaValue<DataDownload | IdReference, "distribution">
+	distribution?: SchemaValue<DataDownload | IdReference, "distribution">
 	/**
 	 * A data catalog which contains this dataset (this property was previously 'catalog', preferred name is now 'includedInDataCatalog').
 	 *
 	 * @deprecated Consider using https://schema.org/includedInDataCatalog instead.
 	 */
-	"includedDataCatalog"?: SchemaValue<
+	includedDataCatalog?: SchemaValue<
 		DataCatalog | IdReference,
 		"includedDataCatalog"
 	>
 	/** A data catalog which contains this dataset. */
-	"includedInDataCatalog"?: SchemaValue<
+	includedInDataCatalog?: SchemaValue<
 		DataCatalog | IdReference,
 		"includedInDataCatalog"
 	>
 	/** The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication. */
-	"issn"?: SchemaValue<Text, "issn">
+	issn?: SchemaValue<Text, "issn">
 	/** A subproperty of {@link https://schema.org/measurementTechnique measurementTechnique} that can be used for specifying specific methods, in particular via {@link https://schema.org/MeasurementMethodEnum MeasurementMethodEnum}. */
-	"measurementMethod"?: SchemaValue<
+	measurementMethod?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementMethod"
 	>
@@ -3379,17 +3333,17 @@ interface DatasetBase extends CreativeWorkBase {
 	 *
 	 * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}. The value can also be from an enumeration, organized as a {@link https://schema.org/MeasurementMetholdEnumeration MeasurementMetholdEnumeration}.
 	 */
-	"measurementTechnique"?: SchemaValue<
+	measurementTechnique?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementTechnique"
 	>
 	/** The variableMeasured property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue, or more explicitly as a {@link https://schema.org/StatisticalVariable StatisticalVariable}. */
-	"variableMeasured"?: SchemaValue<
+	variableMeasured?: SchemaValue<
 		Property | PropertyValue | StatisticalVariable | Text | IdReference,
 		"variableMeasured"
 	>
 	/** Originally named {@link https://schema.org/variablesMeasured variablesMeasured}, the {@link https://schema.org/variableMeasured variableMeasured} property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue. */
-	"variablesMeasured"?: SchemaValue<
+	variablesMeasured?: SchemaValue<
 		PropertyValue | Text | IdReference,
 		"variablesMeasured"
 	>
@@ -3402,17 +3356,17 @@ export type Dataset = DatasetLeaf | DataFeed
 
 interface DatedMoneySpecificationBase extends ThingBase {
 	/** The amount of money. */
-	"amount"?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
+	amount?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
 	/**
 	 * The currency in which the monetary amount is expressed.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"currency"?: SchemaValue<Text, "currency">
+	currency?: SchemaValue<Text, "currency">
 	/** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"endDate"?: SchemaValue<Date | DateTime, "endDate">
+	endDate?: SchemaValue<Date | DateTime, "endDate">
 	/** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"startDate"?: SchemaValue<Date | DateTime, "startDate">
+	startDate?: SchemaValue<Date | DateTime, "startDate">
 }
 interface DatedMoneySpecificationLeaf extends DatedMoneySpecificationBase {
 	type: "DatedMoneySpecification"
@@ -3459,9 +3413,9 @@ export type DaySpa = DaySpaLeaf | string
 
 interface DDxElementBase extends MedicalEntityBase {
 	/** One or more alternative conditions considered in the differential diagnosis process as output of a diagnosis process. */
-	"diagnosis"?: SchemaValue<MedicalCondition | IdReference, "diagnosis">
+	diagnosis?: SchemaValue<MedicalCondition | IdReference, "diagnosis">
 	/** One of a set of signs and symptoms that can be used to distinguish this diagnosis from others in the differential diagnosis. */
-	"distinguishingSign"?: SchemaValue<
+	distinguishingSign?: SchemaValue<
 		MedicalSignOrSymptom | IdReference,
 		"distinguishingSign"
 	>
@@ -3486,15 +3440,15 @@ export type DefenceEstablishment = DefenceEstablishmentLeaf | string
 
 interface DefinedRegionBase extends ThingBase {
 	/** The country. For example, USA. You can also provide the two-letter {@link http://en.wikipedia.org/wiki/ISO_3166-1 ISO 3166-1 alpha-2 country code}. */
-	"addressCountry"?: SchemaValue<Country | Text | IdReference, "addressCountry">
+	addressCountry?: SchemaValue<Country | Text | IdReference, "addressCountry">
 	/** The region in which the locality is, and which is in the country. For example, California or another appropriate first-level {@link https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country Administrative division}. */
-	"addressRegion"?: SchemaValue<Text, "addressRegion">
+	addressRegion?: SchemaValue<Text, "addressRegion">
 	/** The postal code. For example, 94043. */
-	"postalCode"?: SchemaValue<Text, "postalCode">
+	postalCode?: SchemaValue<Text, "postalCode">
 	/** A defined range of postal codes indicated by a common textual prefix. Used for non-numeric systems such as UK. */
-	"postalCodePrefix"?: SchemaValue<Text, "postalCodePrefix">
+	postalCodePrefix?: SchemaValue<Text, "postalCodePrefix">
 	/** A defined range of postal codes. */
-	"postalCodeRange"?: SchemaValue<
+	postalCodeRange?: SchemaValue<
 		PostalCodeRangeSpecification | IdReference,
 		"postalCodeRange"
 	>
@@ -3515,12 +3469,12 @@ export type DefinedRegion = DefinedRegionLeaf
 
 interface DefinedTermBase extends ThingBase {
 	/** A {@link https://schema.org/DefinedTermSet DefinedTermSet} that contains this term. */
-	"inDefinedTermSet"?: SchemaValue<
+	inDefinedTermSet?: SchemaValue<
 		DefinedTermSet | URL | IdReference,
 		"inDefinedTermSet"
 	>
 	/** A code that identifies this {@link https://schema.org/DefinedTerm DefinedTerm} within a {@link https://schema.org/DefinedTermSet DefinedTermSet} */
-	"termCode"?: SchemaValue<Text, "termCode">
+	termCode?: SchemaValue<Text, "termCode">
 }
 interface DefinedTermLeaf extends DefinedTermBase {
 	type: "DefinedTerm"
@@ -3530,7 +3484,7 @@ export type DefinedTerm = DefinedTermLeaf | CategoryCode
 
 interface DefinedTermSetBase extends CreativeWorkBase {
 	/** A Defined Term contained in this term set. */
-	"hasDefinedTerm"?: SchemaValue<DefinedTerm | IdReference, "hasDefinedTerm">
+	hasDefinedTerm?: SchemaValue<DefinedTerm | IdReference, "hasDefinedTerm">
 }
 interface DefinedTermSetLeaf extends DefinedTermSetBase {
 	type: "DefinedTermSet"
@@ -3546,12 +3500,12 @@ export type DeleteAction = DeleteActionLeaf
 
 interface DeliveryChargeSpecificationBase extends PriceSpecificationBase {
 	/** The delivery method(s) to which the delivery charge or payment charge specification applies. */
-	"appliesToDeliveryMethod"?: SchemaValue<
+	appliesToDeliveryMethod?: SchemaValue<
 		DeliveryMethod | IdReference,
 		"appliesToDeliveryMethod"
 	>
 	/** The geographic area where a service or offered item is provided. */
-	"areaServed"?: SchemaValue<
+	areaServed?: SchemaValue<
 		AdministrativeArea | GeoShape | Place | Text | IdReference,
 		"areaServed"
 	>
@@ -3560,7 +3514,7 @@ interface DeliveryChargeSpecificationBase extends PriceSpecificationBase {
 	 *
 	 * See also {@link https://schema.org/ineligibleRegion ineligibleRegion}.
 	 */
-	"eligibleRegion"?: SchemaValue<
+	eligibleRegion?: SchemaValue<
 		GeoShape | Place | Text | IdReference,
 		"eligibleRegion"
 	>
@@ -3569,14 +3523,13 @@ interface DeliveryChargeSpecificationBase extends PriceSpecificationBase {
 	 *
 	 * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
 	 */
-	"ineligibleRegion"?: SchemaValue<
+	ineligibleRegion?: SchemaValue<
 		GeoShape | Place | Text | IdReference,
 		"ineligibleRegion"
 	>
 }
 interface DeliveryChargeSpecificationLeaf
-	extends DeliveryChargeSpecificationBase
-{
+	extends DeliveryChargeSpecificationBase {
 	type: "DeliveryChargeSpecification"
 }
 /** The price for the delivery of an offer using a particular delivery method. */
@@ -3584,13 +3537,13 @@ export type DeliveryChargeSpecification = DeliveryChargeSpecificationLeaf
 
 interface DeliveryEventBase extends EventBase {
 	/** Password, PIN, or access code needed for delivery (e.g. from a locker). */
-	"accessCode"?: SchemaValue<Text, "accessCode">
+	accessCode?: SchemaValue<Text, "accessCode">
 	/** When the item is available for pickup from the store, locker, etc. */
-	"availableFrom"?: SchemaValue<DateTime, "availableFrom">
+	availableFrom?: SchemaValue<DateTime, "availableFrom">
 	/** After this date, the item will no longer be available for pickup. */
-	"availableThrough"?: SchemaValue<DateTime, "availableThrough">
+	availableThrough?: SchemaValue<DateTime, "availableThrough">
 	/** Method used for delivery or shipping. */
-	"hasDeliveryMethod"?: SchemaValue<
+	hasDeliveryMethod?: SchemaValue<
 		DeliveryMethod | IdReference,
 		"hasDeliveryMethod"
 	>
@@ -3628,19 +3581,16 @@ export type DeliveryMethod =
 
 interface DeliveryTimeSettingsBase extends ThingBase {
 	/** The total delay between the receipt of the order and the goods reaching the final customer. */
-	"deliveryTime"?: SchemaValue<
-		ShippingDeliveryTime | IdReference,
-		"deliveryTime"
-	>
+	deliveryTime?: SchemaValue<ShippingDeliveryTime | IdReference, "deliveryTime">
 	/** This can be marked 'true' to indicate that some published {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} or {@link https://schema.org/ShippingRateSettings ShippingRateSettings} are intended to apply to all {@link https://schema.org/OfferShippingDetails OfferShippingDetails} published by the same merchant, when referenced by a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings}) or shippingLabel (for {@link https://schema.org/ShippingRateSettings ShippingRateSettings}), since this property is for use with unlabelled settings. */
-	"isUnlabelledFallback"?: SchemaValue<Boolean, "isUnlabelledFallback">
+	isUnlabelledFallback?: SchemaValue<Boolean, "isUnlabelledFallback">
 	/** indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges. */
-	"shippingDestination"?: SchemaValue<
+	shippingDestination?: SchemaValue<
 		DefinedRegion | IdReference,
 		"shippingDestination"
 	>
 	/** Label to match an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with a {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} (within the context of a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} cross-reference). */
-	"transitTimeLabel"?: SchemaValue<Text, "transitTimeLabel">
+	transitTimeLabel?: SchemaValue<Text, "transitTimeLabel">
 }
 interface DeliveryTimeSettingsLeaf extends DeliveryTimeSettingsBase {
 	type: "DeliveryTimeSettings"
@@ -3650,17 +3600,17 @@ export type DeliveryTimeSettings = DeliveryTimeSettingsLeaf
 
 interface DemandBase extends ThingBase {
 	/** The payment method(s) accepted by seller for this offer. */
-	"acceptedPaymentMethod"?: SchemaValue<
+	acceptedPaymentMethod?: SchemaValue<
 		LoanOrCredit | PaymentMethod | IdReference,
 		"acceptedPaymentMethod"
 	>
 	/** The amount of time that is required between accepting the offer and the actual usage of the resource or service. */
-	"advanceBookingRequirement"?: SchemaValue<
+	advanceBookingRequirement?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"advanceBookingRequirement"
 	>
 	/** The geographic area where a service or offered item is provided. */
-	"areaServed"?: SchemaValue<
+	areaServed?: SchemaValue<
 		AdministrativeArea | GeoShape | Place | Text | IdReference,
 		"areaServed"
 	>
@@ -3669,45 +3619,42 @@ interface DemandBase extends ThingBase {
 	 *
 	 * Note also that this is a definition for how to include ASINs in Schema.org data, and not a definition of ASINs in general - see documentation from Amazon for authoritative details. ASINs are most commonly encoded as text strings, but the [asin] property supports URL/URI as potential values too.
 	 */
-	"asin"?: SchemaValue<Text | URL, "asin">
+	asin?: SchemaValue<Text | URL, "asin">
 	/** The availability of this item—for example In stock, Out of stock, Pre-order, etc. */
-	"availability"?: SchemaValue<ItemAvailability | IdReference, "availability">
+	availability?: SchemaValue<ItemAvailability | IdReference, "availability">
 	/** The end of the availability of the product or service included in the offer. */
-	"availabilityEnds"?: SchemaValue<Date | DateTime | Time, "availabilityEnds">
+	availabilityEnds?: SchemaValue<Date | DateTime | Time, "availabilityEnds">
 	/** The beginning of the availability of the product or service included in the offer. */
-	"availabilityStarts"?: SchemaValue<
-		Date | DateTime | Time,
-		"availabilityStarts"
-	>
+	availabilityStarts?: SchemaValue<Date | DateTime | Time, "availabilityStarts">
 	/** The place(s) from which the offer can be obtained (e.g. store locations). */
-	"availableAtOrFrom"?: SchemaValue<Place | IdReference, "availableAtOrFrom">
+	availableAtOrFrom?: SchemaValue<Place | IdReference, "availableAtOrFrom">
 	/** The delivery method(s) available for this offer. */
-	"availableDeliveryMethod"?: SchemaValue<
+	availableDeliveryMethod?: SchemaValue<
 		DeliveryMethod | IdReference,
 		"availableDeliveryMethod"
 	>
 	/** The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell. */
-	"businessFunction"?: SchemaValue<
+	businessFunction?: SchemaValue<
 		BusinessFunction | IdReference,
 		"businessFunction"
 	>
 	/** The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. */
-	"deliveryLeadTime"?: SchemaValue<
+	deliveryLeadTime?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"deliveryLeadTime"
 	>
 	/** The type(s) of customers for which the given offer is valid. */
-	"eligibleCustomerType"?: SchemaValue<
+	eligibleCustomerType?: SchemaValue<
 		BusinessEntityType | IdReference,
 		"eligibleCustomerType"
 	>
 	/** The duration for which the given offer is valid. */
-	"eligibleDuration"?: SchemaValue<
+	eligibleDuration?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"eligibleDuration"
 	>
 	/** The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity. */
-	"eligibleQuantity"?: SchemaValue<
+	eligibleQuantity?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"eligibleQuantity"
 	>
@@ -3716,12 +3663,12 @@ interface DemandBase extends ThingBase {
 	 *
 	 * See also {@link https://schema.org/ineligibleRegion ineligibleRegion}.
 	 */
-	"eligibleRegion"?: SchemaValue<
+	eligibleRegion?: SchemaValue<
 		GeoShape | Place | Text | IdReference,
 		"eligibleRegion"
 	>
 	/** The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount. */
-	"eligibleTransactionVolume"?: SchemaValue<
+	eligibleTransactionVolume?: SchemaValue<
 		PriceSpecification | IdReference,
 		"eligibleTransactionVolume"
 	>
@@ -3732,17 +3679,17 @@ interface DemandBase extends ThingBase {
 	 *
 	 * Note also that this is a definition for how to include GTINs in Schema.org data, and not a definition of GTINs in general - see the GS1 documentation for authoritative details.
 	 */
-	"gtin"?: SchemaValue<Text | URL, "gtin">
+	gtin?: SchemaValue<Text | URL, "gtin">
 	/** The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin12"?: SchemaValue<Text, "gtin12">
+	gtin12?: SchemaValue<Text, "gtin12">
 	/** The GTIN-13 code of the product, or the product to which the offer refers. This is equivalent to 13-digit ISBN codes and EAN UCC-13. Former 12-digit UPC codes can be converted into a GTIN-13 code by simply adding a preceding zero. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin13"?: SchemaValue<Text, "gtin13">
+	gtin13?: SchemaValue<Text, "gtin13">
 	/** The GTIN-14 code of the product, or the product to which the offer refers. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin14"?: SchemaValue<Text, "gtin14">
+	gtin14?: SchemaValue<Text, "gtin14">
 	/** The GTIN-8 code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin8"?: SchemaValue<Text, "gtin8">
+	gtin8?: SchemaValue<Text, "gtin8">
 	/** This links to a node or nodes indicating the exact quantity of the products included in an {@link https://schema.org/Offer Offer} or {@link https://schema.org/ProductCollection ProductCollection}. */
-	"includesObject"?: SchemaValue<
+	includesObject?: SchemaValue<
 		TypeAndQuantityNode | IdReference,
 		"includesObject"
 	>
@@ -3751,22 +3698,19 @@ interface DemandBase extends ThingBase {
 	 *
 	 * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
 	 */
-	"ineligibleRegion"?: SchemaValue<
+	ineligibleRegion?: SchemaValue<
 		GeoShape | Place | Text | IdReference,
 		"ineligibleRegion"
 	>
 	/** The current approximate inventory level for the item or items. */
-	"inventoryLevel"?: SchemaValue<
+	inventoryLevel?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"inventoryLevel"
 	>
 	/** A predefined value from OfferItemCondition specifying the condition of the product or service, or the products or services included in the offer. Also used for product return policies to specify the condition of products accepted for returns. */
-	"itemCondition"?: SchemaValue<
-		OfferItemCondition | IdReference,
-		"itemCondition"
-	>
+	itemCondition?: SchemaValue<OfferItemCondition | IdReference, "itemCondition">
 	/** An item being offered (or demanded). The transactional nature of the offer or demand is documented using {@link https://schema.org/businessFunction businessFunction}, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"itemOffered"?: SchemaValue<
+	itemOffered?: SchemaValue<
 		| AggregateOffer
 		| CreativeWork
 		| Event
@@ -3778,24 +3722,24 @@ interface DemandBase extends ThingBase {
 		"itemOffered"
 	>
 	/** The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers. */
-	"mpn"?: SchemaValue<Text, "mpn">
+	mpn?: SchemaValue<Text, "mpn">
 	/** One or more detailed price specifications, indicating the unit price and delivery or payment charges. */
-	"priceSpecification"?: SchemaValue<
+	priceSpecification?: SchemaValue<
 		PriceSpecification | IdReference,
 		"priceSpecification"
 	>
 	/** An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. */
-	"seller"?: SchemaValue<Organization | Person | IdReference, "seller">
+	seller?: SchemaValue<Organization | Person | IdReference, "seller">
 	/** The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer. */
-	"serialNumber"?: SchemaValue<Text, "serialNumber">
+	serialNumber?: SchemaValue<Text, "serialNumber">
 	/** The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers. */
-	"sku"?: SchemaValue<Text, "sku">
+	sku?: SchemaValue<Text, "sku">
 	/** The date when the item becomes valid. */
-	"validFrom"?: SchemaValue<Date | DateTime, "validFrom">
+	validFrom?: SchemaValue<Date | DateTime, "validFrom">
 	/** The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours. */
-	"validThrough"?: SchemaValue<Date | DateTime, "validThrough">
+	validThrough?: SchemaValue<Date | DateTime, "validThrough">
 	/** The warranty promise(s) included in the offer. */
-	"warranty"?: SchemaValue<WarrantyPromise | IdReference, "warranty">
+	warranty?: SchemaValue<WarrantyPromise | IdReference, "warranty">
 }
 interface DemandLeaf extends DemandBase {
 	type: "Demand"
@@ -3804,9 +3748,9 @@ interface DemandLeaf extends DemandBase {
 export type Demand = DemandLeaf
 
 interface DentistBase
-	extends LocalBusinessBase, LocalBusinessBase, MedicalOrganizationBase
-{
-}
+	extends LocalBusinessBase,
+		LocalBusinessBase,
+		MedicalOrganizationBase {}
 interface DentistLeaf extends DentistBase {
 	type: "Dentist"
 }
@@ -3825,8 +3769,7 @@ interface DepartmentStoreLeaf extends LocalBusinessBase {
 /** A department store. */
 export type DepartmentStore = DepartmentStoreLeaf | string
 
-interface DepositAccountBase extends InvestmentOrDepositBase, BankAccountBase {
-}
+interface DepositAccountBase extends InvestmentOrDepositBase, BankAccountBase {}
 interface DepositAccountLeaf extends DepositAccountBase {
 	type: "DepositAccount"
 }
@@ -3841,7 +3784,7 @@ export type Dermatology = DermatologyLeaf | string
 
 interface DiagnosticLabBase extends MedicalOrganizationBase {
 	/** A diagnostic test or procedure offered by this lab. */
-	"availableTest"?: SchemaValue<MedicalTest | IdReference, "availableTest">
+	availableTest?: SchemaValue<MedicalTest | IdReference, "availableTest">
 }
 interface DiagnosticLabLeaf extends DiagnosticLabBase {
 	type: "DiagnosticLab"
@@ -3857,15 +3800,15 @@ export type DiagnosticProcedure = DiagnosticProcedureLeaf
 
 interface DietBase extends CreativeWorkBase, MedicalEntityBase {
 	/** Nutritional information specific to the dietary plan. May include dietary recommendations on what foods to avoid, what foods to consume, and specific alterations/deviations from the USDA or other regulatory body's approved dietary guidelines. */
-	"dietFeatures"?: SchemaValue<Text, "dietFeatures">
+	dietFeatures?: SchemaValue<Text, "dietFeatures">
 	/** People or organizations that endorse the plan. */
-	"endorsers"?: SchemaValue<Organization | Person | IdReference, "endorsers">
+	endorsers?: SchemaValue<Organization | Person | IdReference, "endorsers">
 	/** Medical expert advice related to the plan. */
-	"expertConsiderations"?: SchemaValue<Text, "expertConsiderations">
+	expertConsiderations?: SchemaValue<Text, "expertConsiderations">
 	/** Specific physiologic benefits associated to the plan. */
-	"physiologicalBenefits"?: SchemaValue<Text, "physiologicalBenefits">
+	physiologicalBenefits?: SchemaValue<Text, "physiologicalBenefits">
 	/** Specific physiologic risks associated to the diet plan. */
-	"risks"?: SchemaValue<Text, "risks">
+	risks?: SchemaValue<Text, "risks">
 }
 interface DietLeaf extends DietBase {
 	type: "Diet"
@@ -3875,34 +3818,34 @@ export type Diet = DietLeaf
 
 interface DietarySupplementBase extends ProductBase, SubstanceBase {
 	/** An active ingredient, typically chemical compounds and/or biologic substances. */
-	"activeIngredient"?: SchemaValue<Text, "activeIngredient">
+	activeIngredient?: SchemaValue<Text, "activeIngredient">
 	/** True if this item's name is a proprietary/brand name (vs. generic name). */
-	"isProprietary"?: SchemaValue<Boolean, "isProprietary">
+	isProprietary?: SchemaValue<Boolean, "isProprietary">
 	/** The drug or supplement's legal status, including any controlled substance schedules that apply. */
-	"legalStatus"?: SchemaValue<
+	legalStatus?: SchemaValue<
 		DrugLegalStatus | MedicalEnumeration | Text | IdReference,
 		"legalStatus"
 	>
 	/** Recommended intake of this supplement for a given population as defined by a specific recommending authority. */
-	"maximumIntake"?: SchemaValue<
+	maximumIntake?: SchemaValue<
 		MaximumDoseSchedule | IdReference,
 		"maximumIntake"
 	>
 	/** The specific biochemical interaction through which this drug or supplement produces its pharmacological effect. */
-	"mechanismOfAction"?: SchemaValue<Text, "mechanismOfAction">
+	mechanismOfAction?: SchemaValue<Text, "mechanismOfAction">
 	/** The generic name of this drug or supplement. */
-	"nonProprietaryName"?: SchemaValue<Text, "nonProprietaryName">
+	nonProprietaryName?: SchemaValue<Text, "nonProprietaryName">
 	/** Proprietary name given to the diet plan, typically by its originator or creator. */
-	"proprietaryName"?: SchemaValue<Text, "proprietaryName">
+	proprietaryName?: SchemaValue<Text, "proprietaryName">
 	/** Recommended intake of this supplement for a given population as defined by a specific recommending authority. */
-	"recommendedIntake"?: SchemaValue<
+	recommendedIntake?: SchemaValue<
 		RecommendedDoseSchedule | IdReference,
 		"recommendedIntake"
 	>
 	/** Any potential safety concern associated with the supplement. May include interactions with other drugs and foods, pregnancy, breastfeeding, known adverse reactions, and documented efficacy of the supplement. */
-	"safetyConsideration"?: SchemaValue<Text, "safetyConsideration">
+	safetyConsideration?: SchemaValue<Text, "safetyConsideration">
 	/** Characteristics of the population for which this is intended, or which typically uses it, e.g. 'adults'. */
-	"targetPopulation"?: SchemaValue<Text, "targetPopulation">
+	targetPopulation?: SchemaValue<Text, "targetPopulation">
 }
 interface DietarySupplementLeaf extends DietarySupplementBase {
 	type: "DietarySupplement"
@@ -3918,7 +3861,7 @@ export type DietNutrition = DietNutritionLeaf | string
 
 interface DigitalDocumentBase extends CreativeWorkBase {
 	/** A permission related to the access to this document (e.g. permission to read or write an electronic document). For a public document, specify a grantee with an Audience with audienceType equal to "public". */
-	"hasDigitalDocumentPermission"?: SchemaValue<
+	hasDigitalDocumentPermission?: SchemaValue<
 		DigitalDocumentPermission | IdReference,
 		"hasDigitalDocumentPermission"
 	>
@@ -3936,12 +3879,12 @@ export type DigitalDocument =
 
 interface DigitalDocumentPermissionBase extends ThingBase {
 	/** The person, organization, contact point, or audience that has been granted this permission. */
-	"grantee"?: SchemaValue<
+	grantee?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"grantee"
 	>
 	/** The type of permission granted the person, organization, or audience. */
-	"permissionType"?: SchemaValue<
+	permissionType?: SchemaValue<
 		DigitalDocumentPermissionType | IdReference,
 		"permissionType"
 	>
@@ -4020,7 +3963,7 @@ export type Distillery = DistilleryLeaf | string
 
 interface DonateActionBase extends TradeActionBase {
 	/** A sub property of participant. The participant who is at the receiving end of the action. */
-	"recipient"?: SchemaValue<
+	recipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"recipient"
 	>
@@ -4033,16 +3976,13 @@ export type DonateAction = DonateActionLeaf
 
 interface DoseScheduleBase extends MedicalEntityBase {
 	/** The unit of the dose, e.g. 'mg'. */
-	"doseUnit"?: SchemaValue<Text, "doseUnit">
+	doseUnit?: SchemaValue<Text, "doseUnit">
 	/** The value of the dose, e.g. 500. */
-	"doseValue"?: SchemaValue<
-		Number | QualitativeValue | IdReference,
-		"doseValue"
-	>
+	doseValue?: SchemaValue<Number | QualitativeValue | IdReference, "doseValue">
 	/** How often the dose is taken, e.g. 'daily'. */
-	"frequency"?: SchemaValue<Text, "frequency">
+	frequency?: SchemaValue<Text, "frequency">
 	/** Characteristics of the population for which this is intended, or which typically uses it, e.g. 'adults'. */
-	"targetPopulation"?: SchemaValue<Text, "targetPopulation">
+	targetPopulation?: SchemaValue<Text, "targetPopulation">
 }
 interface DoseScheduleLeaf extends DoseScheduleBase {
 	type: "DoseSchedule"
@@ -4095,87 +4035,87 @@ export type DriveWheelConfigurationValue =
 
 interface DrugBase extends ProductBase, SubstanceBase {
 	/** An active ingredient, typically chemical compounds and/or biologic substances. */
-	"activeIngredient"?: SchemaValue<Text, "activeIngredient">
+	activeIngredient?: SchemaValue<Text, "activeIngredient">
 	/** A route by which this drug may be administered, e.g. 'oral'. */
-	"administrationRoute"?: SchemaValue<Text, "administrationRoute">
+	administrationRoute?: SchemaValue<Text, "administrationRoute">
 	/** Any precaution, guidance, contraindication, etc. related to consumption of alcohol while taking this drug. */
-	"alcoholWarning"?: SchemaValue<Text, "alcoholWarning">
+	alcoholWarning?: SchemaValue<Text, "alcoholWarning">
 	/** An available dosage strength for the drug. */
-	"availableStrength"?: SchemaValue<
+	availableStrength?: SchemaValue<
 		DrugStrength | IdReference,
 		"availableStrength"
 	>
 	/** Any precaution, guidance, contraindication, etc. related to this drug's use by breastfeeding mothers. */
-	"breastfeedingWarning"?: SchemaValue<Text, "breastfeedingWarning">
+	breastfeedingWarning?: SchemaValue<Text, "breastfeedingWarning">
 	/**
 	 * Description of the absorption and elimination of drugs, including their concentration (pharmacokinetics, pK) and biological effects (pharmacodynamics, pD).
 	 *
 	 * @deprecated Consider using https://schema.org/clinicalPharmacology instead.
 	 */
-	"clincalPharmacology"?: SchemaValue<Text, "clincalPharmacology">
+	clincalPharmacology?: SchemaValue<Text, "clincalPharmacology">
 	/** Description of the absorption and elimination of drugs, including their concentration (pharmacokinetics, pK) and biological effects (pharmacodynamics, pD). */
-	"clinicalPharmacology"?: SchemaValue<Text, "clinicalPharmacology">
+	clinicalPharmacology?: SchemaValue<Text, "clinicalPharmacology">
 	/** A dosage form in which this drug/supplement is available, e.g. 'tablet', 'suspension', 'injection'. */
-	"dosageForm"?: SchemaValue<Text, "dosageForm">
+	dosageForm?: SchemaValue<Text, "dosageForm">
 	/** A dosing schedule for the drug for a given population, either observed, recommended, or maximum dose based on the type used. */
-	"doseSchedule"?: SchemaValue<DoseSchedule | IdReference, "doseSchedule">
+	doseSchedule?: SchemaValue<DoseSchedule | IdReference, "doseSchedule">
 	/** The class of drug this belongs to (e.g., statins). */
-	"drugClass"?: SchemaValue<DrugClass | IdReference, "drugClass">
+	drugClass?: SchemaValue<DrugClass | IdReference, "drugClass">
 	/** The unit in which the drug is measured, e.g. '5 mg tablet'. */
-	"drugUnit"?: SchemaValue<Text, "drugUnit">
+	drugUnit?: SchemaValue<Text, "drugUnit">
 	/** Any precaution, guidance, contraindication, etc. related to consumption of specific foods while taking this drug. */
-	"foodWarning"?: SchemaValue<Text, "foodWarning">
+	foodWarning?: SchemaValue<Text, "foodWarning">
 	/** The insurance plans that cover this drug. */
-	"includedInHealthInsurancePlan"?: SchemaValue<
+	includedInHealthInsurancePlan?: SchemaValue<
 		HealthInsurancePlan | IdReference,
 		"includedInHealthInsurancePlan"
 	>
 	/** Another drug that is known to interact with this drug in a way that impacts the effect of this drug or causes a risk to the patient. Note: disease interactions are typically captured as contraindications. */
-	"interactingDrug"?: SchemaValue<Drug | IdReference, "interactingDrug">
+	interactingDrug?: SchemaValue<Drug | IdReference, "interactingDrug">
 	/** True if the drug is available in a generic form (regardless of name). */
-	"isAvailableGenerically"?: SchemaValue<Boolean, "isAvailableGenerically">
+	isAvailableGenerically?: SchemaValue<Boolean, "isAvailableGenerically">
 	/** True if this item's name is a proprietary/brand name (vs. generic name). */
-	"isProprietary"?: SchemaValue<Boolean, "isProprietary">
+	isProprietary?: SchemaValue<Boolean, "isProprietary">
 	/** Link to the drug's label details. */
-	"labelDetails"?: SchemaValue<URL, "labelDetails">
+	labelDetails?: SchemaValue<URL, "labelDetails">
 	/** The drug or supplement's legal status, including any controlled substance schedules that apply. */
-	"legalStatus"?: SchemaValue<
+	legalStatus?: SchemaValue<
 		DrugLegalStatus | MedicalEnumeration | Text | IdReference,
 		"legalStatus"
 	>
 	/** Recommended intake of this supplement for a given population as defined by a specific recommending authority. */
-	"maximumIntake"?: SchemaValue<
+	maximumIntake?: SchemaValue<
 		MaximumDoseSchedule | IdReference,
 		"maximumIntake"
 	>
 	/** The specific biochemical interaction through which this drug or supplement produces its pharmacological effect. */
-	"mechanismOfAction"?: SchemaValue<Text, "mechanismOfAction">
+	mechanismOfAction?: SchemaValue<Text, "mechanismOfAction">
 	/** The generic name of this drug or supplement. */
-	"nonProprietaryName"?: SchemaValue<Text, "nonProprietaryName">
+	nonProprietaryName?: SchemaValue<Text, "nonProprietaryName">
 	/** Any information related to overdose on a drug, including signs or symptoms, treatments, contact information for emergency response. */
-	"overdosage"?: SchemaValue<Text, "overdosage">
+	overdosage?: SchemaValue<Text, "overdosage">
 	/** Pregnancy category of this drug. */
-	"pregnancyCategory"?: SchemaValue<
+	pregnancyCategory?: SchemaValue<
 		DrugPregnancyCategory | IdReference,
 		"pregnancyCategory"
 	>
 	/** Any precaution, guidance, contraindication, etc. related to this drug's use during pregnancy. */
-	"pregnancyWarning"?: SchemaValue<Text, "pregnancyWarning">
+	pregnancyWarning?: SchemaValue<Text, "pregnancyWarning">
 	/** Link to prescribing information for the drug. */
-	"prescribingInfo"?: SchemaValue<URL, "prescribingInfo">
+	prescribingInfo?: SchemaValue<URL, "prescribingInfo">
 	/** Indicates the status of drug prescription, e.g. local catalogs classifications or whether the drug is available by prescription or over-the-counter, etc. */
-	"prescriptionStatus"?: SchemaValue<
+	prescriptionStatus?: SchemaValue<
 		DrugPrescriptionStatus | Text | IdReference,
 		"prescriptionStatus"
 	>
 	/** Proprietary name given to the diet plan, typically by its originator or creator. */
-	"proprietaryName"?: SchemaValue<Text, "proprietaryName">
+	proprietaryName?: SchemaValue<Text, "proprietaryName">
 	/** Any other drug related to this one, for example commonly-prescribed alternatives. */
-	"relatedDrug"?: SchemaValue<Drug | IdReference, "relatedDrug">
+	relatedDrug?: SchemaValue<Drug | IdReference, "relatedDrug">
 	/** The RxCUI drug identifier from RXNORM. */
-	"rxcui"?: SchemaValue<Text, "rxcui">
+	rxcui?: SchemaValue<Text, "rxcui">
 	/** Any FDA or other warnings about the drug (text or URL). */
-	"warning"?: SchemaValue<Text | URL, "warning">
+	warning?: SchemaValue<Text | URL, "warning">
 }
 interface DrugLeaf extends DrugBase {
 	type: "Drug"
@@ -4185,7 +4125,7 @@ export type Drug = DrugLeaf
 
 interface DrugClassBase extends MedicalEntityBase {
 	/** Specifying a drug or medicine used in a medication procedure. */
-	"drug"?: SchemaValue<Drug | IdReference, "drug">
+	drug?: SchemaValue<Drug | IdReference, "drug">
 }
 interface DrugClassLeaf extends DrugClassBase {
 	type: "DrugClass"
@@ -4195,23 +4135,23 @@ export type DrugClass = DrugClassLeaf
 
 interface DrugCostBase extends MedicalEntityBase {
 	/** The location in which the status applies. */
-	"applicableLocation"?: SchemaValue<
+	applicableLocation?: SchemaValue<
 		AdministrativeArea | IdReference,
 		"applicableLocation"
 	>
 	/** The category of cost, such as wholesale, retail, reimbursement cap, etc. */
-	"costCategory"?: SchemaValue<DrugCostCategory | IdReference, "costCategory">
+	costCategory?: SchemaValue<DrugCostCategory | IdReference, "costCategory">
 	/** The currency (in 3-letter) of the drug cost. See: http://en.wikipedia.org/wiki/ISO_4217. */
-	"costCurrency"?: SchemaValue<Text, "costCurrency">
+	costCurrency?: SchemaValue<Text, "costCurrency">
 	/** Additional details to capture the origin of the cost data. For example, 'Medicare Part B'. */
-	"costOrigin"?: SchemaValue<Text, "costOrigin">
+	costOrigin?: SchemaValue<Text, "costOrigin">
 	/** The cost per unit of the drug. */
-	"costPerUnit"?: SchemaValue<
+	costPerUnit?: SchemaValue<
 		Number | QualitativeValue | Text | IdReference,
 		"costPerUnit"
 	>
 	/** The unit in which the drug is measured, e.g. '5 mg tablet'. */
-	"drugUnit"?: SchemaValue<Text, "drugUnit">
+	drugUnit?: SchemaValue<Text, "drugUnit">
 }
 interface DrugCostLeaf extends DrugCostBase {
 	type: "DrugCost"
@@ -4234,7 +4174,7 @@ export type DrugCostCategory =
 
 interface DrugLegalStatusBase extends MedicalEntityBase {
 	/** The location in which the status applies. */
-	"applicableLocation"?: SchemaValue<
+	applicableLocation?: SchemaValue<
 		AdministrativeArea | IdReference,
 		"applicableLocation"
 	>
@@ -4277,18 +4217,18 @@ export type DrugPrescriptionStatus =
 
 interface DrugStrengthBase extends MedicalEntityBase {
 	/** An active ingredient, typically chemical compounds and/or biologic substances. */
-	"activeIngredient"?: SchemaValue<Text, "activeIngredient">
+	activeIngredient?: SchemaValue<Text, "activeIngredient">
 	/** The location in which the strength is available. */
-	"availableIn"?: SchemaValue<AdministrativeArea | IdReference, "availableIn">
+	availableIn?: SchemaValue<AdministrativeArea | IdReference, "availableIn">
 	/** Recommended intake of this supplement for a given population as defined by a specific recommending authority. */
-	"maximumIntake"?: SchemaValue<
+	maximumIntake?: SchemaValue<
 		MaximumDoseSchedule | IdReference,
 		"maximumIntake"
 	>
 	/** The units of an active ingredient's strength, e.g. mg. */
-	"strengthUnit"?: SchemaValue<Text, "strengthUnit">
+	strengthUnit?: SchemaValue<Text, "strengthUnit">
 	/** The value of an active ingredient's strength, e.g. 325. */
-	"strengthValue"?: SchemaValue<Number, "strengthValue">
+	strengthValue?: SchemaValue<Number, "strengthValue">
 }
 interface DrugStrengthLeaf extends DrugStrengthBase {
 	type: "DrugStrength"
@@ -4316,7 +4256,7 @@ export type EatAction = EatActionLeaf
 
 interface EducationalAudienceBase extends AudienceBase {
 	/** An educationalRole of an EducationalAudience. */
-	"educationalRole"?: SchemaValue<Text, "educationalRole">
+	educationalRole?: SchemaValue<Text, "educationalRole">
 }
 interface EducationalAudienceLeaf extends EducationalAudienceBase {
 	type: "EducationalAudience"
@@ -4326,30 +4266,29 @@ export type EducationalAudience = EducationalAudienceLeaf
 
 interface EducationalOccupationalCredentialBase extends CreativeWorkBase {
 	/** Knowledge, skill, ability or personal attribute that must be demonstrated by a person or other entity in order to do something such as earn an Educational Occupational Credential or understand a LearningResource. */
-	"competencyRequired"?: SchemaValue<
+	competencyRequired?: SchemaValue<
 		DefinedTerm | Text | URL | IdReference,
 		"competencyRequired"
 	>
 	/** The category or type of credential being described, for example "degree”, “certificate”, “badge”, or more specific term. */
-	"credentialCategory"?: SchemaValue<
+	credentialCategory?: SchemaValue<
 		DefinedTerm | Text | URL | IdReference,
 		"credentialCategory"
 	>
 	/** The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators. */
-	"educationalLevel"?: SchemaValue<
+	educationalLevel?: SchemaValue<
 		DefinedTerm | Text | URL | IdReference,
 		"educationalLevel"
 	>
 	/** An organization that acknowledges the validity, value or utility of a credential. Note: recognition may include a process of quality assurance or accreditation. */
-	"recognizedBy"?: SchemaValue<Organization | IdReference, "recognizedBy">
+	recognizedBy?: SchemaValue<Organization | IdReference, "recognizedBy">
 	/** The duration of validity of a permit or similar thing. */
-	"validFor"?: SchemaValue<Duration | IdReference, "validFor">
+	validFor?: SchemaValue<Duration | IdReference, "validFor">
 	/** The geographic area where a permit or similar thing is valid. */
-	"validIn"?: SchemaValue<AdministrativeArea | IdReference, "validIn">
+	validIn?: SchemaValue<AdministrativeArea | IdReference, "validIn">
 }
 interface EducationalOccupationalCredentialLeaf
-	extends EducationalOccupationalCredentialBase
-{
+	extends EducationalOccupationalCredentialBase {
 	type: "EducationalOccupationalCredential"
 }
 /** An educational or occupational credential. A diploma, academic degree, certification, qualification, badge, etc., that may be awarded to a person or other entity that meets the requirements defined by the credentialer. */
@@ -4358,31 +4297,31 @@ export type EducationalOccupationalCredential =
 
 interface EducationalOccupationalProgramBase extends ThingBase {
 	/** The date at which the program stops collecting applications for the next enrollment cycle. */
-	"applicationDeadline"?: SchemaValue<Date, "applicationDeadline">
+	applicationDeadline?: SchemaValue<Date, "applicationDeadline">
 	/** The date at which the program begins collecting applications for the next enrollment cycle. */
-	"applicationStartDate"?: SchemaValue<Date, "applicationStartDate">
+	applicationStartDate?: SchemaValue<Date, "applicationStartDate">
 	/** The day of the week for which these opening hours are valid. */
-	"dayOfWeek"?: SchemaValue<DayOfWeek | IdReference, "dayOfWeek">
+	dayOfWeek?: SchemaValue<DayOfWeek | IdReference, "dayOfWeek">
 	/** A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program. */
-	"educationalCredentialAwarded"?: SchemaValue<
+	educationalCredentialAwarded?: SchemaValue<
 		EducationalOccupationalCredential | Text | URL | IdReference,
 		"educationalCredentialAwarded"
 	>
 	/** Similar to courseMode, the medium or means of delivery of the program as a whole. The value may either be a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ). */
-	"educationalProgramMode"?: SchemaValue<Text | URL, "educationalProgramMode">
+	educationalProgramMode?: SchemaValue<Text | URL, "educationalProgramMode">
 	/** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"endDate"?: SchemaValue<Date | DateTime, "endDate">
+	endDate?: SchemaValue<Date | DateTime, "endDate">
 	/** A financial aid type or program which students may use to pay for tuition or fees associated with the program. */
-	"financialAidEligible"?: SchemaValue<
+	financialAidEligible?: SchemaValue<
 		DefinedTerm | Text | IdReference,
 		"financialAidEligible"
 	>
 	/** A course or class that is one of the learning opportunities that constitute an educational / occupational program. No information is implied about whether the course is mandatory or optional; no guarantee is implied about whether the course will be available to everyone on the program. */
-	"hasCourse"?: SchemaValue<Course | IdReference, "hasCourse">
+	hasCourse?: SchemaValue<Course | IdReference, "hasCourse">
 	/** The maximum number of students who may be enrolled in the program. */
-	"maximumEnrollment"?: SchemaValue<Integer, "maximumEnrollment">
+	maximumEnrollment?: SchemaValue<Integer, "maximumEnrollment">
 	/** The number of credits or units awarded by a Course or required to complete an EducationalOccupationalProgram. */
-	"numberOfCredits"?: SchemaValue<
+	numberOfCredits?: SchemaValue<
 		Integer | StructuredValue | IdReference,
 		"numberOfCredits"
 	>
@@ -4391,19 +4330,19 @@ interface EducationalOccupationalProgramBase extends ThingBase {
 	 *
 	 * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
 	 */
-	"occupationalCategory"?: SchemaValue<
+	occupationalCategory?: SchemaValue<
 		CategoryCode | Text | IdReference,
 		"occupationalCategory"
 	>
 	/** A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program. */
-	"occupationalCredentialAwarded"?: SchemaValue<
+	occupationalCredentialAwarded?: SchemaValue<
 		EducationalOccupationalCredential | Text | URL | IdReference,
 		"occupationalCredentialAwarded"
 	>
 	/** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"offers"?: SchemaValue<Demand | Offer | IdReference, "offers">
+	offers?: SchemaValue<Demand | Offer | IdReference, "offers">
 	/** Prerequisites for enrolling in the program. */
-	"programPrerequisites"?: SchemaValue<
+	programPrerequisites?: SchemaValue<
 		| AlignmentObject
 		| Course
 		| EducationalOccupationalCredential
@@ -4412,38 +4351,37 @@ interface EducationalOccupationalProgramBase extends ThingBase {
 		"programPrerequisites"
 	>
 	/** The type of educational or occupational program. For example, classroom, internship, alternance, etc. */
-	"programType"?: SchemaValue<DefinedTerm | Text | IdReference, "programType">
+	programType?: SchemaValue<DefinedTerm | Text | IdReference, "programType">
 	/** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
-	"provider"?: SchemaValue<Organization | Person | IdReference, "provider">
+	provider?: SchemaValue<Organization | Person | IdReference, "provider">
 	/** The expected salary upon completing the training. */
-	"salaryUponCompletion"?: SchemaValue<
+	salaryUponCompletion?: SchemaValue<
 		MonetaryAmountDistribution | IdReference,
 		"salaryUponCompletion"
 	>
 	/** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"startDate"?: SchemaValue<Date | DateTime, "startDate">
+	startDate?: SchemaValue<Date | DateTime, "startDate">
 	/** The amount of time in a term as defined by the institution. A term is a length of time where students take one or more classes. Semesters and quarters are common units for term. */
-	"termDuration"?: SchemaValue<Duration | IdReference, "termDuration">
+	termDuration?: SchemaValue<Duration | IdReference, "termDuration">
 	/** The number of times terms of study are offered per year. Semesters and quarters are common units for term. For example, if the student can only take 2 semesters for the program in one year, then termsPerYear should be 2. */
-	"termsPerYear"?: SchemaValue<Number, "termsPerYear">
+	termsPerYear?: SchemaValue<Number, "termsPerYear">
 	/** The time of day the program normally runs. For example, "evenings". */
-	"timeOfDay"?: SchemaValue<Text, "timeOfDay">
+	timeOfDay?: SchemaValue<Text, "timeOfDay">
 	/** The expected length of time to complete the program if attending full-time. */
-	"timeToComplete"?: SchemaValue<Duration | IdReference, "timeToComplete">
+	timeToComplete?: SchemaValue<Duration | IdReference, "timeToComplete">
 	/** The estimated salary earned while in the program. */
-	"trainingSalary"?: SchemaValue<
+	trainingSalary?: SchemaValue<
 		MonetaryAmountDistribution | IdReference,
 		"trainingSalary"
 	>
 	/** The number of credits or units a full-time student would be expected to take in 1 term however 'term' is defined by the institution. */
-	"typicalCreditsPerTerm"?: SchemaValue<
+	typicalCreditsPerTerm?: SchemaValue<
 		Integer | StructuredValue | IdReference,
 		"typicalCreditsPerTerm"
 	>
 }
 interface EducationalOccupationalProgramLeaf
-	extends EducationalOccupationalProgramBase
-{
+	extends EducationalOccupationalProgramBase {
 	type: "EducationalOccupationalProgram"
 }
 /** A program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. This would define a discrete set of opportunities (e.g., job, courses) that together constitute a program with a clear start, end, set of requirements, and transition to a new occupational opportunity (e.g., a job), or sometimes a higher educational opportunity (e.g., an advanced degree). */
@@ -4452,10 +4390,10 @@ export type EducationalOccupationalProgram =
 	| WorkBasedProgram
 
 interface EducationalOrganizationBase
-	extends CivicStructureBase, OrganizationBase
-{
+	extends CivicStructureBase,
+		OrganizationBase {
 	/** Alumni of an organization. */
-	"alumni"?: SchemaValue<Person | IdReference, "alumni">
+	alumni?: SchemaValue<Person | IdReference, "alumni">
 }
 interface EducationalOrganizationLeaf extends EducationalOrganizationBase {
 	type: "EducationalOrganization"
@@ -4473,14 +4411,14 @@ export type EducationalOrganization =
 
 interface EducationEventBase extends EventBase {
 	/** The item being described is intended to assess the competency or learning outcome defined by the referenced term. */
-	"assesses"?: SchemaValue<DefinedTerm | Text | IdReference, "assesses">
+	assesses?: SchemaValue<DefinedTerm | Text | IdReference, "assesses">
 	/** The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators. */
-	"educationalLevel"?: SchemaValue<
+	educationalLevel?: SchemaValue<
 		DefinedTerm | Text | URL | IdReference,
 		"educationalLevel"
 	>
 	/** The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term. */
-	"teaches"?: SchemaValue<DefinedTerm | Text | IdReference, "teaches">
+	teaches?: SchemaValue<DefinedTerm | Text | IdReference, "teaches">
 }
 interface EducationEventLeaf extends EducationEventBase {
 	type: "EducationEvent"
@@ -4555,7 +4493,7 @@ export type EmploymentAgency = EmploymentAgencyLeaf | string
 
 interface EndorseActionBase extends ActionBase {
 	/** A sub property of participant. The person/organization being supported. */
-	"endorsee"?: SchemaValue<Organization | Person | IdReference, "endorsee">
+	endorsee?: SchemaValue<Organization | Person | IdReference, "endorsee">
 }
 interface EndorseActionLeaf extends EndorseActionBase {
 	type: "EndorseAction"
@@ -4581,17 +4519,17 @@ export type Energy = EnergyLeaf | string
 
 interface EnergyConsumptionDetailsBase extends ThingBase {
 	/** Specifies the most energy efficient class on the regulated EU energy consumption scale for the product category a product belongs to. For example, energy consumption for televisions placed on the market after January 1, 2020 is scaled from D to A+++. */
-	"energyEfficiencyScaleMax"?: SchemaValue<
+	energyEfficiencyScaleMax?: SchemaValue<
 		EUEnergyEfficiencyEnumeration | IdReference,
 		"energyEfficiencyScaleMax"
 	>
 	/** Specifies the least energy efficient class on the regulated EU energy consumption scale for the product category a product belongs to. For example, energy consumption for televisions placed on the market after January 1, 2020 is scaled from D to A+++. */
-	"energyEfficiencyScaleMin"?: SchemaValue<
+	energyEfficiencyScaleMin?: SchemaValue<
 		EUEnergyEfficiencyEnumeration | IdReference,
 		"energyEfficiencyScaleMin"
 	>
 	/** Defines the energy efficiency Category (which could be either a rating out of range of values or a yes/no certification) for a product according to an international energy efficiency standard. */
-	"hasEnergyEfficiencyCategory"?: SchemaValue<
+	hasEnergyEfficiencyCategory?: SchemaValue<
 		EnergyEfficiencyEnumeration | IdReference,
 		"hasEnergyEfficiencyCategory"
 	>
@@ -4628,7 +4566,7 @@ interface EngineSpecificationBase extends ThingBase {
 	 * - Note 1: You can link to information about how the given value has been determined using the {@link https://schema.org/valueReference valueReference} property.
 	 * - Note 2: You can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"engineDisplacement"?: SchemaValue<
+	engineDisplacement?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"engineDisplacement"
 	>
@@ -4638,14 +4576,14 @@ interface EngineSpecificationBase extends ThingBase {
 	 * - Note 2: You can link to information about how the given value has been determined using the {@link https://schema.org/valueReference valueReference} property.
 	 * - Note 3: You can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"enginePower"?: SchemaValue<QuantitativeValue | IdReference, "enginePower">
+	enginePower?: SchemaValue<QuantitativeValue | IdReference, "enginePower">
 	/** The type of engine or engines powering the vehicle. */
-	"engineType"?: SchemaValue<
+	engineType?: SchemaValue<
 		QualitativeValue | Text | URL | IdReference,
 		"engineType"
 	>
 	/** The type of fuel suitable for the engine or engines of the vehicle. If the vehicle has only one engine, this property can be attached directly to the vehicle. */
-	"fuelType"?: SchemaValue<
+	fuelType?: SchemaValue<
 		QualitativeValue | Text | URL | IdReference,
 		"fuelType"
 	>
@@ -4656,7 +4594,7 @@ interface EngineSpecificationBase extends ThingBase {
 	 * - Note 1: You can link to information about how the given value has been determined (e.g. reference RPM) using the {@link https://schema.org/valueReference valueReference} property.
 	 * - Note 2: You can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"torque"?: SchemaValue<QuantitativeValue | IdReference, "torque">
+	torque?: SchemaValue<QuantitativeValue | IdReference, "torque">
 }
 interface EngineSpecificationLeaf extends EngineSpecificationBase {
 	type: "EngineSpecification"
@@ -4681,12 +4619,12 @@ export type EntertainmentBusiness =
 
 interface EntryPointBase extends ThingBase {
 	/** An application that can complete the request. */
-	"actionApplication"?: SchemaValue<
+	actionApplication?: SchemaValue<
 		SoftwareApplication | IdReference,
 		"actionApplication"
 	>
 	/** The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication. */
-	"actionPlatform"?: SchemaValue<
+	actionPlatform?: SchemaValue<
 		DigitalPlatformEnumeration | Text | URL | IdReference,
 		"actionPlatform"
 	>
@@ -4695,15 +4633,15 @@ interface EntryPointBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/actionApplication instead.
 	 */
-	"application"?: SchemaValue<SoftwareApplication | IdReference, "application">
+	application?: SchemaValue<SoftwareApplication | IdReference, "application">
 	/** The supported content type(s) for an EntryPoint response. */
-	"contentType"?: SchemaValue<Text, "contentType">
+	contentType?: SchemaValue<Text, "contentType">
 	/** The supported encoding type(s) for an EntryPoint request. */
-	"encodingType"?: SchemaValue<Text, "encodingType">
+	encodingType?: SchemaValue<Text, "encodingType">
 	/** An HTTP method that specifies the appropriate HTTP method for a request to an HTTP EntryPoint. Values are capitalized strings as used in HTTP. */
-	"httpMethod"?: SchemaValue<Text, "httpMethod">
+	httpMethod?: SchemaValue<Text, "httpMethod">
 	/** An url template (RFC6570) that will be used to construct the target of the execution of the action. */
-	"urlTemplate"?: SchemaValue<Text, "urlTemplate">
+	urlTemplate?: SchemaValue<Text, "urlTemplate">
 }
 interface EntryPointLeaf extends EntryPointBase {
 	type: "EntryPoint"
@@ -4713,7 +4651,7 @@ export type EntryPoint = EntryPointLeaf | string
 
 interface EnumerationBase extends ThingBase {
 	/** Relates a term (i.e. a property, class or enumeration) to one that supersedes it. */
-	"supersededBy"?: SchemaValue<
+	supersededBy?: SchemaValue<
 		Class | Enumeration | Property | IdReference,
 		"supersededBy"
 	>
@@ -4776,38 +4714,38 @@ export type Enumeration =
 
 interface EpisodeBase extends CreativeWorkBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/**
 	 * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/actor instead.
 	 */
-	"actors"?: SchemaValue<Person | IdReference, "actors">
+	actors?: SchemaValue<Person | IdReference, "actors">
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/**
 	 * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/director instead.
 	 */
-	"directors"?: SchemaValue<Person | IdReference, "directors">
+	directors?: SchemaValue<Person | IdReference, "directors">
 	/** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
-	"duration"?: SchemaValue<Duration | IdReference, "duration">
+	duration?: SchemaValue<Duration | IdReference, "duration">
 	/** Position of the episode within an ordered group of episodes. */
-	"episodeNumber"?: SchemaValue<Integer | Text, "episodeNumber">
+	episodeNumber?: SchemaValue<Integer | Text, "episodeNumber">
 	/** The composer of the soundtrack. */
-	"musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
+	musicBy?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
 	/** The season to which this episode belongs. */
-	"partOfSeason"?: SchemaValue<CreativeWorkSeason | IdReference, "partOfSeason">
+	partOfSeason?: SchemaValue<CreativeWorkSeason | IdReference, "partOfSeason">
 	/** The series to which this episode or season belongs. */
-	"partOfSeries"?: SchemaValue<CreativeWorkSeries | IdReference, "partOfSeries">
+	partOfSeries?: SchemaValue<CreativeWorkSeries | IdReference, "partOfSeries">
 	/** The production company or studio responsible for the item, e.g. series, video game, episode etc. */
-	"productionCompany"?: SchemaValue<
+	productionCompany?: SchemaValue<
 		Organization | IdReference,
 		"productionCompany"
 	>
 	/** The trailer of a movie or TV/radio series, season, episode, etc. */
-	"trailer"?: SchemaValue<VideoObject | IdReference, "trailer">
+	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface EpisodeLeaf extends EpisodeBase {
 	type: "Episode"
@@ -4844,120 +4782,114 @@ export type EUEnergyEfficiencyEnumeration =
 
 interface EventBase extends ThingBase {
 	/** The subject matter of the content. */
-	"about"?: SchemaValue<Thing | IdReference, "about">
+	about?: SchemaValue<Thing | IdReference, "about">
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/** The overall rating, based on a collection of reviews or ratings, of the item. */
-	"aggregateRating"?: SchemaValue<
+	aggregateRating?: SchemaValue<
 		AggregateRating | IdReference,
 		"aggregateRating"
 	>
 	/** A person or organization attending the event. */
-	"attendee"?: SchemaValue<Organization | Person | IdReference, "attendee">
+	attendee?: SchemaValue<Organization | Person | IdReference, "attendee">
 	/**
 	 * A person attending the event.
 	 *
 	 * @deprecated Consider using https://schema.org/attendee instead.
 	 */
-	"attendees"?: SchemaValue<Organization | Person | IdReference, "attendees">
+	attendees?: SchemaValue<Organization | Person | IdReference, "attendees">
 	/** An intended audience, i.e. a group for whom something was created. */
-	"audience"?: SchemaValue<Audience | IdReference, "audience">
+	audience?: SchemaValue<Audience | IdReference, "audience">
 	/** The person or organization who wrote a composition, or who is the composer of a work performed at some event. */
-	"composer"?: SchemaValue<Organization | Person | IdReference, "composer">
+	composer?: SchemaValue<Organization | Person | IdReference, "composer">
 	/** A secondary contributor to the CreativeWork or Event. */
-	"contributor"?: SchemaValue<
-		Organization | Person | IdReference,
-		"contributor"
-	>
+	contributor?: SchemaValue<Organization | Person | IdReference, "contributor">
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/** The time admission will commence. */
-	"doorTime"?: SchemaValue<DateTime | Time, "doorTime">
+	doorTime?: SchemaValue<DateTime | Time, "doorTime">
 	/** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
-	"duration"?: SchemaValue<Duration | IdReference, "duration">
+	duration?: SchemaValue<Duration | IdReference, "duration">
 	/** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"endDate"?: SchemaValue<Date | DateTime, "endDate">
+	endDate?: SchemaValue<Date | DateTime, "endDate">
 	/** The eventAttendanceMode of an event indicates whether it occurs online, offline, or a mix. */
-	"eventAttendanceMode"?: SchemaValue<
+	eventAttendanceMode?: SchemaValue<
 		EventAttendanceModeEnumeration | IdReference,
 		"eventAttendanceMode"
 	>
 	/** Associates an {@link https://schema.org/Event Event} with a {@link https://schema.org/Schedule Schedule}. There are circumstances where it is preferable to share a schedule for a series of repeating events rather than data on the individual events themselves. For example, a website or application might prefer to publish a schedule for a weekly gym class rather than provide data on every event. A schedule could be processed by applications to add forthcoming events to a calendar. An {@link https://schema.org/Event Event} that is associated with a {@link https://schema.org/Schedule Schedule} using this property should not have {@link https://schema.org/startDate startDate} or {@link https://schema.org/endDate endDate} properties. These are instead defined within the associated {@link https://schema.org/Schedule Schedule}, this avoids any ambiguity for clients using the data. The property might have repeated values to specify different schedules, e.g. for different months or seasons. */
-	"eventSchedule"?: SchemaValue<Schedule | IdReference, "eventSchedule">
+	eventSchedule?: SchemaValue<Schedule | IdReference, "eventSchedule">
 	/** An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled. */
-	"eventStatus"?: SchemaValue<EventStatusType | IdReference, "eventStatus">
+	eventStatus?: SchemaValue<EventStatusType | IdReference, "eventStatus">
 	/** A person or organization that supports (sponsors) something through some kind of financial contribution. */
-	"funder"?: SchemaValue<Organization | Person | IdReference, "funder">
+	funder?: SchemaValue<Organization | Person | IdReference, "funder">
 	/** A {@link https://schema.org/Grant Grant} that directly or indirectly provide funding or sponsorship for this item. See also {@link https://schema.org/ownershipFundingInfo ownershipFundingInfo}. */
-	"funding"?: SchemaValue<Grant | IdReference, "funding">
+	funding?: SchemaValue<Grant | IdReference, "funding">
 	/** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
-	"inLanguage"?: SchemaValue<Language | Text | IdReference, "inLanguage">
+	inLanguage?: SchemaValue<Language | Text | IdReference, "inLanguage">
 	/** A flag to signal that the item, event, or place is accessible for free. */
-	"isAccessibleForFree"?: SchemaValue<Boolean, "isAccessibleForFree">
+	isAccessibleForFree?: SchemaValue<Boolean, "isAccessibleForFree">
 	/** Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property. */
-	"keywords"?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
+	keywords?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
 	/** The location of, for example, where an event is happening, where an organization is located, or where an action takes place. */
-	"location"?: SchemaValue<
+	location?: SchemaValue<
 		Place | PostalAddress | Text | VirtualLocation | IdReference,
 		"location"
 	>
 	/** The total number of individuals that may attend an event or venue. */
-	"maximumAttendeeCapacity"?: SchemaValue<Integer, "maximumAttendeeCapacity">
+	maximumAttendeeCapacity?: SchemaValue<Integer, "maximumAttendeeCapacity">
 	/** The maximum physical attendee capacity of an {@link https://schema.org/Event Event} whose {@link https://schema.org/eventAttendanceMode eventAttendanceMode} is {@link https://schema.org/OfflineEventAttendanceMode OfflineEventAttendanceMode} (or the offline aspects, in the case of a {@link https://schema.org/MixedEventAttendanceMode MixedEventAttendanceMode}). */
-	"maximumPhysicalAttendeeCapacity"?: SchemaValue<
+	maximumPhysicalAttendeeCapacity?: SchemaValue<
 		Integer,
 		"maximumPhysicalAttendeeCapacity"
 	>
 	/** The maximum virtual attendee capacity of an {@link https://schema.org/Event Event} whose {@link https://schema.org/eventAttendanceMode eventAttendanceMode} is {@link https://schema.org/OnlineEventAttendanceMode OnlineEventAttendanceMode} (or the online aspects, in the case of a {@link https://schema.org/MixedEventAttendanceMode MixedEventAttendanceMode}). */
-	"maximumVirtualAttendeeCapacity"?: SchemaValue<
+	maximumVirtualAttendeeCapacity?: SchemaValue<
 		Integer,
 		"maximumVirtualAttendeeCapacity"
 	>
 	/** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"offers"?: SchemaValue<Demand | Offer | IdReference, "offers">
+	offers?: SchemaValue<Demand | Offer | IdReference, "offers">
 	/** An organizer of an Event. */
-	"organizer"?: SchemaValue<Organization | Person | IdReference, "organizer">
+	organizer?: SchemaValue<Organization | Person | IdReference, "organizer">
 	/** A performer at the event—for example, a presenter, musician, musical group or actor. */
-	"performer"?: SchemaValue<Organization | Person | IdReference, "performer">
+	performer?: SchemaValue<Organization | Person | IdReference, "performer">
 	/**
 	 * The main performer or performers of the event—for example, a presenter, musician, or actor.
 	 *
 	 * @deprecated Consider using https://schema.org/performer instead.
 	 */
-	"performers"?: SchemaValue<Organization | Person | IdReference, "performers">
+	performers?: SchemaValue<Organization | Person | IdReference, "performers">
 	/** Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated. */
-	"previousStartDate"?: SchemaValue<Date, "previousStartDate">
+	previousStartDate?: SchemaValue<Date, "previousStartDate">
 	/** The CreativeWork that captured all or part of this Event. */
-	"recordedIn"?: SchemaValue<CreativeWork | IdReference, "recordedIn">
+	recordedIn?: SchemaValue<CreativeWork | IdReference, "recordedIn">
 	/** The number of attendee places for an event that remain unallocated. */
-	"remainingAttendeeCapacity"?: SchemaValue<
-		Integer,
-		"remainingAttendeeCapacity"
-	>
+	remainingAttendeeCapacity?: SchemaValue<Integer, "remainingAttendeeCapacity">
 	/** A review of the item. */
-	"review"?: SchemaValue<Review | IdReference, "review">
+	review?: SchemaValue<Review | IdReference, "review">
 	/** A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event. */
-	"sponsor"?: SchemaValue<Organization | Person | IdReference, "sponsor">
+	sponsor?: SchemaValue<Organization | Person | IdReference, "sponsor">
 	/** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"startDate"?: SchemaValue<Date | DateTime, "startDate">
+	startDate?: SchemaValue<Date | DateTime, "startDate">
 	/** An Event that is part of this event. For example, a conference event includes many presentations, each of which is a subEvent of the conference. */
-	"subEvent"?: SchemaValue<Event | IdReference, "subEvent">
+	subEvent?: SchemaValue<Event | IdReference, "subEvent">
 	/**
 	 * Events that are a part of this event. For example, a conference event includes many presentations, each subEvents of the conference.
 	 *
 	 * @deprecated Consider using https://schema.org/subEvent instead.
 	 */
-	"subEvents"?: SchemaValue<Event | IdReference, "subEvents">
+	subEvents?: SchemaValue<Event | IdReference, "subEvents">
 	/** An event that this event is a part of. For example, a collection of individual music performances might each have a music festival as their superEvent. */
-	"superEvent"?: SchemaValue<Event | IdReference, "superEvent">
+	superEvent?: SchemaValue<Event | IdReference, "superEvent">
 	/** Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market, or that translates during some event. */
-	"translator"?: SchemaValue<Organization | Person | IdReference, "translator">
+	translator?: SchemaValue<Organization | Person | IdReference, "translator">
 	/** The typical expected age range, e.g. '7-9', '11-'. */
-	"typicalAgeRange"?: SchemaValue<Text, "typicalAgeRange">
+	typicalAgeRange?: SchemaValue<Text, "typicalAgeRange">
 	/** A work featured in some event, e.g. exhibited in an ExhibitionEvent. Specific subproperties are available for workPerformed (e.g. a play), or a workPresented (a Movie at a ScreeningEvent). */
-	"workFeatured"?: SchemaValue<CreativeWork | IdReference, "workFeatured">
+	workFeatured?: SchemaValue<CreativeWork | IdReference, "workFeatured">
 	/** A work performed in some event, for example a play performed in a TheaterEvent. */
-	"workPerformed"?: SchemaValue<CreativeWork | IdReference, "workPerformed">
+	workPerformed?: SchemaValue<CreativeWork | IdReference, "workPerformed">
 }
 interface EventLeaf extends EventBase {
 	type: "Event"
@@ -5011,8 +4943,7 @@ interface EventReservationLeaf extends ReservationBase {
  */
 export type EventReservation = EventReservationLeaf
 
-interface EventSeriesBase extends ThingBase, EventBase {
-}
+interface EventSeriesBase extends ThingBase, EventBase {}
 interface EventSeriesLeaf extends EventSeriesBase {
 	type: "EventSeries"
 }
@@ -5056,14 +4987,14 @@ interface ExchangeRateSpecificationBase extends ThingBase {
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"currency"?: SchemaValue<Text, "currency">
+	currency?: SchemaValue<Text, "currency">
 	/** The current price of a currency. */
-	"currentExchangeRate"?: SchemaValue<
+	currentExchangeRate?: SchemaValue<
 		UnitPriceSpecification | IdReference,
 		"currentExchangeRate"
 	>
 	/** The difference between the price at which a broker or other intermediary buys and sells foreign currency. */
-	"exchangeRateSpread"?: SchemaValue<
+	exchangeRateSpread?: SchemaValue<
 		MonetaryAmount | Number | IdReference,
 		"exchangeRateSpread"
 	>
@@ -5080,34 +5011,34 @@ interface ExerciseActionBase extends PlayActionBase {
 	 *
 	 * @deprecated Consider using https://schema.org/exerciseCourse instead.
 	 */
-	"course"?: SchemaValue<Place | IdReference, "course">
+	course?: SchemaValue<Place | IdReference, "course">
 	/** A sub property of instrument. The diet used in this action. */
-	"diet"?: SchemaValue<Diet | IdReference, "diet">
+	diet?: SchemaValue<Diet | IdReference, "diet">
 	/** The distance travelled, e.g. exercising or travelling. */
-	"distance"?: SchemaValue<Distance | IdReference, "distance">
+	distance?: SchemaValue<Distance | IdReference, "distance">
 	/** A sub property of location. The course where this action was taken. */
-	"exerciseCourse"?: SchemaValue<Place | IdReference, "exerciseCourse">
+	exerciseCourse?: SchemaValue<Place | IdReference, "exerciseCourse">
 	/** A sub property of instrument. The exercise plan used on this action. */
-	"exercisePlan"?: SchemaValue<ExercisePlan | IdReference, "exercisePlan">
+	exercisePlan?: SchemaValue<ExercisePlan | IdReference, "exercisePlan">
 	/** A sub property of instrument. The diet used in this action. */
-	"exerciseRelatedDiet"?: SchemaValue<Diet | IdReference, "exerciseRelatedDiet">
+	exerciseRelatedDiet?: SchemaValue<Diet | IdReference, "exerciseRelatedDiet">
 	/** Type(s) of exercise or activity, such as strength training, flexibility training, aerobics, cardiac rehabilitation, etc. */
-	"exerciseType"?: SchemaValue<Text, "exerciseType">
+	exerciseType?: SchemaValue<Text, "exerciseType">
 	/** A sub property of location. The original location of the object or the agent before the action. */
-	"fromLocation"?: SchemaValue<Place | IdReference, "fromLocation">
+	fromLocation?: SchemaValue<Place | IdReference, "fromLocation">
 	/** A sub property of participant. The opponent on this action. */
-	"opponent"?: SchemaValue<Person | IdReference, "opponent">
+	opponent?: SchemaValue<Person | IdReference, "opponent">
 	/** A sub property of location. The sports activity location where this action occurred. */
-	"sportsActivityLocation"?: SchemaValue<
+	sportsActivityLocation?: SchemaValue<
 		SportsActivityLocation | IdReference,
 		"sportsActivityLocation"
 	>
 	/** A sub property of location. The sports event where this action occurred. */
-	"sportsEvent"?: SchemaValue<SportsEvent | IdReference, "sportsEvent">
+	sportsEvent?: SchemaValue<SportsEvent | IdReference, "sportsEvent">
 	/** A sub property of participant. The sports team that participated on this action. */
-	"sportsTeam"?: SchemaValue<SportsTeam | IdReference, "sportsTeam">
+	sportsTeam?: SchemaValue<SportsTeam | IdReference, "sportsTeam">
 	/** A sub property of location. The final location of the object or the agent after the action. */
-	"toLocation"?: SchemaValue<Place | IdReference, "toLocation">
+	toLocation?: SchemaValue<Place | IdReference, "toLocation">
 }
 interface ExerciseActionLeaf extends ExerciseActionBase {
 	type: "ExerciseAction"
@@ -5123,33 +5054,33 @@ export type ExerciseGym = ExerciseGymLeaf | string
 
 interface ExercisePlanBase extends CreativeWorkBase, PhysicalActivityBase {
 	/** Length of time to engage in the activity. */
-	"activityDuration"?: SchemaValue<
+	activityDuration?: SchemaValue<
 		Duration | QuantitativeValue | IdReference,
 		"activityDuration"
 	>
 	/** How often one should engage in the activity. */
-	"activityFrequency"?: SchemaValue<
+	activityFrequency?: SchemaValue<
 		QuantitativeValue | Text | IdReference,
 		"activityFrequency"
 	>
 	/** Any additional component of the exercise prescription that may need to be articulated to the patient. This may include the order of exercises, the number of repetitions of movement, quantitative distance, progressions over time, etc. */
-	"additionalVariable"?: SchemaValue<Text, "additionalVariable">
+	additionalVariable?: SchemaValue<Text, "additionalVariable">
 	/** Type(s) of exercise or activity, such as strength training, flexibility training, aerobics, cardiac rehabilitation, etc. */
-	"exerciseType"?: SchemaValue<Text, "exerciseType">
+	exerciseType?: SchemaValue<Text, "exerciseType">
 	/** Quantitative measure gauging the degree of force involved in the exercise, for example, heartbeats per minute. May include the velocity of the movement. */
-	"intensity"?: SchemaValue<QuantitativeValue | Text | IdReference, "intensity">
+	intensity?: SchemaValue<QuantitativeValue | Text | IdReference, "intensity">
 	/** Number of times one should repeat the activity. */
-	"repetitions"?: SchemaValue<
+	repetitions?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"repetitions"
 	>
 	/** How often one should break from the activity. */
-	"restPeriods"?: SchemaValue<
+	restPeriods?: SchemaValue<
 		QuantitativeValue | Text | IdReference,
 		"restPeriods"
 	>
 	/** Quantitative measure of the physiologic output of the exercise; also referred to as energy expenditure. */
-	"workload"?: SchemaValue<Energy | QuantitativeValue | IdReference, "workload">
+	workload?: SchemaValue<Energy | QuantitativeValue | IdReference, "workload">
 }
 interface ExercisePlanLeaf extends ExercisePlanBase {
 	type: "ExercisePlan"
@@ -5189,17 +5120,17 @@ export type FilmAction = FilmActionLeaf
 
 interface FinancialProductBase extends ServiceBase {
 	/** The annual rate that is charged for borrowing (or made by investing), expressed as a single percentage number that represents the actual yearly cost of funds over the term of a loan. This includes any fees or additional costs associated with the transaction. */
-	"annualPercentageRate"?: SchemaValue<
+	annualPercentageRate?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"annualPercentageRate"
 	>
 	/** Description of fees, commissions, and other terms applied either to a class of financial product, or by a financial service organization. */
-	"feesAndCommissionsSpecification"?: SchemaValue<
+	feesAndCommissionsSpecification?: SchemaValue<
 		Text | URL,
 		"feesAndCommissionsSpecification"
 	>
 	/** The interest rate, charged or paid, applicable to the financial product. Note: This is different from the calculated annualPercentageRate. */
-	"interestRate"?: SchemaValue<
+	interestRate?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"interestRate"
 	>
@@ -5219,7 +5150,7 @@ export type FinancialProduct =
 
 interface FinancialServiceBase extends LocalBusinessBase {
 	/** Description of fees, commissions, and other terms applied either to a class of financial product, or by a financial service organization. */
-	"feesAndCommissionsSpecification"?: SchemaValue<
+	feesAndCommissionsSpecification?: SchemaValue<
 		Text | URL,
 		"feesAndCommissionsSpecification"
 	>
@@ -5251,8 +5182,7 @@ export type FindAction =
 	| DiscoverAction
 	| TrackAction
 
-interface FireStationBase extends CivicStructureBase, LocalBusinessBase {
-}
+interface FireStationBase extends CivicStructureBase, LocalBusinessBase {}
 interface FireStationLeaf extends FireStationBase {
 	type: "FireStation"
 }
@@ -5261,15 +5191,15 @@ export type FireStation = FireStationLeaf | string
 
 interface FlightBase extends TripBase {
 	/** The kind of aircraft (e.g., "Boeing 747"). */
-	"aircraft"?: SchemaValue<Text | Vehicle | IdReference, "aircraft">
+	aircraft?: SchemaValue<Text | Vehicle | IdReference, "aircraft">
 	/** The airport where the flight terminates. */
-	"arrivalAirport"?: SchemaValue<Airport | IdReference, "arrivalAirport">
+	arrivalAirport?: SchemaValue<Airport | IdReference, "arrivalAirport">
 	/** Identifier of the flight's arrival gate. */
-	"arrivalGate"?: SchemaValue<Text, "arrivalGate">
+	arrivalGate?: SchemaValue<Text, "arrivalGate">
 	/** Identifier of the flight's arrival terminal. */
-	"arrivalTerminal"?: SchemaValue<Text, "arrivalTerminal">
+	arrivalTerminal?: SchemaValue<Text, "arrivalTerminal">
 	/** The type of boarding policy used by the airline (e.g. zone-based or group-based). */
-	"boardingPolicy"?: SchemaValue<
+	boardingPolicy?: SchemaValue<
 		BoardingPolicyType | IdReference,
 		"boardingPolicy"
 	>
@@ -5278,31 +5208,28 @@ interface FlightBase extends TripBase {
 	 *
 	 * @deprecated Consider using https://schema.org/provider instead.
 	 */
-	"carrier"?: SchemaValue<Organization | IdReference, "carrier">
+	carrier?: SchemaValue<Organization | IdReference, "carrier">
 	/** The airport where the flight originates. */
-	"departureAirport"?: SchemaValue<Airport | IdReference, "departureAirport">
+	departureAirport?: SchemaValue<Airport | IdReference, "departureAirport">
 	/** Identifier of the flight's departure gate. */
-	"departureGate"?: SchemaValue<Text, "departureGate">
+	departureGate?: SchemaValue<Text, "departureGate">
 	/** Identifier of the flight's departure terminal. */
-	"departureTerminal"?: SchemaValue<Text, "departureTerminal">
+	departureTerminal?: SchemaValue<Text, "departureTerminal">
 	/** The estimated time the flight will take. */
-	"estimatedFlightDuration"?: SchemaValue<
+	estimatedFlightDuration?: SchemaValue<
 		Duration | Text | IdReference,
 		"estimatedFlightDuration"
 	>
 	/** The distance of the flight. */
-	"flightDistance"?: SchemaValue<
-		Distance | Text | IdReference,
-		"flightDistance"
-	>
+	flightDistance?: SchemaValue<Distance | Text | IdReference, "flightDistance">
 	/** The unique identifier for a flight including the airline IATA code. For example, if describing United flight 110, where the IATA code for United is 'UA', the flightNumber is 'UA110'. */
-	"flightNumber"?: SchemaValue<Text, "flightNumber">
+	flightNumber?: SchemaValue<Text, "flightNumber">
 	/** Description of the meals that will be provided or available for purchase. */
-	"mealService"?: SchemaValue<Text, "mealService">
+	mealService?: SchemaValue<Text, "mealService">
 	/** An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. */
-	"seller"?: SchemaValue<Organization | Person | IdReference, "seller">
+	seller?: SchemaValue<Organization | Person | IdReference, "seller">
 	/** The time when a passenger can check into the flight online. */
-	"webCheckinTime"?: SchemaValue<DateTime, "webCheckinTime">
+	webCheckinTime?: SchemaValue<DateTime, "webCheckinTime">
 }
 interface FlightLeaf extends FlightBase {
 	type: "Flight"
@@ -5312,16 +5239,16 @@ export type Flight = FlightLeaf
 
 interface FlightReservationBase extends ReservationBase {
 	/** The airline-specific indicator of boarding order / preference. */
-	"boardingGroup"?: SchemaValue<Text, "boardingGroup">
+	boardingGroup?: SchemaValue<Text, "boardingGroup">
 	/** The priority status assigned to a passenger for security or boarding (e.g. FastTrack or Priority). */
-	"passengerPriorityStatus"?: SchemaValue<
+	passengerPriorityStatus?: SchemaValue<
 		QualitativeValue | Text | IdReference,
 		"passengerPriorityStatus"
 	>
 	/** The passenger's sequence number as assigned by the airline. */
-	"passengerSequenceNumber"?: SchemaValue<Text, "passengerSequenceNumber">
+	passengerSequenceNumber?: SchemaValue<Text, "passengerSequenceNumber">
 	/** The type of security screening the passenger is subject to. */
-	"securityScreening"?: SchemaValue<Text, "securityScreening">
+	securityScreening?: SchemaValue<Text, "securityScreening">
 }
 interface FlightReservationLeaf extends FlightReservationBase {
 	type: "FlightReservation"
@@ -5338,47 +5265,47 @@ export type Float = number | `${number}`
 
 interface FloorPlanBase extends ThingBase {
 	/** An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs. */
-	"amenityFeature"?: SchemaValue<
+	amenityFeature?: SchemaValue<
 		LocationFeatureSpecification | IdReference,
 		"amenityFeature"
 	>
 	/** The size of the accommodation, e.g. in square meter or squarefoot. Typical unit code(s): MTK for square meter, FTK for square foot, or YDK for square yard */
-	"floorSize"?: SchemaValue<QuantitativeValue | IdReference, "floorSize">
+	floorSize?: SchemaValue<QuantitativeValue | IdReference, "floorSize">
 	/** Indicates some accommodation that this floor plan describes. */
-	"isPlanForApartment"?: SchemaValue<
+	isPlanForApartment?: SchemaValue<
 		Accommodation | IdReference,
 		"isPlanForApartment"
 	>
 	/** A schematic image showing the floorplan layout. */
-	"layoutImage"?: SchemaValue<ImageObject | URL | IdReference, "layoutImage">
+	layoutImage?: SchemaValue<ImageObject | URL | IdReference, "layoutImage">
 	/** Indicates the total (available plus unavailable) number of accommodation units in an {@link https://schema.org/ApartmentComplex ApartmentComplex}, or the number of accommodation units for a specific {@link https://schema.org/FloorPlan FloorPlan} (within its specific {@link https://schema.org/ApartmentComplex ApartmentComplex}). See also {@link https://schema.org/numberOfAvailableAccommodationUnits numberOfAvailableAccommodationUnits}. */
-	"numberOfAccommodationUnits"?: SchemaValue<
+	numberOfAccommodationUnits?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"numberOfAccommodationUnits"
 	>
 	/** Indicates the number of available accommodation units in an {@link https://schema.org/ApartmentComplex ApartmentComplex}, or the number of accommodation units for a specific {@link https://schema.org/FloorPlan FloorPlan} (within its specific {@link https://schema.org/ApartmentComplex ApartmentComplex}). See also {@link https://schema.org/numberOfAccommodationUnits numberOfAccommodationUnits}. */
-	"numberOfAvailableAccommodationUnits"?: SchemaValue<
+	numberOfAvailableAccommodationUnits?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"numberOfAvailableAccommodationUnits"
 	>
 	/** The total integer number of bathrooms in some {@link https://schema.org/Accommodation Accommodation}, following real estate conventions as {@link https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field documented in RESO}: "The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.". See also {@link https://schema.org/numberOfRooms numberOfRooms}. */
-	"numberOfBathroomsTotal"?: SchemaValue<Integer, "numberOfBathroomsTotal">
+	numberOfBathroomsTotal?: SchemaValue<Integer, "numberOfBathroomsTotal">
 	/** The total integer number of bedrooms in a some {@link https://schema.org/Accommodation Accommodation}, {@link https://schema.org/ApartmentComplex ApartmentComplex} or {@link https://schema.org/FloorPlan FloorPlan}. */
-	"numberOfBedrooms"?: SchemaValue<
+	numberOfBedrooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfBedrooms"
 	>
 	/** Number of full bathrooms - The total number of full and ¾ bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
-	"numberOfFullBathrooms"?: SchemaValue<Number, "numberOfFullBathrooms">
+	numberOfFullBathrooms?: SchemaValue<Number, "numberOfFullBathrooms">
 	/** Number of partial bathrooms - The total number of half and ¼ bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
-	"numberOfPartialBathrooms"?: SchemaValue<Number, "numberOfPartialBathrooms">
+	numberOfPartialBathrooms?: SchemaValue<Number, "numberOfPartialBathrooms">
 	/** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
-	"numberOfRooms"?: SchemaValue<
+	numberOfRooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfRooms"
 	>
 	/** Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value. */
-	"petsAllowed"?: SchemaValue<Boolean | Text, "petsAllowed">
+	petsAllowed?: SchemaValue<Boolean | Text, "petsAllowed">
 }
 interface FloorPlanLeaf extends FloorPlanBase {
 	type: "FloorPlan"
@@ -5400,7 +5327,7 @@ export type FMRadioChannel = FMRadioChannelLeaf
 
 interface FollowActionBase extends ActionBase {
 	/** A sub property of object. The person or organization being followed. */
-	"followee"?: SchemaValue<Organization | Person | IdReference, "followee">
+	followee?: SchemaValue<Organization | Person | IdReference, "followee">
 }
 interface FollowActionLeaf extends FollowActionBase {
 	type: "FollowAction"
@@ -5419,22 +5346,19 @@ export type FollowAction = FollowActionLeaf
 
 interface FoodEstablishmentBase extends LocalBusinessBase {
 	/** Indicates whether a FoodEstablishment accepts reservations. Values can be Boolean, an URL at which reservations can be made or (for backwards compatibility) the strings `Yes` or `No`. */
-	"acceptsReservations"?: SchemaValue<
-		Boolean | Text | URL,
-		"acceptsReservations"
-	>
+	acceptsReservations?: SchemaValue<Boolean | Text | URL, "acceptsReservations">
 	/** Either the actual menu as a structured representation, as text, or a URL of the menu. */
-	"hasMenu"?: SchemaValue<Menu | Text | URL | IdReference, "hasMenu">
+	hasMenu?: SchemaValue<Menu | Text | URL | IdReference, "hasMenu">
 	/**
 	 * Either the actual menu as a structured representation, as text, or a URL of the menu.
 	 *
 	 * @deprecated Consider using https://schema.org/hasMenu instead.
 	 */
-	"menu"?: SchemaValue<Menu | Text | URL | IdReference, "menu">
+	menu?: SchemaValue<Menu | Text | URL | IdReference, "menu">
 	/** The cuisine of the restaurant. */
-	"servesCuisine"?: SchemaValue<Text, "servesCuisine">
+	servesCuisine?: SchemaValue<Text, "servesCuisine">
 	/** An official rating for a lodging business or food establishment, e.g. from national associations or standards bodies. Use the author property to indicate the rating organization, e.g. as an Organization with name such as (e.g. HOTREC, DEHOGA, WHR, or Hotelstars). */
-	"starRating"?: SchemaValue<Rating | IdReference, "starRating">
+	starRating?: SchemaValue<Rating | IdReference, "starRating">
 }
 interface FoodEstablishmentLeaf extends FoodEstablishmentBase {
 	type: "FoodEstablishment"
@@ -5459,9 +5383,9 @@ interface FoodEstablishmentReservationBase extends ReservationBase {
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"endTime"?: SchemaValue<DateTime | Time, "endTime">
+	endTime?: SchemaValue<DateTime | Time, "endTime">
 	/** Number of people the reservation should accommodate. */
-	"partySize"?: SchemaValue<
+	partySize?: SchemaValue<
 		Integer | QuantitativeValue | IdReference,
 		"partySize"
 	>
@@ -5470,11 +5394,10 @@ interface FoodEstablishmentReservationBase extends ReservationBase {
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"startTime"?: SchemaValue<DateTime | Time, "startTime">
+	startTime?: SchemaValue<DateTime | Time, "startTime">
 }
 interface FoodEstablishmentReservationLeaf
-	extends FoodEstablishmentReservationBase
-{
+	extends FoodEstablishmentReservationBase {
 	type: "FoodEstablishmentReservation"
 }
 /**
@@ -5520,21 +5443,21 @@ export type FurnitureStore = FurnitureStoreLeaf | string
 
 interface GameBase extends CreativeWorkBase {
 	/** A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage). */
-	"characterAttribute"?: SchemaValue<Thing | IdReference, "characterAttribute">
+	characterAttribute?: SchemaValue<Thing | IdReference, "characterAttribute">
 	/** An item is an object within the game world that can be collected by a player or, occasionally, a non-player character. */
-	"gameItem"?: SchemaValue<Thing | IdReference, "gameItem">
+	gameItem?: SchemaValue<Thing | IdReference, "gameItem">
 	/** Real or fictional location of the game (or part of game). */
-	"gameLocation"?: SchemaValue<
+	gameLocation?: SchemaValue<
 		Place | PostalAddress | URL | IdReference,
 		"gameLocation"
 	>
 	/** Indicate how many people can play this game (minimum, maximum, or range). */
-	"numberOfPlayers"?: SchemaValue<
+	numberOfPlayers?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"numberOfPlayers"
 	>
 	/** The task that a player-controlled character, or group of characters may complete in order to gain a reward. */
-	"quest"?: SchemaValue<Thing | IdReference, "quest">
+	quest?: SchemaValue<Thing | IdReference, "quest">
 }
 interface GameLeaf extends GameBase {
 	type: "Game"
@@ -5568,11 +5491,11 @@ export type GamePlayMode =
 
 interface GameServerBase extends ThingBase {
 	/** Video game which is played on this server. */
-	"game"?: SchemaValue<VideoGame | IdReference, "game">
+	game?: SchemaValue<VideoGame | IdReference, "game">
 	/** Number of players on the server. */
-	"playersOnline"?: SchemaValue<Integer, "playersOnline">
+	playersOnline?: SchemaValue<Integer, "playersOnline">
 	/** Status of a game server. */
-	"serverStatus"?: SchemaValue<GameServerStatus | IdReference, "serverStatus">
+	serverStatus?: SchemaValue<GameServerStatus | IdReference, "serverStatus">
 }
 interface GameServerLeaf extends GameServerBase {
 	type: "GameServer"
@@ -5626,14 +5549,14 @@ export type GenderType =
 
 interface GeneBase extends BioChemEntityBase {
 	/** Another gene which is a variation of this one. */
-	"alternativeOf"?: SchemaValue<Gene | IdReference, "alternativeOf">
+	alternativeOf?: SchemaValue<Gene | IdReference, "alternativeOf">
 	/** Another BioChemEntity encoded by this one. */
-	"encodesBioChemEntity"?: SchemaValue<
+	encodesBioChemEntity?: SchemaValue<
 		BioChemEntity | IdReference,
 		"encodesBioChemEntity"
 	>
 	/** Tissue, organ, biological sample, etc in which activity of this gene has been observed experimentally. For example brain, digestive system. */
-	"expressedIn"?: SchemaValue<
+	expressedIn?: SchemaValue<
 		| AnatomicalStructure
 		| AnatomicalSystem
 		| BioChemEntity
@@ -5642,7 +5565,7 @@ interface GeneBase extends BioChemEntityBase {
 		"expressedIn"
 	>
 	/** A symbolic representation of a BioChemEntity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein. */
-	"hasBioPolymerSequence"?: SchemaValue<Text, "hasBioPolymerSequence">
+	hasBioPolymerSequence?: SchemaValue<Text, "hasBioPolymerSequence">
 }
 interface GeneLeaf extends GeneBase {
 	type: "Gene"
@@ -5658,9 +5581,9 @@ export type GeneralContractor = GeneralContractorLeaf | string
 
 interface GeoCircleBase extends GeoShapeBase {
 	/** Indicates the GeoCoordinates at the centre of a GeoShape, e.g. GeoCircle. */
-	"geoMidpoint"?: SchemaValue<GeoCoordinates | IdReference, "geoMidpoint">
+	geoMidpoint?: SchemaValue<GeoCoordinates | IdReference, "geoMidpoint">
 	/** Indicates the approximate radius of a GeoCircle (metres unless indicated otherwise via Distance notation). */
-	"geoRadius"?: SchemaValue<Distance | Number | Text | IdReference, "geoRadius">
+	geoRadius?: SchemaValue<Distance | Number | Text | IdReference, "geoRadius">
 }
 interface GeoCircleLeaf extends GeoCircleBase {
 	type: "GeoCircle"
@@ -5670,17 +5593,17 @@ export type GeoCircle = GeoCircleLeaf
 
 interface GeoCoordinatesBase extends ThingBase {
 	/** Physical address of the item. */
-	"address"?: SchemaValue<PostalAddress | Text | IdReference, "address">
+	address?: SchemaValue<PostalAddress | Text | IdReference, "address">
 	/** The country. For example, USA. You can also provide the two-letter {@link http://en.wikipedia.org/wiki/ISO_3166-1 ISO 3166-1 alpha-2 country code}. */
-	"addressCountry"?: SchemaValue<Country | Text | IdReference, "addressCountry">
+	addressCountry?: SchemaValue<Country | Text | IdReference, "addressCountry">
 	/** The elevation of a location ({@link https://en.wikipedia.org/wiki/World_Geodetic_System WGS 84}). Values may be of the form 'NUMBER UNIT_OF_MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters. */
-	"elevation"?: SchemaValue<Number | Text, "elevation">
+	elevation?: SchemaValue<Number | Text, "elevation">
 	/** The latitude of a location. For example `37.42242` ({@link https://en.wikipedia.org/wiki/World_Geodetic_System WGS 84}). */
-	"latitude"?: SchemaValue<Number | Text, "latitude">
+	latitude?: SchemaValue<Number | Text, "latitude">
 	/** The longitude of a location. For example `-122.08585` ({@link https://en.wikipedia.org/wiki/World_Geodetic_System WGS 84}). */
-	"longitude"?: SchemaValue<Number | Text, "longitude">
+	longitude?: SchemaValue<Number | Text, "longitude">
 	/** The postal code. For example, 94043. */
-	"postalCode"?: SchemaValue<Text, "postalCode">
+	postalCode?: SchemaValue<Text, "postalCode">
 }
 interface GeoCoordinatesLeaf extends GeoCoordinatesBase {
 	type: "GeoCoordinates"
@@ -5690,21 +5613,21 @@ export type GeoCoordinates = GeoCoordinatesLeaf
 
 interface GeoShapeBase extends ThingBase {
 	/** Physical address of the item. */
-	"address"?: SchemaValue<PostalAddress | Text | IdReference, "address">
+	address?: SchemaValue<PostalAddress | Text | IdReference, "address">
 	/** The country. For example, USA. You can also provide the two-letter {@link http://en.wikipedia.org/wiki/ISO_3166-1 ISO 3166-1 alpha-2 country code}. */
-	"addressCountry"?: SchemaValue<Country | Text | IdReference, "addressCountry">
+	addressCountry?: SchemaValue<Country | Text | IdReference, "addressCountry">
 	/** A box is the area enclosed by the rectangle formed by two points. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character. */
-	"box"?: SchemaValue<Text, "box">
+	box?: SchemaValue<Text, "box">
 	/** A circle is the circular region of a specified radius centered at a specified latitude and longitude. A circle is expressed as a pair followed by a radius in meters. */
-	"circle"?: SchemaValue<Text, "circle">
+	circle?: SchemaValue<Text, "circle">
 	/** The elevation of a location ({@link https://en.wikipedia.org/wiki/World_Geodetic_System WGS 84}). Values may be of the form 'NUMBER UNIT_OF_MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters. */
-	"elevation"?: SchemaValue<Number | Text, "elevation">
+	elevation?: SchemaValue<Number | Text, "elevation">
 	/** A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space. */
-	"line"?: SchemaValue<Text, "line">
+	line?: SchemaValue<Text, "line">
 	/** A polygon is the area enclosed by a point-to-point path for which the starting and ending points are the same. A polygon is expressed as a series of four or more space delimited points where the first and final points are identical. */
-	"polygon"?: SchemaValue<Text, "polygon">
+	polygon?: SchemaValue<Text, "polygon">
 	/** The postal code. For example, 94043. */
-	"postalCode"?: SchemaValue<Text, "postalCode">
+	postalCode?: SchemaValue<Text, "postalCode">
 }
 interface GeoShapeLeaf extends GeoShapeBase {
 	type: "GeoShape"
@@ -5714,55 +5637,46 @@ export type GeoShape = GeoShapeLeaf | GeoCircle
 
 interface GeospatialGeometryBase extends ThingBase {
 	/** Represents a relationship between two geometries (or the places they represent), relating a containing geometry to a contained geometry. "a contains b iff no points of b lie in the exterior of a, and at least one point of the interior of b lies in the interior of a". As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoContains"?: SchemaValue<
+	geoContains?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoContains"
 	>
 	/** Represents a relationship between two geometries (or the places they represent), relating a geometry to another that covers it. As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoCoveredBy"?: SchemaValue<
+	geoCoveredBy?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoCoveredBy"
 	>
 	/** Represents a relationship between two geometries (or the places they represent), relating a covering geometry to a covered geometry. "Every point of b is a point of (the interior or boundary of) a". As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoCovers"?: SchemaValue<
-		GeospatialGeometry | Place | IdReference,
-		"geoCovers"
-	>
+	geoCovers?: SchemaValue<GeospatialGeometry | Place | IdReference, "geoCovers">
 	/** Represents a relationship between two geometries (or the places they represent), relating a geometry to another that crosses it: "a crosses b: they have some but not all interior points in common, and the dimension of the intersection is less than that of at least one of them". As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoCrosses"?: SchemaValue<
+	geoCrosses?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoCrosses"
 	>
 	/** Represents spatial relations in which two geometries (or the places they represent) are topologically disjoint: "they have no point in common. They form a set of disconnected geometries." (A symmetric relationship, as defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}.) */
-	"geoDisjoint"?: SchemaValue<
+	geoDisjoint?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoDisjoint"
 	>
 	/** Represents spatial relations in which two geometries (or the places they represent) are topologically equal, as defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. "Two geometries are topologically equal if their interiors intersect and no part of the interior or boundary of one geometry intersects the exterior of the other" (a symmetric relationship). */
-	"geoEquals"?: SchemaValue<
-		GeospatialGeometry | Place | IdReference,
-		"geoEquals"
-	>
+	geoEquals?: SchemaValue<GeospatialGeometry | Place | IdReference, "geoEquals">
 	/** Represents spatial relations in which two geometries (or the places they represent) have at least one point in common. As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoIntersects"?: SchemaValue<
+	geoIntersects?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoIntersects"
 	>
 	/** Represents a relationship between two geometries (or the places they represent), relating a geometry to another that geospatially overlaps it, i.e. they have some but not all points in common. As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoOverlaps"?: SchemaValue<
+	geoOverlaps?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoOverlaps"
 	>
 	/** Represents spatial relations in which two geometries (or the places they represent) touch: "they have at least one boundary point in common, but no interior points." (A symmetric relationship, as defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}.) */
-	"geoTouches"?: SchemaValue<
+	geoTouches?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoTouches"
 	>
 	/** Represents a relationship between two geometries (or the places they represent), relating a geometry to one that contains it, i.e. it is inside (i.e. within) its interior. As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoWithin"?: SchemaValue<
-		GeospatialGeometry | Place | IdReference,
-		"geoWithin"
-	>
+	geoWithin?: SchemaValue<GeospatialGeometry | Place | IdReference, "geoWithin">
 }
 interface GeospatialGeometryLeaf extends GeospatialGeometryBase {
 	type: "GeospatialGeometry"
@@ -5778,7 +5692,7 @@ export type Geriatric = GeriatricLeaf | string
 
 interface GiveActionBase extends TransferActionBase {
 	/** A sub property of participant. The participant who is at the receiving end of the action. */
-	"recipient"?: SchemaValue<
+	recipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"recipient"
 	>
@@ -5857,12 +5771,12 @@ export type GovernmentPermit = GovernmentPermitLeaf
 
 interface GovernmentServiceBase extends ServiceBase {
 	/** Indicates a legal jurisdiction, e.g. of some legislation, or where some government service is based. */
-	"jurisdiction"?: SchemaValue<
+	jurisdiction?: SchemaValue<
 		AdministrativeArea | Text | IdReference,
 		"jurisdiction"
 	>
 	/** The operating organization, if different from the provider. This enables the representation of services that are provided by an organization, but operated by another organization like a subcontractor. */
-	"serviceOperator"?: SchemaValue<Organization | IdReference, "serviceOperator">
+	serviceOperator?: SchemaValue<Organization | IdReference, "serviceOperator">
 }
 interface GovernmentServiceLeaf extends GovernmentServiceBase {
 	type: "GovernmentService"
@@ -5872,7 +5786,7 @@ export type GovernmentService = GovernmentServiceLeaf
 
 interface GrantBase extends ThingBase {
 	/** Indicates something directly or indirectly funded or sponsored through a {@link https://schema.org/Grant Grant}. See also {@link https://schema.org/ownershipFundingInfo ownershipFundingInfo}. */
-	"fundedItem"?: SchemaValue<
+	fundedItem?: SchemaValue<
 		| BioChemEntity
 		| CreativeWork
 		| Event
@@ -5884,9 +5798,9 @@ interface GrantBase extends ThingBase {
 		"fundedItem"
 	>
 	/** A person or organization that supports (sponsors) something through some kind of financial contribution. */
-	"funder"?: SchemaValue<Organization | Person | IdReference, "funder">
+	funder?: SchemaValue<Organization | Person | IdReference, "funder">
 	/** A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event. */
-	"sponsor"?: SchemaValue<Organization | Person | IdReference, "sponsor">
+	sponsor?: SchemaValue<Organization | Person | IdReference, "sponsor">
 }
 interface GrantLeaf extends GrantBase {
 	type: "Grant"
@@ -5908,7 +5822,7 @@ export type GroceryStore = GroceryStoreLeaf | string
 
 interface GuideBase extends CreativeWorkBase {
 	/** This Review or Rating is relevant to this part or facet of the itemReviewed. */
-	"reviewAspect"?: SchemaValue<Text, "reviewAspect">
+	reviewAspect?: SchemaValue<Text, "reviewAspect">
 }
 interface GuideLeaf extends GuideBase {
 	type: "Guide"
@@ -6019,8 +5933,7 @@ export type HealthAspectEnumeration =
 	| "UsageOrScheduleHealthAspect"
 	| HealthAspectEnumerationLeaf
 
-interface HealthClubBase extends LocalBusinessBase, LocalBusinessBase {
-}
+interface HealthClubBase extends LocalBusinessBase, LocalBusinessBase {}
 interface HealthClubLeaf extends HealthClubBase {
 	type: "HealthClub"
 }
@@ -6029,32 +5942,29 @@ export type HealthClub = HealthClubLeaf | string
 
 interface HealthInsurancePlanBase extends ThingBase {
 	/** The URL that goes directly to the summary of benefits and coverage for the specific standard plan or plan variation. */
-	"benefitsSummaryUrl"?: SchemaValue<URL, "benefitsSummaryUrl">
+	benefitsSummaryUrl?: SchemaValue<URL, "benefitsSummaryUrl">
 	/** A contact point for a person or organization. */
-	"contactPoint"?: SchemaValue<ContactPoint | IdReference, "contactPoint">
+	contactPoint?: SchemaValue<ContactPoint | IdReference, "contactPoint">
 	/** TODO. */
-	"healthPlanDrugOption"?: SchemaValue<Text, "healthPlanDrugOption">
+	healthPlanDrugOption?: SchemaValue<Text, "healthPlanDrugOption">
 	/** The tier(s) of drugs offered by this formulary or insurance plan. */
-	"healthPlanDrugTier"?: SchemaValue<Text, "healthPlanDrugTier">
+	healthPlanDrugTier?: SchemaValue<Text, "healthPlanDrugTier">
 	/** The 14-character, HIOS-generated Plan ID number. (Plan IDs must be unique, even across different markets.) */
-	"healthPlanId"?: SchemaValue<Text, "healthPlanId">
+	healthPlanId?: SchemaValue<Text, "healthPlanId">
 	/** The URL that goes directly to the plan brochure for the specific standard plan or plan variation. */
-	"healthPlanMarketingUrl"?: SchemaValue<URL, "healthPlanMarketingUrl">
+	healthPlanMarketingUrl?: SchemaValue<URL, "healthPlanMarketingUrl">
 	/** Formularies covered by this plan. */
-	"includesHealthPlanFormulary"?: SchemaValue<
+	includesHealthPlanFormulary?: SchemaValue<
 		HealthPlanFormulary | IdReference,
 		"includesHealthPlanFormulary"
 	>
 	/** Networks covered by this plan. */
-	"includesHealthPlanNetwork"?: SchemaValue<
+	includesHealthPlanNetwork?: SchemaValue<
 		HealthPlanNetwork | IdReference,
 		"includesHealthPlanNetwork"
 	>
 	/** The standard for interpreting the Plan ID. The preferred is "HIOS". See the Centers for Medicare & Medicaid Services for more details. */
-	"usesHealthPlanIdStandard"?: SchemaValue<
-		Text | URL,
-		"usesHealthPlanIdStandard"
-	>
+	usesHealthPlanIdStandard?: SchemaValue<Text | URL, "usesHealthPlanIdStandard">
 }
 interface HealthInsurancePlanLeaf extends HealthInsurancePlanBase {
 	type: "HealthInsurancePlan"
@@ -6064,25 +5974,21 @@ export type HealthInsurancePlan = HealthInsurancePlanLeaf
 
 interface HealthPlanCostSharingSpecificationBase extends ThingBase {
 	/** Whether the coinsurance applies before or after deductible, etc. TODO: Is this a closed set? */
-	"healthPlanCoinsuranceOption"?: SchemaValue<
-		Text,
-		"healthPlanCoinsuranceOption"
-	>
+	healthPlanCoinsuranceOption?: SchemaValue<Text, "healthPlanCoinsuranceOption">
 	/** The rate of coinsurance expressed as a number between 0.0 and 1.0. */
-	"healthPlanCoinsuranceRate"?: SchemaValue<Number, "healthPlanCoinsuranceRate">
+	healthPlanCoinsuranceRate?: SchemaValue<Number, "healthPlanCoinsuranceRate">
 	/** The copay amount. */
-	"healthPlanCopay"?: SchemaValue<
+	healthPlanCopay?: SchemaValue<
 		PriceSpecification | IdReference,
 		"healthPlanCopay"
 	>
 	/** Whether the copay is before or after deductible, etc. TODO: Is this a closed set? */
-	"healthPlanCopayOption"?: SchemaValue<Text, "healthPlanCopayOption">
+	healthPlanCopayOption?: SchemaValue<Text, "healthPlanCopayOption">
 	/** The category or type of pharmacy associated with this cost sharing. */
-	"healthPlanPharmacyCategory"?: SchemaValue<Text, "healthPlanPharmacyCategory">
+	healthPlanPharmacyCategory?: SchemaValue<Text, "healthPlanPharmacyCategory">
 }
 interface HealthPlanCostSharingSpecificationLeaf
-	extends HealthPlanCostSharingSpecificationBase
-{
+	extends HealthPlanCostSharingSpecificationBase {
 	type: "HealthPlanCostSharingSpecification"
 }
 /** A description of costs to the patient under a given network or formulary. */
@@ -6091,11 +5997,11 @@ export type HealthPlanCostSharingSpecification =
 
 interface HealthPlanFormularyBase extends ThingBase {
 	/** The costs to the patient for services under this network or formulary. */
-	"healthPlanCostSharing"?: SchemaValue<Boolean, "healthPlanCostSharing">
+	healthPlanCostSharing?: SchemaValue<Boolean, "healthPlanCostSharing">
 	/** The tier(s) of drugs offered by this formulary or insurance plan. */
-	"healthPlanDrugTier"?: SchemaValue<Text, "healthPlanDrugTier">
+	healthPlanDrugTier?: SchemaValue<Text, "healthPlanDrugTier">
 	/** Whether prescriptions can be delivered by mail. */
-	"offersPrescriptionByMail"?: SchemaValue<Boolean, "offersPrescriptionByMail">
+	offersPrescriptionByMail?: SchemaValue<Boolean, "offersPrescriptionByMail">
 }
 interface HealthPlanFormularyLeaf extends HealthPlanFormularyBase {
 	type: "HealthPlanFormulary"
@@ -6105,11 +6011,11 @@ export type HealthPlanFormulary = HealthPlanFormularyLeaf
 
 interface HealthPlanNetworkBase extends ThingBase {
 	/** The costs to the patient for services under this network or formulary. */
-	"healthPlanCostSharing"?: SchemaValue<Boolean, "healthPlanCostSharing">
+	healthPlanCostSharing?: SchemaValue<Boolean, "healthPlanCostSharing">
 	/** Name or unique ID of network. (Networks are often reused across different insurance plans.) */
-	"healthPlanNetworkId"?: SchemaValue<Text, "healthPlanNetworkId">
+	healthPlanNetworkId?: SchemaValue<Text, "healthPlanNetworkId">
 	/** The tier(s) for this network. */
-	"healthPlanNetworkTier"?: SchemaValue<Text, "healthPlanNetworkTier">
+	healthPlanNetworkTier?: SchemaValue<Text, "healthPlanNetworkTier">
 }
 interface HealthPlanNetworkLeaf extends HealthPlanNetworkBase {
 	type: "HealthPlanNetwork"
@@ -6119,7 +6025,7 @@ export type HealthPlanNetwork = HealthPlanNetworkLeaf
 
 interface HealthTopicContentBase extends CreativeWorkBase {
 	/** Indicates the aspect or aspects specifically addressed in some {@link https://schema.org/HealthTopicContent HealthTopicContent}. For example, that the content is an overview, or that it talks about treatment, self-care, treatments or their side-effects. */
-	"hasHealthAspect"?: SchemaValue<
+	hasHealthAspect?: SchemaValue<
 		HealthAspectEnumeration | IdReference,
 		"hasHealthAspect"
 	>
@@ -6177,20 +6083,21 @@ interface HomeGoodsStoreLeaf extends LocalBusinessBase {
 export type HomeGoodsStore = HomeGoodsStoreLeaf | string
 
 interface HospitalBase
-	extends CivicStructureBase, LocalBusinessBase, MedicalOrganizationBase
-{
+	extends CivicStructureBase,
+		LocalBusinessBase,
+		MedicalOrganizationBase {
 	/** A medical service available from this provider. */
-	"availableService"?: SchemaValue<
+	availableService?: SchemaValue<
 		MedicalProcedure | MedicalTest | MedicalTherapy | IdReference,
 		"availableService"
 	>
 	/** Indicates data describing a hospital, e.g. a CDC {@link https://schema.org/CDCPMDRecord CDCPMDRecord} or as some kind of {@link https://schema.org/Dataset Dataset}. */
-	"healthcareReportingData"?: SchemaValue<
+	healthcareReportingData?: SchemaValue<
 		CDCPMDRecord | Dataset | IdReference,
 		"healthcareReportingData"
 	>
 	/** A medical specialty of the provider. */
-	"medicalSpecialty"?: SchemaValue<
+	medicalSpecialty?: SchemaValue<
 		MedicalSpecialty | IdReference,
 		"medicalSpecialty"
 	>
@@ -6223,9 +6130,9 @@ export type Hotel = HotelLeaf | string
 
 interface HotelRoomBase extends AccommodationBase {
 	/** The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text. If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property. */
-	"bed"?: SchemaValue<BedDetails | BedType | Text | IdReference, "bed">
+	bed?: SchemaValue<BedDetails | BedType | Text | IdReference, "bed">
 	/** The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person). Typical unit code(s): C62 for person */
-	"occupancy"?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
+	occupancy?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
 }
 interface HotelRoomLeaf extends HotelRoomBase {
 	type: "HotelRoom"
@@ -6239,7 +6146,7 @@ export type HotelRoom = HotelRoomLeaf | string
 
 interface HouseBase extends AccommodationBase {
 	/** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
-	"numberOfRooms"?: SchemaValue<
+	numberOfRooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfRooms"
 	>
@@ -6258,16 +6165,16 @@ export type HousePainter = HousePainterLeaf | string
 
 interface HowToBase extends CreativeWorkBase {
 	/** The estimated cost of the supply or supplies consumed when performing instructions. */
-	"estimatedCost"?: SchemaValue<
+	estimatedCost?: SchemaValue<
 		MonetaryAmount | Text | IdReference,
 		"estimatedCost"
 	>
 	/** The length of time it takes to perform instructions or a direction (not including time to prepare the supplies), in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 duration format}. */
-	"performTime"?: SchemaValue<Duration | IdReference, "performTime">
+	performTime?: SchemaValue<Duration | IdReference, "performTime">
 	/** The length of time it takes to prepare the items to be used in instructions or a direction, in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 duration format}. */
-	"prepTime"?: SchemaValue<Duration | IdReference, "prepTime">
+	prepTime?: SchemaValue<Duration | IdReference, "prepTime">
 	/** A single step item (as HowToStep, text, document, video, etc.) or a HowToSection. */
-	"step"?: SchemaValue<
+	step?: SchemaValue<
 		CreativeWork | HowToSection | HowToStep | Text | IdReference,
 		"step"
 	>
@@ -6276,15 +6183,15 @@ interface HowToBase extends CreativeWorkBase {
 	 *
 	 * @deprecated Consider using https://schema.org/step instead.
 	 */
-	"steps"?: SchemaValue<CreativeWork | ItemList | Text | IdReference, "steps">
+	steps?: SchemaValue<CreativeWork | ItemList | Text | IdReference, "steps">
 	/** A sub-property of instrument. A supply consumed when performing instructions or a direction. */
-	"supply"?: SchemaValue<HowToSupply | Text | IdReference, "supply">
+	supply?: SchemaValue<HowToSupply | Text | IdReference, "supply">
 	/** A sub property of instrument. An object used (but not consumed) when performing instructions or a direction. */
-	"tool"?: SchemaValue<HowToTool | Text | IdReference, "tool">
+	tool?: SchemaValue<HowToTool | Text | IdReference, "tool">
 	/** The total time required to perform instructions or a direction (including time to prepare the supplies), in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 duration format}. */
-	"totalTime"?: SchemaValue<Duration | IdReference, "totalTime">
+	totalTime?: SchemaValue<Duration | IdReference, "totalTime">
 	/** The quantity that results by performing instructions. For example, a paper airplane, 10 personalized candles. */
-	"yield"?: SchemaValue<QuantitativeValue | Text | IdReference, "yield">
+	yield?: SchemaValue<QuantitativeValue | Text | IdReference, "yield">
 }
 interface HowToLeaf extends HowToBase {
 	type: "HowTo"
@@ -6294,21 +6201,21 @@ export type HowTo = HowToLeaf | Recipe
 
 interface HowToDirectionBase extends CreativeWorkBase, ListItemBase {
 	/** A media object representing the circumstances after performing this direction. */
-	"afterMedia"?: SchemaValue<MediaObject | URL | IdReference, "afterMedia">
+	afterMedia?: SchemaValue<MediaObject | URL | IdReference, "afterMedia">
 	/** A media object representing the circumstances before performing this direction. */
-	"beforeMedia"?: SchemaValue<MediaObject | URL | IdReference, "beforeMedia">
+	beforeMedia?: SchemaValue<MediaObject | URL | IdReference, "beforeMedia">
 	/** A media object representing the circumstances while performing this direction. */
-	"duringMedia"?: SchemaValue<MediaObject | URL | IdReference, "duringMedia">
+	duringMedia?: SchemaValue<MediaObject | URL | IdReference, "duringMedia">
 	/** The length of time it takes to perform instructions or a direction (not including time to prepare the supplies), in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 duration format}. */
-	"performTime"?: SchemaValue<Duration | IdReference, "performTime">
+	performTime?: SchemaValue<Duration | IdReference, "performTime">
 	/** The length of time it takes to prepare the items to be used in instructions or a direction, in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 duration format}. */
-	"prepTime"?: SchemaValue<Duration | IdReference, "prepTime">
+	prepTime?: SchemaValue<Duration | IdReference, "prepTime">
 	/** A sub-property of instrument. A supply consumed when performing instructions or a direction. */
-	"supply"?: SchemaValue<HowToSupply | Text | IdReference, "supply">
+	supply?: SchemaValue<HowToSupply | Text | IdReference, "supply">
 	/** A sub property of instrument. An object used (but not consumed) when performing instructions or a direction. */
-	"tool"?: SchemaValue<HowToTool | Text | IdReference, "tool">
+	tool?: SchemaValue<HowToTool | Text | IdReference, "tool">
 	/** The total time required to perform instructions or a direction (including time to prepare the supplies), in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 duration format}. */
-	"totalTime"?: SchemaValue<Duration | IdReference, "totalTime">
+	totalTime?: SchemaValue<Duration | IdReference, "totalTime">
 }
 interface HowToDirectionLeaf extends HowToDirectionBase {
 	type: "HowToDirection"
@@ -6318,7 +6225,7 @@ export type HowToDirection = HowToDirectionLeaf
 
 interface HowToItemBase extends ListItemBase {
 	/** The required quantity of the item(s). */
-	"requiredQuantity"?: SchemaValue<
+	requiredQuantity?: SchemaValue<
 		Number | QuantitativeValue | Text | IdReference,
 		"requiredQuantity"
 	>
@@ -6330,14 +6237,15 @@ interface HowToItemLeaf extends HowToItemBase {
 export type HowToItem = HowToItemLeaf | HowToSupply | HowToTool
 
 interface HowToSectionBase
-	extends CreativeWorkBase, ItemListBase, ListItemBase
-{
+	extends CreativeWorkBase,
+		ItemListBase,
+		ListItemBase {
 	/**
 	 * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
 	 *
 	 * @deprecated Consider using https://schema.org/step instead.
 	 */
-	"steps"?: SchemaValue<CreativeWork | ItemList | Text | IdReference, "steps">
+	steps?: SchemaValue<CreativeWork | ItemList | Text | IdReference, "steps">
 }
 interface HowToSectionLeaf extends HowToSectionBase {
 	type: "HowToSection"
@@ -6345,8 +6253,7 @@ interface HowToSectionLeaf extends HowToSectionBase {
 /** A sub-grouping of steps in the instructions for how to achieve a result (e.g. steps for making a pie crust within a pie recipe). */
 export type HowToSection = HowToSectionLeaf
 
-interface HowToStepBase extends CreativeWorkBase, ItemListBase, ListItemBase {
-}
+interface HowToStepBase extends CreativeWorkBase, ItemListBase, ListItemBase {}
 interface HowToStepLeaf extends HowToStepBase {
 	type: "HowToStep"
 }
@@ -6355,7 +6262,7 @@ export type HowToStep = HowToStepLeaf
 
 interface HowToSupplyBase extends HowToItemBase {
 	/** The estimated cost of the supply or supplies consumed when performing instructions. */
-	"estimatedCost"?: SchemaValue<
+	estimatedCost?: SchemaValue<
 		MonetaryAmount | Text | IdReference,
 		"estimatedCost"
 	>
@@ -6366,8 +6273,7 @@ interface HowToSupplyLeaf extends HowToSupplyBase {
 /** A supply consumed when performing the instructions for how to achieve a result. */
 export type HowToSupply = HowToSupplyLeaf
 
-interface HowToTipBase extends CreativeWorkBase, ListItemBase {
-}
+interface HowToTipBase extends CreativeWorkBase, ListItemBase {}
 interface HowToTipLeaf extends HowToTipBase {
 	type: "HowToTip"
 }
@@ -6388,9 +6294,9 @@ export type HVACBusiness = HVACBusinessLeaf | string
 
 interface HyperTocBase extends CreativeWorkBase {
 	/** A media object that encodes this CreativeWork. This property is a synonym for encoding. */
-	"associatedMedia"?: SchemaValue<MediaObject | IdReference, "associatedMedia">
+	associatedMedia?: SchemaValue<MediaObject | IdReference, "associatedMedia">
 	/** Indicates a {@link https://schema.org/HyperTocEntry HyperTocEntry} in a {@link https://schema.org/HyperToc HyperToc}. */
-	"tocEntry"?: SchemaValue<HyperTocEntry | IdReference, "tocEntry">
+	tocEntry?: SchemaValue<HyperTocEntry | IdReference, "tocEntry">
 }
 interface HyperTocLeaf extends HyperTocBase {
 	type: "HyperToc"
@@ -6400,14 +6306,11 @@ export type HyperToc = HyperTocLeaf
 
 interface HyperTocEntryBase extends CreativeWorkBase {
 	/** A media object that encodes this CreativeWork. This property is a synonym for encoding. */
-	"associatedMedia"?: SchemaValue<MediaObject | IdReference, "associatedMedia">
+	associatedMedia?: SchemaValue<MediaObject | IdReference, "associatedMedia">
 	/** A {@link https://schema.org/HyperTocEntry HyperTocEntry} can have a {@link https://schema.org/tocContinuation tocContinuation} indicated, which is another {@link https://schema.org/HyperTocEntry HyperTocEntry} that would be the default next item to play or render. */
-	"tocContinuation"?: SchemaValue<
-		HyperTocEntry | IdReference,
-		"tocContinuation"
-	>
+	tocContinuation?: SchemaValue<HyperTocEntry | IdReference, "tocContinuation">
 	/** Text of an utterances (spoken words, lyrics etc.) that occurs at a certain section of a media object, represented as a {@link https://schema.org/HyperTocEntry HyperTocEntry}. */
-	"utterances"?: SchemaValue<Text, "utterances">
+	utterances?: SchemaValue<Text, "utterances">
 }
 interface HyperTocEntryLeaf extends HyperTocEntryBase {
 	type: "HyperTocEntry"
@@ -6435,13 +6338,13 @@ export type ImageGallery = ImageGalleryLeaf
 
 interface ImageObjectBase extends MediaObjectBase {
 	/** The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the {@link https://schema.org/encodingFormat encodingFormat}. */
-	"caption"?: SchemaValue<MediaObject | Text | IdReference, "caption">
+	caption?: SchemaValue<MediaObject | Text | IdReference, "caption">
 	/** Represents textual captioning from a {@link https://schema.org/MediaObject MediaObject}, e.g. text of a 'meme'. */
-	"embeddedTextCaption"?: SchemaValue<Text, "embeddedTextCaption">
+	embeddedTextCaption?: SchemaValue<Text, "embeddedTextCaption">
 	/** exif data for this object. */
-	"exifData"?: SchemaValue<PropertyValue | Text | IdReference, "exifData">
+	exifData?: SchemaValue<PropertyValue | Text | IdReference, "exifData">
 	/** Indicates whether this image is representative of the content of the page. */
-	"representativeOfPage"?: SchemaValue<Boolean, "representativeOfPage">
+	representativeOfPage?: SchemaValue<Boolean, "representativeOfPage">
 }
 interface ImageObjectLeaf extends ImageObjectBase {
 	type: "ImageObject"
@@ -6457,7 +6360,7 @@ export type ImageObjectSnapshot = ImageObjectSnapshotLeaf
 
 interface ImagingTestBase extends MedicalTestBase {
 	/** Imaging technique used. */
-	"imagingTechnique"?: SchemaValue<
+	imagingTechnique?: SchemaValue<
 		MedicalImagingTechnique | IdReference,
 		"imagingTechnique"
 	>
@@ -6470,7 +6373,7 @@ export type ImagingTest = ImagingTestLeaf
 
 interface IndividualProductBase extends ProductBase {
 	/** The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer. */
-	"serialNumber"?: SchemaValue<Text, "serialNumber">
+	serialNumber?: SchemaValue<Text, "serialNumber">
 }
 interface IndividualProductLeaf extends IndividualProductBase {
 	type: "IndividualProduct"
@@ -6499,14 +6402,14 @@ export type InfectiousAgentClass =
 
 interface InfectiousDiseaseBase extends MedicalConditionBase {
 	/** The actual infectious agent, such as a specific bacterium. */
-	"infectiousAgent"?: SchemaValue<Text, "infectiousAgent">
+	infectiousAgent?: SchemaValue<Text, "infectiousAgent">
 	/** The class of infectious agent (bacteria, prion, etc.) that causes the disease. */
-	"infectiousAgentClass"?: SchemaValue<
+	infectiousAgentClass?: SchemaValue<
 		InfectiousAgentClass | IdReference,
 		"infectiousAgentClass"
 	>
 	/** How the disease spreads, either as a route or vector, for example 'direct contact', 'Aedes aegypti', etc. */
-	"transmissionMethod"?: SchemaValue<Text, "transmissionMethod">
+	transmissionMethod?: SchemaValue<Text, "transmissionMethod">
 }
 interface InfectiousDiseaseLeaf extends InfectiousDiseaseBase {
 	type: "InfectiousDisease"
@@ -6516,7 +6419,7 @@ export type InfectiousDisease = InfectiousDiseaseLeaf
 
 interface InformActionBase extends CommunicateActionBase {
 	/** Upcoming or past event associated with this place, organization, or action. */
-	"event"?: SchemaValue<Event | IdReference, "event">
+	event?: SchemaValue<Event | IdReference, "event">
 }
 interface InformActionLeaf extends InformActionBase {
 	type: "InformAction"
@@ -6526,7 +6429,7 @@ export type InformAction = InformActionLeaf | ConfirmAction | RsvpAction
 
 interface InsertActionBase extends UpdateActionBase {
 	/** A sub property of location. The final location of the object or the agent after the action. */
-	"toLocation"?: SchemaValue<Place | IdReference, "toLocation">
+	toLocation?: SchemaValue<Place | IdReference, "toLocation">
 }
 interface InsertActionLeaf extends InsertActionBase {
 	type: "InsertAction"
@@ -6640,16 +6543,16 @@ interface InteractionCounterBase extends ThingBase {
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"endTime"?: SchemaValue<DateTime | Time, "endTime">
+	endTime?: SchemaValue<DateTime | Time, "endTime">
 	/** The WebSite or SoftwareApplication where the interactions took place. */
-	"interactionService"?: SchemaValue<
+	interactionService?: SchemaValue<
 		SoftwareApplication | WebSite | IdReference,
 		"interactionService"
 	>
 	/** The Action representing the type of interaction. For up votes, +1s, etc. use {@link https://schema.org/LikeAction LikeAction}. For down votes use {@link https://schema.org/DislikeAction DislikeAction}. Otherwise, use the most specific Action. */
-	"interactionType"?: SchemaValue<Action | IdReference, "interactionType">
+	interactionType?: SchemaValue<Action | IdReference, "interactionType">
 	/** The location of, for example, where an event is happening, where an organization is located, or where an action takes place. */
-	"location"?: SchemaValue<
+	location?: SchemaValue<
 		Place | PostalAddress | Text | VirtualLocation | IdReference,
 		"location"
 	>
@@ -6658,9 +6561,9 @@ interface InteractionCounterBase extends ThingBase {
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"startTime"?: SchemaValue<DateTime | Time, "startTime">
+	startTime?: SchemaValue<DateTime | Time, "startTime">
 	/** The number of interactions for the CreativeWork using the WebSite or SoftwareApplication. */
-	"userInteractionCount"?: SchemaValue<Integer, "userInteractionCount">
+	userInteractionCount?: SchemaValue<Integer, "userInteractionCount">
 }
 interface InteractionCounterLeaf extends InteractionCounterBase {
 	type: "InteractionCounter"
@@ -6682,7 +6585,7 @@ export type InvestmentFund = InvestmentFundLeaf
 
 interface InvestmentOrDepositBase extends FinancialProductBase {
 	/** The amount of money. */
-	"amount"?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
+	amount?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
 }
 interface InvestmentOrDepositLeaf extends InvestmentOrDepositBase {
 	type: "InvestmentOrDeposit"
@@ -6696,7 +6599,7 @@ export type InvestmentOrDeposit =
 
 interface InviteActionBase extends CommunicateActionBase {
 	/** Upcoming or past event associated with this place, organization, or action. */
-	"event"?: SchemaValue<Event | IdReference, "event">
+	event?: SchemaValue<Event | IdReference, "event">
 }
 interface InviteActionLeaf extends InviteActionBase {
 	type: "InviteAction"
@@ -6706,22 +6609,22 @@ export type InviteAction = InviteActionLeaf
 
 interface InvoiceBase extends ThingBase {
 	/** The identifier for the account the payment will be applied to. */
-	"accountId"?: SchemaValue<Text, "accountId">
+	accountId?: SchemaValue<Text, "accountId">
 	/** The time interval used to compute the invoice. */
-	"billingPeriod"?: SchemaValue<Duration | IdReference, "billingPeriod">
+	billingPeriod?: SchemaValue<Duration | IdReference, "billingPeriod">
 	/** An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. */
-	"broker"?: SchemaValue<Organization | Person | IdReference, "broker">
+	broker?: SchemaValue<Organization | Person | IdReference, "broker">
 	/** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
-	"category"?: SchemaValue<
+	category?: SchemaValue<
 		CategoryCode | PhysicalActivityCategory | Text | Thing | URL | IdReference,
 		"category"
 	>
 	/** A number that confirms the given order or payment has been received. */
-	"confirmationNumber"?: SchemaValue<Text, "confirmationNumber">
+	confirmationNumber?: SchemaValue<Text, "confirmationNumber">
 	/** Party placing the order or paying the invoice. */
-	"customer"?: SchemaValue<Organization | Person | IdReference, "customer">
+	customer?: SchemaValue<Organization | Person | IdReference, "customer">
 	/** The minimum payment required at this time. */
-	"minimumPaymentDue"?: SchemaValue<
+	minimumPaymentDue?: SchemaValue<
 		MonetaryAmount | PriceSpecification | IdReference,
 		"minimumPaymentDue"
 	>
@@ -6730,26 +6633,26 @@ interface InvoiceBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/paymentDueDate instead.
 	 */
-	"paymentDue"?: SchemaValue<DateTime, "paymentDue">
+	paymentDue?: SchemaValue<DateTime, "paymentDue">
 	/** The date that payment is due. */
-	"paymentDueDate"?: SchemaValue<Date | DateTime, "paymentDueDate">
+	paymentDueDate?: SchemaValue<Date | DateTime, "paymentDueDate">
 	/** The name of the credit card or other method of payment for the order. */
-	"paymentMethod"?: SchemaValue<PaymentMethod | IdReference, "paymentMethod">
+	paymentMethod?: SchemaValue<PaymentMethod | IdReference, "paymentMethod">
 	/** An identifier for the method of payment used (e.g. the last 4 digits of the credit card). */
-	"paymentMethodId"?: SchemaValue<Text, "paymentMethodId">
+	paymentMethodId?: SchemaValue<Text, "paymentMethodId">
 	/** The status of payment; whether the invoice has been paid or not. */
-	"paymentStatus"?: SchemaValue<
+	paymentStatus?: SchemaValue<
 		PaymentStatusType | Text | IdReference,
 		"paymentStatus"
 	>
 	/** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
-	"provider"?: SchemaValue<Organization | Person | IdReference, "provider">
+	provider?: SchemaValue<Organization | Person | IdReference, "provider">
 	/** The Order(s) related to this Invoice. One or more Orders may be combined into a single Invoice. */
-	"referencesOrder"?: SchemaValue<Order | IdReference, "referencesOrder">
+	referencesOrder?: SchemaValue<Order | IdReference, "referencesOrder">
 	/** The date the invoice is scheduled to be paid. */
-	"scheduledPaymentDate"?: SchemaValue<Date, "scheduledPaymentDate">
+	scheduledPaymentDate?: SchemaValue<Date, "scheduledPaymentDate">
 	/** The total amount due. */
-	"totalPaymentDue"?: SchemaValue<
+	totalPaymentDue?: SchemaValue<
 		MonetaryAmount | PriceSpecification | IdReference,
 		"totalPaymentDue"
 	>
@@ -6795,17 +6698,17 @@ interface ItemListBase extends ThingBase {
 	 *
 	 * Note: The order of elements in your mark-up is not sufficient for indicating the order or elements. Use ListItem with a 'position' property in such cases.
 	 */
-	"itemListElement"?: SchemaValue<
+	itemListElement?: SchemaValue<
 		ListItem | Text | Thing | IdReference,
 		"itemListElement"
 	>
 	/** Type of ordering (e.g. Ascending, Descending, Unordered). */
-	"itemListOrder"?: SchemaValue<
+	itemListOrder?: SchemaValue<
 		ItemListOrderType | Text | IdReference,
 		"itemListOrder"
 	>
 	/** The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list. */
-	"numberOfItems"?: SchemaValue<Integer, "numberOfItems">
+	numberOfItems?: SchemaValue<Integer, "numberOfItems">
 }
 interface ItemListLeaf extends ItemListBase {
 	type: "ItemList"
@@ -6845,17 +6748,17 @@ export type JewelryStore = JewelryStoreLeaf | string
 
 interface JobPostingBase extends ThingBase {
 	/** The location(s) applicants can apply from. This is usually used for telecommuting jobs where the applicant does not need to be in a physical office. Note: This should not be used for citizenship or work visa requirements. */
-	"applicantLocationRequirements"?: SchemaValue<
+	applicantLocationRequirements?: SchemaValue<
 		AdministrativeArea | IdReference,
 		"applicantLocationRequirements"
 	>
 	/** Contact details for further information relevant to this job posting. */
-	"applicationContact"?: SchemaValue<
+	applicationContact?: SchemaValue<
 		ContactPoint | IdReference,
 		"applicationContact"
 	>
 	/** The base salary of the job or of an employee in an EmployeeRole. */
-	"baseSalary"?: SchemaValue<
+	baseSalary?: SchemaValue<
 		MonetaryAmount | Number | PriceSpecification | IdReference,
 		"baseSalary"
 	>
@@ -6864,117 +6767,117 @@ interface JobPostingBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/jobBenefits instead.
 	 */
-	"benefits"?: SchemaValue<Text, "benefits">
+	benefits?: SchemaValue<Text, "benefits">
 	/** Publication date of an online listing. */
-	"datePosted"?: SchemaValue<Date | DateTime, "datePosted">
+	datePosted?: SchemaValue<Date | DateTime, "datePosted">
 	/** Indicates whether an {@link https://schema.org/url url} that is associated with a {@link https://schema.org/JobPosting JobPosting} enables direct application for the job, via the posting website. A job posting is considered to have directApply of {@link https://schema.org/True True} if an application process for the specified job can be directly initiated via the url(s) given (noting that e.g. multiple internet domains might nevertheless be involved at an implementation level). A value of {@link https://schema.org/False False} is appropriate if there is no clear path to applying directly online for the specified job, navigating directly from the JobPosting url(s) supplied. */
-	"directApply"?: SchemaValue<Boolean, "directApply">
+	directApply?: SchemaValue<Boolean, "directApply">
 	/** Educational background needed for the position or Occupation. */
-	"educationRequirements"?: SchemaValue<
+	educationRequirements?: SchemaValue<
 		EducationalOccupationalCredential | Text | IdReference,
 		"educationRequirements"
 	>
 	/** The legal requirements such as citizenship, visa and other documentation required for an applicant to this job. */
-	"eligibilityToWorkRequirement"?: SchemaValue<
+	eligibilityToWorkRequirement?: SchemaValue<
 		Text,
 		"eligibilityToWorkRequirement"
 	>
 	/** A description of the employer, career opportunities and work environment for this position. */
-	"employerOverview"?: SchemaValue<Text, "employerOverview">
+	employerOverview?: SchemaValue<Text, "employerOverview">
 	/** Type of employment (e.g. full-time, part-time, contract, temporary, seasonal, internship). */
-	"employmentType"?: SchemaValue<Text, "employmentType">
+	employmentType?: SchemaValue<Text, "employmentType">
 	/** Indicates the department, unit and/or facility where the employee reports and/or in which the job is to be performed. */
-	"employmentUnit"?: SchemaValue<Organization | IdReference, "employmentUnit">
+	employmentUnit?: SchemaValue<Organization | IdReference, "employmentUnit">
 	/** An estimated salary for a job posting or occupation, based on a variety of variables including, but not limited to industry, job title, and location. Estimated salaries are often computed by outside organizations rather than the hiring organization, who may not have committed to the estimated value. */
-	"estimatedSalary"?: SchemaValue<
+	estimatedSalary?: SchemaValue<
 		MonetaryAmount | MonetaryAmountDistribution | Number | IdReference,
 		"estimatedSalary"
 	>
 	/** Indicates whether a {@link https://schema.org/JobPosting JobPosting} will accept experience (as indicated by {@link https://schema.org/OccupationalExperienceRequirements OccupationalExperienceRequirements}) in place of its formal educational qualifications (as indicated by {@link https://schema.org/educationRequirements educationRequirements}). If true, indicates that satisfying one of these requirements is sufficient. */
-	"experienceInPlaceOfEducation"?: SchemaValue<
+	experienceInPlaceOfEducation?: SchemaValue<
 		Boolean,
 		"experienceInPlaceOfEducation"
 	>
 	/** Description of skills and experience needed for the position or Occupation. */
-	"experienceRequirements"?: SchemaValue<
+	experienceRequirements?: SchemaValue<
 		OccupationalExperienceRequirements | Text | IdReference,
 		"experienceRequirements"
 	>
 	/** Organization or Person offering the job position. */
-	"hiringOrganization"?: SchemaValue<
+	hiringOrganization?: SchemaValue<
 		Organization | Person | IdReference,
 		"hiringOrganization"
 	>
 	/** Description of bonus and commission compensation aspects of the job. */
-	"incentiveCompensation"?: SchemaValue<Text, "incentiveCompensation">
+	incentiveCompensation?: SchemaValue<Text, "incentiveCompensation">
 	/**
 	 * Description of bonus and commission compensation aspects of the job.
 	 *
 	 * @deprecated Consider using https://schema.org/incentiveCompensation instead.
 	 */
-	"incentives"?: SchemaValue<Text, "incentives">
+	incentives?: SchemaValue<Text, "incentives">
 	/** The industry associated with the job position. */
-	"industry"?: SchemaValue<DefinedTerm | Text | IdReference, "industry">
+	industry?: SchemaValue<DefinedTerm | Text | IdReference, "industry">
 	/** Description of benefits associated with the job. */
-	"jobBenefits"?: SchemaValue<Text, "jobBenefits">
+	jobBenefits?: SchemaValue<Text, "jobBenefits">
 	/** An indicator as to whether a position is available for an immediate start. */
-	"jobImmediateStart"?: SchemaValue<Boolean, "jobImmediateStart">
+	jobImmediateStart?: SchemaValue<Boolean, "jobImmediateStart">
 	/** A (typically single) geographic location associated with the job position. */
-	"jobLocation"?: SchemaValue<Place | IdReference, "jobLocation">
+	jobLocation?: SchemaValue<Place | IdReference, "jobLocation">
 	/** A description of the job location (e.g. TELECOMMUTE for telecommute jobs). */
-	"jobLocationType"?: SchemaValue<Text, "jobLocationType">
+	jobLocationType?: SchemaValue<Text, "jobLocationType">
 	/** The date on which a successful applicant for this job would be expected to start work. Choose a specific date in the future or use the jobImmediateStart property to indicate the position is to be filled as soon as possible. */
-	"jobStartDate"?: SchemaValue<Date | Text, "jobStartDate">
+	jobStartDate?: SchemaValue<Date | Text, "jobStartDate">
 	/**
 	 * A category describing the job, preferably using a term from a taxonomy such as {@link http://www.onetcenter.org/taxonomy.html BLS O*NET-SOC}, {@link https://www.ilo.org/public/english/bureau/stat/isco/isco08/ ISCO-08} or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.
 	 *
 	 * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
 	 */
-	"occupationalCategory"?: SchemaValue<
+	occupationalCategory?: SchemaValue<
 		CategoryCode | Text | IdReference,
 		"occupationalCategory"
 	>
 	/** A description of the types of physical activity associated with the job. Defined terms such as those in O*net may be used, but note that there is no way to specify the level of ability as well as its nature when using a defined term. */
-	"physicalRequirement"?: SchemaValue<
+	physicalRequirement?: SchemaValue<
 		DefinedTerm | Text | URL | IdReference,
 		"physicalRequirement"
 	>
 	/** Specific qualifications required for this role or Occupation. */
-	"qualifications"?: SchemaValue<
+	qualifications?: SchemaValue<
 		EducationalOccupationalCredential | Text | IdReference,
 		"qualifications"
 	>
 	/** The Occupation for the JobPosting. */
-	"relevantOccupation"?: SchemaValue<
+	relevantOccupation?: SchemaValue<
 		Occupation | IdReference,
 		"relevantOccupation"
 	>
 	/** Responsibilities associated with this role or Occupation. */
-	"responsibilities"?: SchemaValue<Text, "responsibilities">
+	responsibilities?: SchemaValue<Text, "responsibilities">
 	/** The currency (coded using {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217}) used for the main salary information in this job posting or for this employee. */
-	"salaryCurrency"?: SchemaValue<Text, "salaryCurrency">
+	salaryCurrency?: SchemaValue<Text, "salaryCurrency">
 	/** A description of any security clearance requirements of the job. */
-	"securityClearanceRequirement"?: SchemaValue<
+	securityClearanceRequirement?: SchemaValue<
 		Text | URL,
 		"securityClearanceRequirement"
 	>
 	/** A description of any sensory requirements and levels necessary to function on the job, including hearing and vision. Defined terms such as those in O*net may be used, but note that there is no way to specify the level of ability as well as its nature when using a defined term. */
-	"sensoryRequirement"?: SchemaValue<
+	sensoryRequirement?: SchemaValue<
 		DefinedTerm | Text | URL | IdReference,
 		"sensoryRequirement"
 	>
 	/** A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is desired or required to fulfill this role or to work in this occupation. */
-	"skills"?: SchemaValue<DefinedTerm | Text | IdReference, "skills">
+	skills?: SchemaValue<DefinedTerm | Text | IdReference, "skills">
 	/** Any special commitments associated with this job posting. Valid entries include VeteranCommit, MilitarySpouseCommit, etc. */
-	"specialCommitments"?: SchemaValue<Text, "specialCommitments">
+	specialCommitments?: SchemaValue<Text, "specialCommitments">
 	/** The title of the job. */
-	"title"?: SchemaValue<Text, "title">
+	title?: SchemaValue<Text, "title">
 	/** The number of positions open for this job posting. Use a positive integer. Do not use if the number of positions is unclear or not known. */
-	"totalJobOpenings"?: SchemaValue<Integer, "totalJobOpenings">
+	totalJobOpenings?: SchemaValue<Integer, "totalJobOpenings">
 	/** The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours. */
-	"validThrough"?: SchemaValue<Date | DateTime, "validThrough">
+	validThrough?: SchemaValue<Date | DateTime, "validThrough">
 	/** The typical working hours for this job (e.g. 1st shift, night shift, 8am-5pm). */
-	"workHours"?: SchemaValue<Text, "workHours">
+	workHours?: SchemaValue<Text, "workHours">
 }
 interface JobPostingLeaf extends JobPostingBase {
 	type: "JobPosting"
@@ -6984,7 +6887,7 @@ export type JobPosting = JobPostingLeaf
 
 interface JoinActionBase extends ActionBase {
 	/** Upcoming or past event associated with this place, organization, or action. */
-	"event"?: SchemaValue<Event | IdReference, "event">
+	event?: SchemaValue<Event | IdReference, "event">
 }
 interface JoinActionLeaf extends JoinActionBase {
 	type: "JoinAction"
@@ -7001,14 +6904,14 @@ export type JoinAction = JoinActionLeaf
 
 interface JointBase extends AnatomicalStructureBase {
 	/** The biomechanical properties of the bone. */
-	"biomechnicalClass"?: SchemaValue<Text, "biomechnicalClass">
+	biomechnicalClass?: SchemaValue<Text, "biomechnicalClass">
 	/** The degree of mobility the joint allows. */
-	"functionalClass"?: SchemaValue<
+	functionalClass?: SchemaValue<
 		MedicalEntity | Text | IdReference,
 		"functionalClass"
 	>
 	/** The name given to how bone physically connects to each other. */
-	"structuralClass"?: SchemaValue<Text, "structuralClass">
+	structuralClass?: SchemaValue<Text, "structuralClass">
 }
 interface JointLeaf extends JointBase {
 	type: "Joint"
@@ -7050,9 +6953,9 @@ export type Language = LanguageLeaf
 
 interface LearningResourceBase extends CreativeWorkBase {
 	/** The item being described is intended to assess the competency or learning outcome defined by the referenced term. */
-	"assesses"?: SchemaValue<DefinedTerm | Text | IdReference, "assesses">
+	assesses?: SchemaValue<DefinedTerm | Text | IdReference, "assesses">
 	/** Knowledge, skill, ability or personal attribute that must be demonstrated by a person or other entity in order to do something such as earn an Educational Occupational Credential or understand a LearningResource. */
-	"competencyRequired"?: SchemaValue<
+	competencyRequired?: SchemaValue<
 		DefinedTerm | Text | URL | IdReference,
 		"competencyRequired"
 	>
@@ -7061,27 +6964,27 @@ interface LearningResourceBase extends CreativeWorkBase {
 	 *
 	 * This property should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource {@link https://schema.org/teaches teaches} or {@link https://schema.org/assesses assesses} a competency.
 	 */
-	"educationalAlignment"?: SchemaValue<
+	educationalAlignment?: SchemaValue<
 		AlignmentObject | IdReference,
 		"educationalAlignment"
 	>
 	/** The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators. */
-	"educationalLevel"?: SchemaValue<
+	educationalLevel?: SchemaValue<
 		DefinedTerm | Text | URL | IdReference,
 		"educationalLevel"
 	>
 	/** The purpose of a work in the context of education; for example, 'assignment', 'group work'. */
-	"educationalUse"?: SchemaValue<
+	educationalUse?: SchemaValue<
 		DefinedTerm | Text | IdReference,
 		"educationalUse"
 	>
 	/** The predominant type or kind characterizing the learning resource. For example, 'presentation', 'handout'. */
-	"learningResourceType"?: SchemaValue<
+	learningResourceType?: SchemaValue<
 		DefinedTerm | Text | IdReference,
 		"learningResourceType"
 	>
 	/** The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term. */
-	"teaches"?: SchemaValue<DefinedTerm | Text | IdReference, "teaches">
+	teaches?: SchemaValue<DefinedTerm | Text | IdReference, "teaches">
 }
 interface LearningResourceLeaf extends LearningResourceBase {
 	type: "LearningResource"
@@ -7097,7 +7000,7 @@ export type LearningResource = LearningResourceLeaf | Course | Quiz | Syllabus
 
 interface LeaveActionBase extends ActionBase {
 	/** Upcoming or past event associated with this place, organization, or action. */
-	"event"?: SchemaValue<Event | IdReference, "event">
+	event?: SchemaValue<Event | IdReference, "event">
 }
 interface LeaveActionLeaf extends LeaveActionBase {
 	type: "LeaveAction"
@@ -7151,58 +7054,58 @@ export type LegalValueLevel =
 
 interface LegislationBase extends CreativeWorkBase {
 	/** Indicates a legal jurisdiction, e.g. of some legislation, or where some government service is based. */
-	"jurisdiction"?: SchemaValue<
+	jurisdiction?: SchemaValue<
 		AdministrativeArea | Text | IdReference,
 		"jurisdiction"
 	>
 	/** Indicates that this legislation (or part of a legislation) somehow transfers another legislation in a different legislative context. This is an informative link, and it has no legal value. For legally-binding links of transposition, use the {@link /legislationTransposes legislationTransposes} property. For example an informative consolidated law of a European Union's member state "applies" the consolidated version of the European Directive implemented in it. */
-	"legislationApplies"?: SchemaValue<
+	legislationApplies?: SchemaValue<
 		Legislation | IdReference,
 		"legislationApplies"
 	>
 	/** Another legislation that this legislation changes. This encompasses the notions of amendment, replacement, correction, repeal, or other types of change. This may be a direct change (textual or non-textual amendment) or a consequential or indirect change. The property is to be used to express the existence of a change relationship between two acts rather than the existence of a consolidated version of the text that shows the result of the change. For consolidation relationships, use the {@link /legislationConsolidates legislationConsolidates} property. */
-	"legislationChanges"?: SchemaValue<
+	legislationChanges?: SchemaValue<
 		Legislation | IdReference,
 		"legislationChanges"
 	>
 	/** Indicates another legislation taken into account in this consolidated legislation (which is usually the product of an editorial process that revises the legislation). This property should be used multiple times to refer to both the original version or the previous consolidated version, and to the legislations making the change. */
-	"legislationConsolidates"?: SchemaValue<
+	legislationConsolidates?: SchemaValue<
 		Legislation | IdReference,
 		"legislationConsolidates"
 	>
 	/** The date of adoption or signature of the legislation. This is the date at which the text is officially aknowledged to be a legislation, even though it might not even be published or in force. */
-	"legislationDate"?: SchemaValue<Date, "legislationDate">
+	legislationDate?: SchemaValue<Date, "legislationDate">
 	/** The point-in-time at which the provided description of the legislation is valid (e.g.: when looking at the law on the 2016-04-07 (= dateVersion), I get the consolidation of 2015-04-12 of the "National Insurance Contributions Act 2015") */
-	"legislationDateVersion"?: SchemaValue<Date, "legislationDateVersion">
+	legislationDateVersion?: SchemaValue<Date, "legislationDateVersion">
 	/** An identifier for the legislation. This can be either a string-based identifier, like the CELEX at EU level or the NOR in France, or a web-based, URL/URI identifier, like an ELI (European Legislation Identifier) or an URN-Lex. */
-	"legislationIdentifier"?: SchemaValue<Text | URL, "legislationIdentifier">
+	legislationIdentifier?: SchemaValue<Text | URL, "legislationIdentifier">
 	/** The jurisdiction from which the legislation originates. */
-	"legislationJurisdiction"?: SchemaValue<
+	legislationJurisdiction?: SchemaValue<
 		AdministrativeArea | Text | IdReference,
 		"legislationJurisdiction"
 	>
 	/** Whether the legislation is currently in force, not in force, or partially in force. */
-	"legislationLegalForce"?: SchemaValue<
+	legislationLegalForce?: SchemaValue<
 		LegalForceStatus | IdReference,
 		"legislationLegalForce"
 	>
 	/** The person or organization that originally passed or made the law: typically parliament (for primary legislation) or government (for secondary legislation). This indicates the "legal author" of the law, as opposed to its physical author. */
-	"legislationPassedBy"?: SchemaValue<
+	legislationPassedBy?: SchemaValue<
 		Organization | Person | IdReference,
 		"legislationPassedBy"
 	>
 	/** An individual or organization that has some kind of responsibility for the legislation. Typically the ministry who is/was in charge of elaborating the legislation, or the adressee for potential questions about the legislation once it is published. */
-	"legislationResponsible"?: SchemaValue<
+	legislationResponsible?: SchemaValue<
 		Organization | Person | IdReference,
 		"legislationResponsible"
 	>
 	/** Indicates that this legislation (or part of legislation) fulfills the objectives set by another legislation, by passing appropriate implementation measures. Typically, some legislations of European Union's member states or regions transpose European Directives. This indicates a legally binding link between the 2 legislations. */
-	"legislationTransposes"?: SchemaValue<
+	legislationTransposes?: SchemaValue<
 		Legislation | IdReference,
 		"legislationTransposes"
 	>
 	/** The type of the legislation. Examples of values are "law", "act", "directive", "decree", "regulation", "statutory instrument", "loi organique", "règlement grand-ducal", etc., depending on the country. */
-	"legislationType"?: SchemaValue<
+	legislationType?: SchemaValue<
 		CategoryCode | Text | IdReference,
 		"legislationType"
 	>
@@ -7215,7 +7118,7 @@ export type Legislation = LegislationLeaf | LegislationObject
 
 interface LegislationObjectBase extends LegislationBase, MediaObjectBase {
 	/** The legal value of this legislation file. The same legislation can be written in multiple files with different legal values. Typically a digitally signed PDF have a "stronger" legal value than the HTML file of the same act. */
-	"legislationLegalValue"?: SchemaValue<
+	legislationLegalValue?: SchemaValue<
 		LegalValueLevel | IdReference,
 		"legislationLegalValue"
 	>
@@ -7234,7 +7137,7 @@ export type LegislativeBuilding = LegislativeBuildingLeaf | string
 
 interface LendActionBase extends TransferActionBase {
 	/** A sub property of participant. The person that borrows the object being lent. */
-	"borrower"?: SchemaValue<Person | IdReference, "borrower">
+	borrower?: SchemaValue<Person | IdReference, "borrower">
 }
 interface LendActionLeaf extends LendActionBase {
 	type: "LendAction"
@@ -7294,13 +7197,13 @@ export type ListenAction = ListenActionLeaf
 
 interface ListItemBase extends ThingBase {
 	/** An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists'). */
-	"item"?: SchemaValue<Thing | IdReference, "item">
+	item?: SchemaValue<Thing | IdReference, "item">
 	/** A link to the ListItem that follows the current one. */
-	"nextItem"?: SchemaValue<ListItem | IdReference, "nextItem">
+	nextItem?: SchemaValue<ListItem | IdReference, "nextItem">
 	/** The position of an item in a series or sequence of items. */
-	"position"?: SchemaValue<Integer | Text, "position">
+	position?: SchemaValue<Integer | Text, "position">
 	/** A link to the ListItem that precedes the current one. */
-	"previousItem"?: SchemaValue<ListItem | IdReference, "previousItem">
+	previousItem?: SchemaValue<ListItem | IdReference, "previousItem">
 }
 interface ListItemLeaf extends ListItemBase {
 	type: "ListItem"
@@ -7322,11 +7225,11 @@ export type LiteraryEvent = LiteraryEventLeaf
 
 interface LiveBlogPostingBase extends SocialMediaPostingBase {
 	/** The time when the live blog will stop covering the Event. Note that coverage may continue after the Event concludes. */
-	"coverageEndTime"?: SchemaValue<DateTime, "coverageEndTime">
+	coverageEndTime?: SchemaValue<DateTime, "coverageEndTime">
 	/** The time when the live blog will begin covering the Event. Note that coverage may begin before the Event's start time. The LiveBlogPosting may also be created before coverage begins. */
-	"coverageStartTime"?: SchemaValue<DateTime, "coverageStartTime">
+	coverageStartTime?: SchemaValue<DateTime, "coverageStartTime">
 	/** An update to the LiveBlog. */
-	"liveBlogUpdate"?: SchemaValue<BlogPosting | IdReference, "liveBlogUpdate">
+	liveBlogUpdate?: SchemaValue<BlogPosting | IdReference, "liveBlogUpdate">
 }
 interface LiveBlogPostingLeaf extends LiveBlogPostingBase {
 	type: "LiveBlogPosting"
@@ -7336,30 +7239,30 @@ export type LiveBlogPosting = LiveBlogPostingLeaf
 
 interface LoanOrCreditBase extends FinancialProductBase {
 	/** The amount of money. */
-	"amount"?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
+	amount?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
 	/**
 	 * The currency in which the monetary amount is expressed.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"currency"?: SchemaValue<Text, "currency">
+	currency?: SchemaValue<Text, "currency">
 	/** The period of time after any due date that the borrower has to fulfil its obligations before a default (failure to pay) is deemed to have occurred. */
-	"gracePeriod"?: SchemaValue<Duration | IdReference, "gracePeriod">
+	gracePeriod?: SchemaValue<Duration | IdReference, "gracePeriod">
 	/** A form of paying back money previously borrowed from a lender. Repayment usually takes the form of periodic payments that normally include part principal plus interest in each payment. */
-	"loanRepaymentForm"?: SchemaValue<
+	loanRepaymentForm?: SchemaValue<
 		RepaymentSpecification | IdReference,
 		"loanRepaymentForm"
 	>
 	/** The duration of the loan or credit agreement. */
-	"loanTerm"?: SchemaValue<QuantitativeValue | IdReference, "loanTerm">
+	loanTerm?: SchemaValue<QuantitativeValue | IdReference, "loanTerm">
 	/** The type of a loan or credit. */
-	"loanType"?: SchemaValue<Text | URL, "loanType">
+	loanType?: SchemaValue<Text | URL, "loanType">
 	/** The only way you get the money back in the event of default is the security. Recourse is where you still have the opportunity to go back to the borrower for the rest of the money. */
-	"recourseLoan"?: SchemaValue<Boolean, "recourseLoan">
+	recourseLoan?: SchemaValue<Boolean, "recourseLoan">
 	/** Whether the terms for payment of interest can be renegotiated during the life of the loan. */
-	"renegotiableLoan"?: SchemaValue<Boolean, "renegotiableLoan">
+	renegotiableLoan?: SchemaValue<Boolean, "renegotiableLoan">
 	/** Assets required to secure loan or credit repayments. It may take form of third party pledge, goods, financial instruments (cash, securities, etc.) */
-	"requiredCollateral"?: SchemaValue<
+	requiredCollateral?: SchemaValue<
 		Text | Thing | IdReference,
 		"requiredCollateral"
 	>
@@ -7376,13 +7279,13 @@ interface LocalBusinessBase extends PlaceBase, OrganizationBase {
 	 *
 	 * @deprecated Consider using https://schema.org/parentOrganization instead.
 	 */
-	"branchOf"?: SchemaValue<Organization | IdReference, "branchOf">
+	branchOf?: SchemaValue<Organization | IdReference, "branchOf">
 	/**
 	 * The currency accepted.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"currenciesAccepted"?: SchemaValue<Text, "currenciesAccepted">
+	currenciesAccepted?: SchemaValue<Text, "currenciesAccepted">
 	/**
 	 * The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. Multiple days can be listed with commas ',' separating each day. Day or time ranges are specified using a hyphen '-'.
 	 * - Days are specified using the following two-letter combinations: `Mo`, `Tu`, `We`, `Th`, `Fr`, `Sa`, `Su`.
@@ -7390,11 +7293,11 @@ interface LocalBusinessBase extends PlaceBase, OrganizationBase {
 	 * - Here is an example: `<time itemprop="openingHours" datetime="Tu,Th 16:00-20:00">Tuesdays and Thursdays 4-8pm</time>`.
 	 * - If a business is open 7 days a week, then it can be specified as `<time itemprop="openingHours" datetime="Mo-Su">Monday through Sunday, all day</time>`.
 	 */
-	"openingHours"?: SchemaValue<Text, "openingHours">
+	openingHours?: SchemaValue<Text, "openingHours">
 	/** Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc. */
-	"paymentAccepted"?: SchemaValue<Text, "paymentAccepted">
+	paymentAccepted?: SchemaValue<Text, "paymentAccepted">
 	/** The price range of the business, for example `$$$`. */
-	"priceRange"?: SchemaValue<Text, "priceRange">
+	priceRange?: SchemaValue<Text, "priceRange">
 }
 interface LocalBusinessLeaf extends LocalBusinessBase {
 	type: "LocalBusiness"
@@ -7436,18 +7339,17 @@ export type LocalBusiness =
 
 interface LocationFeatureSpecificationBase extends PropertyValueBase {
 	/** The hours during which this service or contact is available. */
-	"hoursAvailable"?: SchemaValue<
+	hoursAvailable?: SchemaValue<
 		OpeningHoursSpecification | IdReference,
 		"hoursAvailable"
 	>
 	/** The date when the item becomes valid. */
-	"validFrom"?: SchemaValue<Date | DateTime, "validFrom">
+	validFrom?: SchemaValue<Date | DateTime, "validFrom">
 	/** The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours. */
-	"validThrough"?: SchemaValue<Date | DateTime, "validThrough">
+	validThrough?: SchemaValue<Date | DateTime, "validThrough">
 }
 interface LocationFeatureSpecificationLeaf
-	extends LocationFeatureSpecificationBase
-{
+	extends LocationFeatureSpecificationBase {
 	type: "LocationFeatureSpecification"
 }
 /** Specifies a location feature by providing a structured value representing a feature of an accommodation as a property-value pair of varying degrees of formality. */
@@ -7461,30 +7363,30 @@ export type Locksmith = LocksmithLeaf | string
 
 interface LodgingBusinessBase extends LocalBusinessBase {
 	/** An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs. */
-	"amenityFeature"?: SchemaValue<
+	amenityFeature?: SchemaValue<
 		LocationFeatureSpecification | IdReference,
 		"amenityFeature"
 	>
 	/** An intended audience, i.e. a group for whom something was created. */
-	"audience"?: SchemaValue<Audience | IdReference, "audience">
+	audience?: SchemaValue<Audience | IdReference, "audience">
 	/** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/inLanguage inLanguage}. */
-	"availableLanguage"?: SchemaValue<
+	availableLanguage?: SchemaValue<
 		Language | Text | IdReference,
 		"availableLanguage"
 	>
 	/** The earliest someone may check into a lodging establishment. */
-	"checkinTime"?: SchemaValue<DateTime | Time, "checkinTime">
+	checkinTime?: SchemaValue<DateTime | Time, "checkinTime">
 	/** The latest someone may check out of a lodging establishment. */
-	"checkoutTime"?: SchemaValue<DateTime | Time, "checkoutTime">
+	checkoutTime?: SchemaValue<DateTime | Time, "checkoutTime">
 	/** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
-	"numberOfRooms"?: SchemaValue<
+	numberOfRooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfRooms"
 	>
 	/** Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value. */
-	"petsAllowed"?: SchemaValue<Boolean | Text, "petsAllowed">
+	petsAllowed?: SchemaValue<Boolean | Text, "petsAllowed">
 	/** An official rating for a lodging business or food establishment, e.g. from national associations or standards bodies. Use the author property to indicate the rating organization, e.g. as an Organization with name such as (e.g. HOTREC, DEHOGA, WHR, or Hotelstars). */
-	"starRating"?: SchemaValue<Rating | IdReference, "starRating">
+	starRating?: SchemaValue<Rating | IdReference, "starRating">
 }
 interface LodgingBusinessLeaf extends LodgingBusinessBase {
 	type: "LodgingBusiness"
@@ -7503,23 +7405,23 @@ export type LodgingBusiness =
 
 interface LodgingReservationBase extends ReservationBase {
 	/** The earliest someone may check into a lodging establishment. */
-	"checkinTime"?: SchemaValue<DateTime | Time, "checkinTime">
+	checkinTime?: SchemaValue<DateTime | Time, "checkinTime">
 	/** The latest someone may check out of a lodging establishment. */
-	"checkoutTime"?: SchemaValue<DateTime | Time, "checkoutTime">
+	checkoutTime?: SchemaValue<DateTime | Time, "checkoutTime">
 	/** A full description of the lodging unit. */
-	"lodgingUnitDescription"?: SchemaValue<Text, "lodgingUnitDescription">
+	lodgingUnitDescription?: SchemaValue<Text, "lodgingUnitDescription">
 	/** Textual description of the unit type (including suite vs. room, size of bed, etc.). */
-	"lodgingUnitType"?: SchemaValue<
+	lodgingUnitType?: SchemaValue<
 		QualitativeValue | Text | IdReference,
 		"lodgingUnitType"
 	>
 	/** The number of adults staying in the unit. */
-	"numAdults"?: SchemaValue<
+	numAdults?: SchemaValue<
 		Integer | QuantitativeValue | IdReference,
 		"numAdults"
 	>
 	/** The number of children staying in the unit. */
-	"numChildren"?: SchemaValue<
+	numChildren?: SchemaValue<
 		Integer | QuantitativeValue | IdReference,
 		"numChildren"
 	>
@@ -7536,7 +7438,7 @@ export type LodgingReservation = LodgingReservationLeaf
 
 interface LoseActionBase extends ActionBase {
 	/** A sub property of participant. The winner of the action. */
-	"winner"?: SchemaValue<Person | IdReference, "winner">
+	winner?: SchemaValue<Person | IdReference, "winner">
 }
 interface LoseActionLeaf extends LoseActionBase {
 	type: "LoseAction"
@@ -7546,14 +7448,14 @@ export type LoseAction = LoseActionLeaf
 
 interface LymphaticVesselBase extends AnatomicalStructureBase {
 	/** The vasculature the lymphatic structure originates, or afferents, from. */
-	"originatesFrom"?: SchemaValue<Vessel | IdReference, "originatesFrom">
+	originatesFrom?: SchemaValue<Vessel | IdReference, "originatesFrom">
 	/** The anatomical or organ system drained by this vessel; generally refers to a specific part of an organ. */
-	"regionDrained"?: SchemaValue<
+	regionDrained?: SchemaValue<
 		AnatomicalStructure | AnatomicalSystem | IdReference,
 		"regionDrained"
 	>
 	/** The vasculature the lymphatic structure runs, or efferents, to. */
-	"runsTo"?: SchemaValue<Vessel | IdReference, "runsTo">
+	runsTo?: SchemaValue<Vessel | IdReference, "runsTo">
 }
 interface LymphaticVesselLeaf extends LymphaticVesselBase {
 	type: "LymphaticVessel"
@@ -7569,7 +7471,7 @@ export type Manuscript = ManuscriptLeaf
 
 interface MapBase extends CreativeWorkBase {
 	/** Indicates the kind of Map, from the MapCategoryType Enumeration. */
-	"mapType"?: SchemaValue<MapCategoryType | IdReference, "mapType">
+	mapType?: SchemaValue<MapCategoryType | IdReference, "mapType">
 }
 interface MapLeaf extends MapBase {
 	type: "Map"
@@ -7606,7 +7508,7 @@ export type Mass = MassLeaf | string
 
 interface MathSolverBase extends CreativeWorkBase {
 	/** A mathematical expression (e.g. 'x^2-3x=0') that may be solved for a specific variable, simplified, or transformed. This can take many formats, e.g. LaTeX, Ascii-Math, or math as you would write with a keyboard. */
-	"mathExpression"?: SchemaValue<
+	mathExpression?: SchemaValue<
 		SolveMathAction | Text | IdReference,
 		"mathExpression"
 	>
@@ -7668,22 +7570,22 @@ export type MediaManipulationRatingEnumeration =
 
 interface MediaObjectBase extends CreativeWorkBase {
 	/** A NewsArticle associated with the Media Object. */
-	"associatedArticle"?: SchemaValue<
+	associatedArticle?: SchemaValue<
 		NewsArticle | IdReference,
 		"associatedArticle"
 	>
 	/** The bitrate of the media object. */
-	"bitrate"?: SchemaValue<Text, "bitrate">
+	bitrate?: SchemaValue<Text, "bitrate">
 	/** File size in (mega/kilo)bytes. */
-	"contentSize"?: SchemaValue<Text, "contentSize">
+	contentSize?: SchemaValue<Text, "contentSize">
 	/** Actual bytes of the media object, for example the image file or video file. */
-	"contentUrl"?: SchemaValue<URL, "contentUrl">
+	contentUrl?: SchemaValue<URL, "contentUrl">
 	/** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
-	"duration"?: SchemaValue<Duration | IdReference, "duration">
+	duration?: SchemaValue<Duration | IdReference, "duration">
 	/** A URL pointing to a player for a specific video. In general, this is the information in the `src` element of an `embed` tag and should not be the same as the content of the `loc` tag. */
-	"embedUrl"?: SchemaValue<URL, "embedUrl">
+	embedUrl?: SchemaValue<URL, "embedUrl">
 	/** The CreativeWork encoded by this media object. */
-	"encodesCreativeWork"?: SchemaValue<
+	encodesCreativeWork?: SchemaValue<
 		CreativeWork | IdReference,
 		"encodesCreativeWork"
 	>
@@ -7694,52 +7596,52 @@ interface MediaObjectBase extends CreativeWorkBase {
 	 *
 	 * Unregistered or niche encoding and file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia/Wikidata entry.
 	 */
-	"encodingFormat"?: SchemaValue<Text | URL, "encodingFormat">
+	encodingFormat?: SchemaValue<Text | URL, "encodingFormat">
 	/**
 	 * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. E.g. John wrote a book from January to _December_. For media, including audio and video, it's the time offset of the end of a clip within a larger file.
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"endTime"?: SchemaValue<DateTime | Time, "endTime">
+	endTime?: SchemaValue<DateTime | Time, "endTime">
 	/** The height of the item. */
-	"height"?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
+	height?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
 	/**
 	 * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.
 	 *
 	 * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
 	 */
-	"ineligibleRegion"?: SchemaValue<
+	ineligibleRegion?: SchemaValue<
 		GeoShape | Place | Text | IdReference,
 		"ineligibleRegion"
 	>
 	/** Used to indicate a specific claim contained, implied, translated or refined from the content of a {@link https://schema.org/MediaObject MediaObject} or other {@link https://schema.org/CreativeWork CreativeWork}. The interpreting party can be indicated using {@link https://schema.org/claimInterpreter claimInterpreter}. */
-	"interpretedAsClaim"?: SchemaValue<Claim | IdReference, "interpretedAsClaim">
+	interpretedAsClaim?: SchemaValue<Claim | IdReference, "interpretedAsClaim">
 	/** Player type required—for example, Flash or Silverlight. */
-	"playerType"?: SchemaValue<Text, "playerType">
+	playerType?: SchemaValue<Text, "playerType">
 	/** The production company or studio responsible for the item, e.g. series, video game, episode etc. */
-	"productionCompany"?: SchemaValue<
+	productionCompany?: SchemaValue<
 		Organization | IdReference,
 		"productionCompany"
 	>
 	/** The regions where the media is allowed. If not specified, then it's assumed to be allowed everywhere. Specify the countries in {@link http://en.wikipedia.org/wiki/ISO_3166 ISO 3166 format}. */
-	"regionsAllowed"?: SchemaValue<Place | IdReference, "regionsAllowed">
+	regionsAllowed?: SchemaValue<Place | IdReference, "regionsAllowed">
 	/** Indicates if use of the media require a subscription (either paid or free). Allowed values are `true` or `false` (note that an earlier version had 'yes', 'no'). */
-	"requiresSubscription"?: SchemaValue<
+	requiresSubscription?: SchemaValue<
 		Boolean | MediaSubscription | IdReference,
 		"requiresSubscription"
 	>
 	/** The {@link https://en.wikipedia.org/wiki/SHA-2 SHA-2} SHA256 hash of the content of the item. For example, a zero-length input has value 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' */
-	"sha256"?: SchemaValue<Text, "sha256">
+	sha256?: SchemaValue<Text, "sha256">
 	/**
 	 * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. E.g. John wrote a book from _January_ to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"startTime"?: SchemaValue<DateTime | Time, "startTime">
+	startTime?: SchemaValue<DateTime | Time, "startTime">
 	/** Date when this media object was uploaded to this site. */
-	"uploadDate"?: SchemaValue<Date, "uploadDate">
+	uploadDate?: SchemaValue<Date, "uploadDate">
 	/** The width of the item. */
-	"width"?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
+	width?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
 }
 interface MediaObjectLeaf extends MediaObjectBase {
 	type: "MediaObject"
@@ -7759,17 +7661,17 @@ export type MediaObject =
 
 interface MediaReviewBase extends ReviewBase {
 	/** Indicates a MediaManipulationRatingEnumeration classification of a media object (in the context of how it was published or shared). */
-	"mediaAuthenticityCategory"?: SchemaValue<
+	mediaAuthenticityCategory?: SchemaValue<
 		MediaManipulationRatingEnumeration | IdReference,
 		"mediaAuthenticityCategory"
 	>
 	/** Describes, in a {@link https://schema.org/MediaReview MediaReview} when dealing with {@link https://schema.org/DecontextualizedContent DecontextualizedContent}, background information that can contribute to better interpretation of the {@link https://schema.org/MediaObject MediaObject}. */
-	"originalMediaContextDescription"?: SchemaValue<
+	originalMediaContextDescription?: SchemaValue<
 		Text,
 		"originalMediaContextDescription"
 	>
 	/** Link to the page containing an original version of the content, or directly to an online copy of the original {@link https://schema.org/MediaObject MediaObject} content, e.g. video file. */
-	"originalMediaLink"?: SchemaValue<
+	originalMediaLink?: SchemaValue<
 		MediaObject | URL | WebPage | IdReference,
 		"originalMediaLink"
 	>
@@ -7782,7 +7684,7 @@ export type MediaReview = MediaReviewLeaf
 
 interface MediaReviewItemBase extends CreativeWorkBase {
 	/** In the context of a {@link https://schema.org/MediaReview MediaReview}, indicates specific media item(s) that are grouped using a {@link https://schema.org/MediaReviewItem MediaReviewItem}. */
-	"mediaItemAppearance"?: SchemaValue<
+	mediaItemAppearance?: SchemaValue<
 		MediaObject | IdReference,
 		"mediaItemAppearance"
 	>
@@ -7795,12 +7697,9 @@ export type MediaReviewItem = MediaReviewItemLeaf
 
 interface MediaSubscriptionBase extends ThingBase {
 	/** The Organization responsible for authenticating the user's subscription. For example, many media apps require a cable/satellite provider to authenticate your subscription before playing media. */
-	"authenticator"?: SchemaValue<Organization | IdReference, "authenticator">
+	authenticator?: SchemaValue<Organization | IdReference, "authenticator">
 	/** An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it. */
-	"expectsAcceptanceOf"?: SchemaValue<
-		Offer | IdReference,
-		"expectsAcceptanceOf"
-	>
+	expectsAcceptanceOf?: SchemaValue<Offer | IdReference, "expectsAcceptanceOf">
 }
 interface MediaSubscriptionLeaf extends MediaSubscriptionBase {
 	type: "MediaSubscription"
@@ -7808,8 +7707,7 @@ interface MediaSubscriptionLeaf extends MediaSubscriptionBase {
 /** A subscription which allows a user to access media including audio, video, books, etc. */
 export type MediaSubscription = MediaSubscriptionLeaf
 
-interface MedicalAudienceBase extends PeopleAudienceBase, AudienceBase {
-}
+interface MedicalAudienceBase extends PeopleAudienceBase, AudienceBase {}
 interface MedicalAudienceLeaf extends MedicalAudienceBase {
 	type: "MedicalAudience"
 }
@@ -7861,7 +7759,7 @@ export type MedicalBusiness =
 
 interface MedicalCauseBase extends MedicalEntityBase {
 	/** The condition, complication, symptom, sign, etc. caused. */
-	"causeOf"?: SchemaValue<MedicalEntity | IdReference, "causeOf">
+	causeOf?: SchemaValue<MedicalEntity | IdReference, "causeOf">
 }
 interface MedicalCauseLeaf extends MedicalCauseBase {
 	type: "MedicalCause"
@@ -7871,12 +7769,12 @@ export type MedicalCause = MedicalCauseLeaf
 
 interface MedicalClinicBase extends LocalBusinessBase, MedicalOrganizationBase {
 	/** A medical service available from this provider. */
-	"availableService"?: SchemaValue<
+	availableService?: SchemaValue<
 		MedicalProcedure | MedicalTest | MedicalTherapy | IdReference,
 		"availableService"
 	>
 	/** A medical specialty of the provider. */
-	"medicalSpecialty"?: SchemaValue<
+	medicalSpecialty?: SchemaValue<
 		MedicalSpecialty | IdReference,
 		"medicalSpecialty"
 	>
@@ -7889,9 +7787,9 @@ export type MedicalClinic = MedicalClinicLeaf | CovidTestingFacility | string
 
 interface MedicalCodeBase extends CategoryCodeBase, MedicalEntityBase {
 	/** A short textual code that uniquely identifies the value. */
-	"codeValue"?: SchemaValue<Text, "codeValue">
+	codeValue?: SchemaValue<Text, "codeValue">
 	/** The coding system, e.g. 'ICD-10'. */
-	"codingSystem"?: SchemaValue<Text, "codingSystem">
+	codingSystem?: SchemaValue<Text, "codingSystem">
 }
 interface MedicalCodeLeaf extends MedicalCodeBase {
 	type: "MedicalCode"
@@ -7901,58 +7799,58 @@ export type MedicalCode = MedicalCodeLeaf
 
 interface MedicalConditionBase extends MedicalEntityBase {
 	/** The anatomy of the underlying organ system or structures associated with this entity. */
-	"associatedAnatomy"?: SchemaValue<
+	associatedAnatomy?: SchemaValue<
 		AnatomicalStructure | AnatomicalSystem | SuperficialAnatomy | IdReference,
 		"associatedAnatomy"
 	>
 	/** One of a set of differential diagnoses for the condition. Specifically, a closely-related or competing diagnosis typically considered later in the cognitive process whereby this medical condition is distinguished from others most likely responsible for a similar collection of signs and symptoms to reach the most parsimonious diagnosis or diagnoses in a patient. */
-	"differentialDiagnosis"?: SchemaValue<
+	differentialDiagnosis?: SchemaValue<
 		DDxElement | IdReference,
 		"differentialDiagnosis"
 	>
 	/** Specifying a drug or medicine used in a medication procedure. */
-	"drug"?: SchemaValue<Drug | IdReference, "drug">
+	drug?: SchemaValue<Drug | IdReference, "drug">
 	/** The characteristics of associated patients, such as age, gender, race etc. */
-	"epidemiology"?: SchemaValue<Text, "epidemiology">
+	epidemiology?: SchemaValue<Text, "epidemiology">
 	/** The likely outcome in either the short term or long term of the medical condition. */
-	"expectedPrognosis"?: SchemaValue<Text, "expectedPrognosis">
+	expectedPrognosis?: SchemaValue<Text, "expectedPrognosis">
 	/** The expected progression of the condition if it is not treated and allowed to progress naturally. */
-	"naturalProgression"?: SchemaValue<Text, "naturalProgression">
+	naturalProgression?: SchemaValue<Text, "naturalProgression">
 	/** Changes in the normal mechanical, physical, and biochemical functions that are associated with this activity or condition. */
-	"pathophysiology"?: SchemaValue<Text, "pathophysiology">
+	pathophysiology?: SchemaValue<Text, "pathophysiology">
 	/** A possible unexpected and unfavorable evolution of a medical condition. Complications may include worsening of the signs or symptoms of the disease, extension of the condition to other organ systems, etc. */
-	"possibleComplication"?: SchemaValue<Text, "possibleComplication">
+	possibleComplication?: SchemaValue<Text, "possibleComplication">
 	/** A possible treatment to address this condition, sign or symptom. */
-	"possibleTreatment"?: SchemaValue<
+	possibleTreatment?: SchemaValue<
 		MedicalTherapy | IdReference,
 		"possibleTreatment"
 	>
 	/** A preventative therapy used to prevent an initial occurrence of the medical condition, such as vaccination. */
-	"primaryPrevention"?: SchemaValue<
+	primaryPrevention?: SchemaValue<
 		MedicalTherapy | IdReference,
 		"primaryPrevention"
 	>
 	/** A modifiable or non-modifiable factor that increases the risk of a patient contracting this condition, e.g. age, coexisting condition. */
-	"riskFactor"?: SchemaValue<MedicalRiskFactor | IdReference, "riskFactor">
+	riskFactor?: SchemaValue<MedicalRiskFactor | IdReference, "riskFactor">
 	/** A preventative therapy used to prevent reoccurrence of the medical condition after an initial episode of the condition. */
-	"secondaryPrevention"?: SchemaValue<
+	secondaryPrevention?: SchemaValue<
 		MedicalTherapy | IdReference,
 		"secondaryPrevention"
 	>
 	/** A sign or symptom of this condition. Signs are objective or physically observable manifestations of the medical condition while symptoms are the subjective experience of the medical condition. */
-	"signOrSymptom"?: SchemaValue<
+	signOrSymptom?: SchemaValue<
 		MedicalSignOrSymptom | IdReference,
 		"signOrSymptom"
 	>
 	/** The stage of the condition, if applicable. */
-	"stage"?: SchemaValue<MedicalConditionStage | IdReference, "stage">
+	stage?: SchemaValue<MedicalConditionStage | IdReference, "stage">
 	/** The status of the study (enumerated). */
-	"status"?: SchemaValue<
+	status?: SchemaValue<
 		EventStatusType | MedicalStudyStatus | Text | IdReference,
 		"status"
 	>
 	/** A medical test typically performed given this condition. */
-	"typicalTest"?: SchemaValue<MedicalTest | IdReference, "typicalTest">
+	typicalTest?: SchemaValue<MedicalTest | IdReference, "typicalTest">
 }
 interface MedicalConditionLeaf extends MedicalConditionBase {
 	type: "MedicalCondition"
@@ -7965,9 +7863,9 @@ export type MedicalCondition =
 
 interface MedicalConditionStageBase extends MedicalEntityBase {
 	/** The stage represented as a number, e.g. 3. */
-	"stageAsNumber"?: SchemaValue<Number, "stageAsNumber">
+	stageAsNumber?: SchemaValue<Number, "stageAsNumber">
 	/** The substage, e.g. 'a' for Stage IIIa. */
-	"subStageSuffix"?: SchemaValue<Text, "subStageSuffix">
+	subStageSuffix?: SchemaValue<Text, "subStageSuffix">
 }
 interface MedicalConditionStageLeaf extends MedicalConditionStageBase {
 	type: "MedicalConditionStage"
@@ -7983,20 +7881,20 @@ export type MedicalContraindication = MedicalContraindicationLeaf
 
 interface MedicalDeviceBase extends MedicalEntityBase {
 	/** A possible complication and/or side effect of this therapy. If it is known that an adverse outcome is serious (resulting in death, disability, or permanent damage; requiring hospitalization; or otherwise life-threatening or requiring immediate medical attention), tag it as a seriousAdverseOutcome instead. */
-	"adverseOutcome"?: SchemaValue<MedicalEntity | IdReference, "adverseOutcome">
+	adverseOutcome?: SchemaValue<MedicalEntity | IdReference, "adverseOutcome">
 	/** A contraindication for this therapy. */
-	"contraindication"?: SchemaValue<
+	contraindication?: SchemaValue<
 		MedicalContraindication | Text | IdReference,
 		"contraindication"
 	>
 	/** A description of the postoperative procedures, care, and/or followups for this device. */
-	"postOp"?: SchemaValue<Text, "postOp">
+	postOp?: SchemaValue<Text, "postOp">
 	/** A description of the workup, testing, and other preparations required before implanting this device. */
-	"preOp"?: SchemaValue<Text, "preOp">
+	preOp?: SchemaValue<Text, "preOp">
 	/** A description of the procedure involved in setting up, using, and/or installing the device. */
-	"procedure"?: SchemaValue<Text, "procedure">
+	procedure?: SchemaValue<Text, "procedure">
 	/** A possible serious complication and/or serious side effect of this therapy. Serious adverse outcomes include those that are life-threatening; result in death, disability, or permanent damage; require hospitalization or prolong existing hospitalization; cause congenital anomalies or birth defects; or jeopardize the patient and may require medical or surgical intervention to prevent one of the outcomes in this definition. */
-	"seriousAdverseOutcome"?: SchemaValue<
+	seriousAdverseOutcome?: SchemaValue<
 		MedicalEntity | IdReference,
 		"seriousAdverseOutcome"
 	>
@@ -8020,30 +7918,30 @@ export type MedicalDevicePurpose =
 
 interface MedicalEntityBase extends ThingBase {
 	/** A medical code for the entity, taken from a controlled vocabulary or ontology such as ICD-9, DiseasesDB, MeSH, SNOMED-CT, RxNorm, etc. */
-	"code"?: SchemaValue<MedicalCode | IdReference, "code">
+	code?: SchemaValue<MedicalCode | IdReference, "code">
 	/** A {@link https://schema.org/Grant Grant} that directly or indirectly provide funding or sponsorship for this item. See also {@link https://schema.org/ownershipFundingInfo ownershipFundingInfo}. */
-	"funding"?: SchemaValue<Grant | IdReference, "funding">
+	funding?: SchemaValue<Grant | IdReference, "funding">
 	/** A medical guideline related to this entity. */
-	"guideline"?: SchemaValue<MedicalGuideline | IdReference, "guideline">
+	guideline?: SchemaValue<MedicalGuideline | IdReference, "guideline">
 	/** The drug or supplement's legal status, including any controlled substance schedules that apply. */
-	"legalStatus"?: SchemaValue<
+	legalStatus?: SchemaValue<
 		DrugLegalStatus | MedicalEnumeration | Text | IdReference,
 		"legalStatus"
 	>
 	/** The system of medicine that includes this MedicalEntity, for example 'evidence-based', 'homeopathic', 'chiropractic', etc. */
-	"medicineSystem"?: SchemaValue<MedicineSystem | IdReference, "medicineSystem">
+	medicineSystem?: SchemaValue<MedicineSystem | IdReference, "medicineSystem">
 	/** If applicable, the organization that officially recognizes this entity as part of its endorsed system of medicine. */
-	"recognizingAuthority"?: SchemaValue<
+	recognizingAuthority?: SchemaValue<
 		Organization | IdReference,
 		"recognizingAuthority"
 	>
 	/** If applicable, a medical specialty in which this entity is relevant. */
-	"relevantSpecialty"?: SchemaValue<
+	relevantSpecialty?: SchemaValue<
 		MedicalSpecialty | IdReference,
 		"relevantSpecialty"
 	>
 	/** A medical study or trial related to this entity. */
-	"study"?: SchemaValue<MedicalStudy | IdReference, "study">
+	study?: SchemaValue<MedicalStudy | IdReference, "study">
 }
 interface MedicalEntityLeaf extends MedicalEntityBase {
 	type: "MedicalEntity"
@@ -8108,16 +8006,16 @@ export type MedicalEvidenceLevel =
 
 interface MedicalGuidelineBase extends MedicalEntityBase {
 	/** Strength of evidence of the data used to formulate the guideline (enumerated). */
-	"evidenceLevel"?: SchemaValue<
+	evidenceLevel?: SchemaValue<
 		MedicalEvidenceLevel | IdReference,
 		"evidenceLevel"
 	>
 	/** Source of the data used to formulate the guidance, e.g. RCT, consensus opinion, etc. */
-	"evidenceOrigin"?: SchemaValue<Text, "evidenceOrigin">
+	evidenceOrigin?: SchemaValue<Text, "evidenceOrigin">
 	/** Date on which this guideline's recommendation was made. */
-	"guidelineDate"?: SchemaValue<Date, "guidelineDate">
+	guidelineDate?: SchemaValue<Date, "guidelineDate">
 	/** The medical conditions, treatments, etc. that are the subject of the guideline. */
-	"guidelineSubject"?: SchemaValue<
+	guidelineSubject?: SchemaValue<
 		MedicalEntity | IdReference,
 		"guidelineSubject"
 	>
@@ -8140,11 +8038,10 @@ export type MedicalGuidelineContraindication =
 
 interface MedicalGuidelineRecommendationBase extends MedicalGuidelineBase {
 	/** Strength of the guideline's recommendation (e.g. 'class I'). */
-	"recommendationStrength"?: SchemaValue<Text, "recommendationStrength">
+	recommendationStrength?: SchemaValue<Text, "recommendationStrength">
 }
 interface MedicalGuidelineRecommendationLeaf
-	extends MedicalGuidelineRecommendationBase
-{
+	extends MedicalGuidelineRecommendationBase {
 	type: "MedicalGuidelineRecommendation"
 }
 /** A guideline recommendation that is regarded as efficacious and where quality of the data supporting the recommendation is sound. */
@@ -8194,7 +8091,7 @@ export type MedicalIntangible =
 
 interface MedicalObservationalStudyBase extends MedicalStudyBase {
 	/** Specifics about the observational study design (enumerated). */
-	"studyDesign"?: SchemaValue<
+	studyDesign?: SchemaValue<
 		MedicalObservationalStudyDesign | IdReference,
 		"studyDesign"
 	>
@@ -8226,11 +8123,11 @@ export type MedicalObservationalStudyDesign =
 
 interface MedicalOrganizationBase extends OrganizationBase {
 	/** Name or unique ID of network. (Networks are often reused across different insurance plans.) */
-	"healthPlanNetworkId"?: SchemaValue<Text, "healthPlanNetworkId">
+	healthPlanNetworkId?: SchemaValue<Text, "healthPlanNetworkId">
 	/** Whether the provider is accepting new patients. */
-	"isAcceptingNewPatients"?: SchemaValue<Boolean, "isAcceptingNewPatients">
+	isAcceptingNewPatients?: SchemaValue<Boolean, "isAcceptingNewPatients">
 	/** A medical specialty of the provider. */
-	"medicalSpecialty"?: SchemaValue<
+	medicalSpecialty?: SchemaValue<
 		MedicalSpecialty | IdReference,
 		"medicalSpecialty"
 	>
@@ -8252,20 +8149,20 @@ export type MedicalOrganization =
 
 interface MedicalProcedureBase extends MedicalEntityBase {
 	/** Location in the body of the anatomical structure. */
-	"bodyLocation"?: SchemaValue<Text, "bodyLocation">
+	bodyLocation?: SchemaValue<Text, "bodyLocation">
 	/** Typical or recommended followup care after the procedure is performed. */
-	"followup"?: SchemaValue<Text, "followup">
+	followup?: SchemaValue<Text, "followup">
 	/** How the procedure is performed. */
-	"howPerformed"?: SchemaValue<Text, "howPerformed">
+	howPerformed?: SchemaValue<Text, "howPerformed">
 	/** Typical preparation that a patient must undergo before having the procedure performed. */
-	"preparation"?: SchemaValue<MedicalEntity | Text | IdReference, "preparation">
+	preparation?: SchemaValue<MedicalEntity | Text | IdReference, "preparation">
 	/** The type of procedure, for example Surgical, Noninvasive, or Percutaneous. */
-	"procedureType"?: SchemaValue<
+	procedureType?: SchemaValue<
 		MedicalProcedureType | IdReference,
 		"procedureType"
 	>
 	/** The status of the study (enumerated). */
-	"status"?: SchemaValue<
+	status?: SchemaValue<
 		EventStatusType | MedicalStudyStatus | Text | IdReference,
 		"status"
 	>
@@ -8301,12 +8198,9 @@ export type MedicalRiskCalculator = MedicalRiskCalculatorLeaf
 
 interface MedicalRiskEstimatorBase extends MedicalEntityBase {
 	/** The condition, complication, or symptom whose risk is being estimated. */
-	"estimatesRiskOf"?: SchemaValue<
-		MedicalEntity | IdReference,
-		"estimatesRiskOf"
-	>
+	estimatesRiskOf?: SchemaValue<MedicalEntity | IdReference, "estimatesRiskOf">
 	/** A modifiable or non-modifiable risk factor included in the calculation, e.g. age, coexisting condition. */
-	"includedRiskFactor"?: SchemaValue<
+	includedRiskFactor?: SchemaValue<
 		MedicalRiskFactor | IdReference,
 		"includedRiskFactor"
 	>
@@ -8322,10 +8216,7 @@ export type MedicalRiskEstimator =
 
 interface MedicalRiskFactorBase extends MedicalEntityBase {
 	/** The condition, complication, etc. influenced by this factor. */
-	"increasesRiskOf"?: SchemaValue<
-		MedicalEntity | IdReference,
-		"increasesRiskOf"
-	>
+	increasesRiskOf?: SchemaValue<MedicalEntity | IdReference, "increasesRiskOf">
 }
 interface MedicalRiskFactorLeaf extends MedicalRiskFactorBase {
 	type: "MedicalRiskFactor"
@@ -8335,7 +8226,7 @@ export type MedicalRiskFactor = MedicalRiskFactorLeaf
 
 interface MedicalRiskScoreBase extends MedicalRiskEstimatorBase {
 	/** The algorithm or rules to follow to compute the score. */
-	"algorithm"?: SchemaValue<Text, "algorithm">
+	algorithm?: SchemaValue<Text, "algorithm">
 }
 interface MedicalRiskScoreLeaf extends MedicalRiskScoreBase {
 	type: "MedicalRiskScore"
@@ -8345,7 +8236,7 @@ export type MedicalRiskScore = MedicalRiskScoreLeaf
 
 interface MedicalScholarlyArticleBase extends ArticleBase {
 	/** The type of the medical article, taken from the US NLM MeSH publication type catalog. See also {@link http://www.nlm.nih.gov/mesh/pubtypes.html MeSH documentation}. */
-	"publicationType"?: SchemaValue<Text, "publicationType">
+	publicationType?: SchemaValue<Text, "publicationType">
 }
 interface MedicalScholarlyArticleLeaf extends MedicalScholarlyArticleBase {
 	type: "MedicalScholarlyArticle"
@@ -8355,9 +8246,9 @@ export type MedicalScholarlyArticle = MedicalScholarlyArticleLeaf
 
 interface MedicalSignBase extends MedicalSignOrSymptomBase {
 	/** A physical examination that can identify this sign. */
-	"identifyingExam"?: SchemaValue<PhysicalExam | IdReference, "identifyingExam">
+	identifyingExam?: SchemaValue<PhysicalExam | IdReference, "identifyingExam">
 	/** A diagnostic test that can identify this sign. */
-	"identifyingTest"?: SchemaValue<MedicalTest | IdReference, "identifyingTest">
+	identifyingTest?: SchemaValue<MedicalTest | IdReference, "identifyingTest">
 }
 interface MedicalSignLeaf extends MedicalSignBase {
 	type: "MedicalSign"
@@ -8367,7 +8258,7 @@ export type MedicalSign = MedicalSignLeaf | VitalSign
 
 interface MedicalSignOrSymptomBase extends MedicalConditionBase {
 	/** A possible treatment to address this condition, sign or symptom. */
-	"possibleTreatment"?: SchemaValue<
+	possibleTreatment?: SchemaValue<
 		MedicalTherapy | IdReference,
 		"possibleTreatment"
 	>
@@ -8381,8 +8272,7 @@ export type MedicalSignOrSymptom =
 	| MedicalSign
 	| MedicalSymptom
 
-interface MedicalSpecialtyBase extends EnumerationBase, EnumerationBase {
-}
+interface MedicalSpecialtyBase extends EnumerationBase, EnumerationBase {}
 interface MedicalSpecialtyLeaf extends MedicalSpecialtyBase {
 	type: "MedicalSpecialty"
 }
@@ -8476,24 +8366,21 @@ export type MedicalSpecialty =
 
 interface MedicalStudyBase extends MedicalEntityBase {
 	/** Specifying the health condition(s) of a patient, medical study, or other target audience. */
-	"healthCondition"?: SchemaValue<
+	healthCondition?: SchemaValue<
 		MedicalCondition | IdReference,
 		"healthCondition"
 	>
 	/** A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event. */
-	"sponsor"?: SchemaValue<Organization | Person | IdReference, "sponsor">
+	sponsor?: SchemaValue<Organization | Person | IdReference, "sponsor">
 	/** The status of the study (enumerated). */
-	"status"?: SchemaValue<
+	status?: SchemaValue<
 		EventStatusType | MedicalStudyStatus | Text | IdReference,
 		"status"
 	>
 	/** The location in which the study is taking/took place. */
-	"studyLocation"?: SchemaValue<
-		AdministrativeArea | IdReference,
-		"studyLocation"
-	>
+	studyLocation?: SchemaValue<AdministrativeArea | IdReference, "studyLocation">
 	/** A subject of the study, i.e. one of the medical conditions, therapies, devices, drugs, etc. investigated by the study. */
-	"studySubject"?: SchemaValue<MedicalEntity | IdReference, "studySubject">
+	studySubject?: SchemaValue<MedicalEntity | IdReference, "studySubject">
 }
 interface MedicalStudyLeaf extends MedicalStudyBase {
 	type: "MedicalStudy"
@@ -8539,21 +8426,18 @@ export type MedicalSymptom = MedicalSymptomLeaf
 
 interface MedicalTestBase extends MedicalEntityBase {
 	/** Drugs that affect the test's results. */
-	"affectedBy"?: SchemaValue<Drug | IdReference, "affectedBy">
+	affectedBy?: SchemaValue<Drug | IdReference, "affectedBy">
 	/** Range of acceptable values for a typical patient, when applicable. */
-	"normalRange"?: SchemaValue<
+	normalRange?: SchemaValue<
 		MedicalEnumeration | Text | IdReference,
 		"normalRange"
 	>
 	/** A sign detected by the test. */
-	"signDetected"?: SchemaValue<MedicalSign | IdReference, "signDetected">
+	signDetected?: SchemaValue<MedicalSign | IdReference, "signDetected">
 	/** A condition the test is used to diagnose. */
-	"usedToDiagnose"?: SchemaValue<
-		MedicalCondition | IdReference,
-		"usedToDiagnose"
-	>
+	usedToDiagnose?: SchemaValue<MedicalCondition | IdReference, "usedToDiagnose">
 	/** Device used to perform the test. */
-	"usesDevice"?: SchemaValue<MedicalDevice | IdReference, "usesDevice">
+	usesDevice?: SchemaValue<MedicalDevice | IdReference, "usesDevice">
 }
 interface MedicalTestLeaf extends MedicalTestBase {
 	type: "MedicalTest"
@@ -8568,7 +8452,7 @@ export type MedicalTest =
 
 interface MedicalTestPanelBase extends MedicalTestBase {
 	/** A component test of the panel. */
-	"subTest"?: SchemaValue<MedicalTest | IdReference, "subTest">
+	subTest?: SchemaValue<MedicalTest | IdReference, "subTest">
 }
 interface MedicalTestPanelLeaf extends MedicalTestPanelBase {
 	type: "MedicalTestPanel"
@@ -8578,17 +8462,17 @@ export type MedicalTestPanel = MedicalTestPanelLeaf
 
 interface MedicalTherapyBase extends TherapeuticProcedureBase {
 	/** A contraindication for this therapy. */
-	"contraindication"?: SchemaValue<
+	contraindication?: SchemaValue<
 		MedicalContraindication | Text | IdReference,
 		"contraindication"
 	>
 	/** A therapy that duplicates or overlaps this one. */
-	"duplicateTherapy"?: SchemaValue<
+	duplicateTherapy?: SchemaValue<
 		MedicalTherapy | IdReference,
 		"duplicateTherapy"
 	>
 	/** A possible serious complication and/or serious side effect of this therapy. Serious adverse outcomes include those that are life-threatening; result in death, disability, or permanent damage; require hospitalization or prolong existing hospitalization; cause congenital anomalies or birth defects; or jeopardize the patient and may require medical or surgical intervention to prevent one of the outcomes in this definition. */
-	"seriousAdverseOutcome"?: SchemaValue<
+	seriousAdverseOutcome?: SchemaValue<
 		MedicalEntity | IdReference,
 		"seriousAdverseOutcome"
 	>
@@ -8607,7 +8491,7 @@ export type MedicalTherapy =
 
 interface MedicalTrialBase extends MedicalStudyBase {
 	/** Specifics about the trial design (enumerated). */
-	"trialDesign"?: SchemaValue<MedicalTrialDesign | IdReference, "trialDesign">
+	trialDesign?: SchemaValue<MedicalTrialDesign | IdReference, "trialDesign">
 }
 interface MedicalTrialLeaf extends MedicalTrialBase {
 	type: "MedicalTrial"
@@ -8646,9 +8530,9 @@ interface MedicalWebPageBase extends WebPageBase {
 	 *
 	 * @deprecated Consider using https://schema.org/mainContentOfPage instead.
 	 */
-	"aspect"?: SchemaValue<Text, "aspect">
+	aspect?: SchemaValue<Text, "aspect">
 	/** Medical audience for page. */
-	"medicalAudience"?: SchemaValue<
+	medicalAudience?: SchemaValue<
 		MedicalAudience | MedicalAudienceType | IdReference,
 		"medicalAudience"
 	>
@@ -8696,9 +8580,9 @@ export type MensClothingStore = MensClothingStoreLeaf | string
 
 interface MenuBase extends CreativeWorkBase {
 	/** A food or drink item contained in a menu or menu section. */
-	"hasMenuItem"?: SchemaValue<MenuItem | IdReference, "hasMenuItem">
+	hasMenuItem?: SchemaValue<MenuItem | IdReference, "hasMenuItem">
 	/** A subgrouping of the menu (by dishes, course, serving time period, etc.). */
-	"hasMenuSection"?: SchemaValue<MenuSection | IdReference, "hasMenuSection">
+	hasMenuSection?: SchemaValue<MenuSection | IdReference, "hasMenuSection">
 }
 interface MenuLeaf extends MenuBase {
 	type: "Menu"
@@ -8708,16 +8592,13 @@ export type Menu = MenuLeaf
 
 interface MenuItemBase extends ThingBase {
 	/** Additional menu item(s) such as a side dish of salad or side order of fries that can be added to this menu item. Additionally it can be a menu section containing allowed add-on menu items for this menu item. */
-	"menuAddOn"?: SchemaValue<MenuItem | MenuSection | IdReference, "menuAddOn">
+	menuAddOn?: SchemaValue<MenuItem | MenuSection | IdReference, "menuAddOn">
 	/** Nutrition information about the recipe or menu item. */
-	"nutrition"?: SchemaValue<NutritionInformation | IdReference, "nutrition">
+	nutrition?: SchemaValue<NutritionInformation | IdReference, "nutrition">
 	/** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"offers"?: SchemaValue<Demand | Offer | IdReference, "offers">
+	offers?: SchemaValue<Demand | Offer | IdReference, "offers">
 	/** Indicates a dietary restriction or guideline for which this recipe or menu item is suitable, e.g. diabetic, halal etc. */
-	"suitableForDiet"?: SchemaValue<
-		RestrictedDiet | IdReference,
-		"suitableForDiet"
-	>
+	suitableForDiet?: SchemaValue<RestrictedDiet | IdReference, "suitableForDiet">
 }
 interface MenuItemLeaf extends MenuItemBase {
 	type: "MenuItem"
@@ -8727,9 +8608,9 @@ export type MenuItem = MenuItemLeaf
 
 interface MenuSectionBase extends CreativeWorkBase {
 	/** A food or drink item contained in a menu or menu section. */
-	"hasMenuItem"?: SchemaValue<MenuItem | IdReference, "hasMenuItem">
+	hasMenuItem?: SchemaValue<MenuItem | IdReference, "hasMenuItem">
 	/** A subgrouping of the menu (by dishes, course, serving time period, etc.). */
-	"hasMenuSection"?: SchemaValue<MenuSection | IdReference, "hasMenuSection">
+	hasMenuSection?: SchemaValue<MenuSection | IdReference, "hasMenuSection">
 }
 interface MenuSectionLeaf extends MenuSectionBase {
 	type: "MenuSection"
@@ -8758,95 +8639,92 @@ interface MerchantReturnPolicyBase extends ThingBase {
 	 *
 	 * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
 	 */
-	"additionalProperty"?: SchemaValue<
+	additionalProperty?: SchemaValue<
 		PropertyValue | IdReference,
 		"additionalProperty"
 	>
 	/** A country where a particular merchant return policy applies to, for example the two-letter ISO 3166-1 alpha-2 country code. */
-	"applicableCountry"?: SchemaValue<
+	applicableCountry?: SchemaValue<
 		Country | Text | IdReference,
 		"applicableCountry"
 	>
 	/** The type of return fees if the product is returned due to customer remorse. */
-	"customerRemorseReturnFees"?: SchemaValue<
+	customerRemorseReturnFees?: SchemaValue<
 		ReturnFeesEnumeration | IdReference,
 		"customerRemorseReturnFees"
 	>
 	/** The method (from an enumeration) by which the customer obtains a return shipping label for a product returned due to customer remorse. */
-	"customerRemorseReturnLabelSource"?: SchemaValue<
+	customerRemorseReturnLabelSource?: SchemaValue<
 		ReturnLabelSourceEnumeration | IdReference,
 		"customerRemorseReturnLabelSource"
 	>
 	/** The amount of shipping costs if a product is returned due to customer remorse. Applicable when property {@link https://schema.org/customerRemorseReturnFees customerRemorseReturnFees} equals {@link https://schema.org/ReturnShippingFees ReturnShippingFees}. */
-	"customerRemorseReturnShippingFeesAmount"?: SchemaValue<
+	customerRemorseReturnShippingFeesAmount?: SchemaValue<
 		MonetaryAmount | IdReference,
 		"customerRemorseReturnShippingFeesAmount"
 	>
 	/** Are in-store returns offered? (For more advanced return methods use the {@link https://schema.org/returnMethod returnMethod} property.) */
-	"inStoreReturnsOffered"?: SchemaValue<Boolean, "inStoreReturnsOffered">
+	inStoreReturnsOffered?: SchemaValue<Boolean, "inStoreReturnsOffered">
 	/** A predefined value from OfferItemCondition specifying the condition of the product or service, or the products or services included in the offer. Also used for product return policies to specify the condition of products accepted for returns. */
-	"itemCondition"?: SchemaValue<
-		OfferItemCondition | IdReference,
-		"itemCondition"
-	>
+	itemCondition?: SchemaValue<OfferItemCondition | IdReference, "itemCondition">
 	/** The type of return fees for returns of defect products. */
-	"itemDefectReturnFees"?: SchemaValue<
+	itemDefectReturnFees?: SchemaValue<
 		ReturnFeesEnumeration | IdReference,
 		"itemDefectReturnFees"
 	>
 	/** The method (from an enumeration) by which the customer obtains a return shipping label for a defect product. */
-	"itemDefectReturnLabelSource"?: SchemaValue<
+	itemDefectReturnLabelSource?: SchemaValue<
 		ReturnLabelSourceEnumeration | IdReference,
 		"itemDefectReturnLabelSource"
 	>
 	/** Amount of shipping costs for defect product returns. Applicable when property {@link https://schema.org/itemDefectReturnFees itemDefectReturnFees} equals {@link https://schema.org/ReturnShippingFees ReturnShippingFees}. */
-	"itemDefectReturnShippingFeesAmount"?: SchemaValue<
+	itemDefectReturnShippingFeesAmount?: SchemaValue<
 		MonetaryAmount | IdReference,
 		"itemDefectReturnShippingFeesAmount"
 	>
 	/** Specifies either a fixed return date or the number of days (from the delivery date) that a product can be returned. Used when the {@link https://schema.org/returnPolicyCategory returnPolicyCategory} property is specified as {@link https://schema.org/MerchantReturnFiniteReturnWindow MerchantReturnFiniteReturnWindow}. */
-	"merchantReturnDays"?: SchemaValue<
+	merchantReturnDays?: SchemaValue<
 		Date | DateTime | Integer,
 		"merchantReturnDays"
 	>
 	/** Specifies a Web page or service by URL, for product returns. */
-	"merchantReturnLink"?: SchemaValue<URL, "merchantReturnLink">
+	merchantReturnLink?: SchemaValue<URL, "merchantReturnLink">
 	/** A refund type, from an enumerated list. */
-	"refundType"?: SchemaValue<RefundTypeEnumeration | IdReference, "refundType">
+	refundType?: SchemaValue<RefundTypeEnumeration | IdReference, "refundType">
 	/** Use {@link https://schema.org/MonetaryAmount MonetaryAmount} to specify a fixed restocking fee for product returns, or use {@link https://schema.org/Number Number} to specify a percentage of the product price paid by the customer. */
-	"restockingFee"?: SchemaValue<
+	restockingFee?: SchemaValue<
 		MonetaryAmount | Number | IdReference,
 		"restockingFee"
 	>
 	/** The type of return fees for purchased products (for any return reason). */
-	"returnFees"?: SchemaValue<ReturnFeesEnumeration | IdReference, "returnFees">
+	returnFees?: SchemaValue<ReturnFeesEnumeration | IdReference, "returnFees">
 	/** The method (from an enumeration) by which the customer obtains a return shipping label for a product returned for any reason. */
-	"returnLabelSource"?: SchemaValue<
+	returnLabelSource?: SchemaValue<
 		ReturnLabelSourceEnumeration | IdReference,
 		"returnLabelSource"
 	>
 	/** The type of return method offered, specified from an enumeration. */
-	"returnMethod"?: SchemaValue<
+	returnMethod?: SchemaValue<
 		ReturnMethodEnumeration | IdReference,
 		"returnMethod"
 	>
 	/** Specifies an applicable return policy (from an enumeration). */
-	"returnPolicyCategory"?: SchemaValue<
+	returnPolicyCategory?: SchemaValue<
 		MerchantReturnEnumeration | IdReference,
 		"returnPolicyCategory"
 	>
 	/** The country where the product has to be sent to for returns, for example "Ireland" using the {@link https://schema.org/name name} property of {@link https://schema.org/Country Country}. You can also provide the two-letter {@link http://en.wikipedia.org/wiki/ISO_3166-1 ISO 3166-1 alpha-2 country code}. Note that this can be different from the country where the product was originally shipped from or sent to. */
-	"returnPolicyCountry"?: SchemaValue<
+	returnPolicyCountry?: SchemaValue<
 		Country | Text | IdReference,
 		"returnPolicyCountry"
 	>
 	/** Seasonal override of a return policy. */
-	"returnPolicySeasonalOverride"?: SchemaValue<
+	returnPolicySeasonalOverride?: SchemaValue<
 		MerchantReturnPolicySeasonalOverride | IdReference,
 		"returnPolicySeasonalOverride"
 	>
 	/** Amount of shipping costs for product returns (for any reason). Applicable when property {@link https://schema.org/returnFees returnFees} equals {@link https://schema.org/ReturnShippingFees ReturnShippingFees}. */
-	"returnShippingFeesAmount"?: SchemaValue<
+	returnShippingFeesAmount?: SchemaValue<
 		MonetaryAmount | IdReference,
 		"returnShippingFeesAmount"
 	>
@@ -8859,23 +8737,22 @@ export type MerchantReturnPolicy = MerchantReturnPolicyLeaf
 
 interface MerchantReturnPolicySeasonalOverrideBase extends ThingBase {
 	/** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"endDate"?: SchemaValue<Date | DateTime, "endDate">
+	endDate?: SchemaValue<Date | DateTime, "endDate">
 	/** Specifies either a fixed return date or the number of days (from the delivery date) that a product can be returned. Used when the {@link https://schema.org/returnPolicyCategory returnPolicyCategory} property is specified as {@link https://schema.org/MerchantReturnFiniteReturnWindow MerchantReturnFiniteReturnWindow}. */
-	"merchantReturnDays"?: SchemaValue<
+	merchantReturnDays?: SchemaValue<
 		Date | DateTime | Integer,
 		"merchantReturnDays"
 	>
 	/** Specifies an applicable return policy (from an enumeration). */
-	"returnPolicyCategory"?: SchemaValue<
+	returnPolicyCategory?: SchemaValue<
 		MerchantReturnEnumeration | IdReference,
 		"returnPolicyCategory"
 	>
 	/** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"startDate"?: SchemaValue<Date | DateTime, "startDate">
+	startDate?: SchemaValue<Date | DateTime, "startDate">
 }
 interface MerchantReturnPolicySeasonalOverrideLeaf
-	extends MerchantReturnPolicySeasonalOverrideBase
-{
+	extends MerchantReturnPolicySeasonalOverrideBase {
 	type: "MerchantReturnPolicySeasonalOverride"
 }
 /** A seasonal override of a return policy, for example used for holidays. */
@@ -8884,38 +8761,35 @@ export type MerchantReturnPolicySeasonalOverride =
 
 interface MessageBase extends CreativeWorkBase {
 	/** A sub property of recipient. The recipient blind copied on a message. */
-	"bccRecipient"?: SchemaValue<
+	bccRecipient?: SchemaValue<
 		ContactPoint | Organization | Person | IdReference,
 		"bccRecipient"
 	>
 	/** A sub property of recipient. The recipient copied on a message. */
-	"ccRecipient"?: SchemaValue<
+	ccRecipient?: SchemaValue<
 		ContactPoint | Organization | Person | IdReference,
 		"ccRecipient"
 	>
 	/** The date/time at which the message has been read by the recipient if a single recipient exists. */
-	"dateRead"?: SchemaValue<Date | DateTime, "dateRead">
+	dateRead?: SchemaValue<Date | DateTime, "dateRead">
 	/** The date/time the message was received if a single recipient exists. */
-	"dateReceived"?: SchemaValue<DateTime, "dateReceived">
+	dateReceived?: SchemaValue<DateTime, "dateReceived">
 	/** The date/time at which the message was sent. */
-	"dateSent"?: SchemaValue<DateTime, "dateSent">
+	dateSent?: SchemaValue<DateTime, "dateSent">
 	/** A CreativeWork attached to the message. */
-	"messageAttachment"?: SchemaValue<
+	messageAttachment?: SchemaValue<
 		CreativeWork | IdReference,
 		"messageAttachment"
 	>
 	/** A sub property of participant. The participant who is at the receiving end of the action. */
-	"recipient"?: SchemaValue<
+	recipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"recipient"
 	>
 	/** A sub property of participant. The participant who is at the sending end of the action. */
-	"sender"?: SchemaValue<
-		Audience | Organization | Person | IdReference,
-		"sender"
-	>
+	sender?: SchemaValue<Audience | Organization | Person | IdReference, "sender">
 	/** A sub property of recipient. The recipient who was directly sent the message. */
-	"toRecipient"?: SchemaValue<
+	toRecipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"toRecipient"
 	>
@@ -8940,7 +8814,7 @@ export type Midwifery = MidwiferyLeaf | string
 
 interface MobileApplicationBase extends SoftwareApplicationBase {
 	/** Specifies specific carrier(s) requirements for the application (e.g. an application may only work on a specific carrier network). */
-	"carrierRequirements"?: SchemaValue<Text, "carrierRequirements">
+	carrierRequirements?: SchemaValue<Text, "carrierRequirements">
 }
 interface MobileApplicationLeaf extends MobileApplicationBase {
 	type: "MobileApplication"
@@ -8956,29 +8830,29 @@ export type MobilePhoneStore = MobilePhoneStoreLeaf | string
 
 interface MolecularEntityBase extends BioChemEntityBase {
 	/** A role played by the BioChemEntity within a chemical context. */
-	"chemicalRole"?: SchemaValue<DefinedTerm | IdReference, "chemicalRole">
+	chemicalRole?: SchemaValue<DefinedTerm | IdReference, "chemicalRole">
 	/** Non-proprietary identifier for molecular entity that can be used in printed and electronic data sources thus enabling easier linking of diverse data compilations. */
-	"inChI"?: SchemaValue<Text, "inChI">
+	inChI?: SchemaValue<Text, "inChI">
 	/** InChIKey is a hashed version of the full InChI (using the SHA-256 algorithm). */
-	"inChIKey"?: SchemaValue<Text, "inChIKey">
+	inChIKey?: SchemaValue<Text, "inChIKey">
 	/** Systematic method of naming chemical compounds as recommended by the International Union of Pure and Applied Chemistry (IUPAC). */
-	"iupacName"?: SchemaValue<Text, "iupacName">
+	iupacName?: SchemaValue<Text, "iupacName">
 	/** The empirical formula is the simplest whole number ratio of all the atoms in a molecule. */
-	"molecularFormula"?: SchemaValue<Text, "molecularFormula">
+	molecularFormula?: SchemaValue<Text, "molecularFormula">
 	/** This is the molecular weight of the entity being described, not of the parent. Units should be included in the form '<Number> <unit>', for example '12 amu' or as '<QuantitativeValue>. */
-	"molecularWeight"?: SchemaValue<
+	molecularWeight?: SchemaValue<
 		QuantitativeValue | Text | IdReference,
 		"molecularWeight"
 	>
 	/** The monoisotopic mass is the sum of the masses of the atoms in a molecule using the unbound, ground-state, rest mass of the principal (most abundant) isotope for each element instead of the isotopic average mass. Please include the units in the form '<Number> <unit>', for example '770.230488 g/mol' or as '<QuantitativeValue>. */
-	"monoisotopicMolecularWeight"?: SchemaValue<
+	monoisotopicMolecularWeight?: SchemaValue<
 		QuantitativeValue | Text | IdReference,
 		"monoisotopicMolecularWeight"
 	>
 	/** Intended use of the BioChemEntity by humans. */
-	"potentialUse"?: SchemaValue<DefinedTerm | IdReference, "potentialUse">
+	potentialUse?: SchemaValue<DefinedTerm | IdReference, "potentialUse">
 	/** A specification in form of a line notation for describing the structure of chemical species using short ASCII strings. Double bond stereochemistry \ indicators may need to be escaped in the string in formats where the backslash is an escape character. */
-	"smiles"?: SchemaValue<Text, "smiles">
+	smiles?: SchemaValue<Text, "smiles">
 }
 interface MolecularEntityLeaf extends MolecularEntityBase {
 	type: "MolecularEntity"
@@ -8992,15 +8866,15 @@ interface MonetaryAmountBase extends ThingBase {
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"currency"?: SchemaValue<Text, "currency">
+	currency?: SchemaValue<Text, "currency">
 	/** The upper value of some characteristic or property. */
-	"maxValue"?: SchemaValue<Number, "maxValue">
+	maxValue?: SchemaValue<Number, "maxValue">
 	/** The lower value of some characteristic or property. */
-	"minValue"?: SchemaValue<Number, "minValue">
+	minValue?: SchemaValue<Number, "minValue">
 	/** The date when the item becomes valid. */
-	"validFrom"?: SchemaValue<Date | DateTime, "validFrom">
+	validFrom?: SchemaValue<Date | DateTime, "validFrom">
 	/** The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours. */
-	"validThrough"?: SchemaValue<Date | DateTime, "validThrough">
+	validThrough?: SchemaValue<Date | DateTime, "validThrough">
 	/**
 	 * The value of a {@link https://schema.org/QuantitativeValue QuantitativeValue} (including {@link https://schema.org/Observation Observation}) or property value node.
 	 * - For {@link https://schema.org/QuantitativeValue QuantitativeValue} and {@link https://schema.org/MonetaryAmount MonetaryAmount}, the recommended type for values is 'Number'.
@@ -9008,7 +8882,7 @@ interface MonetaryAmountBase extends ThingBase {
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
 	 */
-	"value"?: SchemaValue<
+	value?: SchemaValue<
 		Boolean | Number | StructuredValue | Text | IdReference,
 		"value"
 	>
@@ -9020,18 +8894,16 @@ interface MonetaryAmountLeaf extends MonetaryAmountBase {
 export type MonetaryAmount = MonetaryAmountLeaf
 
 interface MonetaryAmountDistributionBase
-	extends QuantitativeValueDistributionBase
-{
+	extends QuantitativeValueDistributionBase {
 	/**
 	 * The currency in which the monetary amount is expressed.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"currency"?: SchemaValue<Text, "currency">
+	currency?: SchemaValue<Text, "currency">
 }
 interface MonetaryAmountDistributionLeaf
-	extends MonetaryAmountDistributionBase
-{
+	extends MonetaryAmountDistributionBase {
 	type: "MonetaryAmountDistribution"
 }
 /** A statistical distribution of monetary amounts. */
@@ -9039,9 +8911,9 @@ export type MonetaryAmountDistribution = MonetaryAmountDistributionLeaf
 
 interface MonetaryGrantBase extends GrantBase {
 	/** The amount of money. */
-	"amount"?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
+	amount?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
 	/** A person or organization that supports (sponsors) something through some kind of financial contribution. */
-	"funder"?: SchemaValue<Organization | Person | IdReference, "funder">
+	funder?: SchemaValue<Organization | Person | IdReference, "funder">
 }
 interface MonetaryGrantLeaf extends MonetaryGrantBase {
 	type: "MonetaryGrant"
@@ -9051,9 +8923,9 @@ export type MonetaryGrant = MonetaryGrantLeaf
 
 interface MoneyTransferBase extends TransferActionBase {
 	/** The amount of money. */
-	"amount"?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
+	amount?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
 	/** A bank or bank’s branch, financial institution or international financial institution operating the beneficiary’s bank account or releasing funds for the beneficiary. */
-	"beneficiaryBank"?: SchemaValue<
+	beneficiaryBank?: SchemaValue<
 		BankOrCreditUnion | Text | IdReference,
 		"beneficiaryBank"
 	>
@@ -9066,9 +8938,9 @@ export type MoneyTransfer = MoneyTransferLeaf
 
 interface MortgageLoanBase extends LoanOrCreditBase {
 	/** Whether borrower is a resident of the jurisdiction where the property is located. */
-	"domiciledMortgage"?: SchemaValue<Boolean, "domiciledMortgage">
+	domiciledMortgage?: SchemaValue<Boolean, "domiciledMortgage">
 	/** Amount of mortgage mandate that can be converted into a proper mortgage at a later stage. */
-	"loanMortgageMandateAmount"?: SchemaValue<
+	loanMortgageMandateAmount?: SchemaValue<
 		MonetaryAmount | IdReference,
 		"loanMortgageMandateAmount"
 	>
@@ -9127,9 +8999,9 @@ export type Mountain = MountainLeaf | string
 
 interface MoveActionBase extends ActionBase {
 	/** A sub property of location. The original location of the object or the agent before the action. */
-	"fromLocation"?: SchemaValue<Place | IdReference, "fromLocation">
+	fromLocation?: SchemaValue<Place | IdReference, "fromLocation">
 	/** A sub property of location. The final location of the object or the agent after the action. */
-	"toLocation"?: SchemaValue<Place | IdReference, "toLocation">
+	toLocation?: SchemaValue<Place | IdReference, "toLocation">
 }
 interface MoveActionLeaf extends MoveActionBase {
 	type: "MoveAction"
@@ -9148,13 +9020,13 @@ export type MoveAction =
 
 interface MovieBase extends CreativeWorkBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/**
 	 * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/actor instead.
 	 */
-	"actors"?: SchemaValue<Person | IdReference, "actors">
+	actors?: SchemaValue<Person | IdReference, "actors">
 	/**
 	 * The country of origin of something, including products as well as creative works such as movie and TV content.
 	 *
@@ -9162,26 +9034,26 @@ interface MovieBase extends CreativeWorkBase {
 	 *
 	 * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
 	 */
-	"countryOfOrigin"?: SchemaValue<Country | IdReference, "countryOfOrigin">
+	countryOfOrigin?: SchemaValue<Country | IdReference, "countryOfOrigin">
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/**
 	 * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/director instead.
 	 */
-	"directors"?: SchemaValue<Person | IdReference, "directors">
+	directors?: SchemaValue<Person | IdReference, "directors">
 	/** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
-	"duration"?: SchemaValue<Duration | IdReference, "duration">
+	duration?: SchemaValue<Duration | IdReference, "duration">
 	/** The composer of the soundtrack. */
-	"musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
+	musicBy?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
 	/** The production company or studio responsible for the item, e.g. series, video game, episode etc. */
-	"productionCompany"?: SchemaValue<
+	productionCompany?: SchemaValue<
 		Organization | IdReference,
 		"productionCompany"
 	>
 	/** Languages in which subtitles/captions are available, in {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard format}. */
-	"subtitleLanguage"?: SchemaValue<
+	subtitleLanguage?: SchemaValue<
 		Language | Text | IdReference,
 		"subtitleLanguage"
 	>
@@ -9192,9 +9064,9 @@ interface MovieBase extends CreativeWorkBase {
 	 *
 	 * Since schema.org types like {@link https://schema.org/Movie Movie}, {@link https://schema.org/TVEpisode TVEpisode}, {@link https://schema.org/TVSeason TVSeason}, and {@link https://schema.org/TVSeries TVSeries} can be used for both works and their multiple expressions, it is possible to use {@link https://schema.org/titleEIDR titleEIDR} alone (for a general description), or alongside {@link https://schema.org/editEIDR editEIDR} for a more edit-specific description.
 	 */
-	"titleEIDR"?: SchemaValue<Text | URL, "titleEIDR">
+	titleEIDR?: SchemaValue<Text | URL, "titleEIDR">
 	/** The trailer of a movie or TV/radio series, season, episode, etc. */
-	"trailer"?: SchemaValue<VideoObject | IdReference, "trailer">
+	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface MovieLeaf extends MovieBase {
 	type: "Movie"
@@ -9216,30 +9088,30 @@ export type MovieRentalStore = MovieRentalStoreLeaf | string
 
 interface MovieSeriesBase extends CreativeWorkSeriesBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/**
 	 * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/actor instead.
 	 */
-	"actors"?: SchemaValue<Person | IdReference, "actors">
+	actors?: SchemaValue<Person | IdReference, "actors">
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/**
 	 * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/director instead.
 	 */
-	"directors"?: SchemaValue<Person | IdReference, "directors">
+	directors?: SchemaValue<Person | IdReference, "directors">
 	/** The composer of the soundtrack. */
-	"musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
+	musicBy?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
 	/** The production company or studio responsible for the item, e.g. series, video game, episode etc. */
-	"productionCompany"?: SchemaValue<
+	productionCompany?: SchemaValue<
 		Organization | IdReference,
 		"productionCompany"
 	>
 	/** The trailer of a movie or TV/radio series, season, episode, etc. */
-	"trailer"?: SchemaValue<VideoObject | IdReference, "trailer">
+	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface MovieSeriesLeaf extends MovieSeriesBase {
 	type: "MovieSeries"
@@ -9249,7 +9121,7 @@ export type MovieSeries = MovieSeriesLeaf
 
 interface MovieTheaterBase extends CivicStructureBase, LocalBusinessBase {
 	/** The number of screens in the movie theater. */
-	"screenCount"?: SchemaValue<Number, "screenCount">
+	screenCount?: SchemaValue<Number, "screenCount">
 }
 interface MovieTheaterLeaf extends MovieTheaterBase {
 	type: "MovieTheater"
@@ -9265,15 +9137,15 @@ export type MovingCompany = MovingCompanyLeaf | string
 
 interface MuscleBase extends AnatomicalStructureBase {
 	/** The muscle whose action counteracts the specified muscle. */
-	"antagonist"?: SchemaValue<Muscle | IdReference, "antagonist">
+	antagonist?: SchemaValue<Muscle | IdReference, "antagonist">
 	/** The blood vessel that carries blood from the heart to the muscle. */
-	"bloodSupply"?: SchemaValue<Vessel | IdReference, "bloodSupply">
+	bloodSupply?: SchemaValue<Vessel | IdReference, "bloodSupply">
 	/** The place of attachment of a muscle, or what the muscle moves. */
-	"insertion"?: SchemaValue<AnatomicalStructure | IdReference, "insertion">
+	insertion?: SchemaValue<AnatomicalStructure | IdReference, "insertion">
 	/** The movement the muscle generates. */
-	"muscleAction"?: SchemaValue<Text, "muscleAction">
+	muscleAction?: SchemaValue<Text, "muscleAction">
 	/** The underlying innervation associated with the muscle. */
-	"nerve"?: SchemaValue<Nerve | IdReference, "nerve">
+	nerve?: SchemaValue<Nerve | IdReference, "nerve">
 }
 interface MuscleLeaf extends MuscleBase {
 	type: "Muscle"
@@ -9289,19 +9161,19 @@ export type Museum = MuseumLeaf | string
 
 interface MusicAlbumBase extends MusicPlaylistBase {
 	/** Classification of the album by its type of content: soundtrack, live album, studio album, etc. */
-	"albumProductionType"?: SchemaValue<
+	albumProductionType?: SchemaValue<
 		MusicAlbumProductionType | IdReference,
 		"albumProductionType"
 	>
 	/** A release of this album. */
-	"albumRelease"?: SchemaValue<MusicRelease | IdReference, "albumRelease">
+	albumRelease?: SchemaValue<MusicRelease | IdReference, "albumRelease">
 	/** The kind of release which this album is: single, EP or album. */
-	"albumReleaseType"?: SchemaValue<
+	albumReleaseType?: SchemaValue<
 		MusicAlbumReleaseType | IdReference,
 		"albumReleaseType"
 	>
 	/** The artist that performed this album or recording. */
-	"byArtist"?: SchemaValue<MusicGroup | Person | IdReference, "byArtist">
+	byArtist?: SchemaValue<MusicGroup | Person | IdReference, "byArtist">
 }
 interface MusicAlbumLeaf extends MusicAlbumBase {
 	type: "MusicAlbum"
@@ -9351,31 +9223,31 @@ export type MusicAlbumReleaseType =
 
 interface MusicCompositionBase extends CreativeWorkBase {
 	/** The person or organization who wrote a composition, or who is the composer of a work performed at some event. */
-	"composer"?: SchemaValue<Organization | Person | IdReference, "composer">
+	composer?: SchemaValue<Organization | Person | IdReference, "composer">
 	/** The date and place the work was first performed. */
-	"firstPerformance"?: SchemaValue<Event | IdReference, "firstPerformance">
+	firstPerformance?: SchemaValue<Event | IdReference, "firstPerformance">
 	/** Smaller compositions included in this work (e.g. a movement in a symphony). */
-	"includedComposition"?: SchemaValue<
+	includedComposition?: SchemaValue<
 		MusicComposition | IdReference,
 		"includedComposition"
 	>
 	/** The International Standard Musical Work Code for the composition. */
-	"iswcCode"?: SchemaValue<Text, "iswcCode">
+	iswcCode?: SchemaValue<Text, "iswcCode">
 	/** The person who wrote the words. */
-	"lyricist"?: SchemaValue<Person | IdReference, "lyricist">
+	lyricist?: SchemaValue<Person | IdReference, "lyricist">
 	/** The words in the song. */
-	"lyrics"?: SchemaValue<CreativeWork | IdReference, "lyrics">
+	lyrics?: SchemaValue<CreativeWork | IdReference, "lyrics">
 	/** The key, mode, or scale this composition uses. */
-	"musicalKey"?: SchemaValue<Text, "musicalKey">
+	musicalKey?: SchemaValue<Text, "musicalKey">
 	/** An arrangement derived from the composition. */
-	"musicArrangement"?: SchemaValue<
+	musicArrangement?: SchemaValue<
 		MusicComposition | IdReference,
 		"musicArrangement"
 	>
 	/** The type of composition (e.g. overture, sonata, symphony, etc.). */
-	"musicCompositionForm"?: SchemaValue<Text, "musicCompositionForm">
+	musicCompositionForm?: SchemaValue<Text, "musicCompositionForm">
 	/** An audio recording of the work. */
-	"recordedAs"?: SchemaValue<MusicRecording | IdReference, "recordedAs">
+	recordedAs?: SchemaValue<MusicRecording | IdReference, "recordedAs">
 }
 interface MusicCompositionLeaf extends MusicCompositionBase {
 	type: "MusicComposition"
@@ -9391,29 +9263,29 @@ export type MusicEvent = MusicEventLeaf
 
 interface MusicGroupBase extends OrganizationBase {
 	/** A music album. */
-	"album"?: SchemaValue<MusicAlbum | IdReference, "album">
+	album?: SchemaValue<MusicAlbum | IdReference, "album">
 	/**
 	 * A collection of music albums.
 	 *
 	 * @deprecated Consider using https://schema.org/album instead.
 	 */
-	"albums"?: SchemaValue<MusicAlbum | IdReference, "albums">
+	albums?: SchemaValue<MusicAlbum | IdReference, "albums">
 	/** Genre of the creative work, broadcast channel or group. */
-	"genre"?: SchemaValue<Text | URL, "genre">
+	genre?: SchemaValue<Text | URL, "genre">
 	/**
 	 * A member of a music group—for example, John, Paul, George, or Ringo.
 	 *
 	 * @deprecated Consider using https://schema.org/member instead.
 	 */
-	"musicGroupMember"?: SchemaValue<Person | IdReference, "musicGroupMember">
+	musicGroupMember?: SchemaValue<Person | IdReference, "musicGroupMember">
 	/** A music recording (track)—usually a single song. If an ItemList is given, the list should contain items of type MusicRecording. */
-	"track"?: SchemaValue<ItemList | MusicRecording | IdReference, "track">
+	track?: SchemaValue<ItemList | MusicRecording | IdReference, "track">
 	/**
 	 * A music recording (track)—usually a single song.
 	 *
 	 * @deprecated Consider using https://schema.org/track instead.
 	 */
-	"tracks"?: SchemaValue<MusicRecording | IdReference, "tracks">
+	tracks?: SchemaValue<MusicRecording | IdReference, "tracks">
 }
 interface MusicGroupLeaf extends MusicGroupBase {
 	type: "MusicGroup"
@@ -9423,15 +9295,15 @@ export type MusicGroup = MusicGroupLeaf | string
 
 interface MusicPlaylistBase extends CreativeWorkBase {
 	/** The number of tracks in this album or playlist. */
-	"numTracks"?: SchemaValue<Integer, "numTracks">
+	numTracks?: SchemaValue<Integer, "numTracks">
 	/** A music recording (track)—usually a single song. If an ItemList is given, the list should contain items of type MusicRecording. */
-	"track"?: SchemaValue<ItemList | MusicRecording | IdReference, "track">
+	track?: SchemaValue<ItemList | MusicRecording | IdReference, "track">
 	/**
 	 * A music recording (track)—usually a single song.
 	 *
 	 * @deprecated Consider using https://schema.org/track instead.
 	 */
-	"tracks"?: SchemaValue<MusicRecording | IdReference, "tracks">
+	tracks?: SchemaValue<MusicRecording | IdReference, "tracks">
 }
 interface MusicPlaylistLeaf extends MusicPlaylistBase {
 	type: "MusicPlaylist"
@@ -9441,17 +9313,17 @@ export type MusicPlaylist = MusicPlaylistLeaf | MusicAlbum | MusicRelease
 
 interface MusicRecordingBase extends CreativeWorkBase {
 	/** The artist that performed this album or recording. */
-	"byArtist"?: SchemaValue<MusicGroup | Person | IdReference, "byArtist">
+	byArtist?: SchemaValue<MusicGroup | Person | IdReference, "byArtist">
 	/** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
-	"duration"?: SchemaValue<Duration | IdReference, "duration">
+	duration?: SchemaValue<Duration | IdReference, "duration">
 	/** The album to which this recording belongs. */
-	"inAlbum"?: SchemaValue<MusicAlbum | IdReference, "inAlbum">
+	inAlbum?: SchemaValue<MusicAlbum | IdReference, "inAlbum">
 	/** The playlist to which this recording belongs. */
-	"inPlaylist"?: SchemaValue<MusicPlaylist | IdReference, "inPlaylist">
+	inPlaylist?: SchemaValue<MusicPlaylist | IdReference, "inPlaylist">
 	/** The International Standard Recording Code for the recording. */
-	"isrcCode"?: SchemaValue<Text, "isrcCode">
+	isrcCode?: SchemaValue<Text, "isrcCode">
 	/** The composition this track is a recording of. */
-	"recordingOf"?: SchemaValue<MusicComposition | IdReference, "recordingOf">
+	recordingOf?: SchemaValue<MusicComposition | IdReference, "recordingOf">
 }
 interface MusicRecordingLeaf extends MusicRecordingBase {
 	type: "MusicRecording"
@@ -9461,20 +9333,20 @@ export type MusicRecording = MusicRecordingLeaf
 
 interface MusicReleaseBase extends MusicPlaylistBase {
 	/** The catalog number for the release. */
-	"catalogNumber"?: SchemaValue<Text, "catalogNumber">
+	catalogNumber?: SchemaValue<Text, "catalogNumber">
 	/** The group the release is credited to if different than the byArtist. For example, Red and Blue is credited to "Stefani Germanotta Band", but by Lady Gaga. */
-	"creditedTo"?: SchemaValue<Organization | Person | IdReference, "creditedTo">
+	creditedTo?: SchemaValue<Organization | Person | IdReference, "creditedTo">
 	/** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
-	"duration"?: SchemaValue<Duration | IdReference, "duration">
+	duration?: SchemaValue<Duration | IdReference, "duration">
 	/** Format of this release (the type of recording media used, i.e. compact disc, digital media, LP, etc.). */
-	"musicReleaseFormat"?: SchemaValue<
+	musicReleaseFormat?: SchemaValue<
 		MusicReleaseFormatType | IdReference,
 		"musicReleaseFormat"
 	>
 	/** The label that issued the release. */
-	"recordLabel"?: SchemaValue<Organization | IdReference, "recordLabel">
+	recordLabel?: SchemaValue<Organization | IdReference, "recordLabel">
 	/** The album this is a release of. */
-	"releaseOf"?: SchemaValue<MusicAlbum | IdReference, "releaseOf">
+	releaseOf?: SchemaValue<MusicAlbum | IdReference, "releaseOf">
 }
 interface MusicReleaseLeaf extends MusicReleaseBase {
 	type: "MusicRelease"
@@ -9533,16 +9405,16 @@ interface NerveBase extends AnatomicalStructureBase {
 	 *
 	 * @deprecated Consider using https://schema.org/arterialBranch instead.
 	 */
-	"branch"?: SchemaValue<AnatomicalStructure | IdReference, "branch">
+	branch?: SchemaValue<AnatomicalStructure | IdReference, "branch">
 	/** The neurological pathway extension that involves muscle control. */
-	"nerveMotor"?: SchemaValue<Muscle | IdReference, "nerveMotor">
+	nerveMotor?: SchemaValue<Muscle | IdReference, "nerveMotor">
 	/** The neurological pathway extension that inputs and sends information to the brain or spinal cord. */
-	"sensoryUnit"?: SchemaValue<
+	sensoryUnit?: SchemaValue<
 		AnatomicalStructure | SuperficialAnatomy | IdReference,
 		"sensoryUnit"
 	>
 	/** The neurological pathway that originates the neurons. */
-	"sourcedFrom"?: SchemaValue<BrainStructure | IdReference, "sourcedFrom">
+	sourcedFrom?: SchemaValue<BrainStructure | IdReference, "sourcedFrom">
 }
 interface NerveLeaf extends NerveBase {
 	type: "Nerve"
@@ -9558,15 +9430,15 @@ interface NewsArticleBase extends ArticleBase {
 	 *
 	 * Dateline summaries are oriented more towards human readers than towards automated processing, and can vary substantially. Some examples: "BEIRUT, Lebanon, June 2.", "Paris, France", "December 19, 2017 11:43AM Reporting from Washington", "Beijing/Moscow", "QUEZON CITY, Philippines".
 	 */
-	"dateline"?: SchemaValue<Text, "dateline">
+	dateline?: SchemaValue<Text, "dateline">
 	/** The number of the column in which the NewsArticle appears in the print edition. */
-	"printColumn"?: SchemaValue<Text, "printColumn">
+	printColumn?: SchemaValue<Text, "printColumn">
 	/** The edition of the print product in which the NewsArticle appears. */
-	"printEdition"?: SchemaValue<Text, "printEdition">
+	printEdition?: SchemaValue<Text, "printEdition">
 	/** If this NewsArticle appears in print, this field indicates the name of the page on which the article is found. Please note that this field is intended for the exact page name (e.g. A5, B18). */
-	"printPage"?: SchemaValue<Text, "printPage">
+	printPage?: SchemaValue<Text, "printPage">
 	/** If this NewsArticle appears in print, this field indicates the print section in which the article appeared. */
-	"printSection"?: SchemaValue<Text, "printSection">
+	printSection?: SchemaValue<Text, "printSection">
 }
 interface NewsArticleLeaf extends NewsArticleBase {
 	type: "NewsArticle"
@@ -9587,51 +9459,51 @@ export type NewsArticle =
 
 interface NewsMediaOrganizationBase extends OrganizationBase {
 	/** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} or other news-related {@link https://schema.org/Organization Organization}, a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication. */
-	"actionableFeedbackPolicy"?: SchemaValue<
+	actionableFeedbackPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"actionableFeedbackPolicy"
 	>
 	/** For an {@link https://schema.org/Organization Organization} (e.g. {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors. */
-	"correctionsPolicy"?: SchemaValue<
+	correctionsPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"correctionsPolicy"
 	>
 	/** Statement on diversity policy by an {@link https://schema.org/Organization Organization} e.g. a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}. For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, a statement describing the newsroom’s diversity policy on both staffing and sources, typically providing staffing data. */
-	"diversityPolicy"?: SchemaValue<
+	diversityPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"diversityPolicy"
 	>
 	/** For an {@link https://schema.org/Organization Organization} (often but not necessarily a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported. */
-	"diversityStaffingReport"?: SchemaValue<
+	diversityStaffingReport?: SchemaValue<
 		Article | URL | IdReference,
 		"diversityStaffingReport"
 	>
 	/** Statement about ethics policy, e.g. of a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} regarding journalistic and publishing practices, or of a {@link https://schema.org/Restaurant Restaurant}, a page describing food source policies. In the case of a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, an ethicsPolicy is typically a statement describing the personal, organizational, and corporate standards of behavior expected by the organization. */
-	"ethicsPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "ethicsPolicy">
+	ethicsPolicy?: SchemaValue<CreativeWork | URL | IdReference, "ethicsPolicy">
 	/** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, a link to the masthead page or a page listing top editorial management. */
-	"masthead"?: SchemaValue<CreativeWork | URL | IdReference, "masthead">
+	masthead?: SchemaValue<CreativeWork | URL | IdReference, "masthead">
 	/** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, a statement on coverage priorities, including any public agenda or stance on issues. */
-	"missionCoveragePrioritiesPolicy"?: SchemaValue<
+	missionCoveragePrioritiesPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"missionCoveragePrioritiesPolicy"
 	>
 	/** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} or other news-related {@link https://schema.org/Organization Organization}, a statement explaining when authors of articles are not named in bylines. */
-	"noBylinesPolicy"?: SchemaValue<
+	noBylinesPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"noBylinesPolicy"
 	>
 	/** For an {@link https://schema.org/Organization Organization} (often but not necessarily a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence. Note that the {@link https://schema.org/funder funder} is also available and can be used to make basic funder information machine-readable. */
-	"ownershipFundingInfo"?: SchemaValue<
+	ownershipFundingInfo?: SchemaValue<
 		AboutPage | CreativeWork | Text | URL | IdReference,
 		"ownershipFundingInfo"
 	>
 	/** For an {@link https://schema.org/Organization Organization} (typically a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a statement about policy on use of unnamed sources and the decision process required. */
-	"unnamedSourcesPolicy"?: SchemaValue<
+	unnamedSourcesPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"unnamedSourcesPolicy"
 	>
 	/** Disclosure about verification and fact-checking processes for a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} or other fact-checking {@link https://schema.org/Organization Organization}. */
-	"verificationFactCheckingPolicy"?: SchemaValue<
+	verificationFactCheckingPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"verificationFactCheckingPolicy"
 	>
@@ -9701,29 +9573,29 @@ export type Nursing = NursingLeaf | string
 
 interface NutritionInformationBase extends ThingBase {
 	/** The number of calories. */
-	"calories"?: SchemaValue<Energy | IdReference, "calories">
+	calories?: SchemaValue<Energy | IdReference, "calories">
 	/** The number of grams of carbohydrates. */
-	"carbohydrateContent"?: SchemaValue<Mass | IdReference, "carbohydrateContent">
+	carbohydrateContent?: SchemaValue<Mass | IdReference, "carbohydrateContent">
 	/** The number of milligrams of cholesterol. */
-	"cholesterolContent"?: SchemaValue<Mass | IdReference, "cholesterolContent">
+	cholesterolContent?: SchemaValue<Mass | IdReference, "cholesterolContent">
 	/** The number of grams of fat. */
-	"fatContent"?: SchemaValue<Mass | IdReference, "fatContent">
+	fatContent?: SchemaValue<Mass | IdReference, "fatContent">
 	/** The number of grams of fiber. */
-	"fiberContent"?: SchemaValue<Mass | IdReference, "fiberContent">
+	fiberContent?: SchemaValue<Mass | IdReference, "fiberContent">
 	/** The number of grams of protein. */
-	"proteinContent"?: SchemaValue<Mass | IdReference, "proteinContent">
+	proteinContent?: SchemaValue<Mass | IdReference, "proteinContent">
 	/** The number of grams of saturated fat. */
-	"saturatedFatContent"?: SchemaValue<Mass | IdReference, "saturatedFatContent">
+	saturatedFatContent?: SchemaValue<Mass | IdReference, "saturatedFatContent">
 	/** The serving size, in terms of the number of volume or mass. */
-	"servingSize"?: SchemaValue<Text, "servingSize">
+	servingSize?: SchemaValue<Text, "servingSize">
 	/** The number of milligrams of sodium. */
-	"sodiumContent"?: SchemaValue<Mass | IdReference, "sodiumContent">
+	sodiumContent?: SchemaValue<Mass | IdReference, "sodiumContent">
 	/** The number of grams of sugar. */
-	"sugarContent"?: SchemaValue<Mass | IdReference, "sugarContent">
+	sugarContent?: SchemaValue<Mass | IdReference, "sugarContent">
 	/** The number of grams of trans fat. */
-	"transFatContent"?: SchemaValue<Mass | IdReference, "transFatContent">
+	transFatContent?: SchemaValue<Mass | IdReference, "transFatContent">
 	/** The number of grams of unsaturated fat. */
-	"unsaturatedFatContent"?: SchemaValue<
+	unsaturatedFatContent?: SchemaValue<
 		Mass | IdReference,
 		"unsaturatedFatContent"
 	>
@@ -9736,24 +9608,21 @@ export type NutritionInformation = NutritionInformationLeaf
 
 interface ObservationBase extends ThingBase, QuantitativeValueBase {
 	/** A {@link https://schema.org/marginOfError marginOfError} for an {@link https://schema.org/Observation Observation}. */
-	"marginOfError"?: SchemaValue<
-		QuantitativeValue | IdReference,
-		"marginOfError"
-	>
+	marginOfError?: SchemaValue<QuantitativeValue | IdReference, "marginOfError">
 	/** The measuredProperty of an {@link https://schema.org/Observation Observation}, typically via its {@link https://schema.org/StatisticalVariable StatisticalVariable}. There are various kinds of applicable {@link https://schema.org/Property Property}: a schema.org property, a property from other RDF-compatible systems, e.g. W3C RDF Data Cube, Data Commons, Wikidata, or schema.org extensions such as {@link https://www.gs1.org/voc/?show=properties GS1's}. */
-	"measuredProperty"?: SchemaValue<Property | IdReference, "measuredProperty">
+	measuredProperty?: SchemaValue<Property | IdReference, "measuredProperty">
 	/** Identifies the denominator variable when an observation represents a ratio or percentage. */
-	"measurementDenominator"?: SchemaValue<
+	measurementDenominator?: SchemaValue<
 		StatisticalVariable | IdReference,
 		"measurementDenominator"
 	>
 	/** A subproperty of {@link https://schema.org/measurementTechnique measurementTechnique} that can be used for specifying specific methods, in particular via {@link https://schema.org/MeasurementMethodEnum MeasurementMethodEnum}. */
-	"measurementMethod"?: SchemaValue<
+	measurementMethod?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementMethod"
 	>
 	/** Provides additional qualification to an observation. For example, a GDP observation measures the Nominal value. */
-	"measurementQualifier"?: SchemaValue<
+	measurementQualifier?: SchemaValue<
 		Enumeration | IdReference,
 		"measurementQualifier"
 	>
@@ -9766,21 +9635,21 @@ interface ObservationBase extends ThingBase, QuantitativeValueBase {
 	 *
 	 * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}. The value can also be from an enumeration, organized as a {@link https://schema.org/MeasurementMetholdEnumeration MeasurementMetholdEnumeration}.
 	 */
-	"measurementTechnique"?: SchemaValue<
+	measurementTechnique?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementTechnique"
 	>
 	/** The {@link https://schema.org/observationAbout observationAbout} property identifies an entity, often a {@link https://schema.org/Place Place}, associated with an {@link https://schema.org/Observation Observation}. */
-	"observationAbout"?: SchemaValue<
+	observationAbout?: SchemaValue<
 		Place | Thing | IdReference,
 		"observationAbout"
 	>
 	/** The observationDate of an {@link https://schema.org/Observation Observation}. */
-	"observationDate"?: SchemaValue<DateTime, "observationDate">
+	observationDate?: SchemaValue<DateTime, "observationDate">
 	/** The length of time an Observation took place over. The format follows `P[0-9]*[Y|M|D|h|m|s]`. For example, P1Y is Period 1 Year, P3M is Period 3 Months, P3h is Period 3 hours. */
-	"observationPeriod"?: SchemaValue<Text, "observationPeriod">
+	observationPeriod?: SchemaValue<Text, "observationPeriod">
 	/** The variableMeasured property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue, or more explicitly as a {@link https://schema.org/StatisticalVariable StatisticalVariable}. */
-	"variableMeasured"?: SchemaValue<
+	variableMeasured?: SchemaValue<
 		Property | PropertyValue | StatisticalVariable | Text | IdReference,
 		"variableMeasured"
 	>
@@ -9805,17 +9674,17 @@ export type Obstetric = ObstetricLeaf | string
 
 interface OccupationBase extends ThingBase {
 	/** Educational background needed for the position or Occupation. */
-	"educationRequirements"?: SchemaValue<
+	educationRequirements?: SchemaValue<
 		EducationalOccupationalCredential | Text | IdReference,
 		"educationRequirements"
 	>
 	/** An estimated salary for a job posting or occupation, based on a variety of variables including, but not limited to industry, job title, and location. Estimated salaries are often computed by outside organizations rather than the hiring organization, who may not have committed to the estimated value. */
-	"estimatedSalary"?: SchemaValue<
+	estimatedSalary?: SchemaValue<
 		MonetaryAmount | MonetaryAmountDistribution | Number | IdReference,
 		"estimatedSalary"
 	>
 	/** Description of skills and experience needed for the position or Occupation. */
-	"experienceRequirements"?: SchemaValue<
+	experienceRequirements?: SchemaValue<
 		OccupationalExperienceRequirements | Text | IdReference,
 		"experienceRequirements"
 	>
@@ -9824,24 +9693,24 @@ interface OccupationBase extends ThingBase {
 	 *
 	 * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
 	 */
-	"occupationalCategory"?: SchemaValue<
+	occupationalCategory?: SchemaValue<
 		CategoryCode | Text | IdReference,
 		"occupationalCategory"
 	>
 	/** The region/country for which this occupational description is appropriate. Note that educational requirements and qualifications can vary between jurisdictions. */
-	"occupationLocation"?: SchemaValue<
+	occupationLocation?: SchemaValue<
 		AdministrativeArea | IdReference,
 		"occupationLocation"
 	>
 	/** Specific qualifications required for this role or Occupation. */
-	"qualifications"?: SchemaValue<
+	qualifications?: SchemaValue<
 		EducationalOccupationalCredential | Text | IdReference,
 		"qualifications"
 	>
 	/** Responsibilities associated with this role or Occupation. */
-	"responsibilities"?: SchemaValue<Text, "responsibilities">
+	responsibilities?: SchemaValue<Text, "responsibilities">
 	/** A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is desired or required to fulfill this role or to work in this occupation. */
-	"skills"?: SchemaValue<DefinedTerm | Text | IdReference, "skills">
+	skills?: SchemaValue<DefinedTerm | Text | IdReference, "skills">
 }
 interface OccupationLeaf extends OccupationBase {
 	type: "Occupation"
@@ -9851,11 +9720,10 @@ export type Occupation = OccupationLeaf
 
 interface OccupationalExperienceRequirementsBase extends ThingBase {
 	/** Indicates the minimal number of months of experience required for a position. */
-	"monthsOfExperience"?: SchemaValue<Number, "monthsOfExperience">
+	monthsOfExperience?: SchemaValue<Number, "monthsOfExperience">
 }
 interface OccupationalExperienceRequirementsLeaf
-	extends OccupationalExperienceRequirementsBase
-{
+	extends OccupationalExperienceRequirementsBase {
 	type: "OccupationalExperienceRequirements"
 }
 /** Indicates employment-related experience requirements, e.g. {@link https://schema.org/monthsOfExperience monthsOfExperience}. */
@@ -9876,24 +9744,24 @@ export type OceanBodyOfWater = OceanBodyOfWaterLeaf | string
 
 interface OfferBase extends ThingBase {
 	/** The payment method(s) accepted by seller for this offer. */
-	"acceptedPaymentMethod"?: SchemaValue<
+	acceptedPaymentMethod?: SchemaValue<
 		LoanOrCredit | PaymentMethod | IdReference,
 		"acceptedPaymentMethod"
 	>
 	/** An additional offer that can only be obtained in combination with the first base offer (e.g. supplements and extensions that are available for a surcharge). */
-	"addOn"?: SchemaValue<Offer | IdReference, "addOn">
+	addOn?: SchemaValue<Offer | IdReference, "addOn">
 	/** The amount of time that is required between accepting the offer and the actual usage of the resource or service. */
-	"advanceBookingRequirement"?: SchemaValue<
+	advanceBookingRequirement?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"advanceBookingRequirement"
 	>
 	/** The overall rating, based on a collection of reviews or ratings, of the item. */
-	"aggregateRating"?: SchemaValue<
+	aggregateRating?: SchemaValue<
 		AggregateRating | IdReference,
 		"aggregateRating"
 	>
 	/** The geographic area where a service or offered item is provided. */
-	"areaServed"?: SchemaValue<
+	areaServed?: SchemaValue<
 		AdministrativeArea | GeoShape | Place | Text | IdReference,
 		"areaServed"
 	>
@@ -9902,52 +9770,49 @@ interface OfferBase extends ThingBase {
 	 *
 	 * Note also that this is a definition for how to include ASINs in Schema.org data, and not a definition of ASINs in general - see documentation from Amazon for authoritative details. ASINs are most commonly encoded as text strings, but the [asin] property supports URL/URI as potential values too.
 	 */
-	"asin"?: SchemaValue<Text | URL, "asin">
+	asin?: SchemaValue<Text | URL, "asin">
 	/** The availability of this item—for example In stock, Out of stock, Pre-order, etc. */
-	"availability"?: SchemaValue<ItemAvailability | IdReference, "availability">
+	availability?: SchemaValue<ItemAvailability | IdReference, "availability">
 	/** The end of the availability of the product or service included in the offer. */
-	"availabilityEnds"?: SchemaValue<Date | DateTime | Time, "availabilityEnds">
+	availabilityEnds?: SchemaValue<Date | DateTime | Time, "availabilityEnds">
 	/** The beginning of the availability of the product or service included in the offer. */
-	"availabilityStarts"?: SchemaValue<
-		Date | DateTime | Time,
-		"availabilityStarts"
-	>
+	availabilityStarts?: SchemaValue<Date | DateTime | Time, "availabilityStarts">
 	/** The place(s) from which the offer can be obtained (e.g. store locations). */
-	"availableAtOrFrom"?: SchemaValue<Place | IdReference, "availableAtOrFrom">
+	availableAtOrFrom?: SchemaValue<Place | IdReference, "availableAtOrFrom">
 	/** The delivery method(s) available for this offer. */
-	"availableDeliveryMethod"?: SchemaValue<
+	availableDeliveryMethod?: SchemaValue<
 		DeliveryMethod | IdReference,
 		"availableDeliveryMethod"
 	>
 	/** The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell. */
-	"businessFunction"?: SchemaValue<
+	businessFunction?: SchemaValue<
 		BusinessFunction | IdReference,
 		"businessFunction"
 	>
 	/** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
-	"category"?: SchemaValue<
+	category?: SchemaValue<
 		CategoryCode | PhysicalActivityCategory | Text | Thing | URL | IdReference,
 		"category"
 	>
 	/** A URL template (RFC 6570) for a checkout page for an offer. This approach allows merchants to specify a URL for online checkout of the offered product, by interpolating parameters such as the logged in user ID, product ID, quantity, discount code etc. Parameter naming and standardization are not specified here. */
-	"checkoutPageURLTemplate"?: SchemaValue<Text, "checkoutPageURLTemplate">
+	checkoutPageURLTemplate?: SchemaValue<Text, "checkoutPageURLTemplate">
 	/** The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. */
-	"deliveryLeadTime"?: SchemaValue<
+	deliveryLeadTime?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"deliveryLeadTime"
 	>
 	/** The type(s) of customers for which the given offer is valid. */
-	"eligibleCustomerType"?: SchemaValue<
+	eligibleCustomerType?: SchemaValue<
 		BusinessEntityType | IdReference,
 		"eligibleCustomerType"
 	>
 	/** The duration for which the given offer is valid. */
-	"eligibleDuration"?: SchemaValue<
+	eligibleDuration?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"eligibleDuration"
 	>
 	/** The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity. */
-	"eligibleQuantity"?: SchemaValue<
+	eligibleQuantity?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"eligibleQuantity"
 	>
@@ -9956,12 +9821,12 @@ interface OfferBase extends ThingBase {
 	 *
 	 * See also {@link https://schema.org/ineligibleRegion ineligibleRegion}.
 	 */
-	"eligibleRegion"?: SchemaValue<
+	eligibleRegion?: SchemaValue<
 		GeoShape | Place | Text | IdReference,
 		"eligibleRegion"
 	>
 	/** The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount. */
-	"eligibleTransactionVolume"?: SchemaValue<
+	eligibleTransactionVolume?: SchemaValue<
 		PriceSpecification | IdReference,
 		"eligibleTransactionVolume"
 	>
@@ -9972,32 +9837,32 @@ interface OfferBase extends ThingBase {
 	 *
 	 * Note also that this is a definition for how to include GTINs in Schema.org data, and not a definition of GTINs in general - see the GS1 documentation for authoritative details.
 	 */
-	"gtin"?: SchemaValue<Text | URL, "gtin">
+	gtin?: SchemaValue<Text | URL, "gtin">
 	/** The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin12"?: SchemaValue<Text, "gtin12">
+	gtin12?: SchemaValue<Text, "gtin12">
 	/** The GTIN-13 code of the product, or the product to which the offer refers. This is equivalent to 13-digit ISBN codes and EAN UCC-13. Former 12-digit UPC codes can be converted into a GTIN-13 code by simply adding a preceding zero. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin13"?: SchemaValue<Text, "gtin13">
+	gtin13?: SchemaValue<Text, "gtin13">
 	/** The GTIN-14 code of the product, or the product to which the offer refers. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin14"?: SchemaValue<Text, "gtin14">
+	gtin14?: SchemaValue<Text, "gtin14">
 	/** The GTIN-8 code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin8"?: SchemaValue<Text, "gtin8">
+	gtin8?: SchemaValue<Text, "gtin8">
 	/** Used to tag an item to be intended or suitable for consumption or use by adults only. */
-	"hasAdultConsideration"?: SchemaValue<
+	hasAdultConsideration?: SchemaValue<
 		AdultOrientedEnumeration | IdReference,
 		"hasAdultConsideration"
 	>
 	/** A product measurement, for example the inseam of pants, the wheel size of a bicycle, or the gauge of a screw. Usually an exact measurement, but can also be a range of measurements for adjustable products, for example belts and ski bindings. */
-	"hasMeasurement"?: SchemaValue<
+	hasMeasurement?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"hasMeasurement"
 	>
 	/** Specifies a MerchantReturnPolicy that may be applicable. */
-	"hasMerchantReturnPolicy"?: SchemaValue<
+	hasMerchantReturnPolicy?: SchemaValue<
 		MerchantReturnPolicy | IdReference,
 		"hasMerchantReturnPolicy"
 	>
 	/** This links to a node or nodes indicating the exact quantity of the products included in an {@link https://schema.org/Offer Offer} or {@link https://schema.org/ProductCollection ProductCollection}. */
-	"includesObject"?: SchemaValue<
+	includesObject?: SchemaValue<
 		TypeAndQuantityNode | IdReference,
 		"includesObject"
 	>
@@ -10006,24 +9871,21 @@ interface OfferBase extends ThingBase {
 	 *
 	 * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
 	 */
-	"ineligibleRegion"?: SchemaValue<
+	ineligibleRegion?: SchemaValue<
 		GeoShape | Place | Text | IdReference,
 		"ineligibleRegion"
 	>
 	/** The current approximate inventory level for the item or items. */
-	"inventoryLevel"?: SchemaValue<
+	inventoryLevel?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"inventoryLevel"
 	>
 	/** Indicates whether this content is family friendly. */
-	"isFamilyFriendly"?: SchemaValue<Boolean, "isFamilyFriendly">
+	isFamilyFriendly?: SchemaValue<Boolean, "isFamilyFriendly">
 	/** A predefined value from OfferItemCondition specifying the condition of the product or service, or the products or services included in the offer. Also used for product return policies to specify the condition of products accepted for returns. */
-	"itemCondition"?: SchemaValue<
-		OfferItemCondition | IdReference,
-		"itemCondition"
-	>
+	itemCondition?: SchemaValue<OfferItemCondition | IdReference, "itemCondition">
 	/** An item being offered (or demanded). The transactional nature of the offer or demand is documented using {@link https://schema.org/businessFunction businessFunction}, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"itemOffered"?: SchemaValue<
+	itemOffered?: SchemaValue<
 		| AggregateOffer
 		| CreativeWork
 		| Event
@@ -10035,7 +9897,7 @@ interface OfferBase extends ThingBase {
 		"itemOffered"
 	>
 	/** Length of the lease for some {@link https://schema.org/Accommodation Accommodation}, either particular to some {@link https://schema.org/Offer Offer} or in some cases intrinsic to the property. */
-	"leaseLength"?: SchemaValue<
+	leaseLength?: SchemaValue<
 		Duration | QuantitativeValue | IdReference,
 		"leaseLength"
 	>
@@ -10044,11 +9906,11 @@ interface OfferBase extends ThingBase {
 	 *
 	 * To discourage over-use, and reflecting intial usecases, the property is expected only on {@link https://schema.org/Product Product} and {@link https://schema.org/Offer Offer}, rather than {@link https://schema.org/Thing Thing}. The general trend in web technology is towards {@link https://en.wikipedia.org/wiki/Responsive_web_design responsive design} in which content can be flexibly adapted to a wide range of browsing environments. Pages and sites referenced with the long-established {@link https://schema.org/url url} property should ideally also be usable on a wide variety of devices, including mobile phones. In most cases, it would be pointless and counter productive to attempt to update all {@link https://schema.org/url url} markup to use {@link https://schema.org/mobileUrl mobileUrl} for more mobile-oriented pages. The property is intended for the case when items (primarily {@link https://schema.org/Product Product} and {@link https://schema.org/Offer Offer}) have extra URLs hosted on an additional "mobile site" alongside the main one. It should not be taken as an endorsement of this publication style.
 	 */
-	"mobileUrl"?: SchemaValue<Text, "mobileUrl">
+	mobileUrl?: SchemaValue<Text, "mobileUrl">
 	/** The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers. */
-	"mpn"?: SchemaValue<Text, "mpn">
+	mpn?: SchemaValue<Text, "mpn">
 	/** A pointer to the organization or person making the offer. */
-	"offeredBy"?: SchemaValue<Organization | Person | IdReference, "offeredBy">
+	offeredBy?: SchemaValue<Organization | Person | IdReference, "offeredBy">
 	/**
 	 * The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
 	 *
@@ -10058,45 +9920,45 @@ interface OfferBase extends ThingBase {
 	 * - Note that both {@link http://www.w3.org/TR/xhtml-microdata-primer/#using-the-content-attribute Microdata} and Microdata syntax allow the use of a "content=" attribute for publishing simple machine-readable values alongside more human-friendly formatting.
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 */
-	"price"?: SchemaValue<Number | Text, "price">
+	price?: SchemaValue<Number | Text, "price">
 	/**
 	 * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"priceCurrency"?: SchemaValue<Text, "priceCurrency">
+	priceCurrency?: SchemaValue<Text, "priceCurrency">
 	/** One or more detailed price specifications, indicating the unit price and delivery or payment charges. */
-	"priceSpecification"?: SchemaValue<
+	priceSpecification?: SchemaValue<
 		PriceSpecification | IdReference,
 		"priceSpecification"
 	>
 	/** The date after which the price is no longer available. */
-	"priceValidUntil"?: SchemaValue<Date, "priceValidUntil">
+	priceValidUntil?: SchemaValue<Date, "priceValidUntil">
 	/** A review of the item. */
-	"review"?: SchemaValue<Review | IdReference, "review">
+	review?: SchemaValue<Review | IdReference, "review">
 	/**
 	 * Review of the item.
 	 *
 	 * @deprecated Consider using https://schema.org/review instead.
 	 */
-	"reviews"?: SchemaValue<Review | IdReference, "reviews">
+	reviews?: SchemaValue<Review | IdReference, "reviews">
 	/** An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. */
-	"seller"?: SchemaValue<Organization | Person | IdReference, "seller">
+	seller?: SchemaValue<Organization | Person | IdReference, "seller">
 	/** The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer. */
-	"serialNumber"?: SchemaValue<Text, "serialNumber">
+	serialNumber?: SchemaValue<Text, "serialNumber">
 	/** Indicates information about the shipping policies and options associated with an {@link https://schema.org/Offer Offer}. */
-	"shippingDetails"?: SchemaValue<
+	shippingDetails?: SchemaValue<
 		OfferShippingDetails | IdReference,
 		"shippingDetails"
 	>
 	/** The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers. */
-	"sku"?: SchemaValue<Text, "sku">
+	sku?: SchemaValue<Text, "sku">
 	/** The date when the item becomes valid. */
-	"validFrom"?: SchemaValue<Date | DateTime, "validFrom">
+	validFrom?: SchemaValue<Date | DateTime, "validFrom">
 	/** The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours. */
-	"validThrough"?: SchemaValue<Date | DateTime, "validThrough">
+	validThrough?: SchemaValue<Date | DateTime, "validThrough">
 	/** The warranty promise(s) included in the offer. */
-	"warranty"?: SchemaValue<WarrantyPromise | IdReference, "warranty">
+	warranty?: SchemaValue<WarrantyPromise | IdReference, "warranty">
 }
 interface OfferLeaf extends OfferBase {
 	type: "Offer"
@@ -10149,35 +10011,32 @@ export type OfferItemCondition =
 
 interface OfferShippingDetailsBase extends ThingBase {
 	/** The total delay between the receipt of the order and the goods reaching the final customer. */
-	"deliveryTime"?: SchemaValue<
-		ShippingDeliveryTime | IdReference,
-		"deliveryTime"
-	>
+	deliveryTime?: SchemaValue<ShippingDeliveryTime | IdReference, "deliveryTime">
 	/** The depth of the item. */
-	"depth"?: SchemaValue<Distance | QuantitativeValue | IdReference, "depth">
+	depth?: SchemaValue<Distance | QuantitativeValue | IdReference, "depth">
 	/** Indicates when shipping to a particular {@link https://schema.org/shippingDestination shippingDestination} is not available. */
-	"doesNotShip"?: SchemaValue<Boolean, "doesNotShip">
+	doesNotShip?: SchemaValue<Boolean, "doesNotShip">
 	/** The height of the item. */
-	"height"?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
+	height?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
 	/** indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges. */
-	"shippingDestination"?: SchemaValue<
+	shippingDestination?: SchemaValue<
 		DefinedRegion | IdReference,
 		"shippingDestination"
 	>
 	/** Label to match an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with a {@link https://schema.org/ShippingRateSettings ShippingRateSettings} (within the context of a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} cross-reference). */
-	"shippingLabel"?: SchemaValue<Text, "shippingLabel">
+	shippingLabel?: SchemaValue<Text, "shippingLabel">
 	/** Indicates the origin of a shipment, i.e. where it should be coming from. */
-	"shippingOrigin"?: SchemaValue<DefinedRegion | IdReference, "shippingOrigin">
+	shippingOrigin?: SchemaValue<DefinedRegion | IdReference, "shippingOrigin">
 	/** The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the {@link https://schema.org/MonetaryAmount MonetaryAmount}) are most appropriate. */
-	"shippingRate"?: SchemaValue<MonetaryAmount | IdReference, "shippingRate">
+	shippingRate?: SchemaValue<MonetaryAmount | IdReference, "shippingRate">
 	/** Link to a page containing {@link https://schema.org/ShippingRateSettings ShippingRateSettings} and {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} details. */
-	"shippingSettingsLink"?: SchemaValue<URL, "shippingSettingsLink">
+	shippingSettingsLink?: SchemaValue<URL, "shippingSettingsLink">
 	/** Label to match an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with a {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} (within the context of a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} cross-reference). */
-	"transitTimeLabel"?: SchemaValue<Text, "transitTimeLabel">
+	transitTimeLabel?: SchemaValue<Text, "transitTimeLabel">
 	/** The weight of the product or person. */
-	"weight"?: SchemaValue<QuantitativeValue | IdReference, "weight">
+	weight?: SchemaValue<QuantitativeValue | IdReference, "weight">
 	/** The width of the item. */
-	"width"?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
+	width?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
 }
 interface OfferShippingDetailsLeaf extends OfferShippingDetailsBase {
 	type: "OfferShippingDetails"
@@ -10229,15 +10088,15 @@ export type OnlineStore = OnlineStoreLeaf | string
 
 interface OpeningHoursSpecificationBase extends ThingBase {
 	/** The closing hour of the place or service on the given day(s) of the week. */
-	"closes"?: SchemaValue<Time, "closes">
+	closes?: SchemaValue<Time, "closes">
 	/** The day of the week for which these opening hours are valid. */
-	"dayOfWeek"?: SchemaValue<DayOfWeek | IdReference, "dayOfWeek">
+	dayOfWeek?: SchemaValue<DayOfWeek | IdReference, "dayOfWeek">
 	/** The opening hour of the place or service on the given day(s) of the week. */
-	"opens"?: SchemaValue<Time, "opens">
+	opens?: SchemaValue<Time, "opens">
 	/** The date when the item becomes valid. */
-	"validFrom"?: SchemaValue<Date | DateTime, "validFrom">
+	validFrom?: SchemaValue<Date | DateTime, "validFrom">
 	/** The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours. */
-	"validThrough"?: SchemaValue<Date | DateTime, "validThrough">
+	validThrough?: SchemaValue<Date | DateTime, "validThrough">
 }
 interface OpeningHoursSpecificationLeaf extends OpeningHoursSpecificationBase {
 	type: "OpeningHoursSpecification"
@@ -10271,64 +10130,64 @@ export type Optometric = OptometricLeaf | string
 
 interface OrderBase extends ThingBase {
 	/** The offer(s) -- e.g., product, quantity and price combinations -- included in the order. */
-	"acceptedOffer"?: SchemaValue<Offer | IdReference, "acceptedOffer">
+	acceptedOffer?: SchemaValue<Offer | IdReference, "acceptedOffer">
 	/** The billing address for the order. */
-	"billingAddress"?: SchemaValue<PostalAddress | IdReference, "billingAddress">
+	billingAddress?: SchemaValue<PostalAddress | IdReference, "billingAddress">
 	/** An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. */
-	"broker"?: SchemaValue<Organization | Person | IdReference, "broker">
+	broker?: SchemaValue<Organization | Person | IdReference, "broker">
 	/** A number that confirms the given order or payment has been received. */
-	"confirmationNumber"?: SchemaValue<Text, "confirmationNumber">
+	confirmationNumber?: SchemaValue<Text, "confirmationNumber">
 	/** Party placing the order or paying the invoice. */
-	"customer"?: SchemaValue<Organization | Person | IdReference, "customer">
+	customer?: SchemaValue<Organization | Person | IdReference, "customer">
 	/** Any discount applied (to an Order). */
-	"discount"?: SchemaValue<Number | Text, "discount">
+	discount?: SchemaValue<Number | Text, "discount">
 	/** Code used to redeem a discount. */
-	"discountCode"?: SchemaValue<Text, "discountCode">
+	discountCode?: SchemaValue<Text, "discountCode">
 	/**
 	 * The currency of the discount.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"discountCurrency"?: SchemaValue<Text, "discountCurrency">
+	discountCurrency?: SchemaValue<Text, "discountCurrency">
 	/** Indicates whether the offer was accepted as a gift for someone other than the buyer. */
-	"isGift"?: SchemaValue<Boolean, "isGift">
+	isGift?: SchemaValue<Boolean, "isGift">
 	/**
 	 * 'merchant' is an out-dated term for 'seller'.
 	 *
 	 * @deprecated Consider using https://schema.org/seller instead.
 	 */
-	"merchant"?: SchemaValue<Organization | Person | IdReference, "merchant">
+	merchant?: SchemaValue<Organization | Person | IdReference, "merchant">
 	/** Date order was placed. */
-	"orderDate"?: SchemaValue<Date | DateTime, "orderDate">
+	orderDate?: SchemaValue<Date | DateTime, "orderDate">
 	/** The delivery of the parcel related to this order or order item. */
-	"orderDelivery"?: SchemaValue<ParcelDelivery | IdReference, "orderDelivery">
+	orderDelivery?: SchemaValue<ParcelDelivery | IdReference, "orderDelivery">
 	/** The item ordered. */
-	"orderedItem"?: SchemaValue<
+	orderedItem?: SchemaValue<
 		OrderItem | Product | Service | IdReference,
 		"orderedItem"
 	>
 	/** The identifier of the transaction. */
-	"orderNumber"?: SchemaValue<Text, "orderNumber">
+	orderNumber?: SchemaValue<Text, "orderNumber">
 	/** The current status of the order. */
-	"orderStatus"?: SchemaValue<OrderStatus | IdReference, "orderStatus">
+	orderStatus?: SchemaValue<OrderStatus | IdReference, "orderStatus">
 	/** The order is being paid as part of the referenced Invoice. */
-	"partOfInvoice"?: SchemaValue<Invoice | IdReference, "partOfInvoice">
+	partOfInvoice?: SchemaValue<Invoice | IdReference, "partOfInvoice">
 	/**
 	 * The date that payment is due.
 	 *
 	 * @deprecated Consider using https://schema.org/paymentDueDate instead.
 	 */
-	"paymentDue"?: SchemaValue<DateTime, "paymentDue">
+	paymentDue?: SchemaValue<DateTime, "paymentDue">
 	/** The date that payment is due. */
-	"paymentDueDate"?: SchemaValue<Date | DateTime, "paymentDueDate">
+	paymentDueDate?: SchemaValue<Date | DateTime, "paymentDueDate">
 	/** The name of the credit card or other method of payment for the order. */
-	"paymentMethod"?: SchemaValue<PaymentMethod | IdReference, "paymentMethod">
+	paymentMethod?: SchemaValue<PaymentMethod | IdReference, "paymentMethod">
 	/** An identifier for the method of payment used (e.g. the last 4 digits of the credit card). */
-	"paymentMethodId"?: SchemaValue<Text, "paymentMethodId">
+	paymentMethodId?: SchemaValue<Text, "paymentMethodId">
 	/** The URL for sending a payment. */
-	"paymentUrl"?: SchemaValue<URL, "paymentUrl">
+	paymentUrl?: SchemaValue<URL, "paymentUrl">
 	/** An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. */
-	"seller"?: SchemaValue<Organization | Person | IdReference, "seller">
+	seller?: SchemaValue<Organization | Person | IdReference, "seller">
 }
 interface OrderLeaf extends OrderBase {
 	type: "Order"
@@ -10338,7 +10197,7 @@ export type Order = OrderLeaf
 
 interface OrderActionBase extends TradeActionBase {
 	/** A sub property of instrument. The method of delivery. */
-	"deliveryMethod"?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
+	deliveryMethod?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
 }
 interface OrderActionLeaf extends OrderActionBase {
 	type: "OrderAction"
@@ -10348,18 +10207,18 @@ export type OrderAction = OrderActionLeaf
 
 interface OrderItemBase extends ThingBase {
 	/** The delivery of the parcel related to this order or order item. */
-	"orderDelivery"?: SchemaValue<ParcelDelivery | IdReference, "orderDelivery">
+	orderDelivery?: SchemaValue<ParcelDelivery | IdReference, "orderDelivery">
 	/** The item ordered. */
-	"orderedItem"?: SchemaValue<
+	orderedItem?: SchemaValue<
 		OrderItem | Product | Service | IdReference,
 		"orderedItem"
 	>
 	/** The identifier of the order item. */
-	"orderItemNumber"?: SchemaValue<Text, "orderItemNumber">
+	orderItemNumber?: SchemaValue<Text, "orderItemNumber">
 	/** The current status of the order item. */
-	"orderItemStatus"?: SchemaValue<OrderStatus | IdReference, "orderItemStatus">
+	orderItemStatus?: SchemaValue<OrderStatus | IdReference, "orderItemStatus">
 	/** The number of the item ordered. If the property is not set, assume the quantity is one. */
-	"orderQuantity"?: SchemaValue<Number, "orderQuantity">
+	orderQuantity?: SchemaValue<Number, "orderQuantity">
 }
 interface OrderItemLeaf extends OrderItemBase {
 	type: "OrderItem"
@@ -10392,158 +10251,158 @@ export type OrderStatus =
 
 interface OrganizationBase extends ThingBase {
 	/** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} or other news-related {@link https://schema.org/Organization Organization}, a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication. */
-	"actionableFeedbackPolicy"?: SchemaValue<
+	actionableFeedbackPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"actionableFeedbackPolicy"
 	>
 	/** Physical address of the item. */
-	"address"?: SchemaValue<PostalAddress | Text | IdReference, "address">
+	address?: SchemaValue<PostalAddress | Text | IdReference, "address">
 	/** The overall rating, based on a collection of reviews or ratings, of the item. */
-	"aggregateRating"?: SchemaValue<
+	aggregateRating?: SchemaValue<
 		AggregateRating | IdReference,
 		"aggregateRating"
 	>
 	/** Alumni of an organization. */
-	"alumni"?: SchemaValue<Person | IdReference, "alumni">
+	alumni?: SchemaValue<Person | IdReference, "alumni">
 	/** The geographic area where a service or offered item is provided. */
-	"areaServed"?: SchemaValue<
+	areaServed?: SchemaValue<
 		AdministrativeArea | GeoShape | Place | Text | IdReference,
 		"areaServed"
 	>
 	/** An award won by or for this item. */
-	"award"?: SchemaValue<Text, "award">
+	award?: SchemaValue<Text, "award">
 	/**
 	 * Awards won by or for this item.
 	 *
 	 * @deprecated Consider using https://schema.org/award instead.
 	 */
-	"awards"?: SchemaValue<Text, "awards">
+	awards?: SchemaValue<Text, "awards">
 	/** The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person. */
-	"brand"?: SchemaValue<Brand | Organization | IdReference, "brand">
+	brand?: SchemaValue<Brand | Organization | IdReference, "brand">
 	/** A contact point for a person or organization. */
-	"contactPoint"?: SchemaValue<ContactPoint | IdReference, "contactPoint">
+	contactPoint?: SchemaValue<ContactPoint | IdReference, "contactPoint">
 	/**
 	 * A contact point for a person or organization.
 	 *
 	 * @deprecated Consider using https://schema.org/contactPoint instead.
 	 */
-	"contactPoints"?: SchemaValue<ContactPoint | IdReference, "contactPoints">
+	contactPoints?: SchemaValue<ContactPoint | IdReference, "contactPoints">
 	/** For an {@link https://schema.org/Organization Organization} (e.g. {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors. */
-	"correctionsPolicy"?: SchemaValue<
+	correctionsPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"correctionsPolicy"
 	>
 	/** A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe. */
-	"department"?: SchemaValue<Organization | IdReference, "department">
+	department?: SchemaValue<Organization | IdReference, "department">
 	/** The date that this organization was dissolved. */
-	"dissolutionDate"?: SchemaValue<Date, "dissolutionDate">
+	dissolutionDate?: SchemaValue<Date, "dissolutionDate">
 	/** Statement on diversity policy by an {@link https://schema.org/Organization Organization} e.g. a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}. For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, a statement describing the newsroom’s diversity policy on both staffing and sources, typically providing staffing data. */
-	"diversityPolicy"?: SchemaValue<
+	diversityPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"diversityPolicy"
 	>
 	/** For an {@link https://schema.org/Organization Organization} (often but not necessarily a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported. */
-	"diversityStaffingReport"?: SchemaValue<
+	diversityStaffingReport?: SchemaValue<
 		Article | URL | IdReference,
 		"diversityStaffingReport"
 	>
 	/** The Dun & Bradstreet DUNS number for identifying an organization or business person. */
-	"duns"?: SchemaValue<Text, "duns">
+	duns?: SchemaValue<Text, "duns">
 	/** Email address. */
-	"email"?: SchemaValue<Text, "email">
+	email?: SchemaValue<Text, "email">
 	/** Someone working for this organization. */
-	"employee"?: SchemaValue<Person | IdReference, "employee">
+	employee?: SchemaValue<Person | IdReference, "employee">
 	/**
 	 * People working for this organization.
 	 *
 	 * @deprecated Consider using https://schema.org/employee instead.
 	 */
-	"employees"?: SchemaValue<Person | IdReference, "employees">
+	employees?: SchemaValue<Person | IdReference, "employees">
 	/** Statement about ethics policy, e.g. of a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} regarding journalistic and publishing practices, or of a {@link https://schema.org/Restaurant Restaurant}, a page describing food source policies. In the case of a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, an ethicsPolicy is typically a statement describing the personal, organizational, and corporate standards of behavior expected by the organization. */
-	"ethicsPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "ethicsPolicy">
+	ethicsPolicy?: SchemaValue<CreativeWork | URL | IdReference, "ethicsPolicy">
 	/** Upcoming or past event associated with this place, organization, or action. */
-	"event"?: SchemaValue<Event | IdReference, "event">
+	event?: SchemaValue<Event | IdReference, "event">
 	/**
 	 * Upcoming or past events associated with this place or organization.
 	 *
 	 * @deprecated Consider using https://schema.org/event instead.
 	 */
-	"events"?: SchemaValue<Event | IdReference, "events">
+	events?: SchemaValue<Event | IdReference, "events">
 	/** The fax number. */
-	"faxNumber"?: SchemaValue<Text, "faxNumber">
+	faxNumber?: SchemaValue<Text, "faxNumber">
 	/** A person who founded this organization. */
-	"founder"?: SchemaValue<Person | IdReference, "founder">
+	founder?: SchemaValue<Person | IdReference, "founder">
 	/**
 	 * A person who founded this organization.
 	 *
 	 * @deprecated Consider using https://schema.org/founder instead.
 	 */
-	"founders"?: SchemaValue<Person | IdReference, "founders">
+	founders?: SchemaValue<Person | IdReference, "founders">
 	/** The date that this organization was founded. */
-	"foundingDate"?: SchemaValue<Date, "foundingDate">
+	foundingDate?: SchemaValue<Date, "foundingDate">
 	/** The place where the Organization was founded. */
-	"foundingLocation"?: SchemaValue<Place | IdReference, "foundingLocation">
+	foundingLocation?: SchemaValue<Place | IdReference, "foundingLocation">
 	/** A person or organization that supports (sponsors) something through some kind of financial contribution. */
-	"funder"?: SchemaValue<Organization | Person | IdReference, "funder">
+	funder?: SchemaValue<Organization | Person | IdReference, "funder">
 	/** A {@link https://schema.org/Grant Grant} that directly or indirectly provide funding or sponsorship for this item. See also {@link https://schema.org/ownershipFundingInfo ownershipFundingInfo}. */
-	"funding"?: SchemaValue<Grant | IdReference, "funding">
+	funding?: SchemaValue<Grant | IdReference, "funding">
 	/** The {@link http://www.gs1.org/gln Global Location Number} (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations. */
-	"globalLocationNumber"?: SchemaValue<Text, "globalLocationNumber">
+	globalLocationNumber?: SchemaValue<Text, "globalLocationNumber">
 	/** A credential awarded to the Person or Organization. */
-	"hasCredential"?: SchemaValue<
+	hasCredential?: SchemaValue<
 		EducationalOccupationalCredential | IdReference,
 		"hasCredential"
 	>
 	/** Specifies a MerchantReturnPolicy that may be applicable. */
-	"hasMerchantReturnPolicy"?: SchemaValue<
+	hasMerchantReturnPolicy?: SchemaValue<
 		MerchantReturnPolicy | IdReference,
 		"hasMerchantReturnPolicy"
 	>
 	/** Indicates an OfferCatalog listing for this Organization, Person, or Service. */
-	"hasOfferCatalog"?: SchemaValue<OfferCatalog | IdReference, "hasOfferCatalog">
+	hasOfferCatalog?: SchemaValue<OfferCatalog | IdReference, "hasOfferCatalog">
 	/** Points-of-Sales operated by the organization or person. */
-	"hasPOS"?: SchemaValue<Place | IdReference, "hasPOS">
+	hasPOS?: SchemaValue<Place | IdReference, "hasPOS">
 	/**
 	 * Indicates a ProductReturnPolicy that may be applicable.
 	 *
 	 * @deprecated Consider using https://schema.org/hasMerchantReturnPolicy instead.
 	 */
-	"hasProductReturnPolicy"?: SchemaValue<
+	hasProductReturnPolicy?: SchemaValue<
 		ProductReturnPolicy | IdReference,
 		"hasProductReturnPolicy"
 	>
 	/** The number of interactions for the CreativeWork using the WebSite or SoftwareApplication. The most specific child type of InteractionCounter should be used. */
-	"interactionStatistic"?: SchemaValue<
+	interactionStatistic?: SchemaValue<
 		InteractionCounter | IdReference,
 		"interactionStatistic"
 	>
 	/** The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place. */
-	"isicV4"?: SchemaValue<Text, "isicV4">
+	isicV4?: SchemaValue<Text, "isicV4">
 	/** An organization identifier as defined in ISO 6523(-1). Note that many existing organization identifiers such as {@link https://schema.org/leiCode leiCode}, {@link https://schema.org/duns duns} and {@link https://schema.org/vatID vatID} can be expressed as an ISO 6523 identifier by setting the ICD part of the ISO 6523 identifier accordingly. */
-	"iso6523Code"?: SchemaValue<Text, "iso6523Code">
+	iso6523Code?: SchemaValue<Text, "iso6523Code">
 	/** Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property. */
-	"keywords"?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
+	keywords?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
 	/** Of a {@link https://schema.org/Person Person}, and less typically of an {@link https://schema.org/Organization Organization}, to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or {@link https://schema.org/JobPosting JobPosting} descriptions. */
-	"knowsAbout"?: SchemaValue<Text | Thing | URL | IdReference, "knowsAbout">
+	knowsAbout?: SchemaValue<Text | Thing | URL | IdReference, "knowsAbout">
 	/** Of a {@link https://schema.org/Person Person}, and less typically of an {@link https://schema.org/Organization Organization}, to indicate a known language. We do not distinguish skill levels or reading/writing/speaking/signing here. Use language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. */
-	"knowsLanguage"?: SchemaValue<Language | Text | IdReference, "knowsLanguage">
+	knowsLanguage?: SchemaValue<Language | Text | IdReference, "knowsLanguage">
 	/** The official name of the organization, e.g. the registered company name. */
-	"legalName"?: SchemaValue<Text, "legalName">
+	legalName?: SchemaValue<Text, "legalName">
 	/** An organization identifier that uniquely identifies a legal entity as defined in ISO 17442. */
-	"leiCode"?: SchemaValue<Text, "leiCode">
+	leiCode?: SchemaValue<Text, "leiCode">
 	/** The location of, for example, where an event is happening, where an organization is located, or where an action takes place. */
-	"location"?: SchemaValue<
+	location?: SchemaValue<
 		Place | PostalAddress | Text | VirtualLocation | IdReference,
 		"location"
 	>
 	/** An associated logo. */
-	"logo"?: SchemaValue<ImageObject | URL | IdReference, "logo">
+	logo?: SchemaValue<ImageObject | URL | IdReference, "logo">
 	/** A pointer to products or services offered by the organization or person. */
-	"makesOffer"?: SchemaValue<Offer | IdReference, "makesOffer">
+	makesOffer?: SchemaValue<Offer | IdReference, "makesOffer">
 	/** A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals. */
-	"member"?: SchemaValue<Organization | Person | IdReference, "member">
+	member?: SchemaValue<Organization | Person | IdReference, "member">
 	/** An Organization (or ProgramMembership) to which this Person or Organization belongs. */
-	"memberOf"?: SchemaValue<
+	memberOf?: SchemaValue<
 		Organization | ProgramMembership | IdReference,
 		"memberOf"
 	>
@@ -10552,28 +10411,25 @@ interface OrganizationBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/member instead.
 	 */
-	"members"?: SchemaValue<Organization | Person | IdReference, "members">
+	members?: SchemaValue<Organization | Person | IdReference, "members">
 	/** The North American Industry Classification System (NAICS) code for a particular organization or business person. */
-	"naics"?: SchemaValue<Text, "naics">
+	naics?: SchemaValue<Text, "naics">
 	/** nonprofitStatus indicates the legal status of a non-profit organization in its primary place of business. */
-	"nonprofitStatus"?: SchemaValue<
-		NonprofitType | IdReference,
-		"nonprofitStatus"
-	>
+	nonprofitStatus?: SchemaValue<NonprofitType | IdReference, "nonprofitStatus">
 	/** The number of employees in an organization, e.g. business. */
-	"numberOfEmployees"?: SchemaValue<
+	numberOfEmployees?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"numberOfEmployees"
 	>
 	/** For an {@link https://schema.org/Organization Organization} (often but not necessarily a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence. Note that the {@link https://schema.org/funder funder} is also available and can be used to make basic funder information machine-readable. */
-	"ownershipFundingInfo"?: SchemaValue<
+	ownershipFundingInfo?: SchemaValue<
 		AboutPage | CreativeWork | Text | URL | IdReference,
 		"ownershipFundingInfo"
 	>
 	/** Products owned by the organization or person. */
-	"owns"?: SchemaValue<OwnershipInfo | Product | IdReference, "owns">
+	owns?: SchemaValue<OwnershipInfo | Product | IdReference, "owns">
 	/** The larger organization that this organization is a {@link https://schema.org/subOrganization subOrganization} of, if any. */
-	"parentOrganization"?: SchemaValue<
+	parentOrganization?: SchemaValue<
 		Organization | IdReference,
 		"parentOrganization"
 	>
@@ -10582,46 +10438,46 @@ interface OrganizationBase extends ThingBase {
 	 *
 	 * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a {@link https://schema.org/funder funder}) can be expressed using schema.org terminology.
 	 */
-	"publishingPrinciples"?: SchemaValue<
+	publishingPrinciples?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"publishingPrinciples"
 	>
 	/** A review of the item. */
-	"review"?: SchemaValue<Review | IdReference, "review">
+	review?: SchemaValue<Review | IdReference, "review">
 	/**
 	 * Review of the item.
 	 *
 	 * @deprecated Consider using https://schema.org/review instead.
 	 */
-	"reviews"?: SchemaValue<Review | IdReference, "reviews">
+	reviews?: SchemaValue<Review | IdReference, "reviews">
 	/** A pointer to products or services sought by the organization or person (demand). */
-	"seeks"?: SchemaValue<Demand | IdReference, "seeks">
+	seeks?: SchemaValue<Demand | IdReference, "seeks">
 	/**
 	 * The geographic area where the service is provided.
 	 *
 	 * @deprecated Consider using https://schema.org/areaServed instead.
 	 */
-	"serviceArea"?: SchemaValue<
+	serviceArea?: SchemaValue<
 		AdministrativeArea | GeoShape | Place | IdReference,
 		"serviceArea"
 	>
 	/** A slogan or motto associated with the item. */
-	"slogan"?: SchemaValue<Text, "slogan">
+	slogan?: SchemaValue<Text, "slogan">
 	/** A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event. */
-	"sponsor"?: SchemaValue<Organization | Person | IdReference, "sponsor">
+	sponsor?: SchemaValue<Organization | Person | IdReference, "sponsor">
 	/** A relationship between two organizations where the first includes the second, e.g., as a subsidiary. See also: the more specific 'department' property. */
-	"subOrganization"?: SchemaValue<Organization | IdReference, "subOrganization">
+	subOrganization?: SchemaValue<Organization | IdReference, "subOrganization">
 	/** The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain. */
-	"taxID"?: SchemaValue<Text, "taxID">
+	taxID?: SchemaValue<Text, "taxID">
 	/** The telephone number. */
-	"telephone"?: SchemaValue<Text, "telephone">
+	telephone?: SchemaValue<Text, "telephone">
 	/** For an {@link https://schema.org/Organization Organization} (typically a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a statement about policy on use of unnamed sources and the decision process required. */
-	"unnamedSourcesPolicy"?: SchemaValue<
+	unnamedSourcesPolicy?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"unnamedSourcesPolicy"
 	>
 	/** The Value-added Tax ID of the organization or person. */
-	"vatID"?: SchemaValue<Text, "vatID">
+	vatID?: SchemaValue<Text, "vatID">
 }
 export interface OrganizationLeaf extends OrganizationBase {
 	type: "Organization"
@@ -10675,16 +10531,16 @@ export type OutletStore = OutletStoreLeaf | string
 
 interface OwnershipInfoBase extends ThingBase {
 	/** The organization or person from which the product was acquired. */
-	"acquiredFrom"?: SchemaValue<
+	acquiredFrom?: SchemaValue<
 		Organization | Person | IdReference,
 		"acquiredFrom"
 	>
 	/** The date and time of obtaining the product. */
-	"ownedFrom"?: SchemaValue<DateTime, "ownedFrom">
+	ownedFrom?: SchemaValue<DateTime, "ownedFrom">
 	/** The date and time of giving up ownership on the product. */
-	"ownedThrough"?: SchemaValue<DateTime, "ownedThrough">
+	ownedThrough?: SchemaValue<DateTime, "ownedThrough">
 	/** The product that this structured value is referring to. */
-	"typeOfGood"?: SchemaValue<Product | Service | IdReference, "typeOfGood">
+	typeOfGood?: SchemaValue<Product | Service | IdReference, "typeOfGood">
 }
 interface OwnershipInfoLeaf extends OwnershipInfoBase {
 	type: "OwnershipInfo"
@@ -10705,9 +10561,8 @@ interface PaintingLeaf extends CreativeWorkBase {
 export type Painting = PaintingLeaf
 
 interface PalliativeProcedureBase
-	extends MedicalProcedureBase, MedicalTherapyBase
-{
-}
+	extends MedicalProcedureBase,
+		MedicalTherapyBase {}
 interface PalliativeProcedureLeaf extends PalliativeProcedureBase {
 	type: "PalliativeProcedure"
 }
@@ -10720,35 +10575,32 @@ interface ParcelDeliveryBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/provider instead.
 	 */
-	"carrier"?: SchemaValue<Organization | IdReference, "carrier">
+	carrier?: SchemaValue<Organization | IdReference, "carrier">
 	/** Destination address. */
-	"deliveryAddress"?: SchemaValue<
-		PostalAddress | IdReference,
-		"deliveryAddress"
-	>
+	deliveryAddress?: SchemaValue<PostalAddress | IdReference, "deliveryAddress">
 	/** New entry added as the package passes through each leg of its journey (from shipment to final delivery). */
-	"deliveryStatus"?: SchemaValue<DeliveryEvent | IdReference, "deliveryStatus">
+	deliveryStatus?: SchemaValue<DeliveryEvent | IdReference, "deliveryStatus">
 	/** The earliest date the package may arrive. */
-	"expectedArrivalFrom"?: SchemaValue<Date | DateTime, "expectedArrivalFrom">
+	expectedArrivalFrom?: SchemaValue<Date | DateTime, "expectedArrivalFrom">
 	/** The latest date the package may arrive. */
-	"expectedArrivalUntil"?: SchemaValue<Date | DateTime, "expectedArrivalUntil">
+	expectedArrivalUntil?: SchemaValue<Date | DateTime, "expectedArrivalUntil">
 	/** Method used for delivery or shipping. */
-	"hasDeliveryMethod"?: SchemaValue<
+	hasDeliveryMethod?: SchemaValue<
 		DeliveryMethod | IdReference,
 		"hasDeliveryMethod"
 	>
 	/** Item(s) being shipped. */
-	"itemShipped"?: SchemaValue<Product | IdReference, "itemShipped">
+	itemShipped?: SchemaValue<Product | IdReference, "itemShipped">
 	/** Shipper's address. */
-	"originAddress"?: SchemaValue<PostalAddress | IdReference, "originAddress">
+	originAddress?: SchemaValue<PostalAddress | IdReference, "originAddress">
 	/** The overall order the items in this delivery were included in. */
-	"partOfOrder"?: SchemaValue<Order | IdReference, "partOfOrder">
+	partOfOrder?: SchemaValue<Order | IdReference, "partOfOrder">
 	/** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
-	"provider"?: SchemaValue<Organization | Person | IdReference, "provider">
+	provider?: SchemaValue<Organization | Person | IdReference, "provider">
 	/** Shipper tracking number. */
-	"trackingNumber"?: SchemaValue<Text, "trackingNumber">
+	trackingNumber?: SchemaValue<Text, "trackingNumber">
 	/** Tracking url for the parcel delivery. */
-	"trackingUrl"?: SchemaValue<URL, "trackingUrl">
+	trackingUrl?: SchemaValue<URL, "trackingUrl">
 }
 interface ParcelDeliveryLeaf extends ParcelDeliveryBase {
 	type: "ParcelDelivery"
@@ -10758,9 +10610,9 @@ export type ParcelDelivery = ParcelDeliveryLeaf
 
 interface ParentAudienceBase extends PeopleAudienceBase {
 	/** Maximal age of the child. */
-	"childMaxAge"?: SchemaValue<Number, "childMaxAge">
+	childMaxAge?: SchemaValue<Number, "childMaxAge">
 	/** Minimal age of the child. */
-	"childMinAge"?: SchemaValue<Number, "childMinAge">
+	childMinAge?: SchemaValue<Number, "childMinAge">
 }
 interface ParentAudienceLeaf extends ParentAudienceBase {
 	type: "ParentAudience"
@@ -10782,7 +10634,7 @@ export type ParkingFacility = ParkingFacilityLeaf | string
 
 interface PathologyTestBase extends MedicalTestBase {
 	/** The type of tissue sample required for the test. */
-	"tissueSample"?: SchemaValue<Text, "tissueSample">
+	tissueSample?: SchemaValue<Text, "tissueSample">
 }
 interface PathologyTestLeaf extends PathologyTestBase {
 	type: "PathologyTest"
@@ -10792,11 +10644,11 @@ export type PathologyTest = PathologyTestLeaf
 
 interface PatientBase extends PersonBase, MedicalAudienceBase {
 	/** One or more alternative conditions considered in the differential diagnosis process as output of a diagnosis process. */
-	"diagnosis"?: SchemaValue<MedicalCondition | IdReference, "diagnosis">
+	diagnosis?: SchemaValue<MedicalCondition | IdReference, "diagnosis">
 	/** Specifying a drug or medicine used in a medication procedure. */
-	"drug"?: SchemaValue<Drug | IdReference, "drug">
+	drug?: SchemaValue<Drug | IdReference, "drug">
 	/** Specifying the health condition(s) of a patient, medical study, or other target audience. */
-	"healthCondition"?: SchemaValue<
+	healthCondition?: SchemaValue<
 		MedicalCondition | IdReference,
 		"healthCondition"
 	>
@@ -10815,7 +10667,7 @@ export type PawnShop = PawnShopLeaf | string
 
 interface PayActionBase extends TradeActionBase {
 	/** A sub property of participant. The participant who is at the receiving end of the action. */
-	"recipient"?: SchemaValue<
+	recipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"recipient"
 	>
@@ -10828,13 +10680,13 @@ export type PayAction = PayActionLeaf
 
 interface PaymentCardBase extends EnumerationBase, FinancialProductBase {
 	/** A cardholder benefit that pays the cardholder a small percentage of their net expenditures. */
-	"cashBack"?: SchemaValue<Boolean | Number, "cashBack">
+	cashBack?: SchemaValue<Boolean | Number, "cashBack">
 	/** A secure method for consumers to purchase products or services via debit, credit or smartcards by using RFID or NFC technology. */
-	"contactlessPayment"?: SchemaValue<Boolean, "contactlessPayment">
+	contactlessPayment?: SchemaValue<Boolean, "contactlessPayment">
 	/** A floor limit is the amount of money above which credit card transactions must be authorized. */
-	"floorLimit"?: SchemaValue<MonetaryAmount | IdReference, "floorLimit">
+	floorLimit?: SchemaValue<MonetaryAmount | IdReference, "floorLimit">
 	/** The minimum payment is the lowest amount of money that one is required to pay on a credit card statement each month. */
-	"monthlyMinimumRepaymentAmount"?: SchemaValue<
+	monthlyMinimumRepaymentAmount?: SchemaValue<
 		MonetaryAmount | Number | IdReference,
 		"monthlyMinimumRepaymentAmount"
 	>
@@ -10847,19 +10699,18 @@ export type PaymentCard = PaymentCardLeaf | CreditCard
 
 interface PaymentChargeSpecificationBase extends PriceSpecificationBase {
 	/** The delivery method(s) to which the delivery charge or payment charge specification applies. */
-	"appliesToDeliveryMethod"?: SchemaValue<
+	appliesToDeliveryMethod?: SchemaValue<
 		DeliveryMethod | IdReference,
 		"appliesToDeliveryMethod"
 	>
 	/** The payment method(s) to which the payment charge specification applies. */
-	"appliesToPaymentMethod"?: SchemaValue<
+	appliesToPaymentMethod?: SchemaValue<
 		PaymentMethod | IdReference,
 		"appliesToPaymentMethod"
 	>
 }
 interface PaymentChargeSpecificationLeaf
-	extends PaymentChargeSpecificationBase
-{
+	extends PaymentChargeSpecificationBase {
 	type: "PaymentChargeSpecification"
 }
 /** The costs of settling the payment using a particular payment method. */
@@ -10915,32 +10766,32 @@ export type Pediatric = PediatricLeaf | string
 
 interface PeopleAudienceBase extends AudienceBase {
 	/** Specifying the health condition(s) of a patient, medical study, or other target audience. */
-	"healthCondition"?: SchemaValue<
+	healthCondition?: SchemaValue<
 		MedicalCondition | IdReference,
 		"healthCondition"
 	>
 	/** Audiences defined by a person's gender. */
-	"requiredGender"?: SchemaValue<Text, "requiredGender">
+	requiredGender?: SchemaValue<Text, "requiredGender">
 	/** Audiences defined by a person's maximum age. */
-	"requiredMaxAge"?: SchemaValue<Integer, "requiredMaxAge">
+	requiredMaxAge?: SchemaValue<Integer, "requiredMaxAge">
 	/** Audiences defined by a person's minimum age. */
-	"requiredMinAge"?: SchemaValue<Integer, "requiredMinAge">
+	requiredMinAge?: SchemaValue<Integer, "requiredMinAge">
 	/** The age or age range for the intended audience or person, for example 3-12 months for infants, 1-5 years for toddlers. */
-	"suggestedAge"?: SchemaValue<QuantitativeValue | IdReference, "suggestedAge">
+	suggestedAge?: SchemaValue<QuantitativeValue | IdReference, "suggestedAge">
 	/** The suggested gender of the intended person or audience, for example "male", "female", or "unisex". */
-	"suggestedGender"?: SchemaValue<
+	suggestedGender?: SchemaValue<
 		GenderType | Text | IdReference,
 		"suggestedGender"
 	>
 	/** Maximum recommended age in years for the audience or user. */
-	"suggestedMaxAge"?: SchemaValue<Number, "suggestedMaxAge">
+	suggestedMaxAge?: SchemaValue<Number, "suggestedMaxAge">
 	/** A suggested range of body measurements for the intended audience or person, for example inseam between 32 and 34 inches or height between 170 and 190 cm. Typically found on a size chart for wearable products. */
-	"suggestedMeasurement"?: SchemaValue<
+	suggestedMeasurement?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"suggestedMeasurement"
 	>
 	/** Minimum recommended age in years for the audience or user. */
-	"suggestedMinAge"?: SchemaValue<Number, "suggestedMinAge">
+	suggestedMinAge?: SchemaValue<Number, "suggestedMinAge">
 }
 interface PeopleAudienceLeaf extends PeopleAudienceBase {
 	type: "PeopleAudience"
@@ -10953,7 +10804,7 @@ export type PeopleAudience =
 
 interface PerformActionBase extends PlayActionBase {
 	/** A sub property of location. The entertainment business where the action occurred. */
-	"entertainmentBusiness"?: SchemaValue<
+	entertainmentBusiness?: SchemaValue<
 		EntertainmentBusiness | IdReference,
 		"entertainmentBusiness"
 	>
@@ -10993,19 +10844,19 @@ export type Periodical = PeriodicalLeaf | ComicSeries | Newspaper
 
 interface PermitBase extends ThingBase {
 	/** The organization issuing the ticket or permit. */
-	"issuedBy"?: SchemaValue<Organization | IdReference, "issuedBy">
+	issuedBy?: SchemaValue<Organization | IdReference, "issuedBy">
 	/** The service through which the permit was granted. */
-	"issuedThrough"?: SchemaValue<Service | IdReference, "issuedThrough">
+	issuedThrough?: SchemaValue<Service | IdReference, "issuedThrough">
 	/** The target audience for this permit. */
-	"permitAudience"?: SchemaValue<Audience | IdReference, "permitAudience">
+	permitAudience?: SchemaValue<Audience | IdReference, "permitAudience">
 	/** The duration of validity of a permit or similar thing. */
-	"validFor"?: SchemaValue<Duration | IdReference, "validFor">
+	validFor?: SchemaValue<Duration | IdReference, "validFor">
 	/** The date when the item becomes valid. */
-	"validFrom"?: SchemaValue<Date | DateTime, "validFrom">
+	validFrom?: SchemaValue<Date | DateTime, "validFrom">
 	/** The geographic area where a permit or similar thing is valid. */
-	"validIn"?: SchemaValue<AdministrativeArea | IdReference, "validIn">
+	validIn?: SchemaValue<AdministrativeArea | IdReference, "validIn">
 	/** The date when the item is no longer valid. */
-	"validUntil"?: SchemaValue<Date, "validUntil">
+	validUntil?: SchemaValue<Date, "validUntil">
 }
 interface PermitLeaf extends PermitBase {
 	type: "Permit"
@@ -11015,179 +10866,173 @@ export type Permit = PermitLeaf | GovernmentPermit
 
 interface PersonBase extends ThingBase {
 	/** An additional name for a Person, can be used for a middle name. */
-	"additionalName"?: SchemaValue<Text, "additionalName">
+	additionalName?: SchemaValue<Text, "additionalName">
 	/** Physical address of the item. */
-	"address"?: SchemaValue<PostalAddress | Text | IdReference, "address">
+	address?: SchemaValue<PostalAddress | Text | IdReference, "address">
 	/** An organization that this person is affiliated with. For example, a school/university, a club, or a team. */
-	"affiliation"?: SchemaValue<Organization | IdReference, "affiliation">
+	affiliation?: SchemaValue<Organization | IdReference, "affiliation">
 	/** An organization that the person is an alumni of. */
-	"alumniOf"?: SchemaValue<
+	alumniOf?: SchemaValue<
 		EducationalOrganization | Organization | IdReference,
 		"alumniOf"
 	>
 	/** An award won by or for this item. */
-	"award"?: SchemaValue<Text, "award">
+	award?: SchemaValue<Text, "award">
 	/**
 	 * Awards won by or for this item.
 	 *
 	 * @deprecated Consider using https://schema.org/award instead.
 	 */
-	"awards"?: SchemaValue<Text, "awards">
+	awards?: SchemaValue<Text, "awards">
 	/** Date of birth. */
-	"birthDate"?: SchemaValue<Date, "birthDate">
+	birthDate?: SchemaValue<Date, "birthDate">
 	/** The place where the person was born. */
-	"birthPlace"?: SchemaValue<Place | IdReference, "birthPlace">
+	birthPlace?: SchemaValue<Place | IdReference, "birthPlace">
 	/** The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person. */
-	"brand"?: SchemaValue<Brand | Organization | IdReference, "brand">
+	brand?: SchemaValue<Brand | Organization | IdReference, "brand">
 	/** A {@link https://en.wikipedia.org/wiki/Call_sign callsign}, as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles. */
-	"callSign"?: SchemaValue<Text, "callSign">
+	callSign?: SchemaValue<Text, "callSign">
 	/** A child of the person. */
-	"children"?: SchemaValue<Person | IdReference, "children">
+	children?: SchemaValue<Person | IdReference, "children">
 	/** A colleague of the person. */
-	"colleague"?: SchemaValue<Person | URL | IdReference, "colleague">
+	colleague?: SchemaValue<Person | URL | IdReference, "colleague">
 	/**
 	 * A colleague of the person.
 	 *
 	 * @deprecated Consider using https://schema.org/colleague instead.
 	 */
-	"colleagues"?: SchemaValue<Person | IdReference, "colleagues">
+	colleagues?: SchemaValue<Person | IdReference, "colleagues">
 	/** A contact point for a person or organization. */
-	"contactPoint"?: SchemaValue<ContactPoint | IdReference, "contactPoint">
+	contactPoint?: SchemaValue<ContactPoint | IdReference, "contactPoint">
 	/**
 	 * A contact point for a person or organization.
 	 *
 	 * @deprecated Consider using https://schema.org/contactPoint instead.
 	 */
-	"contactPoints"?: SchemaValue<ContactPoint | IdReference, "contactPoints">
+	contactPoints?: SchemaValue<ContactPoint | IdReference, "contactPoints">
 	/** Date of death. */
-	"deathDate"?: SchemaValue<Date, "deathDate">
+	deathDate?: SchemaValue<Date, "deathDate">
 	/** The place where the person died. */
-	"deathPlace"?: SchemaValue<Place | IdReference, "deathPlace">
+	deathPlace?: SchemaValue<Place | IdReference, "deathPlace">
 	/** The Dun & Bradstreet DUNS number for identifying an organization or business person. */
-	"duns"?: SchemaValue<Text, "duns">
+	duns?: SchemaValue<Text, "duns">
 	/** Email address. */
-	"email"?: SchemaValue<Text, "email">
+	email?: SchemaValue<Text, "email">
 	/** Family name. In the U.S., the last name of a Person. */
-	"familyName"?: SchemaValue<Text, "familyName">
+	familyName?: SchemaValue<Text, "familyName">
 	/** The fax number. */
-	"faxNumber"?: SchemaValue<Text, "faxNumber">
+	faxNumber?: SchemaValue<Text, "faxNumber">
 	/** The most generic uni-directional social relation. */
-	"follows"?: SchemaValue<Person | IdReference, "follows">
+	follows?: SchemaValue<Person | IdReference, "follows">
 	/** A person or organization that supports (sponsors) something through some kind of financial contribution. */
-	"funder"?: SchemaValue<Organization | Person | IdReference, "funder">
+	funder?: SchemaValue<Organization | Person | IdReference, "funder">
 	/** A {@link https://schema.org/Grant Grant} that directly or indirectly provide funding or sponsorship for this item. See also {@link https://schema.org/ownershipFundingInfo ownershipFundingInfo}. */
-	"funding"?: SchemaValue<Grant | IdReference, "funding">
+	funding?: SchemaValue<Grant | IdReference, "funding">
 	/** Gender of something, typically a {@link https://schema.org/Person Person}, but possibly also fictional characters, animals, etc. While https://schema.org/Male and https://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender. The {@link https://schema.org/gender gender} property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender {@link https://schema.org/SportsTeam SportsTeam} can be indicated with a text value of "Mixed". */
-	"gender"?: SchemaValue<GenderType | Text | IdReference, "gender">
+	gender?: SchemaValue<GenderType | Text | IdReference, "gender">
 	/** Given name. In the U.S., the first name of a Person. */
-	"givenName"?: SchemaValue<Text, "givenName">
+	givenName?: SchemaValue<Text, "givenName">
 	/** The {@link http://www.gs1.org/gln Global Location Number} (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations. */
-	"globalLocationNumber"?: SchemaValue<Text, "globalLocationNumber">
+	globalLocationNumber?: SchemaValue<Text, "globalLocationNumber">
 	/** A credential awarded to the Person or Organization. */
-	"hasCredential"?: SchemaValue<
+	hasCredential?: SchemaValue<
 		EducationalOccupationalCredential | IdReference,
 		"hasCredential"
 	>
 	/** The Person's occupation. For past professions, use Role for expressing dates. */
-	"hasOccupation"?: SchemaValue<Occupation | IdReference, "hasOccupation">
+	hasOccupation?: SchemaValue<Occupation | IdReference, "hasOccupation">
 	/** Indicates an OfferCatalog listing for this Organization, Person, or Service. */
-	"hasOfferCatalog"?: SchemaValue<OfferCatalog | IdReference, "hasOfferCatalog">
+	hasOfferCatalog?: SchemaValue<OfferCatalog | IdReference, "hasOfferCatalog">
 	/** Points-of-Sales operated by the organization or person. */
-	"hasPOS"?: SchemaValue<Place | IdReference, "hasPOS">
+	hasPOS?: SchemaValue<Place | IdReference, "hasPOS">
 	/** The height of the item. */
-	"height"?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
+	height?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
 	/** A contact location for a person's residence. */
-	"homeLocation"?: SchemaValue<
-		ContactPoint | Place | IdReference,
-		"homeLocation"
-	>
+	homeLocation?: SchemaValue<ContactPoint | Place | IdReference, "homeLocation">
 	/** An honorific prefix preceding a Person's name such as Dr/Mrs/Mr. */
-	"honorificPrefix"?: SchemaValue<Text, "honorificPrefix">
+	honorificPrefix?: SchemaValue<Text, "honorificPrefix">
 	/** An honorific suffix following a Person's name such as M.D./PhD/MSCSW. */
-	"honorificSuffix"?: SchemaValue<Text, "honorificSuffix">
+	honorificSuffix?: SchemaValue<Text, "honorificSuffix">
 	/** The number of interactions for the CreativeWork using the WebSite or SoftwareApplication. The most specific child type of InteractionCounter should be used. */
-	"interactionStatistic"?: SchemaValue<
+	interactionStatistic?: SchemaValue<
 		InteractionCounter | IdReference,
 		"interactionStatistic"
 	>
 	/** The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place. */
-	"isicV4"?: SchemaValue<Text, "isicV4">
+	isicV4?: SchemaValue<Text, "isicV4">
 	/** The job title of the person (for example, Financial Manager). */
-	"jobTitle"?: SchemaValue<DefinedTerm | Text | IdReference, "jobTitle">
+	jobTitle?: SchemaValue<DefinedTerm | Text | IdReference, "jobTitle">
 	/** The most generic bi-directional social/work relation. */
-	"knows"?: SchemaValue<Person | IdReference, "knows">
+	knows?: SchemaValue<Person | IdReference, "knows">
 	/** Of a {@link https://schema.org/Person Person}, and less typically of an {@link https://schema.org/Organization Organization}, to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or {@link https://schema.org/JobPosting JobPosting} descriptions. */
-	"knowsAbout"?: SchemaValue<Text | Thing | URL | IdReference, "knowsAbout">
+	knowsAbout?: SchemaValue<Text | Thing | URL | IdReference, "knowsAbout">
 	/** Of a {@link https://schema.org/Person Person}, and less typically of an {@link https://schema.org/Organization Organization}, to indicate a known language. We do not distinguish skill levels or reading/writing/speaking/signing here. Use language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. */
-	"knowsLanguage"?: SchemaValue<Language | Text | IdReference, "knowsLanguage">
+	knowsLanguage?: SchemaValue<Language | Text | IdReference, "knowsLanguage">
 	/** A pointer to products or services offered by the organization or person. */
-	"makesOffer"?: SchemaValue<Offer | IdReference, "makesOffer">
+	makesOffer?: SchemaValue<Offer | IdReference, "makesOffer">
 	/** An Organization (or ProgramMembership) to which this Person or Organization belongs. */
-	"memberOf"?: SchemaValue<
+	memberOf?: SchemaValue<
 		Organization | ProgramMembership | IdReference,
 		"memberOf"
 	>
 	/** The North American Industry Classification System (NAICS) code for a particular organization or business person. */
-	"naics"?: SchemaValue<Text, "naics">
+	naics?: SchemaValue<Text, "naics">
 	/** Nationality of the person. */
-	"nationality"?: SchemaValue<Country | IdReference, "nationality">
+	nationality?: SchemaValue<Country | IdReference, "nationality">
 	/** The total financial value of the person as calculated by subtracting assets from liabilities. */
-	"netWorth"?: SchemaValue<
+	netWorth?: SchemaValue<
 		MonetaryAmount | PriceSpecification | IdReference,
 		"netWorth"
 	>
 	/** Products owned by the organization or person. */
-	"owns"?: SchemaValue<OwnershipInfo | Product | IdReference, "owns">
+	owns?: SchemaValue<OwnershipInfo | Product | IdReference, "owns">
 	/** A parent of this person. */
-	"parent"?: SchemaValue<Person | IdReference, "parent">
+	parent?: SchemaValue<Person | IdReference, "parent">
 	/**
 	 * A parents of the person.
 	 *
 	 * @deprecated Consider using https://schema.org/parent instead.
 	 */
-	"parents"?: SchemaValue<Person | IdReference, "parents">
+	parents?: SchemaValue<Person | IdReference, "parents">
 	/** Event that this person is a performer or participant in. */
-	"performerIn"?: SchemaValue<Event | IdReference, "performerIn">
+	performerIn?: SchemaValue<Event | IdReference, "performerIn">
 	/**
 	 * The publishingPrinciples property indicates (typically via {@link https://schema.org/URL URL}) a document describing the editorial principles of an {@link https://schema.org/Organization Organization} (or individual, e.g. a {@link https://schema.org/Person Person} writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a {@link https://schema.org/CreativeWork CreativeWork} (e.g. {@link https://schema.org/NewsArticle NewsArticle}) the principles are those of the party primarily responsible for the creation of the {@link https://schema.org/CreativeWork CreativeWork}.
 	 *
 	 * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a {@link https://schema.org/funder funder}) can be expressed using schema.org terminology.
 	 */
-	"publishingPrinciples"?: SchemaValue<
+	publishingPrinciples?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"publishingPrinciples"
 	>
 	/** The most generic familial relation. */
-	"relatedTo"?: SchemaValue<Person | IdReference, "relatedTo">
+	relatedTo?: SchemaValue<Person | IdReference, "relatedTo">
 	/** A pointer to products or services sought by the organization or person (demand). */
-	"seeks"?: SchemaValue<Demand | IdReference, "seeks">
+	seeks?: SchemaValue<Demand | IdReference, "seeks">
 	/** A sibling of the person. */
-	"sibling"?: SchemaValue<Person | IdReference, "sibling">
+	sibling?: SchemaValue<Person | IdReference, "sibling">
 	/**
 	 * A sibling of the person.
 	 *
 	 * @deprecated Consider using https://schema.org/sibling instead.
 	 */
-	"siblings"?: SchemaValue<Person | IdReference, "siblings">
+	siblings?: SchemaValue<Person | IdReference, "siblings">
 	/** A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event. */
-	"sponsor"?: SchemaValue<Organization | Person | IdReference, "sponsor">
+	sponsor?: SchemaValue<Organization | Person | IdReference, "sponsor">
 	/** The person's spouse. */
-	"spouse"?: SchemaValue<Person | IdReference, "spouse">
+	spouse?: SchemaValue<Person | IdReference, "spouse">
 	/** The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain. */
-	"taxID"?: SchemaValue<Text, "taxID">
+	taxID?: SchemaValue<Text, "taxID">
 	/** The telephone number. */
-	"telephone"?: SchemaValue<Text, "telephone">
+	telephone?: SchemaValue<Text, "telephone">
 	/** The Value-added Tax ID of the organization or person. */
-	"vatID"?: SchemaValue<Text, "vatID">
+	vatID?: SchemaValue<Text, "vatID">
 	/** The weight of the product or person. */
-	"weight"?: SchemaValue<QuantitativeValue | IdReference, "weight">
+	weight?: SchemaValue<QuantitativeValue | IdReference, "weight">
 	/** A contact location for a person's place of work. */
-	"workLocation"?: SchemaValue<
-		ContactPoint | Place | IdReference,
-		"workLocation"
-	>
+	workLocation?: SchemaValue<ContactPoint | Place | IdReference, "workLocation">
 	/** Organizations that the person works for. */
-	"worksFor"?: SchemaValue<Organization | IdReference, "worksFor">
+	worksFor?: SchemaValue<Organization | IdReference, "worksFor">
 }
 export interface PersonLeaf extends PersonBase {
 	type: "Person"
@@ -11201,8 +11046,7 @@ interface PetStoreLeaf extends LocalBusinessBase {
 /** A pet store. */
 export type PetStore = PetStoreLeaf | string
 
-interface PharmacyBase extends LocalBusinessBase, MedicalOrganizationBase {
-}
+interface PharmacyBase extends LocalBusinessBase, MedicalOrganizationBase {}
 interface PharmacyLeaf extends PharmacyBase {
 	type: "Pharmacy"
 }
@@ -11223,19 +11067,19 @@ export type PhotographAction = PhotographActionLeaf
 
 interface PhysicalActivityBase extends MedicalEntityBase {
 	/** The anatomy of the underlying organ system or structures associated with this entity. */
-	"associatedAnatomy"?: SchemaValue<
+	associatedAnatomy?: SchemaValue<
 		AnatomicalStructure | AnatomicalSystem | SuperficialAnatomy | IdReference,
 		"associatedAnatomy"
 	>
 	/** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
-	"category"?: SchemaValue<
+	category?: SchemaValue<
 		CategoryCode | PhysicalActivityCategory | Text | Thing | URL | IdReference,
 		"category"
 	>
 	/** The characteristics of associated patients, such as age, gender, race etc. */
-	"epidemiology"?: SchemaValue<Text, "epidemiology">
+	epidemiology?: SchemaValue<Text, "epidemiology">
 	/** Changes in the normal mechanical, physical, and biochemical functions that are associated with this activity or condition. */
-	"pathophysiology"?: SchemaValue<Text, "pathophysiology">
+	pathophysiology?: SchemaValue<Text, "pathophysiology">
 }
 interface PhysicalActivityLeaf extends PhysicalActivityBase {
 	type: "PhysicalActivity"
@@ -11264,8 +11108,7 @@ export type PhysicalActivityCategory =
 	| "StrengthTraining"
 	| PhysicalActivityCategoryLeaf
 
-interface PhysicalExamBase extends MedicalProcedureBase, EnumerationBase {
-}
+interface PhysicalExamBase extends MedicalProcedureBase, EnumerationBase {}
 interface PhysicalExamLeaf extends PhysicalExamBase {
 	type: "PhysicalExam"
 }
@@ -11309,17 +11152,17 @@ export type PhysicalTherapy = PhysicalTherapyLeaf
 
 interface PhysicianBase extends LocalBusinessBase, MedicalOrganizationBase {
 	/** A medical service available from this provider. */
-	"availableService"?: SchemaValue<
+	availableService?: SchemaValue<
 		MedicalProcedure | MedicalTest | MedicalTherapy | IdReference,
 		"availableService"
 	>
 	/** A hospital with which the physician or office is affiliated. */
-	"hospitalAffiliation"?: SchemaValue<
+	hospitalAffiliation?: SchemaValue<
 		Hospital | IdReference,
 		"hospitalAffiliation"
 	>
 	/** A medical specialty of the provider. */
-	"medicalSpecialty"?: SchemaValue<
+	medicalSpecialty?: SchemaValue<
 		MedicalSpecialty | IdReference,
 		"medicalSpecialty"
 	>
@@ -11342,19 +11185,19 @@ interface PlaceBase extends ThingBase {
 	 *
 	 * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
 	 */
-	"additionalProperty"?: SchemaValue<
+	additionalProperty?: SchemaValue<
 		PropertyValue | IdReference,
 		"additionalProperty"
 	>
 	/** Physical address of the item. */
-	"address"?: SchemaValue<PostalAddress | Text | IdReference, "address">
+	address?: SchemaValue<PostalAddress | Text | IdReference, "address">
 	/** The overall rating, based on a collection of reviews or ratings, of the item. */
-	"aggregateRating"?: SchemaValue<
+	aggregateRating?: SchemaValue<
 		AggregateRating | IdReference,
 		"aggregateRating"
 	>
 	/** An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs. */
-	"amenityFeature"?: SchemaValue<
+	amenityFeature?: SchemaValue<
 		LocationFeatureSpecification | IdReference,
 		"amenityFeature"
 	>
@@ -11363,151 +11206,142 @@ interface PlaceBase extends ThingBase {
 	 *
 	 * For example, in the URL http://www.starbucks.co.uk/store-locator/etc/detail/3047 the code "3047" is a branchCode for a particular branch.
 	 */
-	"branchCode"?: SchemaValue<Text, "branchCode">
+	branchCode?: SchemaValue<Text, "branchCode">
 	/**
 	 * The basic containment relation between a place and one that contains it.
 	 *
 	 * @deprecated Consider using https://schema.org/containedInPlace instead.
 	 */
-	"containedIn"?: SchemaValue<Place | IdReference, "containedIn">
+	containedIn?: SchemaValue<Place | IdReference, "containedIn">
 	/** The basic containment relation between a place and one that contains it. */
-	"containedInPlace"?: SchemaValue<Place | IdReference, "containedInPlace">
+	containedInPlace?: SchemaValue<Place | IdReference, "containedInPlace">
 	/** The basic containment relation between a place and another that it contains. */
-	"containsPlace"?: SchemaValue<Place | IdReference, "containsPlace">
+	containsPlace?: SchemaValue<Place | IdReference, "containsPlace">
 	/** Upcoming or past event associated with this place, organization, or action. */
-	"event"?: SchemaValue<Event | IdReference, "event">
+	event?: SchemaValue<Event | IdReference, "event">
 	/**
 	 * Upcoming or past events associated with this place or organization.
 	 *
 	 * @deprecated Consider using https://schema.org/event instead.
 	 */
-	"events"?: SchemaValue<Event | IdReference, "events">
+	events?: SchemaValue<Event | IdReference, "events">
 	/** The fax number. */
-	"faxNumber"?: SchemaValue<Text, "faxNumber">
+	faxNumber?: SchemaValue<Text, "faxNumber">
 	/** The geo coordinates of the place. */
-	"geo"?: SchemaValue<GeoCoordinates | GeoShape | IdReference, "geo">
+	geo?: SchemaValue<GeoCoordinates | GeoShape | IdReference, "geo">
 	/** Represents a relationship between two geometries (or the places they represent), relating a containing geometry to a contained geometry. "a contains b iff no points of b lie in the exterior of a, and at least one point of the interior of b lies in the interior of a". As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoContains"?: SchemaValue<
+	geoContains?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoContains"
 	>
 	/** Represents a relationship between two geometries (or the places they represent), relating a geometry to another that covers it. As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoCoveredBy"?: SchemaValue<
+	geoCoveredBy?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoCoveredBy"
 	>
 	/** Represents a relationship between two geometries (or the places they represent), relating a covering geometry to a covered geometry. "Every point of b is a point of (the interior or boundary of) a". As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoCovers"?: SchemaValue<
-		GeospatialGeometry | Place | IdReference,
-		"geoCovers"
-	>
+	geoCovers?: SchemaValue<GeospatialGeometry | Place | IdReference, "geoCovers">
 	/** Represents a relationship between two geometries (or the places they represent), relating a geometry to another that crosses it: "a crosses b: they have some but not all interior points in common, and the dimension of the intersection is less than that of at least one of them". As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoCrosses"?: SchemaValue<
+	geoCrosses?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoCrosses"
 	>
 	/** Represents spatial relations in which two geometries (or the places they represent) are topologically disjoint: "they have no point in common. They form a set of disconnected geometries." (A symmetric relationship, as defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}.) */
-	"geoDisjoint"?: SchemaValue<
+	geoDisjoint?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoDisjoint"
 	>
 	/** Represents spatial relations in which two geometries (or the places they represent) are topologically equal, as defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. "Two geometries are topologically equal if their interiors intersect and no part of the interior or boundary of one geometry intersects the exterior of the other" (a symmetric relationship). */
-	"geoEquals"?: SchemaValue<
-		GeospatialGeometry | Place | IdReference,
-		"geoEquals"
-	>
+	geoEquals?: SchemaValue<GeospatialGeometry | Place | IdReference, "geoEquals">
 	/** Represents spatial relations in which two geometries (or the places they represent) have at least one point in common. As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoIntersects"?: SchemaValue<
+	geoIntersects?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoIntersects"
 	>
 	/** Represents a relationship between two geometries (or the places they represent), relating a geometry to another that geospatially overlaps it, i.e. they have some but not all points in common. As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoOverlaps"?: SchemaValue<
+	geoOverlaps?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoOverlaps"
 	>
 	/** Represents spatial relations in which two geometries (or the places they represent) touch: "they have at least one boundary point in common, but no interior points." (A symmetric relationship, as defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}.) */
-	"geoTouches"?: SchemaValue<
+	geoTouches?: SchemaValue<
 		GeospatialGeometry | Place | IdReference,
 		"geoTouches"
 	>
 	/** Represents a relationship between two geometries (or the places they represent), relating a geometry to one that contains it, i.e. it is inside (i.e. within) its interior. As defined in {@link https://en.wikipedia.org/wiki/DE-9IM DE-9IM}. */
-	"geoWithin"?: SchemaValue<
-		GeospatialGeometry | Place | IdReference,
-		"geoWithin"
-	>
+	geoWithin?: SchemaValue<GeospatialGeometry | Place | IdReference, "geoWithin">
 	/** The {@link http://www.gs1.org/gln Global Location Number} (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations. */
-	"globalLocationNumber"?: SchemaValue<Text, "globalLocationNumber">
+	globalLocationNumber?: SchemaValue<Text, "globalLocationNumber">
 	/** Indicates whether some facility (e.g. {@link https://schema.org/FoodEstablishment FoodEstablishment}, {@link https://schema.org/CovidTestingFacility CovidTestingFacility}) offers a service that can be used by driving through in a car. In the case of {@link https://schema.org/CovidTestingFacility CovidTestingFacility} such facilities could potentially help with social distancing from other potentially-infected users. */
-	"hasDriveThroughService"?: SchemaValue<Boolean, "hasDriveThroughService">
+	hasDriveThroughService?: SchemaValue<Boolean, "hasDriveThroughService">
 	/** A URL to a map of the place. */
-	"hasMap"?: SchemaValue<Map | URL | IdReference, "hasMap">
+	hasMap?: SchemaValue<Map | URL | IdReference, "hasMap">
 	/** A flag to signal that the item, event, or place is accessible for free. */
-	"isAccessibleForFree"?: SchemaValue<Boolean, "isAccessibleForFree">
+	isAccessibleForFree?: SchemaValue<Boolean, "isAccessibleForFree">
 	/** The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place. */
-	"isicV4"?: SchemaValue<Text, "isicV4">
+	isicV4?: SchemaValue<Text, "isicV4">
 	/** Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property. */
-	"keywords"?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
+	keywords?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
 	/** The latitude of a location. For example `37.42242` ({@link https://en.wikipedia.org/wiki/World_Geodetic_System WGS 84}). */
-	"latitude"?: SchemaValue<Number | Text, "latitude">
+	latitude?: SchemaValue<Number | Text, "latitude">
 	/** An associated logo. */
-	"logo"?: SchemaValue<ImageObject | URL | IdReference, "logo">
+	logo?: SchemaValue<ImageObject | URL | IdReference, "logo">
 	/** The longitude of a location. For example `-122.08585` ({@link https://en.wikipedia.org/wiki/World_Geodetic_System WGS 84}). */
-	"longitude"?: SchemaValue<Number | Text, "longitude">
+	longitude?: SchemaValue<Number | Text, "longitude">
 	/**
 	 * A URL to a map of the place.
 	 *
 	 * @deprecated Consider using https://schema.org/hasMap instead.
 	 */
-	"map"?: SchemaValue<URL, "map">
+	map?: SchemaValue<URL, "map">
 	/**
 	 * A URL to a map of the place.
 	 *
 	 * @deprecated Consider using https://schema.org/hasMap instead.
 	 */
-	"maps"?: SchemaValue<URL, "maps">
+	maps?: SchemaValue<URL, "maps">
 	/** The total number of individuals that may attend an event or venue. */
-	"maximumAttendeeCapacity"?: SchemaValue<Integer, "maximumAttendeeCapacity">
+	maximumAttendeeCapacity?: SchemaValue<Integer, "maximumAttendeeCapacity">
 	/** The opening hours of a certain place. */
-	"openingHoursSpecification"?: SchemaValue<
+	openingHoursSpecification?: SchemaValue<
 		OpeningHoursSpecification | IdReference,
 		"openingHoursSpecification"
 	>
 	/** A photograph of this place. */
-	"photo"?: SchemaValue<ImageObject | Photograph | IdReference, "photo">
+	photo?: SchemaValue<ImageObject | Photograph | IdReference, "photo">
 	/**
 	 * Photographs of this place.
 	 *
 	 * @deprecated Consider using https://schema.org/photo instead.
 	 */
-	"photos"?: SchemaValue<ImageObject | Photograph | IdReference, "photos">
+	photos?: SchemaValue<ImageObject | Photograph | IdReference, "photos">
 	/** A flag to signal that the {@link https://schema.org/Place Place} is open to public visitors. If this property is omitted there is no assumed default boolean value */
-	"publicAccess"?: SchemaValue<Boolean, "publicAccess">
+	publicAccess?: SchemaValue<Boolean, "publicAccess">
 	/** A review of the item. */
-	"review"?: SchemaValue<Review | IdReference, "review">
+	review?: SchemaValue<Review | IdReference, "review">
 	/**
 	 * Review of the item.
 	 *
 	 * @deprecated Consider using https://schema.org/review instead.
 	 */
-	"reviews"?: SchemaValue<Review | IdReference, "reviews">
+	reviews?: SchemaValue<Review | IdReference, "reviews">
 	/** A slogan or motto associated with the item. */
-	"slogan"?: SchemaValue<Text, "slogan">
+	slogan?: SchemaValue<Text, "slogan">
 	/** Indicates whether it is allowed to smoke in the place, e.g. in the restaurant, hotel or hotel room. */
-	"smokingAllowed"?: SchemaValue<Boolean, "smokingAllowed">
+	smokingAllowed?: SchemaValue<Boolean, "smokingAllowed">
 	/**
 	 * The special opening hours of a certain place.
 	 *
 	 * Use this to explicitly override general opening hours brought in scope by {@link https://schema.org/openingHoursSpecification openingHoursSpecification} or {@link https://schema.org/openingHours openingHours}.
 	 */
-	"specialOpeningHoursSpecification"?: SchemaValue<
+	specialOpeningHoursSpecification?: SchemaValue<
 		OpeningHoursSpecification | IdReference,
 		"specialOpeningHoursSpecification"
 	>
 	/** The telephone number. */
-	"telephone"?: SchemaValue<Text, "telephone">
+	telephone?: SchemaValue<Text, "telephone">
 	/** A page providing information on how to book a tour of some {@link https://schema.org/Place Place}, such as an {@link https://schema.org/Accommodation Accommodation} or {@link https://schema.org/ApartmentComplex ApartmentComplex} in a real estate setting, as well as other kinds of tours as appropriate. */
-	"tourBookingPage"?: SchemaValue<URL, "tourBookingPage">
+	tourBookingPage?: SchemaValue<URL, "tourBookingPage">
 }
 export interface PlaceLeaf extends PlaceBase {
 	type: "Place"
@@ -11541,7 +11375,7 @@ export type PlaceOfWorship =
 
 interface PlanActionBase extends ActionBase {
 	/** The time the object is scheduled to. */
-	"scheduledTime"?: SchemaValue<Date | DateTime, "scheduledTime">
+	scheduledTime?: SchemaValue<Date | DateTime, "scheduledTime">
 }
 interface PlanActionLeaf extends PlanActionBase {
 	type: "PlanAction"
@@ -11567,9 +11401,9 @@ export type Play = PlayLeaf
 
 interface PlayActionBase extends ActionBase {
 	/** An intended audience, i.e. a group for whom something was created. */
-	"audience"?: SchemaValue<Audience | IdReference, "audience">
+	audience?: SchemaValue<Audience | IdReference, "audience">
 	/** Upcoming or past event associated with this place, organization, or action. */
-	"event"?: SchemaValue<Event | IdReference, "event">
+	event?: SchemaValue<Event | IdReference, "event">
 }
 interface PlayActionLeaf extends PlayActionBase {
 	type: "PlayAction"
@@ -11585,7 +11419,7 @@ export type PlayAction = PlayActionLeaf | ExerciseAction | PerformAction
 
 interface PlayGameActionBase extends ConsumeActionBase {
 	/** Indicates the availability type of the game content associated with this action, such as whether it is a full version or a demo. */
-	"gameAvailabilityType"?: SchemaValue<
+	gameAvailabilityType?: SchemaValue<
 		GameAvailabilityEnumeration | Text | IdReference,
 		"gameAvailabilityType"
 	>
@@ -11622,9 +11456,9 @@ export type PodcastSeason = PodcastSeasonLeaf
 
 interface PodcastSeriesBase extends CreativeWorkSeriesBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/** The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom. */
-	"webFeed"?: SchemaValue<DataFeed | URL | IdReference, "webFeed">
+	webFeed?: SchemaValue<DataFeed | URL | IdReference, "webFeed">
 }
 interface PodcastSeriesLeaf extends PodcastSeriesBase {
 	type: "PodcastSeries"
@@ -11638,8 +11472,7 @@ interface PodiatricLeaf extends LocalBusinessBase {
 /** Podiatry is the care of the human foot, especially the diagnosis and treatment of foot disorders. */
 export type Podiatric = PodiatricLeaf | string
 
-interface PoliceStationBase extends CivicStructureBase, LocalBusinessBase {
-}
+interface PoliceStationBase extends CivicStructureBase, LocalBusinessBase {}
 interface PoliceStationLeaf extends PoliceStationBase {
 	type: "PoliceStation"
 }
@@ -11660,17 +11493,17 @@ export type Pond = PondLeaf | string
 
 interface PostalAddressBase extends ContactPointBase {
 	/** The country. For example, USA. You can also provide the two-letter {@link http://en.wikipedia.org/wiki/ISO_3166-1 ISO 3166-1 alpha-2 country code}. */
-	"addressCountry"?: SchemaValue<Country | Text | IdReference, "addressCountry">
+	addressCountry?: SchemaValue<Country | Text | IdReference, "addressCountry">
 	/** The locality in which the street address is, and which is in the region. For example, Mountain View. */
-	"addressLocality"?: SchemaValue<Text, "addressLocality">
+	addressLocality?: SchemaValue<Text, "addressLocality">
 	/** The region in which the locality is, and which is in the country. For example, California or another appropriate first-level {@link https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country Administrative division}. */
-	"addressRegion"?: SchemaValue<Text, "addressRegion">
+	addressRegion?: SchemaValue<Text, "addressRegion">
 	/** The postal code. For example, 94043. */
-	"postalCode"?: SchemaValue<Text, "postalCode">
+	postalCode?: SchemaValue<Text, "postalCode">
 	/** The post office box number for PO box addresses. */
-	"postOfficeBoxNumber"?: SchemaValue<Text, "postOfficeBoxNumber">
+	postOfficeBoxNumber?: SchemaValue<Text, "postOfficeBoxNumber">
 	/** The street address. For example, 1600 Amphitheatre Pkwy. */
-	"streetAddress"?: SchemaValue<Text, "streetAddress">
+	streetAddress?: SchemaValue<Text, "streetAddress">
 }
 interface PostalAddressLeaf extends PostalAddressBase {
 	type: "PostalAddress"
@@ -11680,13 +11513,12 @@ export type PostalAddress = PostalAddressLeaf
 
 interface PostalCodeRangeSpecificationBase extends ThingBase {
 	/** First postal code in a range (included). */
-	"postalCodeBegin"?: SchemaValue<Text, "postalCodeBegin">
+	postalCodeBegin?: SchemaValue<Text, "postalCodeBegin">
 	/** Last postal code in the range (included). Needs to be after {@link https://schema.org/postalCodeBegin postalCodeBegin}. */
-	"postalCodeEnd"?: SchemaValue<Text, "postalCodeEnd">
+	postalCodeEnd?: SchemaValue<Text, "postalCodeEnd">
 }
 interface PostalCodeRangeSpecificationLeaf
-	extends PostalCodeRangeSpecificationBase
-{
+	extends PostalCodeRangeSpecificationBase {
 	type: "PostalCodeRangeSpecification"
 }
 /** Indicates a range of postal codes, usually defined as the set of valid codes between {@link https://schema.org/postalCodeBegin postalCodeBegin} and {@link https://schema.org/postalCodeEnd postalCodeEnd}, inclusively. */
@@ -11755,19 +11587,19 @@ export type PriceComponentTypeEnumeration =
 
 interface PriceSpecificationBase extends ThingBase {
 	/** The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity. */
-	"eligibleQuantity"?: SchemaValue<
+	eligibleQuantity?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"eligibleQuantity"
 	>
 	/** The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount. */
-	"eligibleTransactionVolume"?: SchemaValue<
+	eligibleTransactionVolume?: SchemaValue<
 		PriceSpecification | IdReference,
 		"eligibleTransactionVolume"
 	>
 	/** The highest price if the price is a range. */
-	"maxPrice"?: SchemaValue<Number, "maxPrice">
+	maxPrice?: SchemaValue<Number, "maxPrice">
 	/** The lowest price if the price is a range. */
-	"minPrice"?: SchemaValue<Number, "minPrice">
+	minPrice?: SchemaValue<Number, "minPrice">
 	/**
 	 * The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
 	 *
@@ -11777,19 +11609,19 @@ interface PriceSpecificationBase extends ThingBase {
 	 * - Note that both {@link http://www.w3.org/TR/xhtml-microdata-primer/#using-the-content-attribute Microdata} and Microdata syntax allow the use of a "content=" attribute for publishing simple machine-readable values alongside more human-friendly formatting.
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 */
-	"price"?: SchemaValue<Number | Text, "price">
+	price?: SchemaValue<Number | Text, "price">
 	/**
 	 * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"priceCurrency"?: SchemaValue<Text, "priceCurrency">
+	priceCurrency?: SchemaValue<Text, "priceCurrency">
 	/** The date when the item becomes valid. */
-	"validFrom"?: SchemaValue<Date | DateTime, "validFrom">
+	validFrom?: SchemaValue<Date | DateTime, "validFrom">
 	/** The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours. */
-	"validThrough"?: SchemaValue<Date | DateTime, "validThrough">
+	validThrough?: SchemaValue<Date | DateTime, "validThrough">
 	/** Specifies whether the applicable value-added tax (VAT) is included in the price specification or not. */
-	"valueAddedTaxIncluded"?: SchemaValue<Boolean, "valueAddedTaxIncluded">
+	valueAddedTaxIncluded?: SchemaValue<Boolean, "valueAddedTaxIncluded">
 }
 interface PriceSpecificationLeaf extends PriceSpecificationBase {
 	type: "PriceSpecification"
@@ -11833,12 +11665,12 @@ interface ProductBase extends ThingBase {
 	 *
 	 * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
 	 */
-	"additionalProperty"?: SchemaValue<
+	additionalProperty?: SchemaValue<
 		PropertyValue | IdReference,
 		"additionalProperty"
 	>
 	/** The overall rating, based on a collection of reviews or ratings, of the item. */
-	"aggregateRating"?: SchemaValue<
+	aggregateRating?: SchemaValue<
 		AggregateRating | IdReference,
 		"aggregateRating"
 	>
@@ -11847,30 +11679,30 @@ interface ProductBase extends ThingBase {
 	 *
 	 * Note also that this is a definition for how to include ASINs in Schema.org data, and not a definition of ASINs in general - see documentation from Amazon for authoritative details. ASINs are most commonly encoded as text strings, but the [asin] property supports URL/URI as potential values too.
 	 */
-	"asin"?: SchemaValue<Text | URL, "asin">
+	asin?: SchemaValue<Text | URL, "asin">
 	/** An intended audience, i.e. a group for whom something was created. */
-	"audience"?: SchemaValue<Audience | IdReference, "audience">
+	audience?: SchemaValue<Audience | IdReference, "audience">
 	/** An award won by or for this item. */
-	"award"?: SchemaValue<Text, "award">
+	award?: SchemaValue<Text, "award">
 	/**
 	 * Awards won by or for this item.
 	 *
 	 * @deprecated Consider using https://schema.org/award instead.
 	 */
-	"awards"?: SchemaValue<Text, "awards">
+	awards?: SchemaValue<Text, "awards">
 	/** The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person. */
-	"brand"?: SchemaValue<Brand | Organization | IdReference, "brand">
+	brand?: SchemaValue<Brand | Organization | IdReference, "brand">
 	/** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
-	"category"?: SchemaValue<
+	category?: SchemaValue<
 		CategoryCode | PhysicalActivityCategory | Text | Thing | URL | IdReference,
 		"category"
 	>
 	/** The color of the product. */
-	"color"?: SchemaValue<Text, "color">
+	color?: SchemaValue<Text, "color">
 	/** The place where the product was assembled. */
-	"countryOfAssembly"?: SchemaValue<Text, "countryOfAssembly">
+	countryOfAssembly?: SchemaValue<Text, "countryOfAssembly">
 	/** The place where the item (typically {@link https://schema.org/Product Product}) was last processed and tested before importation. */
-	"countryOfLastProcessing"?: SchemaValue<Text, "countryOfLastProcessing">
+	countryOfLastProcessing?: SchemaValue<Text, "countryOfLastProcessing">
 	/**
 	 * The country of origin of something, including products as well as creative works such as movie and TV content.
 	 *
@@ -11878,11 +11710,11 @@ interface ProductBase extends ThingBase {
 	 *
 	 * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
 	 */
-	"countryOfOrigin"?: SchemaValue<Country | IdReference, "countryOfOrigin">
+	countryOfOrigin?: SchemaValue<Country | IdReference, "countryOfOrigin">
 	/** The depth of the item. */
-	"depth"?: SchemaValue<Distance | QuantitativeValue | IdReference, "depth">
+	depth?: SchemaValue<Distance | QuantitativeValue | IdReference, "depth">
 	/** A {@link https://schema.org/Grant Grant} that directly or indirectly provide funding or sponsorship for this item. See also {@link https://schema.org/ownershipFundingInfo ownershipFundingInfo}. */
-	"funding"?: SchemaValue<Grant | IdReference, "funding">
+	funding?: SchemaValue<Grant | IdReference, "funding">
 	/**
 	 * A Global Trade Item Number ({@link https://www.gs1.org/standards/id-keys/gtin GTIN}). GTINs identify trade items, including products and services, using numeric identification codes.
 	 *
@@ -11890,32 +11722,32 @@ interface ProductBase extends ThingBase {
 	 *
 	 * Note also that this is a definition for how to include GTINs in Schema.org data, and not a definition of GTINs in general - see the GS1 documentation for authoritative details.
 	 */
-	"gtin"?: SchemaValue<Text | URL, "gtin">
+	gtin?: SchemaValue<Text | URL, "gtin">
 	/** The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin12"?: SchemaValue<Text, "gtin12">
+	gtin12?: SchemaValue<Text, "gtin12">
 	/** The GTIN-13 code of the product, or the product to which the offer refers. This is equivalent to 13-digit ISBN codes and EAN UCC-13. Former 12-digit UPC codes can be converted into a GTIN-13 code by simply adding a preceding zero. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin13"?: SchemaValue<Text, "gtin13">
+	gtin13?: SchemaValue<Text, "gtin13">
 	/** The GTIN-14 code of the product, or the product to which the offer refers. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin14"?: SchemaValue<Text, "gtin14">
+	gtin14?: SchemaValue<Text, "gtin14">
 	/** The GTIN-8 code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
-	"gtin8"?: SchemaValue<Text, "gtin8">
+	gtin8?: SchemaValue<Text, "gtin8">
 	/** Used to tag an item to be intended or suitable for consumption or use by adults only. */
-	"hasAdultConsideration"?: SchemaValue<
+	hasAdultConsideration?: SchemaValue<
 		AdultOrientedEnumeration | IdReference,
 		"hasAdultConsideration"
 	>
 	/** Defines the energy efficiency Category (also known as "class" or "rating") for a product according to an international energy efficiency standard. */
-	"hasEnergyConsumptionDetails"?: SchemaValue<
+	hasEnergyConsumptionDetails?: SchemaValue<
 		EnergyConsumptionDetails | IdReference,
 		"hasEnergyConsumptionDetails"
 	>
 	/** A product measurement, for example the inseam of pants, the wheel size of a bicycle, or the gauge of a screw. Usually an exact measurement, but can also be a range of measurements for adjustable products, for example belts and ski bindings. */
-	"hasMeasurement"?: SchemaValue<
+	hasMeasurement?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"hasMeasurement"
 	>
 	/** Specifies a MerchantReturnPolicy that may be applicable. */
-	"hasMerchantReturnPolicy"?: SchemaValue<
+	hasMerchantReturnPolicy?: SchemaValue<
 		MerchantReturnPolicy | IdReference,
 		"hasMerchantReturnPolicy"
 	>
@@ -11924,55 +11756,52 @@ interface ProductBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/hasMerchantReturnPolicy instead.
 	 */
-	"hasProductReturnPolicy"?: SchemaValue<
+	hasProductReturnPolicy?: SchemaValue<
 		ProductReturnPolicy | IdReference,
 		"hasProductReturnPolicy"
 	>
 	/** The height of the item. */
-	"height"?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
+	height?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
 	/** Indicates the {@link https://schema.org/productGroupID productGroupID} for a {@link https://schema.org/ProductGroup ProductGroup} that this product {@link https://schema.org/isVariantOf isVariantOf}. */
-	"inProductGroupWithID"?: SchemaValue<Text, "inProductGroupWithID">
+	inProductGroupWithID?: SchemaValue<Text, "inProductGroupWithID">
 	/** A pointer to another product (or multiple products) for which this product is an accessory or spare part. */
-	"isAccessoryOrSparePartFor"?: SchemaValue<
+	isAccessoryOrSparePartFor?: SchemaValue<
 		Product | IdReference,
 		"isAccessoryOrSparePartFor"
 	>
 	/** A pointer to another product (or multiple products) for which this product is a consumable. */
-	"isConsumableFor"?: SchemaValue<Product | IdReference, "isConsumableFor">
+	isConsumableFor?: SchemaValue<Product | IdReference, "isConsumableFor">
 	/** Indicates whether this content is family friendly. */
-	"isFamilyFriendly"?: SchemaValue<Boolean, "isFamilyFriendly">
+	isFamilyFriendly?: SchemaValue<Boolean, "isFamilyFriendly">
 	/** A pointer to another, somehow related product (or multiple products). */
-	"isRelatedTo"?: SchemaValue<Product | Service | IdReference, "isRelatedTo">
+	isRelatedTo?: SchemaValue<Product | Service | IdReference, "isRelatedTo">
 	/** A pointer to another, functionally similar product (or multiple products). */
-	"isSimilarTo"?: SchemaValue<Product | Service | IdReference, "isSimilarTo">
+	isSimilarTo?: SchemaValue<Product | Service | IdReference, "isSimilarTo">
 	/** Indicates the kind of product that this is a variant of. In the case of {@link https://schema.org/ProductModel ProductModel}, this is a pointer (from a ProductModel) to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive. In the case of a {@link https://schema.org/ProductGroup ProductGroup}, the group description also serves as a template, representing a set of Products that vary on explicitly defined, specific dimensions only (so it defines both a set of variants, as well as which values distinguish amongst those variants). When used with {@link https://schema.org/ProductGroup ProductGroup}, this property can apply to any {@link https://schema.org/Product Product} included in the group. */
-	"isVariantOf"?: SchemaValue<
+	isVariantOf?: SchemaValue<
 		ProductGroup | ProductModel | IdReference,
 		"isVariantOf"
 	>
 	/** A predefined value from OfferItemCondition specifying the condition of the product or service, or the products or services included in the offer. Also used for product return policies to specify the condition of products accepted for returns. */
-	"itemCondition"?: SchemaValue<
-		OfferItemCondition | IdReference,
-		"itemCondition"
-	>
+	itemCondition?: SchemaValue<OfferItemCondition | IdReference, "itemCondition">
 	/** Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property. */
-	"keywords"?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
+	keywords?: SchemaValue<DefinedTerm | Text | URL | IdReference, "keywords">
 	/** An associated logo. */
-	"logo"?: SchemaValue<ImageObject | URL | IdReference, "logo">
+	logo?: SchemaValue<ImageObject | URL | IdReference, "logo">
 	/** The manufacturer of the product. */
-	"manufacturer"?: SchemaValue<Organization | IdReference, "manufacturer">
+	manufacturer?: SchemaValue<Organization | IdReference, "manufacturer">
 	/** A material that something is made from, e.g. leather, wool, cotton, paper. */
-	"material"?: SchemaValue<Product | Text | URL | IdReference, "material">
+	material?: SchemaValue<Product | Text | URL | IdReference, "material">
 	/**
 	 * The {@link https://schema.org/mobileUrl mobileUrl} property is provided for specific situations in which data consumers need to determine whether one of several provided URLs is a dedicated 'mobile site'.
 	 *
 	 * To discourage over-use, and reflecting intial usecases, the property is expected only on {@link https://schema.org/Product Product} and {@link https://schema.org/Offer Offer}, rather than {@link https://schema.org/Thing Thing}. The general trend in web technology is towards {@link https://en.wikipedia.org/wiki/Responsive_web_design responsive design} in which content can be flexibly adapted to a wide range of browsing environments. Pages and sites referenced with the long-established {@link https://schema.org/url url} property should ideally also be usable on a wide variety of devices, including mobile phones. In most cases, it would be pointless and counter productive to attempt to update all {@link https://schema.org/url url} markup to use {@link https://schema.org/mobileUrl mobileUrl} for more mobile-oriented pages. The property is intended for the case when items (primarily {@link https://schema.org/Product Product} and {@link https://schema.org/Offer Offer}) have extra URLs hosted on an additional "mobile site" alongside the main one. It should not be taken as an endorsement of this publication style.
 	 */
-	"mobileUrl"?: SchemaValue<Text, "mobileUrl">
+	mobileUrl?: SchemaValue<Text, "mobileUrl">
 	/** The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties. */
-	"model"?: SchemaValue<ProductModel | Text | IdReference, "model">
+	model?: SchemaValue<ProductModel | Text | IdReference, "model">
 	/** The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers. */
-	"mpn"?: SchemaValue<Text, "mpn">
+	mpn?: SchemaValue<Text, "mpn">
 	/**
 	 * Provides negative considerations regarding something, most typically in pro/con lists for reviews (alongside {@link https://schema.org/positiveNotes positiveNotes}). For symmetry
 	 *
@@ -11980,16 +11809,16 @@ interface ProductBase extends ThingBase {
 	 *
 	 * The property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most negative is at the beginning of the list).
 	 */
-	"negativeNotes"?: SchemaValue<
+	negativeNotes?: SchemaValue<
 		ItemList | ListItem | Text | WebContent | IdReference,
 		"negativeNotes"
 	>
 	/** Indicates the {@link https://en.wikipedia.org/wiki/NATO_Stock_Number NATO stock number} (nsn) of a {@link https://schema.org/Product Product}. */
-	"nsn"?: SchemaValue<Text, "nsn">
+	nsn?: SchemaValue<Text, "nsn">
 	/** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"offers"?: SchemaValue<Demand | Offer | IdReference, "offers">
+	offers?: SchemaValue<Demand | Offer | IdReference, "offers">
 	/** A pattern that something has, for example 'polka dot', 'striped', 'Canadian flag'. Values are typically expressed as text, although links to controlled value schemes are also supported. */
-	"pattern"?: SchemaValue<DefinedTerm | Text | IdReference, "pattern">
+	pattern?: SchemaValue<DefinedTerm | Text | IdReference, "pattern">
 	/**
 	 * Provides positive considerations regarding something, for example product highlights or (alongside {@link https://schema.org/negativeNotes negativeNotes}) pro/con lists for reviews.
 	 *
@@ -11997,39 +11826,39 @@ interface ProductBase extends ThingBase {
 	 *
 	 * The property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most positive is at the beginning of the list).
 	 */
-	"positiveNotes"?: SchemaValue<
+	positiveNotes?: SchemaValue<
 		ItemList | ListItem | Text | WebContent | IdReference,
 		"positiveNotes"
 	>
 	/** The product identifier, such as ISBN. For example: `meta itemprop="productID" content="isbn:123-456-789"`. */
-	"productID"?: SchemaValue<Text, "productID">
+	productID?: SchemaValue<Text, "productID">
 	/** The date of production of the item, e.g. vehicle. */
-	"productionDate"?: SchemaValue<Date, "productionDate">
+	productionDate?: SchemaValue<Date, "productionDate">
 	/** The date the item, e.g. vehicle, was purchased by the current owner. */
-	"purchaseDate"?: SchemaValue<Date, "purchaseDate">
+	purchaseDate?: SchemaValue<Date, "purchaseDate">
 	/** The release date of a product or product model. This can be used to distinguish the exact variant of a product. */
-	"releaseDate"?: SchemaValue<Date, "releaseDate">
+	releaseDate?: SchemaValue<Date, "releaseDate">
 	/** A review of the item. */
-	"review"?: SchemaValue<Review | IdReference, "review">
+	review?: SchemaValue<Review | IdReference, "review">
 	/**
 	 * Review of the item.
 	 *
 	 * @deprecated Consider using https://schema.org/review instead.
 	 */
-	"reviews"?: SchemaValue<Review | IdReference, "reviews">
+	reviews?: SchemaValue<Review | IdReference, "reviews">
 	/** A standardized size of a product or creative work, specified either through a simple textual string (for example 'XL', '32Wx34L'), a QuantitativeValue with a unitCode, or a comprehensive and structured {@link https://schema.org/SizeSpecification SizeSpecification}; in other cases, the {@link https://schema.org/width width}, {@link https://schema.org/height height}, {@link https://schema.org/depth depth} and {@link https://schema.org/weight weight} properties may be more applicable. */
-	"size"?: SchemaValue<
+	size?: SchemaValue<
 		DefinedTerm | QuantitativeValue | SizeSpecification | Text | IdReference,
 		"size"
 	>
 	/** The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers. */
-	"sku"?: SchemaValue<Text, "sku">
+	sku?: SchemaValue<Text, "sku">
 	/** A slogan or motto associated with the item. */
-	"slogan"?: SchemaValue<Text, "slogan">
+	slogan?: SchemaValue<Text, "slogan">
 	/** The weight of the product or person. */
-	"weight"?: SchemaValue<QuantitativeValue | IdReference, "weight">
+	weight?: SchemaValue<QuantitativeValue | IdReference, "weight">
 	/** The width of the item. */
-	"width"?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
+	width?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
 }
 interface ProductLeaf extends ProductBase {
 	type: "Product"
@@ -12048,7 +11877,7 @@ export type Product =
 
 interface ProductCollectionBase extends ProductBase, CollectionBase {
 	/** This links to a node or nodes indicating the exact quantity of the products included in an {@link https://schema.org/Offer Offer} or {@link https://schema.org/ProductCollection ProductCollection}. */
-	"includesObject"?: SchemaValue<
+	includesObject?: SchemaValue<
 		TypeAndQuantityNode | IdReference,
 		"includesObject"
 	>
@@ -12061,11 +11890,11 @@ export type ProductCollection = ProductCollectionLeaf
 
 interface ProductGroupBase extends ProductBase {
 	/** Indicates a {@link https://schema.org/Product Product} that is a member of this {@link https://schema.org/ProductGroup ProductGroup} (or {@link https://schema.org/ProductModel ProductModel}). */
-	"hasVariant"?: SchemaValue<Product | IdReference, "hasVariant">
+	hasVariant?: SchemaValue<Product | IdReference, "hasVariant">
 	/** Indicates a textual identifier for a ProductGroup. */
-	"productGroupID"?: SchemaValue<Text, "productGroupID">
+	productGroupID?: SchemaValue<Text, "productGroupID">
 	/** Indicates the property or properties by which the variants in a {@link https://schema.org/ProductGroup ProductGroup} vary, e.g. their size, color etc. Schema.org properties can be referenced by their short name e.g. "color"; terms defined elsewhere can be referenced with their URIs. */
-	"variesBy"?: SchemaValue<DefinedTerm | Text | IdReference, "variesBy">
+	variesBy?: SchemaValue<DefinedTerm | Text | IdReference, "variesBy">
 }
 interface ProductGroupLeaf extends ProductGroupBase {
 	type: "ProductGroup"
@@ -12079,14 +11908,14 @@ export type ProductGroup = ProductGroupLeaf
 
 interface ProductModelBase extends ProductBase {
 	/** Indicates the kind of product that this is a variant of. In the case of {@link https://schema.org/ProductModel ProductModel}, this is a pointer (from a ProductModel) to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive. In the case of a {@link https://schema.org/ProductGroup ProductGroup}, the group description also serves as a template, representing a set of Products that vary on explicitly defined, specific dimensions only (so it defines both a set of variants, as well as which values distinguish amongst those variants). When used with {@link https://schema.org/ProductGroup ProductGroup}, this property can apply to any {@link https://schema.org/Product Product} included in the group. */
-	"isVariantOf"?: SchemaValue<
+	isVariantOf?: SchemaValue<
 		ProductGroup | ProductModel | IdReference,
 		"isVariantOf"
 	>
 	/** A pointer from a previous, often discontinued variant of the product to its newer variant. */
-	"predecessorOf"?: SchemaValue<ProductModel | IdReference, "predecessorOf">
+	predecessorOf?: SchemaValue<ProductModel | IdReference, "predecessorOf">
 	/** A pointer from a newer variant of a product to its previous, often discontinued predecessor. */
-	"successorOf"?: SchemaValue<ProductModel | IdReference, "successorOf">
+	successorOf?: SchemaValue<ProductModel | IdReference, "successorOf">
 }
 interface ProductModelLeaf extends ProductModelBase {
 	type: "ProductModel"
@@ -12119,13 +11948,13 @@ interface ProductReturnPolicyBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/merchantReturnDays instead.
 	 */
-	"productReturnDays"?: SchemaValue<Integer, "productReturnDays">
+	productReturnDays?: SchemaValue<Integer, "productReturnDays">
 	/**
 	 * Indicates a Web page or service by URL, for product return.
 	 *
 	 * @deprecated Consider using https://schema.org/merchantReturnLink instead.
 	 */
-	"productReturnLink"?: SchemaValue<URL, "productReturnLink">
+	productReturnLink?: SchemaValue<URL, "productReturnLink">
 }
 interface ProductReturnPolicyLeaf extends ProductReturnPolicyBase {
 	type: "ProductReturnPolicy"
@@ -12155,27 +11984,27 @@ export type ProfilePage = ProfilePageLeaf
 
 interface ProgramMembershipBase extends ThingBase {
 	/** The organization (airline, travelers' club, etc.) the membership is made with. */
-	"hostingOrganization"?: SchemaValue<
+	hostingOrganization?: SchemaValue<
 		Organization | IdReference,
 		"hostingOrganization"
 	>
 	/** A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals. */
-	"member"?: SchemaValue<Organization | Person | IdReference, "member">
+	member?: SchemaValue<Organization | Person | IdReference, "member">
 	/**
 	 * A member of this organization.
 	 *
 	 * @deprecated Consider using https://schema.org/member instead.
 	 */
-	"members"?: SchemaValue<Organization | Person | IdReference, "members">
+	members?: SchemaValue<Organization | Person | IdReference, "members">
 	/** A unique identifier for the membership. */
-	"membershipNumber"?: SchemaValue<Text, "membershipNumber">
+	membershipNumber?: SchemaValue<Text, "membershipNumber">
 	/** The number of membership points earned by the member. If necessary, the unitText can be used to express the units the points are issued in. (E.g. stars, miles, etc.) */
-	"membershipPointsEarned"?: SchemaValue<
+	membershipPointsEarned?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"membershipPointsEarned"
 	>
 	/** The program providing the membership. */
-	"programName"?: SchemaValue<Text, "programName">
+	programName?: SchemaValue<Text, "programName">
 }
 interface ProgramMembershipLeaf extends ProgramMembershipBase {
 	type: "ProgramMembership"
@@ -12191,13 +12020,13 @@ export type Project = ProjectLeaf | FundingAgency | ResearchProject | string
 
 interface PronounceableTextBase extends Partial<IdReference> {
 	/** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
-	"inLanguage"?: SchemaValue<Language | Text | IdReference, "inLanguage">
+	inLanguage?: SchemaValue<Language | Text | IdReference, "inLanguage">
 	/** Representation of a text {@link https://schema.org/textValue textValue} using the specified {@link https://schema.org/speechToTextMarkup speechToTextMarkup}. For example the city name of Houston in IPA: /ˈhjuːstən/. */
-	"phoneticText"?: SchemaValue<Text, "phoneticText">
+	phoneticText?: SchemaValue<Text, "phoneticText">
 	/** Form of markup used. eg. {@link https://www.w3.org/TR/speech-synthesis11 SSML} or {@link https://www.wikidata.org/wiki/Property:P898 IPA}. */
-	"speechToTextMarkup"?: SchemaValue<Text, "speechToTextMarkup">
+	speechToTextMarkup?: SchemaValue<Text, "speechToTextMarkup">
 	/** Text value being annotated. */
-	"textValue"?: SchemaValue<Text, "textValue">
+	textValue?: SchemaValue<Text, "textValue">
 }
 interface PronounceableTextLeaf extends PronounceableTextBase {
 	type: "PronounceableText"
@@ -12207,13 +12036,13 @@ export type PronounceableText = PronounceableTextLeaf | string
 
 interface PropertyBase extends ThingBase {
 	/** Relates a property to a class that is (one of) the type(s) the property is expected to be used on. */
-	"domainIncludes"?: SchemaValue<Class | IdReference, "domainIncludes">
+	domainIncludes?: SchemaValue<Class | IdReference, "domainIncludes">
 	/** Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations Microdata and JSON-LD syntax for reverse properties can be used. */
-	"inverseOf"?: SchemaValue<Property | IdReference, "inverseOf">
+	inverseOf?: SchemaValue<Property | IdReference, "inverseOf">
 	/** Relates a property to a class that constitutes (one of) the expected type(s) for values of the property. */
-	"rangeIncludes"?: SchemaValue<Class | IdReference, "rangeIncludes">
+	rangeIncludes?: SchemaValue<Class | IdReference, "rangeIncludes">
 	/** Relates a term (i.e. a property, class or enumeration) to one that supersedes it. */
-	"supersededBy"?: SchemaValue<
+	supersededBy?: SchemaValue<
 		Class | Enumeration | Property | IdReference,
 		"supersededBy"
 	>
@@ -12226,9 +12055,9 @@ export type Property = PropertyLeaf
 
 interface PropertyValueBase extends ThingBase {
 	/** The upper value of some characteristic or property. */
-	"maxValue"?: SchemaValue<Number, "maxValue">
+	maxValue?: SchemaValue<Number, "maxValue">
 	/** A subproperty of {@link https://schema.org/measurementTechnique measurementTechnique} that can be used for specifying specific methods, in particular via {@link https://schema.org/MeasurementMethodEnum MeasurementMethodEnum}. */
-	"measurementMethod"?: SchemaValue<
+	measurementMethod?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementMethod"
 	>
@@ -12241,18 +12070,18 @@ interface PropertyValueBase extends ThingBase {
 	 *
 	 * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}. The value can also be from an enumeration, organized as a {@link https://schema.org/MeasurementMetholdEnumeration MeasurementMetholdEnumeration}.
 	 */
-	"measurementTechnique"?: SchemaValue<
+	measurementTechnique?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementTechnique"
 	>
 	/** The lower value of some characteristic or property. */
-	"minValue"?: SchemaValue<Number, "minValue">
+	minValue?: SchemaValue<Number, "minValue">
 	/** A commonly used identifier for the characteristic represented by the property, e.g. a manufacturer or a standard code for a property. propertyID can be (1) a prefixed string, mainly meant to be used with standards for product properties; (2) a site-specific, non-prefixed string (e.g. the primary key of the property or the vendor-specific ID of the property), or (3) a URL indicating the type of the property, either pointing to an external vocabulary, or a Web resource that describes the property (e.g. a glossary entry). Standards bodies should promote a standard prefix for the identifiers of properties from their standards. */
-	"propertyID"?: SchemaValue<Text | URL, "propertyID">
+	propertyID?: SchemaValue<Text | URL, "propertyID">
 	/** The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon. */
-	"unitCode"?: SchemaValue<Text | URL, "unitCode">
+	unitCode?: SchemaValue<Text | URL, "unitCode">
 	/** A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for {@link unitCode unitCode}. */
-	"unitText"?: SchemaValue<Text, "unitText">
+	unitText?: SchemaValue<Text, "unitText">
 	/**
 	 * The value of a {@link https://schema.org/QuantitativeValue QuantitativeValue} (including {@link https://schema.org/Observation Observation}) or property value node.
 	 * - For {@link https://schema.org/QuantitativeValue QuantitativeValue} and {@link https://schema.org/MonetaryAmount MonetaryAmount}, the recommended type for values is 'Number'.
@@ -12260,12 +12089,12 @@ interface PropertyValueBase extends ThingBase {
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
 	 */
-	"value"?: SchemaValue<
+	value?: SchemaValue<
 		Boolean | Number | StructuredValue | Text | IdReference,
 		"value"
 	>
 	/** A secondary value that provides additional information on the original value, e.g. a reference temperature or a type of measurement. */
-	"valueReference"?: SchemaValue<
+	valueReference?: SchemaValue<
 		| DefinedTerm
 		| Enumeration
 		| MeasurementTypeEnumeration
@@ -12290,31 +12119,30 @@ export type PropertyValue = PropertyValueLeaf | LocationFeatureSpecification
 
 interface PropertyValueSpecificationBase extends ThingBase {
 	/** The default value of the input. For properties that expect a literal, the default is a literal value, for properties that expect an object, it's an ID reference to one of the current values. */
-	"defaultValue"?: SchemaValue<Text | Thing | IdReference, "defaultValue">
+	defaultValue?: SchemaValue<Text | Thing | IdReference, "defaultValue">
 	/** The upper value of some characteristic or property. */
-	"maxValue"?: SchemaValue<Number, "maxValue">
+	maxValue?: SchemaValue<Number, "maxValue">
 	/** The lower value of some characteristic or property. */
-	"minValue"?: SchemaValue<Number, "minValue">
+	minValue?: SchemaValue<Number, "minValue">
 	/** Whether multiple values are allowed for the property. Default is false. */
-	"multipleValues"?: SchemaValue<Boolean, "multipleValues">
+	multipleValues?: SchemaValue<Boolean, "multipleValues">
 	/** Whether or not a property is mutable. Default is false. Specifying this for a property that also has a value makes it act similar to a "hidden" input in an HTML form. */
-	"readonlyValue"?: SchemaValue<Boolean, "readonlyValue">
+	readonlyValue?: SchemaValue<Boolean, "readonlyValue">
 	/** The stepValue attribute indicates the granularity that is expected (and required) of the value in a PropertyValueSpecification. */
-	"stepValue"?: SchemaValue<Number, "stepValue">
+	stepValue?: SchemaValue<Number, "stepValue">
 	/** Specifies the allowed range for number of characters in a literal value. */
-	"valueMaxLength"?: SchemaValue<Number, "valueMaxLength">
+	valueMaxLength?: SchemaValue<Number, "valueMaxLength">
 	/** Specifies the minimum allowed range for number of characters in a literal value. */
-	"valueMinLength"?: SchemaValue<Number, "valueMinLength">
+	valueMinLength?: SchemaValue<Number, "valueMinLength">
 	/** Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name. */
-	"valueName"?: SchemaValue<Text, "valueName">
+	valueName?: SchemaValue<Text, "valueName">
 	/** Specifies a regular expression for testing literal values according to the HTML spec. */
-	"valuePattern"?: SchemaValue<Text, "valuePattern">
+	valuePattern?: SchemaValue<Text, "valuePattern">
 	/** Whether the property must be filled in to complete the action. Default is false. */
-	"valueRequired"?: SchemaValue<Boolean, "valueRequired">
+	valueRequired?: SchemaValue<Boolean, "valueRequired">
 }
 interface PropertyValueSpecificationLeaf
-	extends PropertyValueSpecificationBase
-{
+	extends PropertyValueSpecificationBase {
 	type: "PropertyValueSpecification"
 }
 /** A Property value specification. */
@@ -12322,7 +12150,7 @@ export type PropertyValueSpecification = PropertyValueSpecificationLeaf
 
 interface ProteinBase extends BioChemEntityBase {
 	/** A symbolic representation of a BioChemEntity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein. */
-	"hasBioPolymerSequence"?: SchemaValue<Text, "hasBioPolymerSequence">
+	hasBioPolymerSequence?: SchemaValue<Text, "hasBioPolymerSequence">
 }
 interface ProteinLeaf extends ProteinBase {
 	type: "Protein"
@@ -12348,14 +12176,11 @@ interface PublicationEventBase extends EventBase {
 	 *
 	 * @deprecated Consider using https://schema.org/isAccessibleForFree instead.
 	 */
-	"free"?: SchemaValue<Boolean, "free">
+	free?: SchemaValue<Boolean, "free">
 	/** An agent associated with the publication event. */
-	"publishedBy"?: SchemaValue<
-		Organization | Person | IdReference,
-		"publishedBy"
-	>
+	publishedBy?: SchemaValue<Organization | Person | IdReference, "publishedBy">
 	/** A broadcast service associated with the publication event. */
-	"publishedOn"?: SchemaValue<BroadcastService | IdReference, "publishedOn">
+	publishedOn?: SchemaValue<BroadcastService | IdReference, "publishedOn">
 }
 interface PublicationEventLeaf extends PublicationEventBase {
 	type: "PublicationEvent"
@@ -12368,13 +12193,13 @@ export type PublicationEvent =
 
 interface PublicationIssueBase extends CreativeWorkBase {
 	/** Identifies the issue of publication; for example, "iii" or "2". */
-	"issueNumber"?: SchemaValue<Integer | Text, "issueNumber">
+	issueNumber?: SchemaValue<Integer | Text, "issueNumber">
 	/** The page on which the work ends; for example "138" or "xvi". */
-	"pageEnd"?: SchemaValue<Integer | Text, "pageEnd">
+	pageEnd?: SchemaValue<Integer | Text, "pageEnd">
 	/** The page on which the work starts; for example "135" or "xiii". */
-	"pageStart"?: SchemaValue<Integer | Text, "pageStart">
+	pageStart?: SchemaValue<Integer | Text, "pageStart">
 	/** Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49". */
-	"pagination"?: SchemaValue<Text, "pagination">
+	pagination?: SchemaValue<Text, "pagination">
 }
 interface PublicationIssueLeaf extends PublicationIssueBase {
 	type: "PublicationIssue"
@@ -12388,13 +12213,13 @@ export type PublicationIssue = PublicationIssueLeaf | ComicIssue
 
 interface PublicationVolumeBase extends CreativeWorkBase {
 	/** The page on which the work ends; for example "138" or "xvi". */
-	"pageEnd"?: SchemaValue<Integer | Text, "pageEnd">
+	pageEnd?: SchemaValue<Integer | Text, "pageEnd">
 	/** The page on which the work starts; for example "135" or "xiii". */
-	"pageStart"?: SchemaValue<Integer | Text, "pageStart">
+	pageStart?: SchemaValue<Integer | Text, "pageStart">
 	/** Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49". */
-	"pagination"?: SchemaValue<Text, "pagination">
+	pagination?: SchemaValue<Text, "pagination">
 	/** Identifies the volume of publication or multi-part work; for example, "iii" or "2". */
-	"volumeNumber"?: SchemaValue<Integer | Text, "volumeNumber">
+	volumeNumber?: SchemaValue<Integer | Text, "volumeNumber">
 }
 interface PublicationVolumeLeaf extends PublicationVolumeBase {
 	type: "PublicationVolume"
@@ -12436,27 +12261,24 @@ interface QualitativeValueBase extends EnumerationBase {
 	 *
 	 * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
 	 */
-	"additionalProperty"?: SchemaValue<
+	additionalProperty?: SchemaValue<
 		PropertyValue | IdReference,
 		"additionalProperty"
 	>
 	/** This ordering relation for qualitative values indicates that the subject is equal to the object. */
-	"equal"?: SchemaValue<QualitativeValue | IdReference, "equal">
+	equal?: SchemaValue<QualitativeValue | IdReference, "equal">
 	/** This ordering relation for qualitative values indicates that the subject is greater than the object. */
-	"greater"?: SchemaValue<QualitativeValue | IdReference, "greater">
+	greater?: SchemaValue<QualitativeValue | IdReference, "greater">
 	/** This ordering relation for qualitative values indicates that the subject is greater than or equal to the object. */
-	"greaterOrEqual"?: SchemaValue<
-		QualitativeValue | IdReference,
-		"greaterOrEqual"
-	>
+	greaterOrEqual?: SchemaValue<QualitativeValue | IdReference, "greaterOrEqual">
 	/** This ordering relation for qualitative values indicates that the subject is lesser than the object. */
-	"lesser"?: SchemaValue<QualitativeValue | IdReference, "lesser">
+	lesser?: SchemaValue<QualitativeValue | IdReference, "lesser">
 	/** This ordering relation for qualitative values indicates that the subject is lesser than or equal to the object. */
-	"lesserOrEqual"?: SchemaValue<QualitativeValue | IdReference, "lesserOrEqual">
+	lesserOrEqual?: SchemaValue<QualitativeValue | IdReference, "lesserOrEqual">
 	/** This ordering relation for qualitative values indicates that the subject is not equal to the object. */
-	"nonEqual"?: SchemaValue<QualitativeValue | IdReference, "nonEqual">
+	nonEqual?: SchemaValue<QualitativeValue | IdReference, "nonEqual">
 	/** A secondary value that provides additional information on the original value, e.g. a reference temperature or a type of measurement. */
-	"valueReference"?: SchemaValue<
+	valueReference?: SchemaValue<
 		| DefinedTerm
 		| Enumeration
 		| MeasurementTypeEnumeration
@@ -12486,18 +12308,18 @@ interface QuantitativeValueBase extends ThingBase {
 	 *
 	 * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
 	 */
-	"additionalProperty"?: SchemaValue<
+	additionalProperty?: SchemaValue<
 		PropertyValue | IdReference,
 		"additionalProperty"
 	>
 	/** The upper value of some characteristic or property. */
-	"maxValue"?: SchemaValue<Number, "maxValue">
+	maxValue?: SchemaValue<Number, "maxValue">
 	/** The lower value of some characteristic or property. */
-	"minValue"?: SchemaValue<Number, "minValue">
+	minValue?: SchemaValue<Number, "minValue">
 	/** The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon. */
-	"unitCode"?: SchemaValue<Text | URL, "unitCode">
+	unitCode?: SchemaValue<Text | URL, "unitCode">
 	/** A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for {@link unitCode unitCode}. */
-	"unitText"?: SchemaValue<Text, "unitText">
+	unitText?: SchemaValue<Text, "unitText">
 	/**
 	 * The value of a {@link https://schema.org/QuantitativeValue QuantitativeValue} (including {@link https://schema.org/Observation Observation}) or property value node.
 	 * - For {@link https://schema.org/QuantitativeValue QuantitativeValue} and {@link https://schema.org/MonetaryAmount MonetaryAmount}, the recommended type for values is 'Number'.
@@ -12505,12 +12327,12 @@ interface QuantitativeValueBase extends ThingBase {
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
 	 */
-	"value"?: SchemaValue<
+	value?: SchemaValue<
 		Boolean | Number | StructuredValue | Text | IdReference,
 		"value"
 	>
 	/** A secondary value that provides additional information on the original value, e.g. a reference temperature or a type of measurement. */
-	"valueReference"?: SchemaValue<
+	valueReference?: SchemaValue<
 		| DefinedTerm
 		| Enumeration
 		| MeasurementTypeEnumeration
@@ -12531,21 +12353,20 @@ export type QuantitativeValue = QuantitativeValueLeaf | Observation
 
 interface QuantitativeValueDistributionBase extends ThingBase {
 	/** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
-	"duration"?: SchemaValue<Duration | IdReference, "duration">
+	duration?: SchemaValue<Duration | IdReference, "duration">
 	/** The median value. */
-	"median"?: SchemaValue<Number, "median">
+	median?: SchemaValue<Number, "median">
 	/** The 10th percentile value. */
-	"percentile10"?: SchemaValue<Number, "percentile10">
+	percentile10?: SchemaValue<Number, "percentile10">
 	/** The 25th percentile value. */
-	"percentile25"?: SchemaValue<Number, "percentile25">
+	percentile25?: SchemaValue<Number, "percentile25">
 	/** The 75th percentile value. */
-	"percentile75"?: SchemaValue<Number, "percentile75">
+	percentile75?: SchemaValue<Number, "percentile75">
 	/** The 90th percentile value. */
-	"percentile90"?: SchemaValue<Number, "percentile90">
+	percentile90?: SchemaValue<Number, "percentile90">
 }
 interface QuantitativeValueDistributionLeaf
-	extends QuantitativeValueDistributionBase
-{
+	extends QuantitativeValueDistributionBase {
 	type: "QuantitativeValueDistribution"
 }
 /** A statistical distribution of values. */
@@ -12567,16 +12388,16 @@ export type Quantity =
 
 interface QuestionBase extends CommentBase {
 	/** The answer(s) that has been accepted as best, typically on a Question/Answer site. Sites vary in their selection mechanisms, e.g. drawing on community opinion and/or the view of the Question author. */
-	"acceptedAnswer"?: SchemaValue<
+	acceptedAnswer?: SchemaValue<
 		Answer | ItemList | IdReference,
 		"acceptedAnswer"
 	>
 	/** The number of answers this question has received. */
-	"answerCount"?: SchemaValue<Integer, "answerCount">
+	answerCount?: SchemaValue<Integer, "answerCount">
 	/** For questions that are part of learning resources (e.g. Quiz), eduQuestionType indicates the format of question being given. Example: "Multiple choice", "Open ended", "Flashcard". */
-	"eduQuestionType"?: SchemaValue<Text, "eduQuestionType">
+	eduQuestionType?: SchemaValue<Text, "eduQuestionType">
 	/** An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site. */
-	"suggestedAnswer"?: SchemaValue<
+	suggestedAnswer?: SchemaValue<
 		Answer | ItemList | IdReference,
 		"suggestedAnswer"
 	>
@@ -12595,7 +12416,7 @@ export type Quiz = QuizLeaf
 
 interface QuotationBase extends CreativeWorkBase {
 	/** The (e.g. fictional) character, Person or Organization to whom the quotation is attributed within the containing CreativeWork. */
-	"spokenByCharacter"?: SchemaValue<
+	spokenByCharacter?: SchemaValue<
 		Organization | Person | IdReference,
 		"spokenByCharacter"
 	>
@@ -12650,42 +12471,42 @@ export type RadioSeason = RadioSeasonLeaf
 
 interface RadioSeriesBase extends CreativeWorkSeriesBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/**
 	 * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/actor instead.
 	 */
-	"actors"?: SchemaValue<Person | IdReference, "actors">
+	actors?: SchemaValue<Person | IdReference, "actors">
 	/** A season that is part of the media series. */
-	"containsSeason"?: SchemaValue<
+	containsSeason?: SchemaValue<
 		CreativeWorkSeason | IdReference,
 		"containsSeason"
 	>
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/**
 	 * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/director instead.
 	 */
-	"directors"?: SchemaValue<Person | IdReference, "directors">
+	directors?: SchemaValue<Person | IdReference, "directors">
 	/** An episode of a TV, radio or game media within a series or season. */
-	"episode"?: SchemaValue<Episode | IdReference, "episode">
+	episode?: SchemaValue<Episode | IdReference, "episode">
 	/**
 	 * An episode of a TV/radio series or season.
 	 *
 	 * @deprecated Consider using https://schema.org/episode instead.
 	 */
-	"episodes"?: SchemaValue<Episode | IdReference, "episodes">
+	episodes?: SchemaValue<Episode | IdReference, "episodes">
 	/** The composer of the soundtrack. */
-	"musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
+	musicBy?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
 	/** The number of episodes in this season or series. */
-	"numberOfEpisodes"?: SchemaValue<Integer, "numberOfEpisodes">
+	numberOfEpisodes?: SchemaValue<Integer, "numberOfEpisodes">
 	/** The number of seasons in this series. */
-	"numberOfSeasons"?: SchemaValue<Integer, "numberOfSeasons">
+	numberOfSeasons?: SchemaValue<Integer, "numberOfSeasons">
 	/** The production company or studio responsible for the item, e.g. series, video game, episode etc. */
-	"productionCompany"?: SchemaValue<
+	productionCompany?: SchemaValue<
 		Organization | IdReference,
 		"productionCompany"
 	>
@@ -12694,15 +12515,15 @@ interface RadioSeriesBase extends CreativeWorkSeriesBase {
 	 *
 	 * @deprecated Consider using https://schema.org/containsSeason instead.
 	 */
-	"season"?: SchemaValue<CreativeWorkSeason | URL | IdReference, "season">
+	season?: SchemaValue<CreativeWorkSeason | URL | IdReference, "season">
 	/**
 	 * A season in a media series.
 	 *
 	 * @deprecated Consider using https://schema.org/season instead.
 	 */
-	"seasons"?: SchemaValue<CreativeWorkSeason | IdReference, "seasons">
+	seasons?: SchemaValue<CreativeWorkSeason | IdReference, "seasons">
 	/** The trailer of a movie or TV/radio series, season, episode, etc. */
-	"trailer"?: SchemaValue<VideoObject | IdReference, "trailer">
+	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface RadioSeriesLeaf extends RadioSeriesBase {
 	type: "RadioSeries"
@@ -12718,11 +12539,11 @@ export type RadioStation = RadioStationLeaf | string
 
 interface RatingBase extends ThingBase {
 	/** The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably. */
-	"author"?: SchemaValue<Organization | Person | IdReference, "author">
+	author?: SchemaValue<Organization | Person | IdReference, "author">
 	/** The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed. */
-	"bestRating"?: SchemaValue<Number | Text, "bestRating">
+	bestRating?: SchemaValue<Number | Text, "bestRating">
 	/** A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using {@link https://schema.org/ClaimReview ClaimReview}. */
-	"ratingExplanation"?: SchemaValue<Text, "ratingExplanation">
+	ratingExplanation?: SchemaValue<Text, "ratingExplanation">
 	/**
 	 * The rating for the content.
 	 *
@@ -12730,11 +12551,11 @@ interface RatingBase extends ThingBase {
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
 	 */
-	"ratingValue"?: SchemaValue<Number | Text, "ratingValue">
+	ratingValue?: SchemaValue<Number | Text, "ratingValue">
 	/** This Review or Rating is relevant to this part or facet of the itemReviewed. */
-	"reviewAspect"?: SchemaValue<Text, "reviewAspect">
+	reviewAspect?: SchemaValue<Text, "reviewAspect">
 	/** The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed. */
-	"worstRating"?: SchemaValue<Number | Text, "worstRating">
+	worstRating?: SchemaValue<Number | Text, "worstRating">
 }
 interface RatingLeaf extends RatingBase {
 	type: "Rating"
@@ -12769,9 +12590,9 @@ export type RealEstateAgent = RealEstateAgentLeaf | string
 
 interface RealEstateListingBase extends WebPageBase {
 	/** Publication date of an online listing. */
-	"datePosted"?: SchemaValue<Date | DateTime, "datePosted">
+	datePosted?: SchemaValue<Date | DateTime, "datePosted">
 	/** Length of the lease for some {@link https://schema.org/Accommodation Accommodation}, either particular to some {@link https://schema.org/Offer Offer} or in some cases intrinsic to the property. */
-	"leaseLength"?: SchemaValue<
+	leaseLength?: SchemaValue<
 		Duration | QuantitativeValue | IdReference,
 		"leaseLength"
 	>
@@ -12784,12 +12605,9 @@ export type RealEstateListing = RealEstateListingLeaf
 
 interface ReceiveActionBase extends TransferActionBase {
 	/** A sub property of instrument. The method of delivery. */
-	"deliveryMethod"?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
+	deliveryMethod?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
 	/** A sub property of participant. The participant who is at the sending end of the action. */
-	"sender"?: SchemaValue<
-		Audience | Organization | Person | IdReference,
-		"sender"
-	>
+	sender?: SchemaValue<Audience | Organization | Person | IdReference, "sender">
 }
 interface ReceiveActionLeaf extends ReceiveActionBase {
 	type: "ReceiveAction"
@@ -12805,38 +12623,35 @@ export type ReceiveAction = ReceiveActionLeaf
 
 interface RecipeBase extends HowToBase {
 	/** The method of cooking, such as Frying, Steaming, ... */
-	"cookingMethod"?: SchemaValue<Text, "cookingMethod">
+	cookingMethod?: SchemaValue<Text, "cookingMethod">
 	/** The time it takes to actually cook the dish, in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 duration format}. */
-	"cookTime"?: SchemaValue<Duration | IdReference, "cookTime">
+	cookTime?: SchemaValue<Duration | IdReference, "cookTime">
 	/**
 	 * A single ingredient used in the recipe, e.g. sugar, flour or garlic.
 	 *
 	 * @deprecated Consider using https://schema.org/recipeIngredient instead.
 	 */
-	"ingredients"?: SchemaValue<Text, "ingredients">
+	ingredients?: SchemaValue<Text, "ingredients">
 	/** Nutrition information about the recipe or menu item. */
-	"nutrition"?: SchemaValue<NutritionInformation | IdReference, "nutrition">
+	nutrition?: SchemaValue<NutritionInformation | IdReference, "nutrition">
 	/** The category of the recipe—for example, appetizer, entree, etc. */
-	"recipeCategory"?: SchemaValue<Text, "recipeCategory">
+	recipeCategory?: SchemaValue<Text, "recipeCategory">
 	/** The cuisine of the recipe (for example, French or Ethiopian). */
-	"recipeCuisine"?: SchemaValue<Text, "recipeCuisine">
+	recipeCuisine?: SchemaValue<Text, "recipeCuisine">
 	/** A single ingredient used in the recipe, e.g. sugar, flour or garlic. */
-	"recipeIngredient"?: SchemaValue<Text, "recipeIngredient">
+	recipeIngredient?: SchemaValue<Text, "recipeIngredient">
 	/** A step in making the recipe, in the form of a single item (document, video, etc.) or an ordered list with HowToStep and/or HowToSection items. */
-	"recipeInstructions"?: SchemaValue<
+	recipeInstructions?: SchemaValue<
 		CreativeWork | ItemList | Text | IdReference,
 		"recipeInstructions"
 	>
 	/** The quantity produced by the recipe (for example, number of people served, number of servings, etc). */
-	"recipeYield"?: SchemaValue<
+	recipeYield?: SchemaValue<
 		QuantitativeValue | Text | IdReference,
 		"recipeYield"
 	>
 	/** Indicates a dietary restriction or guideline for which this recipe or menu item is suitable, e.g. diabetic, halal etc. */
-	"suitableForDiet"?: SchemaValue<
-		RestrictedDiet | IdReference,
-		"suitableForDiet"
-	>
+	suitableForDiet?: SchemaValue<RestrictedDiet | IdReference, "suitableForDiet">
 }
 interface RecipeLeaf extends RecipeBase {
 	type: "Recipe"
@@ -12846,7 +12661,7 @@ export type Recipe = RecipeLeaf
 
 interface RecommendationBase extends ReviewBase {
 	/** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
-	"category"?: SchemaValue<
+	category?: SchemaValue<
 		CategoryCode | PhysicalActivityCategory | Text | Thing | URL | IdReference,
 		"category"
 	>
@@ -12908,9 +12723,9 @@ export type RejectAction = RejectActionLeaf
 
 interface RentActionBase extends TradeActionBase {
 	/** A sub property of participant. The owner of the real estate property. */
-	"landlord"?: SchemaValue<Organization | Person | IdReference, "landlord">
+	landlord?: SchemaValue<Organization | Person | IdReference, "landlord">
 	/** A sub property of participant. The real estate agent involved in the action. */
-	"realEstateAgent"?: SchemaValue<
+	realEstateAgent?: SchemaValue<
 		RealEstateAgent | IdReference,
 		"realEstateAgent"
 	>
@@ -12923,13 +12738,13 @@ export type RentAction = RentActionLeaf
 
 interface RentalCarReservationBase extends ReservationBase {
 	/** Where a rental car can be dropped off. */
-	"dropoffLocation"?: SchemaValue<Place | IdReference, "dropoffLocation">
+	dropoffLocation?: SchemaValue<Place | IdReference, "dropoffLocation">
 	/** When a rental car can be dropped off. */
-	"dropoffTime"?: SchemaValue<DateTime, "dropoffTime">
+	dropoffTime?: SchemaValue<DateTime, "dropoffTime">
 	/** Where a taxi will pick up a passenger or a rental car can be picked up. */
-	"pickupLocation"?: SchemaValue<Place | IdReference, "pickupLocation">
+	pickupLocation?: SchemaValue<Place | IdReference, "pickupLocation">
 	/** When a taxi will pick up a passenger or a rental car can be picked up. */
-	"pickupTime"?: SchemaValue<DateTime, "pickupTime">
+	pickupTime?: SchemaValue<DateTime, "pickupTime">
 }
 interface RentalCarReservationLeaf extends RentalCarReservationBase {
 	type: "RentalCarReservation"
@@ -12943,24 +12758,24 @@ export type RentalCarReservation = RentalCarReservationLeaf
 
 interface RepaymentSpecificationBase extends ThingBase {
 	/** a type of payment made in cash during the onset of the purchase of an expensive good/service. The payment typically represents only a percentage of the full purchase price. */
-	"downPayment"?: SchemaValue<
+	downPayment?: SchemaValue<
 		MonetaryAmount | Number | IdReference,
 		"downPayment"
 	>
 	/** The amount to be paid as a penalty in the event of early payment of the loan. */
-	"earlyPrepaymentPenalty"?: SchemaValue<
+	earlyPrepaymentPenalty?: SchemaValue<
 		MonetaryAmount | IdReference,
 		"earlyPrepaymentPenalty"
 	>
 	/** The amount of money to pay in a single payment. */
-	"loanPaymentAmount"?: SchemaValue<
+	loanPaymentAmount?: SchemaValue<
 		MonetaryAmount | IdReference,
 		"loanPaymentAmount"
 	>
 	/** Frequency of payments due, i.e. number of months between payments. This is defined as a frequency, i.e. the reciprocal of a period of time. */
-	"loanPaymentFrequency"?: SchemaValue<Number, "loanPaymentFrequency">
+	loanPaymentFrequency?: SchemaValue<Number, "loanPaymentFrequency">
 	/** The number of payments contractually required at origination to repay the loan. For monthly paying loans this is the number of months from the contractual first payment date to the maturity date. */
-	"numberOfLoanPayments"?: SchemaValue<Number, "numberOfLoanPayments">
+	numberOfLoanPayments?: SchemaValue<Number, "numberOfLoanPayments">
 }
 interface RepaymentSpecificationLeaf extends RepaymentSpecificationBase {
 	type: "RepaymentSpecification"
@@ -12970,9 +12785,9 @@ export type RepaymentSpecification = RepaymentSpecificationLeaf
 
 interface ReplaceActionBase extends UpdateActionBase {
 	/** A sub property of object. The object that is being replaced. */
-	"replacee"?: SchemaValue<Thing | IdReference, "replacee">
+	replacee?: SchemaValue<Thing | IdReference, "replacee">
 	/** A sub property of object. The object that replaces. */
-	"replacer"?: SchemaValue<Thing | IdReference, "replacer">
+	replacer?: SchemaValue<Thing | IdReference, "replacer">
 }
 interface ReplaceActionLeaf extends ReplaceActionBase {
 	type: "ReplaceAction"
@@ -12982,7 +12797,7 @@ export type ReplaceAction = ReplaceActionLeaf
 
 interface ReplyActionBase extends CommunicateActionBase {
 	/** A sub property of result. The Comment created or sent as a result of this action. */
-	"resultComment"?: SchemaValue<Comment | IdReference, "resultComment">
+	resultComment?: SchemaValue<Comment | IdReference, "resultComment">
 }
 interface ReplyActionLeaf extends ReplyActionBase {
 	type: "ReplyAction"
@@ -12997,7 +12812,7 @@ export type ReplyAction = ReplyActionLeaf
 
 interface ReportBase extends ArticleBase {
 	/** The number or other unique designator assigned to a Report by the publishing organization. */
-	"reportNumber"?: SchemaValue<Text, "reportNumber">
+	reportNumber?: SchemaValue<Text, "reportNumber">
 }
 interface ReportLeaf extends ReportBase {
 	type: "Report"
@@ -13049,40 +12864,40 @@ interface ReservationBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/broker instead.
 	 */
-	"bookingAgent"?: SchemaValue<
+	bookingAgent?: SchemaValue<
 		Organization | Person | IdReference,
 		"bookingAgent"
 	>
 	/** The date and time the reservation was booked. */
-	"bookingTime"?: SchemaValue<DateTime, "bookingTime">
+	bookingTime?: SchemaValue<DateTime, "bookingTime">
 	/** An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. */
-	"broker"?: SchemaValue<Organization | Person | IdReference, "broker">
+	broker?: SchemaValue<Organization | Person | IdReference, "broker">
 	/** The date and time the reservation was modified. */
-	"modifiedTime"?: SchemaValue<DateTime, "modifiedTime">
+	modifiedTime?: SchemaValue<DateTime, "modifiedTime">
 	/**
 	 * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"priceCurrency"?: SchemaValue<Text, "priceCurrency">
+	priceCurrency?: SchemaValue<Text, "priceCurrency">
 	/** Any membership in a frequent flyer, hotel loyalty program, etc. being applied to the reservation. */
-	"programMembershipUsed"?: SchemaValue<
+	programMembershipUsed?: SchemaValue<
 		ProgramMembership | IdReference,
 		"programMembershipUsed"
 	>
 	/** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
-	"provider"?: SchemaValue<Organization | Person | IdReference, "provider">
+	provider?: SchemaValue<Organization | Person | IdReference, "provider">
 	/** The thing -- flight, event, restaurant, etc. being reserved. */
-	"reservationFor"?: SchemaValue<Thing | IdReference, "reservationFor">
+	reservationFor?: SchemaValue<Thing | IdReference, "reservationFor">
 	/** A unique identifier for the reservation. */
-	"reservationId"?: SchemaValue<Text, "reservationId">
+	reservationId?: SchemaValue<Text, "reservationId">
 	/** The current status of the reservation. */
-	"reservationStatus"?: SchemaValue<
+	reservationStatus?: SchemaValue<
 		ReservationStatusType | IdReference,
 		"reservationStatus"
 	>
 	/** A ticket associated with the reservation. */
-	"reservedTicket"?: SchemaValue<Ticket | IdReference, "reservedTicket">
+	reservedTicket?: SchemaValue<Ticket | IdReference, "reservedTicket">
 	/**
 	 * The total price for the reservation or ticket, including applicable taxes, shipping, etc.
 	 *
@@ -13090,12 +12905,12 @@ interface ReservationBase extends ThingBase {
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
 	 */
-	"totalPrice"?: SchemaValue<
+	totalPrice?: SchemaValue<
 		Number | PriceSpecification | Text | IdReference,
 		"totalPrice"
 	>
 	/** The person or organization the reservation or ticket is for. */
-	"underName"?: SchemaValue<Organization | Person | IdReference, "underName">
+	underName?: SchemaValue<Organization | Person | IdReference, "underName">
 }
 interface ReservationLeaf extends ReservationBase {
 	type: "Reservation"
@@ -13120,7 +12935,7 @@ export type Reservation =
 
 interface ReservationPackageBase extends ReservationBase {
 	/** The individual reservations included in the package. Typically a repeated property. */
-	"subReservation"?: SchemaValue<Reservation | IdReference, "subReservation">
+	subReservation?: SchemaValue<Reservation | IdReference, "subReservation">
 }
 interface ReservationPackageLeaf extends ReservationPackageBase {
 	type: "ReservationPackage"
@@ -13162,7 +12977,7 @@ export type Reservoir = ReservoirLeaf | string
 
 interface ResidenceBase extends PlaceBase {
 	/** A floorplan of some {@link https://schema.org/Accommodation Accommodation}. */
-	"accommodationFloorPlan"?: SchemaValue<
+	accommodationFloorPlan?: SchemaValue<
 		FloorPlan | IdReference,
 		"accommodationFloorPlan"
 	>
@@ -13236,7 +13051,7 @@ export type ResumeAction = ResumeActionLeaf
 
 interface ReturnActionBase extends TransferActionBase {
 	/** A sub property of participant. The participant who is at the receiving end of the action. */
-	"recipient"?: SchemaValue<
+	recipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"recipient"
 	>
@@ -13292,19 +13107,19 @@ export type ReturnMethodEnumeration =
 
 interface ReviewBase extends CreativeWorkBase {
 	/** An associated {@link https://schema.org/ClaimReview ClaimReview}, related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case {@link https://schema.org/relatedMediaReview relatedMediaReview} would commonly be used on a {@link https://schema.org/ClaimReview ClaimReview}, while {@link https://schema.org/relatedClaimReview relatedClaimReview} would be used on {@link https://schema.org/MediaReview MediaReview}. */
-	"associatedClaimReview"?: SchemaValue<
+	associatedClaimReview?: SchemaValue<
 		Review | IdReference,
 		"associatedClaimReview"
 	>
 	/** An associated {@link https://schema.org/MediaReview MediaReview}, related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case {@link https://schema.org/relatedMediaReview relatedMediaReview} would commonly be used on a {@link https://schema.org/ClaimReview ClaimReview}, while {@link https://schema.org/relatedClaimReview relatedClaimReview} would be used on {@link https://schema.org/MediaReview MediaReview}. */
-	"associatedMediaReview"?: SchemaValue<
+	associatedMediaReview?: SchemaValue<
 		Review | IdReference,
 		"associatedMediaReview"
 	>
 	/** An associated {@link https://schema.org/Review Review}. */
-	"associatedReview"?: SchemaValue<Review | IdReference, "associatedReview">
+	associatedReview?: SchemaValue<Review | IdReference, "associatedReview">
 	/** The item that is being reviewed/rated. */
-	"itemReviewed"?: SchemaValue<Thing | IdReference, "itemReviewed">
+	itemReviewed?: SchemaValue<Thing | IdReference, "itemReviewed">
 	/**
 	 * Provides negative considerations regarding something, most typically in pro/con lists for reviews (alongside {@link https://schema.org/positiveNotes positiveNotes}). For symmetry
 	 *
@@ -13312,7 +13127,7 @@ interface ReviewBase extends CreativeWorkBase {
 	 *
 	 * The property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most negative is at the beginning of the list).
 	 */
-	"negativeNotes"?: SchemaValue<
+	negativeNotes?: SchemaValue<
 		ItemList | ListItem | Text | WebContent | IdReference,
 		"negativeNotes"
 	>
@@ -13323,16 +13138,16 @@ interface ReviewBase extends CreativeWorkBase {
 	 *
 	 * The property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most positive is at the beginning of the list).
 	 */
-	"positiveNotes"?: SchemaValue<
+	positiveNotes?: SchemaValue<
 		ItemList | ListItem | Text | WebContent | IdReference,
 		"positiveNotes"
 	>
 	/** This Review or Rating is relevant to this part or facet of the itemReviewed. */
-	"reviewAspect"?: SchemaValue<Text, "reviewAspect">
+	reviewAspect?: SchemaValue<Text, "reviewAspect">
 	/** The actual body of the review. */
-	"reviewBody"?: SchemaValue<Text, "reviewBody">
+	reviewBody?: SchemaValue<Text, "reviewBody">
 	/** The rating given in this review. Note that reviews can themselves be rated. The `reviewRating` applies to rating given by the review. The {@link https://schema.org/aggregateRating aggregateRating} property applies to the review itself, as a creative work. */
-	"reviewRating"?: SchemaValue<Rating | IdReference, "reviewRating">
+	reviewRating?: SchemaValue<Rating | IdReference, "reviewRating">
 }
 interface ReviewLeaf extends ReviewBase {
 	type: "Review"
@@ -13349,7 +13164,7 @@ export type Review =
 
 interface ReviewActionBase extends ActionBase {
 	/** A sub property of result. The review that resulted in the performing of the action. */
-	"resultReview"?: SchemaValue<Review | IdReference, "resultReview">
+	resultReview?: SchemaValue<Review | IdReference, "resultReview">
 }
 interface ReviewActionLeaf extends ReviewActionBase {
 	type: "ReviewAction"
@@ -13357,8 +13172,7 @@ interface ReviewActionLeaf extends ReviewActionBase {
 /** The act of producing a balanced opinion about the object for an audience. An agent reviews an object with participants resulting in a review. */
 export type ReviewAction = ReviewActionLeaf
 
-interface ReviewNewsArticleBase extends NewsArticleBase, ReviewBase {
-}
+interface ReviewNewsArticleBase extends NewsArticleBase, ReviewBase {}
 interface ReviewNewsArticleLeaf extends ReviewNewsArticleBase {
 	type: "ReviewNewsArticle"
 }
@@ -13389,11 +13203,11 @@ export type Room = RoomLeaf | HotelRoom | MeetingRoom | string
 
 interface RsvpActionBase extends InformActionBase {
 	/** If responding yes, the number of guests who will attend in addition to the invitee. */
-	"additionalNumberOfGuests"?: SchemaValue<Number, "additionalNumberOfGuests">
+	additionalNumberOfGuests?: SchemaValue<Number, "additionalNumberOfGuests">
 	/** Comments, typically from users. */
-	"comment"?: SchemaValue<Comment | IdReference, "comment">
+	comment?: SchemaValue<Comment | IdReference, "comment">
 	/** The response (yes, no, maybe) to the RSVP. */
-	"rsvpResponse"?: SchemaValue<RsvpResponseType | IdReference, "rsvpResponse">
+	rsvpResponse?: SchemaValue<RsvpResponseType | IdReference, "rsvpResponse">
 }
 interface RsvpActionLeaf extends RsvpActionBase {
 	type: "RsvpAction"
@@ -13434,42 +13248,42 @@ export type SatiricalArticle = SatiricalArticleLeaf
 
 interface ScheduleBase extends ThingBase {
 	/** Defines the day(s) of the week on which a recurring {@link https://schema.org/Event Event} takes place. May be specified using either {@link https://schema.org/DayOfWeek DayOfWeek}, or alternatively {@link https://schema.org/Text Text} conforming to iCal's syntax for byDay recurrence rules. */
-	"byDay"?: SchemaValue<DayOfWeek | Text | IdReference, "byDay">
+	byDay?: SchemaValue<DayOfWeek | Text | IdReference, "byDay">
 	/** Defines the month(s) of the year on which a recurring {@link https://schema.org/Event Event} takes place. Specified as an {@link https://schema.org/Integer Integer} between 1-12. January is 1. */
-	"byMonth"?: SchemaValue<Integer, "byMonth">
+	byMonth?: SchemaValue<Integer, "byMonth">
 	/** Defines the day(s) of the month on which a recurring {@link https://schema.org/Event Event} takes place. Specified as an {@link https://schema.org/Integer Integer} between 1-31. */
-	"byMonthDay"?: SchemaValue<Integer, "byMonthDay">
+	byMonthDay?: SchemaValue<Integer, "byMonthDay">
 	/** Defines the week(s) of the month on which a recurring Event takes place. Specified as an Integer between 1-5. For clarity, byMonthWeek is best used in conjunction with byDay to indicate concepts like the first and third Mondays of a month. */
-	"byMonthWeek"?: SchemaValue<Integer, "byMonthWeek">
+	byMonthWeek?: SchemaValue<Integer, "byMonthWeek">
 	/** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
-	"duration"?: SchemaValue<Duration | IdReference, "duration">
+	duration?: SchemaValue<Duration | IdReference, "duration">
 	/** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"endDate"?: SchemaValue<Date | DateTime, "endDate">
+	endDate?: SchemaValue<Date | DateTime, "endDate">
 	/**
 	 * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. E.g. John wrote a book from January to _December_. For media, including audio and video, it's the time offset of the end of a clip within a larger file.
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"endTime"?: SchemaValue<DateTime | Time, "endTime">
+	endTime?: SchemaValue<DateTime | Time, "endTime">
 	/** Defines a {@link https://schema.org/Date Date} or {@link https://schema.org/DateTime DateTime} during which a scheduled {@link https://schema.org/Event Event} will not take place. The property allows exceptions to a {@link https://schema.org/Schedule Schedule} to be specified. If an exception is specified as a {@link https://schema.org/DateTime DateTime} then only the event that would have started at that specific date and time should be excluded from the schedule. If an exception is specified as a {@link https://schema.org/Date Date} then any event that is scheduled for that 24 hour period should be excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event. */
-	"exceptDate"?: SchemaValue<Date | DateTime, "exceptDate">
+	exceptDate?: SchemaValue<Date | DateTime, "exceptDate">
 	/** Defines the number of times a recurring {@link https://schema.org/Event Event} will take place. */
-	"repeatCount"?: SchemaValue<Integer, "repeatCount">
+	repeatCount?: SchemaValue<Integer, "repeatCount">
 	/** Defines the frequency at which {@link https://schema.org/Event Event}s will occur according to a schedule {@link https://schema.org/Schedule Schedule}. The intervals between events should be defined as a {@link https://schema.org/Duration Duration} of time. */
-	"repeatFrequency"?: SchemaValue<
+	repeatFrequency?: SchemaValue<
 		Duration | Text | IdReference,
 		"repeatFrequency"
 	>
 	/** Indicates the timezone for which the time(s) indicated in the {@link https://schema.org/Schedule Schedule} are given. The value provided should be among those listed in the IANA Time Zone Database. */
-	"scheduleTimezone"?: SchemaValue<Text, "scheduleTimezone">
+	scheduleTimezone?: SchemaValue<Text, "scheduleTimezone">
 	/** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
-	"startDate"?: SchemaValue<Date | DateTime, "startDate">
+	startDate?: SchemaValue<Date | DateTime, "startDate">
 	/**
 	 * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. E.g. John wrote a book from _January_ to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.
 	 *
 	 * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
 	 */
-	"startTime"?: SchemaValue<DateTime | Time, "startTime">
+	startTime?: SchemaValue<DateTime | Time, "startTime">
 }
 interface ScheduleLeaf extends ScheduleBase {
 	type: "Schedule"
@@ -13508,14 +13322,14 @@ export type SchoolDistrict = SchoolDistrictLeaf | string
 
 interface ScreeningEventBase extends EventBase {
 	/** Languages in which subtitles/captions are available, in {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard format}. */
-	"subtitleLanguage"?: SchemaValue<
+	subtitleLanguage?: SchemaValue<
 		Language | Text | IdReference,
 		"subtitleLanguage"
 	>
 	/** The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.). */
-	"videoFormat"?: SchemaValue<Text, "videoFormat">
+	videoFormat?: SchemaValue<Text, "videoFormat">
 	/** The movie presented during this event. */
-	"workPresented"?: SchemaValue<Movie | IdReference, "workPresented">
+	workPresented?: SchemaValue<Movie | IdReference, "workPresented">
 }
 interface ScreeningEventLeaf extends ScreeningEventBase {
 	type: "ScreeningEvent"
@@ -13537,7 +13351,7 @@ export type SeaBodyOfWater = SeaBodyOfWaterLeaf | string
 
 interface SearchActionBase extends ActionBase {
 	/** A sub property of instrument. The query used on this action. */
-	"query"?: SchemaValue<Text, "query">
+	query?: SchemaValue<Text, "query">
 }
 interface SearchActionLeaf extends SearchActionBase {
 	type: "SearchAction"
@@ -13574,16 +13388,16 @@ export type Season = SeasonLeaf
 
 interface SeatBase extends ThingBase {
 	/** The type/class of the seat. */
-	"seatingType"?: SchemaValue<
+	seatingType?: SchemaValue<
 		QualitativeValue | Text | IdReference,
 		"seatingType"
 	>
 	/** The location of the reserved seat (e.g., 27). */
-	"seatNumber"?: SchemaValue<Text, "seatNumber">
+	seatNumber?: SchemaValue<Text, "seatNumber">
 	/** The row location of the reserved seat (e.g., B). */
-	"seatRow"?: SchemaValue<Text, "seatRow">
+	seatRow?: SchemaValue<Text, "seatRow">
 	/** The section location of the reserved seat (e.g. Orchestra). */
-	"seatSection"?: SchemaValue<Text, "seatSection">
+	seatSection?: SchemaValue<Text, "seatSection">
 }
 interface SeatLeaf extends SeatBase {
 	type: "Seat"
@@ -13593,10 +13407,7 @@ export type Seat = SeatLeaf
 
 interface SeekToActionBase extends ActionBase {
 	/** The start time of the clip expressed as the number of seconds from the beginning of the work. */
-	"startOffset"?: SchemaValue<
-		HyperTocEntry | Number | IdReference,
-		"startOffset"
-	>
+	startOffset?: SchemaValue<HyperTocEntry | Number | IdReference, "startOffset">
 }
 interface SeekToActionLeaf extends SeekToActionBase {
 	type: "SeekToAction"
@@ -13612,13 +13423,13 @@ export type SelfStorage = SelfStorageLeaf | string
 
 interface SellActionBase extends TradeActionBase {
 	/** A sub property of participant. The participant/person/organization that bought the object. */
-	"buyer"?: SchemaValue<Organization | Person | IdReference, "buyer">
+	buyer?: SchemaValue<Organization | Person | IdReference, "buyer">
 	/**
 	 * The warranty promise(s) included in the offer.
 	 *
 	 * @deprecated Consider using https://schema.org/warranty instead.
 	 */
-	"warrantyPromise"?: SchemaValue<
+	warrantyPromise?: SchemaValue<
 		WarrantyPromise | IdReference,
 		"warrantyPromise"
 	>
@@ -13631,9 +13442,9 @@ export type SellAction = SellActionLeaf
 
 interface SendActionBase extends TransferActionBase {
 	/** A sub property of instrument. The method of delivery. */
-	"deliveryMethod"?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
+	deliveryMethod?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
 	/** A sub property of participant. The participant who is at the receiving end of the action. */
-	"recipient"?: SchemaValue<
+	recipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"recipient"
 	>
@@ -13656,66 +13467,66 @@ export type Series = SeriesLeaf | CreativeWorkSeries | EventSeries
 
 interface ServiceBase extends ThingBase {
 	/** The overall rating, based on a collection of reviews or ratings, of the item. */
-	"aggregateRating"?: SchemaValue<
+	aggregateRating?: SchemaValue<
 		AggregateRating | IdReference,
 		"aggregateRating"
 	>
 	/** The geographic area where a service or offered item is provided. */
-	"areaServed"?: SchemaValue<
+	areaServed?: SchemaValue<
 		AdministrativeArea | GeoShape | Place | Text | IdReference,
 		"areaServed"
 	>
 	/** An intended audience, i.e. a group for whom something was created. */
-	"audience"?: SchemaValue<Audience | IdReference, "audience">
+	audience?: SchemaValue<Audience | IdReference, "audience">
 	/** A means of accessing the service (e.g. a phone bank, a web site, a location, etc.). */
-	"availableChannel"?: SchemaValue<
+	availableChannel?: SchemaValue<
 		ServiceChannel | IdReference,
 		"availableChannel"
 	>
 	/** An award won by or for this item. */
-	"award"?: SchemaValue<Text, "award">
+	award?: SchemaValue<Text, "award">
 	/** The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person. */
-	"brand"?: SchemaValue<Brand | Organization | IdReference, "brand">
+	brand?: SchemaValue<Brand | Organization | IdReference, "brand">
 	/** An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. */
-	"broker"?: SchemaValue<Organization | Person | IdReference, "broker">
+	broker?: SchemaValue<Organization | Person | IdReference, "broker">
 	/** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
-	"category"?: SchemaValue<
+	category?: SchemaValue<
 		CategoryCode | PhysicalActivityCategory | Text | Thing | URL | IdReference,
 		"category"
 	>
 	/** Indicates an OfferCatalog listing for this Organization, Person, or Service. */
-	"hasOfferCatalog"?: SchemaValue<OfferCatalog | IdReference, "hasOfferCatalog">
+	hasOfferCatalog?: SchemaValue<OfferCatalog | IdReference, "hasOfferCatalog">
 	/** The hours during which this service or contact is available. */
-	"hoursAvailable"?: SchemaValue<
+	hoursAvailable?: SchemaValue<
 		OpeningHoursSpecification | IdReference,
 		"hoursAvailable"
 	>
 	/** A pointer to another, somehow related product (or multiple products). */
-	"isRelatedTo"?: SchemaValue<Product | Service | IdReference, "isRelatedTo">
+	isRelatedTo?: SchemaValue<Product | Service | IdReference, "isRelatedTo">
 	/** A pointer to another, functionally similar product (or multiple products). */
-	"isSimilarTo"?: SchemaValue<Product | Service | IdReference, "isSimilarTo">
+	isSimilarTo?: SchemaValue<Product | Service | IdReference, "isSimilarTo">
 	/** An associated logo. */
-	"logo"?: SchemaValue<ImageObject | URL | IdReference, "logo">
+	logo?: SchemaValue<ImageObject | URL | IdReference, "logo">
 	/** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"offers"?: SchemaValue<Demand | Offer | IdReference, "offers">
+	offers?: SchemaValue<Demand | Offer | IdReference, "offers">
 	/**
 	 * The tangible thing generated by the service, e.g. a passport, permit, etc.
 	 *
 	 * @deprecated Consider using https://schema.org/serviceOutput instead.
 	 */
-	"produces"?: SchemaValue<Thing | IdReference, "produces">
+	produces?: SchemaValue<Thing | IdReference, "produces">
 	/** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
-	"provider"?: SchemaValue<Organization | Person | IdReference, "provider">
+	provider?: SchemaValue<Organization | Person | IdReference, "provider">
 	/** Indicates the mobility of a provided service (e.g. 'static', 'dynamic'). */
-	"providerMobility"?: SchemaValue<Text, "providerMobility">
+	providerMobility?: SchemaValue<Text, "providerMobility">
 	/** A review of the item. */
-	"review"?: SchemaValue<Review | IdReference, "review">
+	review?: SchemaValue<Review | IdReference, "review">
 	/**
 	 * The geographic area where the service is provided.
 	 *
 	 * @deprecated Consider using https://schema.org/areaServed instead.
 	 */
-	"serviceArea"?: SchemaValue<
+	serviceArea?: SchemaValue<
 		AdministrativeArea | GeoShape | Place | IdReference,
 		"serviceArea"
 	>
@@ -13724,18 +13535,18 @@ interface ServiceBase extends ThingBase {
 	 *
 	 * @deprecated Consider using https://schema.org/audience instead.
 	 */
-	"serviceAudience"?: SchemaValue<Audience | IdReference, "serviceAudience">
+	serviceAudience?: SchemaValue<Audience | IdReference, "serviceAudience">
 	/** The tangible thing generated by the service, e.g. a passport, permit, etc. */
-	"serviceOutput"?: SchemaValue<Thing | IdReference, "serviceOutput">
+	serviceOutput?: SchemaValue<Thing | IdReference, "serviceOutput">
 	/** The type of service being offered, e.g. veterans' benefits, emergency relief, etc. */
-	"serviceType"?: SchemaValue<
+	serviceType?: SchemaValue<
 		GovernmentBenefitsType | Text | IdReference,
 		"serviceType"
 	>
 	/** A slogan or motto associated with the item. */
-	"slogan"?: SchemaValue<Text, "slogan">
+	slogan?: SchemaValue<Text, "slogan">
 	/** Human-readable terms of service documentation. */
-	"termsOfService"?: SchemaValue<Text | URL, "termsOfService">
+	termsOfService?: SchemaValue<Text | URL, "termsOfService">
 }
 interface ServiceLeaf extends ServiceBase {
 	type: "Service"
@@ -13754,30 +13565,27 @@ export type Service =
 
 interface ServiceChannelBase extends ThingBase {
 	/** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/inLanguage inLanguage}. */
-	"availableLanguage"?: SchemaValue<
+	availableLanguage?: SchemaValue<
 		Language | Text | IdReference,
 		"availableLanguage"
 	>
 	/** Estimated processing time for the service using this channel. */
-	"processingTime"?: SchemaValue<Duration | IdReference, "processingTime">
+	processingTime?: SchemaValue<Duration | IdReference, "processingTime">
 	/** The service provided by this channel. */
-	"providesService"?: SchemaValue<Service | IdReference, "providesService">
+	providesService?: SchemaValue<Service | IdReference, "providesService">
 	/** The location (e.g. civic structure, local business, etc.) where a person can go to access the service. */
-	"serviceLocation"?: SchemaValue<Place | IdReference, "serviceLocation">
+	serviceLocation?: SchemaValue<Place | IdReference, "serviceLocation">
 	/** The phone number to use to access the service. */
-	"servicePhone"?: SchemaValue<ContactPoint | IdReference, "servicePhone">
+	servicePhone?: SchemaValue<ContactPoint | IdReference, "servicePhone">
 	/** The address for accessing the service by mail. */
-	"servicePostalAddress"?: SchemaValue<
+	servicePostalAddress?: SchemaValue<
 		PostalAddress | IdReference,
 		"servicePostalAddress"
 	>
 	/** The number to access the service by text message. */
-	"serviceSmsNumber"?: SchemaValue<
-		ContactPoint | IdReference,
-		"serviceSmsNumber"
-	>
+	serviceSmsNumber?: SchemaValue<ContactPoint | IdReference, "serviceSmsNumber">
 	/** The website to access the service. */
-	"serviceUrl"?: SchemaValue<URL, "serviceUrl">
+	serviceUrl?: SchemaValue<URL, "serviceUrl">
 }
 interface ServiceChannelLeaf extends ServiceChannelBase {
 	type: "ServiceChannel"
@@ -13799,16 +13607,16 @@ export type SheetMusic = SheetMusicLeaf
 
 interface ShippingDeliveryTimeBase extends ThingBase {
 	/** Days of the week when the merchant typically operates, indicated via opening hours markup. */
-	"businessDays"?: SchemaValue<
+	businessDays?: SchemaValue<
 		OpeningHoursSpecification | IdReference,
 		"businessDays"
 	>
 	/** Order cutoff time allows merchants to describe the time after which they will no longer process orders received on that day. For orders processed after cutoff time, one day gets added to the delivery time estimate. This property is expected to be most typically used via the {@link https://schema.org/ShippingRateSettings ShippingRateSettings} publication pattern. The time is indicated using the ISO-8601 Time format, e.g. "23:30:00-05:00" would represent 6:30 pm Eastern Standard Time (EST) which is 5 hours behind Coordinated Universal Time (UTC). */
-	"cutoffTime"?: SchemaValue<Time, "cutoffTime">
+	cutoffTime?: SchemaValue<Time, "cutoffTime">
 	/** The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. Typical properties: minValue, maxValue, unitCode (d for DAY). This is by common convention assumed to mean business days (if a unitCode is used, coded as "d"), i.e. only counting days when the business normally operates. */
-	"handlingTime"?: SchemaValue<QuantitativeValue | IdReference, "handlingTime">
+	handlingTime?: SchemaValue<QuantitativeValue | IdReference, "handlingTime">
 	/** The typical delay the order has been sent for delivery and the goods reach the final customer. Typical properties: minValue, maxValue, unitCode (d for DAY). */
-	"transitTime"?: SchemaValue<QuantitativeValue | IdReference, "transitTime">
+	transitTime?: SchemaValue<QuantitativeValue | IdReference, "transitTime">
 }
 interface ShippingDeliveryTimeLeaf extends ShippingDeliveryTimeBase {
 	type: "ShippingDeliveryTime"
@@ -13818,23 +13626,23 @@ export type ShippingDeliveryTime = ShippingDeliveryTimeLeaf
 
 interface ShippingRateSettingsBase extends ThingBase {
 	/** Indicates when shipping to a particular {@link https://schema.org/shippingDestination shippingDestination} is not available. */
-	"doesNotShip"?: SchemaValue<Boolean, "doesNotShip">
+	doesNotShip?: SchemaValue<Boolean, "doesNotShip">
 	/** A monetary value above (or at) which the shipping rate becomes free. Intended to be used via an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with {@link https://schema.org/shippingSettingsLink shippingSettingsLink} matching this {@link https://schema.org/ShippingRateSettings ShippingRateSettings}. */
-	"freeShippingThreshold"?: SchemaValue<
+	freeShippingThreshold?: SchemaValue<
 		DeliveryChargeSpecification | MonetaryAmount | IdReference,
 		"freeShippingThreshold"
 	>
 	/** This can be marked 'true' to indicate that some published {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} or {@link https://schema.org/ShippingRateSettings ShippingRateSettings} are intended to apply to all {@link https://schema.org/OfferShippingDetails OfferShippingDetails} published by the same merchant, when referenced by a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings}) or shippingLabel (for {@link https://schema.org/ShippingRateSettings ShippingRateSettings}), since this property is for use with unlabelled settings. */
-	"isUnlabelledFallback"?: SchemaValue<Boolean, "isUnlabelledFallback">
+	isUnlabelledFallback?: SchemaValue<Boolean, "isUnlabelledFallback">
 	/** indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges. */
-	"shippingDestination"?: SchemaValue<
+	shippingDestination?: SchemaValue<
 		DefinedRegion | IdReference,
 		"shippingDestination"
 	>
 	/** Label to match an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with a {@link https://schema.org/ShippingRateSettings ShippingRateSettings} (within the context of a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} cross-reference). */
-	"shippingLabel"?: SchemaValue<Text, "shippingLabel">
+	shippingLabel?: SchemaValue<Text, "shippingLabel">
 	/** The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the {@link https://schema.org/MonetaryAmount MonetaryAmount}) are most appropriate. */
-	"shippingRate"?: SchemaValue<MonetaryAmount | IdReference, "shippingRate">
+	shippingRate?: SchemaValue<MonetaryAmount | IdReference, "shippingRate">
 }
 interface ShippingRateSettingsLeaf extends ShippingRateSettingsBase {
 	type: "ShippingRateSettings"
@@ -13862,12 +13670,12 @@ export type ShortStory = ShortStoryLeaf
 
 interface SingleFamilyResidenceBase extends HouseBase {
 	/** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
-	"numberOfRooms"?: SchemaValue<
+	numberOfRooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfRooms"
 	>
 	/** The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person). Typical unit code(s): C62 for person */
-	"occupancy"?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
+	occupancy?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
 }
 interface SingleFamilyResidenceLeaf extends SingleFamilyResidenceBase {
 	type: "SingleFamilyResidence"
@@ -13891,29 +13699,29 @@ export type SizeGroupEnumeration =
 
 interface SizeSpecificationBase extends QualitativeValueBase {
 	/** A product measurement, for example the inseam of pants, the wheel size of a bicycle, or the gauge of a screw. Usually an exact measurement, but can also be a range of measurements for adjustable products, for example belts and ski bindings. */
-	"hasMeasurement"?: SchemaValue<
+	hasMeasurement?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"hasMeasurement"
 	>
 	/** The size group (also known as "size type") for a product's size. Size groups are common in the fashion industry to define size segments and suggested audiences for wearable products. Multiple values can be combined, for example "men's big and tall", "petite maternity" or "regular" */
-	"sizeGroup"?: SchemaValue<
+	sizeGroup?: SchemaValue<
 		SizeGroupEnumeration | Text | IdReference,
 		"sizeGroup"
 	>
 	/** The size system used to identify a product's size. Typically either a standard (for example, "GS1" or "ISO-EN13402"), country code (for example "US" or "JP"), or a measuring system (for example "Metric" or "Imperial"). */
-	"sizeSystem"?: SchemaValue<
+	sizeSystem?: SchemaValue<
 		SizeSystemEnumeration | Text | IdReference,
 		"sizeSystem"
 	>
 	/** The age or age range for the intended audience or person, for example 3-12 months for infants, 1-5 years for toddlers. */
-	"suggestedAge"?: SchemaValue<QuantitativeValue | IdReference, "suggestedAge">
+	suggestedAge?: SchemaValue<QuantitativeValue | IdReference, "suggestedAge">
 	/** The suggested gender of the intended person or audience, for example "male", "female", or "unisex". */
-	"suggestedGender"?: SchemaValue<
+	suggestedGender?: SchemaValue<
 		GenderType | Text | IdReference,
 		"suggestedGender"
 	>
 	/** A suggested range of body measurements for the intended audience or person, for example inseam between 32 and 34 inches or height between 170 and 190 cm. Typically found on a size chart for wearable products. */
-	"suggestedMeasurement"?: SchemaValue<
+	suggestedMeasurement?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"suggestedMeasurement"
 	>
@@ -13936,8 +13744,7 @@ export type SizeSystemEnumeration =
 	| SizeSystemEnumerationLeaf
 	| WearableSizeSystemEnumeration
 
-interface SkiResortBase extends LodgingBusinessBase, LocalBusinessBase {
-}
+interface SkiResortBase extends LodgingBusinessBase, LocalBusinessBase {}
 interface SkiResortLeaf extends SkiResortBase {
 	type: "SkiResort"
 }
@@ -13952,7 +13759,7 @@ export type SocialEvent = SocialEventLeaf
 
 interface SocialMediaPostingBase extends ArticleBase {
 	/** A CreativeWork such as an image, video, or audio clip shared as part of this posting. */
-	"sharedContent"?: SchemaValue<CreativeWork | IdReference, "sharedContent">
+	sharedContent?: SchemaValue<CreativeWork | IdReference, "sharedContent">
 }
 interface SocialMediaPostingLeaf extends SocialMediaPostingBase {
 	type: "SocialMediaPosting"
@@ -13965,64 +13772,64 @@ export type SocialMediaPosting =
 
 interface SoftwareApplicationBase extends CreativeWorkBase {
 	/** Type of software application, e.g. 'Game, Multimedia'. */
-	"applicationCategory"?: SchemaValue<Text | URL, "applicationCategory">
+	applicationCategory?: SchemaValue<Text | URL, "applicationCategory">
 	/** Subcategory of the application, e.g. 'Arcade Game'. */
-	"applicationSubCategory"?: SchemaValue<Text | URL, "applicationSubCategory">
+	applicationSubCategory?: SchemaValue<Text | URL, "applicationSubCategory">
 	/** The name of the application suite to which the application belongs (e.g. Excel belongs to Office). */
-	"applicationSuite"?: SchemaValue<Text, "applicationSuite">
+	applicationSuite?: SchemaValue<Text, "applicationSuite">
 	/** Device required to run the application. Used in cases where a specific make/model is required to run the application. */
-	"availableOnDevice"?: SchemaValue<Text, "availableOnDevice">
+	availableOnDevice?: SchemaValue<Text, "availableOnDevice">
 	/** Countries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code. */
-	"countriesNotSupported"?: SchemaValue<Text, "countriesNotSupported">
+	countriesNotSupported?: SchemaValue<Text, "countriesNotSupported">
 	/** Countries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code. */
-	"countriesSupported"?: SchemaValue<Text, "countriesSupported">
+	countriesSupported?: SchemaValue<Text, "countriesSupported">
 	/**
 	 * Device required to run the application. Used in cases where a specific make/model is required to run the application.
 	 *
 	 * @deprecated Consider using https://schema.org/availableOnDevice instead.
 	 */
-	"device"?: SchemaValue<Text, "device">
+	device?: SchemaValue<Text, "device">
 	/** If the file can be downloaded, URL to download the binary. */
-	"downloadUrl"?: SchemaValue<URL, "downloadUrl">
+	downloadUrl?: SchemaValue<URL, "downloadUrl">
 	/** Features or modules provided by this application (and possibly required by other applications). */
-	"featureList"?: SchemaValue<Text | URL, "featureList">
+	featureList?: SchemaValue<Text | URL, "featureList">
 	/** Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed. */
-	"fileSize"?: SchemaValue<Text, "fileSize">
+	fileSize?: SchemaValue<Text, "fileSize">
 	/** URL at which the app may be installed, if different from the URL of the item. */
-	"installUrl"?: SchemaValue<URL, "installUrl">
+	installUrl?: SchemaValue<URL, "installUrl">
 	/** Minimum memory requirements. */
-	"memoryRequirements"?: SchemaValue<Text | URL, "memoryRequirements">
+	memoryRequirements?: SchemaValue<Text | URL, "memoryRequirements">
 	/** Operating systems supported (Windows 7, OS X 10.6, Android 1.6). */
-	"operatingSystem"?: SchemaValue<Text, "operatingSystem">
+	operatingSystem?: SchemaValue<Text, "operatingSystem">
 	/** Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi). */
-	"permissions"?: SchemaValue<Text, "permissions">
+	permissions?: SchemaValue<Text, "permissions">
 	/** Processor architecture required to run the application (e.g. IA64). */
-	"processorRequirements"?: SchemaValue<Text, "processorRequirements">
+	processorRequirements?: SchemaValue<Text, "processorRequirements">
 	/** Description of what changed in this version. */
-	"releaseNotes"?: SchemaValue<Text | URL, "releaseNotes">
+	releaseNotes?: SchemaValue<Text | URL, "releaseNotes">
 	/**
 	 * Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (examples: DirectX, Java or .NET runtime).
 	 *
 	 * @deprecated Consider using https://schema.org/softwareRequirements instead.
 	 */
-	"requirements"?: SchemaValue<Text | URL, "requirements">
+	requirements?: SchemaValue<Text | URL, "requirements">
 	/** A link to a screenshot image of the app. */
-	"screenshot"?: SchemaValue<ImageObject | URL | IdReference, "screenshot">
+	screenshot?: SchemaValue<ImageObject | URL | IdReference, "screenshot">
 	/** Additional content for a software application. */
-	"softwareAddOn"?: SchemaValue<
+	softwareAddOn?: SchemaValue<
 		SoftwareApplication | IdReference,
 		"softwareAddOn"
 	>
 	/** Software application help. */
-	"softwareHelp"?: SchemaValue<CreativeWork | IdReference, "softwareHelp">
+	softwareHelp?: SchemaValue<CreativeWork | IdReference, "softwareHelp">
 	/** Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (examples: DirectX, Java or .NET runtime). */
-	"softwareRequirements"?: SchemaValue<Text | URL, "softwareRequirements">
+	softwareRequirements?: SchemaValue<Text | URL, "softwareRequirements">
 	/** Version of the software instance. */
-	"softwareVersion"?: SchemaValue<Text, "softwareVersion">
+	softwareVersion?: SchemaValue<Text, "softwareVersion">
 	/** Storage requirements (free space required). */
-	"storageRequirements"?: SchemaValue<Text | URL, "storageRequirements">
+	storageRequirements?: SchemaValue<Text | URL, "storageRequirements">
 	/** Supporting data for a SoftwareApplication. */
-	"supportingData"?: SchemaValue<DataFeed | IdReference, "supportingData">
+	supportingData?: SchemaValue<DataFeed | IdReference, "supportingData">
 }
 interface SoftwareApplicationLeaf extends SoftwareApplicationBase {
 	type: "SoftwareApplication"
@@ -14036,11 +13843,11 @@ export type SoftwareApplication =
 
 interface SoftwareSourceCodeBase extends CreativeWorkBase {
 	/** Link to the repository where the un-compiled, human readable code and related code is located (SVN, GitHub, CodePlex). */
-	"codeRepository"?: SchemaValue<URL, "codeRepository">
+	codeRepository?: SchemaValue<URL, "codeRepository">
 	/** What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template. */
-	"codeSampleType"?: SchemaValue<Text, "codeSampleType">
+	codeSampleType?: SchemaValue<Text, "codeSampleType">
 	/** The computer programming language. */
-	"programmingLanguage"?: SchemaValue<
+	programmingLanguage?: SchemaValue<
 		ComputerLanguage | Text | IdReference,
 		"programmingLanguage"
 	>
@@ -14049,17 +13856,17 @@ interface SoftwareSourceCodeBase extends CreativeWorkBase {
 	 *
 	 * @deprecated Consider using https://schema.org/runtimePlatform instead.
 	 */
-	"runtime"?: SchemaValue<Text, "runtime">
+	runtime?: SchemaValue<Text, "runtime">
 	/** Runtime platform or script interpreter dependencies (example: Java v1, Python 2.3, .NET Framework 3.0). */
-	"runtimePlatform"?: SchemaValue<Text, "runtimePlatform">
+	runtimePlatform?: SchemaValue<Text, "runtimePlatform">
 	/**
 	 * What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template.
 	 *
 	 * @deprecated Consider using https://schema.org/codeSampleType instead.
 	 */
-	"sampleType"?: SchemaValue<Text, "sampleType">
+	sampleType?: SchemaValue<Text, "sampleType">
 	/** Target Operating System / Product to which the code applies. If applies to several versions, just the product name can be used. */
-	"targetProduct"?: SchemaValue<
+	targetProduct?: SchemaValue<
 		SoftwareApplication | IdReference,
 		"targetProduct"
 	>
@@ -14072,7 +13879,7 @@ export type SoftwareSourceCode = SoftwareSourceCodeLeaf
 
 interface SolveMathActionBase extends ActionBase {
 	/** For questions that are part of learning resources (e.g. Quiz), eduQuestionType indicates the format of question being given. Example: "Multiple choice", "Open ended", "Flashcard". */
-	"eduQuestionType"?: SchemaValue<Text, "eduQuestionType">
+	eduQuestionType?: SchemaValue<Text, "eduQuestionType">
 }
 interface SolveMathActionLeaf extends SolveMathActionBase {
 	type: "SolveMathAction"
@@ -14082,7 +13889,7 @@ export type SolveMathAction = SolveMathActionLeaf
 
 interface SomeProductsBase extends ProductBase {
 	/** The current approximate inventory level for the item or items. */
-	"inventoryLevel"?: SchemaValue<
+	inventoryLevel?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"inventoryLevel"
 	>
@@ -14095,9 +13902,9 @@ export type SomeProducts = SomeProductsLeaf
 
 interface SpeakableSpecificationBase extends ThingBase {
 	/** A CSS selector, e.g. of a {@link https://schema.org/SpeakableSpecification SpeakableSpecification} or {@link https://schema.org/WebPageElement WebPageElement}. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
-	"cssSelector"?: SchemaValue<CssSelectorType, "cssSelector">
+	cssSelector?: SchemaValue<CssSelectorType, "cssSelector">
 	/** An XPath, e.g. of a {@link https://schema.org/SpeakableSpecification SpeakableSpecification} or {@link https://schema.org/WebPageElement WebPageElement}. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
-	"xpath"?: SchemaValue<XPathType, "xpath">
+	xpath?: SchemaValue<XPathType, "xpath">
 }
 interface SpeakableSpecificationLeaf extends SpeakableSpecificationBase {
 	type: "SpeakableSpecification"
@@ -14107,61 +13914,61 @@ export type SpeakableSpecification = SpeakableSpecificationLeaf
 
 interface SpecialAnnouncementBase extends CreativeWorkBase {
 	/** Indicates a specific {@link https://schema.org/CivicStructure CivicStructure} or {@link https://schema.org/LocalBusiness LocalBusiness} associated with the SpecialAnnouncement. For example, a specific testing facility or business with special opening hours. For a larger geographic region like a quarantine of an entire region, use {@link https://schema.org/spatialCoverage spatialCoverage}. */
-	"announcementLocation"?: SchemaValue<
+	announcementLocation?: SchemaValue<
 		CivicStructure | LocalBusiness | IdReference,
 		"announcementLocation"
 	>
 	/** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
-	"category"?: SchemaValue<
+	category?: SchemaValue<
 		CategoryCode | PhysicalActivityCategory | Text | Thing | URL | IdReference,
 		"category"
 	>
 	/** Publication date of an online listing. */
-	"datePosted"?: SchemaValue<Date | DateTime, "datePosted">
+	datePosted?: SchemaValue<Date | DateTime, "datePosted">
 	/** Information about disease prevention. */
-	"diseasePreventionInfo"?: SchemaValue<
+	diseasePreventionInfo?: SchemaValue<
 		URL | WebContent | IdReference,
 		"diseasePreventionInfo"
 	>
 	/** Statistical information about the spread of a disease, either as {@link https://schema.org/WebContent WebContent}, or described directly as a {@link https://schema.org/Dataset Dataset}, or the specific {@link https://schema.org/Observation Observation}s in the dataset. When a {@link https://schema.org/WebContent WebContent} URL is provided, the page indicated might also contain more such markup. */
-	"diseaseSpreadStatistics"?: SchemaValue<
+	diseaseSpreadStatistics?: SchemaValue<
 		Dataset | Observation | URL | WebContent | IdReference,
 		"diseaseSpreadStatistics"
 	>
 	/** Information about getting tested (for a {@link https://schema.org/MedicalCondition MedicalCondition}), e.g. in the context of a pandemic. */
-	"gettingTestedInfo"?: SchemaValue<
+	gettingTestedInfo?: SchemaValue<
 		URL | WebContent | IdReference,
 		"gettingTestedInfo"
 	>
 	/** governmentBenefitsInfo provides information about government benefits associated with a SpecialAnnouncement. */
-	"governmentBenefitsInfo"?: SchemaValue<
+	governmentBenefitsInfo?: SchemaValue<
 		GovernmentService | IdReference,
 		"governmentBenefitsInfo"
 	>
 	/** Indicates a page with news updates and guidelines. This could often be (but is not required to be) the main page containing {@link https://schema.org/SpecialAnnouncement SpecialAnnouncement} markup on a site. */
-	"newsUpdatesAndGuidelines"?: SchemaValue<
+	newsUpdatesAndGuidelines?: SchemaValue<
 		URL | WebContent | IdReference,
 		"newsUpdatesAndGuidelines"
 	>
 	/** Information about public transport closures. */
-	"publicTransportClosuresInfo"?: SchemaValue<
+	publicTransportClosuresInfo?: SchemaValue<
 		URL | WebContent | IdReference,
 		"publicTransportClosuresInfo"
 	>
 	/** Guidelines about quarantine rules, e.g. in the context of a pandemic. */
-	"quarantineGuidelines"?: SchemaValue<
+	quarantineGuidelines?: SchemaValue<
 		URL | WebContent | IdReference,
 		"quarantineGuidelines"
 	>
 	/** Information about school closures. */
-	"schoolClosuresInfo"?: SchemaValue<
+	schoolClosuresInfo?: SchemaValue<
 		URL | WebContent | IdReference,
 		"schoolClosuresInfo"
 	>
 	/** Information about travel bans, e.g. in the context of a pandemic. */
-	"travelBans"?: SchemaValue<URL | WebContent | IdReference, "travelBans">
+	travelBans?: SchemaValue<URL | WebContent | IdReference, "travelBans">
 	/** The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom. */
-	"webFeed"?: SchemaValue<DataFeed | URL | IdReference, "webFeed">
+	webFeed?: SchemaValue<DataFeed | URL | IdReference, "webFeed">
 }
 interface SpecialAnnouncementLeaf extends SpecialAnnouncementBase {
 	type: "SpecialAnnouncement"
@@ -14228,13 +14035,13 @@ export type SportsClub = SportsClubLeaf | string
 
 interface SportsEventBase extends EventBase {
 	/** The away team in a sports event. */
-	"awayTeam"?: SchemaValue<Person | SportsTeam | IdReference, "awayTeam">
+	awayTeam?: SchemaValue<Person | SportsTeam | IdReference, "awayTeam">
 	/** A competitor in a sports event. */
-	"competitor"?: SchemaValue<Person | SportsTeam | IdReference, "competitor">
+	competitor?: SchemaValue<Person | SportsTeam | IdReference, "competitor">
 	/** The home team in a sports event. */
-	"homeTeam"?: SchemaValue<Person | SportsTeam | IdReference, "homeTeam">
+	homeTeam?: SchemaValue<Person | SportsTeam | IdReference, "homeTeam">
 	/** A type of sport (e.g. Baseball). */
-	"sport"?: SchemaValue<Text | URL, "sport">
+	sport?: SchemaValue<Text | URL, "sport">
 }
 interface SportsEventLeaf extends SportsEventBase {
 	type: "SportsEvent"
@@ -14244,7 +14051,7 @@ export type SportsEvent = SportsEventLeaf
 
 interface SportsOrganizationBase extends OrganizationBase {
 	/** A type of sport (e.g. Baseball). */
-	"sport"?: SchemaValue<Text | URL, "sport">
+	sport?: SchemaValue<Text | URL, "sport">
 }
 interface SportsOrganizationLeaf extends SportsOrganizationBase {
 	type: "SportsOrganization"
@@ -14254,11 +14061,11 @@ export type SportsOrganization = SportsOrganizationLeaf | SportsTeam | string
 
 interface SportsTeamBase extends SportsOrganizationBase {
 	/** A person that acts as performing member of a sports team; a player as opposed to a coach. */
-	"athlete"?: SchemaValue<Person | IdReference, "athlete">
+	athlete?: SchemaValue<Person | IdReference, "athlete">
 	/** A person that acts in a coaching role for a sports team. */
-	"coach"?: SchemaValue<Person | IdReference, "coach">
+	coach?: SchemaValue<Person | IdReference, "coach">
 	/** Gender of something, typically a {@link https://schema.org/Person Person}, but possibly also fictional characters, animals, etc. While https://schema.org/Male and https://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender. The {@link https://schema.org/gender gender} property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender {@link https://schema.org/SportsTeam SportsTeam} can be indicated with a text value of "Mixed". */
-	"gender"?: SchemaValue<GenderType | Text | IdReference, "gender">
+	gender?: SchemaValue<GenderType | Text | IdReference, "gender">
 }
 interface SportsTeamLeaf extends SportsTeamBase {
 	type: "SportsTeam"
@@ -14272,8 +14079,7 @@ interface SpreadsheetDigitalDocumentLeaf extends DigitalDocumentBase {
 /** A spreadsheet file. */
 export type SpreadsheetDigitalDocument = SpreadsheetDigitalDocumentLeaf
 
-interface StadiumOrArenaBase extends CivicStructureBase, LocalBusinessBase {
-}
+interface StadiumOrArenaBase extends CivicStructureBase, LocalBusinessBase {}
 interface StadiumOrArenaLeaf extends StadiumOrArenaBase {
 	type: "StadiumOrArena"
 }
@@ -14294,7 +14100,7 @@ export type Statement = StatementLeaf
 
 interface StatisticalPopulationBase extends ThingBase {
 	/** Indicates the populationType common to all members of a {@link https://schema.org/StatisticalPopulation StatisticalPopulation} or all cases within the scope of a {@link https://schema.org/StatisticalVariable StatisticalVariable}. */
-	"populationType"?: SchemaValue<Class | IdReference, "populationType">
+	populationType?: SchemaValue<Class | IdReference, "populationType">
 }
 interface StatisticalPopulationLeaf extends StatisticalPopulationBase {
 	type: "StatisticalPopulation"
@@ -14304,19 +14110,19 @@ export type StatisticalPopulation = StatisticalPopulationLeaf
 
 interface StatisticalVariableBase extends ConstraintNodeBase {
 	/** The measuredProperty of an {@link https://schema.org/Observation Observation}, typically via its {@link https://schema.org/StatisticalVariable StatisticalVariable}. There are various kinds of applicable {@link https://schema.org/Property Property}: a schema.org property, a property from other RDF-compatible systems, e.g. W3C RDF Data Cube, Data Commons, Wikidata, or schema.org extensions such as {@link https://www.gs1.org/voc/?show=properties GS1's}. */
-	"measuredProperty"?: SchemaValue<Property | IdReference, "measuredProperty">
+	measuredProperty?: SchemaValue<Property | IdReference, "measuredProperty">
 	/** Identifies the denominator variable when an observation represents a ratio or percentage. */
-	"measurementDenominator"?: SchemaValue<
+	measurementDenominator?: SchemaValue<
 		StatisticalVariable | IdReference,
 		"measurementDenominator"
 	>
 	/** A subproperty of {@link https://schema.org/measurementTechnique measurementTechnique} that can be used for specifying specific methods, in particular via {@link https://schema.org/MeasurementMethodEnum MeasurementMethodEnum}. */
-	"measurementMethod"?: SchemaValue<
+	measurementMethod?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementMethod"
 	>
 	/** Provides additional qualification to an observation. For example, a GDP observation measures the Nominal value. */
-	"measurementQualifier"?: SchemaValue<
+	measurementQualifier?: SchemaValue<
 		Enumeration | IdReference,
 		"measurementQualifier"
 	>
@@ -14329,14 +14135,14 @@ interface StatisticalVariableBase extends ConstraintNodeBase {
 	 *
 	 * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}. The value can also be from an enumeration, organized as a {@link https://schema.org/MeasurementMetholdEnumeration MeasurementMetholdEnumeration}.
 	 */
-	"measurementTechnique"?: SchemaValue<
+	measurementTechnique?: SchemaValue<
 		DefinedTerm | MeasurementMethodEnum | Text | URL | IdReference,
 		"measurementTechnique"
 	>
 	/** Indicates the populationType common to all members of a {@link https://schema.org/StatisticalPopulation StatisticalPopulation} or all cases within the scope of a {@link https://schema.org/StatisticalVariable StatisticalVariable}. */
-	"populationType"?: SchemaValue<Class | IdReference, "populationType">
+	populationType?: SchemaValue<Class | IdReference, "populationType">
 	/** Indicates the kind of statistic represented by a {@link https://schema.org/StatisticalVariable StatisticalVariable}, e.g. mean, count etc. The value of statType is a property, either from within Schema.org (e.g. {@link https://schema.org/count count}, {@link https://schema.org/median median}, {@link https://schema.org/marginOfError marginOfError}, {@link https://schema.org/maxValue maxValue}, {@link https://schema.org/minValue minValue}) or from other compatible (e.g. RDF) systems such as DataCommons.org or Wikidata.org. */
-	"statType"?: SchemaValue<Property | Text | URL | IdReference, "statType">
+	statType?: SchemaValue<Property | Text | URL | IdReference, "statType">
 }
 interface StatisticalVariableLeaf extends StatisticalVariableBase {
 	type: "StatisticalVariable"
@@ -14441,7 +14247,7 @@ export type StructuredValue =
 
 interface StupidTypeBase extends ThingBase {
 	/** This is a StupidProperty! - for testing only */
-	"stupidProperty"?: SchemaValue<
+	stupidProperty?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"stupidProperty"
 	>
@@ -14467,9 +14273,9 @@ export type SubscribeAction = SubscribeActionLeaf
 
 interface SubstanceBase extends MedicalEntityBase {
 	/** An active ingredient, typically chemical compounds and/or biologic substances. */
-	"activeIngredient"?: SchemaValue<Text, "activeIngredient">
+	activeIngredient?: SchemaValue<Text, "activeIngredient">
 	/** Recommended intake of this supplement for a given population as defined by a specific recommending authority. */
-	"maximumIntake"?: SchemaValue<
+	maximumIntake?: SchemaValue<
 		MaximumDoseSchedule | IdReference,
 		"maximumIntake"
 	>
@@ -14488,14 +14294,14 @@ export type SubwayStation = SubwayStationLeaf | string
 
 interface SuiteBase extends AccommodationBase {
 	/** The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text. If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property. */
-	"bed"?: SchemaValue<BedDetails | BedType | Text | IdReference, "bed">
+	bed?: SchemaValue<BedDetails | BedType | Text | IdReference, "bed">
 	/** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
-	"numberOfRooms"?: SchemaValue<
+	numberOfRooms?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfRooms"
 	>
 	/** The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person). Typical unit code(s): C62 for person */
-	"occupancy"?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
+	occupancy?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
 }
 interface SuiteLeaf extends SuiteBase {
 	type: "Suite"
@@ -14509,21 +14315,21 @@ export type Suite = SuiteLeaf | string
 
 interface SuperficialAnatomyBase extends MedicalEntityBase {
 	/** If applicable, a description of the pathophysiology associated with the anatomical system, including potential abnormal changes in the mechanical, physical, and biochemical functions of the system. */
-	"associatedPathophysiology"?: SchemaValue<Text, "associatedPathophysiology">
+	associatedPathophysiology?: SchemaValue<Text, "associatedPathophysiology">
 	/** Anatomical systems or structures that relate to the superficial anatomy. */
-	"relatedAnatomy"?: SchemaValue<
+	relatedAnatomy?: SchemaValue<
 		AnatomicalStructure | AnatomicalSystem | IdReference,
 		"relatedAnatomy"
 	>
 	/** A medical condition associated with this anatomy. */
-	"relatedCondition"?: SchemaValue<
+	relatedCondition?: SchemaValue<
 		MedicalCondition | IdReference,
 		"relatedCondition"
 	>
 	/** A medical therapy related to this anatomy. */
-	"relatedTherapy"?: SchemaValue<MedicalTherapy | IdReference, "relatedTherapy">
+	relatedTherapy?: SchemaValue<MedicalTherapy | IdReference, "relatedTherapy">
 	/** The significance associated with the superficial anatomy; as an example, how characteristics of the superficial anatomy can suggest underlying medical conditions or courses of treatment. */
-	"significance"?: SchemaValue<Text, "significance">
+	significance?: SchemaValue<Text, "significance">
 }
 interface SuperficialAnatomyLeaf extends SuperficialAnatomyBase {
 	type: "SuperficialAnatomy"
@@ -14591,14 +14397,14 @@ export type Taxi = TaxiLeaf
 
 interface TaxiReservationBase extends ReservationBase {
 	/** Number of people the reservation should accommodate. */
-	"partySize"?: SchemaValue<
+	partySize?: SchemaValue<
 		Integer | QuantitativeValue | IdReference,
 		"partySize"
 	>
 	/** Where a taxi will pick up a passenger or a rental car can be picked up. */
-	"pickupLocation"?: SchemaValue<Place | IdReference, "pickupLocation">
+	pickupLocation?: SchemaValue<Place | IdReference, "pickupLocation">
 	/** When a taxi will pick up a passenger or a rental car can be picked up. */
-	"pickupTime"?: SchemaValue<DateTime, "pickupTime">
+	pickupTime?: SchemaValue<DateTime, "pickupTime">
 }
 interface TaxiReservationLeaf extends TaxiReservationBase {
 	type: "TaxiReservation"
@@ -14624,16 +14430,13 @@ export type TaxiStand = TaxiStandLeaf | string
 
 interface TaxonBase extends ThingBase {
 	/** Closest child taxa of the taxon in question. */
-	"childTaxon"?: SchemaValue<Taxon | Text | URL | IdReference, "childTaxon">
+	childTaxon?: SchemaValue<Taxon | Text | URL | IdReference, "childTaxon">
 	/** A Defined Term contained in this term set. */
-	"hasDefinedTerm"?: SchemaValue<DefinedTerm | IdReference, "hasDefinedTerm">
+	hasDefinedTerm?: SchemaValue<DefinedTerm | IdReference, "hasDefinedTerm">
 	/** Closest parent taxon of the taxon in question. */
-	"parentTaxon"?: SchemaValue<Taxon | Text | URL | IdReference, "parentTaxon">
+	parentTaxon?: SchemaValue<Taxon | Text | URL | IdReference, "parentTaxon">
 	/** The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs. */
-	"taxonRank"?: SchemaValue<
-		PropertyValue | Text | URL | IdReference,
-		"taxonRank"
-	>
+	taxonRank?: SchemaValue<PropertyValue | Text | URL | IdReference, "taxonRank">
 }
 interface TaxonLeaf extends TaxonBase {
 	type: "Taxon"
@@ -14643,9 +14446,9 @@ export type Taxon = TaxonLeaf
 
 interface TechArticleBase extends ArticleBase {
 	/** Prerequisites needed to fulfill steps in article. */
-	"dependencies"?: SchemaValue<Text, "dependencies">
+	dependencies?: SchemaValue<Text, "dependencies">
 	/** Proficiency needed for this content; expected values: 'Beginner', 'Expert'. */
-	"proficiencyLevel"?: SchemaValue<Text, "proficiencyLevel">
+	proficiencyLevel?: SchemaValue<Text, "proficiencyLevel">
 }
 interface TechArticleLeaf extends TechArticleBase {
 	type: "TechArticle"
@@ -14697,11 +14500,11 @@ export type TheaterGroup = TheaterGroupLeaf | string
 
 interface TherapeuticProcedureBase extends MedicalProcedureBase {
 	/** A possible complication and/or side effect of this therapy. If it is known that an adverse outcome is serious (resulting in death, disability, or permanent damage; requiring hospitalization; or otherwise life-threatening or requiring immediate medical attention), tag it as a seriousAdverseOutcome instead. */
-	"adverseOutcome"?: SchemaValue<MedicalEntity | IdReference, "adverseOutcome">
+	adverseOutcome?: SchemaValue<MedicalEntity | IdReference, "adverseOutcome">
 	/** A dosing schedule for the drug for a given population, either observed, recommended, or maximum dose based on the type used. */
-	"doseSchedule"?: SchemaValue<DoseSchedule | IdReference, "doseSchedule">
+	doseSchedule?: SchemaValue<DoseSchedule | IdReference, "doseSchedule">
 	/** Specifying a drug or medicine used in a medication procedure. */
-	"drug"?: SchemaValue<Drug | IdReference, "drug">
+	drug?: SchemaValue<Drug | IdReference, "drug">
 }
 interface TherapeuticProcedureLeaf extends TherapeuticProcedureBase {
 	type: "TherapeuticProcedure"
@@ -14714,7 +14517,7 @@ export type TherapeuticProcedure =
 
 interface ThesisBase extends CreativeWorkBase {
 	/** Qualification, candidature, degree, application that Thesis supports. */
-	"inSupportOf"?: SchemaValue<Text, "inSupportOf">
+	inSupportOf?: SchemaValue<Text, "inSupportOf">
 }
 interface ThesisLeaf extends ThesisBase {
 	type: "Thesis"
@@ -14724,35 +14527,35 @@ export type Thesis = ThesisLeaf
 
 interface ThingBase extends Partial<IdReference> {
 	/** An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. Typically the value is a URI-identified RDF class, and in this case corresponds to the use of rdf:type in RDF. Text values can be used sparingly, for cases where useful information can be added without their being an appropriate schema to reference. In the case of text values, the class label should follow the schema.org {@link https://schema.org/docs/styleguide.html style guide} */
-	"additionalType"?: SchemaValue<Text | URL, "additionalType">
+	additionalType?: SchemaValue<Text | URL, "additionalType">
 	/** An alias for the item. */
-	"alternateName"?: SchemaValue<Text, "alternateName">
+	alternateName?: SchemaValue<Text, "alternateName">
 	/** A description of the item. */
-	"description"?: SchemaValue<Text | TextObject | IdReference, "description">
+	description?: SchemaValue<Text | TextObject | IdReference, "description">
 	/** A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation. */
-	"disambiguatingDescription"?: SchemaValue<Text, "disambiguatingDescription">
+	disambiguatingDescription?: SchemaValue<Text, "disambiguatingDescription">
 	/** The identifier property represents any kind of identifier for any kind of {@link https://schema.org/Thing Thing}, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See {@link /docs/datamodel.html#identifierBg background notes} for more details. */
-	"identifier"?: SchemaValue<
+	identifier?: SchemaValue<
 		PropertyValue | Text | URL | IdReference,
 		"identifier"
 	>
 	/** An image of the item. This can be a {@link https://schema.org/URL URL} or a fully described {@link https://schema.org/ImageObject ImageObject}. */
-	"image"?: SchemaValue<ImageObject | URL | IdReference, "image">
+	image?: SchemaValue<ImageObject | URL | IdReference, "image">
 	/** Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See {@link /docs/datamodel.html#mainEntityBackground background notes} for details. */
-	"mainEntityOfPage"?: SchemaValue<
+	mainEntityOfPage?: SchemaValue<
 		CreativeWork | URL | IdReference,
 		"mainEntityOfPage"
 	>
 	/** The name of the item. */
-	"name"?: SchemaValue<Text, "name">
+	name?: SchemaValue<Text, "name">
 	/** Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role. */
-	"potentialAction"?: SchemaValue<Action | IdReference, "potentialAction">
+	potentialAction?: SchemaValue<Action | IdReference, "potentialAction">
 	/** URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website. */
-	"sameAs"?: SchemaValue<URL, "sameAs">
+	sameAs?: SchemaValue<URL, "sameAs">
 	/** A CreativeWork or Event about this Thing. */
-	"subjectOf"?: SchemaValue<CreativeWork | Event | IdReference, "subjectOf">
+	subjectOf?: SchemaValue<CreativeWork | Event | IdReference, "subjectOf">
 	/** URL of the item. */
-	"url"?: SchemaValue<URL, "url">
+	url?: SchemaValue<URL, "url">
 }
 interface ThingLeaf extends ThingBase {
 	type: "Thing"
@@ -14775,21 +14578,21 @@ export type Thing =
 
 interface TicketBase extends ThingBase {
 	/** The date the ticket was issued. */
-	"dateIssued"?: SchemaValue<Date | DateTime, "dateIssued">
+	dateIssued?: SchemaValue<Date | DateTime, "dateIssued">
 	/** The organization issuing the ticket or permit. */
-	"issuedBy"?: SchemaValue<Organization | IdReference, "issuedBy">
+	issuedBy?: SchemaValue<Organization | IdReference, "issuedBy">
 	/**
 	 * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"priceCurrency"?: SchemaValue<Text, "priceCurrency">
+	priceCurrency?: SchemaValue<Text, "priceCurrency">
 	/** The seat associated with the ticket. */
-	"ticketedSeat"?: SchemaValue<Seat | IdReference, "ticketedSeat">
+	ticketedSeat?: SchemaValue<Seat | IdReference, "ticketedSeat">
 	/** The unique identifier for the ticket. */
-	"ticketNumber"?: SchemaValue<Text, "ticketNumber">
+	ticketNumber?: SchemaValue<Text, "ticketNumber">
 	/** Reference to an asset (e.g., Barcode, QR code image or PDF) usable for entrance. */
-	"ticketToken"?: SchemaValue<Text | URL, "ticketToken">
+	ticketToken?: SchemaValue<Text | URL, "ticketToken">
 	/**
 	 * The total price for the reservation or ticket, including applicable taxes, shipping, etc.
 	 *
@@ -14797,12 +14600,12 @@ interface TicketBase extends ThingBase {
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
 	 */
-	"totalPrice"?: SchemaValue<
+	totalPrice?: SchemaValue<
 		Number | PriceSpecification | Text | IdReference,
 		"totalPrice"
 	>
 	/** The person or organization the reservation or ticket is for. */
-	"underName"?: SchemaValue<Organization | Person | IdReference, "underName">
+	underName?: SchemaValue<Organization | Person | IdReference, "underName">
 }
 interface TicketLeaf extends TicketBase {
 	type: "Ticket"
@@ -14818,7 +14621,7 @@ export type TieAction = TieActionLeaf
 
 interface TipActionBase extends TradeActionBase {
 	/** A sub property of participant. The participant who is at the receiving end of the action. */
-	"recipient"?: SchemaValue<
+	recipient?: SchemaValue<
 		Audience | ContactPoint | Organization | Person | IdReference,
 		"recipient"
 	>
@@ -14837,12 +14640,12 @@ export type TireShop = TireShopLeaf | string
 
 interface TouristAttractionBase extends PlaceBase {
 	/** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/inLanguage inLanguage}. */
-	"availableLanguage"?: SchemaValue<
+	availableLanguage?: SchemaValue<
 		Language | Text | IdReference,
 		"availableLanguage"
 	>
 	/** Attraction suitable for type(s) of tourist. E.g. children, visitors from a particular country, etc. */
-	"touristType"?: SchemaValue<Audience | Text | IdReference, "touristType">
+	touristType?: SchemaValue<Audience | Text | IdReference, "touristType">
 }
 interface TouristAttractionLeaf extends TouristAttractionBase {
 	type: "TouristAttraction"
@@ -14852,12 +14655,12 @@ export type TouristAttraction = TouristAttractionLeaf | string
 
 interface TouristDestinationBase extends PlaceBase {
 	/** Attraction located at destination. */
-	"includesAttraction"?: SchemaValue<
+	includesAttraction?: SchemaValue<
 		TouristAttraction | IdReference,
 		"includesAttraction"
 	>
 	/** Attraction suitable for type(s) of tourist. E.g. children, visitors from a particular country, etc. */
-	"touristType"?: SchemaValue<Audience | Text | IdReference, "touristType">
+	touristType?: SchemaValue<Audience | Text | IdReference, "touristType">
 }
 interface TouristDestinationLeaf extends TouristDestinationBase {
 	type: "TouristDestination"
@@ -14873,7 +14676,7 @@ export type TouristInformationCenter = TouristInformationCenterLeaf | string
 
 interface TouristTripBase extends TripBase {
 	/** Attraction suitable for type(s) of tourist. E.g. children, visitors from a particular country, etc. */
-	"touristType"?: SchemaValue<Audience | Text | IdReference, "touristType">
+	touristType?: SchemaValue<Audience | Text | IdReference, "touristType">
 }
 interface TouristTripLeaf extends TouristTripBase {
 	type: "TouristTrip"
@@ -14889,7 +14692,7 @@ export type ToyStore = ToyStoreLeaf | string
 
 interface TrackActionBase extends ActionBase {
 	/** A sub property of instrument. The method of delivery. */
-	"deliveryMethod"?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
+	deliveryMethod?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
 }
 interface TrackActionLeaf extends TrackActionBase {
 	type: "TrackAction"
@@ -14913,15 +14716,15 @@ interface TradeActionBase extends ActionBase {
 	 * - Note that both {@link http://www.w3.org/TR/xhtml-microdata-primer/#using-the-content-attribute Microdata} and Microdata syntax allow the use of a "content=" attribute for publishing simple machine-readable values alongside more human-friendly formatting.
 	 * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.
 	 */
-	"price"?: SchemaValue<Number | Text, "price">
+	price?: SchemaValue<Number | Text, "price">
 	/**
 	 * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
 	 *
 	 * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format}, e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies, e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Trading Systems} (LETS) and other currency types, e.g. "Ithaca HOUR".
 	 */
-	"priceCurrency"?: SchemaValue<Text, "priceCurrency">
+	priceCurrency?: SchemaValue<Text, "priceCurrency">
 	/** One or more detailed price specifications, indicating the unit price and delivery or payment charges. */
-	"priceSpecification"?: SchemaValue<
+	priceSpecification?: SchemaValue<
 		PriceSpecification | IdReference,
 		"priceSpecification"
 	>
@@ -14960,20 +14763,17 @@ export type TrainStation = TrainStationLeaf | string
 
 interface TrainTripBase extends TripBase {
 	/** The platform where the train arrives. */
-	"arrivalPlatform"?: SchemaValue<Text, "arrivalPlatform">
+	arrivalPlatform?: SchemaValue<Text, "arrivalPlatform">
 	/** The station where the train trip ends. */
-	"arrivalStation"?: SchemaValue<TrainStation | IdReference, "arrivalStation">
+	arrivalStation?: SchemaValue<TrainStation | IdReference, "arrivalStation">
 	/** The platform from which the train departs. */
-	"departurePlatform"?: SchemaValue<Text, "departurePlatform">
+	departurePlatform?: SchemaValue<Text, "departurePlatform">
 	/** The station from which the train departs. */
-	"departureStation"?: SchemaValue<
-		TrainStation | IdReference,
-		"departureStation"
-	>
+	departureStation?: SchemaValue<TrainStation | IdReference, "departureStation">
 	/** The name of the train (e.g. The Orient Express). */
-	"trainName"?: SchemaValue<Text, "trainName">
+	trainName?: SchemaValue<Text, "trainName">
 	/** The unique identifier for the train. */
-	"trainNumber"?: SchemaValue<Text, "trainNumber">
+	trainNumber?: SchemaValue<Text, "trainNumber">
 }
 interface TrainTripLeaf extends TrainTripBase {
 	type: "TrainTrip"
@@ -14983,9 +14783,9 @@ export type TrainTrip = TrainTripLeaf
 
 interface TransferActionBase extends ActionBase {
 	/** A sub property of location. The original location of the object or the agent before the action. */
-	"fromLocation"?: SchemaValue<Place | IdReference, "fromLocation">
+	fromLocation?: SchemaValue<Place | IdReference, "fromLocation">
 	/** A sub property of location. The final location of the object or the agent after the action. */
-	"toLocation"?: SchemaValue<Place | IdReference, "toLocation">
+	toLocation?: SchemaValue<Place | IdReference, "toLocation">
 }
 interface TransferActionLeaf extends TransferActionBase {
 	type: "TransferAction"
@@ -15005,7 +14805,7 @@ export type TransferAction =
 
 interface TravelActionBase extends MoveActionBase {
 	/** The distance travelled, e.g. exercising or travelling. */
-	"distance"?: SchemaValue<Distance | IdReference, "distance">
+	distance?: SchemaValue<Distance | IdReference, "distance">
 }
 interface TravelActionLeaf extends TravelActionBase {
 	type: "TravelAction"
@@ -15027,19 +14827,19 @@ export type TreatmentIndication = TreatmentIndicationLeaf
 
 interface TripBase extends ThingBase {
 	/** The expected arrival time. */
-	"arrivalTime"?: SchemaValue<DateTime | Time, "arrivalTime">
+	arrivalTime?: SchemaValue<DateTime | Time, "arrivalTime">
 	/** The expected departure time. */
-	"departureTime"?: SchemaValue<DateTime | Time, "departureTime">
+	departureTime?: SchemaValue<DateTime | Time, "departureTime">
 	/** Destination(s) ( {@link https://schema.org/Place Place} ) that make up a trip. For a trip where destination order is important use {@link https://schema.org/ItemList ItemList} to specify that order (see examples). */
-	"itinerary"?: SchemaValue<ItemList | Place | IdReference, "itinerary">
+	itinerary?: SchemaValue<ItemList | Place | IdReference, "itinerary">
 	/** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
-	"offers"?: SchemaValue<Demand | Offer | IdReference, "offers">
+	offers?: SchemaValue<Demand | Offer | IdReference, "offers">
 	/** Identifies that this {@link https://schema.org/Trip Trip} is a subTrip of another Trip. For example Day 1, Day 2, etc. of a multi-day trip. */
-	"partOfTrip"?: SchemaValue<Trip | IdReference, "partOfTrip">
+	partOfTrip?: SchemaValue<Trip | IdReference, "partOfTrip">
 	/** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
-	"provider"?: SchemaValue<Organization | Person | IdReference, "provider">
+	provider?: SchemaValue<Organization | Person | IdReference, "provider">
 	/** Identifies a {@link https://schema.org/Trip Trip} that is a subTrip of this Trip. For example Day 1, Day 2, etc. of a multi-day trip. */
-	"subTrip"?: SchemaValue<Trip | IdReference, "subTrip">
+	subTrip?: SchemaValue<Trip | IdReference, "subTrip">
 }
 interface TripLeaf extends TripBase {
 	type: "Trip"
@@ -15059,7 +14859,7 @@ interface TVClipBase extends ClipBase {
 	 *
 	 * @deprecated Consider using https://schema.org/partOfSeries instead.
 	 */
-	"partOfTVSeries"?: SchemaValue<TVSeries | IdReference, "partOfTVSeries">
+	partOfTVSeries?: SchemaValue<TVSeries | IdReference, "partOfTVSeries">
 }
 interface TVClipLeaf extends TVClipBase {
 	type: "TVClip"
@@ -15075,15 +14875,15 @@ interface TVEpisodeBase extends EpisodeBase {
 	 *
 	 * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
 	 */
-	"countryOfOrigin"?: SchemaValue<Country | IdReference, "countryOfOrigin">
+	countryOfOrigin?: SchemaValue<Country | IdReference, "countryOfOrigin">
 	/**
 	 * The TV series to which this episode or season belongs.
 	 *
 	 * @deprecated Consider using https://schema.org/partOfSeries instead.
 	 */
-	"partOfTVSeries"?: SchemaValue<TVSeries | IdReference, "partOfTVSeries">
+	partOfTVSeries?: SchemaValue<TVSeries | IdReference, "partOfTVSeries">
 	/** Languages in which subtitles/captions are available, in {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard format}. */
-	"subtitleLanguage"?: SchemaValue<
+	subtitleLanguage?: SchemaValue<
 		Language | Text | IdReference,
 		"subtitleLanguage"
 	>
@@ -15094,7 +14894,7 @@ interface TVEpisodeBase extends EpisodeBase {
 	 *
 	 * Since schema.org types like {@link https://schema.org/Movie Movie}, {@link https://schema.org/TVEpisode TVEpisode}, {@link https://schema.org/TVSeason TVSeason}, and {@link https://schema.org/TVSeries TVSeries} can be used for both works and their multiple expressions, it is possible to use {@link https://schema.org/titleEIDR titleEIDR} alone (for a general description), or alongside {@link https://schema.org/editEIDR editEIDR} for a more edit-specific description.
 	 */
-	"titleEIDR"?: SchemaValue<Text | URL, "titleEIDR">
+	titleEIDR?: SchemaValue<Text | URL, "titleEIDR">
 }
 interface TVEpisodeLeaf extends TVEpisodeBase {
 	type: "TVEpisode"
@@ -15110,13 +14910,13 @@ interface TVSeasonBase extends CreativeWorkBase, CreativeWorkSeasonBase {
 	 *
 	 * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
 	 */
-	"countryOfOrigin"?: SchemaValue<Country | IdReference, "countryOfOrigin">
+	countryOfOrigin?: SchemaValue<Country | IdReference, "countryOfOrigin">
 	/**
 	 * The TV series to which this episode or season belongs.
 	 *
 	 * @deprecated Consider using https://schema.org/partOfSeries instead.
 	 */
-	"partOfTVSeries"?: SchemaValue<TVSeries | IdReference, "partOfTVSeries">
+	partOfTVSeries?: SchemaValue<TVSeries | IdReference, "partOfTVSeries">
 	/**
 	 * An {@link https://eidr.org/ EIDR} (Entertainment Identifier Registry) {@link https://schema.org/identifier identifier} representing at the most general/abstract level, a work of film or television.
 	 *
@@ -15124,7 +14924,7 @@ interface TVSeasonBase extends CreativeWorkBase, CreativeWorkSeasonBase {
 	 *
 	 * Since schema.org types like {@link https://schema.org/Movie Movie}, {@link https://schema.org/TVEpisode TVEpisode}, {@link https://schema.org/TVSeason TVSeason}, and {@link https://schema.org/TVSeries TVSeries} can be used for both works and their multiple expressions, it is possible to use {@link https://schema.org/titleEIDR titleEIDR} alone (for a general description), or alongside {@link https://schema.org/editEIDR editEIDR} for a more edit-specific description.
 	 */
-	"titleEIDR"?: SchemaValue<Text | URL, "titleEIDR">
+	titleEIDR?: SchemaValue<Text | URL, "titleEIDR">
 }
 interface TVSeasonLeaf extends TVSeasonBase {
 	type: "TVSeason"
@@ -15134,15 +14934,15 @@ export type TVSeason = TVSeasonLeaf
 
 interface TVSeriesBase extends CreativeWorkBase, CreativeWorkSeriesBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/**
 	 * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/actor instead.
 	 */
-	"actors"?: SchemaValue<Person | IdReference, "actors">
+	actors?: SchemaValue<Person | IdReference, "actors">
 	/** A season that is part of the media series. */
-	"containsSeason"?: SchemaValue<
+	containsSeason?: SchemaValue<
 		CreativeWorkSeason | IdReference,
 		"containsSeason"
 	>
@@ -15153,31 +14953,31 @@ interface TVSeriesBase extends CreativeWorkBase, CreativeWorkSeriesBase {
 	 *
 	 * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
 	 */
-	"countryOfOrigin"?: SchemaValue<Country | IdReference, "countryOfOrigin">
+	countryOfOrigin?: SchemaValue<Country | IdReference, "countryOfOrigin">
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/**
 	 * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/director instead.
 	 */
-	"directors"?: SchemaValue<Person | IdReference, "directors">
+	directors?: SchemaValue<Person | IdReference, "directors">
 	/** An episode of a TV, radio or game media within a series or season. */
-	"episode"?: SchemaValue<Episode | IdReference, "episode">
+	episode?: SchemaValue<Episode | IdReference, "episode">
 	/**
 	 * An episode of a TV/radio series or season.
 	 *
 	 * @deprecated Consider using https://schema.org/episode instead.
 	 */
-	"episodes"?: SchemaValue<Episode | IdReference, "episodes">
+	episodes?: SchemaValue<Episode | IdReference, "episodes">
 	/** The composer of the soundtrack. */
-	"musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
+	musicBy?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
 	/** The number of episodes in this season or series. */
-	"numberOfEpisodes"?: SchemaValue<Integer, "numberOfEpisodes">
+	numberOfEpisodes?: SchemaValue<Integer, "numberOfEpisodes">
 	/** The number of seasons in this series. */
-	"numberOfSeasons"?: SchemaValue<Integer, "numberOfSeasons">
+	numberOfSeasons?: SchemaValue<Integer, "numberOfSeasons">
 	/** The production company or studio responsible for the item, e.g. series, video game, episode etc. */
-	"productionCompany"?: SchemaValue<
+	productionCompany?: SchemaValue<
 		Organization | IdReference,
 		"productionCompany"
 	>
@@ -15186,13 +14986,13 @@ interface TVSeriesBase extends CreativeWorkBase, CreativeWorkSeriesBase {
 	 *
 	 * @deprecated Consider using https://schema.org/containsSeason instead.
 	 */
-	"season"?: SchemaValue<CreativeWorkSeason | URL | IdReference, "season">
+	season?: SchemaValue<CreativeWorkSeason | URL | IdReference, "season">
 	/**
 	 * A season in a media series.
 	 *
 	 * @deprecated Consider using https://schema.org/season instead.
 	 */
-	"seasons"?: SchemaValue<CreativeWorkSeason | IdReference, "seasons">
+	seasons?: SchemaValue<CreativeWorkSeason | IdReference, "seasons">
 	/**
 	 * An {@link https://eidr.org/ EIDR} (Entertainment Identifier Registry) {@link https://schema.org/identifier identifier} representing at the most general/abstract level, a work of film or television.
 	 *
@@ -15200,9 +15000,9 @@ interface TVSeriesBase extends CreativeWorkBase, CreativeWorkSeriesBase {
 	 *
 	 * Since schema.org types like {@link https://schema.org/Movie Movie}, {@link https://schema.org/TVEpisode TVEpisode}, {@link https://schema.org/TVSeason TVSeason}, and {@link https://schema.org/TVSeries TVSeries} can be used for both works and their multiple expressions, it is possible to use {@link https://schema.org/titleEIDR titleEIDR} alone (for a general description), or alongside {@link https://schema.org/editEIDR editEIDR} for a more edit-specific description.
 	 */
-	"titleEIDR"?: SchemaValue<Text | URL, "titleEIDR">
+	titleEIDR?: SchemaValue<Text | URL, "titleEIDR">
 	/** The trailer of a movie or TV/radio series, season, episode, etc. */
-	"trailer"?: SchemaValue<VideoObject | IdReference, "trailer">
+	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface TVSeriesLeaf extends TVSeriesBase {
 	type: "TVSeries"
@@ -15212,18 +15012,18 @@ export type TVSeries = TVSeriesLeaf
 
 interface TypeAndQuantityNodeBase extends ThingBase {
 	/** The quantity of the goods included in the offer. */
-	"amountOfThisGood"?: SchemaValue<Number, "amountOfThisGood">
+	amountOfThisGood?: SchemaValue<Number, "amountOfThisGood">
 	/** The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell. */
-	"businessFunction"?: SchemaValue<
+	businessFunction?: SchemaValue<
 		BusinessFunction | IdReference,
 		"businessFunction"
 	>
 	/** The product that this structured value is referring to. */
-	"typeOfGood"?: SchemaValue<Product | Service | IdReference, "typeOfGood">
+	typeOfGood?: SchemaValue<Product | Service | IdReference, "typeOfGood">
 	/** The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon. */
-	"unitCode"?: SchemaValue<Text | URL, "unitCode">
+	unitCode?: SchemaValue<Text | URL, "unitCode">
 	/** A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for {@link unitCode unitCode}. */
-	"unitText"?: SchemaValue<Text, "unitText">
+	unitText?: SchemaValue<Text, "unitText">
 }
 interface TypeAndQuantityNodeLeaf extends TypeAndQuantityNodeBase {
 	type: "TypeAndQuantityNode"
@@ -15248,33 +15048,33 @@ export type UKNonprofitType =
 
 interface UnitPriceSpecificationBase extends PriceSpecificationBase {
 	/** Specifies for how long this price (or price component) will be billed. Can be used, for example, to model the contractual duration of a subscription or payment plan. Type can be either a Duration or a Number (in which case the unit of measurement, for example month, is specified by the unitCode property). */
-	"billingDuration"?: SchemaValue<
+	billingDuration?: SchemaValue<
 		Duration | Number | QuantitativeValue | IdReference,
 		"billingDuration"
 	>
 	/** This property specifies the minimal quantity and rounding increment that will be the basis for the billing. The unit of measurement is specified by the unitCode property. */
-	"billingIncrement"?: SchemaValue<Number, "billingIncrement">
+	billingIncrement?: SchemaValue<Number, "billingIncrement">
 	/** Specifies after how much time this price (or price component) becomes valid and billing starts. Can be used, for example, to model a price increase after the first year of a subscription. The unit of measurement is specified by the unitCode property. */
-	"billingStart"?: SchemaValue<Number, "billingStart">
+	billingStart?: SchemaValue<Number, "billingStart">
 	/** Identifies a price component (for example, a line item on an invoice), part of the total price for an offer. */
-	"priceComponentType"?: SchemaValue<
+	priceComponentType?: SchemaValue<
 		PriceComponentTypeEnumeration | IdReference,
 		"priceComponentType"
 	>
 	/** Defines the type of a price specified for an offered product, for example a list price, a (temporary) sale price or a manufacturer suggested retail price. If multiple prices are specified for an offer the {@link https://schema.org/priceType priceType} property can be used to identify the type of each such specified price. The value of priceType can be specified as a value from enumeration PriceTypeEnumeration or as a free form text string for price types that are not already predefined in PriceTypeEnumeration. */
-	"priceType"?: SchemaValue<
+	priceType?: SchemaValue<
 		PriceTypeEnumeration | Text | IdReference,
 		"priceType"
 	>
 	/** The reference quantity for which a certain price applies, e.g. 1 EUR per 4 kWh of electricity. This property is a replacement for unitOfMeasurement for the advanced cases where the price does not relate to a standard unit. */
-	"referenceQuantity"?: SchemaValue<
+	referenceQuantity?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"referenceQuantity"
 	>
 	/** The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon. */
-	"unitCode"?: SchemaValue<Text | URL, "unitCode">
+	unitCode?: SchemaValue<Text | URL, "unitCode">
 	/** A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for {@link unitCode unitCode}. */
-	"unitText"?: SchemaValue<Text, "unitText">
+	unitText?: SchemaValue<Text, "unitText">
 }
 interface UnitPriceSpecificationLeaf extends UnitPriceSpecificationBase {
 	type: "UnitPriceSpecification"
@@ -15300,9 +15100,9 @@ interface UpdateActionBase extends ActionBase {
 	 *
 	 * @deprecated Consider using https://schema.org/targetCollection instead.
 	 */
-	"collection"?: SchemaValue<Thing | IdReference, "collection">
+	collection?: SchemaValue<Thing | IdReference, "collection">
 	/** A sub property of object. The collection target of the action. */
-	"targetCollection"?: SchemaValue<Thing | IdReference, "targetCollection">
+	targetCollection?: SchemaValue<Thing | IdReference, "targetCollection">
 }
 interface UpdateActionLeaf extends UpdateActionBase {
 	type: "UpdateAction"
@@ -15345,15 +15145,15 @@ export type UserCheckins = UserCheckinsLeaf
 
 interface UserCommentsBase extends EventBase {
 	/** The text of the UserComment. */
-	"commentText"?: SchemaValue<Text, "commentText">
+	commentText?: SchemaValue<Text, "commentText">
 	/** The time at which the UserComment was made. */
-	"commentTime"?: SchemaValue<Date | DateTime, "commentTime">
+	commentTime?: SchemaValue<Date | DateTime, "commentTime">
 	/** The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. */
-	"creator"?: SchemaValue<Organization | Person | IdReference, "creator">
+	creator?: SchemaValue<Organization | Person | IdReference, "creator">
 	/** Specifies the CreativeWork associated with the UserComment. */
-	"discusses"?: SchemaValue<CreativeWork | IdReference, "discusses">
+	discusses?: SchemaValue<CreativeWork | IdReference, "discusses">
 	/** The URL at which a reply may be posted to the specified UserComment. */
-	"replyToUrl"?: SchemaValue<URL, "replyToUrl">
+	replyToUrl?: SchemaValue<URL, "replyToUrl">
 }
 interface UserCommentsLeaf extends UserCommentsBase {
 	type: "UserComments"
@@ -15543,17 +15343,17 @@ interface VehicleBase extends ProductBase {
 	 * Typical unit code(s): SEC for seconds
 	 * - Note: There are unfortunately no standard unit codes for seconds/0..100 km/h or seconds/0..60 mph. Simply use "SEC" for seconds and indicate the velocities in the {@link https://schema.org/name name} of the {@link https://schema.org/QuantitativeValue QuantitativeValue}, or use {@link https://schema.org/valueReference valueReference} with a {@link https://schema.org/QuantitativeValue QuantitativeValue} of 0..60 mph or 0..100 km/h to specify the reference speeds.
 	 */
-	"accelerationTime"?: SchemaValue<
+	accelerationTime?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"accelerationTime"
 	>
 	/** Indicates the design and body style of the vehicle (e.g. station wagon, hatchback, etc.). */
-	"bodyType"?: SchemaValue<
+	bodyType?: SchemaValue<
 		QualitativeValue | Text | URL | IdReference,
 		"bodyType"
 	>
 	/** A {@link https://en.wikipedia.org/wiki/Call_sign callsign}, as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles. */
-	"callSign"?: SchemaValue<Text, "callSign">
+	callSign?: SchemaValue<Text, "callSign">
 	/**
 	 * The available volume for cargo or luggage. For automobiles, this is usually the trunk volume.
 	 *
@@ -15561,29 +15361,29 @@ interface VehicleBase extends ProductBase {
 	 *
 	 * Note: You can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"cargoVolume"?: SchemaValue<QuantitativeValue | IdReference, "cargoVolume">
+	cargoVolume?: SchemaValue<QuantitativeValue | IdReference, "cargoVolume">
 	/** The date of the first registration of the vehicle with the respective public authorities. */
-	"dateVehicleFirstRegistered"?: SchemaValue<Date, "dateVehicleFirstRegistered">
+	dateVehicleFirstRegistered?: SchemaValue<Date, "dateVehicleFirstRegistered">
 	/** The drive wheel configuration, i.e. which roadwheels will receive torque from the vehicle's engine via the drivetrain. */
-	"driveWheelConfiguration"?: SchemaValue<
+	driveWheelConfiguration?: SchemaValue<
 		DriveWheelConfigurationValue | Text | IdReference,
 		"driveWheelConfiguration"
 	>
 	/** The CO2 emissions in g/km. When used in combination with a QuantitativeValue, put "g/km" into the unitText property of that value, since there is no UN/CEFACT Common Code for "g/km". */
-	"emissionsCO2"?: SchemaValue<Number, "emissionsCO2">
+	emissionsCO2?: SchemaValue<Number, "emissionsCO2">
 	/**
 	 * The capacity of the fuel tank or in the case of electric cars, the battery. If there are multiple components for storage, this should indicate the total of all storage of the same type.
 	 *
 	 * Typical unit code(s): LTR for liters, GLL of US gallons, GLI for UK / imperial gallons, AMH for ampere-hours (for electrical vehicles).
 	 */
-	"fuelCapacity"?: SchemaValue<QuantitativeValue | IdReference, "fuelCapacity">
+	fuelCapacity?: SchemaValue<QuantitativeValue | IdReference, "fuelCapacity">
 	/**
 	 * The amount of fuel consumed for traveling a particular distance or temporal duration with the given vehicle (e.g. liters per 100 km).
 	 * - Note 1: There are unfortunately no standard unit codes for liters per 100 km. Use {@link https://schema.org/unitText unitText} to indicate the unit of measurement, e.g. L/100 km.
 	 * - Note 2: There are two ways of indicating the fuel consumption, {@link https://schema.org/fuelConsumption fuelConsumption} (e.g. 8 liters per 100 km) and {@link https://schema.org/fuelEfficiency fuelEfficiency} (e.g. 30 miles per gallon). They are reciprocal.
 	 * - Note 3: Often, the absolute value is useful only when related to driving speed ("at 80 km/h") or usage pattern ("city traffic"). You can use {@link https://schema.org/valueReference valueReference} to link the value for the fuel consumption to another value.
 	 */
-	"fuelConsumption"?: SchemaValue<
+	fuelConsumption?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"fuelConsumption"
 	>
@@ -15593,19 +15393,19 @@ interface VehicleBase extends ProductBase {
 	 * - Note 2: There are two ways of indicating the fuel consumption, {@link https://schema.org/fuelConsumption fuelConsumption} (e.g. 8 liters per 100 km) and {@link https://schema.org/fuelEfficiency fuelEfficiency} (e.g. 30 miles per gallon). They are reciprocal.
 	 * - Note 3: Often, the absolute value is useful only when related to driving speed ("at 80 km/h") or usage pattern ("city traffic"). You can use {@link https://schema.org/valueReference valueReference} to link the value for the fuel economy to another value.
 	 */
-	"fuelEfficiency"?: SchemaValue<
+	fuelEfficiency?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"fuelEfficiency"
 	>
 	/** The type of fuel suitable for the engine or engines of the vehicle. If the vehicle has only one engine, this property can be attached directly to the vehicle. */
-	"fuelType"?: SchemaValue<
+	fuelType?: SchemaValue<
 		QualitativeValue | Text | URL | IdReference,
 		"fuelType"
 	>
 	/** A textual description of known damages, both repaired and unrepaired. */
-	"knownVehicleDamages"?: SchemaValue<Text, "knownVehicleDamages">
+	knownVehicleDamages?: SchemaValue<Text, "knownVehicleDamages">
 	/** Indicates that the vehicle meets the respective emission standard. */
-	"meetsEmissionStandard"?: SchemaValue<
+	meetsEmissionStandard?: SchemaValue<
 		QualitativeValue | Text | URL | IdReference,
 		"meetsEmissionStandard"
 	>
@@ -15614,20 +15414,20 @@ interface VehicleBase extends ProductBase {
 	 *
 	 * Typical unit code(s): KMT for kilometers, SMI for statute miles
 	 */
-	"mileageFromOdometer"?: SchemaValue<
+	mileageFromOdometer?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"mileageFromOdometer"
 	>
 	/** The release date of a vehicle model (often used to differentiate versions of the same make and model). */
-	"modelDate"?: SchemaValue<Date, "modelDate">
+	modelDate?: SchemaValue<Date, "modelDate">
 	/** The number or type of airbags in the vehicle. */
-	"numberOfAirbags"?: SchemaValue<Number | Text, "numberOfAirbags">
+	numberOfAirbags?: SchemaValue<Number | Text, "numberOfAirbags">
 	/**
 	 * The number of axles.
 	 *
 	 * Typical unit code(s): C62
 	 */
-	"numberOfAxles"?: SchemaValue<
+	numberOfAxles?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfAxles"
 	>
@@ -15636,7 +15436,7 @@ interface VehicleBase extends ProductBase {
 	 *
 	 * Typical unit code(s): C62
 	 */
-	"numberOfDoors"?: SchemaValue<
+	numberOfDoors?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfDoors"
 	>
@@ -15645,7 +15445,7 @@ interface VehicleBase extends ProductBase {
 	 *
 	 * Typical unit code(s): C62
 	 */
-	"numberOfForwardGears"?: SchemaValue<
+	numberOfForwardGears?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfForwardGears"
 	>
@@ -15654,7 +15454,7 @@ interface VehicleBase extends ProductBase {
 	 *
 	 * Typical unit code(s): C62
 	 */
-	"numberOfPreviousOwners"?: SchemaValue<
+	numberOfPreviousOwners?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"numberOfPreviousOwners"
 	>
@@ -15667,17 +15467,17 @@ interface VehicleBase extends ProductBase {
 	 * - Note 3: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}.
 	 * - Note 4: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"payload"?: SchemaValue<QuantitativeValue | IdReference, "payload">
+	payload?: SchemaValue<QuantitativeValue | IdReference, "payload">
 	/** The date of production of the item, e.g. vehicle. */
-	"productionDate"?: SchemaValue<Date, "productionDate">
+	productionDate?: SchemaValue<Date, "productionDate">
 	/** The date the item, e.g. vehicle, was purchased by the current owner. */
-	"purchaseDate"?: SchemaValue<Date, "purchaseDate">
+	purchaseDate?: SchemaValue<Date, "purchaseDate">
 	/**
 	 * The number of persons that can be seated (e.g. in a vehicle), both in terms of the physical space available, and in terms of limitations set by law.
 	 *
 	 * Typical unit code(s): C62 for persons
 	 */
-	"seatingCapacity"?: SchemaValue<
+	seatingCapacity?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"seatingCapacity"
 	>
@@ -15689,14 +15489,14 @@ interface VehicleBase extends ProductBase {
 	 * *Note 1: Use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate the range. Typically, the minimal value is zero.
 	 * - Note 2: There are many different ways of measuring the speed range. You can link to information about how the given value has been determined using the {@link https://schema.org/valueReference valueReference} property.
 	 */
-	"speed"?: SchemaValue<QuantitativeValue | IdReference, "speed">
+	speed?: SchemaValue<QuantitativeValue | IdReference, "speed">
 	/** The position of the steering wheel or similar device (mostly for cars). */
-	"steeringPosition"?: SchemaValue<
+	steeringPosition?: SchemaValue<
 		SteeringPositionValue | IdReference,
 		"steeringPosition"
 	>
 	/** This is a StupidProperty! - for testing only */
-	"stupidProperty"?: SchemaValue<
+	stupidProperty?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"stupidProperty"
 	>
@@ -15708,7 +15508,7 @@ interface VehicleBase extends ProductBase {
 	 * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}.
 	 * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"tongueWeight"?: SchemaValue<QuantitativeValue | IdReference, "tongueWeight">
+	tongueWeight?: SchemaValue<QuantitativeValue | IdReference, "tongueWeight">
 	/**
 	 * The permitted weight of a trailer attached to the vehicle.
 	 *
@@ -15717,44 +15517,38 @@ interface VehicleBase extends ProductBase {
 	 * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}.
 	 * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"trailerWeight"?: SchemaValue<
-		QuantitativeValue | IdReference,
-		"trailerWeight"
-	>
+	trailerWeight?: SchemaValue<QuantitativeValue | IdReference, "trailerWeight">
 	/** A short text indicating the configuration of the vehicle, e.g. '5dr hatchback ST 2.5 MT 225 hp' or 'limited edition'. */
-	"vehicleConfiguration"?: SchemaValue<Text, "vehicleConfiguration">
+	vehicleConfiguration?: SchemaValue<Text, "vehicleConfiguration">
 	/** Information about the engine or engines of the vehicle. */
-	"vehicleEngine"?: SchemaValue<
+	vehicleEngine?: SchemaValue<
 		EngineSpecification | IdReference,
 		"vehicleEngine"
 	>
 	/** The Vehicle Identification Number (VIN) is a unique serial number used by the automotive industry to identify individual motor vehicles. */
-	"vehicleIdentificationNumber"?: SchemaValue<
-		Text,
-		"vehicleIdentificationNumber"
-	>
+	vehicleIdentificationNumber?: SchemaValue<Text, "vehicleIdentificationNumber">
 	/** The color or color combination of the interior of the vehicle. */
-	"vehicleInteriorColor"?: SchemaValue<Text, "vehicleInteriorColor">
+	vehicleInteriorColor?: SchemaValue<Text, "vehicleInteriorColor">
 	/** The type or material of the interior of the vehicle (e.g. synthetic fabric, leather, wood, etc.). While most interior types are characterized by the material used, an interior type can also be based on vehicle usage or target audience. */
-	"vehicleInteriorType"?: SchemaValue<Text, "vehicleInteriorType">
+	vehicleInteriorType?: SchemaValue<Text, "vehicleInteriorType">
 	/** The release date of a vehicle model (often used to differentiate versions of the same make and model). */
-	"vehicleModelDate"?: SchemaValue<Date, "vehicleModelDate">
+	vehicleModelDate?: SchemaValue<Date, "vehicleModelDate">
 	/**
 	 * The number of passengers that can be seated in the vehicle, both in terms of the physical space available, and in terms of limitations set by law.
 	 *
 	 * Typical unit code(s): C62 for persons.
 	 */
-	"vehicleSeatingCapacity"?: SchemaValue<
+	vehicleSeatingCapacity?: SchemaValue<
 		Number | QuantitativeValue | IdReference,
 		"vehicleSeatingCapacity"
 	>
 	/** Indicates whether the vehicle has been used for special purposes, like commercial rental, driving school, or as a taxi. The legislation in many countries requires this information to be revealed when offering a car for sale. */
-	"vehicleSpecialUsage"?: SchemaValue<
+	vehicleSpecialUsage?: SchemaValue<
 		CarUsageType | Text | IdReference,
 		"vehicleSpecialUsage"
 	>
 	/** The type of component used for transmitting the power from a rotating power source to the wheels or other relevant component(s) ("gearbox" for cars). */
-	"vehicleTransmission"?: SchemaValue<
+	vehicleTransmission?: SchemaValue<
 		QualitativeValue | Text | URL | IdReference,
 		"vehicleTransmission"
 	>
@@ -15766,13 +15560,13 @@ interface VehicleBase extends ProductBase {
 	 * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}.
 	 * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
 	 */
-	"weightTotal"?: SchemaValue<QuantitativeValue | IdReference, "weightTotal">
+	weightTotal?: SchemaValue<QuantitativeValue | IdReference, "weightTotal">
 	/**
 	 * The distance between the centers of the front and rear wheels.
 	 *
 	 * Typical unit code(s): CMT for centimeters, MTR for meters, INH for inches, FOT for foot/feet
 	 */
-	"wheelbase"?: SchemaValue<QuantitativeValue | IdReference, "wheelbase">
+	wheelbase?: SchemaValue<QuantitativeValue | IdReference, "wheelbase">
 }
 interface VehicleLeaf extends VehicleBase {
 	type: "Vehicle"
@@ -15787,14 +15581,14 @@ export type Vehicle =
 
 interface VeinBase extends AnatomicalStructureBase {
 	/** The vasculature that the vein drains into. */
-	"drainsTo"?: SchemaValue<Vessel | IdReference, "drainsTo">
+	drainsTo?: SchemaValue<Vessel | IdReference, "drainsTo">
 	/** The anatomical or organ system drained by this vessel; generally refers to a specific part of an organ. */
-	"regionDrained"?: SchemaValue<
+	regionDrained?: SchemaValue<
 		AnatomicalStructure | AnatomicalSystem | IdReference,
 		"regionDrained"
 	>
 	/** The anatomical or organ system that the vein flows into; a larger structure that the vein connects to. */
-	"tributary"?: SchemaValue<AnatomicalStructure | IdReference, "tributary">
+	tributary?: SchemaValue<AnatomicalStructure | IdReference, "tributary">
 }
 interface VeinLeaf extends VeinBase {
 	type: "Vein"
@@ -15822,37 +15616,37 @@ export type VideoGallery = VideoGalleryLeaf
 
 interface VideoGameBase extends SoftwareApplicationBase, GameBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/**
 	 * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/actor instead.
 	 */
-	"actors"?: SchemaValue<Person | IdReference, "actors">
+	actors?: SchemaValue<Person | IdReference, "actors">
 	/** Cheat codes to the game. */
-	"cheatCode"?: SchemaValue<CreativeWork | IdReference, "cheatCode">
+	cheatCode?: SchemaValue<CreativeWork | IdReference, "cheatCode">
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/**
 	 * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/director instead.
 	 */
-	"directors"?: SchemaValue<Person | IdReference, "directors">
+	directors?: SchemaValue<Person | IdReference, "directors">
 	/** The edition of a video game. */
-	"gameEdition"?: SchemaValue<Text, "gameEdition">
+	gameEdition?: SchemaValue<Text, "gameEdition">
 	/** The electronic systems used to play {@link http://en.wikipedia.org/wiki/Category:Video_game_platforms video games}. */
-	"gamePlatform"?: SchemaValue<Text | Thing | URL | IdReference, "gamePlatform">
+	gamePlatform?: SchemaValue<Text | Thing | URL | IdReference, "gamePlatform">
 	/** The server on which it is possible to play the game. */
-	"gameServer"?: SchemaValue<GameServer | IdReference, "gameServer">
+	gameServer?: SchemaValue<GameServer | IdReference, "gameServer">
 	/** Links to tips, tactics, etc. */
-	"gameTip"?: SchemaValue<CreativeWork | IdReference, "gameTip">
+	gameTip?: SchemaValue<CreativeWork | IdReference, "gameTip">
 	/** The composer of the soundtrack. */
-	"musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
+	musicBy?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
 	/** Indicates whether this game is multi-player, co-op or single-player. The game can be marked as multi-player, co-op and single-player at the same time. */
-	"playMode"?: SchemaValue<GamePlayMode | IdReference, "playMode">
+	playMode?: SchemaValue<GamePlayMode | IdReference, "playMode">
 	/** The trailer of a movie or TV/radio series, season, episode, etc. */
-	"trailer"?: SchemaValue<VideoObject | IdReference, "trailer">
+	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface VideoGameLeaf extends VideoGameBase {
 	type: "VideoGame"
@@ -15868,81 +15662,81 @@ export type VideoGameClip = VideoGameClipLeaf
 
 interface VideoGameSeriesBase extends CreativeWorkSeriesBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/**
 	 * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/actor instead.
 	 */
-	"actors"?: SchemaValue<Person | IdReference, "actors">
+	actors?: SchemaValue<Person | IdReference, "actors">
 	/** A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage). */
-	"characterAttribute"?: SchemaValue<Thing | IdReference, "characterAttribute">
+	characterAttribute?: SchemaValue<Thing | IdReference, "characterAttribute">
 	/** Cheat codes to the game. */
-	"cheatCode"?: SchemaValue<CreativeWork | IdReference, "cheatCode">
+	cheatCode?: SchemaValue<CreativeWork | IdReference, "cheatCode">
 	/** A season that is part of the media series. */
-	"containsSeason"?: SchemaValue<
+	containsSeason?: SchemaValue<
 		CreativeWorkSeason | IdReference,
 		"containsSeason"
 	>
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/**
 	 * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/director instead.
 	 */
-	"directors"?: SchemaValue<Person | IdReference, "directors">
+	directors?: SchemaValue<Person | IdReference, "directors">
 	/** An episode of a TV, radio or game media within a series or season. */
-	"episode"?: SchemaValue<Episode | IdReference, "episode">
+	episode?: SchemaValue<Episode | IdReference, "episode">
 	/**
 	 * An episode of a TV/radio series or season.
 	 *
 	 * @deprecated Consider using https://schema.org/episode instead.
 	 */
-	"episodes"?: SchemaValue<Episode | IdReference, "episodes">
+	episodes?: SchemaValue<Episode | IdReference, "episodes">
 	/** An item is an object within the game world that can be collected by a player or, occasionally, a non-player character. */
-	"gameItem"?: SchemaValue<Thing | IdReference, "gameItem">
+	gameItem?: SchemaValue<Thing | IdReference, "gameItem">
 	/** Real or fictional location of the game (or part of game). */
-	"gameLocation"?: SchemaValue<
+	gameLocation?: SchemaValue<
 		Place | PostalAddress | URL | IdReference,
 		"gameLocation"
 	>
 	/** The electronic systems used to play {@link http://en.wikipedia.org/wiki/Category:Video_game_platforms video games}. */
-	"gamePlatform"?: SchemaValue<Text | Thing | URL | IdReference, "gamePlatform">
+	gamePlatform?: SchemaValue<Text | Thing | URL | IdReference, "gamePlatform">
 	/** The composer of the soundtrack. */
-	"musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
+	musicBy?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
 	/** The number of episodes in this season or series. */
-	"numberOfEpisodes"?: SchemaValue<Integer, "numberOfEpisodes">
+	numberOfEpisodes?: SchemaValue<Integer, "numberOfEpisodes">
 	/** Indicate how many people can play this game (minimum, maximum, or range). */
-	"numberOfPlayers"?: SchemaValue<
+	numberOfPlayers?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"numberOfPlayers"
 	>
 	/** The number of seasons in this series. */
-	"numberOfSeasons"?: SchemaValue<Integer, "numberOfSeasons">
+	numberOfSeasons?: SchemaValue<Integer, "numberOfSeasons">
 	/** Indicates whether this game is multi-player, co-op or single-player. The game can be marked as multi-player, co-op and single-player at the same time. */
-	"playMode"?: SchemaValue<GamePlayMode | IdReference, "playMode">
+	playMode?: SchemaValue<GamePlayMode | IdReference, "playMode">
 	/** The production company or studio responsible for the item, e.g. series, video game, episode etc. */
-	"productionCompany"?: SchemaValue<
+	productionCompany?: SchemaValue<
 		Organization | IdReference,
 		"productionCompany"
 	>
 	/** The task that a player-controlled character, or group of characters may complete in order to gain a reward. */
-	"quest"?: SchemaValue<Thing | IdReference, "quest">
+	quest?: SchemaValue<Thing | IdReference, "quest">
 	/**
 	 * A season in a media series.
 	 *
 	 * @deprecated Consider using https://schema.org/containsSeason instead.
 	 */
-	"season"?: SchemaValue<CreativeWorkSeason | URL | IdReference, "season">
+	season?: SchemaValue<CreativeWorkSeason | URL | IdReference, "season">
 	/**
 	 * A season in a media series.
 	 *
 	 * @deprecated Consider using https://schema.org/season instead.
 	 */
-	"seasons"?: SchemaValue<CreativeWorkSeason | IdReference, "seasons">
+	seasons?: SchemaValue<CreativeWorkSeason | IdReference, "seasons">
 	/** The trailer of a movie or TV/radio series, season, episode, etc. */
-	"trailer"?: SchemaValue<VideoObject | IdReference, "trailer">
+	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface VideoGameSeriesLeaf extends VideoGameSeriesBase {
 	type: "VideoGameSeries"
@@ -15952,33 +15746,33 @@ export type VideoGameSeries = VideoGameSeriesLeaf
 
 interface VideoObjectBase extends MediaObjectBase {
 	/** An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
-	"actor"?: SchemaValue<Person | IdReference, "actor">
+	actor?: SchemaValue<Person | IdReference, "actor">
 	/**
 	 * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/actor instead.
 	 */
-	"actors"?: SchemaValue<Person | IdReference, "actors">
+	actors?: SchemaValue<Person | IdReference, "actors">
 	/** The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the {@link https://schema.org/encodingFormat encodingFormat}. */
-	"caption"?: SchemaValue<MediaObject | Text | IdReference, "caption">
+	caption?: SchemaValue<MediaObject | Text | IdReference, "caption">
 	/** A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
-	"director"?: SchemaValue<Person | IdReference, "director">
+	director?: SchemaValue<Person | IdReference, "director">
 	/**
 	 * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
 	 *
 	 * @deprecated Consider using https://schema.org/director instead.
 	 */
-	"directors"?: SchemaValue<Person | IdReference, "directors">
+	directors?: SchemaValue<Person | IdReference, "directors">
 	/** Represents textual captioning from a {@link https://schema.org/MediaObject MediaObject}, e.g. text of a 'meme'. */
-	"embeddedTextCaption"?: SchemaValue<Text, "embeddedTextCaption">
+	embeddedTextCaption?: SchemaValue<Text, "embeddedTextCaption">
 	/** The composer of the soundtrack. */
-	"musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
+	musicBy?: SchemaValue<MusicGroup | Person | IdReference, "musicBy">
 	/** If this MediaObject is an AudioObject or VideoObject, the transcript of that object. */
-	"transcript"?: SchemaValue<Text, "transcript">
+	transcript?: SchemaValue<Text, "transcript">
 	/** The frame size of the video. */
-	"videoFrameSize"?: SchemaValue<Text, "videoFrameSize">
+	videoFrameSize?: SchemaValue<Text, "videoFrameSize">
 	/** The quality of the video. */
-	"videoQuality"?: SchemaValue<Text, "videoQuality">
+	videoQuality?: SchemaValue<Text, "videoQuality">
 }
 interface VideoObjectLeaf extends VideoObjectBase {
 	type: "VideoObject"
@@ -16012,35 +15806,35 @@ export type VisualArtsEvent = VisualArtsEventLeaf
 
 interface VisualArtworkBase extends CreativeWorkBase {
 	/** The number of copies when multiple copies of a piece of artwork are produced - e.g. for a limited edition of 20 prints, 'artEdition' refers to the total number of copies (in this example "20"). */
-	"artEdition"?: SchemaValue<Integer | Text, "artEdition">
+	artEdition?: SchemaValue<Integer | Text, "artEdition">
 	/** e.g. Painting, Drawing, Sculpture, Print, Photograph, Assemblage, Collage, etc. */
-	"artform"?: SchemaValue<Text | URL, "artform">
+	artform?: SchemaValue<Text | URL, "artform">
 	/** The primary artist for a work in a medium other than pencils or digital line art--for example, if the primary artwork is done in watercolors or digital paints. */
-	"artist"?: SchemaValue<Person | IdReference, "artist">
+	artist?: SchemaValue<Person | IdReference, "artist">
 	/** The material used. (E.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.) */
-	"artMedium"?: SchemaValue<Text | URL, "artMedium">
+	artMedium?: SchemaValue<Text | URL, "artMedium">
 	/** The supporting materials for the artwork, e.g. Canvas, Paper, Wood, Board, etc. */
-	"artworkSurface"?: SchemaValue<Text | URL, "artworkSurface">
+	artworkSurface?: SchemaValue<Text | URL, "artworkSurface">
 	/** The individual who adds color to inked drawings. */
-	"colorist"?: SchemaValue<Person | IdReference, "colorist">
+	colorist?: SchemaValue<Person | IdReference, "colorist">
 	/** The depth of the item. */
-	"depth"?: SchemaValue<Distance | QuantitativeValue | IdReference, "depth">
+	depth?: SchemaValue<Distance | QuantitativeValue | IdReference, "depth">
 	/** The height of the item. */
-	"height"?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
+	height?: SchemaValue<Distance | QuantitativeValue | IdReference, "height">
 	/** The individual who traces over the pencil drawings in ink after pencils are complete. */
-	"inker"?: SchemaValue<Person | IdReference, "inker">
+	inker?: SchemaValue<Person | IdReference, "inker">
 	/** The individual who adds lettering, including speech balloons and sound effects, to artwork. */
-	"letterer"?: SchemaValue<Person | IdReference, "letterer">
+	letterer?: SchemaValue<Person | IdReference, "letterer">
 	/** The individual who draws the primary narrative artwork. */
-	"penciler"?: SchemaValue<Person | IdReference, "penciler">
+	penciler?: SchemaValue<Person | IdReference, "penciler">
 	/**
 	 * A material used as a surface in some artwork, e.g. Canvas, Paper, Wood, Board, etc.
 	 *
 	 * @deprecated Consider using https://schema.org/artworkSurface instead.
 	 */
-	"surface"?: SchemaValue<Text | URL, "surface">
+	surface?: SchemaValue<Text | URL, "surface">
 	/** The width of the item. */
-	"width"?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
+	width?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
 }
 interface VisualArtworkLeaf extends VisualArtworkBase {
 	type: "VisualArtwork"
@@ -16062,7 +15856,7 @@ export type Volcano = VolcanoLeaf | string
 
 interface VoteActionBase extends ChooseActionBase {
 	/** A sub property of object. The candidate subject of this action. */
-	"candidate"?: SchemaValue<Person | IdReference, "candidate">
+	candidate?: SchemaValue<Person | IdReference, "candidate">
 }
 interface VoteActionLeaf extends VoteActionBase {
 	type: "VoteAction"
@@ -16078,12 +15872,12 @@ export type WantAction = WantActionLeaf
 
 interface WarrantyPromiseBase extends ThingBase {
 	/** The duration of the warranty promise. Common unitCode values are ANN for year, MON for months, or DAY for days. */
-	"durationOfWarranty"?: SchemaValue<
+	durationOfWarranty?: SchemaValue<
 		QuantitativeValue | IdReference,
 		"durationOfWarranty"
 	>
 	/** The scope of the warranty promise. */
-	"warrantyScope"?: SchemaValue<WarrantyScope | IdReference, "warrantyScope">
+	warrantyScope?: SchemaValue<WarrantyScope | IdReference, "warrantyScope">
 }
 interface WarrantyPromiseLeaf extends WarrantyPromiseBase {
 	type: "WarrantyPromise"
@@ -16231,10 +16025,7 @@ export type WearAction = WearActionLeaf
 
 interface WebAPIBase extends ServiceBase {
 	/** Further documentation describing the Web API in more detail. */
-	"documentation"?: SchemaValue<
-		CreativeWork | URL | IdReference,
-		"documentation"
-	>
+	documentation?: SchemaValue<CreativeWork | URL | IdReference, "documentation">
 }
 interface WebAPILeaf extends WebAPIBase {
 	type: "WebAPI"
@@ -16244,7 +16035,7 @@ export type WebAPI = WebAPILeaf
 
 interface WebApplicationBase extends SoftwareApplicationBase {
 	/** Specifies browser requirements in human-readable text. For example, 'requires HTML5 support'. */
-	"browserRequirements"?: SchemaValue<Text, "browserRequirements">
+	browserRequirements?: SchemaValue<Text, "browserRequirements">
 }
 interface WebApplicationLeaf extends WebApplicationBase {
 	type: "WebApplication"
@@ -16260,31 +16051,31 @@ export type WebContent = WebContentLeaf | HealthTopicContent
 
 interface WebPageBase extends CreativeWorkBase {
 	/** A set of links that can help a user understand and navigate a website hierarchy. */
-	"breadcrumb"?: SchemaValue<BreadcrumbList | Text | IdReference, "breadcrumb">
+	breadcrumb?: SchemaValue<BreadcrumbList | Text | IdReference, "breadcrumb">
 	/** Date on which the content on this web page was last reviewed for accuracy and/or completeness. */
-	"lastReviewed"?: SchemaValue<Date, "lastReviewed">
+	lastReviewed?: SchemaValue<Date, "lastReviewed">
 	/** Indicates if this web page element is the main subject of the page. */
-	"mainContentOfPage"?: SchemaValue<
+	mainContentOfPage?: SchemaValue<
 		WebPageElement | IdReference,
 		"mainContentOfPage"
 	>
 	/** Indicates the main image on the page. */
-	"primaryImageOfPage"?: SchemaValue<
+	primaryImageOfPage?: SchemaValue<
 		ImageObject | IdReference,
 		"primaryImageOfPage"
 	>
 	/** A link related to this web page, for example to other related web pages. */
-	"relatedLink"?: SchemaValue<URL, "relatedLink">
+	relatedLink?: SchemaValue<URL, "relatedLink">
 	/** People or organizations that have reviewed the content on this web page for accuracy and/or completeness. */
-	"reviewedBy"?: SchemaValue<Organization | Person | IdReference, "reviewedBy">
+	reviewedBy?: SchemaValue<Organization | Person | IdReference, "reviewedBy">
 	/** One of the more significant URLs on the page. Typically, these are the non-navigation links that are clicked on the most. */
-	"significantLink"?: SchemaValue<URL, "significantLink">
+	significantLink?: SchemaValue<URL, "significantLink">
 	/**
 	 * The most significant URLs on the page. Typically, these are the non-navigation links that are clicked on the most.
 	 *
 	 * @deprecated Consider using https://schema.org/significantLink instead.
 	 */
-	"significantLinks"?: SchemaValue<URL, "significantLinks">
+	significantLinks?: SchemaValue<URL, "significantLinks">
 	/**
 	 * Indicates sections of a Web page that are particularly 'speakable' in the sense of being highlighted as being especially appropriate for text-to-speech conversion. Other sections of a page may also be usefully spoken in particular circumstances; the 'speakable' property serves to indicate the parts most likely to be generally useful for speech.
 	 *
@@ -16298,12 +16089,12 @@ interface WebPageBase extends CreativeWorkBase {
 	 *
 	 * For more sophisticated markup of speakable sections beyond simple ID references, either CSS selectors or XPath expressions to pick out document section(s) as speakable. For this we define a supporting type, {@link https://schema.org/SpeakableSpecification SpeakableSpecification} which is defined to be a possible value of the _speakable_ property.
 	 */
-	"speakable"?: SchemaValue<
+	speakable?: SchemaValue<
 		SpeakableSpecification | URL | IdReference,
 		"speakable"
 	>
 	/** One of the domain specialities to which this web page's content applies. */
-	"specialty"?: SchemaValue<Specialty | IdReference, "specialty">
+	specialty?: SchemaValue<Specialty | IdReference, "specialty">
 }
 interface WebPageLeaf extends WebPageBase {
 	type: "WebPage"
@@ -16325,9 +16116,9 @@ export type WebPage =
 
 interface WebPageElementBase extends CreativeWorkBase {
 	/** A CSS selector, e.g. of a {@link https://schema.org/SpeakableSpecification SpeakableSpecification} or {@link https://schema.org/WebPageElement WebPageElement}. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
-	"cssSelector"?: SchemaValue<CssSelectorType, "cssSelector">
+	cssSelector?: SchemaValue<CssSelectorType, "cssSelector">
 	/** An XPath, e.g. of a {@link https://schema.org/SpeakableSpecification SpeakableSpecification} or {@link https://schema.org/WebPageElement WebPageElement}. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
-	"xpath"?: SchemaValue<XPathType, "xpath">
+	xpath?: SchemaValue<XPathType, "xpath">
 }
 interface WebPageElementLeaf extends WebPageElementBase {
 	type: "WebPageElement"
@@ -16344,7 +16135,7 @@ export type WebPageElement =
 
 interface WebSiteBase extends CreativeWorkBase {
 	/** The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication. */
-	"issn"?: SchemaValue<Text, "issn">
+	issn?: SchemaValue<Text, "issn">
 }
 interface WebSiteLeaf extends WebSiteBase {
 	type: "WebSite"
@@ -16360,7 +16151,7 @@ export type WholesaleStore = WholesaleStoreLeaf | string
 
 interface WinActionBase extends ActionBase {
 	/** A sub property of participant. The loser of the action. */
-	"loser"?: SchemaValue<Person | IdReference, "loser">
+	loser?: SchemaValue<Person | IdReference, "loser">
 }
 interface WinActionLeaf extends WinActionBase {
 	type: "WinAction"
@@ -16380,12 +16171,12 @@ interface WorkBasedProgramBase extends EducationalOccupationalProgramBase {
 	 *
 	 * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
 	 */
-	"occupationalCategory"?: SchemaValue<
+	occupationalCategory?: SchemaValue<
 		CategoryCode | Text | IdReference,
 		"occupationalCategory"
 	>
 	/** The estimated salary earned while in the program. */
-	"trainingSalary"?: SchemaValue<
+	trainingSalary?: SchemaValue<
 		MonetaryAmountDistribution | IdReference,
 		"trainingSalary"
 	>
@@ -16428,13 +16219,13 @@ export type WPSideBar = WPSideBarLeaf
 
 interface WriteActionBase extends ActionBase {
 	/** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
-	"inLanguage"?: SchemaValue<Language | Text | IdReference, "inLanguage">
+	inLanguage?: SchemaValue<Language | Text | IdReference, "inLanguage">
 	/**
 	 * A sub property of instrument. The language used on this action.
 	 *
 	 * @deprecated Consider using https://schema.org/inLanguage instead.
 	 */
-	"language"?: SchemaValue<Language | IdReference, "language">
+	language?: SchemaValue<Language | IdReference, "language">
 }
 interface WriteActionLeaf extends WriteActionBase {
 	type: "WriteAction"

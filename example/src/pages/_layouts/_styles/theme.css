@@ -30,34 +30,34 @@
 	--font-titles: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052,
 		serif;
 
-	--step--2: clamp(0.64rem, calc(0.58rem + 0.30vw), 0.88rem);
-	--step--1: clamp(0.80rem, calc(0.73rem + 0.38vw), 1.10rem);
-	--step-0: clamp(1.00rem, calc(0.91rem + 0.47vw), 1.38rem);
+	--step--2: clamp(0.64rem, calc(0.58rem + 0.3vw), 0.88rem);
+	--step--1: clamp(0.8rem, calc(0.73rem + 0.38vw), 1.1rem);
+	--step-0: clamp(1rem, calc(0.91rem + 0.47vw), 1.38rem);
 	--step-1: clamp(1.25rem, calc(1.13rem + 0.59vw), 1.72rem);
 	--step-2: clamp(1.56rem, calc(1.42rem + 0.73vw), 2.15rem);
 	--step-3: clamp(1.95rem, calc(1.77rem + 0.92vw), 2.69rem);
 	--step-4: clamp(2.44rem, calc(2.21rem + 1.14vw), 3.36rem);
-	--step-5: clamp(3.05rem, calc(2.77rem + 1.43vw), 4.20rem);
+	--step-5: clamp(3.05rem, calc(2.77rem + 1.43vw), 4.2rem);
 
-  --space-3xs: clamp(0.25rem, calc(0.22rem + 0.16vw), 0.38rem);
-  --space-2xs: clamp(0.50rem, calc(0.45rem + 0.23vw), 0.69rem);
-  --space-xs: clamp(0.75rem, calc(0.67rem + 0.39vw), 1.06rem);
-  --space-s: clamp(1.00rem, calc(0.91rem + 0.47vw), 1.38rem);
-  --space-m: clamp(1.50rem, calc(1.36rem + 0.70vw), 2.06rem);
-  --space-l: clamp(2.00rem, calc(1.81rem + 0.94vw), 2.75rem);
-  --space-xl: clamp(3.00rem, calc(2.72rem + 1.41vw), 4.13rem);
-  --space-2xl: clamp(4.00rem, calc(3.63rem + 1.88vw), 5.50rem);
-  --space-3xl: clamp(6.00rem, calc(5.44rem + 2.81vw), 8.25rem);
+	--space-3xs: clamp(0.25rem, calc(0.22rem + 0.16vw), 0.38rem);
+	--space-2xs: clamp(0.5rem, calc(0.45rem + 0.23vw), 0.69rem);
+	--space-xs: clamp(0.75rem, calc(0.67rem + 0.39vw), 1.06rem);
+	--space-s: clamp(1rem, calc(0.91rem + 0.47vw), 1.38rem);
+	--space-m: clamp(1.5rem, calc(1.36rem + 0.7vw), 2.06rem);
+	--space-l: clamp(2rem, calc(1.81rem + 0.94vw), 2.75rem);
+	--space-xl: clamp(3rem, calc(2.72rem + 1.41vw), 4.13rem);
+	--space-2xl: clamp(4rem, calc(3.63rem + 1.88vw), 5.5rem);
+	--space-3xl: clamp(6rem, calc(5.44rem + 2.81vw), 8.25rem);
 
-  /* One-up pairs */
-  --space-3xs-2xs: clamp(0.25rem, calc(0.14rem + 0.55vw), 0.69rem);
-  --space-2xs-xs: clamp(0.50rem, calc(0.36rem + 0.70vw), 1.06rem);
-  --space-xs-s: clamp(0.75rem, calc(0.59rem + 0.78vw), 1.38rem);
-  --space-s-m: clamp(1.00rem, calc(0.73rem + 1.33vw), 2.06rem);
-  --space-m-l: clamp(1.50rem, calc(1.19rem + 1.56vw), 2.75rem);
-  --space-l-xl: clamp(2.00rem, calc(1.47rem + 2.66vw), 4.13rem);
-  --space-xl-2xl: clamp(3.00rem, calc(2.38rem + 3.13vw), 5.50rem);
-  --space-2xl-3xl: clamp(4.00rem, calc(2.94rem + 5.31vw), 8.25rem);
+	/* One-up pairs */
+	--space-3xs-2xs: clamp(0.25rem, calc(0.14rem + 0.55vw), 0.69rem);
+	--space-2xs-xs: clamp(0.5rem, calc(0.36rem + 0.7vw), 1.06rem);
+	--space-xs-s: clamp(0.75rem, calc(0.59rem + 0.78vw), 1.38rem);
+	--space-s-m: clamp(1rem, calc(0.73rem + 1.33vw), 2.06rem);
+	--space-m-l: clamp(1.5rem, calc(1.19rem + 1.56vw), 2.75rem);
+	--space-l-xl: clamp(2rem, calc(1.47rem + 2.66vw), 4.13rem);
+	--space-xl-2xl: clamp(3rem, calc(2.38rem + 3.13vw), 5.5rem);
+	--space-2xl-3xl: clamp(4rem, calc(2.94rem + 5.31vw), 8.25rem);
 
 	--flow-space: 1.5rem;
 	--gutter: var(--space-s-m);

@@ -303,11 +303,7 @@ export type AriaRole =
 	| "treegrid"
 	| "treeitem"
 
-export type AnchorTarget =
-	| "_self"
-	| "_blank"
-	| "_parent"
-	| "_top"
+export type AnchorTarget = "_self" | "_blank" | "_parent" | "_top"
 
 export type Child =
 	| Node
@@ -469,10 +465,8 @@ export type AstroBuiltinAttributes = {
 	"is:raw"?: boolean
 }
 
-export type Attributes =
-	& AriaAttributes
-	& DOMAttributes
-	& {
+export type Attributes = AriaAttributes &
+	DOMAttributes & {
 		// Standard HTML Attributes
 		accesskey?: string | undefined | null
 		autocapitalize?: string | undefined | null
@@ -551,14 +545,17 @@ export type Attributes =
 		unselectable?: "on" | "off" | undefined | null // Internet Explorer
 	}
 
-export type BaseAttributes = Override<Attributes, {
-	"class:list"?:
-		| Record<string, boolean>
-		| Record<unknown, unknown>
-		| Iterable<string>
-		| Iterable<unknown>
-		| string
-	dataset?: Dataset
-}>
+export type BaseAttributes = Override<
+	Attributes,
+	{
+		"class:list"?:
+			| Record<string, boolean>
+			| Record<unknown, unknown>
+			| Iterable<string>
+			| Iterable<unknown>
+			| string
+		"dataset"?: Dataset
+	}
+>
 
 export type HTMLAttributes = BaseAttributes & AstroBuiltinAttributes

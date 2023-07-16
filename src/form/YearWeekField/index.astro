@@ -2,90 +2,80 @@
 // Most years have 52 weeks, but if the year starts on a Thursday
 // or is a leap year that starts on a Wednesday, that particular year
 // will have 53 numbered weeks.
-import createClassList from "../../utilities/createClassList";
-import generateShortId from "../../utilities/generateShortId";
-import mapDataset from "../../utilities/mapDataset";
-import WeekSelect from "../elements/WeekSelect/index.astro";
-import YearInput from "../elements/YearInput/index.astro";
-import type { BaseAttributes } from "../../../types/html";
-import type { PlainYearMonth as Props } from "../../../types/form";
+import createClassList from "../../utilities/createClassList"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import mapDataset from "../../utilities/mapDataset"
+import WeekSelect from "../elements/WeekSelect/index.astro"
+import YearInput from "../elements/YearInput/index.astro"
+import type { PlainYearMonth as Props } from "../../../types/form"
 
 const {
 	["aria-live"]: live = "assertive",
 	disabled,
 	field = "plain-year-month-field",
 	form,
-	group = {},
-	help = {},
+	group: {
+		["class:list"]: groupClassList = [],
+		dataset: groupDataset = {},
+		...groupAttrs
+	} = {},
+	help: {
+		["class:list"]: helpClassList = [],
+		dataset: helpDataset = {},
+		...helpAttrs
+	} = {},
 	id = generateShortId(),
 	label = "Year and week",
-	legend = {},
+	legend: {
+		["class:list"]: legendClassList = [],
+		dataset: legendDataset = {},
+		...legendAttrs
+	} = {},
 	message,
 	month = "",
 	monthAttrs = {},
 	months,
 	name = "plainYearMonth",
-	outer = {},
+	outer: {
+		["class:list"]: outerClassList = [],
+		dataset: outerDataset = {},
+		...outerAttrs
+	} = {},
 	required,
-	tag = {},
+	tag: {
+		["class:list"]: tagClassList = [],
+		dataset: tagDataset = {},
+		...tagAttrs
+	} = {},
 	wrapper = {},
 	year = "",
 	yearAttrs = {},
 	years,
-} = Astro.props;
-
-const {
-	["class:list"]: groupClassList = [],
-	dataset: groupDataset,
-	...groupAttrs
-} = group as BaseAttributes;
-
-const {
-	["class:list"]: helpClassList = [],
-	dataset: helpDataset,
-	...helpAttrs
-} = help as BaseAttributes;
-
-const {
-	["class:list"]: legendClassList = [],
-	dataset: legendDataset,
-	...legendAttrs
-} = legend as BaseAttributes;
+} = Astro.props
 
 const {
 	["class:list"]: monthClassList = [],
-	dataset: monthDataset,
+	dataset: monthDataset = {},
 	...monthAttributes
-} = monthAttrs as BaseAttributes;
-
-const {
-	["class:list"]: outerClassList = [],
-	dataset: outerDataset,
-	...outerAttrs
-} = outer as BaseAttributes;
-
-const {
-	["class:list"]: tagClassList = [],
-	dataset: tagDataset,
-	...tagAttrs
-} = tag as BaseAttributes;
+} = monthAttrs
 
 const {
 	["class:list"]: yearClassList = [],
-	dataset: yearDataset,
+	dataset: yearDataset = {},
 	...yearAttributes
-} = yearAttrs as BaseAttributes;
+} = yearAttrs
 
-const hlp = (await Astro.slots.render("message")) || message;
-const helpId = `${id}_help`;
-const lbl = (await Astro.slots.render("default")) || label;
-const legendId = `${id}_legend`;
-const monthId = `${id}-month`;
-const monthName = `${name}:month`;
-const yearId = `${id}-year`;
-const yearName = `${name}:year`;
-const req = required ? { "data-sb-required": "" } : {};
-const opt = required ? {} : { "data-sb-optional": "" };
+const hlp = (await Astro.slots.render("message")) || message
+const helpId = `${id}_help`
+const lbl = (await Astro.slots.render("default")) || label
+const legendId = `${id}_legend`
+const monthId = `${id}-month`
+const monthName = `${name}:month`
+const yearId = `${id}-year`
+const yearName = `${name}:year`
+const req = required ? { "data-sb-required": "" } : {}
+const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
 <fieldset

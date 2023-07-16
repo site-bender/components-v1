@@ -78,14 +78,14 @@ import TestFormScript from "../_scripts/TestFormScript.astro";
           }}
         />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <InstantField
             label="Timestamp"
             name="timestamp"
             readonly
             value="2023-06-14T03:39:50+12:00"
           />
-        </p>
+        </div>
         <p>And here is the HTML created:</p>
         <CodeBlock
           snippet={defaultExampleHtml}

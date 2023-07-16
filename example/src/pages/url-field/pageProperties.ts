@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"UrlField: @sitebender/components Astro components library API documentation for the UrlField metadata component\.",
+		"UrlField: @sitebender/components Astro components library API documentation for the UrlField metadata component.",
 	name: "UrlField",
 	alternateName: "UrlField",
 } as WebPage

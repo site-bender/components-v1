@@ -1,22 +1,17 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import type { Dataset } from "../types";
-import createClassList from "../utilities/createClassList";
-import mapDataset from "../utilities/mapDataset";
-import "./index.css";
+import Microdata from "../Microdata/index.astro"
+import type { FooterProps as Props } from "../types"
+import mapAttributes from "../utilities/mapAttributes"
+import "./index.css"
 
-export type Props = HTMLAttributes<"footer"> & {
-	dataset?: Dataset | undefined;
-};
+const { microdata = {}, properties, ...attrs } = Astro.props
 
-const { ["class:list"]: classList = [], dataset, ...attrs } = Astro.props;
-const data = mapDataset(dataset);
+const wrapperAttrs = mapAttributes(attrs, ["sb-footer"])
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<footer
-	class:list={createClassList("sb-footer", classList)}
-	{...data}
-	{...attrs}
->
+<footer {...wrapperAttrs} data-sb-footer>
+	{useMicrodata ? <Microdata {...microdata} {properties} /> : null}
 	<slot />
 </footer>

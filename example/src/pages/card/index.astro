@@ -1,14 +1,14 @@
 ---
-import Card from "../../../../src/Card/index.astro";
-import CodeBlock from "../../../../src/CodeBlock/index.astro";
-import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
-import Layout from "../_layouts/index.astro";
-import pageProperties from "./pageProperties";
-import * as typeTs from "./_assets/type.ts.md";
-import * as defaultExampleHtml from "./_assets/default-example.html.md";
-import * as defaultExampleAstro from "./_assets/default-example.astro.md";
-import * as withImageHtml from "./_assets/with-image.html.md";
-import * as withImageAstro from "./_assets/with-image.astro.md";
+import Card from "../../../../src/Card/index.astro"
+import CodeBlock from "../../../../src/CodeBlock/index.astro"
+import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw"
+import Layout from "../_layouts/index.astro"
+import pageProperties from "./pageProperties"
+import * as typeTs from "./_assets/type.ts.md"
+import * as defaultExampleHtml from "./_assets/default-example.html.md"
+import * as defaultExampleAstro from "./_assets/default-example.astro.md"
+import * as withImageHtml from "./_assets/with-image.html.md"
+import * as withImageAstro from "./_assets/with-image.astro.md"
 ---
 
 <Layout pageProperties={pageProperties}>
@@ -86,7 +86,7 @@ import * as withImageAstro from "./_assets/with-image.astro.md";
 				<p>Here is the actual component:</p>
 				<div class="example">
 					<Card
-						image={{
+						picture={{
 							alt: "Black hole sun",
 							src: "/images/darkness-at-noon.png",
 							filename: "darkness-at-noon",

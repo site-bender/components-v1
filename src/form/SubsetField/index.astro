@@ -1,7 +1,7 @@
 ---
-import type { SubsetField as Props } from "../../types/form";
-import CheckboxGroup from "../elements/CheckboxGroup/index.astro";
-import generateShortId from "../../utilities/generateShortId";
+import type { SubsetField as Props } from "../../types/form"
+import CheckboxGroup from "../elements/CheckboxGroup/index.astro"
+import generateShortId from "../../utilities/generateShortId"
 
 const {
 	form,
@@ -15,10 +15,10 @@ const {
 	options = [],
 	selected,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const label = Astro.slots.render("default") || lbl;
-const help = Astro.slots.render("message") || hlp;
+const label = Astro.slots.render("default") || lbl
+const help = Astro.slots.render("message") || hlp
 ---
 
 <CheckboxGroup {...attrs} {form} {message} {id} {name} {options} {selected}>

@@ -8,10 +8,8 @@ export default function getLineNumberingWidth(codeBlock: string): number {
 			not(
 				line.startsWith("```") ||
 					line.startsWith("<!-- markdownlint") ||
-					line.startsWith("<!-- dprint"),
+					line.startsWith("<!-- dprint")
 			)
 		)
-		.length
-		.toString()
-		.length
+		.length.toString().length
 }

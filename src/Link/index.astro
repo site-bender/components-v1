@@ -1,44 +1,43 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import Microdata from "../Microdata/index.astro";
-import type { Dataset } from "../types";
-import type { SiteNavigationElement } from "../schema.org";
-import createClassList from "../utilities/createClassList";
-import mapDataset from "../utilities/mapDataset";
-
-export type Props = HTMLAttributes<"a"> & {
-	dataset?: Dataset | undefined;
-	href: string;
-	label?: string;
-	properties?: SiteNavigationElement;
-};
+import Microdata from "../Microdata/index.astro"
+import type { LinkProps as Props } from "../types"
+import mapAttributes from "../utilities/mapAttributes"
 
 const {
-	["class:list"]: classList = [],
-	dataset,
 	href,
 	label,
 	properties = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const data = mapDataset(dataset);
-const lbl = (await Astro.slots.render("default")) || label;
+const wrapperAttrs = mapAttributes(attrs, ["sb-link"])
+
+const lbl = (await Astro.slots.render("default")) || label
 
 const meta = {
 	type: "SiteNavigationElement",
 	url: href,
 	name: label,
 	...properties,
-};
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<Microdata
-	as="a"
-	class:list={createClassList("sb-link-with-microdata", classList)}
-	{...data}
-	properties={meta}
-	{...attrs}
->
-	{lbl}
-</Microdata>
+{
+	useMicrodata ?
+		<Microdata
+			{...wrapperAttrs}
+			as="a"
+			{href}
+			properties={meta}
+		>
+			{lbl}
+		</Microdata>
+	: <a
+			{...wrapperAttrs}
+			{href}
+		>
+			{lbl}
+		</a>
+}

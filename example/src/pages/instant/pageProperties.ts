@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"Instant: @sitebender/components Astro components library API documentation for the Instant metadata component\.",
+		"Instant: @sitebender/components Astro components library API documentation for the Instant metadata component.",
 	name: "Instant",
 	alternateName: "Instant",
 } as WebPage

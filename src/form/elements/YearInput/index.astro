@@ -1,17 +1,17 @@
 ---
-import createClassList from "../../../utilities/createClassList";
-import createSelectOptions from "../../../utilities/createSelectOptions";
-import generateShortId from "../../../utilities/generateShortId";
-import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
-import type { YearInput as Props } from "../../../types/form";
+import createClassList from "../../../utilities/createClassList"
+import createSelectOptions from "../../../utilities/createSelectOptions"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
+import type { YearInput as Props } from "../../../types/form"
 
 const {
 	autocomplete,
 	autocorrect: _autocorrect,
 	["class:list"]: elementClassList = [],
 	datalist = {},
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "year-input",
 	form,
 	id = generateShortId(),
@@ -28,22 +28,22 @@ const {
 	wrapper = {},
 	years,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
 const {
 	["class:list"]: datalistClassList = [],
-	dataset: datalistDataset,
+	dataset: datalistDataset = {},
 	...datalistAttrs
-} = datalist as BaseAttributes;
+} = datalist
 
 const {
 	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
+	dataset: wrapperDataset = {},
 	...wrapperAttrs
-} = wrapper as BaseAttributes;
+} = wrapper
 
-const listId = years ? `${id}_datalist` : undefined;
-const size = sze || years ? 7 : 4;
+const listId = years ? `${id}_datalist` : undefined
+const size = sze || years ? 7 : 4
 ---
 
 <span

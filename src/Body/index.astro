@@ -1,37 +1,42 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import type { WebPage, WebSite } from "../schema.org";
-import Microdata from "../Microdata/index.astro";
+import Microdata from "../Microdata/index.astro"
+import createClassList from "../utilities/createClassList"
+import mapAttributes from "../utilities/mapAttributes"
+import mapDataset from "../utilities/mapDataset"
+import type { BodyProps as Props } from "../types"
 
-export type Props = HTMLAttributes<"body"> & {
-	pageProperties?: Partial<WebPage> | undefined;
-	site?: string;
-	siteProperties?: Partial<WebSite> | undefined;
-};
+const {
+	pageProperties,
+	site,
+	siteProperties,
+	title,
+	...attrs
+} = Astro.props
 
-const { pageProperties, site, siteProperties, title, ...attrs } = Astro.props;
+const wrapperAttrs = mapAttributes(attrs, ["sb-header"])
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
-const name = site || import.meta.env.SITE_NAME;
+const name = site || import.meta.env.SITE_NAME
 
-const { origin } = Astro.url;
+const { origin } = Astro.url
 
 const siteMeta = {
 	type: "WebSite",
 	name,
 	url: origin,
 	...siteProperties,
-};
+}
 
 const pageMeta = {
 	type: "WebPage",
 	name: title,
 	url: Astro.url.href,
 	...pageProperties,
-};
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<body {...attrs}>
+<body {...wrapperAttrs}>
 	{
 		useMicrodata ? (
 			<>

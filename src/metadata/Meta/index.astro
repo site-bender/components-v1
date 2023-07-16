@@ -8,13 +8,13 @@ export type Props = {
   title?: string | undefined;
 };
 
-const { basedata, metadata = {} as Metadata, title } = Astro.props;
+const { basedata = {}, metadata = {} as Metadata, title } = Astro.props;
 const type = metadata.type || basedata.type;
 
 const author =
   typeof metadata.author === "string"
     ? metadata.author
-    : metadata.author?.name || basedata.authors.at(0)?.name;
+    : metadata.author?.name || basedata.authors?.at(0)?.name;
 
 const src = metadata.image?.src
   ? metadata.image.src

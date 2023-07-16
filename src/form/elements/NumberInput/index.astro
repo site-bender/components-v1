@@ -1,16 +1,16 @@
 ---
-import createClassList from "../../../utilities/createClassList";
-import createListOptions from "../../../utilities/createListOptions";
-import generateShortId from "../../../utilities/generateShortId";
-import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
-import type { NumberInput as Props } from "../../../types/form";
+import createClassList from "../../../utilities/createClassList"
+import createListOptions from "../../../utilities/createListOptions"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
+import type { NumberInput as Props } from "../../../types/form"
 
 const {
 	autocomplete,
 	["class:list"]: elementClassList = [],
 	datalist = {},
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "number-input",
 	form,
 	id = generateShortId(),
@@ -25,23 +25,23 @@ const {
 	value,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
 const {
 	["class:list"]: datalistClassList = [],
-	dataset: datalistDataset,
+	dataset: datalistDataset = {},
 	...datalistAttrs
-} = datalist as BaseAttributes;
+} = datalist
 
 const {
 	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
+	dataset: wrapperDataset = {},
 	...wrapperAttrs
-} = wrapper as BaseAttributes;
+} = wrapper
 
-const listId = `${id}_list`;
-const lst = list ? { list: listId } : {};
-const step = isInteger ? parseInt(String(stp), 10) || 1 : step;
+const listId = `${id}_list`
+const lst = list ? { list: listId } : {}
+const step = isInteger ? parseInt(String(stp), 10) || 1 : stp
 ---
 
 <span

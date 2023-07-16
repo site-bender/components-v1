@@ -1,97 +1,80 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import type { Dataset } from "../types";
-import createClassList from "../utilities/createClassList";
-import getLineNumberingWidth from "../utilities/getLineNumberingWidth";
-import mapDataset from "../utilities/mapDataset";
-import Microdata from "../Microdata/index.astro";
-import type { SoftwareSourceCode } from "../schema.org";
-import "./index.css";
-
-export type Frontmatter = {
-	anchor?: string;
-	aria?: string;
-	blurb?: string;
-	client?: string;
-	content?: Array<string>;
-	dataset?: Dataset;
-	description?: string;
-	label?: string;
-	layout?: string;
-	page?: string;
-	publishedOn?: string;
-	rel?: string;
-	tags?: Array<string>;
-	thumbnail?: string;
-	title?: string;
-};
-
-export type MDXInstance<T> = {
-	compiledContent: () => string;
-	file: string;
-	frontmatter: T;
-	publishedOn?: string;
-	rawContent: () => string;
-	title?: string;
-	url: string | undefined;
-};
-
-export type Props<T> = {
-	caption?: string;
-	count?: number;
-	dataset?: Dataset | undefined;
-	figcaptionAttributes?: HTMLAttributes<"figcaption">;
-	index?: number;
-	isIndexed?: boolean;
-	properties?: Partial<SoftwareSourceCode>;
-	snippet: MDXInstance<T>;
-};
+import getLineNumberingWidth from "../utilities/getLineNumberingWidth"
+import mapAttributes from "../utilities/mapAttributes"
+import Microdata from "../Microdata/index.astro"
+import type { CodeBlockProps as Props } from "../types"
+import "./index.css"
 
 const {
 	caption,
-	count,
-	["class:list"]: classList = [],
-	dataset,
-	figcaptionAttributes = {},
 	index,
 	isIndexed,
-	properties,
+	legend = {},
+	lineNumberingWidth,
+	properties: props,
 	snippet,
 	style: styl = "",
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const indexed = isIndexed ? { class: "indexed" } : {};
+const legendAttrs = mapAttributes(legend, ["sb-code-block-figcaption"])
+const wrapperAttrs = mapAttributes(attrs, ["sb-code-block"])
+
+const indexed = isIndexed ? { class: "indexed" } : {}
 const cap =
-	caption ||
 	snippet.frontmatter.caption ||
-	(await Astro.slots.render("caption"));
-const data = mapDataset(dataset);
-const digits = count || getLineNumberingWidth(snippet.rawContent());
-const style = `${styl} --line-number-width: ${digits * 1.5}ch;`;
+	(await Astro.slots.render("caption")) ||
+	caption
+const digits = lineNumberingWidth || getLineNumberingWidth(snippet.rawContent())
+const style = `${styl} --line-number-width: ${digits * 1.5}ch`
 
-const meta = {
+const properties = {
 	type: "SoftwareSourceCode",
-	...properties,
-};
+	...props,
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<Microdata
-	as="figure"
-	class:list={createClassList("sb-code-block", classList)}
-	properties={meta}
-	{...data}
-	{...indexed}
-	{style}
-	{...attrs}
->
-	{
-		cap && (
-			<figcaption {...figcaptionAttributes}>
-				{index ? `Figure ${index}: ` : ""}
-				<Fragment set:html={cap} />
-			</figcaption>
-		)
-	}
-	<Fragment set:html={snippet.compiledContent()} />
-</Microdata>
+{useMicrodata ? (
+	<Microdata
+		{...wrapperAttrs}
+		as="figure"
+		data-sb-code-block
+		{...indexed}
+		{properties}
+		{style}
+	>
+		{
+			cap && (
+				<figcaption
+					{...legendAttrs}
+					data-sb-code-block="figcaption"
+				>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={cap} />
+				</figcaption>
+			)
+		}
+		<Fragment set:html={snippet.compiledContent()} />
+	</Microdata>
+) : (
+	<figure
+		{...wrapperAttrs}
+		{...indexed}
+		{style}
+	>
+		{
+			cap && (
+				<figcaption
+					{...legendAttrs}
+					data-sb-code-block="figcaption"
+				>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={cap} />
+				</figcaption>
+			)
+		}
+		<Fragment set:html={snippet.compiledContent()} />
+	</figure>
+)}

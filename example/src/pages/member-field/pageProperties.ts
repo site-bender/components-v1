@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"Microdata: @sitebender/components Astro components library API documentation for the Microdata metadata component\.",
+		"Microdata: @sitebender/components Astro components library API documentation for the Microdata metadata component.",
 	name: "Microdata",
 	alternateName: "Microdata",
 } as WebPage

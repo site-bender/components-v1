@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"MonetaryAmount: @sitebender/components Astro components library API documentation for the MonetaryAmount metadata component\.",
+		"MonetaryAmount: @sitebender/components Astro components library API documentation for the MonetaryAmount metadata component.",
 	name: "MonetaryAmount",
 	alternateName: "MonetaryAmount",
 } as WebPage

@@ -78,14 +78,14 @@ import TestFormScript from "../_scripts/TestFormScript.astro";
           }}
         />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <StringField
             label="He said"
             name="myString"
             readonly
             value="Cogito ergo sum"
           />
-        </p>
+        </div>
         <p>And here is the HTML created:</p>
         <CodeBlock
           snippet={defaultExampleHtml}

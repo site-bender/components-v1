@@ -1,0 +1,100 @@
+---
+import exifr from "exifr"
+import Source from "../Source/index.astro"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { ImageSource, PictureElementProps as Props } from "../../types"
+
+const {
+  alt,
+	createPath,
+	description = {},
+  filename,
+  height = 0,
+  hideClass = "off-screen",
+	id = generateShortId(),
+	img = {},
+  loading = "lazy",
+	longdesc,
+  link = {},
+  sources = [],
+  src,
+  width,
+	...attrs
+} = Astro.props
+
+console.log("props", Astro.props)
+
+const descAttrs = mapAttributes(description, ["sb-picture-description", hideClass])
+const imgAttrs = mapAttributes(img, ["sb-picture-img"])
+const linkAttrs = mapAttributes(link, ["sb-picture-link"])
+const pictureAttrs = mapAttributes(attrs, ["sb-picture"])
+
+const tags = await exifr.parse(`public${src}`)
+
+const desc = (await Astro.slots.render("default")) || longdesc
+
+const aspectRatio = (tags?.ImageHeight || 0) / (tags?.ImageWidth || 1)
+const describedById = desc ? { "aria-describedby": id } : {}
+const h = height || Math.floor(aspectRatio * width)
+---
+
+{
+	link.href ? (
+		<a {...linkAttrs} data-sb-picture="link">
+			<picture {...pictureAttrs} data-sb-picture>
+				{sources.map((source: ImageSource) => (
+					<Source
+						{createPath}
+						{filename}
+						{source}
+					/>
+				))}
+				<img
+					{alt}
+					data-sb-picture="img"
+					{...describedById}
+					decoding="async"
+					{...(h ? { height: h } : {})}
+					loading={loading}
+					{src}
+					{...(width != null ? { width } : {})}
+					{...imgAttrs}
+				/>
+				{desc ? (
+					<div
+						{...descAttrs}
+						data-sb-picture="description"
+						{id}
+						set:html={desc}
+					/>
+				) : null}
+			</picture>
+		</a>
+	) : (
+		<picture {...pictureAttrs} data-sb-picture>
+			{sources.map((source: ImageSource) => (
+				<Source {createPath} {filename} {source} />
+			))}
+			<img
+				{alt}
+				data-sb-picture="img"
+				{...describedById}
+				decoding="async"
+				{...(h ? { height: h } : {})}
+				loading={loading}
+				{src}
+				{...(width != null ? { width } : {})}
+				{...imgAttrs}
+			/>
+			{desc ? (
+				<div
+					{...descAttrs}
+					data-sb-picture="description"
+					{id}
+					set:html={desc}
+				/>
+			) : null}
+		</picture>
+	)
+}

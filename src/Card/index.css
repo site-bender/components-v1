@@ -8,12 +8,12 @@ section.card {
 	vertical-align: top;
 }
 
-section.card> :not(.group) {
+section.card > :not(.group) {
 	padding: 0 0 1rem;
 	margin: 0;
 }
 
-section.card>.group>header {
+section.card > .group > header {
 	padding: 0;
 }
 

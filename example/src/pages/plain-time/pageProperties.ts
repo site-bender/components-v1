@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"PlainTime: @sitebender/components Astro components library API documentation for the PlainTime metadata component\.",
+		"PlainTime: @sitebender/components Astro components library API documentation for the PlainTime metadata component.",
 	name: "PlainTime",
 	alternateName: "PlainTime",
 } as WebPage

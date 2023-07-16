@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"Integer: @sitebender/components Astro components library API documentation for the Integer metadata component\.",
+		"Integer: @sitebender/components Astro components library API documentation for the Integer metadata component.",
 	name: "Integer",
 	alternateName: "Integer",
 } as WebPage

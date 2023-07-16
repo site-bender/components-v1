@@ -2,17 +2,19 @@
 import Microdata from "../../Microdata/index.astro";
 import createClassList from "../../utilities/createClassList";
 import createMailto from "../../utilities/createMailto";
+import mapAttributes from "../../utilities/mapAttributes"
 import mapDataset from "../../utilities/mapDataset";
 import type { EmailProps as Props } from "../../types";
 
 const {
+	as = "span",
 	["class:list"]: classList = [],
 	dataset,
 	email,
 	link = {},
 	mailtoOptions,
+	microdata = {},
 	properties,
-	type = "Person",
 	useMailto,
 	...attrs
 } = Astro.props;
@@ -25,20 +27,18 @@ const emailAddress = (
 
 const {
 	["class:list"]: linkClassList = [],
-	dataset: linkDataset,
+	dataset: linkDataset = {},
 	href,
 	...linkAttrs
-} = link as BaseAttributes;
+} = link;
 
+const Element = as;
 const mailto = href ? href : createMailto(emailAddress, mailtoOptions);
-const meta = {
-	type,
-	...properties,
-};
+
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 ---
 
-{useMicrodata ? <Microdata as="span" properties={meta} /> : null}
+{useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	useMailto ? (
 		<a
@@ -48,23 +48,23 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 			data-sb-email="link"
 			href={mailto}
 		>
-			<span
+			<Element
 				{...attrs}
 				class:list={createClassList("sb-email", classList)}
 				{...mapDataset(dataset)}
 				data-sb-email
 			>
 				{emailAddress}
-			</span>
+			</Element>
 		</a>
 	) : (
-		<span
+		<Element
 			{...attrs}
 			class:list={createClassList("sb-email", classList)}
 			{...mapDataset(dataset)}
 			data-sb-email
 		>
 			{emailAddress}
-		</span>
+		</Element>
 	)
 }

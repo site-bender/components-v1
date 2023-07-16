@@ -1,9 +1,10 @@
 ---
-  caption: "Sized CCLicense output"
+caption: "Sized CCLicense output"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ```xml
 <p class="sb-cc-license" data-type="primary">
   <a

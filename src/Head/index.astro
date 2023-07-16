@@ -1,14 +1,5 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import type { WebSite } from "../schema.org";
-
-export type Props = HTMLAttributes<"head"> & {
-	charset?: string;
-	favicon?: string;
-	properties?: WebSite;
-	site?: string;
-	viewport?: string;
-};
+import type { HeadProps as Props } from "../types"
 
 const {
 	charset = "UTF-8",
@@ -16,7 +7,7 @@ const {
 	site,
 	title,
 	viewport = "width=device-width, initial-scale=1",
-} = Astro.props;
+} = Astro.props
 ---
 
 <head>

@@ -1,96 +1,46 @@
 ---
-import exifr from "exifr";
-import createClassList from "../utilities/createClassList";
-import generateShortId from "../utilities/generateShortId";
-import mapDataset from "../utilities/mapDataset";
-import Microdata from "../Microdata/index.astro";
-import type { PictureProps as Props } from "../types";
-import "./index.css";
+import Microdata from "../Microdata/index.astro"
+import PictureElement from "./PictureElement/index.astro"
+import mapAttributes from "../utilities/mapAttributes"
+import type { PictureProps as Props } from "../types"
+import "./index.css"
+
 
 const {
-  alt,
-	["class:list"]: classList = [],
-  createPath,
-  dataset,
-  description,
-  descriptionClass = "off-screen",
-  filename,
-  height = 0,
-  link = {},
-  loading = "lazy",
-  properties,
-  sources = [],
-  src,
-  width,
+  description = {},
+  properties: props,
+	wrapper = {},
   ...attrs
-} = Astro.props;
+} = Astro.props
 
-const data = mapDataset(dataset);
-const desc = (await Astro.slots.render("description")) || description;
-const describedById = desc ? { describedById: generateShortId() } : {};
+const descAttrs = mapAttributes(description, ["sb-picture-description"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-picture-metadata"])
 
-const tags = await exifr.parse(`public${src}`);
-const aspectRatio = (tags?.ImageHeight || 0) / (tags?.ImageWidth || 1);
-const h = height || Math.floor(aspectRatio * width);
-const meta = {
+const desc = (await Astro.slots.render("default"))
+
+const properties = {
+	as: "span",
   type: "ImageObject",
-};
+	...props,
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<Microdata as="span" properties={meta}>
-  {
-    link.href ? (
-      <a {...link}>
-        <picture class:list={createClassList("sb-picture", classList)} {...data}>
-          {sources.map((source: ImageSource) => (
-            <Source
-              createPath={createPath}
-              {filename}
-              {source}
-            />
-          ))}
-          <img
-            {alt}
-            {...describedById}
-            decoding="async"
-            {...(h ? { height: h } : {})}
-            loading={loading}
-            {src}
-            {...(width != null ? { width } : {})}
-            {...attrs}
-          />
-          {desc ? (
-            <div
-              class={descriptionClass}
-              id={describedById?.describedById}
-              set:html={desc}
-            />
-          ) : null}
-        </picture>
-      </a>
-    ) : (
-      <picture class:list={createClassList("sb-picture", classList)} {...data}>
-        {sources.map((source: ImageSource) => (
-          <Source createPath={createPath} {filename} {source} />
-        ))}
-        <img
-          {alt}
-          {...describedById}
-          decoding="async"
-          {...(h ? { height: h } : {})}
-          loading={loading}
-          {src}
-          {...(width != null ? { width } : {})}
-          {...attrs}
-        />
-        {desc ? (
-          <div
-            class={descriptionClass}
-            id={describedById?.describedById}
-            set:html={desc}
-          />
-        ) : null}
-      </picture>
-    )
-  }
-</Microdata>
+{
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			data-sb-picture="metadata"
+			{properties}
+		>
+			<PictureElement {...attrs} {descAttrs}>
+				<Fragment set:html={desc} />
+			</PictureElement>
+		</Microdata>
+	) : (
+		<PictureElement {...attrs} {descAttrs}>
+			<Fragment set:html={desc} />
+		</PictureElement>
+	)
+}

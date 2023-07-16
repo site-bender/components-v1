@@ -1,9 +1,10 @@
 ---
-  caption: "CCLicense Attribution-NonCommercial-ShareAlike output"
+caption: "CCLicense Attribution-NonCommercial-ShareAlike output"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ```xml
 <p class="sb-cc-license">
   <a

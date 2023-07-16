@@ -1,16 +1,16 @@
 ---
-import createClassList from "../../../utilities/createClassList";
-import createSelectOptions from "../../../utilities/createSelectOptions";
-import generateShortId from "../../../utilities/generateShortId";
-import createWeekOptions from "../../../utilities/createWeekOptions";
-import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
-import type { WeekSelect as Props } from "../../../types/form";
+import createClassList from "../../../utilities/createClassList"
+import createSelectOptions from "../../../utilities/createSelectOptions"
+import generateShortId from "../../../utilities/generateShortId"
+import createWeekOptions from "../../../utilities/createWeekOptions"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
+import type { WeekSelect as Props } from "../../../types/form"
 
 const {
 	autocomplete,
 	["class:list"]: elementClassList = [],
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "month-select",
 	form,
 	id = generateShortId(),
@@ -22,15 +22,15 @@ const {
 	weeks,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
 const {
 	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
+	dataset: wrapperDataset = {},
 	...wrapperAttrs
-} = wrapper as BaseAttributes;
+} = wrapper
 
-const options = createWeekOptions(weeks);
+const options = createWeekOptions(weeks)
 ---
 
 <span

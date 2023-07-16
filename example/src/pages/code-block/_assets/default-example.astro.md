@@ -1,9 +1,10 @@
 ---
-  caption: "Default CodeBlock TypeScript snippet example"
+caption: "Default CodeBlock TypeScript snippet example"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ```jsx
 ---
 import * as exampleTs from "./_assets/example.ts.md";
@@ -14,14 +15,15 @@ import * as exampleTs from "./_assets/example.ts.md";
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ````md
 ---
-  caption: "CodeBlock example TS code"
+caption: "CodeBlock example TS code"
 ---
 
 ```ts
-export default function compact<T>(arr: Array<T>): Array<T> { 
-  return arr.filter((item) => item !== undefined && item !== null)
+export default function compact<T>(arr: Array<T>): Array<T> {
+	return arr.filter((item) => item !== undefined && item !== null)
 }
 ```
 

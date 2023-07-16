@@ -12,9 +12,12 @@ type LicenseData = {
 	license: string
 }
 
-export default function getLicense(
-	{ byAttribution, noDerivatives, nonCommercial, shareAlike }: Props,
-): LicenseData {
+export default function getLicense({
+	byAttribution,
+	noDerivatives,
+	nonCommercial,
+	shareAlike,
+}: Props): LicenseData {
 	if (!byAttribution) {
 		return {
 			href: "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -28,11 +31,11 @@ export default function getLicense(
 			saLicense: "-NoDerivatives",
 		}
 		: shareAlike
-		? {
-			saHref: "-sa",
-			saLicense: "-ShareAlike",
-		}
-		: { saHref: "", saLicense: "" }
+			? {
+				saHref: "-sa",
+				saLicense: "-ShareAlike",
+			}
+			: { saHref: "", saLicense: "" }
 
 	const { ncHref, ncLicense } = nonCommercial
 		? {

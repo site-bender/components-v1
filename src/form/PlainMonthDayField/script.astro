@@ -2,11 +2,11 @@
 ---
 
 <script>
-	(function () {
+	;(function () {
 		globalThis.addEventListener("DOMContentLoaded", function () {
 			const monthDayFields = document.querySelectorAll(
 				"fieldset.sb-plain-month-day-field"
-			);
+			)
 
 			const daysInMonth = [
 				undefined,
@@ -22,31 +22,31 @@
 				31,
 				30,
 				31,
-			];
+			]
 
-			[...monthDayFields].forEach((element) => {
+			;[...monthDayFields].forEach((element) => {
 				const monthSelect = element.querySelector(
 					"select[data-sb-select-month]"
-				);
-				const daySelect = element.querySelector("select[data-sb-select-day]");
+				)
+				const daySelect = element.querySelector("select[data-sb-select-day]")
 
-				monthSelect.addEventListener("change", function (event) {
-					const count = daysInMonth[this.value] || 31;
+				monthSelect?.addEventListener("change", function () {
+					const count = daysInMonth[this.value] || 31
 					const options = new Array(count).fill(0).map((_, i) => {
-						const label = i + 1;
-						const value = String(i + 1).padStart(2, "0");
+						const label = i + 1
+						const value = String(i + 1).padStart(2, "0")
 						const normalized =
 							parseInt(String(daySelect.value)) > count
 								? String(count).padStart(2, "0")
-								: daySelect.value;
-						const selected = normalized === value ? "selected" : "";
+								: daySelect.value
+						const selected = normalized === value ? "selected" : ""
 
-						return `<option value="${value}"${selected}>${label}</option>`;
-					});
+						return `<option value="${value}"${selected}>${label}</option>`
+					})
 
-					daySelect.innerHTML = options;
-				});
-			});
-		});
-	})();
+					daySelect.innerHTML = options
+				})
+			})
+		})
+	})()
 </script>

@@ -19,17 +19,44 @@ import type {
 	OrganizationLeaf,
 	PersonLeaf,
 	QuantitativeValueDistribution,
+	Quotation,
 	Schedule,
+	SiteNavigationElement,
+	SiteNavigationElementLeaf,
 	Thing,
+	WebPage,
+	WebSite,
 } from "../schema.org"
 
-import type {
-	AnchorTarget,
-	BaseAttributes,
-	Dataset,
-	HTMLAttributes,
-	Override,
-} from "./html"
+import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
+
+export type Frontmatter = {
+	anchor?: string | undefined | null
+	aria?: string | undefined | null
+	blurb?: string | undefined | null
+	client?: string | undefined | null
+	content?: Array<string> | undefined | null
+	dataset?: Dataset | undefined | null
+	description?: string | undefined | null
+	label?: string | undefined | null
+	layout?: string | undefined | null
+	page?: string | undefined | null
+	publishedOn?: string | undefined | null
+	rel?: string | undefined | null
+	tags?: Array<string> | undefined | null
+	thumbnail?: string | undefined | null
+	title?: string | undefined | null
+}
+
+export type MDXInstance<T> = {
+	compiledContent: () => string
+	file: string
+	frontmatter: T
+	publishedOn?: string | undefined | null
+	rawContent: () => string
+	title?: string | undefined | null
+	url: string | undefined
+}
 
 export type MailtoOptions = {
 	subject?: string
@@ -38,18 +65,21 @@ export type MailtoOptions = {
 	replyTo?: string
 }
 
-export type MetadataProps<T, Tag extends HTMLTag> =
-	& Polymorphic<{ as: Tag }>
-	& Override<HTMLAttributes, {
-		as?: Tag
-		properties?: Partial<T>
-	}>
+export type MetadataProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
+		HTMLAttributes,
+		{
+			as?: Tag
+			microdata?: Partial<HTMLAttributes> | undefined | null
+			properties?: Partial<T>
+		}
+	>
 
 export type CreatePath = (
 	filename: string,
 	size: string,
 	type: string,
-	index: number,
+	index: number
 ) => string
 
 export type ImageMediaType =
@@ -65,31 +95,54 @@ export type ImageSource = {
 	types?: Array<ImageType>
 }
 
-export type ImageType =
-	| "jpeg"
-	| "png"
-	| "webp"
-	| "avif"
-	| "svg"
+export type ImageType = "jpeg" | "png" | "webp" | "avif" | "svg"
 
-export type LinkAttributes = Override<HTMLAttributes, {
-	download?: string | boolean | undefined | null
-	href?: string | URL | undefined | null
-	hreflang?: string | undefined | null
-	media?: string | undefined | null
-	ping?: string | undefined | null
-	rel?: string | undefined | null
-	target?: AnchorTarget | undefined | null
-	type?: string | undefined | null
-	referrerpolicy?: ReferrerPolicy | undefined | null
-}>
+export type LinkAttributes = Override<
+	HTMLAttributes,
+	{
+		charset?: string | undefined | null
+		crossorigin?: boolean | string | undefined | null
+		download?: string | boolean | undefined | null
+		fetchpriority?: "auto" | "high" | "low" | undefined | null
+		href?: string | URL | undefined | null
+		hreflang?: string | undefined | null
+		imagesrcset?: string | undefined | null
+		imagesizes?: string | undefined | null
+		integrity?: string | undefined | null
+		label?: string | undefined | null
+		media?: string | undefined | null
+		ping?: string | undefined | null
+		referrerpolicy?: ReferrerPolicy | undefined | null
+		rel?: string | undefined | null
+		sizes?: string | undefined | null
+		target?: AnchorTarget | undefined | null
+		type?: string | undefined | null
+	}
+>
+
+export type ListAttributes = Override<
+	HTMLAttributes,
+	{
+		reversed?: boolean | string | undefined | null
+		start?: number | string | undefined | null
+		type?: "1" | "a" | "A" | "i" | "I" | undefined | null
+	}
+>
+
+export type BodyProps<T, Tag extends HTMLTag> = Override<
+	MetadataProps<T, Tag>,
+	{
+		pageProperties?: Partial<WebPage> | undefined | null
+		site?: string
+		siteProperties?: Partial<WebSite> | undefined | null
+	}
+>
 
 export type BooleanProps<T, Tag extends HTMLTag> = Override<
 	MetadataProps<T, Tag>,
 	{
 		labelFalse?: string | undefined | null
 		labelTrue: string
-		microdata?: Partial<HTMLAttributes> | undefined | null
 		value: boolean
 	}
 >
@@ -99,6 +152,48 @@ export type BookTitleProps<Tag extends HTMLTag> = Override<
 	{
 		link?: Partial<LinkAttributes> | undefined | null
 		outer?: Partial<HTMLAttributes> | undefined | null
+	}
+>
+
+export type CardProps<T, Tag extends HTMLTag> = Override<
+	MetadataProps<T, Tag>,
+	{
+		description?: Partial<HTMLAttributes> | undefined | null
+		heading?: Partial<HTMLAttributes> | undefined | null
+		href?: string | undefined | null
+		isInvertible?: boolean | undefined | null
+		level?: 1 | 2 | 3 | 4 | 5 | 6
+		link?: Partial<LinkAttributes> | undefined | null
+		picture?: PictureProps | undefined | null
+		title?: string | undefined | null
+		wrapper?: Partial<HTMLAttributes> | undefined | null
+	}
+>
+
+export type CCLicenseProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Book, Tag>,
+	{
+		byAttribution?: boolean | undefined | null
+		fill?: string | undefined | null
+		link?: Partial<LinkAttributes> | undefined | null
+		noDerivatives?: boolean | undefined | null
+		nonCommercial?: boolean | undefined | null
+		shareAlike?: boolean | undefined | null
+		size?: string | undefined | null
+		stroke?: string | undefined | null
+	}
+>
+
+export type CodeBlockProps<T, Tag extends HTMLTag> = Override<
+	MetadataProps<Book, Tag>,
+	{
+		caption?: string | undefined | null
+		dataset?: Dataset | undefined | undefined | null
+		index?: number | undefined | null
+		isIndexed?: boolean | undefined | null
+		legend?: Partial<HTMLAttributes> | undefined | null
+		lineNumberingWidth?: number | undefined | null
+		snippet?: MDXInstance<T> | undefined | null
 	}
 >
 
@@ -123,14 +218,7 @@ export type DurationProps<Tag extends HTMLTag> = Override<
 >
 
 export type EmailProps<Tag extends HTMLTag> = Override<
-	MetadataProps<
-		Partial<
-			| ContactPointLeaf
-			| OrganizationLeaf
-			| PersonLeaf
-		>,
-		Tag
-	>,
+	MetadataProps<Partial<ContactPointLeaf | OrganizationLeaf | PersonLeaf>, Tag>,
 	{
 		email?: string | undefined | null
 		link?: Partial<LinkAttributes> | undefined | null
@@ -140,29 +228,83 @@ export type EmailProps<Tag extends HTMLTag> = Override<
 	}
 >
 
+export type FigureProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Thing, Tag>,
+	{
+		caption?: string | undefined | null
+		dataset?: Dataset | undefined | undefined | null
+		figcaption?: Partial<HTMLAttributes> | undefined | null
+		index?: number | undefined | null
+		isIndexed?: boolean | undefined | null
+	}
+>
+
+export type FooterProps<Tag extends HTMLTag> = MetadataProps<
+	Partial<Thing>,
+	Tag
+>
+
+export type HeadProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		charset?: string
+		favicon?: string
+		properties?: WebSite
+		site?: string
+		viewport?: string
+	}
+>
+
+export type HeaderProps<Tag extends HTMLTag> = MetadataProps<
+	Partial<Thing>,
+	Tag
+>
+
 export type InstantProps<Tag extends HTMLTag> = Override<
-	MetadataProps<
-		Partial<Thing>,
-		Tag
-	>,
+	MetadataProps<Partial<Thing>, Tag>,
 	{
 		instant: string | Temporal.Instant
 		locales?: string | Array<string> | undefined | null
-		microdata?: Partial<HTMLAttributes> | undefined | null
 		options?: Intl.DateTimeFormatOptions | undefined | null
 	}
 >
 
+export type LinkProps<Tag extends HTMLTag> = Override<
+	MetadataProps<SiteNavigationElement, Tag>,
+	{
+		href: string
+		label: string
+		link?: Partial<LinkAttributes> | undefined | null
+	}
+>
+
+export type NavProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
+	{
+		hideClass?: string | undefined | null
+		nav: NavListProps<Tag>
+	}
+>
+
+export type NavListProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
+	{
+		header?: HTMLAttributes | undefined | null
+		hideClass?: string | undefined | null
+		level?: 1 | 2 | 3 | 4 | 5 | 6
+		links: Array<LinkProps<Tag>>
+		list?: ListAttributes | undefined | null
+		title?: string | undefined | null
+		type?: "ol" | "ul" | undefined | null
+	}
+>
+
 export type NumberProps<Tag extends HTMLTag> = Override<
-	MetadataProps<
-		Partial<Float | Integer | Number>,
-		Tag
-	>,
+	MetadataProps<Partial<Float | Integer | Number>, Tag>, // eslint-disable-line
 	{
 		instant: string | Temporal.Instant
 		link?: Partial<LinkAttributes> | undefined | null
 		locales?: string | Array<string> | undefined | null
-		microdata?: Partial<HTMLAttributes> | undefined | null
 		options?: NumberFormatOptions | undefined | null
 		type?: "Number" | "Integer" | "Float"
 		useTabularNumerals?: boolean | undefined | null
@@ -170,28 +312,200 @@ export type NumberProps<Tag extends HTMLTag> = Override<
 	}
 >
 
-export type PictureProps = {
-	alt: string
-	createPath?: CreatePath | undefined | null
-	dataset?: Dataset | undefined | null
-	description?: string | undefined | null
-	descriptionAttrs?: BaseAttributes | undefined | null
-	filename: string
-	height?: number | undefined | null
-	href?: string | undefined | null
-	linkAttrs?: LinkAttributes | undefined | null
-	loading?: "eager" | "lazy" | undefined | null
-	properties?: Partial<ImageObject> | undefined | null
-	sources?: Array<ImageSource> | undefined | null
-	src: string
-	width: number
-}
+export type PictureProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		alt: string
+		createPath?: CreatePath | undefined | null
+		dataset?: Dataset | undefined | null
+		description?: string | undefined | null
+		descriptionAttrs?: HTMLAttributes | undefined | null
+		filename: string
+		height?: number | undefined | null
+		href?: string | undefined | null
+		linkAttrs?: LinkAttributes | undefined | null
+		loading?: "eager" | "lazy" | undefined | null
+		properties?: Partial<ImageObject> | undefined | null
+		sources?: Array<ImageSource> | undefined | null
+		src: string
+		width: number
+		wrapper?: HTMLAttributes | undefined | null
+	}
+>
+
+export type PictureElementProps<Tag extends HTMLTag> = Omit<
+	PictureProps<Tag>,
+	"wrapper"
+>
+
+export type PlainDateProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		calendar?: Calendar | Temporal.CalendarLike
+		day?: number | string | undefined | null
+		era?: string | undefined | null
+		eraYear?: string | undefined | null
+		locales?: string | Array<string> | undefined | null
+		month?: number | string | undefined | null
+		monthCode?: string | undefined | null
+		options?: Intl.DateTimeFormatOptions | undefined | null
+		plainDate?: string | Temporal.PlainDateLike | undefined | null
+		year?: number | string | undefined | null
+	}
+>
+
+export type PlainDateTimeProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		calendar?: Calendar | Temporal.CalendarLike
+		day?: number | string | undefined | null
+		era?: string | undefined | null
+		eraYear?: string | undefined | null
+		hour?: number | string | undefined | null
+		locales?: string | Array<string> | undefined | null
+		microsecond?: number | string | undefined | null
+		millisecond?: number | string | undefined | null
+		minute?: number | string | undefined | null
+		month?: number | string | undefined | null
+		monthCode?: string | undefined | null
+		nanosecond?: number | string | undefined | null
+		options?: Intl.DateTimeFormatOptions | undefined | null
+		plainDateTime?: string | Temporal.PlainDateTimeLike | undefined | null
+		second?: number | string | undefined | null
+		year?: number | string | undefined | null
+	}
+>
+
+export type PlainMonthDayProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		calendar?: Calendar | Temporal.CalendarLike
+		day?: number | string | undefined | null
+		era?: string | undefined | null
+		eraYear?: string | undefined | null
+		locales?: string | Array<string> | undefined | null
+		month?: number | string | undefined | null
+		monthCode?: string | undefined | null
+		options?: Intl.DateTimeFormatOptions | undefined | null
+		plainDate?: string | Temporal.PlainMonthDayLike | undefined | null
+		year?: number | string | undefined | null
+	}
+>
+
+export type PlainTimeProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		calendar?: Calendar | Temporal.CalendarLike
+		hour?: number | string | undefined | null
+		locales?: string | Array<string> | undefined | null
+		microsecond?: number | string | undefined | null
+		millisecond?: number | string | undefined | null
+		minute?: number | string | undefined | null
+		nanosecond?: number | string | undefined | null
+		options?: Intl.DateTimeFormatOptions | undefined | null
+		plainTime?: string | Temporal.PlainTimeLike | undefined | null
+		second?: number | string | undefined | null
+	}
+>
+
+export type PlainYearMonthProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		calendar?: Calendar | Temporal.CalendarLike
+		era?: string | undefined | null
+		eraYear?: string | undefined | null
+		locales?: string | Array<string> | undefined | null
+		month?: number | string | undefined | null
+		monthCode?: string | undefined | null
+		options?: Intl.DateTimeFormatOptions | undefined | null
+		plainDate?: string | Temporal.PlainMonthDayLike | undefined | null
+		year?: number | string | undefined | null
+	}
+>
+
+export type PullQuoteProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Quotation>, Tag>,
+	{
+		author?: string
+		authorItemprop?: string
+		authorType?: "Person" | "Organization" | "Thing"
+	}
+>
+
+export type StringProps<T extends Thing, Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<T>, Tag>,
+	{
+		link?: Partial<LinkAttributes> | undefined | null
+		value?: string | undefined | null
+	}
+>
 
 export type SourceProps = {
 	createPath: CreatePath | undefined
 	filename: string
 	source: ImageSource
 }
+
+export type TelProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<ContactPointLeaf | OrganizationLeaf | PersonLeaf>, Tag>,
+	{
+		link?: Partial<LinkAttributes> | undefined | null
+		tel?: string | undefined | null
+		useTel?: boolean | undefined | null
+	}
+>
+
+export type TimeZoneProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		display?: "name" | "offset" | "both"
+		localTime?: string | Temporal.Instant | Temporal.ZonedDateTime
+		timeZone: string | Temporal.TimeZone | Temporal.ZonedDateTime
+	}
+>
+
+export type UrlProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<ContactPointLeaf | OrganizationLeaf | PersonLeaf>, Tag>,
+	{
+		link?: Partial<LinkAttributes> | undefined | null
+		url?: string | undefined | null
+		useLink?: boolean | undefined | null
+	}
+>
+
+export type YearWeekProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		date?: Temporal.PlainDateLike | undefined | null
+		plainDate?: string | Temporal.PlainMonthDayLike | undefined | null
+		week?: number | string | undefined | null
+		year?: number | string | undefined | null
+	}
+>
+
+export type ZonedDateTimeProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<Thing>, Tag>,
+	{
+		calendar?: Calendar | Temporal.CalendarLike
+		day?: number | string | undefined | null
+		era?: string | undefined | null
+		eraYear?: string | undefined | null
+		hour?: number | string | undefined | null
+		locales?: string | Array<string> | undefined | null
+		microsecond?: number | string | undefined | null
+		millisecond?: number | string | undefined | null
+		minute?: number | string | undefined | null
+		month?: number | string | undefined | null
+		monthCode?: string | undefined | null
+		nanosecond?: number | string | undefined | null
+		offset?: string
+		options?: Intl.DateTimeFormatOptions | undefined | null
+		second?: number | string | undefined | null
+		timeZone?: keyof typeof TIME_ZONE | Temporal.TimeZoneLike
+		year?: number | string | undefined | null
+		zonedDateTime?: string | Temporal.ZonedDateTimeLike
+	}
+>
 
 export type Calendar =
 	| "buddhist"

@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"InstantField: @sitebender/components Astro components library API documentation for the InstantField metadata component\.",
+		"InstantField: @sitebender/components Astro components library API documentation for the InstantField metadata component.",
 	name: "InstantField",
 	alternateName: "InstantField",
 } as WebPage

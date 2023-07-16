@@ -74,7 +74,7 @@ import TestFormScript from "../_scripts/TestFormScript.astro";
           }}
         />
         <p>Here is the actual component:</p>
-        <p class="example">
+        <div class="example">
           <EmailField
             label="Email address"
             name="email"
@@ -82,7 +82,7 @@ import TestFormScript from "../_scripts/TestFormScript.astro";
             useMailto
             value="bob@dobbs.com"
           />
-        </p>
+        </div>
         <p>And here is the HTML created:</p>
         <CodeBlock
           snippet={defaultExampleHtml}

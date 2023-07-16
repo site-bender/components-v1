@@ -6,6 +6,8 @@ export default function createClassList(
 			return arg
 		}
 
-		return Object.entries(arg).filter(([_, v]) => v).map(([k]) => k)
+		return Object.entries(arg)
+			.filter(([, v]) => v)
+			.map(([k]) => k)
 	})
 }

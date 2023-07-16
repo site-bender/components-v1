@@ -1,103 +1,44 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import type { Dataset } from "../types";
-import mapDataset from "../utilities/mapDataset";
-import generateShortId from "../utilities/generateShortId";
-import type { SiteNavigationElementLeaf } from "../schema.org";
-import Microdata from "../Microdata/index.astro";
-import type { SiteNavigationElement } from "../schema.org";
-import Link from "../Link/index.astro";
-
-export type LinkProps = {
-	cssClasses?: Array<string>;
-	dataset?: Dataset | undefined;
-	href: string;
-	label?: string;
-	properties?: SiteNavigationElement;
-};
-
-export type Props = HTMLAttributes<"nav"> & {
-	cssClasses?: Array<string>;
-	dataset?: Dataset | undefined;
-	h2?: Partial<HTMLAttributes<"h2">>;
-	links: Array<LinkProps>;
-	properties?: SiteNavigationElementLeaf;
-	title?: string;
-	ul?: Partial<HTMLAttributes<"ul">>;
-};
-
-const { pathname } = Astro.url;
+import NavList from "./NavList/index.astro"
+import Microdata from "../Microdata/index.astro"
+import generateShortId from "../utilities/generateShortId"
+import mapAttributes from "../utilities/mapAttributes"
+import type { NavProps as Props } from "../types"
 
 const {
-	["class:list"]: classList = [],
-	dataset,
-	h2 = {},
+	hideClass,
 	id,
-	links = [],
+	nav = {},
 	properties,
-	title = "Links to more info",
-	ul = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const labelledBy = id || generateShortId();
-const css = ["sb-nav", ...cssClasses].join(" ");
-const data = mapDataset(dataset);
-const navAttrs: Record<string, unknown> = attrs; // TODO: FIXME
+const wrapperAttrs = mapAttributes(attrs, ["sb-nav"])
 
-const meta = {
-	type: "SiteNavigationElement",
-};
+const labelledBy = id || generateShortId()
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<Microdata
-	aria-labelledby={labelledBy}
-	as="nav"
-	class={css}
-	{...data}
-	properties={meta}
-	{...navAttrs}
->
-	<h2
-		class={`off-screen${h2.class ? ` ${h2.class}` : ""}`}
-		id={labelledBy}
-		{...h2}
-	>
-		{title}
-	</h2>
-	<ul role="presentation" {...ul}>
-		{
-			links.map(
-				({
-					cssClasses,
-					dataset,
-					href,
-					label,
-					properties,
-					...linkProps
-				}: LinkProps) => {
-					const data = mapDataset(dataset);
+{
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			aria-labelledby={labelledBy}
+			as="nav"
+			data-sb-nav
+			{properties}
+		>
+			<NavList {...nav} {hideClass} />
+		</Microdata>
+	) : (
+		<nav
+			{...wrapperAttrs}
+			aria-labelledby={labelledBy}
+			data-sb-nav
+		>
+			<NavList {...nav} {hideClass} />
+		</nav>
+	)
+}
 
-					return href === pathname ? (
-						<li {...data}>
-							<span aria-current="page" class="this-page">
-								{label}
-							</span>
-						</li>
-					) : (
-						<li {...data}>
-							<Link
-								cssClasses={cssClasses}
-								{...data}
-								{href}
-								{label}
-								{properties}
-								{...(linkProps as Record<string, unknown>)}
-							/>
-						</li>
-					);
-				}
-			)
-		}
-	</ul>
-</Microdata>

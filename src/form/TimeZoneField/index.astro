@@ -1,10 +1,10 @@
 ---
-import TimeZoneSelect from "../elements/TimeZoneSelect/index.astro";
-import createClassList from "../../utilities/createClassList";
-import generateShortId from "../../utilities/generateShortId";
-import mapDataset from "../../utilities/mapDataset";
-import type { BaseAttributes } from "../../types/html";
-import type { TimeZoneField as Props } from "../../types/form";
+import TimeZoneSelect from "../elements/TimeZoneSelect/index.astro"
+import createClassList from "../../utilities/createClassList"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import mapDataset from "../../utilities/mapDataset"
+import type { TimeZoneField as Props } from "../../types/form"
 
 const {
 	["aria-live"]: live = "assertive",
@@ -13,53 +13,45 @@ const {
 	countries,
 	field = "time-zone-field",
 	form,
-	help = {},
+	help: {
+		["class:list"]: helpClassList = [],
+		dataset: helpDataset = {},
+		...helpAttrs
+	} = {},
 	id = generateShortId(),
 	includeNull,
 	label = "Time zone",
-	legend = {},
+	legend: {
+		["class:list"]: legendClassList = [],
+		dataset: legendDataset = {},
+		...legendAttrs
+	} = {},
 	message,
 	name,
-	outer = {},
+	outer: {
+		["class:list"]: outerClassList = [],
+		dataset: outerDataset = {},
+		...outerAttrs
+	} = {},
 	required,
-	tag = {},
+	tag: {
+		["class:list"]: tagClassList = [],
+		dataset: tagDataset = {},
+		...tagAttrs
+	} = {},
 	type: _type,
 	useList,
 	value,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const {
-	["class:list"]: helpClassList = [],
-	dataset: helpDataset,
-	...helpAttrs
-} = help as BaseAttributes;
-
-const {
-	["class:list"]: legendClassList = [],
-	dataset: legendDataset,
-	...legendAttrs
-} = legend as BaseAttributes;
-
-const {
-	["class:list"]: outerClassList = [],
-	dataset: outerDataset,
-	...outerAttrs
-} = outer as BaseAttributes;
-
-const {
-	["class:list"]: tagClassList = [],
-	dataset: tagDataset,
-	...tagAttrs
-} = tag as BaseAttributes;
-
-const hlp = (await Astro.slots.render("message")) || message;
-const helpId = `${id}_help`;
-const lbl = (await Astro.slots.render("default")) || label;
-const labelId = `${id}_label`;
-const req = required ? { "data-sb-required": "" } : {};
-const opt = required ? {} : { "data-sb-optional": "" };
+const hlp = (await Astro.slots.render("message")) || message
+const helpId = `${id}_help`
+const lbl = (await Astro.slots.render("default")) || label
+const labelId = `${id}_label`
+const req = required ? { "data-sb-required": "" } : {}
+const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
 <div

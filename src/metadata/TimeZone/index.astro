@@ -1,57 +1,44 @@
 ---
-import { Temporal } from "@js-temporal/polyfill";
-import type { Thing } from "../../schema.org";
-import mapDataset from "../../utilities/mapDataset";
-import type { Dataset } from "../../types";
-import type { HTMLAttributes } from "astro/types";
-import Microdata from "../../Microdata/index.astro";
-
-export type Props<T extends Thing> = HTMLAttributes<"span"> & {
-	cssClasses?: Array<string>;
-	dataset?: Dataset;
-	display?: "name" | "offset" | "both";
-	itemprop?: string | undefined;
-	localTime?: string | Temporal.Instant | Temporal.ZonedDateTime;
-	properties?: Partial<T>;
-	timeZone: string | Temporal.TimeZone | Temporal.ZonedDateTime;
-	itemtype?: string;
-};
+import Microdata from "../../Microdata/index.astro"
+import createClassList from "../../utilities/createClassList"
+import mapAttributes from "../../utilities/mapAttributes"
+import mapDataset from "../../utilities/mapDataset"
+import type { PlainDateTimeProps as Props } from "../../types"
+import { Temporal } from "@js-temporal/polyfill"
 
 const {
+	as = "span",
 	["class:list"]: classList = [],
 	dataset,
 	display = "name",
 	itemprop,
 	localTime = Temporal.Now.instant(),
-	properties,
+	microdata = {},
+	properties = {},
 	timeZone,
 	type,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const css = ["sb-time-zone", ...cssClasses].join(" ");
-const data = mapDataset(dataset);
-const timeZoneName =
-	timeZone instanceof Temporal.TimeZone
-		? timeZone.toString()
-		: timeZone instanceof Temporal.ZonedDateTime
-		? (timeZone as Temporal.ZonedDateTime).timeZoneId
-		: timeZone;
+const Element = as
+const tz = Temporal.TimeZone.from(timeZone)
 
 const label =
 	display === "offset"
-		? timeZoneName.getOffsetStringFor(localTime)
+		? tz.getOffsetStringFor(localTime)
 		: display === "both"
-		? `${timeZoneName} ${timeZoneName.getOffsetStringFor(localTime)}`
-		: timeZoneName;
+		? `${tz.toString()} ${tz.getOffsetStringFor(localTime)}`
+		: tz.toString()
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
-const meta = {
-	type,
-	...(itemprop ? { [itemprop]: label } : {}),
-	...properties,
-};
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-{useMicrodata && type ? <Microdata as="span" properties={meta} /> : null}
-<span class={css} {...data} {...attrs}>{label}</span>
+{useMicrodata ? <Microdata {microdata} {properties} /> : null}
+<Element
+	{...attrs}
+	class:list={createClassList("sb-plain-date-time", ...classList)}
+	data-sb-timezone={tz.toString()}
+	{...mapDataset(dataset)}
+>
+	{label}
+</Element>

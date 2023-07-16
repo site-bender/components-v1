@@ -1,26 +1,25 @@
 ---
-  caption: "CodeBlock JavaScript output with microdata"
+caption: "CodeBlock JavaScript output with microdata"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ```html
 <figure
-  itemscope
-  itemtype="https://schema.org/SoftwareSourceCode"
-  class="sb-code-block-figure"
-  style="--line-number-width: 1.5ch;"
+	itemscope
+	itemtype="https://schema.org/SoftwareSourceCode"
+	class="sb-code-block-figure"
+	style="--line-number-width: 1.5ch;"
 >
-  <meta content="code snippet" itemprop="codeSampleType">
-  <meta content="JavaScript" itemprop="programmingLanguage">
-  <figcaption>
-    CodeBlock example TS code
-  </figcaption>
-  <pre
-    class="astro-code scratchcode-dark"
-    style="background-color: #0d1117; overflow-x: auto;"
-    tabindex="0"
-  >
+	<meta content="code snippet" itemprop="codeSampleType" />
+	<meta content="JavaScript" itemprop="programmingLanguage" />
+	<figcaption>CodeBlock example TS code</figcaption>
+	<pre
+		class="astro-code scratchcode-dark"
+		style="background-color: #0d1117; overflow-x: auto;"
+		tabindex="0"
+	>
     <code>
       <span class="line">
         <span style="color: #FF7B72">export</span>

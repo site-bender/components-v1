@@ -1,10 +1,8 @@
 ---
-import PasswordInput from "../elements/PasswordInput/index.astro";
-import createClassList from "../../utilities/createClassList";
-import generateShortId from "../../utilities/generateShortId";
-import mapDataset from "../../utilities/mapDataset";
-import type { PasswordField as Props } from "../../types/form";
-import type { BaseAttributes } from "../../types/html";
+import PasswordInput from "../elements/PasswordInput/index.astro"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { PasswordField as Props } from "../../types/form"
 
 const {
 	allowAutocomplete,
@@ -25,64 +23,32 @@ const {
 	value,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const {
-	["class:list"]: helpClassList = [],
-	dataset: helpDataset,
-	...helpAttrs
-} = help as BaseAttributes;
-
-const {
-	["class:list"]: legendClassList = [],
-	dataset: legendDataset,
-	...legendAttrs
-} = legend as BaseAttributes;
-
-const {
-	["class:list"]: outerClassList = [],
-	dataset: outerDataset,
-	...outerAttrs
-} = outer as BaseAttributes;
-
-const {
-	["class:list"]: tagClassList = [],
-	dataset: tagDataset,
-	...tagAttrs
-} = tag as BaseAttributes;
+const pwAttrs = mapAttributes(attrs as HTMLAttributes, [])
+const helpAttrs = mapAttributes(help, ["sb-help"])
+const legendAttrs = mapAttributes(legend, ["sb-label"])
+const outerAttrs = mapAttributes(outer, ["sb-field", "sb-password-field"])
+const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
 
 const autocomplete = allowAutocomplete
 	? isNewPassword
 		? "new-password"
 		: "current-password"
-	: "off";
+	: "off"
 
-const hlp = (await Astro.slots.render("message")) || message;
-const helpId = `${id}_help`;
-const lbl = (await Astro.slots.render("default")) || label;
-const labelId = `${id}_label`;
-const req = required ? { "data-sb-required": "" } : {};
-const opt = required ? {} : { "data-sb-optional": "" };
+const hlp = (await Astro.slots.render("message")) || message
+const helpId = `${id}_help`
+const lbl = (await Astro.slots.render("default")) || label
+const labelId = `${id}_label`
+const req = required ? { "data-sb-required": "" } : {}
+const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
-<div
-	{...outerAttrs}
-	class:list={createClassList("sb-field", "sb-password-field", outerClassList)}
-	{...mapDataset(outerDataset)}
-	data-sb-field={field}
-	{...req}
->
-	<label
-		{...legendAttrs}
-		class:list={createClassList("sb-label", legendClassList)}
-		{...mapDataset(legendDataset)}
-		data-sb-field-label={field}
-		id={labelId}
-	>
+<div {...outerAttrs} data-sb-field={field} {...req}>
+	<label {...legendAttrs} data-sb-field-label={field} id={labelId}>
 		<span
 			{...tagAttrs}
-			class:list={createClassList("sb-label-tag", tagClassList)}
-			{...mapDataset(tagDataset)}
 			data-sb-field-label-tag={field}
 			{...opt}
 			set:html={lbl}
@@ -90,8 +56,6 @@ const opt = required ? {} : { "data-sb-optional": "" };
 		<span
 			{...helpAttrs}
 			aria-live={live}
-			class:list={createClassList("sb-help", helpClassList)}
-			{...mapDataset(helpDataset)}
 			data-sb-field-help={field}
 			id={helpId}
 			role="status"
@@ -99,8 +63,8 @@ const opt = required ? {} : { "data-sb-optional": "" };
 		/>
 	</label>
 	<PasswordInput
-		{...attrs}
-		allowUnmasked={allowUnmasked}
+		{...pwAttrs}
+		{allowUnmasked}
 		{autocomplete}
 		{field}
 		{form}

@@ -2,8 +2,8 @@
 import "./index.css";
 import Microdata from "../../Microdata/index.astro";
 import createClassList from "../../utilities/createClassList";
+import mapAttributes from "../../utilities/mapAttributes"
 import mapDataset from "../../utilities/mapDataset";
-import type { BaseAttributes } from "../../types/html";
 import type { BookTitleProps as Props } from "../../types";
 
 const {
@@ -11,7 +11,11 @@ const {
 	dataset,
 	href,
 	link = {},
-	outer = {},
+	outer: {
+		["class:list"]: outerClassList = [],
+		dataset: outerDataset = {},
+		...outerAttrs
+	}  = {},
 	properties = {},
 	title,
 	...attrs
@@ -19,15 +23,9 @@ const {
 
 const {
 	["class:list"]: linkClassList = [],
-	dataset: linkDataset,
+	dataset: linkDataset = {},
 	...linkAttrs
-} = link as BaseAttributes;
-
-const {
-	["class:list"]: outerClassList = [],
-	dataset: outerDataset,
-	...outerAttrs
-} = outer as BaseAttributes;
+} = link;
 
 const name = ((await Astro.slots.render("default")) || "").trim() || title;
 

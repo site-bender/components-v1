@@ -27,7 +27,8 @@ body {
 	display: grid;
 	grid-template-areas: "header" "nav" "main" "footer";
 	grid-template-rows: min-content min-content 1fr min-content;
-	font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+	font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+		Arial, sans-serif;
 	font-size: 1rem;
 	font-variant-numeric: oldstyle-nums proportional-nums;
 	font-variant-ligatures: historical-ligatures;
@@ -55,7 +56,8 @@ b {
 }
 
 h1 {
-	font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+	font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+		Arial, sans-serif;
 	font-size: var(--step-2);
 	font-variant-ligatures: historical-ligatures;
 	font-weight: 400;
@@ -65,7 +67,8 @@ h1 {
 }
 
 h2 {
-	font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif;
+	font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052,
+		serif;
 	font-size: var(--step-2);
 	font-variant-ligatures: historical-ligatures;
 	font-weight: 500;
@@ -74,7 +77,8 @@ h2 {
 
 h3 {
 	color: var(--color-hunter-green, hsl(111, 46%, 24%));
-	font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif;
+	font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052,
+		serif;
 	font-size: var(--step-1);
 	font-variant-ligatures: historical-ligatures;
 	font-weight: 500;
@@ -84,7 +88,7 @@ h3 {
 h1 a,
 h1 a:visited {
 	color: var(--color-icterine, hsl(56, 100%, 72%));
-	text-decoration:none;
+	text-decoration: none;
 }
 
 h1 a:active,

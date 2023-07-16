@@ -1,16 +1,19 @@
 ---
-import { Intl, Temporal } from "@js-temporal/polyfill";
-import createClassList from "../../utilities/createClassList";
-import mapDataset from "../../utilities/mapDataset";
 import Microdata from "../../Microdata/index.astro";
+import createClassList from "../../utilities/createClassList";
+import mapAttributes from "../../utilities/mapAttributes"
+import mapDataset from "../../utilities/mapDataset";
 import type { InstantProps as Props } from "../../types";
+import { DEFAULT_LOCALES } from "../../constants";
+import { Intl, Temporal } from "@js-temporal/polyfill";
 
 const {
 	["class:list"]: classList = [],
 	dataset,
 	instant,
 	itemprop,
-	locale,
+	itemtype,
+	locales = DEFAULT_LOCALES,
 	microdata = {},
 	options = {},
 	properties,
@@ -20,9 +23,9 @@ const {
 
 const {
 	["class:list"]: microdataClassList = [],
-	dataset: microdataDataset,
+	dataset: microdataDataset = {},
 	...microdataAttrs
-} = microdata as BaseAttributes;
+} = microdata;
 
 const value =
 	instant instanceof Temporal.ZonedDateTime
@@ -31,7 +34,7 @@ const value =
 		? Temporal.Instant.from(instant)
 		: instant;
 
-const label = new Intl.DateTimeFormat(locale, options).format(value);
+const label = new Intl.DateTimeFormat(locales, options).format(value);
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 const meta = {
@@ -42,9 +45,8 @@ const meta = {
 ---
 
 {
-	useMicrodata && type ? (
+	useMicrodata && itemtype ? (
 		<Microdata
-			as="span"
 			{...microdataAttrs}
 			class:list={createClassList("sb-instant-metadata", microdataClassList)}
 			{...mapDataset(microdataDataset)}

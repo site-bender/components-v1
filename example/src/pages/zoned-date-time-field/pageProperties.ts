@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"ZonedDateTimeField: @sitebender/components Astro components library API documentation for the ZonedDateTimeField metadata component\.",
+		"ZonedDateTimeField: @sitebender/components Astro components library API documentation for the ZonedDateTimeField metadata component.",
 	name: "ZonedDateTimeField",
 	alternateName: "ZonedDateTimeField",
 } as WebPage

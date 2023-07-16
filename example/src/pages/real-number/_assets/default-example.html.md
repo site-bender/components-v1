@@ -1,16 +1,12 @@
 ---
-  caption: "Default RealNumber output"
+caption: "Default Instant output"
 ---
 
 <!-- markdownlint-disable MD041 -->
 <!-- dprint-ignore -->
+
 ```html
-<span itemscope itemtype="https://schema.org/RealNumber">
-  <span
-    class="sb-integer"
-    itemprop="value"
-  >
-    42
-  </span>
-</span>
+<time class="sb-instant" datetime="2023-06-06T07:07:00.203216104Z">
+	Jun 6, 2023, 19:07:00
+</time>
 ```

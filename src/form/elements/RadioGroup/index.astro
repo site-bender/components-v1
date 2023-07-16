@@ -2,51 +2,43 @@
 import RadioInput from "./RadioInput/index.astro";
 import createClassList from "../../../utilities/createClassList";
 import generateShortId from "../../../utilities/generateShortId";
+import mapAttributes from "../../../utilities/mapAttributes"
 import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
 import type { RadioGroup as Props } from "../../../types/form";
 
 const {
 	["aria-live"]: live = "assertive",
 	form,
-	group = {},
-	help = {},
+	group: {
+		["class:list"]: groupClassList = [],
+		dataset: groupDataset = {},
+		...groupAttrs
+	} = {},
+	help: {
+		["class:list"]: helpClassList = [],
+		dataset: helpDataset = {},
+		...helpAttrs
+	} = {},
 	id = generateShortId(),
 	includeNull,
 	label,
-	legend = {},
+	legend: {
+		["class:list"]: legendClassList = [],
+		dataset: legendDataset = {},
+		...legendAttrs
+	} = {},
 	message,
 	name,
 	options,
 	required,
 	selected,
-	wrapper = {},
+	wrapper: {
+		["class:list"]: wrapperClassList = [],
+		dataset: wrapperDataset = {},
+		...wrapperAttrs
+	} = {},
 	...attrs
 } = Astro.props;
-
-const {
-	["class:list"]: groupClassList = [],
-	dataset: groupDataset,
-	...groupAttrs
-} = group as BaseAttributes;
-
-const {
-	["class:list"]: helpClassList = [],
-	dataset: helpDataset,
-	...helpAttrs
-} = help as BaseAttributes;
-
-const {
-	["class:list"]: legendClassList = [],
-	dataset: legendDataset,
-	...legendAttrs
-} = legend as BaseAttributes;
-
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
-	...wrapperAttrs
-} = wrapper as BaseAttributes;
 
 const hlp = message || (await Astro.slots.render("message"));
 const helpId = `${id}_help`;

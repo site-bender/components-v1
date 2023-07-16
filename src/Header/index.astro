@@ -1,22 +1,19 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import type { Dataset } from "../types";
-import createClassList from "../utilities/createClassList";
-import mapDataset from "../utilities/mapDataset";
-import "./index.css";
+import "./index.css"
+import Microdata from "../Microdata/index.astro"
+import createClassList from "../utilities/createClassList"
+import mapAttributes from "../utilities/mapAttributes"
+import mapDataset from "../utilities/mapDataset"
+import type { HeaderProps as Props } from "../types"
 
-export type Props = HTMLAttributes<"header"> & {
-	dataset?: Dataset | undefined;
-};
+const { microdata = {}, properties, ...attrs } = Astro.props
 
-const { ["class:list"]: classList = [], dataset, ...attrs } = Astro.props;
-const data = mapDataset(dataset);
+const wrapperAttrs = mapAttributes(attrs, ["sb-header"])
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<header
-	class:list={createClassList("sb-header", classList)}
-	{...data}
-	{...attrs}
->
+<header {...wrapperAttrs} data-sb-header>
+	{useMicrodata ? <Microdata {...microdata} {properties} /> : null}
 	<slot />
 </header>

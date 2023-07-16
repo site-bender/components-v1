@@ -191,7 +191,7 @@ import TestFormScript from "../_scripts/TestFormScript.astro";
 					}}
 				/>
 				<p>Here is the actual component:</p>
-				<p class="example">
+				<div class="example">
 					<BooleanField
 						dataset={{
 							library: "home",
@@ -218,7 +218,7 @@ import TestFormScript from "../_scripts/TestFormScript.astro";
 						readonly
 						value={true}
 					/>
-				</p>
+				</div>
 				<p>And here is the HTML created:</p>
 				<CodeBlock
 					snippet={withDataAttrsHtml}

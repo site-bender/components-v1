@@ -1,18 +1,19 @@
 ---
-import { Temporal } from "@js-temporal/polyfill";
-import createClassList from "../../utilities/createClassList";
-import generateShortId from "../../utilities/generateShortId";
-import mapDataset from "../../utilities/mapDataset";
-import MonthSelect from "../elements/MonthSelect/index.astro";
-import DaySelect from "../elements/DaySelect/index.astro";
-import type { BaseAttributes } from "../../types/html";
-import "./script.astro";
+import "./script.astro"
+import DaySelect from "../elements/DaySelect/index.astro"
+import MonthSelect from "../elements/MonthSelect/index.astro"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { HTMLAttributes } from "../../types/html"
+import type { PlainMonthDayField as Props } from "../../types/form"
+import { DEFAULT_LOCALES } from "../../constants"
+import { Temporal } from "@js-temporal/polyfill"
 
 const {
-	allowedMonths,
 	["aria-live"]: live = "assertive",
 	calendar = "iso8601",
 	dayAttrs = {},
+	days,
 	disabled,
 	field = "plain-month-day-field",
 	form,
@@ -22,81 +23,43 @@ const {
 	id = generateShortId(),
 	label = "Month and day",
 	legend = {},
-	locales = ["en-NZ", "en-US", "en-GB"],
-	maxDay,
+	locales = DEFAULT_LOCALES,
 	message,
 	monthAttrs = {},
 	months,
 	name,
 	outer = {},
 	required,
-	stepDay,
 	tag = {},
 	value,
-	wrapper = {},
-} = Astro.props;
+} = Astro.props
 
-const {
-	["class:list"]: dayClassList = [],
-	dataset: dayDataset,
-	...dayAttributes
-} = dayAttrs as BaseAttributes;
+const dayAttributes = mapAttributes(dayAttrs as HTMLAttributes, [])
+const monthAttributes = mapAttributes(monthAttrs as HTMLAttributes, [])
+const groupAttrs = mapAttributes(group, ["sb-group"])
+const helpAttrs = mapAttributes(help, ["sb-help"])
+const legendAttrs = mapAttributes(legend, ["sb-label"])
+const outerAttrs = mapAttributes(outer, [
+	"sb-field",
+	"sb-plain-month-day-field",
+])
+const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
 
-const {
-	["class:list"]: groupClassList = [],
-	dataset: groupDataset,
-	...groupAttrs
-} = group as BaseAttributes;
+const hlp = (await Astro.slots.render("message")) || message
+const helpId = `${id}_help`
+const lbl = (await Astro.slots.render("default")) || label
+const legendId = `${id}_legend`
+const req = required ? { "data-sb-required": "" } : {}
+const opt = required ? {} : { "data-sb-optional": "" }
 
-const {
-	["class:list"]: helpClassList = [],
-	dataset: helpDataset,
-	...helpAttrs
-} = help as BaseAttributes;
-
-const {
-	["class:list"]: legendClassList = [],
-	dataset: legendDataset,
-	...legendAttrs
-} = legend as BaseAttributes;
-
-const {
-	["class:list"]: monthClassList = [],
-	dataset: monthDataset,
-	...monthAttributes
-} = monthAttrs as BaseAttributes;
-
-const {
-	["class:list"]: outerClassList = [],
-	dataset: outerDataset,
-	...outerAttrs
-} = outer as BaseAttributes;
-
-const {
-	["class:list"]: tagClassList = [],
-	dataset: tagDataset,
-	...tagAttrs
-} = tag as BaseAttributes;
-
-const hlp = (await Astro.slots.render("message")) || message;
-const helpId = `${id}_help`;
-const lbl = (await Astro.slots.render("default")) || label;
-const legendId = `${id}_legend`;
-const req = required ? { "data-sb-required": "" } : {};
-const opt = required ? {} : { "data-sb-optional": "" };
-
-const { day, monthCode } = value ? Temporal.PlainMonthDay.from(value) : {};
-const month = day ? parseInt(monthCode.substring(1), 10) : undefined;
+const { day, monthCode } = value
+	? Temporal.PlainMonthDay.from(value)
+	: ({} as Temporal.PlainMonthDayLike)
+const month = day ? parseInt((monthCode || "").substring(1), 10) : undefined
 ---
 
 <fieldset
 	{...outerAttrs}
-	class:list={createClassList(
-		"sb-field",
-		"sb-plain-month-day-field",
-		outerClassList
-	)}
-	{...mapDataset(outerDataset)}
 	data-sb-calendar={calendar}
 	data-sb-field={field}
 	{...req}
@@ -106,17 +69,9 @@ const month = day ? parseInt(monthCode.substring(1), 10) : undefined;
 	{name}
 	style="width: 40vw"
 >
-	<legend
-		{...legendAttrs}
-		class:list={createClassList("sb-label", legendClassList)}
-		{...mapDataset(legendDataset)}
-		data-sb-field-label={field}
-		id={legendId}
-	>
+	<legend {...legendAttrs} data-sb-field-label={field} id={legendId}>
 		<span
 			{...tagAttrs}
-			class:list={createClassList("sb-label-tag", tagClassList)}
-			{...mapDataset(tagDataset)}
 			data-sb-field-label-tag={field}
 			{...opt}
 			set:html={lbl}
@@ -124,23 +79,17 @@ const month = day ? parseInt(monthCode.substring(1), 10) : undefined;
 		<span
 			{...helpAttrs}
 			aria-live={live}
-			class:list={createClassList("sb-help", helpClassList)}
-			{...mapDataset(helpDataset)}
 			data-sb-field-help={field}
 			id={helpId}
 			role="status"
 			set:html={hlp}
 		/>
 	</legend>
-	<div
-		class:list={createClassList("sb-group", groupClassList)}
-		{...mapDataset(groupDataset)}
-		data-sb-field-group={field}
-	>
+	<div {...groupAttrs} data-sb-field-group={field}>
 		<label data-sb-label-month={field} for={`${id}_month`}>
 			<span id={`${id}_month:label`}>Month</span>
 			<MonthSelect
-				{...monthAttrs}
+				{...monthAttributes}
 				calendar={calendar}
 				data-sb-select-month={field}
 				{months}
@@ -157,7 +106,8 @@ const month = day ? parseInt(monthCode.substring(1), 10) : undefined;
 		<label data-sb-label-day={field} for={`${id}_day`}>
 			<span id={`${id}_day:label`}>Day</span>
 			<DaySelect
-				{...dayAttrs}
+				{...dayAttributes}
+				{days}
 				data-sb-select-day={field}
 				{form}
 				id={`${id}_day`}

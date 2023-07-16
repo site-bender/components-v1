@@ -1,16 +1,14 @@
 ---
-import createClassList from "../../../utilities/createClassList";
-import createSelectOptions from "../../../utilities/createSelectOptions";
-import generateShortId from "../../../utilities/generateShortId";
-import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
-import type { MonthFormat, MonthSelect as Props } from "../../../types/form";
+import createSelectOptions from "../../../utilities/createSelectOptions"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import type { DaySelect as Props } from "../../../types/form"
+import { DEFAULT_LOCALES } from "../../../constants"
 
 const {
 	autocomplete,
+	days,
 	calendar = "iso8601",
-	["class:list"]: elementClassList = [],
-	dataset: elementDataset,
 	field = "day-select",
 	filter,
 	form,
@@ -18,38 +16,31 @@ const {
 	id = generateShortId(),
 	includeNull,
 	labelledBy,
-	locales = ["en-NZ", "en-US", "en-GB"],
+	locales = DEFAULT_LOCALES,
 	name = "day",
 	required,
 	selected,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
-	...wrapperAttrs
-} = wrapper as BaseAttributes;
+const selectAttrs = mapAttributes(attrs, ["sb-day-select"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-input-wrapper"])
 
-const days = new Array(31).fill(0).map((_, i) => ({
-	label: i + 1,
-	value: String(i + 1).padStart(2, "0"),
-}));
+const dayOptions = new Array(31)
+	.fill(0)
+	.map((_, i) => ({
+		label: i + 1,
+		value: String(i + 1).padStart(2, "0"),
+	}))
+	.filter(({ label }) => !days || days.includes(label))
 ---
 
-<span
-	{...wrapperAttrs}
-	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
->
+<span {...wrapperAttrs} data-sb-wrapper={field}>
 	<select
-		{...attrs}
+		{...selectAttrs}
 		{autocomplete}
 		aria-labelledby={labelledBy}
-		class:list={createClassList("sb-day-select", elementClassList)}
-		{...mapDataset(elementDataset)}
 		data-sb-select={field}
 		{id}
 		{form}
@@ -57,6 +48,6 @@ const days = new Array(31).fill(0).map((_, i) => ({
 		{required}
 	>
 		{includeNull ? <option /> : null}
-		<Fragment set:html={createSelectOptions(days, selected)} />
+		<Fragment set:html={createSelectOptions(dayOptions, selected)} />
 	</select>
 </span>

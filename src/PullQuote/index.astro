@@ -1,53 +1,88 @@
 ---
-import type { Dataset } from "../types";
-import type { HTMLAttributes } from "astro/types";
-import type { Quotation } from "../schema.org";
-import Microdata from "../Microdata/index.astro";
-import mapDataset from "../utilities/mapDataset";
-import "./index.css";
-
-export type Props = HTMLAttributes<"blockquote"> & {
-	author?: string;
-	authorItemprop?: string;
-	authorType?: "Person" | "Organization" | "Thing";
-	cssClasses?: Array<string>;
-	dataset?: Dataset;
-	properties?: Partial<Quotation>;
-};
+import Microdata from "../Microdata/index.astro"
+import generateShortId from "../utilities/generateShortId"
+import mapAttributes from "../utilities/mapAttributes"
+import type { PullQuoteProps as Props } from "../types"
+import "./index.css"
 
 const {
 	author,
 	authorItemprop = "author",
 	authorType = "Person",
+	blockquote = {},
 	["class:list"]: classList = [],
 	dataset,
-	properties,
+	figcaption = {},
+	id = generateShortId(),
+	properties: props,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const quote = await Astro.slots.render("default");
-const auth = (await Astro.slots.render("author")) || author;
+const blockquoteAttrs = mapAttributes(blockquote, ["sb-pull-quote-blockquote"])
+const figcaptionAttrs = mapAttributes(figcaption, ["sb-pull-quote-figcaption"])
+const wrapperAttrs = mapAttributes(attrs, ["sb-pull-quote"])
 
-const css = ["sb-pull-quote", ...cssClasses].join(" ");
-const data = mapDataset(dataset);
+const quote = await Astro.slots.render("default")
+const auth = (await Astro.slots.render("author")) || author
 
-const meta = {
+const properties = {
 	type: "Quotation",
-};
+	...props,
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<Microdata as="figure" class={css} properties={meta}>
-	<blockquote {...data} itemprop="text" set:html={quote} {...attrs} />
-	{
-		auth ? (
-			<figcaption
-				class="sb-pull-quote-author"
-				itemprop={authorItemprop}
-				itemscope
-				itemtype={`https://schema.org/${authorType}`}
-			>
-				<span itemprop="name" set:html={auth} />
-			</figcaption>
-		) : null
-	}
-</Microdata>
+{
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			as="figure"
+			data-sb-pull-quote="figure"
+			{id}
+			{properties}
+		>
+			<blockquote
+				{...blockquoteAttrs}
+				data-sb-pull-quote="blockquote"
+				itemprop="text"
+				set:html={quote}
+			/>
+			{
+				auth ? (
+					<figcaption
+						{...figcaptionAttrs}
+						data-sb-pull-quote="figcaption"
+						itemprop={authorItemprop}
+						itemscope
+						itemtype={`https://schema.org/${authorType}`}
+					>
+						<span itemprop="name" set:html={auth} />
+					</figcaption>
+				) : null
+			}
+		</Microdata>
+	) : (
+		<figure
+			{...wrapperAttrs}
+			data-sb-pull-quote="figure"
+			{id}
+		>
+			<blockquote
+				{...blockquoteAttrs}
+				data-sb-pull-quote="blockquote"
+				set:html={quote}
+			/>
+			{
+				auth ? (
+					<figcaption
+						{...figcaptionAttrs}
+						data-sb-pull-quote="figcaption"
+					>
+						<span set:html={auth} />
+					</figcaption>
+				) : null
+			}
+		</figure>
+	)
+}

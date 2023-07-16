@@ -1,44 +1,45 @@
 ---
-import createClassList from "../../../utilities/createClassList";
-import createSelectOptions from "../../../utilities/createSelectOptions";
-import generateShortId from "../../../utilities/generateShortId";
-import getMonths from "../../../utilities/getMonths";
-import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
-import type { MonthFormat, MonthSelect as Props } from "../../../types/form";
+import createClassList from "../../../utilities/createClassList"
+import createSelectOptions from "../../../utilities/createSelectOptions"
+import generateShortId from "../../../utilities/generateShortId"
+import getMonths from "../../../utilities/getMonths"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
+import type { MonthFormat, MonthSelect as Props } from "../../../types/form"
+import { DEFAULT_LOCALES } from "../../../constants"
 
 const {
 	autocomplete,
 	calendar = "iso8601",
 	["class:list"]: elementClassList = [],
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "month-select",
 	form,
 	format = "long",
 	id = generateShortId(),
 	includeNull,
 	labelledBy,
-	locales = ["en-NZ", "en-US", "en-GB"],
+	locales = DEFAULT_LOCALES,
 	months,
 	name = "month",
 	required,
 	selected,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
 const {
 	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
+	dataset: wrapperDataset = {},
 	...wrapperAttrs
-} = wrapper as BaseAttributes;
+} = wrapper
 
 const mnths = getMonths(
 	calendar as string,
 	locales as Array<string>,
 	format as MonthFormat,
 	months
-);
+)
 ---
 
 <span

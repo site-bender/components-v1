@@ -6,7 +6,7 @@ export default {
 	dateModified: "2023-06-08",
 	datePublished: "2023-06-08",
 	description:
-		"TimeZone: @sitebender/components Astro components library API documentation for the TimeZone metadata component\.",
+		"TimeZone: @sitebender/components Astro components library API documentation for the TimeZone metadata component.",
 	name: "TimeZone",
 	alternateName: "TimeZone",
 } as WebPage

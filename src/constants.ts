@@ -49,11 +49,11 @@ export const DEFAULT_DATE_TIME_OPTIONS: Intl.DateTimeFormatOptions = {
 	formatMatcher: "basic",
 }
 
-export const DEFAULT_IMAGE_TYPES =
-	process.env.DEFAULT_IMAGE_TYPES?.split(",") ||
-	["avif", "webp", "png"]
+export const DEFAULT_IMAGE_TYPES = process.env.DEFAULT_IMAGE_TYPES?.split(
+	","
+) || ["avif", "webp", "png"]
 
-export const DEFAULT_LOCALE = "en-US"
+export const DEFAULT_LOCALES = ["en-NZ", "en-US", "en-GB", "en-AU"]
 
 export const DEFAULT_MONTH_DAY_OPTIONS: Intl.DateTimeFormatOptions = {
 	month: "long",

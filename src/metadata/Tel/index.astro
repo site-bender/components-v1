@@ -1,62 +1,70 @@
 ---
-import type { Dataset } from "../../types";
-import type {
-	ContactPointLeaf,
-	OrganizationLeaf,
-	PersonLeaf,
-	PlaceLeaf,
-} from "../../schema.org";
-import mapDataset from "../../utilities/mapDataset";
+import "./index.css";
 import Microdata from "../../Microdata/index.astro";
-import type { HTMLAttributes } from "astro/types";
-
-export type Props = HTMLAttributes<"span"> & {
-	a?: HTMLAttributes<"a"> | undefined;
-	dataset?: Dataset;
-	itemprop?: string;
-	properties?: Partial<
-		ContactPointLeaf | OrganizationLeaf | PersonLeaf | PlaceLeaf
-	>;
-	type?: "ContactPoint" | "Organization" | "Person" | "Place";
-	useTel?: boolean;
-};
+import createClassList from "../../utilities/createClassList";
+import createTelUrl from "../../utilities/createTelUrl";
+import mapAttributes from "../../utilities/mapAttributes"
+import mapDataset from "../../utilities/mapDataset";
+import type { TelProps as Props } from "../../types";
 
 const {
-	a = {},
+	as = "span",
+	["class:list"]: classList = [],
 	dataset,
-	itemprop,
+	link = {},
+	microdata = {},
 	properties,
-	type = "Person",
+	tel,
 	useTel,
 	...attrs
 } = Astro.props;
-const telephone = ((await Astro.slots.render("default")) || "").trim();
-const data = mapDataset(dataset);
+
+const phone = (
+	(await Astro.slots.render("default")) ||
+	tel ||
+	""
+).trim();
+
+const {
+	["class:list"]: linkClassList = [],
+	dataset: linkDataset = {},
+	href,
+	...linkAttrs
+} = link;
+
+const Element = as;
+const telLink = href ? href : createTelUrl(phone);
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
-const meta = {
-	type,
-	telephone,
-	...properties,
-};
-const tel = a?.href ? a.href : `tel:${telephone}`;
-
-// add country code with +, e.g., +64
-// add wait for dialtone with w
-// add one second pause (before extension) with p
 ---
 
-{useMicrodata ? <Microdata as="span" properties={meta} /> : null}
+{useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	useTel ? (
-		<a href={tel} {...a}>
-			<span class="sb-tel" {...data} {...attrs}>
-				{telephone}
-			</span>
+		<a
+			{...linkAttrs}
+			class:list={createClassList("sb-tel-link", linkClassList)}
+			{...mapDataset(linkDataset)}
+			data-sb-tel="link"
+			href={telLink}
+		>
+			<Element
+				{...attrs}
+				class:list={createClassList("sb-tel", classList)}
+				{...mapDataset(dataset)}
+				data-sb-tel
+			>
+				{phone.replaceAll(/[^0-9+]/g, " ")}
+			</Element>
 		</a>
 	) : (
-		<span class="sb-tel" {...data} {...attrs}>
-			{telephone}
-		</span>
+		<Element
+			{...attrs}
+			class:list={createClassList("sb-tel", classList)}
+			{...mapDataset(dataset)}
+			data-sb-tel
+		>
+			{phone.replaceAll(/[^0-9+]/g, " ")}
+		</Element>
 	)
 }

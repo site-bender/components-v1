@@ -1,46 +1,71 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import type { Dataset } from "../types";
-import createClassList from "../utilities/createClassList";
-import mapDataset from "../utilities/mapDataset";
-import "./index.css";
-
-export type Props = HTMLAttributes<"figure"> & {
-	caption?: string;
-	dataset?: Dataset | undefined;
-	figcaptionAttributes?: HTMLAttributes<"figcaption">;
-	index?: number;
-	isIndexed?: boolean;
-};
+import Microdata from "../Microdata/index.astro"
+import generateShortId from "../utilities/generateShortId"
+import mapAttributes from "../utilities/mapAttributes"
+import type { FigureProps as Props } from "../types"
+import "./index.css"
 
 const {
 	caption,
-	["class:list"]: classList = [],
-	dataset,
-	figcaptionAttributes = {},
+	figcaption = {},
+	id = generateShortId(),
 	index,
 	isIndexed,
+	properties,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const indexed = isIndexed ? { class: "indexed" } : {};
-const cap = caption ? caption : await Astro.slots.render("caption");
-const data = mapDataset(dataset);
+const figcaptionAttrs = mapAttributes(figcaption, ["sb-figure-figcaption"])
+const wrapperAttrs = mapAttributes(attrs, ["sb-figure"])
+
+const indexed = isIndexed ? { class: "indexed" } : {}
+const cap = caption ? caption : await Astro.slots.render("caption")
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<figure
-	class:list={createClassList("sb-figure", classList)}
-	{...data}
-	{...indexed}
-	{...attrs}
->
-	{
-		cap && (
-			<figcaption {...figcaptionAttributes}>
-				{index ? `Figure ${index}: ` : ""}
-				<Fragment set:html={cap} />
-			</figcaption>
-		)
-	}
-	<slot />
-</figure>
+{
+	useMicrodata ? (
+			<Microdata
+				{...wrapperAttrs}
+				as="figure"
+				data-sb-figure
+				{id}
+				{...indexed}
+				{properties}
+			>
+				{
+					cap && (
+						<figcaption
+							{...figcaptionAttrs}
+							data-sb-figure="figcaption"
+						>
+							{index ? `Figure ${index}: ` : ""}
+							<Fragment set:html={cap} />
+						</figcaption>
+					)
+				}
+				<slot />
+			</Microdata>
+		) : (
+			<figure
+				{...wrapperAttrs}
+				data-sb-figure
+				{id}
+				{...indexed}
+			>
+				{
+					cap && (
+						<figcaption
+							{...figcaptionAttrs}
+							data-sb-figure="figcaption"
+						>
+							{index ? `Figure ${index}: ` : ""}
+							<Fragment set:html={cap} />
+						</figcaption>
+					)
+				}
+				<slot />
+			</figure>
+	)
+}

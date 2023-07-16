@@ -1,15 +1,15 @@
 ---
-import createClassList from "../../../utilities/createClassList";
-import generateShortId from "../../../utilities/generateShortId";
-import mapDataset from "../../../utilities/mapDataset";
-import type { BaseAttributes } from "../../../types/html";
-import type { Textarea as Props } from "../../../types/form";
+import createClassList from "../../../utilities/createClassList"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import mapDataset from "../../../utilities/mapDataset"
+import type { Textarea as Props } from "../../../types/form"
 
 const {
 	autocomplete,
 	autocorrect: _autocorrect,
 	["class:list"]: elementClassList = [],
-	dataset: elementDataset,
+	dataset: elementDataset = {},
 	field = "textarea",
 	form,
 	id = generateShortId(),
@@ -19,15 +19,15 @@ const {
 	value,
 	wrapper = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
 const {
 	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset,
+	dataset: wrapperDataset = {},
 	...wrapperAttrs
-} = wrapper as BaseAttributes;
+} = wrapper
 
-const content = value || (await Astro.slots.render("default"))?.trim() || "";
+const content = value || (await Astro.slots.render("default"))?.trim() || ""
 ---
 
 <span
