@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -15,6 +15,10 @@
 	"author": "Charles F. Munat <charles.munat@gmail.com>",
 	"type": "module",
 	"exports": {
+		"./form-css": "./src/form/Form/index.css",
+		"./card-css": "./src/Card/index.css",
+		"./copy-to-clipboard-js": "./src/CodeBlock/copyToClipboard.js",
+
 		"./body": "./src/Body/index.astro",
 		"./card": "./src/Card/index.astro",
 		"./cc-license": "./src/CCLicense/index.astro",
