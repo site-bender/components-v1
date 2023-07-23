@@ -1,16 +1,16 @@
 ---
 import "./script.astro"
-import DaySelect from "../elements/DaySelect/index.astro"
-import MonthSelect from "../elements/MonthSelect/index.astro"
-import generateShortId from "../../utilities/generateShortId"
-import mapAttributes from "../../utilities/mapAttributes"
-import type { HTMLAttributes } from "../../types/html"
-import type { PlainMonthDayField as Props } from "../../types/form"
 import { DEFAULT_LOCALES } from "../../constants"
 import { Temporal } from "@js-temporal/polyfill"
+import DaySelect from "../elements/DaySelect/index.astro"
+import FieldsetWrapper from "../FieldsetWrapper/index.astro"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import MonthSelect from "../elements/MonthSelect/index.astro"
+import type { HTMLAttributes } from "../../types/html"
+import type { PlainMonthDayField as Props } from "../../types/form"
 
 const {
-	["aria-live"]: live = "assertive",
 	calendar = "iso8601",
 	dayAttrs = {},
 	days,
@@ -18,39 +18,24 @@ const {
 	field = "plain-month-day-field",
 	form,
 	format,
-	group = {},
-	help = {},
+	group,
+	help,
 	id = generateShortId(),
 	label = "Month and day",
-	legend = {},
+	legend,
 	locales = DEFAULT_LOCALES,
 	message,
 	monthAttrs = {},
 	months,
 	name,
-	outer = {},
+	outer,
 	required,
-	tag = {},
+	tag,
 	value,
 } = Astro.props
 
 const dayAttributes = mapAttributes(dayAttrs as HTMLAttributes, [])
 const monthAttributes = mapAttributes(monthAttrs as HTMLAttributes, [])
-const groupAttrs = mapAttributes(group, ["sb-group"])
-const helpAttrs = mapAttributes(help, ["sb-help"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, [
-	"sb-field",
-	"sb-plain-month-day-field",
-])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
-
-const hlp = (await Astro.slots.render("message")) || message
-const helpId = `${id}_help`
-const lbl = (await Astro.slots.render("default")) || label
-const legendId = `${id}_legend`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 
 const { day, monthCode } = value
 	? Temporal.PlainMonthDay.from(value)
@@ -58,64 +43,58 @@ const { day, monthCode } = value
 const month = day ? parseInt((monthCode || "").substring(1), 10) : undefined
 ---
 
-<fieldset
-	{...outerAttrs}
-	data-sb-calendar={calendar}
-	data-sb-field={field}
-	{...req}
+<FieldsetWrapper
 	{disabled}
+	{field}
 	{form}
+	{group}
+	{help}
 	{id}
-	{name}
-	style="width: 40vw"
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
 >
-	<legend {...legendAttrs} data-sb-field-label={field} id={legendId}>
-		<span
-			{...tagAttrs}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</legend>
-	<div {...groupAttrs} data-sb-field-group={field}>
-		<label data-sb-label-month={field} for={`${id}_month`}>
-			<span id={`${id}_month:label`}>Month</span>
-			<MonthSelect
-				{...monthAttributes}
-				calendar={calendar}
-				data-sb-select-month={field}
-				{months}
-				{form}
-				format={format}
-				id={`${id}_month`}
-				labelledBy={`${legendId} ${id}_month:label`}
-				{locales}
-				name={`${name}:month`}
-				{required}
-				value={month}
-			/>
-		</label>
-		<label data-sb-label-day={field} for={`${id}_day`}>
-			<span id={`${id}_day:label`}>Day</span>
-			<DaySelect
-				{...dayAttributes}
-				{days}
-				data-sb-select-day={field}
-				{form}
-				id={`${id}_day`}
-				labelledBy={`${legendId} ${id}_day:label`}
-				name={`${name}:day`}
-				{required}
-				selected={day}
-			/>
-		</label>
-	</div>
-</fieldset>
+	{
+		(labelledBy: string) => (
+			<>
+				<label data-sb-label-month={field} for={`${id}_month`}>
+					<span id={`${id}_month:label`}>Month</span>
+					<MonthSelect
+						{...monthAttributes}
+						calendar={calendar}
+						data-sb-select-month={field}
+						{disabled}
+						{months}
+						{form}
+						format={format}
+						id={`${id}_month`}
+						labelledBy={`${labelledBy} ${id}_month:label`}
+						{locales}
+						name={`${name}:month`}
+						{required}
+						value={month}
+					/>
+				</label>
+				<label data-sb-label-day={field} for={`${id}_day`}>
+					<span id={`${id}_day:label`}>Day</span>
+					<DaySelect
+						{...dayAttributes}
+						{days}
+						data-sb-select-day={field}
+						{disabled}
+						{form}
+						id={`${id}_day`}
+						labelledBy={`${labelledBy} ${id}_day:label`}
+						name={`${name}:day`}
+						{required}
+						selected={day}
+					/>
+				</label>
+			</>
+		)
+	}
+</FieldsetWrapper>

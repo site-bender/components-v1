@@ -1,7 +1,4 @@
-import type { Temporal } from "@js-temporal/polyfill"
-import type { HTMLTag, Polymorphic } from "astro/types"
-import type { TIME_ZONE } from "../constants"
-
+import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
 import type {
 	Audiobook,
 	Book,
@@ -27,8 +24,10 @@ import type {
 	WebPage,
 	WebSite,
 } from "../schema.org"
+import type { HTMLTag, Polymorphic } from "astro/types"
 
-import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
+import type { TIME_ZONE } from "../constants"
+import type { Temporal } from "@js-temporal/polyfill"
 
 export type Frontmatter = {
 	anchor?: string | undefined | null
@@ -65,13 +64,15 @@ export type MailtoOptions = {
 	replyTo?: string
 }
 
-export type MetadataProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
-	Override<
+export type MetadataProps<T, Tag extends HTMLTag> =
+	& Polymorphic<{ as: Tag }>
+	& Override<
 		HTMLAttributes,
 		{
 			as?: Tag
 			microdata?: Partial<HTMLAttributes> | undefined | null
 			properties?: Partial<T>
+			property?: string | null | undefined
 		}
 	>
 
@@ -79,7 +80,7 @@ export type CreatePath = (
 	filename: string,
 	size: string,
 	type: string,
-	index: number
+	index: number,
 ) => string
 
 export type ImageMediaType =
@@ -567,12 +568,12 @@ export type DateTimeFormatOptions = {
 	second?: "numeric" | "2-digit"
 	fractionalSecondDigits?: number
 	timeZoneName?:
-		| "long"
-		| "short"
-		| "shortOffset"
-		| "longOffset"
-		| "shortGeneric"
-		| "longGeneric"
+	| "long"
+	| "short"
+	| "shortOffset"
+	| "longOffset"
+	| "shortGeneric"
+	| "longGeneric"
 }
 
 export type NumberStyle = "decimal" | "currency" | "percent" | "unit"

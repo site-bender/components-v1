@@ -4,7 +4,7 @@ export default function getMonths(
 	calendar: string,
 	locales: Array<string>,
 	format: "2-digit" | "long" | "numeric" | "short",
-	filter?: Array<string | number>
+	filter?: Array<string | number> | null,
 ) {
 	const cal = Temporal.Calendar.from(calendar)
 	const d = Temporal.Now.plainDate(cal)

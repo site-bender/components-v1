@@ -1,10 +1,9 @@
 ---
+import FieldWrapper from "../FieldWrapper/index.astro"
 import NumberInput from "../elements/NumberInput/index.astro"
 import generateShortId from "../../utilities/generateShortId"
-import mapAttributes from "../../utilities/mapAttributes"
 
 const {
-	["aria-live"]: live = "assertive",
 	field = "number-field",
 	form,
 	help = {},
@@ -21,46 +20,34 @@ const {
 	wrapper = {},
 	...attrs
 } = Astro.props
-
-const helpAttrs = mapAttributes(help, ["sb-help"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, ["sb-field", "sb-number-field"])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
-
-const hlp = (await Astro.slots.render("message")) || message
-const helpId = `${id}_help`
-const lbl = (await Astro.slots.render("default")) || label
-const labelledBy = `${id}_label`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
-<div {...outerAttrs} data-sb-field={field} {...req}>
-	<label {...legendAttrs} data-sb-field-label={field} id={labelledBy}>
-		<span
-			{...tagAttrs}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</label>
-	<NumberInput
-		{...attrs}
-		{list}
-		{field}
-		{form}
-		{id}
-		{labelledBy}
-		{name}
-		{required}
-		{wrapper}
-	/>
-</div>
+<FieldWrapper
+	{field}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => {
+			return (
+				<NumberInput
+					{...attrs}
+					{list}
+					{field}
+					{form}
+					{id}
+					{labelledBy}
+					{name}
+					{required}
+					{wrapper}
+				/>
+			)
+		}
+	}
+</FieldWrapper>

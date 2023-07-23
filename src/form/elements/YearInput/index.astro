@@ -1,21 +1,19 @@
 ---
-import createClassList from "../../../utilities/createClassList"
-import createSelectOptions from "../../../utilities/createSelectOptions"
+import createListOptions from "../../../utilities/createListOptions"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset"
 import type { YearInput as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
 	autocomplete,
 	autocorrect: _autocorrect,
-	["class:list"]: elementClassList = [],
 	datalist = {},
-	dataset: elementDataset = {},
 	field = "year-input",
 	form,
 	id = generateShortId(),
 	labelledBy,
+	list,
 	maxlength = 4,
 	minlength = 4,
 	name = "year",
@@ -30,38 +28,24 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: datalistClassList = [],
-	dataset: datalistDataset = {},
-	...datalistAttrs
-} = datalist
+const datalistAttrs = mapAttributes(datalist, ["sb-datalist"])
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-year-input"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-year-input-wrapper"])
 
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset = {},
-	...wrapperAttrs
-} = wrapper
-
-const listId = years ? `${id}_datalist` : undefined
+const listId = `${id}_list`
+const lst = list ? { list: listId } : {}
 const size = sze || years ? 7 : 4
 ---
 
-<span
-	{...wrapperAttrs}
-	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
->
+<span {...wrapperAttrs} data-sb-wrapper={field}>
 	<input
-		{...attrs}
+		{...inputAttrs}
 		{autocomplete}
 		aria-labelledby={labelledBy}
-		class:list={createClassList("sb-year", elementClassList)}
-		{...mapDataset(elementDataset)}
 		data-sb-input={field}
 		{id}
 		{form}
-		list={listId}
+		{...lst}
 		{maxlength}
 		{minlength}
 		{name}
@@ -72,17 +56,9 @@ const size = sze || years ? 7 : 4
 		{value}
 	/>
 	{
-		listId ? (
-			<datalist
-				{...datalistAttrs}
-				class:list={createClassList("sb-datalist-color", datalistClassList)}
-				{...mapDataset(datalistDataset)}
-				data-sb-datalist={field}
-				id={listId}
-			>
-				{years.map((year) => (
-					<option value={year} />
-				))}
+		list ? (
+			<datalist {...datalistAttrs} data-sb-datalist={field} id={listId}>
+				<Fragment set:html={createListOptions(list)} />
 			</datalist>
 		) : null
 	}

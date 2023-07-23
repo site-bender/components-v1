@@ -1,12 +1,7 @@
 ---
-export type Props = {
-	fill: string
-	license: string
-	size: string
-	stroke: string
-}
+import type { CcSvgProps as Props } from "../../types/html"
 
-const { fill, license, size, stroke } = Astro.props
+const { fill, license = "", size, stroke } = Astro.props
 ---
 
 <svg

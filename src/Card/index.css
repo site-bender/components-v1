@@ -1,4 +1,4 @@
-section.card {
+section.sb-card {
 	border: 1px solid var(--card-border-color);
 	break-inside: avoid;
 	display: inline-block;
@@ -8,16 +8,16 @@ section.card {
 	vertical-align: top;
 }
 
-section.card > :not(.group) {
+section.sb-card > :not(.sb-group) {
 	padding: 0 0 1rem;
 	margin: 0;
 }
-
-section.card > .group > header {
+sb-
+section.card > .sb-group > header {
 	padding: 0;
 }
 
-section.card img {
+section.sb-card img {
 	filter: grayscale(100%);
 	height: auto;
 	margin: auto;
@@ -25,14 +25,14 @@ section.card img {
 	width: 100%;
 }
 
-section.card a:focus img,
-section.card a:hover img,
-section.card img:focus,
+section.sb-card a:focus img,
+section.sb-card a:hover img,
+section.sb-card img:focus,sb-
 section.card img:hover {
 	filter: grayscale(0%);
 }
 
-section.card:not(.allow-invert) h3 {
+section.sb-card:not(.sb-allow-invert) h3 {
 	margin: 1.5rem 0 0;
 	padding: 0;
 }

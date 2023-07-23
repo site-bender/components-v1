@@ -1,16 +1,16 @@
 ---
-import { Temporal } from "@js-temporal/polyfill"
+import FieldsetWrapper from "../FieldsetWrapper/index.astro"
+import NumberSubfield from "./NumberSubfield/index.astro"
 import generateShortId from "../../utilities/generateShortId"
-import mapAttributes from "../../utilities/mapAttributes"
 import type { DurationField as Props } from "../../types/form"
+import { Temporal } from "@js-temporal/polyfill"
 
 const {
-	["aria-live"]: live = "assertive",
 	disabled,
 	field = "duration-field",
 	form,
-	group = {},
-	help = {},
+	group,
+	help,
 	id = generateShortId(),
 	includeDays,
 	includeHours,
@@ -22,256 +22,71 @@ const {
 	includeSeconds,
 	includeYears,
 	label = "Duration",
-	legend = {},
+	legend,
 	message,
-	name,
-	outer  = {},
+	name: parent,
+	outer,
 	required,
-	tag = {},
+	tag,
 	value,
 } = Astro.props
 
-const groupAttrs = mapAttributes(group, ["sb-group"])
-const helpAttrs = mapAttributes(help, ["sb-help"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, [
-	"sb-field",
-	"sb-duration-field",
-])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
+const dur = value
+	? Temporal.Duration.from(value)
+	: ({} as Temporal.DurationLike)
 
-const hlp = message || (await Astro.slots.render("message"))
-const helpId = `${id}_help`
-const lbl = label || (await Astro.slots.render("default"))
-const legendId = `${id}_legend`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
+const fields = [
+	...(includeYears ? [["Years", `years`, dur.years]] : []),
+	...(includeMonths ? [["Months", `months`, dur.months]] : []),
+	...(includeDays ? [["Days", `days`, dur.days]] : []),
+	...(includeHours ? [["Hours", `hours`, dur.hours]] : []),
+	...(includeMinutes ? [["Minutes", `minutes`, dur.minutes]] : []),
+	...(includeSeconds ? [["Seconds", `seconds`, dur.seconds]] : []),
+	...(includeMilliseconds
+		? [["Millis", `milliseconds`, dur.milliseconds]]
+		: []),
+	...(includeMicroseconds
+		? [["Micros", `microseconds`, dur.microseconds]]
+		: []),
+	...(includeNanoseconds
+		? [["Nanoss", `nanoseconds`, dur.nanoseconds]]
+		: []),
+]
 
-const {
-	days,
-	hours,
-	microseconds,
-	milliseconds,
-	minutes,
-	months,
-	nanoseconds,
-	seconds,
-	years,
-} = value ? Temporal.Duration.from(value) : {} as Temporal.DurationLike
+console.log("props", Astro.props)
 ---
 
-<fieldset
-	{...outerAttrs}
-	data-sb-field={field}
-	{...req}
-	{disabled}
+<FieldsetWrapper
+	{field}
 	{form}
+	{group}
+	{help}
 	{id}
-	{name}
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
 >
-	<legend
-		{...legendAttrs}
-		data-sb-field-label={field}
-		id={legendId}
-	>
-		<span
-			{...tagAttrs}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</legend>
-	<div
-		{...groupAttrs}
-		data-sb-field-group={field}
-	>
-		{
-			includeYears ? (
-				<label data-sb-label-years={field} for={`${id}_years`}>
-					<span id={`${id}_years:label`}>Years</span>
-					<input
-						aria-labelledby={`${legendId} ${id}_years:label`}
-						data-sb-input-years={field}
+	{
+		(labelledBy: string) => (
+			<>
+				{fields.map(([label, name, value]) => (
+					<NumberSubfield
+						{disabled}
+						{field}
 						{form}
-						id={`${id}_years`}
-						min="0"
-						name={`${name}:years`}
-						size="4"
-						step="1"
-						type="number"
-						value={years}
+						{id}
+						label={label as string}
+						{labelledBy}
+						{parent}
+						name={name as string}
+						{value}
 					/>
-				</label>
-			) : null
-		}
-
-		{
-			includeMonths ? (
-				<label data-sb-label-months={field} for={`${id}_months`}>
-					<span id={`${id}_months:label`}>Months</span>
-					<input
-						aria-labelledby={`${legendId} ${id}_months:label`}
-						data-sb-input-months={field}
-						{form}
-						id={`${id}_months`}
-						min="0"
-						name={`${name}:months`}
-						size="4"
-						step="1"
-						type="number"
-						value={months}
-					/>
-				</label>
-			) : null
-		}
-
-		{
-			includeDays ? (
-				<label data-sb-label-days={field} for={`${id}_days`}>
-					<span id={`${id}_days:label`}>Days</span>
-					<input
-						aria-labelledby={`${legendId} ${id}_days:label`}
-						data-sb-input-days={field}
-						{form}
-						id={`${id}_days`}
-						min="0"
-						name={`${name}:days`}
-						size="4"
-						step="1"
-						type="number"
-						value={days}
-					/>
-				</label>
-			) : null
-		}
-
-		{
-			includeHours ? (
-				<label data-sb-label-hours={field} for={`${id}_hours`}>
-					<span id={`${id}_hours:label`}>Hours</span>
-					<input
-						aria-labelledby={`${legendId} ${id}_hours:label`}
-						data-sb-input-hours={field}
-						{form}
-						id={`${id}_hours`}
-						min="0"
-						name={`${name}:hours`}
-						size="4"
-						step="1"
-						type="number"
-						value={hours}
-					/>
-				</label>
-			) : null
-		}
-
-		{
-			includeMinutes ? (
-				<label data-sb-label-minutes={field} for={`${id}_minutes`}>
-					<span id={`${id}_minutes:label`}>Minutes</span>
-					<input
-						aria-labelledby={`${legendId} ${id}_minutes:label`}
-						data-sb-input-minutes={field}
-						{form}
-						id={`${id}_minutes`}
-						max="60"
-						min="3"
-						name={`${name}:minutes`}
-						size="4"
-						step="5"
-						type="number"
-						value={minutes}
-					/>
-				</label>
-			) : null
-		}
-
-		{
-			includeSeconds ? (
-				<label data-sb-label-seconds={field} for={`${id}_seconds`}>
-					<span id={`${id}_seconds:label`}>Seconds</span>
-					<input
-						aria-labelledby={`${legendId} ${id}_seconds:label`}
-						data-sb-input-seconds={field}
-						{form}
-						id={`${id}_seconds`}
-						min="0"
-						name={`${name}:seconds`}
-						size="4"
-						step="1"
-						type="number"
-						value={seconds}
-					/>
-				</label>
-			) : null
-		}
-
-		{
-			includeMilliseconds ? (
-				<label data-sb-label-milliseconds={field} for={`${id}_milliseconds`}>
-					<span id={`${id}_milliseconds:label`}>Millis</span>
-					<input
-						aria-labelledby={`${legendId} ${id}_milliseconds:label`}
-						data-sb-input-milliseconds={field}
-						{form}
-						id={`${id}_milliseconds`}
-						min="0"
-						name={`${name}:milliseconds`}
-						size="4"
-						step="1"
-						type="number"
-						value={milliseconds}
-					/>
-				</label>
-			) : null
-		}
-
-		{
-			includeMicroseconds ? (
-				<label data-sb-label-microseconds={field} for={`${id}_microseconds`}>
-					<span id={`${id}_microseconds:label`}>Micros</span>
-					<input
-						aria-labelledby={`${legendId} ${id}_microseconds:label`}
-						data-sb-input-microseconds={field}
-						{form}
-						id={`${id}_microseconds`}
-						min="0"
-						name={`${name}:microseconds`}
-						size="4"
-						step="1"
-						type="number"
-						value={microseconds}
-					/>
-				</label>
-			) : null
-		}
-
-		{
-			includeNanoseconds ? (
-				<label data-sb-label-nanoseconds={field} for={`${id}_nanoseconds`}>
-					<span id={`${id}_nanoseconds:label`}>Nanos</span>
-					<input
-						aria-labelledby={`${legendId} ${id}_nanoseconds:label`}
-						data-sb-input-nanoseconds={field}
-						{form}
-						id={`${id}_nanoseconds`}
-						min="0"
-						name={`${name}:nanoseconds`}
-						size="4"
-						step="1"
-						type="number"
-						value={nanoseconds}
-					/>
-				</label>
-			) : null
-		}
-	</div>
-</fieldset>
+				))}
+			</>
+		)
+	}
+</FieldsetWrapper>

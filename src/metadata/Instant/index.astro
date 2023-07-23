@@ -1,66 +1,56 @@
 ---
-import Microdata from "../../Microdata/index.astro";
-import createClassList from "../../utilities/createClassList";
+import Microdata from "../../Microdata/index.astro"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset";
-import type { InstantProps as Props } from "../../types";
-import { DEFAULT_LOCALES } from "../../constants";
-import { Intl, Temporal } from "@js-temporal/polyfill";
+import type { InstantProps as Props } from "../../types"
+import { DEFAULT_LOCALES } from "../../constants"
+import { Intl, Temporal } from "@js-temporal/polyfill"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	["class:list"]: classList = [],
+	as = "time",
 	dataset,
 	instant,
 	itemprop,
 	itemtype,
 	locales = DEFAULT_LOCALES,
-	microdata = {},
+	microdata: micro,
 	options = {},
-	properties,
+	properties: props = {},
 	type,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const {
-	["class:list"]: microdataClassList = [],
-	dataset: microdataDataset = {},
-	...microdataAttrs
-} = microdata;
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-duration"])
+const microdata = mapAttributes(micro, ["sb-duration"])
 
 const value =
 	instant instanceof Temporal.ZonedDateTime
 		? instant.toInstant()
 		: typeof instant === "string"
 		? Temporal.Instant.from(instant)
-		: instant;
+		: instant
 
-const label = new Intl.DateTimeFormat(locales, options).format(value);
-
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
-const meta = {
+const label = new Intl.DateTimeFormat(locales, options).format(value)
+const properties = {
 	type,
 	...(itemprop ? { [itemprop]: value.toString() } : {}),
-	...properties,
-};
+	...props,
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
 	useMicrodata && itemtype ? (
 		<Microdata
-			{...microdataAttrs}
-			class:list={createClassList("sb-instant-metadata", microdataClassList)}
-			{...mapDataset(microdataDataset)}
+			{as}
+			{...elementAttrs}
+			{microdata}
 			data-sb-instant="microdata"
-			properties={meta}
+			{properties}
 		/>
 	) : null
 }
-<time
-	{...attrs}
-	class:list={createClassList("sb-instant", classList)}
-	{...mapDataset(dataset)}
-	data-sb-instant
-	datetime={value.toString()}
->
+<time {...elementAttrs} data-sb-instant datetime={value.toJSON()}>
 	{label}
 </time>

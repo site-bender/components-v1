@@ -465,8 +465,10 @@ export type AstroBuiltinAttributes = {
 	"is:raw"?: boolean
 }
 
-export type Attributes = AriaAttributes &
-	DOMAttributes & {
+export type Attributes =
+	& AriaAttributes
+	& DOMAttributes
+	& {
 		// Standard HTML Attributes
 		accesskey?: string | undefined | null
 		autocapitalize?: string | undefined | null
@@ -557,5 +559,24 @@ export type BaseAttributes = Override<
 		"dataset"?: Dataset
 	}
 >
+
+export type CcSvgProps = {
+	fill: string
+	license?: string | undefined | null
+	size: string
+	stroke: string
+}
+
+export type LicenseAttributes = {
+	byAttribution?: boolean | undefined | null
+	noDerivatives?: boolean | undefined | null
+	nonCommercial?: boolean | undefined | null
+	shareAlike?: boolean | undefined | null
+}
+
+export type LicenseData = {
+	href: string
+	license: string
+}
 
 export type HTMLAttributes = BaseAttributes & AstroBuiltinAttributes

@@ -2,26 +2,29 @@
 ---
 
 <script is:inline>
-  function handleChanges() {
-    document.querySelectorAll("form").forEach((form) => {
-      function updateOutput(event) {
-        const formData = new FormData(form);
-        const body = JSON.stringify(
-          [...formData].reduce(
-            (acc, [key, value]) => ({ ...acc, [key]: value }),
-            {}
-          )
-        );
-        const output = form.querySelector("output > code");
+function handleChanges() {
+	document.querySelectorAll("form").forEach((form) => {
+		function updateOutput(event) {
+			const formData = new FormData(form)
+			const body = JSON.stringify(
+				[...formData].reduce(
+					(acc, [key, value]) => ({ ...acc, [key]: value }),
+					{}
+				),
+				null,
+				2
+			)
+			console.log(body)
+			const output = form.querySelector("output > pre > code")
 
-        output.innerHTML = body;
-      }
+			output.innerHTML = body
+		}
 
-      form.addEventListener("change", updateOutput);
+		form.addEventListener("change", updateOutput)
 
-      updateOutput();
-    });
-  }
+		updateOutput()
+	})
+}
 
-  globalThis.addEventListener("DOMContentLoaded", handleChanges);
+globalThis.addEventListener("DOMContentLoaded", handleChanges)
 </script>

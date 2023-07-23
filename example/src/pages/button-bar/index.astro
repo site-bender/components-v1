@@ -1,115 +1,116 @@
 ---
-import ButtonBar from "../../../../src/form/ButtonBar/index.astro";
-import CodeBlock from "../../../../src/CodeBlock/index.astro";
-import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
-import Layout from "../_layouts/index.astro";
-import pageProperties from "./pageProperties";
-import * as typeTs from "./_assets/type.ts.md";
-import * as defaultExampleHtml from "./_assets/default-example.html.md";
-import * as defaultExampleAstro from "./_assets/default-example.astro.md";
-import * as withDataAttrsHtml from "./_assets/with-data-attrs.html.md";
-import * as withDataAttrsAstro from "./_assets/with-data-attrs.astro.md";
+import ButtonBar from "../../../../src/form/ButtonBar/index.astro"
+import Button from "../../../../src/form/elements/Button/index.astro"
+import CodeBlock from "../../../../src/CodeBlock/index.astro"
+import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw"
+import Layout from "../_layouts/index.astro"
+import pageProperties from "./pageProperties"
+import * as typeTs from "./_assets/type.ts.md"
+import * as defaultExampleHtml from "./_assets/default-example.html.md"
+import * as defaultExampleAstro from "./_assets/default-example.astro.md"
+import * as withDataAttrsHtml from "./_assets/with-data-attrs.html.md"
+import * as withDataAttrsAstro from "./_assets/with-data-attrs.astro.md"
 ---
 
 <Layout pageProperties={pageProperties}>
-  <Fragment slot="tail">
-    <script set:html={copyToClipboardJs} />
-  </Fragment>
-  <main>
-    <article>
-      <h2>ButtonBar</h2>
-      <ol class="page-contents">
-        <li><a href="#default">Default example</a></li>
-        <li>
-          <a href="#legend-and-dataset"
-            >With <code>legend</code> and <code>dataset</code> attributes</a
-          >
-        </li>
-      </ol>
-      <p>
-        The <code>ButtonBar</code> is used to add a button bar to forms. Rather than
-        a <code>section</code> or <code>div</code> element, it uses a <code
-          >fieldset</code
-        > element. A <code>legend</code> can be provided via either a <code
-          >legend</code
-        > prop for plain text, or via a "legend" <code>slot</code> for HTML elements.
-      </p>
-      <p>
-        Currently, the <code>ButtonBar</code> component differs only from the <code
-          >Fieldset</code
-        > component in its <code>aria-label</code> and CSS <code>class</code>,
-        but functionality may grow in future versions.
-      </p>
-      <section id="types">
-        <h3>Types</h3>
-        <CodeBlock
-          snippet={typeTs}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "TypeScript",
-          }}
-        />
-        <p>
-          The <code>dataset</code> prop takes a map of attribute names (minus the
-          <code>data-</code>) and values and maps them to <code
-            >data-&lt;name&gt;</code
-          > attributes. See below.
-        </p>
-      </section>
-      <section id="default">
-        <h3>Default example</h3>
-        <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
-        <CodeBlock
-          snippet={defaultExampleAstro}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "AstroJS",
-          }}
-        />
-        <p>Here is the actual component:</p>
-        <form class="sb-form example">
-          <ButtonBar>
-            <button type="button">Hi there!</button>
-            <button type="button">Bye there!</button>
-          </ButtonBar>
-        </form>
-        <p>And here is the HTML created:</p>
-        <CodeBlock
-          snippet={defaultExampleHtml}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "HTML",
-          }}
-        />
-      </section>
-      <section id="legend-and-dataset">
-        <h3>
-          Example with <code>legend</code> and <code>dataset</code> attributes
-        </h3>
-        <p></p>
-        <CodeBlock
-          snippet={withDataAttrsAstro}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "AstroJS",
-          }}
-        />
-        <p>Here is the actual component:</p>
-        <form class="sb-form example">
-          <ButtonBar dataset={{ default: "hi" }} legend="We be buttons!">
-            <button type="button">Hi there!</button>
-            <button type="button">Bye there!</button>
-          </ButtonBar>
-        </form>
-        <p>And here is the HTML created:</p>
-        <CodeBlock
-          snippet={withDataAttrsHtml}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "HTML",
-          }}
-        />
-      </section>
-    </article>
-  </main>
+	<Fragment slot="tail">
+		<script set:html={copyToClipboardJs} />
+	</Fragment>
+	<main>
+		<article>
+			<h2>ButtonBar</h2>
+			<ol class="page-contents">
+				<li><a href="#default">Default example</a></li>
+				<li>
+					<a href="#legend-and-dataset"
+						>With <code>legend</code> and <code>dataset</code> attributes</a
+					>
+				</li>
+			</ol>
+			<p>
+				The <code>ButtonBar</code> is used to add a button bar to forms. Rather than
+				a <code>section</code> or <code>div</code> element, it uses a <code
+					>fieldset</code
+				> element. A <code>legend</code> can be provided via either a <code
+					>legend</code
+				> prop for plain text, or via a "legend" <code>slot</code> for HTML elements.
+			</p>
+			<p>
+				Currently, the <code>ButtonBar</code> component differs only from the <code
+					>Fieldset</code
+				> component in its <code>aria-label</code> and CSS <code>class</code>,
+				but functionality may grow in future versions.
+			</p>
+			<section id="types">
+				<h3>Types</h3>
+				<CodeBlock
+					snippet={typeTs}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "TypeScript",
+					}}
+				/>
+				<p>
+					The <code>dataset</code> prop takes a map of attribute names (minus the
+					<code>data-</code>) and values and maps them to <code
+						>data-&lt;name&gt;</code
+					> attributes. See below.
+				</p>
+			</section>
+			<section id="default">
+				<h3>Default example</h3>
+				<p>This is the minimum required to use the <code>CodeBlock</code>:</p>
+				<CodeBlock
+					snippet={defaultExampleAstro}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "AstroJS",
+					}}
+				/>
+				<p>Here is the actual component:</p>
+				<form class="sb-form example">
+					<ButtonBar>
+						<button type="button">Hi there!</button>
+						<button type="button">Bye there!</button>
+					</ButtonBar>
+				</form>
+				<p>And here is the HTML created:</p>
+				<CodeBlock
+					snippet={defaultExampleHtml}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "HTML",
+					}}
+				/>
+			</section>
+			<section id="legend-and-dataset">
+				<h3>
+					Example with <code>legend</code> and <code>dataset</code> attributes
+				</h3>
+				<p></p>
+				<CodeBlock
+					snippet={withDataAttrsAstro}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "AstroJS",
+					}}
+				/>
+				<p>Here is the actual component:</p>
+				<form class="sb-form example">
+					<ButtonBar dataset={{ default: "hi" }} legend="We be buttons!">
+						<Button type="button">Hi there!</Button>
+						<Button type="button">Bye there!</Button>
+					</ButtonBar>
+				</form>
+				<p>And here is the HTML created:</p>
+				<CodeBlock
+					snippet={withDataAttrsHtml}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "HTML",
+					}}
+				/>
+			</section>
+		</article>
+	</main>
 </Layout>

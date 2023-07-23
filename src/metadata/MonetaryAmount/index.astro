@@ -1,40 +1,38 @@
 ---
-import "./index.css";
-import type { NumberStyle } from "../Number/types";
-import Microdata from "../../Microdata/index.astro";
-import Number from "../Number/index.astro";
+import "./index.css"
+import type { NumberStyle } from "../Number/types"
+import Microdata from "../../Microdata/index.astro"
+import Number from "../Number/index.astro"
 
-const style: NumberStyle = "currency";
+const style: NumberStyle = "currency"
 
-const {
-  options: opts = {},
-  properties = {},
-  ...attrs
-} = Astro.props;
+const { options: opts = {}, properties: props = {}, ...attrs } = Astro.props
 
 const options = {
 	currency: "USD",
 	currencyDisplay: "narrowSymbol",
 	style,
 	...opts,
-};
+}
 
-const meta = {
-  type: "MonetaryAmount",
-  ...properties,
+const properties = {
+	type: "MonetaryAmount",
+	...props,
 	currency: opts.currency,
 	value: (await Astro.slots.render("default")) || Astro.props.value,
-};
+}
 
-const amount = parseFloat(String(Astro.props.value || meta.value).replaceAll(/[^.0-9]/g, ""))
+const amount = parseFloat(
+	String(Astro.props.value || properties.value).replaceAll(/[^.0-9]/g, "")
+)
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata as="span" properties={meta}>
-      <Number
+	useMicrodata ? (
+		<Microdata as="span" {properties}>
+			<Number
 				{...attrs}
 				data-sb-currency={options.currency}
 				data-sb-amount={amount}
@@ -43,16 +41,16 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 			>
 				<slot />
 			</Number>
-    </Microdata>
-  ) : (
-      <Number
-				{...attrs}
-				data-sb-currency={options.currency}
-				data-sb-amount={amount}
-				{options}
-				type="MonetaryAmount"
-			>
-				<slot />
-			</Number>
-  )
+		</Microdata>
+	) : (
+		<Number
+			{...attrs}
+			data-sb-currency={options.currency}
+			data-sb-amount={amount}
+			{options}
+			type="MonetaryAmount"
+		>
+			<slot />
+		</Number>
+	)
 }

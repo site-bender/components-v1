@@ -1,12 +1,12 @@
 ---
-import Boolean from "../../../../src/metadata/Boolean/index.astro";
-import CodeBlock from "../../../../src/CodeBlock/index.astro";
-import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
-import Layout from "../_layouts/index.astro";
-import pageProperties from "./pageProperties";
-import * as typeTs from "./_assets/type.ts.md";
-import * as withMicrodataHtml from "./_assets/with-microdata.html.md";
-import * as withMicrodataAstro from "./_assets/with-microdata.astro.md";
+import Boolean from "../../../../src/metadata/Boolean/index.astro"
+import CodeBlock from "../../../../src/CodeBlock/index.astro"
+import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw"
+import Layout from "../_layouts/index.astro"
+import pageProperties from "./pageProperties"
+import * as typeTs from "./_assets/type.ts.md"
+import * as withMicrodataHtml from "./_assets/with-microdata.html.md"
+import * as withMicrodataAstro from "./_assets/with-microdata.astro.md"
 ---
 
 <Layout pageProperties={pageProperties}>
@@ -51,12 +51,13 @@ import * as withMicrodataAstro from "./_assets/with-microdata.astro.md";
 				/>
 				<p>Here is the actual component:</p>
 				<div class="example">
-					This is the
+					The
 					<Boolean
 						dataset={{
 							library: "home",
 						}}
 						itemprop="abridged"
+						itemtype="https://schema.org/Book"
 						labelFalse="unabridged"
 						labelTrue="abridged"
 						properties={{
@@ -72,13 +73,12 @@ import * as withMicrodataAstro from "./_assets/with-microdata.astro.md";
 								type: "Organization",
 								name: "W. W. Norton & Company",
 							},
+							type: "Book",
 						}}
-						type="Book"
+						useMicrodata
 						value={false}
-					>
-						Moby Dick
-					</Boolean>
-					version.
+					/>
+					version of Moby Dick.
 				</div>
 				<p>And here is the HTML created:</p>
 				<CodeBlock

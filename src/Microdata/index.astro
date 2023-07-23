@@ -1,20 +1,13 @@
 ---
 // Validate at https://validator.schema.org/
-import type { HTMLTag, Polymorphic } from "astro/types"
-
-export type Props<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
-  as: Tag
-  property?: string | null | undefined
-  properties: T
-  value?: string
-}
+import type { MetadataProps as Props } from "../types"
 
 const {
-  as: Element = "span",
-  property,
-  properties: props = {},
-  value,
-  ...attrs
+	as: Element = "span",
+	microdata = {},
+	property,
+	properties: props = {},
+	...attrs
 } = Astro.props
 
 const item = property ? { property } : {}
@@ -22,15 +15,15 @@ const { type, ...properties } = props
 const itemtype = `https://schema.org/${type}`
 ---
 
-<Element {...item} itemscope itemtype={itemtype} {...attrs}>
-  {
-    Object.entries(properties).map(([property, content]) =>
-      typeof content === "object" ? (
-        <Astro.self as="span" itemprop={property} properties={content} />
-      ) : (
-        <meta content={content as string} itemprop={property} />
-      )
-    )
-  }
-  <slot />
+<Element {...microdata} {...item} itemscope itemtype={itemtype} {...attrs}>
+	{
+		Object.entries(properties).map(([property, content]) =>
+			typeof content === "object" ? (
+				<Astro.self as="span" itemprop={property} properties={content} />
+			) : (
+				<meta content={content as string} itemprop={property} />
+			)
+		)
+	}
+	<slot />
 </Element>

@@ -1,15 +1,13 @@
 ---
-import createClassList from "../../../utilities/createClassList"
-import createSelectOptions from "../../../utilities/createSelectOptions"
+import Select from "../Select/index.astro"
 import generateShortId from "../../../utilities/generateShortId"
 import createWeekOptions from "../../../utilities/createWeekOptions"
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset"
 import type { WeekSelect as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
 	autocomplete,
-	["class:list"]: elementClassList = [],
 	dataset: elementDataset = {},
 	field = "month-select",
 	form,
@@ -24,34 +22,22 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset = {},
-	...wrapperAttrs
-} = wrapper
+const selectAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-select"])
 
-const options = createWeekOptions(weeks)
+const options = createWeekOptions(weeks as Array<number>)
 ---
 
-<span
-	{...wrapperAttrs}
-	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
->
-	<select
-		{...attrs}
-		{autocomplete}
-		aria-labelledby={labelledBy}
-		class:list={createClassList("sb-month-select", elementClassList)}
-		{...mapDataset(elementDataset)}
-		data-sb-select={field}
-		{id}
-		{form}
-		{name}
-		{required}
-	>
-		{includeNull ? <option /> : null}
-		<Fragment set:html={createSelectOptions(options, selected)} />
-	</select>
-</span>
+<Select
+	{...selectAttrs}
+	{autocomplete}
+	{field}
+	{form}
+	{id}
+	{includeNull}
+	{labelledBy}
+	{name}
+	{options}
+	{required}
+	{selected}
+	{wrapper}
+/>

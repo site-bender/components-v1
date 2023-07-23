@@ -1,15 +1,12 @@
 ---
-import createClassList from "../../../utilities/createClassList"
 import createSelectOptions from "../../../utilities/createSelectOptions"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset"
 import type { Select as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
 	autocomplete,
-	["class:list"]: elementClassList = [],
-	dataset: elementDataset = {},
 	field = "select",
 	form,
 	id = generateShortId(),
@@ -23,27 +20,17 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset = {},
-	...wrapperAttrs
-} = wrapper
+const selectAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-select"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-select-wrapper"])
 
 const opts = await Astro.slots.render("default")
 ---
 
-<span
-	{...wrapperAttrs}
-	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
->
+<span {...wrapperAttrs} data-sb-wrapper={field}>
 	<select
-		{...attrs}
+		{...selectAttrs}
 		{autocomplete}
 		aria-labelledby={labelledBy}
-		class:list={createClassList("sb-select", elementClassList)}
-		{...mapDataset(elementDataset)}
 		data-sb-select={field}
 		{form}
 		{id}
@@ -55,7 +42,9 @@ const opts = await Astro.slots.render("default")
 			opts ? (
 				opts
 			) : (
-				<Fragment set:html={createSelectOptions(options, selected)} />
+				<Fragment
+					set:html={createSelectOptions(options, selected as string | number)}
+				/>
 			)
 		}
 	</select>

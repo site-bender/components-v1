@@ -1,69 +1,115 @@
 ---
-import MemberField from "../../../../src/form/MemberField/index.astro";
-import CodeBlock from "../../../../src/CodeBlock/index.astro";
-import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw";
-import Layout from "../_layouts/index.astro";
-import pageProperties from "./pageProperties";
-import * as typeTs from "./_assets/type.ts.md";
-import * as defaultExampleHtml from "./_assets/default-example.html.md";
-import * as defaultExampleAstro from "./_assets/default-example.astro.md";
-import TestForm from "../_components/TestForm/index.astro";
-import TestFormScript from "../_scripts/TestFormScript.astro";
+import MemberField from "../../../../src/form/MemberField/index.astro"
+import CodeBlock from "../../../../src/CodeBlock/index.astro"
+import copyToClipboardJs from "../../../../src/CodeBlock/copyToClipboard.js?raw"
+import Layout from "../_layouts/index.astro"
+import pageProperties from "./pageProperties"
+import * as typeTs from "./_assets/type.ts.md"
+import * as defaultExampleHtml from "./_assets/default-example.html.md"
+import * as defaultExampleAstro from "./_assets/default-example.astro.md"
+import TestForm from "../_components/TestForm/index.astro"
+import TestFormScript from "../_scripts/TestFormScript.astro"
 ---
 
 <Layout pageProperties={pageProperties}>
-  <Fragment slot="tail">
-    <script set:html={copyToClipboardJs} />
-  </Fragment>
-  <main>
-    <article>
-      <h2>MemberField</h2>
-      <p>
-        The <code>MemberField</code> is used to . If the <code>id</code> attribute
-        is not provided, a unique Base58 ID is generated preceded by an underscore
-        (to prevent IDs beginning with a digit), for example
-        <code>_DMwzFyG3PvJGrMZstX74JS</code>.
-      </p>
-      <section>
-        <h3>Types</h3>
-        <CodeBlock
-          snippet={typeTs}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "TypeScript",
-          }}
-        />
-        <p>
-          The <code>dataset</code> prop takes a map of attribute names (minus the
-          <code>data-</code>) and values and maps them to <code
-            >data-&lt;name&gt;</code
-          > attributes. See below.
-        </p>
-      </section>
-      <section>
-        <h3>Default example</h3>
-        <p>This is the minimum required to use the <code>CodeBlock</code>:</p>
-        <CodeBlock
-          snippet={defaultExampleAstro}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "AstroJS",
-          }}
-        />
-        <p>Here is the actual component:</p>
-        <TestForm>
-          <MemberField name="isTrue" />
-        </TestForm>
-        <p>And here is the HTML created:</p>
-        <CodeBlock
-          snippet={defaultExampleHtml}
-          properties={{
-            codeSampleType: "code snippet",
-            programmingLanguage: "HTML",
-          }}
-        />
-      </section>
-    </article>
-    <TestFormScript />
-  </main>
+	<Fragment slot="tail">
+		<script set:html={copyToClipboardJs} />
+	</Fragment>
+	<main>
+		<article>
+			<h2>MemberField</h2>
+			<p>
+				The <code>MemberField</code> is used to . If the <code>id</code> attribute
+				is not provided, a unique Base58 ID is generated preceded by an underscore
+				(to prevent IDs beginning with a digit), for example
+				<code>_DMwzFyG3PvJGrMZstX74JS</code>.
+			</p>
+			<section>
+				<h3>Types</h3>
+				<CodeBlock
+					snippet={typeTs}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "TypeScript",
+					}}
+				/>
+				<p>
+					The <code>dataset</code> prop takes a map of attribute names (minus the
+					<code>data-</code>) and values and maps them to <code
+						>data-&lt;name&gt;</code
+					> attributes. See below.
+				</p>
+			</section>
+			<section>
+				<h3>Default example</h3>
+				<p>This is the minimum required to use the <code>CodeBlock</code>:</p>
+				<CodeBlock
+					snippet={defaultExampleAstro}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "AstroJS",
+					}}
+				/>
+				<p>Here is the actual component:</p>
+				<TestForm>
+					<MemberField
+						form="bob"
+						label="Member"
+						name="member"
+						options={[
+							{ label: "RED", value: "#f00" },
+							{ label: "GREEN", value: "#0f0" },
+							{ label: "BLUE", value: "#00f" },
+						]}
+					/>
+				</TestForm>
+				<p>And here is the HTML created:</p>
+				<CodeBlock
+					snippet={defaultExampleHtml}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "HTML",
+					}}
+				/>
+			</section>
+			<section>
+				<h3>Default example</h3>
+				<p>This is the minimum required to use the <code>CodeBlock</code>:</p>
+				<CodeBlock
+					snippet={defaultExampleAstro}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "AstroJS",
+					}}
+				/>
+				<p>Here is the actual component:</p>
+				<TestForm>
+					<MemberField
+						form="bob"
+						includeNull
+						label="Member"
+						name="member"
+						options={[
+							{ label: "RED", value: "#f00" },
+							{ label: "YELLOW", value: "#ff0" },
+							{ label: "GREEN", value: "#0ff" },
+							{ label: "CYAN", value: "#f00" },
+							{ label: "BLUE", value: "#00f" },
+							{ label: "MAGENTA", value: "#f0f" },
+							{ label: "BLACK", value: "#000" },
+						]}
+					/>
+				</TestForm>
+				<p>And here is the HTML created:</p>
+				<CodeBlock
+					snippet={defaultExampleHtml}
+					properties={{
+						codeSampleType: "code snippet",
+						programmingLanguage: "HTML",
+					}}
+				/>
+			</section>
+		</article>
+		<TestFormScript />
+	</main>
 </Layout>

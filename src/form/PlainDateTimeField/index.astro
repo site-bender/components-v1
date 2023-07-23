@@ -1,114 +1,95 @@
 ---
+import DateInput from "../elements/DateInput/index.astro"
+import FieldsetWrapper from "../FieldsetWrapper/index.astro"
 import generateShortId from "../../utilities/generateShortId"
 import mapAttributes from "../../utilities/mapAttributes"
-import DateInput from "../elements/DateInput/index.astro"
 import TimeInput from "../elements/TimeInput/index.astro"
-import type { PlainDateTimeField as Props } from "../../types/form"
 import type { HTMLAttributes } from "../../types/html"
+import type { PlainDateTimeField as Props } from "../../types/form"
 
 const {
-	["aria-live"]: live = "assertive",
 	date = "",
 	dateAttrs = {},
 	disabled,
 	field = "plain-date-time-field",
 	form,
-	group = {},
-	help = {},
+	group,
+	help,
 	id = generateShortId(),
 	label = "Date and time",
-	legend = {},
+	legend,
 	maxDate,
 	maxTime,
 	message,
 	minDate,
 	minTime,
 	name,
-	outer = {},
+	outer,
 	required,
 	stepDate,
 	stepTime,
-	tag = {},
+	tag,
 	time = "",
 	timeAttrs = {},
 } = Astro.props
 
 const dateAttributes = mapAttributes(dateAttrs as HTMLAttributes, [])
 const timeAttributes = mapAttributes(timeAttrs as HTMLAttributes, [])
-const groupAttrs = mapAttributes(group, ["sb-group"])
-const helpAttrs = mapAttributes(help, ["sb-help"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, [
-	"sb-field",
-	"sb-plain-date-time-field",
-])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
-
-const hlp = (await Astro.slots.render("message")) || message
-const helpId = `${id}_help`
-const lbl = (await Astro.slots.render("default")) || label
-const legendId = `${id}_legend`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
-<fieldset
-	{...outerAttrs}
-	data-sb-field={field}
-	{...req}
+<FieldsetWrapper
 	{disabled}
+	{field}
 	{form}
+	{group}
+	{help}
 	{id}
-	{name}
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
 >
-	<legend {...legendAttrs} data-sb-field-label={field} id={legendId}>
-		<span
-			{...tagAttrs}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</legend>
-	<div {...groupAttrs} data-sb-field-group={field}>
-		<label data-sb-label-date={field} for={`${id}_date`}>
-			<span id={`${id}_date:label`}>Date</span>
-			<DateInput
-				{...dateAttributes}
-				data-sb-input-date={field}
-				{form}
-				id={`${id}_date`}
-				labelledBy={`${legendId} ${id}_date:label`}
-				{...maxDate ? { max: maxDate } : {}}
-				{...minDate ? { min: minDate } : {}}
-				name={`${name}:date`}
-				{required}
-				{...stepDate ? { step: stepDate } : {}}
-				value={date}
-			/>
-		</label>
-		<label data-sb-label-time={field} for={`${id}_time`}>
-			<span id={`${id}_time:label`}>Time</span>
-			<TimeInput
-				{...timeAttributes}
-				data-sb-input-time={field}
-				{form}
-				id={`${id}_time`}
-				labelledBy={`${legendId} ${id}_time:label`}
-				{...maxTime ? { max: maxTime } : {}}
-				{...minTime ? { min: minTime } : {}}
-				name={`${name}:time`}
-				{required}
-				{...stepTime ? { step: stepTime } : {}}
-				value={time}
-			/>
-		</label>
-	</div>
-</fieldset>
+	{
+		(labelledBy: string) => (
+			<>
+				<label data-sb-label-date={field} for={`${id}_date`}>
+					<span id={`${id}_date:label`}>Date</span>
+					<DateInput
+						{...dateAttributes}
+						data-sb-input-date={field}
+						{disabled}
+						{form}
+						id={`${id}_date`}
+						labelledBy={`${labelledBy} ${id}_date:label`}
+						{...(maxDate ? { max: maxDate } : {})}
+						{...(minDate ? { min: minDate } : {})}
+						name={`${name}:date`}
+						{required}
+						{...(stepDate ? { step: stepDate } : {})}
+						value={date}
+					/>
+				</label>
+				<label data-sb-label-time={field} for={`${id}_time`}>
+					<span id={`${id}_time:label`}>Time</span>
+					<TimeInput
+						{...timeAttributes}
+						data-sb-input-time={field}
+						{disabled}
+						{form}
+						id={`${id}_time`}
+						labelledBy={`${labelledBy} ${id}_time:label`}
+						{...(maxTime ? { max: maxTime } : {})}
+						{...(minTime ? { min: minTime } : {})}
+						name={`${name}:time`}
+						{required}
+						{...(stepTime ? { step: stepTime } : {})}
+						value={time}
+					/>
+				</label>
+			</>
+		)
+	}
+</FieldsetWrapper>

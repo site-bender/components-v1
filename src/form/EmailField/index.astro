@@ -1,72 +1,57 @@
 ---
 import EmailInput from "../elements/EmailInput/index.astro"
+import FieldWrapper from "../FieldWrapper/index.astro"
 import generateShortId from "../../utilities/generateShortId"
-import mapAttributes from "../../utilities/mapAttributes"
 import type { EmailField as Props } from "../../types/form"
-import type { LinkAttributes } from "../../types"
 
 const {
-	["aria-live"]: live = "assertive",
 	autocorrect: _autocorrect,
 	datalist = {},
 	field = "email-field",
 	form,
-	help = {},
+	help,
 	id = generateShortId(),
 	label = "Email address",
-	legend = {},
-	list,
+	legend,
 	message,
+	list,
 	name,
-	outer = {},
+	outer,
 	placeholder: _placeholder,
 	required,
-	tag = {},
+	tag,
+	value,
 	wrapper = {},
-	...attrs
 } = Astro.props
-
-const emailAttrs = mapAttributes(attrs as LinkAttributes, [
-	"sb-email-field-input",
-])
-const helpAttrs = mapAttributes(help, ["sb-help"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, ["sb-field", "sb-email-field"])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
-
-const hlp = (await Astro.slots.render("message")) || message
-const helpId = `${id}_help`
-const lbl = (await Astro.slots.render("default")) || label
-const labelId = `${id}_label`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
-<div {...outerAttrs} data-sb-field={field} {...req}>
-	<label {...legendAttrs} data-sb-field-label={field} id={labelId}>
-		<span
-			{...tagAttrs}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</label>
-	<EmailInput
-		{...emailAttrs}
-		{datalist}
-		{field}
-		{form}
-		{id}
-		{name}
-		{required}
-		{wrapper}
-	/>
-</div>
+<FieldWrapper
+	{field}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => {
+			return (
+				<EmailInput
+					{datalist}
+					{field}
+					{form}
+					{id}
+					{labelledBy}
+					{list}
+					{name}
+					{required}
+					{value}
+					{wrapper}
+				/>
+			)
+		}
+	}
+</FieldWrapper>

@@ -1,17 +1,18 @@
+import type { Options } from "../../types/form"
 import TIME_ZONES from "./timezones"
 
 export default function getTimeZoneOptions(
-	countries: Array<string> = [],
-	selected?: string
-): string {
+	countries: Array<string> | null | undefined = [],
+): Options {
 	return TIME_ZONES.filter(({ countryCode }) =>
-		countries.length ? countries.includes(countryCode) : true
+		(countries as Array<string>).length
+			? (countries as Array<string>).includes(countryCode)
+			: true
 	)
 		.map(
-			({ timeZone }) =>
-				`<option value="${timeZone}"${
-					selected === timeZone ? " selected" : ""
-				}>${timeZone}</option>`
+			({ timeZone }) => ({
+				label: timeZone,
+				value: timeZone,
+			}),
 		)
-		.join("\n")
 }

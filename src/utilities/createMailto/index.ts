@@ -3,7 +3,7 @@ import compact from "../compact"
 
 export default function createMailto(
 	email: string,
-	options: MailtoOptions = {}
+	options: MailtoOptions = {},
 ): string {
 	const { bcc, cc, subject, replyTo } = options
 

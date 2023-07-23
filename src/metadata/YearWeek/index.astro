@@ -1,13 +1,11 @@
 ---
 import Microdata from "../../Microdata/index.astro"
-import createClassList from "../../utilities/createClassList"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset"
 import type { YearWeekProps as Props } from "../../types"
 import { Temporal } from "@js-temporal/polyfill"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	["class:list"]: classList = [],
 	dataset,
 	date,
 	microdata = {},
@@ -16,6 +14,8 @@ const {
 	year,
 	...attrs
 } = Astro.props
+
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-year-week"])
 
 const { weekOfYear, yearOfWeek } = date
 	? Temporal.PlainDate.from(date)
@@ -31,12 +31,6 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
-<time
-	{...attrs}
-	class:list={createClassList("sb-year-week", ...classList)}
-	{...mapDataset(dataset)}
-	data-sb-year-week
-	datetime={label}
->
+<time {...elementAttrs} data-sb-year-week datetime={label}>
 	{label}
 </time>

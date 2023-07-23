@@ -1,27 +1,19 @@
 ---
 import type { SubsetField as Props } from "../../types/form"
 import CheckboxGroup from "../elements/CheckboxGroup/index.astro"
-import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { HTMLAttributes } from "../../types/html"
 
-const {
-	form,
-	help: hlp = {},
-	id = generateShortId(),
-	label: lbl,
-	labelAttrs = {},
-	legend = {},
-	message,
-	name,
-	options = [],
-	selected,
-	...attrs
-} = Astro.props
+const { label: lbl, message, wrapper: wrapperAttrs, ...attrs } = Astro.props
+
+const cbAttrs = mapAttributes(attrs as HTMLAttributes, [])
+const wrapper = mapAttributes(wrapperAttrs, ["sb-subset-field"])
 
 const label = Astro.slots.render("default") || lbl
-const help = Astro.slots.render("message") || hlp
+const msg = Astro.slots.render("message") || message
 ---
 
-<CheckboxGroup {...attrs} {form} {message} {id} {name} {options} {selected}>
-	<Fragment {...legend} set:html={label} />
-	<Fragment {...help} slot="message" set:html={help} />
+<CheckboxGroup {...cbAttrs} {wrapper}>
+	<Fragment set:html={label} />
+	<Fragment slot="message" set:html={msg} />
 </CheckboxGroup>

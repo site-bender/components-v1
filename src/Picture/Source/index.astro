@@ -1,7 +1,10 @@
 ---
+import getSrcset from "./getSrcset"
 import type { ImageType } from "../../types"
 import { DEFAULT_IMAGE_TYPES } from "../../constants"
-import getSrcset from "./getSrcset"
+import type { HTMLAttributes } from "astro/types"
+
+type SourceAttributes = HTMLAttributes<"source">
 
 const {
 	createPath,
@@ -17,5 +20,5 @@ const sources = types.map((type: ImageType) => ({
 ---
 
 <>
-	{sources.map((attrs) => <source {...attrs} />)}
+	{sources.map((attrs: SourceAttributes) => <source {...attrs} />)}
 </>

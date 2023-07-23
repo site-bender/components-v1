@@ -1,16 +1,15 @@
-import type { Temporal } from "@js-temporal/polyfill"
-
 import type {
 	AnchorTarget,
-	BaseAttributes,
 	Dataset,
+	HTMLAttributes,
 	HTMLAttributes,
 	Override,
 } from "./html"
 
+import type { Temporal } from "@js-temporal/polyfill"
 
 export type GenericFormAttributes = Override<
-	BaseAttributes,
+	HTMLAttributes,
 	{
 		class?: never | undefined | null
 		dataset?: Dataset | undefined | null
@@ -25,7 +24,7 @@ export type GenericFormAttributes = Override<
 
 // Use instead of input[type=button|reset|submit]
 export type Button = Override<
-	BaseAttributes,
+	HTMLAttributes,
 	{
 		disabled?: boolean | string | undefined | null
 		form: string | undefined | null
@@ -46,22 +45,22 @@ export type Form = Override<
 	GenericFormAttributes,
 	{
 		"accept-charset"?: string | undefined | null
-		"action": string
-		"autocomplete"?: "off" | "on" | undefined | null
-		"autocorrect"?: never
-		"dataset"?: Dataset
-		"enctype"?: string | undefined | null
-		"form"?: never
-		"labelledBy": string | undefined | null
-		"method"?: "get" | "post" | undefined | null
-		"name"?: string | undefined | null
-		"novalidate"?: boolean | string | undefined | null
-		"target"?: AnchorTarget | undefined | null
+		action: string
+		autocomplete?: "off" | "on" | undefined | null
+		autocorrect?: never
+		dataset?: Dataset
+		enctype?: string | undefined | null
+		form?: never
+		labelledBy: string | undefined | null
+		method?: "get" | "post" | undefined | null
+		name?: string | undefined | null
+		novalidate?: boolean | string | undefined | null
+		target?: AnchorTarget | undefined | null
 	}
 >
 
 export type Fieldset = Override<
-	BaseAttributes,
+	HTMLAttributes,
 	{
 		disabled?: boolean | string | undefined | null
 		form: string
@@ -76,6 +75,7 @@ export type CheckboxInput = Override<
 		field?: string | undefined | null
 		groupLabelId?: string | undefined | null
 		label?: string | undefined | null
+		labelledBy: string | undefined | null
 		type?: never
 		value: string | number
 		wrapper?: Partial<HTMLAttributes> | undefined | null
@@ -83,45 +83,49 @@ export type CheckboxInput = Override<
 >
 
 export type Option = {
-	"checked"?: boolean | string | undefined | null
+	alpha2?: string | undefined | null
+	alpha3?: string | undefined | null
+	checked?: boolean | string | undefined | null
 	"class:list"?:
 	| Record<string, boolean>
 	| Record<string | number | symbol, unknown>
 	| Iterable<string>
 	| Iterable<unknown>
 	| string
-	"form"?: string | undefined | null
-	"groupLabelId"?: string | undefined | null
-	"id"?: string | undefined | null
-	"label": string
-	"name"?: string | undefined | null
-	"options": Options | undefined | null
-	"readonly"?: boolean | string | undefined | null
-	"required"?: boolean | string | undefined | null
-	"type"?: never
-	"value": string | number
-	"wrapper"?: Partial<Label>
+	form?: string | undefined | null
+	groupLabelId?: string | undefined | null
+	id?: string | undefined | null
+	label: string
+	name?: string | undefined | null
+	numeric?: string | number | undefined | null
+	options?: Options | undefined | null
+	readonly?: boolean | string | undefined | null
+	required?: boolean | string | undefined | null
+	type?: never
+	value?: string | number | undefined | null
+	wrapper?: Partial<Label>
 }
 
 export type Options = Array<Option>
 
 export type CheckboxGroup = Override<
-	HTMLAttributes,
+	GenericFormAttributes,
 	{
-		"aria-live"?: "off" | "assertive" | "polite" | undefined | null
-		"dataset"?: Dataset
-		"form": string
-		"group"?: Partial<HTMLAttributes> | undefined | null
-		"help"?: Partial<Help> | undefined | null
-		"label"?: string | undefined | null
-		"legend"?: Partial<Label> | undefined | null
-		"message"?: string | undefined | null
-		"name": string
-		"options": Options
-		"readonly"?: boolean | string | undefined | null
-		"required"?: boolean | string | undefined | null
-		"selected"?: string | number | Array<string | number> | undefined | null
-		"wrapper"?: Partial<Fieldset> | undefined | null
+		field?: string | undefined | null
+		form: string
+		group?: Partial<HTMLAttributes> | undefined | null
+		help?: Partial<Help> | undefined | null
+		label?: string | undefined | null
+		legend?: Partial<Label> | undefined | null
+		message?: string | undefined | null
+		name: string
+		options: Options
+		outer?: Partial<Fieldset> | undefined | null
+		readonly?: boolean | string | undefined | null
+		required?: boolean | string | undefined | null
+		selected?: string | number | Array<string | number> | undefined | null
+		tag?: Partial<HTMLAttributes> | undefined | null
+		wrapper?: Partial<Fieldset> | undefined | null
 	}
 >
 
@@ -129,7 +133,7 @@ export type ColorInput = Override<
 	GenericFormAttributes,
 	{
 		autocomplete?: "off" | "on" | undefined | null
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		labelledBy?: string | undefined | null
 		list?: Options | undefined | null
@@ -191,6 +195,7 @@ export type RadioInput = Override<
 		field?: string | undefined | null
 		groupLabelId?: string | undefined | null
 		label?: string | undefined | null
+		labelledBy?: string | undefined | null
 		type?: never
 		value: string | number
 		wrapper?: Partial<HTMLAttributes> | undefined | null
@@ -198,23 +203,24 @@ export type RadioInput = Override<
 >
 
 export type RadioGroup = Override<
-	HTMLAttributes,
+	GenericFormAttributes,
 	{
-		"aria-live"?: "off" | "assertive" | "polite" | undefined | null
-		"dataset"?: Dataset
-		"form": string
-		"group"?: Partial<HTMLAttributes> | undefined | null
-		"help"?: Partial<Help> | undefined | null
-		"includeNull"?: boolean | undefined | null
-		"label"?: string | undefined | null
-		"legend"?: Partial<Label> | undefined | null
-		"message"?: string | undefined | null
-		"name": string
-		"options": Options
-		"readonly"?: boolean | string | undefined | null
-		"required"?: boolean | string | undefined | null
-		"selected"?: string | number | Array<string | number> | undefined | null
-		"wrapper"?: Partial<Fieldset> | undefined | null
+		field?: string | undefined | null
+		form: string
+		group?: Partial<HTMLAttributes> | undefined | null
+		help?: Partial<Help> | undefined | null
+		includeNull?: boolean | undefined | null
+		label?: string | undefined | null
+		legend?: Partial<Label> | undefined | null
+		message?: string | undefined | null
+		name: string
+		options: Options
+		outer?: Partial<Fieldset> | undefined | null
+		readonly?: boolean | string | undefined | null
+		required?: boolean | string | undefined | null
+		selected?: string | number | Array<string | number> | undefined | null
+		tag?: Partial<HTMLAttributes> | undefined | null
+		wrapper?: Partial<Fieldset> | undefined | null
 	}
 >
 
@@ -231,11 +237,48 @@ export type RangeInput = Override<
 	}
 >
 
+export type DaySelect = Override<
+	GenericFormAttributes,
+	{
+		autocomplete?: "off" | "on" | undefined | null
+		days?: Array<number>
+		calendar?: string | undefined | null
+		field?: string | undefined | null
+		includeNull?: boolean | undefined | null
+		labelledBy?: string | undefined | null
+		locales?: string | Array<string> | undefined | null
+		readonly?: boolean | string | undefined | null
+		required?: boolean | string | undefined | null
+		selected?: string | undefined | null
+		type?: never
+		wrapper?: Partial<HTMLAttributes> | undefined | null
+	}
+>
+
+export type CallingCodeSelect = Override<
+	GenericFormAttributes,
+	{
+		autocomplete?: "off" | "on" | undefined | null
+		autocorrect?: never
+		exclude?: Array<string | number> | undefined | null
+		field?: string | undefined | null
+		include?: Array<string | number> | undefined | null
+		includeNull?: boolean | undefined | null
+		labelledBy?: string | undefined | null
+		readonly?: boolean | string | undefined | null
+		required?: boolean | string | undefined | null
+		options: Options
+		selected?: string | number | Array<string | number> | undefined | null
+		wrapper?: Partial<HTMLAttributes> | undefined | null
+	}
+>
+
 export type Select = Override<
 	GenericFormAttributes,
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
+		field?: string | undefined | null
 		includeNull?: boolean | undefined | null
 		labelledBy?: string | undefined | null
 		readonly?: boolean | string | undefined | null
@@ -252,6 +295,7 @@ export type Textarea = Override<
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
 		cols?: number | string | undefined | null
+		field?: string | undefined | null
 		labelledBy?: string | undefined | null
 		maxlength?: number | string | undefined | null
 		minlength?: number | string | undefined | null
@@ -321,7 +365,7 @@ export type MonthSelect = Override<
 		includeNull?: boolean | undefined | null
 		labelledBy?: string | undefined | null
 		locales?: string | Array<string> | undefined | null
-		months?: Array<number>
+		months?: Array<number> | undefined | null
 		readonly?: boolean | string | undefined | null
 		required?: boolean | string | undefined | null
 		selected?: string | undefined | null
@@ -330,13 +374,30 @@ export type MonthSelect = Override<
 	}
 >
 
+export type NumberSubfield = Override<
+	GenericFormAttributes,
+	{
+		field?: string | undefined | null
+		label?: string | undefined | null
+		labelledBy?: string | undefined | null
+		outer?: Partial<Label> | undefined | null
+		parent?: string | undefined | null
+		size?: number | string | undefined | null
+		step?: number | string | undefined | null
+		tag?: Partial<HTMLAttributes> | undefined | null
+		value?: number | string | undefined | null
+	}
+>
+
 export type TimeInput = Override<
 	GenericFormAttributes,
 	{
 		autocomplete?: "off" | "on" | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		includeNull?: boolean | undefined | null
 		labelledBy?: string | undefined | null
+		list?: Options | undefined | null
 		max?: string | undefined | null
 		min?: string | undefined | null
 		readonly?: boolean | string | undefined | null
@@ -353,7 +414,10 @@ export type TimeZoneSelect = Override<
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		countries?: Array<string> | undefined | null
+		datalist?: HTMLAttributes | undefined | null
+		exclude?: Array<string | number> | undefined | null
 		field?: string | undefined | null
+		include?: Array<string | number> | undefined | null
 		includeNull?: boolean | undefined | null
 		labelledBy?: string | undefined | null
 		readonly?: boolean | string | undefined | null
@@ -361,7 +425,7 @@ export type TimeZoneSelect = Override<
 		selected?: string | undefined | null
 		type?: never
 		useList?: boolean | undefined | null
-		wrapper?: BaseAttributes | undefined | null
+		wrapper?: HTMLAttributes | undefined | null
 	}
 >
 
@@ -381,7 +445,7 @@ export type WeekSelect = Override<
 		type?: never
 		value?: string | undefined | null
 		weeks?: Array<number> | undefined | null
-		wrapper?: BaseAttributes | undefined | null
+		wrapper?: HTMLAttributes | undefined | null
 	}
 >
 
@@ -390,9 +454,10 @@ export type YearInput = Override<
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		labelledBy?: string | undefined | null
+		list?: Options | undefined | null
 		maxlength?: number | string | undefined | null
 		minlength?: number | string | undefined | null
 		pattern?: string | undefined | null
@@ -402,7 +467,7 @@ export type YearInput = Override<
 		size?: number | string | undefined | null
 		type?: never
 		value?: string | undefined | null
-		wrapper?: BaseAttributes | undefined | null
+		wrapper?: HTMLAttributes | undefined | null
 		years?: Options | undefined | null
 	}
 >
@@ -442,7 +507,7 @@ export type TextInput = Override<
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never | undefined | null
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		labelledBy?: string | undefined | null
 		list?: Options | undefined | null
@@ -465,8 +530,9 @@ export type NumberInput = Override<
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
+		isInteger?: boolean | undefined | null
 		labelledBy?: string | undefined | null
 		list?: Options | undefined | null
 		max?: number | string | undefined | null
@@ -511,6 +577,26 @@ export type Label = Override<
 
 // Fields
 
+export type BooleanField = Override<
+	GenericFormAttributes,
+	{
+		autocorrect?: never
+		checked?: boolean | string | undefined | null
+		field?: string | undefined | null
+		help?: Partial<Help> | undefined | null
+		label?: string | undefined | null
+		legend?: Partial<Label> | undefined | null
+		message?: string | undefined | null
+		outer?: Partial<Fieldset> | undefined | null
+		readonly?: boolean | string | undefined | null
+		required?: boolean | string | undefined | null
+		tag?: Partial<HTMLAttributes> | undefined | null
+		type?: never
+		value: string | number
+		wrapper?: Partial<HTMLAttributes> | undefined | null
+	}
+>
+
 export type DurationField = Override<
 	GenericFormAttributes,
 	{
@@ -544,7 +630,7 @@ export type EmailField = Override<
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		help?: Partial<Help> | undefined | null
 		label?: string | undefined | null
@@ -565,6 +651,14 @@ export type EmailField = Override<
 		wrapper?: Partial<HTMLAttributes> | undefined | null
 	}
 >
+
+export type Honeypot = {
+	cLabel?: string | undefined | null
+	confirmation: string
+	form: string
+	password: string
+	pwLabel?: string | undefined | null
+}
 
 export type InstantField = Override<
 	GenericFormAttributes,
@@ -602,13 +696,36 @@ export type InstantField = Override<
 	}
 >
 
-// Old TODO: remove
-export type Field = unknown
+export type FieldWrapper = Override<HTMLAttributes, {
+	field?: string | undefined | null
+	group?: Partial<HTMLAttributes> | undefined | null
+	help?: Partial<Help> | undefined | null
+	label?: string | undefined | null
+	legend?: Partial<Label> | undefined | null
+	message?: string | undefined | null
+	outer?: Partial<Fieldset> | undefined | null
+	required?: boolean | string | undefined | null
+	tag?: Partial<HTMLAttributes> | undefined | null
+}>
+
+export type FieldsetWrapper = Override<
+	GenericFormAttributes,
+	{
+		field?: string | undefined | null
+		group?: Partial<HTMLAttributes> | undefined | null
+		help?: Partial<Help> | undefined | null
+		label?: string | undefined | null
+		legend?: Partial<Label> | undefined | null
+		message?: string | undefined | null
+		name?: string | undefined | null
+		outer?: Partial<Fieldset> | undefined | null
+		tag?: Partial<HTMLAttributes> | undefined | null
+	}
+>
 
 export type MemberField = Override<
-	HTMLAttributes,
+	GenericFormAttributes,
 	{
-		dataset?: Dataset
 		elementAttributes?: RadioGroup | Select
 		field?: string | undefined | null
 		form: string
@@ -636,7 +753,7 @@ export type NumberField = Override<
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		help?: Partial<Help> | undefined | null
 		list?: Options | undefined | null
@@ -678,7 +795,7 @@ export type PlainDateField = Override<
 	GenericFormAttributes,
 	{
 		autocomplete?: "off" | "on" | undefined | null
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		help?: Partial<HTMLAttributes> | undefined | null
 		label?: string | undefined | null
@@ -755,7 +872,7 @@ export type PlainTimeField = Override<
 	GenericFormAttributes,
 	{
 		autocomplete?: "off" | "on" | undefined | null
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		help?: Partial<HTMLAttributes> | undefined | null
 		label?: string | undefined | null
@@ -768,6 +885,7 @@ export type PlainTimeField = Override<
 		readonly?: boolean | string | undefined | null
 		required?: boolean | string | undefined | null
 		step?: number | undefined | null
+		tag?: Partial<HTMLAttributes> | undefined | null
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
@@ -778,6 +896,8 @@ export type PlainYearMonthField = Override<
 	GenericFormAttributes,
 	{
 		calendar?: string | undefined | null
+		era?: string | undefined | null
+		eraYear?: string | undefined | null
 		field?: string | undefined | null
 		format?: MonthFormat | undefined | null
 		group?: Partial<HTMLAttributes> | undefined | null
@@ -802,14 +922,39 @@ export type PlainYearMonthField = Override<
 	}
 >
 
-export type ZonesDateTimeField = Override<
+export type YearWeekField = Override<
+	GenericFormAttributes,
+	{
+		field?: string | undefined | null
+		group?: Partial<HTMLAttributes> | undefined | null
+		help?: Partial<HTMLAttributes> | undefined | null
+		includeNull?: boolean | string | undefined | null
+		label?: string | undefined | null
+		legend?: Partial<Label> | undefined | null
+		message?: string | undefined | null
+		outer?: Partial<Fieldset> | undefined | null
+		readonly?: boolean | string | undefined | null
+		required?: boolean | string | undefined | null
+		tag?: Partial<HTMLAttributes> | undefined | null
+		type?: never
+		value?: string | undefined | null
+		week?: number | string | undefined | null
+		weekAttrs?: Partial<DateInput> | undefined | null
+		weeks?: Array<number | string> | undefined | null
+		year?: string | undefined | null
+		yearAttrs?: Partial<TimeInput> | undefined | null
+		years?: Array<number | string> | undefined | null
+	}
+>
+
+export type ZonedDateTimeField = Override<
 	GenericFormAttributes,
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
 		countries?: Array<string> | undefined | null
 		date?: string | undefined | null
-		dateAttrs?: Partial<DateInput> | undefined | null
+		dateAttrs?: Partial<HTMLAttributes> | undefined | null
 		field?: string | undefined | null
 		group?: Partial<HTMLAttributes> | undefined | null
 		help?: Partial<HTMLAttributes> | undefined | null
@@ -828,8 +973,9 @@ export type ZonesDateTimeField = Override<
 		stepTime?: number | undefined | null
 		tag?: Partial<HTMLAttributes> | undefined | null
 		time?: string | undefined | null
-		timeAttrs?: Partial<TimeInput> | undefined | null
+		timeAttrs?: Partial<HTMLAttributes> | undefined | null
 		timeZone?: string | undefined | null
+		timeZoneAttrs?: Partial<HTMLAttributes> | undefined | null
 		type?: never
 		useList?: boolean | undefined | null
 	}
@@ -841,7 +987,7 @@ export type StringField = Override<
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
 		cols?: number | string | undefined | null
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		dirname?: string | undefined | null
 		field?: string | undefined | null
 		help?: Partial<HTMLAttributes> | undefined | null
@@ -872,6 +1018,7 @@ export type TimeZoneField = Override<
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
 		countries?: Array<string> | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		help?: Partial<HTMLAttributes> | undefined | null
 		includeNull?: boolean | undefined | null
@@ -890,19 +1037,22 @@ export type TimeZoneField = Override<
 >
 
 export type SubsetField = Override<
-	HTMLAttributes,
+	GenericFormAttributes,
 	{
-		dataset?: Dataset
+		field?: string | undefined | null
 		form: string
-		help?: string | undefined | null
-		helpAttributes?: Partial<Help> | undefined
-		id?: string | undefined | null
-		label?: string
-		labelAttributes?: Partial<Label>
+		group?: Partial<HTMLAttributes> | undefined | null
+		help?: Partial<Help> | undefined | null
+		label?: string | undefined | null
+		legend?: Partial<Label> | undefined | null
+		message?: string | undefined | null
 		name: string
 		options: Options
-		required?: boolean
-		selected?: Array<string | number> | undefined | null
+		readonly?: boolean | string | undefined | null
+		required?: boolean | string | undefined | null
+		selected?: string | number | Array<string | number> | undefined | null
+		tag?: Partial<HTMLAttributes> | undefined | null
+		wrapper?: Partial<Fieldset> | undefined | null
 	}
 >
 
@@ -911,11 +1061,20 @@ export type TelField = Override<
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
-		datalist?: BaseAttributes | undefined | null
+		code?: Partial<CallingCodeSelect> | undefined | null
+		codeWrapper?: Partial<HTMLAttributes> | undefined | null
+		datalist?: HTMLAttributes | undefined | null
+		exclude?: Array<string | number> | undefined | null
 		field?: string | undefined | null
+		group?: Partial<HTMLAttributes> | undefined | null
 		help?: Partial<Help> | undefined | null
+		include?: Array<string | number> | undefined | null
+		includeCode?: boolean | undefined | null
+		includeNull?: boolean | undefined | null
 		label?: string | undefined | null
 		legend?: Partial<Label> | undefined | null
+		line?: Partial<TextInput> | undefined | null
+		lineWrapper?: Partial<HTMLAttributes> | undefined | null
 		list?: Options | undefined | null
 		maxlength?: number | string | undefined | null
 		message?: string | undefined | null
@@ -929,7 +1088,6 @@ export type TelField = Override<
 		tag?: Partial<HTMLAttributes> | undefined | null
 		type?: never
 		value?: string | undefined | null
-		wrapper?: Partial<HTMLAttributes> | undefined | null
 	}
 >
 
@@ -938,7 +1096,7 @@ export type UrlField = Override<
 	{
 		autocomplete?: "off" | "on" | undefined | null
 		autocorrect?: never
-		datalist?: BaseAttributes | undefined | null
+		datalist?: HTMLAttributes | undefined | null
 		field?: string | undefined | null
 		help?: Partial<Help> | undefined | null
 		label?: string | undefined | null

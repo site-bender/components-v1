@@ -1,14 +1,12 @@
 ---
 import Microdata from "../../Microdata/index.astro"
-import createClassList from "../../utilities/createClassList"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset"
 import type { PlainTimeProps as Props } from "../../types"
 import { DEFAULT_TIME_OPTIONS, DEFAULT_LOCALES } from "../../constants"
 import { Intl, Temporal } from "@js-temporal/polyfill"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	["class:list"]: classList = [],
 	dataset,
 	hour = 0,
 	locales = DEFAULT_LOCALES,
@@ -24,6 +22,8 @@ const {
 	itemtype,
 	...attrs
 } = Astro.props
+
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-plain-time"])
 
 const val = plainTime || {
 	hour: Number(hour),
@@ -48,12 +48,6 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
-<time
-	{...attrs}
-	class:list={createClassList("sb-plain-time", ...classList)}
-	{...mapDataset(dataset)}
-	data-sb-plain-time
-	datetime={value.toString()}
->
+<time {...elementAttrs} data-sb-plain-time datetime={value.toJSON()}>
 	{label}
 </time>

@@ -5,7 +5,7 @@ export default function getSrcset(
 	createPath = makePath,
 	filename: string,
 	type: ImageType,
-	sizes: Array<string>
+	sizes: Array<string>,
 ): string {
 	return sizes
 		.map((size: string, index: number) =>

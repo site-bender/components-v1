@@ -6,7 +6,7 @@ import type { FigureProps as Props } from "../types"
 import "./index.css"
 
 const {
-	caption,
+	caption: cap,
 	figcaption = {},
 	id = generateShortId(),
 	index,
@@ -19,7 +19,7 @@ const figcaptionAttrs = mapAttributes(figcaption, ["sb-figure-figcaption"])
 const wrapperAttrs = mapAttributes(attrs, ["sb-figure"])
 
 const indexed = isIndexed ? { class: "indexed" } : {}
-const cap = caption ? caption : await Astro.slots.render("caption")
+const caption = (await Astro.slots.render("caption")) || cap
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
@@ -35,13 +35,13 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 				{properties}
 			>
 				{
-					cap && (
+					caption && (
 						<figcaption
 							{...figcaptionAttrs}
 							data-sb-figure="figcaption"
 						>
 							{index ? `Figure ${index}: ` : ""}
-							<Fragment set:html={cap} />
+							<Fragment set:html={caption} />
 						</figcaption>
 					)
 				}
@@ -55,13 +55,13 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 				{...indexed}
 			>
 				{
-					cap && (
+					caption && (
 						<figcaption
 							{...figcaptionAttrs}
 							data-sb-figure="figcaption"
 						>
 							{index ? `Figure ${index}: ` : ""}
-							<Fragment set:html={cap} />
+							<Fragment set:html={caption} />
 						</figcaption>
 					)
 				}

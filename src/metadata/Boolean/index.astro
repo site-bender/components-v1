@@ -1,57 +1,51 @@
 ---
-import createClassList from "../../utilities/createClassList";
+import createClassList from "../../utilities/createClassList"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset";
-import Microdata from "../../Microdata/index.astro";
-import type { BooleanProps as Props } from "../../types";
+import mapDataset from "../../utilities/mapDataset"
+import Microdata from "../../Microdata/index.astro"
+import type { BooleanProps as Props } from "../../types"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
 	as = "span",
-	["class:list"]: classList = [],
-	dataset,
 	itemprop,
 	itemtype,
 	labelFalse = "",
 	labelTrue,
-	microdata = {},
-	properties = {},
+	microdata: micro,
+	properties: props = {},
 	value,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const {
-	["class:list"]: microdataClassList = [],
-	dataset: microdataDataset = {},
-	...microdataAttrs
-} = microdata;
+console.log("boolean", Astro.props)
 
-const label = value ? labelTrue : labelFalse;
-const Element = as;
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-boolean"])
+const microdata = mapAttributes(micro as HTMLAttributes, ["sb-boolean"])
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
-const meta = {
+const Element = as
+
+const label = value ? labelTrue : labelFalse
+const properties = {
 	type: itemtype,
 	...(itemprop ? { [itemprop]: value ? "True" : "False" } : {}),
-	...properties,
-};
+	...props,
+}
+
+console.log("properties", properties)
+
+const useMicrodata = true // Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
 	label ? (
-		<Element
-			{...attrs}
-			class:list={createClassList("sb-boolean", classList)}
-			{...mapDataset(dataset)}
-			data-sb-boolean
-		>
+		<Element {...elementAttrs} data-sb-boolean>
 			{useMicrodata && itemtype ? (
 				<Microdata
-					as="span"
-					{...microdataAttrs}
-					class:list={createClassList("sb-boolean", classList)}
-					{...mapDataset(microdataDataset)}
+					{as}
+					{microdata}
 					data-sb-boolean="microdata"
-					properties={meta}
+					{properties}
 				/>
 			) : null}
 			{label}

@@ -1,113 +1,71 @@
 ---
 import CheckboxInput from "../CheckboxInput/index.astro"
-import createClassList from "../../../utilities/createClassList"
+import FieldsetWrapper from "../../FieldsetWrapper/index.astro"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset"
 import type { CheckboxGroup as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
-	["aria-live"]: live = "assertive",
+	disabled,
+	field = "checkbox-group",
 	form,
-	group: {
-		["class:list"]: groupClassList = [],
-		dataset: groupDataset = {},
-		...groupAttrs
-	} = {},
-	help: {
-		["class:list"]: helpClassList = [],
-		dataset: helpDataset = {},
-		...helpAttrs
-	} = {},
+	group,
+	help,
 	id = generateShortId(),
 	label,
-	legend: {
-		["class:list"]: legendClassList = [],
-		dataset: legendDataset = {},
-		...legendAttrs
-	} = {},
+	legend,
 	message,
 	name,
 	options,
+	outer,
 	required,
 	selected = [],
-	wrapper: {
-		["class:list"]: wrapperClassList = [],
-		dataset: wrapperDataset = {},
-		...wrapperAttrs
-	} = {},
+	tag,
+	wrapper,
 } = Astro.props
-
-const hlp = message || (await Astro.slots.render("message"))
-const helpId = `${id}_help`
-const lbl = label || (await Astro.slots.render("default"))
-const legendId = `${id}_legend`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
-<fieldset
-	{...wrapperAttrs}
-	class:list={createClassList("sb-checkbox-group", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-checkbox-group
-	{...req}
+<FieldsetWrapper
+	{disabled}
+	{field}
 	{form}
+	{group}
+	{help}
 	{id}
-	{name}
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
 >
-	<legend
-		{...legendAttrs}
-		class:list={createClassList("sb-checkbox-group-legend", legendClassList)}
-		{...mapDataset(legendDataset)}
-		data-sb-checkbox-group="legend"
-		id={legendId}
-		{...opt}
-	>
-		<span
-			{...groupAttrs}
-			class="sb-label-content"
-			data-sb-checkbox-group="label-content"
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			class:list={createClassList(
-				"sb-help",
-				"sb-checkbox-group-help",
-				helpClassList
-			)}
-			{...mapDataset(helpDataset)}
-			data-sb-help
-			data-sb-checkbox-group="help"
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</legend>
-	<div
-		class:list={createClassList("sb-group", groupClassList)}
-		{...mapDataset(groupDataset)}
-		data-sb-group
-		data-sb-checbox-group="group"
-	>
-		{
-			options.map(({ form: f, label, name: n, value, ...attrs }) => {
+	{
+		(labelledBy: string) => {
+			return options.map(({ form: f, label, name: n, value, ...attrs }) => {
+				const inputAttrs = mapAttributes(attrs as HTMLAttributes, [
+					"sb-checkbox-input",
+				])
+
 				return (
 					<CheckboxInput
-						{...attrs}
-						checked={selected?.includes(value)}
+						{...inputAttrs}
+						checked={Array.from([selected || []])
+							.flatMap((item) => item)
+							.includes(value || "")}
+						{disabled}
+						{field}
 						{form}
-						groupLabelId={legendId}
-						name={name || n}
-						{value}
-						wrapper={{ dataset: { "sb-checkbox-group": "checkbox-input" } }}
+						{labelledBy}
+						name={(name || n) as string}
+						value={value as string}
+						{wrapper}
 					>
 						<Fragment set:html={label} />
 					</CheckboxInput>
 				)
 			})
 		}
-	</div>
-</fieldset>
+	}
+</FieldsetWrapper>

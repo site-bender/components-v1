@@ -1,11 +1,11 @@
+import type { Dataset, HTMLAttributes } from "../../types/html"
 import createClassList from "../createClassList"
 import mapDataset from "../mapDataset"
-import type { Dataset, HTMLAttributes } from "../../types/html"
 
 export default function mapAttributes(
 	data: Partial<HTMLAttributes> | null = {},
 	classes: Array<string> = [],
-	attrs?: HTMLAttributes
+	attrs?: HTMLAttributes,
 ) {
 	const {
 		["class:list"]: classList = [],

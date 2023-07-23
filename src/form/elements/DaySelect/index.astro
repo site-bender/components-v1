@@ -1,53 +1,47 @@
 ---
-import createSelectOptions from "../../../utilities/createSelectOptions"
+import Select from "../Select/index.astro"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
 import type { DaySelect as Props } from "../../../types/form"
-import { DEFAULT_LOCALES } from "../../../constants"
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
 	autocomplete,
 	days,
-	calendar = "iso8601",
 	field = "day-select",
-	filter,
 	form,
-	format = "long",
 	id = generateShortId(),
 	includeNull,
 	labelledBy,
-	locales = DEFAULT_LOCALES,
 	name = "day",
 	required,
 	selected,
-	wrapper = {},
+	wrapper,
 	...attrs
 } = Astro.props
 
-const selectAttrs = mapAttributes(attrs, ["sb-day-select"])
-const wrapperAttrs = mapAttributes(wrapper, ["sb-input-wrapper"])
+const selectAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-select"])
 
-const dayOptions = new Array(31)
+const options = new Array(31)
 	.fill(0)
 	.map((_, i) => ({
-		label: i + 1,
+		label: String(i + 1),
 		value: String(i + 1).padStart(2, "0"),
 	}))
-	.filter(({ label }) => !days || days.includes(label))
+	.filter(({ label }) => !days || days.includes(Number(label)))
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
-	<select
-		{...selectAttrs}
-		{autocomplete}
-		aria-labelledby={labelledBy}
-		data-sb-select={field}
-		{id}
-		{form}
-		{name}
-		{required}
-	>
-		{includeNull ? <option /> : null}
-		<Fragment set:html={createSelectOptions(dayOptions, selected)} />
-	</select>
-</span>
+<Select
+	{...selectAttrs}
+	{autocomplete}
+	{field}
+	{form}
+	{id}
+	{includeNull}
+	{labelledBy}
+	{name}
+	{options}
+	{required}
+	{selected}
+	{wrapper}
+/>

@@ -1,82 +1,67 @@
 ---
 import Textarea from "../elements/Textarea/index.astro"
 import TextInput from "../elements/TextInput/index.astro"
+import FieldWrapper from "../FieldWrapper/index.astro"
 import generateShortId from "../../utilities/generateShortId"
-import mapAttributes from "../../utilities/mapAttributes"
 import type { StringField as Props } from "../../types/form"
 
 const {
-	["aria-live"]: live = "assertive",
 	autocorrect: _autocorrect,
 	datalist = {},
 	field = "string-field",
 	form,
-	help = {},
+	help,
 	id = generateShortId(),
 	label = "Text",
-	legend = {},
+	legend,
 	list,
 	message,
 	name,
-	outer = {},
+	outer,
 	placeholder: _placeholder,
 	required,
 	rows,
-	tag = {},
-	value,
+	tag,
+	value: val,
 	wrapper = {},
 } = Astro.props
 
-const helpAttrs = mapAttributes(help, ["sb-help"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, ["sb-field", "sb-string-field"])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
-
-const hlp = (await Astro.slots.render("message")) || message
-const helpId = `${id}_help`
-const lbl = (await Astro.slots.render("default")) || label
-const labelId = `${id}_label`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
-const text =
-	(Array.isArray(value) && value.join("\n")) ||
-	value ||
+const value =
+	(Array.isArray(val) && val.join("\n")) ||
+	val ||
 	(await Astro.slots.render("default"))
 ---
 
-<div {...outerAttrs} data-sb-field={field} {...req}>
-	<label {...legendAttrs} data-sb-field-label={field} id={labelId}>
-		<span
-			{...tagAttrs}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</label>
+<FieldWrapper
+	{field}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	{outer}
+	{required}
+	{tag}
+>
 	{
-		parseInt(rows as string) > 0 ? (
-			<Textarea {form} {id} {name} {required} {rows} {wrapper}>
-				<Fragment set:html={text} />
-			</Textarea>
-		) : (
-			<TextInput
-				{datalist}
-				{list}
-				{form}
-				{id}
-				{name}
-				{required}
-				value={text}
-				{wrapper}
-			/>
-		)
+		(labelledBy: string) => {
+			return parseInt(rows as string) > 0 ? (
+				<Textarea {form} {id} {labelledBy} {name} {required} {rows} {wrapper}>
+					<Fragment set:html={value} />
+				</Textarea>
+			) : (
+				<TextInput
+					{datalist}
+					{form}
+					{id}
+					{labelledBy}
+					{list}
+					{name}
+					{required}
+					{value}
+					{wrapper}
+				/>
+			)
+		}
 	}
-</div>
+</FieldWrapper>

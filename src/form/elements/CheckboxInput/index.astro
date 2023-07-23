@@ -1,18 +1,17 @@
 ---
-import createClassList from "../../../utilities/createClassList"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset"
 import type { CheckboxInput as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
 	checked,
-	["class:list"]: elementClassList = [],
-	dataset: elementDataset = {},
+	disabled,
 	field = "checkbox-input",
 	form,
 	groupLabelId,
 	id = generateShortId(),
+	labelledBy,
 	label,
 	name,
 	required,
@@ -22,31 +21,20 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset = {},
-	...wrapperAttrs
-} = wrapper
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-checkbox-input"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-checkbox-input-wrapper"])
 
 const labelId = `${id}_label`
-const labelledBy = `${groupLabelId} ${labelId}`
 const lbl = (await Astro.slots.render("default")) || label
 ---
 
-<label
-	{...wrapperAttrs}
-	class:list={createClassList("sb-checkbox-label", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
-	id={labelId}
->
+<label {...wrapperAttrs} data-sb-wrapper={field} {disabled} id={labelId}>
 	<input
-		{...attrs}
-		aria-labelledby={labelledBy}
+		{...inputAttrs}
+		aria-labelledby={`${labelledBy} ${labelId}`}
 		{checked}
-		class:list={createClassList("sb-checkbox-input", elementClassList)}
-		{...mapDataset(elementDataset)}
 		data-sb-input={field}
+		{disabled}
 		{form}
 		{id}
 		{name}

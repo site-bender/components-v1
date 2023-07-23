@@ -1,23 +1,11 @@
-import type { HTMLAttributes } from "astro/types"
-
-type Props = HTMLAttributes<"p"> & {
-	byAttribution?: boolean
-	noDerivatives?: boolean
-	nonCommercial?: boolean
-	shareAlike?: boolean
-}
-
-type LicenseData = {
-	href: string
-	license: string
-}
+import type { LicenseAttributes, LicenseData } from "../../types/html"
 
 export default function getLicense({
 	byAttribution,
 	noDerivatives,
 	nonCommercial,
 	shareAlike,
-}: Props): LicenseData {
+}: LicenseAttributes): LicenseData {
 	if (!byAttribution) {
 		return {
 			href: "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -31,11 +19,11 @@ export default function getLicense({
 			saLicense: "-NoDerivatives",
 		}
 		: shareAlike
-			? {
-				saHref: "-sa",
-				saLicense: "-ShareAlike",
-			}
-			: { saHref: "", saLicense: "" }
+		? {
+			saHref: "-sa",
+			saLicense: "-ShareAlike",
+		}
+		: { saHref: "", saLicense: "" }
 
 	const { ncHref, ncLicense } = nonCommercial
 		? {

@@ -1,16 +1,14 @@
 ---
-import createClassList from "../../../utilities/createClassList"
 import createListOptions from "../../../utilities/createListOptions"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset"
 import type { NumberInput as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
 	autocomplete,
-	["class:list"]: elementClassList = [],
+	autocorrect: _autocorrect,
 	datalist = {},
-	dataset: elementDataset = {},
 	field = "number-input",
 	form,
 	id = generateShortId(),
@@ -27,35 +25,20 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: datalistClassList = [],
-	dataset: datalistDataset = {},
-	...datalistAttrs
-} = datalist
-
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset = {},
-	...wrapperAttrs
-} = wrapper
+const datalistAttrs = mapAttributes(datalist, ["sb-datalist"])
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-number-input"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-number-input-wrapper"])
 
 const listId = `${id}_list`
 const lst = list ? { list: listId } : {}
 const step = isInteger ? parseInt(String(stp), 10) || 1 : stp
 ---
 
-<span
-	{...wrapperAttrs}
-	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
->
+<span {...wrapperAttrs} data-sb-wrapper={field}>
 	<input
-		{...attrs}
+		{...inputAttrs}
 		aria-labelledby={labelledBy}
 		{autocomplete}
-		class:list={createClassList("sb-number-input", elementClassList)}
-		{...mapDataset(elementDataset)}
 		data-sb-input={field}
 		{form}
 		{id}
@@ -68,13 +51,7 @@ const step = isInteger ? parseInt(String(stp), 10) || 1 : stp
 	/>
 	{
 		list ? (
-			<datalist
-				{...datalistAttrs}
-				class:list={createClassList("sb-datalist-number", datalistClassList)}
-				{...mapDataset(datalistDataset)}
-				data-sb-datalist={field}
-				id={listId}
-			>
+			<datalist {...datalistAttrs} data-sb-datalist={field} id={listId}>
 				<Fragment set:html={createListOptions(list)} />
 			</datalist>
 		) : null

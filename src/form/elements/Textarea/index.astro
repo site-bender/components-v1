@@ -1,15 +1,12 @@
 ---
-import createClassList from "../../../utilities/createClassList"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset"
 import type { Textarea as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
 	autocomplete,
 	autocorrect: _autocorrect,
-	["class:list"]: elementClassList = [],
-	dataset: elementDataset = {},
 	field = "textarea",
 	form,
 	id = generateShortId(),
@@ -21,27 +18,17 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset = {},
-	...wrapperAttrs
-} = wrapper
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-textarea"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-textarea-wrapper"])
 
 const content = value || (await Astro.slots.render("default"))?.trim() || ""
 ---
 
-<span
-	{...wrapperAttrs}
-	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
->
+<span {...wrapperAttrs} data-sb-wrapper={field}>
 	<textarea
-		{...attrs}
+		{...inputAttrs}
 		aria-labelledby={labelledBy}
 		{autocomplete}
-		class:list={createClassList("sb-textarea", elementClassList)}
-		{...mapDataset(elementDataset)}
 		data-sb-textarea={field}
 		{form}
 		{id}

@@ -1,19 +1,17 @@
 ---
-import createClassList from "../../../../utilities/createClassList"
 import generateShortId from "../../../../utilities/generateShortId"
-import mapDataset from "../../../../utilities/mapDataset"
-import type { BaseAttributes } from "../../../../types/html"
+import mapAttributes from "../../../../utilities/mapAttributes"
+import type { HTMLAttributes } from "../../../../types/html"
 import type { RadioInput as Props } from "../../../../types/form"
 
 const {
 	checked,
-	["class:list"]: elementClassList = [],
-	dataset: elementDataset = {},
 	field = "radio-input",
 	form,
 	groupLabelId,
 	id = generateShortId(),
 	label,
+	labelledBy,
 	name,
 	required,
 	type: _type,
@@ -22,30 +20,18 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset = {},
-	...wrapperAttrs
-} = wrapper
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-radio-input"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-radio-input-wrapper"])
 
 const labelId = `${id}_label`
-const labelledBy = `${groupLabelId} ${labelId}`
 const lbl = (await Astro.slots.render("default")) || label
 ---
 
-<label
-	{...wrapperAttrs}
-	class:list={createClassList("sb-radio-label", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
-	id={labelId}
->
+<label {...wrapperAttrs} data-sb-wrapper={field} id={labelId}>
 	<input
-		{...attrs}
-		aria-labelledby={labelledBy}
+		{...inputAttrs}
+		aria-labelledby={`${labelledBy} ${labelId}`}
 		{checked}
-		class:list={createClassList("sb-radio-input", elementClassList)}
-		{...mapDataset(elementDataset)}
 		data-sb-input={field}
 		{form}
 		{id}

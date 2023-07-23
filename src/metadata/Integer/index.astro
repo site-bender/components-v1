@@ -1,16 +1,12 @@
 ---
-import type { NumberProps as Props } from "../../types";
-import Number from "../Number/index.astro";
+import type { NumberProps as Props } from "../../types"
+import Number from "../Number/index.astro"
 
-const {
-	type: _type,
-	value,
-	...attrs
-} = Astro.props;
+const { type: _type, value: val, ...attrs } = Astro.props
 
-const val = Math.round(
-  typeof value === "number" ? value : parseInt(String(value), 10)
-);
+const value = Math.round(
+	typeof val === "number" ? val : parseInt(String(val), 10)
+)
 ---
 
-<Number {...attrs} type="Integer" value={val} />
+<Number {...attrs} type="Integer" {value} />

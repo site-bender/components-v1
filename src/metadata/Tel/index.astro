@@ -1,11 +1,10 @@
 ---
-import "./index.css";
-import Microdata from "../../Microdata/index.astro";
-import createClassList from "../../utilities/createClassList";
-import createTelUrl from "../../utilities/createTelUrl";
+import "./index.css"
+import Microdata from "../../Microdata/index.astro"
+import createTelUrl from "../../utilities/createTelUrl"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset";
-import type { TelProps as Props } from "../../types";
+import type { TelProps as Props } from "../../types"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
 	as = "span",
@@ -17,53 +16,30 @@ const {
 	tel,
 	useTel,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const phone = (
-	(await Astro.slots.render("default")) ||
-	tel ||
-	""
-).trim();
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-tel"])
+const linkAttrs = mapAttributes(link, ["sb-tel-link"])
 
-const {
-	["class:list"]: linkClassList = [],
-	dataset: linkDataset = {},
-	href,
-	...linkAttrs
-} = link;
+const phone = ((await Astro.slots.render("default")) || tel || "").trim()
+const { href } = link
 
-const Element = as;
-const telLink = href ? href : createTelUrl(phone);
+const Element = as
+const telLink = href ? href : createTelUrl(phone)
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	useTel ? (
-		<a
-			{...linkAttrs}
-			class:list={createClassList("sb-tel-link", linkClassList)}
-			{...mapDataset(linkDataset)}
-			data-sb-tel="link"
-			href={telLink}
-		>
-			<Element
-				{...attrs}
-				class:list={createClassList("sb-tel", classList)}
-				{...mapDataset(dataset)}
-				data-sb-tel
-			>
+		<a {...linkAttrs} data-sb-tel="link" href={telLink}>
+			<Element {...elementAttrs} data-sb-tel>
 				{phone.replaceAll(/[^0-9+]/g, " ")}
 			</Element>
 		</a>
 	) : (
-		<Element
-			{...attrs}
-			class:list={createClassList("sb-tel", classList)}
-			{...mapDataset(dataset)}
-			data-sb-tel
-		>
+		<Element {...elementAttrs} data-sb-tel>
 			{phone.replaceAll(/[^0-9+]/g, " ")}
 		</Element>
 	)

@@ -1,29 +1,21 @@
 ---
-import type { Button as Props } from "../../../types/form"
-import createClassList from "../../../utilities/createClassList"
+import "./index.css"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset"
+import type { Button as Props } from "../../../types/form"
 
 const {
-	["class:list"]: classList = [],
-	dataset,
 	id = generateShortId(),
 	label = "Activate",
 	type = "button",
 	...attrs
 } = Astro.props
 
+const elemAttrs = mapAttributes(attrs, ["sb-button"])
+
 const lbl = (await Astro.slots.render("default")) || label
 ---
 
-<button
-	{...attrs}
-	class:list={createClassList("sb-button", classList)}
-	{...mapDataset(dataset)}
-	data-sb-button={type}
-	{id}
-	{type}
->
+<button {...elemAttrs} data-sb-button={type} {id} {type}>
 	{lbl}
 </button>

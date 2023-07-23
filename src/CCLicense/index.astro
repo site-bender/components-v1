@@ -6,16 +6,11 @@ import NonCommercial from "./NonCommercial/index.astro"
 import PublicDomainDedication from "./PublicDomainDedication/index.astro"
 import ShareAlike from "./ShareAlike/index.astro"
 import getLicense from "./getLicense"
-import createClassList from "../utilities/createClassList"
 import mapAttributes from "../utilities/mapAttributes"
-import mapDataset from "../utilities/mapDataset"
 import type { CCLicenseProps as Props } from "../types"
-import type { BaseAttributes } from "../types/html"
 
 const {
-	["class:list"]: classList = [],
 	byAttribution,
-	dataset,
 	fill = "var(--sb-cc-license-fill-color, white)",
 	link = {},
 	noDerivatives,
@@ -26,35 +21,22 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: linkClassList = [],
-	dataset: linkDataset = {},
-	...linkAttributes
-} = link
+const wrapperAttrs = mapAttributes(attrs, ["sb-cc-license"])
+const linkAttrs = mapAttributes(link, ["sb-cc-license-link"])
 
 const { href, license } = getLicense(Astro.props)
 
-const linkAttrs = {
+const linkAttributes = {
 	"aria-label": `Creative Commons ${license}`,
 	"class": "image",
 	href,
 	"rel": "license",
-	...linkAttributes,
+	...linkAttrs,
 }
 ---
 
-<div
-	{...attrs}
-	class:list={createClassList("sb-cc-license", ...classList)}
-	{...mapDataset(dataset)}
-	data-sb-cc-licencse
->
-	<a
-		{...linkAttrs}
-		class:list={createClassList("sb-cc-license-link", linkClassList)}
-		{...mapDataset(linkDataset)}
-		data-sb-cc-license="link"
-	>
+<div {...wrapperAttrs} data-sb-cc-licencse>
+	<a {...linkAttributes} data-sb-cc-license="link">
 		<CreativeCommons {fill} {license} {size} {stroke} />
 		{
 			byAttribution ? (

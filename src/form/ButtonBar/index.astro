@@ -1,6 +1,31 @@
 ---
+import mapAttributes from "../../utilities/mapAttributes"
+import type { FieldsetWrapper as Props } from "../../types/form"
+
+const { disabled, group = {}, id, label, legend = {}, outer = {} } = Astro.props
+
+const groupAttrs = mapAttributes(group, ["sb-group"])
+const legendAttrs = mapAttributes(legend, ["sb-label"])
+const outerAttrs = mapAttributes(outer, ["sb-button-bar"])
+
+const lbl = (await Astro.slots.render("label")) || label
+const labelledBy = `${id}_legend`
+
+const element = await Astro.slots.render("default", [labelledBy])
 ---
 
-<fieldset>
-	<legend>Button bar</legend>
+<fieldset {...outerAttrs} data-sb-button-bar {disabled}>
+	{
+		lbl ? (
+			<legend
+				{...legendAttrs}
+				data-sb-button-bar-label
+				id={labelledBy}
+				set:html={lbl}
+			/>
+		) : null
+	}
+	<div {...groupAttrs} data-sb-button-bar-group>
+		<Fragment set:html={element} />
+	</div>
 </fieldset>

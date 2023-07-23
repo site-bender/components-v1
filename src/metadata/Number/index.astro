@@ -4,7 +4,7 @@ import createClassList from "../../utilities/createClassList"
 import mapAttributes from "../../utilities/mapAttributes"
 import mapDataset from "../../utilities/mapDataset"
 import toTrainCase from "../../utilities/toTrainCase"
-import type { LinkAttributes } from "../../types"
+import type { HTMLAttributes } from "../../form/html-types"
 import { DEFAULT_LOCALES } from "../../constants"
 
 const {
@@ -25,19 +25,14 @@ useTabularNumerals && import("./index.css")
 const sbType = `sb-${toTrainCase(type)}`
 const data = { [sbType]: "" }
 const linkData = { [sbType]: "link" }
+const { href } = link
 
-const {
-	["class:list"]: linkClassList = [],
-	dataset: linkDataset = {},
-	href,
-	...linkAttrs
-} = link as LinkAttributes
-
-const classes = [
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, [sbType])
+const linkAttrs = mapAttributes(link, [
 	sbType,
 	...(useTabularNumerals ? ["sb-tabular-nums"] : []),
-	...classList,
-]
+])
+
 const ext = `${href}`?.includes("://") ? { rel: "external" } : {}
 const val = typeof value === "number" ? value : parseFloat(String(value))
 
@@ -52,31 +47,10 @@ const prop = itemprop
 
 {
 	href ? (
-		<a
-			{...linkAttrs}
-			class:list={createClassList(`${sbType}-link`, linkClassList)}
-			{...mapDataset(linkDataset)}
-			{...mapDataset(linkData)}
-			{href}
-			{...ext}
-		>
-			<span
-				{...attrs}
-				class:list={classes}
-				{...mapDataset(dataset)}
-				{...mapDataset(data)}
-				{...prop}
-				set:html={num}
-			/>
+		<a {...linkAttrs} {...mapDataset(linkData)} {href} {...ext}>
+			<span {...elementAttrs} {...mapDataset(data)} {...prop} set:html={num} />
 		</a>
 	) : (
-		<span
-			{...attrs}
-			class:list={classes}
-			{...mapDataset(dataset)}
-			{...mapDataset(data)}
-			{...prop}
-			set:html={num}
-		/>
+		<span {...elementAttrs} {...mapDataset(data)} {...prop} set:html={num} />
 	)
 }

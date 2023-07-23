@@ -40,15 +40,18 @@ interface EmployeeRoleBase extends OrganizationRoleBase {
 	/** The currency (coded using {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217}) used for the main salary information in this job posting or for this employee. */
 	salaryCurrency?: SchemaValue<Text, "salaryCurrency">
 }
-type EmployeeRoleLeaf<TContent, TProperty extends string> = EmployeeRoleBase & {
-	type: "EmployeeRole"
-} & {
-	[key in TProperty]: TContent
-}
+type EmployeeRoleLeaf<TContent, TProperty extends string> =
+	& EmployeeRoleBase
+	& {
+		type: "EmployeeRole"
+	}
+	& {
+		[key in TProperty]: TContent
+	}
 /** A subclass of OrganizationRole used to describe employee relationships. */
 export type EmployeeRole<
 	TContent = never,
-	TProperty extends string = never
+	TProperty extends string = never,
 > = EmployeeRoleLeaf<TContent, TProperty>
 
 interface LinkRoleBase extends RoleBase {
@@ -57,15 +60,18 @@ interface LinkRoleBase extends RoleBase {
 	/** Indicates the relationship type of a Web link. */
 	linkRelationship?: SchemaValue<Text, "linkRelationship">
 }
-type LinkRoleLeaf<TContent, TProperty extends string> = LinkRoleBase & {
-	type: "LinkRole"
-} & {
-	[key in TProperty]: TContent
-}
+type LinkRoleLeaf<TContent, TProperty extends string> =
+	& LinkRoleBase
+	& {
+		type: "LinkRole"
+	}
+	& {
+		[key in TProperty]: TContent
+	}
 /** A Role that represents a Web link, e.g. as expressed via the 'url' property. Its linkRelationship property can indicate URL-based and plain textual link types, e.g. those in IANA link registry or others such as 'amphtml'. This structure provides a placeholder where details from HTML's link element can be represented outside of HTML, e.g. in JSON-LD feeds. */
 export type LinkRole<
 	TContent = never,
-	TProperty extends string = never
+	TProperty extends string = never,
 > = LinkRoleLeaf<TContent, TProperty>
 
 /**
@@ -83,16 +89,19 @@ interface OrganizationRoleBase extends RoleBase {
 }
 type OrganizationRoleLeaf<
 	TContent,
-	TProperty extends string
-> = OrganizationRoleBase & {
-	type: "OrganizationRole"
-} & {
-	[key in TProperty]: TContent
-}
+	TProperty extends string,
+> =
+	& OrganizationRoleBase
+	& {
+		type: "OrganizationRole"
+	}
+	& {
+		[key in TProperty]: TContent
+	}
 /** A subclass of Role used to describe roles within organizations. */
 export type OrganizationRole<
 	TContent = never,
-	TProperty extends string = never
+	TProperty extends string = never,
 > =
 	| OrganizationRoleLeaf<TContent, TProperty>
 	| EmployeeRole<TContent, TProperty>
@@ -103,16 +112,19 @@ interface PerformanceRoleBase extends RoleBase {
 }
 type PerformanceRoleLeaf<
 	TContent,
-	TProperty extends string
-> = PerformanceRoleBase & {
-	type: "PerformanceRole"
-} & {
-	[key in TProperty]: TContent
-}
+	TProperty extends string,
+> =
+	& PerformanceRoleBase
+	& {
+		type: "PerformanceRole"
+	}
+	& {
+		[key in TProperty]: TContent
+	}
 /** A PerformanceRole is a Role that some entity places with regard to a theatrical performance, e.g. in a Movie, TVSeries etc. */
 export type PerformanceRole<
 	TContent = never,
-	TProperty extends string = never
+	TProperty extends string = never,
 > = PerformanceRoleLeaf<TContent, TProperty>
 
 interface RoleBase extends ThingBase {
@@ -129,11 +141,14 @@ interface RoleBase extends ThingBase {
 	/** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
 	startDate?: SchemaValue<Date | DateTime, "startDate">
 }
-type RoleLeaf<TContent, TProperty extends string> = RoleBase & {
-	type: "Role"
-} & {
-	[key in TProperty]: TContent
-}
+type RoleLeaf<TContent, TProperty extends string> =
+	& RoleBase
+	& {
+		type: "Role"
+	}
+	& {
+		[key in TProperty]: TContent
+	}
 /**
  * Represents additional information about a relationship or property. For example a Role can be used to say that a 'member' role linking some SportsTeam to a player occurred during a particular time period. Or that a Person's 'actor' role in a Movie was for some particular characterName. Such properties can be attached to a Role entity, which is then associated with the main entities using ordinary properties like 'member' or 'actor'.
  *
@@ -1553,7 +1568,8 @@ interface BroadcastFrequencySpecificationBase extends ThingBase {
 	broadcastSubChannel?: SchemaValue<Text, "broadcastSubChannel">
 }
 interface BroadcastFrequencySpecificationLeaf
-	extends BroadcastFrequencySpecificationBase {
+	extends BroadcastFrequencySpecificationBase
+{
 	type: "BroadcastFrequencySpecification"
 }
 /** The frequency in MHz and the modulation used for a particular BroadcastService. */
@@ -2360,7 +2376,8 @@ interface CompoundPriceSpecificationBase extends PriceSpecificationBase {
 	>
 }
 interface CompoundPriceSpecificationLeaf
-	extends CompoundPriceSpecificationBase {
+	extends CompoundPriceSpecificationBase
+{
 	type: "CompoundPriceSpecification"
 }
 /** A compound price specification is one that bundles multiple prices that all apply in combination for different dimensions of consumption. Use the name property of the attached unit price specification for indicating the dimension of a price component (e.g. "electricity" or "final cleaning"). */
@@ -3529,7 +3546,8 @@ interface DeliveryChargeSpecificationBase extends PriceSpecificationBase {
 	>
 }
 interface DeliveryChargeSpecificationLeaf
-	extends DeliveryChargeSpecificationBase {
+	extends DeliveryChargeSpecificationBase
+{
 	type: "DeliveryChargeSpecification"
 }
 /** The price for the delivery of an offer using a particular delivery method. */
@@ -3748,9 +3766,8 @@ interface DemandLeaf extends DemandBase {
 export type Demand = DemandLeaf
 
 interface DentistBase
-	extends LocalBusinessBase,
-		LocalBusinessBase,
-		MedicalOrganizationBase {}
+	extends LocalBusinessBase, LocalBusinessBase, MedicalOrganizationBase
+{}
 interface DentistLeaf extends DentistBase {
 	type: "Dentist"
 }
@@ -4288,7 +4305,8 @@ interface EducationalOccupationalCredentialBase extends CreativeWorkBase {
 	validIn?: SchemaValue<AdministrativeArea | IdReference, "validIn">
 }
 interface EducationalOccupationalCredentialLeaf
-	extends EducationalOccupationalCredentialBase {
+	extends EducationalOccupationalCredentialBase
+{
 	type: "EducationalOccupationalCredential"
 }
 /** An educational or occupational credential. A diploma, academic degree, certification, qualification, badge, etc., that may be awarded to a person or other entity that meets the requirements defined by the credentialer. */
@@ -4381,7 +4399,8 @@ interface EducationalOccupationalProgramBase extends ThingBase {
 	>
 }
 interface EducationalOccupationalProgramLeaf
-	extends EducationalOccupationalProgramBase {
+	extends EducationalOccupationalProgramBase
+{
 	type: "EducationalOccupationalProgram"
 }
 /** A program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. This would define a discrete set of opportunities (e.g., job, courses) that together constitute a program with a clear start, end, set of requirements, and transition to a new occupational opportunity (e.g., a job), or sometimes a higher educational opportunity (e.g., an advanced degree). */
@@ -4390,8 +4409,8 @@ export type EducationalOccupationalProgram =
 	| WorkBasedProgram
 
 interface EducationalOrganizationBase
-	extends CivicStructureBase,
-		OrganizationBase {
+	extends CivicStructureBase, OrganizationBase
+{
 	/** Alumni of an organization. */
 	alumni?: SchemaValue<Person | IdReference, "alumni">
 }
@@ -5397,7 +5416,8 @@ interface FoodEstablishmentReservationBase extends ReservationBase {
 	startTime?: SchemaValue<DateTime | Time, "startTime">
 }
 interface FoodEstablishmentReservationLeaf
-	extends FoodEstablishmentReservationBase {
+	extends FoodEstablishmentReservationBase
+{
 	type: "FoodEstablishmentReservation"
 }
 /**
@@ -5988,7 +6008,8 @@ interface HealthPlanCostSharingSpecificationBase extends ThingBase {
 	healthPlanPharmacyCategory?: SchemaValue<Text, "healthPlanPharmacyCategory">
 }
 interface HealthPlanCostSharingSpecificationLeaf
-	extends HealthPlanCostSharingSpecificationBase {
+	extends HealthPlanCostSharingSpecificationBase
+{
 	type: "HealthPlanCostSharingSpecification"
 }
 /** A description of costs to the patient under a given network or formulary. */
@@ -6083,9 +6104,8 @@ interface HomeGoodsStoreLeaf extends LocalBusinessBase {
 export type HomeGoodsStore = HomeGoodsStoreLeaf | string
 
 interface HospitalBase
-	extends CivicStructureBase,
-		LocalBusinessBase,
-		MedicalOrganizationBase {
+	extends CivicStructureBase, LocalBusinessBase, MedicalOrganizationBase
+{
 	/** A medical service available from this provider. */
 	availableService?: SchemaValue<
 		MedicalProcedure | MedicalTest | MedicalTherapy | IdReference,
@@ -6237,9 +6257,8 @@ interface HowToItemLeaf extends HowToItemBase {
 export type HowToItem = HowToItemLeaf | HowToSupply | HowToTool
 
 interface HowToSectionBase
-	extends CreativeWorkBase,
-		ItemListBase,
-		ListItemBase {
+	extends CreativeWorkBase, ItemListBase, ListItemBase
+{
 	/**
 	 * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
 	 *
@@ -7349,7 +7368,8 @@ interface LocationFeatureSpecificationBase extends PropertyValueBase {
 	validThrough?: SchemaValue<Date | DateTime, "validThrough">
 }
 interface LocationFeatureSpecificationLeaf
-	extends LocationFeatureSpecificationBase {
+	extends LocationFeatureSpecificationBase
+{
 	type: "LocationFeatureSpecification"
 }
 /** Specifies a location feature by providing a structured value representing a feature of an accommodation as a property-value pair of varying degrees of formality. */
@@ -8041,7 +8061,8 @@ interface MedicalGuidelineRecommendationBase extends MedicalGuidelineBase {
 	recommendationStrength?: SchemaValue<Text, "recommendationStrength">
 }
 interface MedicalGuidelineRecommendationLeaf
-	extends MedicalGuidelineRecommendationBase {
+	extends MedicalGuidelineRecommendationBase
+{
 	type: "MedicalGuidelineRecommendation"
 }
 /** A guideline recommendation that is regarded as efficacious and where quality of the data supporting the recommendation is sound. */
@@ -8752,7 +8773,8 @@ interface MerchantReturnPolicySeasonalOverrideBase extends ThingBase {
 	startDate?: SchemaValue<Date | DateTime, "startDate">
 }
 interface MerchantReturnPolicySeasonalOverrideLeaf
-	extends MerchantReturnPolicySeasonalOverrideBase {
+	extends MerchantReturnPolicySeasonalOverrideBase
+{
 	type: "MerchantReturnPolicySeasonalOverride"
 }
 /** A seasonal override of a return policy, for example used for holidays. */
@@ -8894,7 +8916,8 @@ interface MonetaryAmountLeaf extends MonetaryAmountBase {
 export type MonetaryAmount = MonetaryAmountLeaf
 
 interface MonetaryAmountDistributionBase
-	extends QuantitativeValueDistributionBase {
+	extends QuantitativeValueDistributionBase
+{
 	/**
 	 * The currency in which the monetary amount is expressed.
 	 *
@@ -8903,7 +8926,8 @@ interface MonetaryAmountDistributionBase
 	currency?: SchemaValue<Text, "currency">
 }
 interface MonetaryAmountDistributionLeaf
-	extends MonetaryAmountDistributionBase {
+	extends MonetaryAmountDistributionBase
+{
 	type: "MonetaryAmountDistribution"
 }
 /** A statistical distribution of monetary amounts. */
@@ -9723,7 +9747,8 @@ interface OccupationalExperienceRequirementsBase extends ThingBase {
 	monthsOfExperience?: SchemaValue<Number, "monthsOfExperience">
 }
 interface OccupationalExperienceRequirementsLeaf
-	extends OccupationalExperienceRequirementsBase {
+	extends OccupationalExperienceRequirementsBase
+{
 	type: "OccupationalExperienceRequirements"
 }
 /** Indicates employment-related experience requirements, e.g. {@link https://schema.org/monthsOfExperience monthsOfExperience}. */
@@ -10561,8 +10586,8 @@ interface PaintingLeaf extends CreativeWorkBase {
 export type Painting = PaintingLeaf
 
 interface PalliativeProcedureBase
-	extends MedicalProcedureBase,
-		MedicalTherapyBase {}
+	extends MedicalProcedureBase, MedicalTherapyBase
+{}
 interface PalliativeProcedureLeaf extends PalliativeProcedureBase {
 	type: "PalliativeProcedure"
 }
@@ -10710,7 +10735,8 @@ interface PaymentChargeSpecificationBase extends PriceSpecificationBase {
 	>
 }
 interface PaymentChargeSpecificationLeaf
-	extends PaymentChargeSpecificationBase {
+	extends PaymentChargeSpecificationBase
+{
 	type: "PaymentChargeSpecification"
 }
 /** The costs of settling the payment using a particular payment method. */
@@ -11518,7 +11544,8 @@ interface PostalCodeRangeSpecificationBase extends ThingBase {
 	postalCodeEnd?: SchemaValue<Text, "postalCodeEnd">
 }
 interface PostalCodeRangeSpecificationLeaf
-	extends PostalCodeRangeSpecificationBase {
+	extends PostalCodeRangeSpecificationBase
+{
 	type: "PostalCodeRangeSpecification"
 }
 /** Indicates a range of postal codes, usually defined as the set of valid codes between {@link https://schema.org/postalCodeBegin postalCodeBegin} and {@link https://schema.org/postalCodeEnd postalCodeEnd}, inclusively. */
@@ -12142,7 +12169,8 @@ interface PropertyValueSpecificationBase extends ThingBase {
 	valueRequired?: SchemaValue<Boolean, "valueRequired">
 }
 interface PropertyValueSpecificationLeaf
-	extends PropertyValueSpecificationBase {
+	extends PropertyValueSpecificationBase
+{
 	type: "PropertyValueSpecification"
 }
 /** A Property value specification. */
@@ -12366,7 +12394,8 @@ interface QuantitativeValueDistributionBase extends ThingBase {
 	percentile90?: SchemaValue<Number, "percentile90">
 }
 interface QuantitativeValueDistributionLeaf
-	extends QuantitativeValueDistributionBase {
+	extends QuantitativeValueDistributionBase
+{
 	type: "QuantitativeValueDistribution"
 }
 /** A statistical distribution of values. */

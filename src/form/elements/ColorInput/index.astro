@@ -5,15 +5,12 @@ import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
 import mapDataset from "../../../utilities/mapDataset"
 import type { ColorInput as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
 	autocomplete,
 	["class:list"]: elementClassList = [],
-	datalist: {
-		["class:list"]: datalistClassList = [],
-		dataset: datalistDataset = {},
-		...datalistAttrs
-	} = {},
+	datalist = {},
 	dataset: elementDataset = {},
 	field = "color-input",
 	form,
@@ -28,28 +25,20 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset = {},
-	...wrapperAttrs
-} = wrapper
+const datalistAttrs = mapAttributes(datalist, ["sb-color-input-datalist"])
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-color-input"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-color-input-wrapper"])
 
 const listId = `${id}_list`
 const lst = list ? { list: listId } : {}
+console.log("list", createListOptions(list))
 ---
 
-<span
-	{...wrapperAttrs}
-	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
->
+<span {...wrapperAttrs} data-sb-wrapper={field}>
 	<input
-		{...attrs}
+		{...inputAttrs}
 		aria-labelledby={labelledBy}
 		{autocomplete}
-		class:list={createClassList("sb-color-input", elementClassList)}
-		{...mapDataset(elementDataset)}
 		data-sb-input={field}
 		{form}
 		{id}
@@ -61,13 +50,7 @@ const lst = list ? { list: listId } : {}
 	/>
 	{
 		list ? (
-			<datalist
-				{...datalistAttrs}
-				class:list={createClassList("sb-datalist-color", datalistClassList)}
-				{...mapDataset(datalistDataset)}
-				data-sb-datalist={field}
-				id={listId}
-			>
+			<datalist {...datalistAttrs} data-sb-datalist={field} id={listId}>
 				<Fragment set:html={createListOptions(list)} />
 			</datalist>
 		) : null

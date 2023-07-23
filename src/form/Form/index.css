@@ -108,3 +108,7 @@ blockquote {
 textarea {
 	resize: revert;
 }
+
+[data-sb-fieldset-group="duration-field"] input {
+	max-width: 7ch;
+}

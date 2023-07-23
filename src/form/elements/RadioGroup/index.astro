@@ -1,131 +1,94 @@
 ---
+import FieldsetWrapper from "../../FieldsetWrapper/index.astro"
 import RadioInput from "./RadioInput/index.astro";
-import createClassList from "../../../utilities/createClassList";
 import generateShortId from "../../../utilities/generateShortId";
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset";
 import type { RadioGroup as Props } from "../../../types/form";
+import type { HTMLAttributes } from "../../../types/html"
 
 const {
-	["aria-live"]: live = "assertive",
+	disabled,
+	field = "radio-group",
 	form,
-	group: {
-		["class:list"]: groupClassList = [],
-		dataset: groupDataset = {},
-		...groupAttrs
-	} = {},
-	help: {
-		["class:list"]: helpClassList = [],
-		dataset: helpDataset = {},
-		...helpAttrs
-	} = {},
+	group,
+	help,
 	id = generateShortId(),
 	includeNull,
 	label,
-	legend: {
-		["class:list"]: legendClassList = [],
-		dataset: legendDataset = {},
-		...legendAttrs
-	} = {},
+	legend,
 	message,
 	name,
 	options,
+	outer,
 	required,
 	selected,
-	wrapper: {
-		["class:list"]: wrapperClassList = [],
-		dataset: wrapperDataset = {},
-		...wrapperAttrs
-	} = {},
+	tag,
+	wrapper,
 	...attrs
 } = Astro.props;
 
-const hlp = message || (await Astro.slots.render("message"));
-const helpId = `${id}_help`;
-const lbl = label || (await Astro.slots.render("default"));
-const legendId = `${id}_legend`;
-const req = required ? { "data-sb-required": "" } : {};
-const opt = required ? {} : { "data-sb-optional": "" };
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, [
+	"sb-radio-input",
+])
 ---
 
-<fieldset
-	{...wrapperAttrs}
-	class:list={createClassList("sb-radio-group", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-radio-group
-	{...req}
+<FieldsetWrapper
+	{disabled}
+	{field}
 	{form}
+	{group}
+	{help}
 	{id}
-	{name}
-	role="radiogroup"
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
 >
-	<legend
-		{...legendAttrs}
-		class:list={createClassList("sb-radio-group-legend", legendClassList)}
-		{...mapDataset(legendDataset)}
-		data-sb-radio-group="legend"
-		id={legendId}
-		{...opt}
-	>
-		<span
-			{...groupAttrs}
-			class="sb-label-content"
-			data-sb-radio-group="label-content"
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			class:list={createClassList(
-				"sb-help",
-				"sb-radio-group-help",
-				helpClassList
-			)}
-			{...mapDataset(helpDataset)}
-			data-sb-help
-			data-sb-radio-group="help"
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</legend>
-	<div
-		class:list={createClassList("sb-group", groupClassList)}
-		{...mapDataset(groupDataset)}
-		data-sb-group
-		data-sb-radio-group="group"
-	>
-		{
-			options.map(({ label, value, ...attrs }) => (
-				<RadioInput
-					{...attrs}
-					checked={Boolean(selected) && selected === value}
-					{form}
-					groupLabelId={legendId}
-					{name}
-					{required}
-					{value}
-					wrapper={{ dataset: { "sb-radio-group": "radio-input" } }}
-				>
-					{label}
-				</RadioInput>
-			))
+	{
+		(labelledBy: string) => {
+			return <>
+				{
+					options.map(({ label, value, ...attrs }) => {
+						const inputAttrs = mapAttributes(attrs as HTMLAttributes, [
+							"sb-radio-input",
+						])
+
+						return (
+							<RadioInput
+								{...inputAttrs}
+								checked={Boolean(selected) && selected === value}
+								{form}
+								groupLabelId={labelledBy}
+								{name}
+								{required}
+								{value}
+								wrapper={{ dataset: { "sb-radio-group": "radio-input" } }}
+							>
+								{label}
+							</RadioInput>
+						)
+					})
+				}
+				{
+					includeNull ? (
+						<RadioInput
+							{...inputAttrs}
+							checked={Boolean(selected) && selected === ""}
+							{form}
+							groupLabelId={labelledBy}
+							{name}
+							{required}
+							value=""
+							wrapper={{ dataset: { "sb-radio-group": "radio-input" } }}
+						>
+							N/A
+						</RadioInput>
+					) : null
+				}
+			</>
 		}
-		{
-			includeNull ? (
-				<RadioInput
-					{...attrs}
-					checked={Boolean(selected) && selected === ""}
-					{form}
-					groupLabelId={legendId}
-					{name}
-					{required}
-					value=""
-					wrapper={{ dataset: { "sb-radio-group": "radio-input" } }}
-				>
-					N/A
-				</RadioInput>
-			) : null
-		}
-	</div>
-</fieldset>
+	}
+</FieldsetWrapper>

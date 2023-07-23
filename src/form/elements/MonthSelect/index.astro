@@ -1,18 +1,15 @@
 ---
-import createClassList from "../../../utilities/createClassList"
 import createSelectOptions from "../../../utilities/createSelectOptions"
 import generateShortId from "../../../utilities/generateShortId"
 import getMonths from "../../../utilities/getMonths"
 import mapAttributes from "../../../utilities/mapAttributes"
-import mapDataset from "../../../utilities/mapDataset"
 import type { MonthFormat, MonthSelect as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
 import { DEFAULT_LOCALES } from "../../../constants"
 
 const {
 	autocomplete,
 	calendar = "iso8601",
-	["class:list"]: elementClassList = [],
-	dataset: elementDataset = {},
 	field = "month-select",
 	form,
 	format = "long",
@@ -28,32 +25,22 @@ const {
 	...attrs
 } = Astro.props
 
-const {
-	["class:list"]: wrapperClassList = [],
-	dataset: wrapperDataset = {},
-	...wrapperAttrs
-} = wrapper
+const selectAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-month-select"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-month-select-wrapper"])
 
 const mnths = getMonths(
 	calendar as string,
 	locales as Array<string>,
 	format as MonthFormat,
-	months
+	months as Array<number>
 )
 ---
 
-<span
-	{...wrapperAttrs}
-	class:list={createClassList("sb-input-wrapper", wrapperClassList)}
-	{...mapDataset(wrapperDataset)}
-	data-sb-wrapper={field}
->
+<span {...wrapperAttrs} data-sb-wrapper={field}>
 	<select
-		{...attrs}
+		{...selectAttrs}
 		{autocomplete}
 		aria-labelledby={labelledBy}
-		class:list={createClassList("sb-month-select", elementClassList)}
-		{...mapDataset(elementDataset)}
 		data-sb-select={field}
 		{id}
 		{form}

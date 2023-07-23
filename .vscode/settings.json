@@ -27,5 +27,8 @@
 	"editor.tabSize": 2,
 	"terminal.integrated.tabStopWidth": 4,
 	"editor.insertSpaces": false,
-	"typescript.extension.sortImports.omitSemicolon": true
+	"typescript.extension.sortImports.omitSemicolon": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	}
 }

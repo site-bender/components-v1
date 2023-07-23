@@ -1,13 +1,11 @@
 ---
-import Microdata from "../../Microdata/index.astro";
-import createClassList from "../../utilities/createClassList";
+import Microdata from "../../Microdata/index.astro"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset";
-import type { UrlProps as Props } from "../../types";
+import type { UrlProps as Props } from "../../types"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
 	as = "span",
-	["class:list"]: classList = [],
 	dataset,
 	link = {},
 	microdata = {},
@@ -15,52 +13,29 @@ const {
 	url,
 	useLink,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const address = (
-	(await Astro.slots.render("default")) ||
-	url ||
-	""
-).trim();
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-url"])
+const linkAttrs = mapAttributes(link, ["sb-url-link"])
 
-const {
-	["class:list"]: linkClassList = [],
-	dataset: linkDataset = {},
-	...linkAttrs
-} = link;
+const address = ((await Astro.slots.render("default")) || url || "").trim()
 
-const Element = as;
-const href = link.href || address;
+const Element = as
+const href = link.href || address
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	useLink ? (
-		<a
-			{...linkAttrs}
-			class:list={createClassList("sb-url-link", linkClassList)}
-			{...mapDataset(linkDataset)}
-			data-sb-url="link"
-			{href}
-		>
-			<Element
-				{...attrs}
-				class:list={createClassList("sb-url", classList)}
-				{...mapDataset(dataset)}
-				data-sb-url
-			>
+		<a {...linkAttrs} data-sb-url="link" {href}>
+			<Element {...elementAttrs} data-sb-url>
 				{address}
 			</Element>
 		</a>
 	) : (
-		<Element
-			{...attrs}
-			class:list={createClassList("sb-url", classList)}
-			{...mapDataset(dataset)}
-			data-sb-url
-		>
+		<Element {...elementAttrs} data-sb-url>
 			{address}
 		</Element>
 	)

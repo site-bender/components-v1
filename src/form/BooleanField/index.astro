@@ -1,4 +1,55 @@
 ---
+import CheckboxInput from "../elements/CheckboxInput/index.astro"
+import FieldWrapper from "../FieldWrapper/index.astro"
+import generateShortId from "../../utilities/generateShortId"
+import type { BooleanField as Props } from "../../types/form"
+
+const {
+	autocorrect: _autocorrect,
+	checked,
+	field = "boolean-field",
+	form,
+	help,
+	id = generateShortId(),
+	label = "Yes?",
+	legend,
+	message,
+	name,
+	outer,
+	placeholder: _placeholder,
+	required,
+	tag,
+	value,
+	wrapper = {},
+} = Astro.props
 ---
 
-<input type="checkbox" />
+<FieldWrapper
+	{field}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => {
+			return (
+				<CheckboxInput
+					{checked}
+					{field}
+					{form}
+					{id}
+					{labelledBy}
+					{name}
+					{required}
+					{value}
+					{wrapper}
+				/>
+			)
+		}
+	}
+</FieldWrapper>

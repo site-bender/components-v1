@@ -1,4 +1,5 @@
 ---
+import FieldWrapper from "../FieldWrapper/index.astro"
 import PasswordInput from "../elements/PasswordInput/index.astro"
 import generateShortId from "../../utilities/generateShortId"
 import mapAttributes from "../../utilities/mapAttributes"
@@ -7,7 +8,6 @@ import type { PasswordField as Props } from "../../types/form"
 const {
 	allowAutocomplete,
 	allowUnmasked,
-	["aria-live"]: live = "assertive",
 	field = "password-field",
 	form,
 	help = {},
@@ -25,53 +25,43 @@ const {
 	...attrs
 } = Astro.props
 
-const pwAttrs = mapAttributes(attrs as HTMLAttributes, [])
-const helpAttrs = mapAttributes(help, ["sb-help"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, ["sb-field", "sb-password-field"])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
+const pwAttrs = mapAttributes(attrs, [])
 
 const autocomplete = allowAutocomplete
 	? isNewPassword
 		? "new-password"
 		: "current-password"
 	: "off"
-
-const hlp = (await Astro.slots.render("message")) || message
-const helpId = `${id}_help`
-const lbl = (await Astro.slots.render("default")) || label
-const labelId = `${id}_label`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
-<div {...outerAttrs} data-sb-field={field} {...req}>
-	<label {...legendAttrs} data-sb-field-label={field} id={labelId}>
-		<span
-			{...tagAttrs}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</label>
-	<PasswordInput
-		{...pwAttrs}
-		{allowUnmasked}
-		{autocomplete}
-		{field}
-		{form}
-		{id}
-		{required}
-		{name}
-		{value}
-		{wrapper}
-	/>
-</div>
+<FieldWrapper
+	{field}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => {
+			return (
+				<PasswordInput
+					{...pwAttrs}
+					{allowUnmasked}
+					{autocomplete}
+					{field}
+					{form}
+					{id}
+					{labelledBy}
+					{required}
+					{name}
+					{value}
+					{wrapper}
+				/>
+			)
+		}
+	}
+</FieldWrapper>

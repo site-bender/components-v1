@@ -1,66 +1,52 @@
 ---
-import { Temporal } from "@js-temporal/polyfill";
-import createClassList from "../../utilities/createClassList";
-import formatDuration from "../../utilities/formatDuration";
+import { Temporal } from "@js-temporal/polyfill"
+import formatDuration from "../../utilities/formatDuration"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset";
-import Microdata from "../../Microdata/index.astro";
-import type { DurationProps as Props } from "../../types";
+import Microdata from "../../Microdata/index.astro"
+import type { DurationProps as Props } from "../../types"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	["class:list"]: classList = [],
+	as = "time",
 	dataset,
 	duration,
 	itemprop = "duration",
-	outer: {
-		["class:list"]: outerClassList = [],
-		dataset: outerDataset = {},
-		...outerAttrs
-	}  = {},
+	microdata,
 	properties = {},
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const d = Temporal.Duration.from(duration);
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-duration"])
+const microdataAttrs = mapAttributes(microdata, ["sb-duration"])
 
+const d = Temporal.Duration.from(duration)
 const meta = {
 	duration,
 	...properties,
-};
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
 	useMicrodata && properties.type ? (
 		<Microdata
-			as="time"
-			{...outerAttrs}
-			class:list={createClassList("sb-duration-microdata", outerClassList)}
-			{...mapDataset(outerDataset)}
+			{as}
+			{...microdataAttrs}
 			data-sb-duration="microdata"
 			properties={meta}
 		>
 			<meta
 				itemprop="duration"
 				itemtype="https://schema.org/Duration"
-				content={duration?.toString()}
+				content={d.toJSON()}
 			/>
-			<span
-				{...attrs}
-				class:list={createClassList("sb-duration", classList)}
-				{...mapDataset(dataset)}
-				data-sb-duration="span"
-			>
+			<span {...elementAttrs} data-sb-duration="span">
 				{formatDuration(d)}
 			</span>
 		</Microdata>
 	) : (
-		<time
-			{...attrs}
-			class:list={createClassList("sb-duration", classList)}
-			{...mapDataset(dataset)}
-			data-sb-duration="time"
-		>
+		<time {...elementAttrs} data-sb-duration="time" datetime={d.toJSON()}>
 			{formatDuration(d)}
 		</time>
 	)

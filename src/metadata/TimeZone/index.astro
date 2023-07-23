@@ -1,15 +1,12 @@
 ---
 import Microdata from "../../Microdata/index.astro"
-import createClassList from "../../utilities/createClassList"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset"
 import type { PlainDateTimeProps as Props } from "../../types"
 import { Temporal } from "@js-temporal/polyfill"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
 	as = "span",
-	["class:list"]: classList = [],
-	dataset,
 	display = "name",
 	itemprop,
 	localTime = Temporal.Now.instant(),
@@ -20,25 +17,22 @@ const {
 	...attrs
 } = Astro.props
 
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-time-zone"])
+
 const Element = as
-const tz = Temporal.TimeZone.from(timeZone)
+const tz = Temporal.TimeZone.from(timeZone) as Temporal.TimeZone
 
 const label =
 	display === "offset"
 		? tz.getOffsetStringFor(localTime)
 		: display === "both"
-		? `${tz.toString()} ${tz.getOffsetStringFor(localTime)}`
-		: tz.toString()
+		? `${tz.toJSON()} ${tz.getOffsetStringFor(localTime)}`
+		: tz.toJSON()
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
-<Element
-	{...attrs}
-	class:list={createClassList("sb-plain-date-time", ...classList)}
-	data-sb-timezone={tz.toString()}
-	{...mapDataset(dataset)}
->
+<Element {...elementAttrs} data-sb-timezone={tz.toJSON()}>
 	{label}
 </Element>

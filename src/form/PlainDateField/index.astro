@@ -1,71 +1,57 @@
 ---
 import DateInput from "../elements/DateInput/index.astro"
+import FieldWrapper from "../FieldWrapper/index.astro"
 import generateShortId from "../../utilities/generateShortId"
 import mapAttributes from "../../utilities/mapAttributes"
 import type { PlainDateField as Props } from "../../types/form"
 import type { HTMLAttributes } from "../../types/html"
 
 const {
-	["aria-live"]: live = "assertive",
-	datalist = {},
 	field = "plain-date-field",
 	form,
-	help = {},
+	help,
 	id = generateShortId(),
 	label = "Date",
-	legend = {},
+	legend,
 	list,
 	message,
 	name,
-	outer = {},
+	outer,
 	required,
-	tag = {},
+	tag,
 	type: _type,
 	value,
-	wrapper = {},
+	wrapper,
 	...attrs
 } = Astro.props
 
 const dateAttrs = mapAttributes(attrs as HTMLAttributes, [])
-const helpAttrs = mapAttributes(help, ["sb-help"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, ["sb-field", "sb-plain-date-field"])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
-
-const hlp = (await Astro.slots.render("message")) || message
-const helpId = `${id}_help`
-const lbl = (await Astro.slots.render("default")) || label
-const labelledBy = `${id}_label`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
-<div {...outerAttrs} data-sb-field={field} {...req}>
-	<label {...legendAttrs} data-sb-field-label={field} id={labelledBy}>
-		<span
-			{...tagAttrs}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</label>
-	<DateInput
-		{...dateAttrs}
-		data-sb-field-element={field}
-		{form}
-		{id}
-		{labelledBy}
-		{name}
-		{required}
-		{value}
-		{wrapper}
-	/>
-</div>
+<FieldWrapper
+	{field}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => (
+			<DateInput
+				{...dateAttrs}
+				data-sb-field-element={field}
+				{form}
+				{id}
+				{labelledBy}
+				{name}
+				{required}
+				{value}
+				{wrapper}
+			/>
+		)
+	}
+</FieldWrapper>

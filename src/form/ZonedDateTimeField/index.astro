@@ -1,178 +1,114 @@
 ---
-import createClassList from "../../utilities/createClassList"
+import FieldsetWrapper from "../FieldsetWrapper/index.astro"
 import generateShortId from "../../utilities/generateShortId"
-import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset"
 import DateInput from "../elements/DateInput/index.astro"
 import TimeInput from "../elements/TimeInput/index.astro"
 import TimeZoneSelect from "../elements/TimeZoneSelect/index.astro"
 import type { ZonedDateTimeField as Props } from "../../types/form"
 
 const {
-	["aria-live"]: live = "assertive",
 	countries,
 	date = "",
-	dateAttrs: {
-		["class:list"]: dateClassList = [],
-		dataset: dateDataset = {},
-		...dateAttributes
-	} = {},
+	dateAttrs,
 	disabled,
 	field = "zoned-date-time-field",
 	form,
-	group: {
-		["class:list"]: groupClassList = [],
-		dataset: groupDataset = {},
-		...groupAttrs
-	} = {},
-	help: {
-		["class:list"]: helpClassList = [],
-		dataset: helpDataset = {},
-		...helpAttrs
-	} = {},
+	group,
+	help,
 	id = generateShortId(),
 	includeNull,
 	label = "Date and time with time zone",
-	legend: {
-		["class:list"]: legendClassList = [],
-		dataset: legendDataset = {},
-		...legendAttrs
-	} = {},
+	legend,
 	maxDate,
 	maxTime,
 	message,
 	minDate,
 	minTime,
 	name,
-	outer: {
-		["class:list"]: outerClassList = [],
-		dataset: outerDataset = {},
-		...outerAttrs
-	} = {},
+	outer,
 	required,
 	stepDate,
 	stepTime,
-	tag: {
-		["class:list"]: tagClassList = [],
-		dataset: tagDataset = {},
-		...tagAttrs
-	} = {},
+	tag,
 	time = "",
-	timeAttrs: {
-		["class:list"]: timeClassList = [],
-		dataset: timeDataset = {},
-		...timeAttributes
-	} = {},
+	timeAttrs,
 	timeZone = "",
-	timeZoneAttrs: {
-		["class:list"]: timeZoneClassList = [],
-		dataset: timeZoneDataset = {},
-		...timeZoneAttributes
-	} = {},
+	timeZoneAttrs,
 	useList,
 } = Astro.props
 
-const hlp = (await Astro.slots.render("message")) || message
-const helpId = `${id}_help`
-const lbl = (await Astro.slots.render("default")) || label
-const legendId = `${id}_legend`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 ---
 
-<fieldset
-	{...outerAttrs}
-	class:list={createClassList(
-		"sb-field",
-		"sb-zoned-date-time-field",
-		outerClassList
-	)}
-	{...mapDataset(outerDataset)}
-	data-sb-field={field}
-	{...req}
+<FieldsetWrapper
 	{disabled}
+	{field}
 	{form}
+	{group}
+	{help}
 	{id}
-	{name}
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
 >
-	<legend
-		{...legendAttrs}
-		class:list={createClassList("sb-label", legendClassList)}
-		{...mapDataset(legendDataset)}
-		data-sb-field-label={field}
-		id={legendId}
-	>
-		<span
-			{...tagAttrs}
-			class:list={createClassList("sb-label-tag", tagClassList)}
-			{...mapDataset(tagDataset)}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			class:list={createClassList("sb-help", helpClassList)}
-			{...mapDataset(helpDataset)}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</legend>
-	<div
-		class:list={createClassList("sb-group", groupClassList)}
-		{...mapDataset(groupDataset)}
-		data-sb-field-group={field}
-	>
-		<label data-sb-label-date={field} for={`${id}_date`}>
-			<span id={`${id}_date:label`}>Date</span>
-			<DateInput
-				{...dateAttributes}
-				data-sb-input-date={field}
-				{form}
-				id={`${id}_date`}
-				labelledBy={`${legendId} ${id}_date:label`}
-				{...maxDate ? { max: maxDate } : {}}
-				{...minDate ? { min: minDate } : {}}
-				name={`${name}:date`}
-				{required}
-				{...stepDate ? { step: stepDate } : {}}
-				value={date}
-			/>
-		</label>
-		<label data-sb-label-time={field} for={`${id}_time`}>
-			<span id={`${id}_time:label`}>Time</span>
-			<TimeInput
-				{...timeAttributes}
-				data-sb-input-time={field}
-				{form}
-				id={`${id}_time`}
-				labelledBy={`${legendId} ${id}_time:label`}
-				{...maxTime ? { max: maxTime } : {}}
-				{...minTime ? { min: minTime } : {}}
-				name={`${name}:time`}
-				{required}
-				{...stepTime ? { step: stepTime } : {}}
-				value={time}
-			/>
-		</label>
-		<label data-sb-label-time-zone={field} for={`${id}_time-zone`}>
-			<span id={`${id}_time-zone:label`}>Time zone</span>
-			<TimeZoneSelect
-				{...timeZoneAttributes}
-				{countries}
-				data-sb-input-time-zone={field}
-				{form}
-				id={`${id}_timeZone`}
-				{includeNull}
-				labelledBy={`${legendId} ${id}_time-zone:label`}
-				name={`${name}:timeZone`}
-				{required}
-				selected={timeZone}
-				{useList}
-			/>
-		</label>
-	</div>
-</fieldset>
+	{
+		(labelledBy: string) => {
+			return (
+				<label data-sb-label-date={field} for={`${id}_date`}>
+					<span id={`${id}_date:label`}>Date</span>
+					<DateInput
+						data-sb-input-date={field}
+						{disabled}
+						{form}
+						id={`${id}_date`}
+						labelledBy={`${labelledBy} ${id}_date:label`}
+						{...maxDate ? { max: maxDate } : {}}
+						{...minDate ? { min: minDate } : {}}
+						name={`${name}:date`}
+						{required}
+						{...stepDate ? { step: stepDate } : {}}
+						value={date}
+						wrapper={dateAttrs}
+					/>
+				</label>
+				<label data-sb-label-time={field} for={`${id}_time`}>
+					<span id={`${id}_time:label`}>Time</span>
+					<TimeInput
+						data-sb-input-time={field}
+						{disabled}
+						{form}
+						id={`${id}_time`}
+						labelledBy={`${labelledBy} ${id}_time:label`}
+						{...maxTime ? { max: maxTime } : {}}
+						{...minTime ? { min: minTime } : {}}
+						name={`${name}:time`}
+						{required}
+						{...stepTime ? { step: stepTime } : {}}
+						value={time}
+						wrapper={timeAttrs}
+					/>
+				</label>
+				<label data-sb-label-time-zone={field} for={`${id}_time-zone`}>
+					<span id={`${id}_time-zone:label`}>Time zone</span>
+					<TimeZoneSelect
+						{countries}
+						data-sb-input-time-zone={field}
+						{disabled}
+						{form}
+						id={`${id}_timeZone`}
+						{includeNull}
+						labelledBy={`${labelledBy} ${id}_time-zone:label`}
+						name={`${name}:timeZone`}
+						{required}
+						selected={timeZone}
+						{useList}
+						wrapper={timeZoneAttrs}
+					/>
+				</label>
+			)
+		}
+	}
+</FieldsetWrapper>

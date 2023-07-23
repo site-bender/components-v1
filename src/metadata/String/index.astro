@@ -1,66 +1,40 @@
 ---
-import createClassList from "../../utilities/createClassList";
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset";
-import Microdata from "../../Microdata/index.astro";
-import type { StringProps as Props } from "../../types";
+import Microdata from "../../Microdata/index.astro"
+import type { StringProps as Props } from "../../types"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
 	as = "span",
-  ["class:list"]: classList = [],
-  dataset,
+	dataset,
 	link = {},
 	microdata = {},
-  properties = {},
-  value,
-  ...attrs
-} = Astro.props;
+	properties = {},
+	value,
+	...attrs
+} = Astro.props
 
-const text = (
-	(await Astro.slots.render("default")) ||
-	value ||
-	""
-).trim();
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-email"])
+const linkAttrs = mapAttributes(link, ["sb-string-link"])
 
-const {
-	["class:list"]: linkClassList = [],
-	dataset: linkDataset = {},
-	href,
-	...linkAttrs
-} = link;
+const text = ((await Astro.slots.render("default")) || value || "").trim()
+const { href } = link
 
-const Element = as;
+const Element = as
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
-
 
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	href ? (
-		<a
-			{...linkAttrs}
-			class:list={createClassList("sb-string-link", linkClassList)}
-			{...mapDataset(linkDataset)}
-			data-sb-string="link"
-			{href}
-		>
-			<Element
-				{...attrs}
-				class:list={createClassList("sb-string", classList)}
-				{...mapDataset(dataset)}
-				data-sb-string
-			>
+		<a {...linkAttrs} data-sb-string="link" {href}>
+			<Element {...elementAttrs} data-sb-string>
 				{text}
 			</Element>
 		</a>
 	) : (
-		<Element
-			{...attrs}
-			class:list={createClassList("sb-string", classList)}
-			{...mapDataset(dataset)}
-			data-sb-string
-		>
+		<Element {...elementAttrs} data-sb-string>
 			{text}
 		</Element>
 	)

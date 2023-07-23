@@ -2,155 +2,94 @@
 // Most years have 52 weeks, but if the year starts on a Thursday
 // or is a leap year that starts on a Wednesday, that particular year
 // will have 53 numbered weeks.
-import createClassList from "../../utilities/createClassList"
 import generateShortId from "../../utilities/generateShortId"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset"
+import FieldsetWrapper from "../FieldsetWrapper/index.astro"
 import WeekSelect from "../elements/WeekSelect/index.astro"
 import YearInput from "../elements/YearInput/index.astro"
-import type { PlainYearMonth as Props } from "../../../types/form"
+import type { YearWeekField as Props } from "../../types/form"
+import type { HTMLAttributes } from "../../types/html"
 
 const {
-	["aria-live"]: live = "assertive",
 	disabled,
-	field = "plain-year-month-field",
+	field = "plain-year-week-field",
 	form,
-	group: {
-		["class:list"]: groupClassList = [],
-		dataset: groupDataset = {},
-		...groupAttrs
-	} = {},
-	help: {
-		["class:list"]: helpClassList = [],
-		dataset: helpDataset = {},
-		...helpAttrs
-	} = {},
+	group,
+	help,
 	id = generateShortId(),
+	includeNull,
 	label = "Year and week",
-	legend: {
-		["class:list"]: legendClassList = [],
-		dataset: legendDataset = {},
-		...legendAttrs
-	} = {},
+	legend,
 	message,
-	month = "",
-	monthAttrs = {},
-	months,
 	name = "plainYearMonth",
-	outer: {
-		["class:list"]: outerClassList = [],
-		dataset: outerDataset = {},
-		...outerAttrs
-	} = {},
+	outer,
 	required,
-	tag: {
-		["class:list"]: tagClassList = [],
-		dataset: tagDataset = {},
-		...tagAttrs
-	} = {},
-	wrapper = {},
+	tag,
+	week = "",
+	weekAttrs = {},
+	weeks,
 	year = "",
 	yearAttrs = {},
 	years,
 } = Astro.props
 
-const {
-	["class:list"]: monthClassList = [],
-	dataset: monthDataset = {},
-	...monthAttributes
-} = monthAttrs
-
-const {
-	["class:list"]: yearClassList = [],
-	dataset: yearDataset = {},
-	...yearAttributes
-} = yearAttrs
-
-const hlp = (await Astro.slots.render("message")) || message
-const helpId = `${id}_help`
-const lbl = (await Astro.slots.render("default")) || label
-const legendId = `${id}_legend`
-const monthId = `${id}-month`
-const monthName = `${name}:month`
-const yearId = `${id}-year`
-const yearName = `${name}:year`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
+const weekAttributes = mapAttributes(weekAttrs as HTMLAttributes, [
+	"sb-year-week-field-year",
+])
+const yearAttributes = mapAttributes(yearAttrs as HTMLAttributes, [
+	"sb-year-week-field-week",
+])
 ---
 
-<fieldset
-	{...outerAttrs}
-	class:list={createClassList(
-		"sb-field",
-		"sb-plain-year-month-field",
-		outerClassList
-	)}
-	{...mapDataset(outerDataset)}
-	data-sb-field={field}
-	{...req}
+<FieldsetWrapper
 	{disabled}
+	{field}
 	{form}
+	{group}
+	{help}
 	{id}
-	{name}
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
 >
-	<legend
-		{...legendAttrs}
-		class:list={createClassList("sb-label", legendClassList)}
-		{...mapDataset(legendDataset)}
-		data-sb-field-label={field}
-		id={legendId}
-	>
-		<span
-			{...tagAttrs}
-			class:list={createClassList("sb-label-tag", tagClassList)}
-			{...mapDataset(tagDataset)}
-			data-sb-field-label-tag={field}
-			{...opt}
-			set:html={lbl}
-		/>
-		<span
-			{...helpAttrs}
-			aria-live={live}
-			class:list={createClassList("sb-help", helpClassList)}
-			{...mapDataset(helpDataset)}
-			data-sb-field-help={field}
-			id={helpId}
-			role="status"
-			set:html={hlp}
-		/>
-	</legend>
-	<div
-		class:list={createClassList("sb-group", groupClassList)}
-		{...mapDataset(groupDataset)}
-		data-sb-field-group={field}
-	>
-		<label data-sb-label-time={field} for={`${id}_year`}>
-			<span id={`${id}_year:label`}>Year</span>
-			<YearInput
-				{...yearAttrs}
-				data-sb-input-year={field}
-				{form}
-				id={`${id}_year`}
-				labelledBy={`${legendId} ${id}_year:label`}
-				name={`${name}:year`}
-				{required}
-				value={year}
-				years={years}
-			/>
-		</label>
-		<label data-sb-label-month={field} for={`${id}_month`}>
-			<span id={`${id}_month:label`}>Week</span>
-			<WeekSelect
-				{...monthAttrs}
-				data-sb-select-month={field}
-				{form}
-				id={`${id}_month`}
-				labelledBy={`${legendId} ${id}_month:label`}
-				{months}
-				name={`${name}:month`}
-				{required}
-				value={month}
-			/>
-		</label>
-	</div>
-</fieldset>
+	{
+		(labelledBy: string) => (
+			<>
+				<label data-sb-label-time={field} for={`${id}_year`}>
+					<span id={`${id}_year:label`}>Year</span>
+					<YearInput
+						{...yearAttributes}
+						data-sb-input-year={field}
+						{form}
+						id={`${id}_year`}
+						{includeNull}
+						labelledBy={`${labelledBy} ${id}_year:label`}
+						name={`${name}:year`}
+						{required}
+						value={year}
+						{years}
+					/>
+				</label>
+				<label data-sb-label-week={field} for={`${id}_week`}>
+					<span id={`${id}_week:label`}>Week</span>
+					<WeekSelect
+						{...weekAttributes}
+						data-sb-select-week={field}
+						{form}
+						id={`${id}_week`}
+						{includeNull}
+						labelledBy={`${labelledBy} ${id}_week:label`}
+						name={`${name}:week`}
+						{required}
+						value={week}
+						{weeks}
+					/>
+				</label>
+			</>
+		)
+	}
+</FieldsetWrapper>

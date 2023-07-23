@@ -1,6 +1,67 @@
 ---
+import mapAttributes from "../../utilities/mapAttributes"
+import type { FieldsetWrapper as Props } from "../../types/form"
+
+const {
+	disabled,
+	field,
+	form,
+	group = {},
+	help = {},
+	id,
+	label,
+	legend = {},
+	message,
+	name,
+	outer = {},
+	required,
+	tag = {},
+} = Astro.props
+
+const groupAttrs = mapAttributes(group, ["sb-group"])
+const helpAttrs = mapAttributes(help, ["sb-help"])
+const legendAttrs = mapAttributes(legend, ["sb-label"])
+const outerAttrs = mapAttributes(outer, ["sb-fieldset", `sb-${field}`])
+const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
+
+const hlp = (await Astro.slots.render("message")) || message
+const helpId = `${id}_help`
+const lbl = (await Astro.slots.render("label")) || label
+const labelId = `${id}_label_tag`
+const labelledBy = `${labelId} ${helpId}`
+const legendId = `${id}_legend`
+const req = required ? { "data-sb-required": "" } : {}
+const opt = required ? {} : { "data-sb-optional": "" }
+
+const element = await Astro.slots.render("default", [labelledBy])
 ---
 
-<fieldset>
-	<legend>Fieldset Wrapper</legend>
+<fieldset
+	{...outerAttrs}
+	data-sb-fieldset={field}
+	{disabled}
+	{form}
+	{name}
+	{...req}
+>
+	<legend {...legendAttrs} data-sb-fieldset-label={field} id={legendId}>
+		<span
+			{...tagAttrs}
+			data-sb-fieldset-label-tag={field}
+			id={labelId}
+			{...opt}
+			set:html={lbl}
+		/>
+		<span
+			aria-live="assertive"
+			{...helpAttrs}
+			data-sb-fieldset-help={field}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/>
+	</legend>
+	<div {...groupAttrs} data-sb-fieldset-group={field}>
+		<Fragment set:html={element} />
+	</div>
 </fieldset>

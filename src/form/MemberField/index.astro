@@ -1,15 +1,13 @@
 ---
+import FieldWrapper from "../FieldWrapper/index.astro"
 import RadioGroup from "../elements/RadioGroup/index.astro"
 import Select from "../elements/Select/index.astro"
 import generateShortId from "../../utilities/generateShortId"
 import getOptionsCount from "./getOptionsCount"
-import mapAttributes from "../../utilities/mapAttributes"
-import type { HTMLAttributes } from "../../types/html"
 import type { MemberField as Props, Options } from "../../types/form"
 import { MEMBER_FIELD_PIVOT } from "../../constants"
 
 const {
-	["aria-live"]: live = "assertive",
 	field = "member-field",
 	form,
 	group = {},
@@ -21,69 +19,48 @@ const {
 	message: msg,
 	name,
 	options = [] as Options,
-	outer  = {},
+	outer = {},
 	required,
 	selected,
 	tag = {},
 	wrapper = {},
-	...attrs
 } = Astro.props
 
-const helpAttrs = mapAttributes(help, ["sb-help"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, ["sb-field", "sb-member-field"])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
-
-const message = (await Astro.slots.render("message")) || msg
-const helpId = `${id}_help`
-const label = (await Astro.slots.render("default")) || lbl
-const legendId = `${id}_legend`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 const count = getOptionsCount(options)
+const label = (await Astro.slots.render("default")) || lbl
 const LIMIT = import.meta.env.MEMBER_FIELD_PIVOT || MEMBER_FIELD_PIVOT
+const message = (await Astro.slots.render("message")) || msg
 ---
 
 {
 	count > LIMIT ? (
-		<div
-			{...outerAttrs}
-			data-sb-field={field}
-			{...req}
+		<FieldWrapper
+			{field}
+			{help}
+			{id}
+			{label}
+			{legend}
+			{message}
+			{outer}
+			{required}
+			{tag}
 		>
-			<label
-				{...legendAttrs}
-				data-sb-field-label={field}
-				id={legendId}
-			>
-				<span
-					{...tagAttrs}
-					data-sb-field-label-tag={field}
-					{...opt}
-					set:html={lbl}
-				/>
-				<span
-					{...helpAttrs}
-					aria-live={live}
-					data-sb-field-help={field}
-					id={helpId}
-					role="status"
-					set:html={message}
-				/>
-			</label>
-			<Select
-				{...attrs as HTMLAttributes}
-				{form}
-				{id}
-				{includeNull}
-				{name}
-				{options}
-				{selected}
-			/>
-		</div>
+			{
+				(labelledBy: string) => (
+					<Select
+						{form}
+						{id}
+						{includeNull}
+						{labelledBy}
+						{name}
+						{options}
+						{selected}
+					/>
+				)
+			}
+		</FieldWrapper>
 	) : (
 		<RadioGroup
-			{...attrs as HTMLAttributes}
 			{form}
 			{group}
 			{help}
@@ -101,3 +78,6 @@ const LIMIT = import.meta.env.MEMBER_FIELD_PIVOT || MEMBER_FIELD_PIVOT
 		</RadioGroup>
 	)
 }
+
+
+

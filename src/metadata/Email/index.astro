@@ -1,14 +1,12 @@
 ---
-import Microdata from "../../Microdata/index.astro";
-import createClassList from "../../utilities/createClassList";
-import createMailto from "../../utilities/createMailto";
+import Microdata from "../../Microdata/index.astro"
+import createMailto from "../../utilities/createMailto"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset";
-import type { EmailProps as Props } from "../../types";
+import type { EmailProps as Props } from "../../types"
+import type { HTMLAttributes } from "../../form/html-types"
 
 const {
 	as = "span",
-	["class:list"]: classList = [],
 	dataset,
 	email,
 	link = {},
@@ -17,53 +15,33 @@ const {
 	properties,
 	useMailto,
 	...attrs
-} = Astro.props;
+} = Astro.props
+
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-email"])
+const linkAttrs = mapAttributes(link, ["sb-email-link"])
 
 const emailAddress = (
 	(await Astro.slots.render("default")) ||
 	email ||
 	""
-).trim();
+).trim()
 
-const {
-	["class:list"]: linkClassList = [],
-	dataset: linkDataset = {},
-	href,
-	...linkAttrs
-} = link;
+const Element = as
+const mailto = link.href ? link.href : createMailto(emailAddress, mailtoOptions)
 
-const Element = as;
-const mailto = href ? href : createMailto(emailAddress, mailtoOptions);
-
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	useMailto ? (
-		<a
-			{...linkAttrs}
-			class:list={createClassList("sb-email-link", linkClassList)}
-			{...mapDataset(linkDataset)}
-			data-sb-email="link"
-			href={mailto}
-		>
-			<Element
-				{...attrs}
-				class:list={createClassList("sb-email", classList)}
-				{...mapDataset(dataset)}
-				data-sb-email
-			>
+		<a {...linkAttrs} data-sb-email="link" href={mailto}>
+			<Element {...elementAttrs} data-sb-email>
 				{emailAddress}
 			</Element>
 		</a>
 	) : (
-		<Element
-			{...attrs}
-			class:list={createClassList("sb-email", classList)}
-			{...mapDataset(dataset)}
-			data-sb-email
-		>
+		<Element {...elementAttrs} data-sb-email>
 			{emailAddress}
 		</Element>
 	)
