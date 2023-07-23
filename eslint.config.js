@@ -1,3 +1,4 @@
+// ignore unused exports
 export default [
 	{
 		rules: {

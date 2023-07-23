@@ -91,7 +91,7 @@
 		"test:int": "vitest"
 	},
 	"dependencies": {
-		"astro": "^2.8.3"
+		"astro": "^2.9.1"
 	},
 	"devDependencies": {
 		"@astrojs/mdx": "^0.19.7",

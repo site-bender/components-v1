@@ -1,8 +1,8 @@
 import type { Option, Options } from "../../types/form"
 
-import TIME_ZONES from "./timeZones"
 import not from "../not"
 import toUpperCase from "../toUpperCase"
+import TIME_ZONES from "./timeZones"
 
 export default function filterTimeZoneOptions(
 	exclude: Array<string | number>,
@@ -22,15 +22,15 @@ export default function filterTimeZoneOptions(
 		const options = region.options?.filter(({ alpha2, alpha3, numeric }) => {
 			return inc || exc
 				? inc &&
-				(inc?.includes(alpha2 as string) ||
-					inc?.includes(alpha3 as string) ||
-					inc?.includes(numeric as string)) &&
-				not(
-					exc &&
-					(exc?.includes(alpha2 as string) ||
-						exc?.includes(alpha3 as string) ||
-						exc?.includes(numeric as string)),
-				)
+					(inc?.includes(alpha2 as string) ||
+						inc?.includes(alpha3 as string) ||
+						inc?.includes(numeric as string)) &&
+					not(
+						exc &&
+							(exc?.includes(alpha2 as string) ||
+								exc?.includes(alpha3 as string) ||
+								exc?.includes(numeric as string)),
+					)
 				: true
 		})
 

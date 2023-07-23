@@ -87,11 +87,11 @@ export type Option = {
 	alpha3?: string | undefined | null
 	checked?: boolean | string | undefined | null
 	"class:list"?:
-	| Record<string, boolean>
-	| Record<string | number | symbol, unknown>
-	| Iterable<string>
-	| Iterable<unknown>
-	| string
+		| Record<string, boolean>
+		| Record<string | number | symbol, unknown>
+		| Iterable<string>
+		| Iterable<unknown>
+		| string
 	form?: string | undefined | null
 	groupLabelId?: string | undefined | null
 	id?: string | undefined | null
@@ -478,12 +478,12 @@ export type PasswordInput = Override<
 	{
 		allowUnmasked?: boolean | undefined | null
 		autocomplete?:
-		| "off"
-		| "on"
-		| "current-password"
-		| "new-password"
-		| undefined
-		| null
+			| "off"
+			| "on"
+			| "current-password"
+			| "new-password"
+			| undefined
+			| null
 		autocorrect?: never
 		dirname?: string | undefined | null
 		field?: string | undefined | null

@@ -1,4 +1,4 @@
-import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
+import type { HTMLTag, Polymorphic } from "astro/types"
 import type {
 	Audiobook,
 	Book,
@@ -24,10 +24,10 @@ import type {
 	WebPage,
 	WebSite,
 } from "../schema.org"
-import type { HTMLTag, Polymorphic } from "astro/types"
+import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
 
-import type { TIME_ZONE } from "../constants"
 import type { Temporal } from "@js-temporal/polyfill"
+import type { TIME_ZONE } from "../constants"
 
 export type Frontmatter = {
 	anchor?: string | undefined | null
@@ -568,12 +568,12 @@ export type DateTimeFormatOptions = {
 	second?: "numeric" | "2-digit"
 	fractionalSecondDigits?: number
 	timeZoneName?:
-	| "long"
-	| "short"
-	| "shortOffset"
-	| "longOffset"
-	| "shortGeneric"
-	| "longGeneric"
+		| "long"
+		| "short"
+		| "shortOffset"
+		| "longOffset"
+		| "shortGeneric"
+		| "longGeneric"
 }
 
 export type NumberStyle = "decimal" | "currency" | "percent" | "unit"
