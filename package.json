@@ -78,7 +78,7 @@
 		"check:exports": "npx find-unused-exports",
 		"check:packages": "npx npm-check -u",
 		"config:update": "dprint config update",
-		"dep:dev": "pnpm fmt && pnpm lint && pnpm check:exports && pnpm check:packages && infisical run -- pnpm build && rm -rf .cache .history dist && git add -A && git commit && git push",
+		"dep:dev": "pnpm fmt && pnpm lint && pnpm check:exports && pnpm check:packages && pnpm build && rm -rf .cache .history dist && git add -A",
 		"dep:prod": "pnpm dep:dev && vercel deploy",
 		"dev": "cd example && astro dev",
 		"fmt": "dprint fmt",
