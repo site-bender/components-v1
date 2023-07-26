@@ -2,7 +2,7 @@ import type { Basedata, LdArticle, LdPerson, Metadata } from "../../../../types"
 
 export default function getArticleData(
 	basedata: Basedata,
-	metadata: Partial<Metadata>,
+	metadata: Partial<Metadata>
 ): LdArticle | void {
 	const authors = (
 		metadata.article?.authors?.length
@@ -11,9 +11,9 @@ export default function getArticleData(
 	).map((author) =>
 		typeof author === "string"
 			? ({
-				type: "Person",
-				name: author,
-			} as LdPerson)
+					type: "Person",
+					name: author,
+			  } as LdPerson)
 			: author
 	)
 
@@ -24,37 +24,37 @@ export default function getArticleData(
 	).map((publisher) =>
 		typeof publisher === "string"
 			? {
-				type: "Organization",
-				name: publisher,
-			}
+					type: "Organization",
+					name: publisher,
+			  }
 			: publisher
 	)
 
 	return metadata.type === "article"
 		? {
-			type: "Article",
-			author: authors,
-			...(metadata.article?.publishDate
-				? { datePublished: metadata.article.publishDate }
-				: {}),
-			...(metadata.article?.modifiedDate
-				? { dateModified: metadata.article.modifiedDate }
-				: {}),
-			description: metadata.description,
-			headline: metadata.title,
-			inLanguage: metadata.language || basedata.language,
-			license: metadata.article?.license || basedata.license,
-			mainEntityOfPage: metadata.canonical,
-			potentialAction: [
-				{
-					type: "ReadAction",
-					target: [metadata.canonical as string],
-				},
-			],
-			publisher: publishers,
-			teaches: "business analysis",
-			url: metadata.canonical,
-			version: 1,
-		}
+				type: "Article",
+				author: authors,
+				...(metadata.article?.publishDate
+					? { datePublished: metadata.article.publishDate }
+					: {}),
+				...(metadata.article?.modifiedDate
+					? { dateModified: metadata.article.modifiedDate }
+					: {}),
+				description: metadata.description,
+				headline: metadata.title,
+				inLanguage: metadata.language || basedata.language,
+				license: metadata.article?.license || basedata.license,
+				mainEntityOfPage: metadata.canonical,
+				potentialAction: [
+					{
+						type: "ReadAction",
+						target: [metadata.canonical as string],
+					},
+				],
+				publisher: publishers,
+				teaches: "business analysis",
+				url: metadata.canonical,
+				version: 1,
+		  }
 		: undefined
 }

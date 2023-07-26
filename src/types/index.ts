@@ -64,9 +64,8 @@ export type MailtoOptions = {
 	replyTo?: string
 }
 
-export type MetadataProps<T, Tag extends HTMLTag> =
-	& Polymorphic<{ as: Tag }>
-	& Override<
+export type MetadataProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
 		HTMLAttributes,
 		{
 			as?: Tag
@@ -80,7 +79,7 @@ export type CreatePath = (
 	filename: string,
 	size: string,
 	type: string,
-	index: number,
+	index: number
 ) => string
 
 export type ImageMediaType =

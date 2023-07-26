@@ -12,8 +12,7 @@ section.sb-card > :not(.sb-group) {
 	padding: 0 0 1rem;
 	margin: 0;
 }
-sb-
-section.card > .sb-group > header {
+sb- section.card > .sb-group > header {
 	padding: 0;
 }
 
@@ -27,8 +26,8 @@ section.sb-card img {
 
 section.sb-card a:focus img,
 section.sb-card a:hover img,
-section.sb-card img:focus,sb-
-section.card img:hover {
+section.sb-card img:focus,
+sb- section.card img:hover {
 	filter: grayscale(0%);
 }
 

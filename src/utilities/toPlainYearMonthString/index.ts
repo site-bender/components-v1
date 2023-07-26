@@ -1,10 +1,7 @@
 import { Intl, Temporal } from "@js-temporal/polyfill"
 
 export default function toPlainYearMonthString(
-	plainYearMonth:
-		| string
-		| Temporal.PlainYearMonth
-		| Temporal.PlainYearMonthLike,
+	plainYearMonth: string | Temporal.PlainYearMonth | Temporal.PlainYearMonthLike
 ): string {
 	const date = Temporal.PlainYearMonth.from(plainYearMonth)
 

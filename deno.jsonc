@@ -1,5 +1,5 @@
 {
-  "lint": {
+	"lint": {
 		"include": ["src/"],
 		"exclude": [
 			"src/entry.dev.tsx",

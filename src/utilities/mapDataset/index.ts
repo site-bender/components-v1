@@ -7,6 +7,6 @@ export default function mapDataset(dataset: Dataset = {}): Dataset {
 			...out,
 			[`data-${toTrainCase(key)}`]: dataset[key],
 		}),
-		{},
+		{}
 	)
 }

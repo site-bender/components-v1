@@ -2,7 +2,7 @@ import { Intl, Temporal } from "@js-temporal/polyfill"
 
 export default function toPlainDateString(
 	plainDate?: Temporal.PlainDate,
-	plainDateLike?: Temporal.PlainDateLike,
+	plainDateLike?: Temporal.PlainDateLike
 ): string {
 	const date = plainDate
 		? plainDate

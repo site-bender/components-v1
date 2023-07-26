@@ -50,7 +50,7 @@ export const DEFAULT_DATE_TIME_OPTIONS: Intl.DateTimeFormatOptions = {
 }
 
 export const DEFAULT_IMAGE_TYPES = process.env.DEFAULT_IMAGE_TYPES?.split(
-	",",
+	","
 ) || ["avif", "webp", "png"]
 
 export const DEFAULT_LOCALES = ["en-NZ", "en-US", "en-GB", "en-AU"]

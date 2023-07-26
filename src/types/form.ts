@@ -45,17 +45,17 @@ export type Form = Override<
 	GenericFormAttributes,
 	{
 		"accept-charset"?: string | undefined | null
-		action: string
-		autocomplete?: "off" | "on" | undefined | null
-		autocorrect?: never
-		dataset?: Dataset
-		enctype?: string | undefined | null
-		form?: never
-		labelledBy: string | undefined | null
-		method?: "get" | "post" | undefined | null
-		name?: string | undefined | null
-		novalidate?: boolean | string | undefined | null
-		target?: AnchorTarget | undefined | null
+		"action": string
+		"autocomplete"?: "off" | "on" | undefined | null
+		"autocorrect"?: never
+		"dataset"?: Dataset
+		"enctype"?: string | undefined | null
+		"form"?: never
+		"labelledBy": string | undefined | null
+		"method"?: "get" | "post" | undefined | null
+		"name"?: string | undefined | null
+		"novalidate"?: boolean | string | undefined | null
+		"target"?: AnchorTarget | undefined | null
 	}
 >
 
@@ -83,27 +83,27 @@ export type CheckboxInput = Override<
 >
 
 export type Option = {
-	alpha2?: string | undefined | null
-	alpha3?: string | undefined | null
-	checked?: boolean | string | undefined | null
+	"alpha2"?: string | undefined | null
+	"alpha3"?: string | undefined | null
+	"checked"?: boolean | string | undefined | null
 	"class:list"?:
 		| Record<string, boolean>
 		| Record<string | number | symbol, unknown>
 		| Iterable<string>
 		| Iterable<unknown>
 		| string
-	form?: string | undefined | null
-	groupLabelId?: string | undefined | null
-	id?: string | undefined | null
-	label: string
-	name?: string | undefined | null
-	numeric?: string | number | undefined | null
-	options?: Options | undefined | null
-	readonly?: boolean | string | undefined | null
-	required?: boolean | string | undefined | null
-	type?: never
-	value?: string | number | undefined | null
-	wrapper?: Partial<Label>
+	"form"?: string | undefined | null
+	"groupLabelId"?: string | undefined | null
+	"id"?: string | undefined | null
+	"label": string
+	"name"?: string | undefined | null
+	"numeric"?: string | number | undefined | null
+	"options"?: Options | undefined | null
+	"readonly"?: boolean | string | undefined | null
+	"required"?: boolean | string | undefined | null
+	"type"?: never
+	"value"?: string | number | undefined | null
+	"wrapper"?: Partial<Label>
 }
 
 export type Options = Array<Option>
@@ -696,17 +696,20 @@ export type InstantField = Override<
 	}
 >
 
-export type FieldWrapper = Override<HTMLAttributes, {
-	field?: string | undefined | null
-	group?: Partial<HTMLAttributes> | undefined | null
-	help?: Partial<Help> | undefined | null
-	label?: string | undefined | null
-	legend?: Partial<Label> | undefined | null
-	message?: string | undefined | null
-	outer?: Partial<Fieldset> | undefined | null
-	required?: boolean | string | undefined | null
-	tag?: Partial<HTMLAttributes> | undefined | null
-}>
+export type FieldWrapper = Override<
+	HTMLAttributes,
+	{
+		field?: string | undefined | null
+		group?: Partial<HTMLAttributes> | undefined | null
+		help?: Partial<Help> | undefined | null
+		label?: string | undefined | null
+		legend?: Partial<Label> | undefined | null
+		message?: string | undefined | null
+		outer?: Partial<Fieldset> | undefined | null
+		required?: boolean | string | undefined | null
+		tag?: Partial<HTMLAttributes> | undefined | null
+	}
+>
 
 export type FieldsetWrapper = Override<
 	GenericFormAttributes,

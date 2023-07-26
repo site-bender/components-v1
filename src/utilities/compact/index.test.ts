@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import compact from "./"
 
-test("[compact] removes null or undefined items from array", function() {
+test("[compact] removes null or undefined items from array", function () {
 	expect(
 		compact([
 			null,
@@ -17,10 +17,10 @@ test("[compact] removes null or undefined items from array", function() {
 			"",
 			false,
 			null,
-		]),
+		])
 	).toMatchObject([0, 1, 2, 3, 4, 5, "", false])
 })
 
-test("[compact] returns empty array for empty array", function() {
+test("[compact] returns empty array for empty array", function () {
 	expect(compact([])).toMatchObject([])
 })
