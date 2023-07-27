@@ -1,4 +1,4 @@
-import type { WebPage } from "../../../../src/schema.org"
+import type { WebPage } from "../../../../src/types/schema.org"
 
 export default {
 	type: "WebPage",

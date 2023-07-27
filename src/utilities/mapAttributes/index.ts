@@ -5,7 +5,7 @@ import mapDataset from "../mapDataset"
 export default function mapAttributes(
 	data: Partial<HTMLAttributes> | null = {},
 	classes: Array<string> = [],
-	attrs?: HTMLAttributes
+	attrs?: HTMLAttributes,
 ) {
 	const {
 		["class:list"]: classList = [],

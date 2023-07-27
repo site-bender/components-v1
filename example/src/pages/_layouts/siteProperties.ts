@@ -1,4 +1,4 @@
-import type { WebSite } from "../../../../src/schema.org"
+import type { WebSite } from "../../../../src/types/schema.org"
 
 export default {
 	about:

@@ -15,21 +15,21 @@ export default function getLicense({
 
 	const { saHref, saLicense } = noDerivatives
 		? {
-				saHref: "-nd",
-				saLicense: "-NoDerivatives",
-		  }
+			saHref: "-nd",
+			saLicense: "-NoDerivatives",
+		}
 		: shareAlike
 		? {
-				saHref: "-sa",
-				saLicense: "-ShareAlike",
-		  }
+			saHref: "-sa",
+			saLicense: "-ShareAlike",
+		}
 		: { saHref: "", saLicense: "" }
 
 	const { ncHref, ncLicense } = nonCommercial
 		? {
-				ncHref: "-nc",
-				ncLicense: "-NonCommercial",
-		  }
+			ncHref: "-nc",
+			ncLicense: "-NonCommercial",
+		}
 		: { ncHref: "", ncLicense: "" }
 
 	return {

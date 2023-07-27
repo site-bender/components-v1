@@ -2,7 +2,7 @@ import type { Options } from "../../types/form"
 import TIME_ZONES from "./timezones"
 
 export default function getTimeZoneOptions(
-	countries: Array<string> | null | undefined = []
+	countries: Array<string> | null | undefined = [],
 ): Options {
 	return TIME_ZONES.filter(({ countryCode }) =>
 		(countries as Array<string>).length

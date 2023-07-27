@@ -3,7 +3,7 @@ import type { Basedata, Metadata } from "../../../../types"
 export default function getWebPageData(
 	basedata: Basedata,
 	metadata: Metadata,
-	title: string
+	title: string,
 ) {
 	return {
 		"type": "WebPage",

@@ -1,7 +1,5 @@
 ---
-import createClassList from "../../utilities/createClassList"
 import mapAttributes from "../../utilities/mapAttributes"
-import mapDataset from "../../utilities/mapDataset"
 import Microdata from "../../Microdata/index.astro"
 import type { BooleanProps as Props } from "../../types"
 import type { HTMLAttributes } from "../../form/html-types"
@@ -18,8 +16,6 @@ const {
 	...attrs
 } = Astro.props
 
-console.log("boolean", Astro.props)
-
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-boolean"])
 const microdata = mapAttributes(micro as HTMLAttributes, ["sb-boolean"])
 
@@ -32,9 +28,7 @@ const properties = {
 	...props,
 }
 
-console.log("properties", properties)
-
-const useMicrodata = true // Boolean(import.meta.env.USE_MICRODATA)
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {

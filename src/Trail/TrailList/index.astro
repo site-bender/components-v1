@@ -1,0 +1,64 @@
+---
+import Link from "../../Link/index.astro"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { HTMLAttributes } from "../../types/html"
+import type { PageMeta, TrailListProps as Props } from "../../types"
+
+const {
+	crumbs = [],
+	header = {},
+	hideClass = "off-screen",
+	labelledBy,
+	level = 2,
+	list = {},
+	page = {},
+	title = "Breadcrumb trail",
+	type = "ul",
+} = Astro.props
+
+const headerAttrs = mapAttributes(header, ["sb-trail-header", hideClass])
+const listAttrs = mapAttributes(list, ["sb-trail-list"])
+const pageAttrs = mapAttributes(page, ["sb-trail-this-page"])
+
+const HElement = `h${level}`
+const ListElement = type
+
+const links = crumbs as Array<PageMeta<"a">>
+---
+
+<HElement {...headerAttrs} data-sb-trail="header" id={labelledBy}>
+	{title}
+</HElement>
+
+<ListElement role="presentation" {...listAttrs} data-sb-trail="list">
+	{
+		links.map(
+			(
+				{ description, label, link, properties, title, url: href, ...attrs },
+				index
+			) => {
+				const lbl = label || title
+				const ttl = description ? { title: description } : {}
+
+				const linkAttrs = mapAttributes(link as HTMLAttributes, [
+					"sb-trail-link",
+				])
+				const propsAttrs = mapAttributes(ttl as HTMLAttributes, [
+					"sb-trail-list-item",
+				])
+
+				return index === crumbs.length - 1 ? (
+					<li {...propsAttrs}>
+						<span aria-current="page" {...pageAttrs}>
+							{lbl}
+						</span>
+					</li>
+				) : (
+					<li {...propsAttrs}>
+						<Link {...linkAttrs} {href} {lbl} {properties} />
+					</li>
+				)
+			}
+		)
+	}
+</ListElement>

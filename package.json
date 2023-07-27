@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -114,9 +114,11 @@
 		"build": "astro build",
 		"check:exports": "npx find-unused-exports",
 		"check:packages": "npx npm-check -u",
+		"config:update": "dprint config update",
 		"dev": "cd example && astro dev",
-		"fmt": "prettier . --write",
-		"fmt:check": "prettier . --check",
+		"fmt": "dprint fmt",
+		"fmt:check": "dprint check",
+		"lint": "deno lint",
 		"publish": "npm publish --access=public",
 		"start": "cd example && astro start",
 		"test": "pnpm test:int",
@@ -124,7 +126,7 @@
 		"test:int": "vitest"
 	},
 	"dependencies": {
-		"astro": "^2.9.1"
+		"astro": "^2.9.3"
 	},
 	"devDependencies": {
 		"@astrojs/mdx": "^0.19.7",

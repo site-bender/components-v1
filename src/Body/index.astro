@@ -3,15 +3,9 @@ import Microdata from "../Microdata/index.astro"
 import mapAttributes from "../utilities/mapAttributes"
 import type { BodyProps as Props } from "../types"
 
-const {
-	pageProperties,
-	site,
-	siteProperties,
-	title,
-	...attrs
-} = Astro.props
+const { pageProperties, site, siteProperties, title, ...attrs } = Astro.props
 
-const wrapperAttrs = mapAttributes(attrs, ["sb-header"])
+const wrapperAttrs = mapAttributes(attrs, ["sb-body"])
 
 const name = site || import.meta.env.SITE_NAME
 

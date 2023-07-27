@@ -1,4 +1,5 @@
 import type { HTMLTag, Polymorphic } from "astro/types"
+import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
 import type {
 	Audiobook,
 	Book,
@@ -13,7 +14,9 @@ import type {
 	MusicRecording,
 	MusicRelease,
 	Number,
+	Organization,
 	OrganizationLeaf,
+	Person,
 	PersonLeaf,
 	QuantitativeValueDistribution,
 	Quotation,
@@ -23,8 +26,7 @@ import type {
 	Thing,
 	WebPage,
 	WebSite,
-} from "../schema.org"
-import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
+} from "./schema.org"
 
 import type { Temporal } from "@js-temporal/polyfill"
 import type { TIME_ZONE } from "../constants"
@@ -64,8 +66,9 @@ export type MailtoOptions = {
 	replyTo?: string
 }
 
-export type MetadataProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
-	Override<
+export type MetadataProps<T, Tag extends HTMLTag> =
+	& Polymorphic<{ as: Tag }>
+	& Override<
 		HTMLAttributes,
 		{
 			as?: Tag
@@ -75,11 +78,87 @@ export type MetadataProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
 		}
 	>
 
+export type ObjectType = "website" | "article" | "profile"
+
+export type TwitterCard = "app" | "player" | "summary" | "summary_large_image"
+
+export type Metadata = {
+	article?:
+		| {
+			authors?: Array<string | Person> | undefined
+			license?: string | undefined
+			modifiedDate?: Date | string | undefined
+			publishers?: Array<string | Organization> | undefined
+			publishDate?: Date | string
+			tags?: Array<string> | undefined
+			title?: string
+		}
+		| undefined
+	author?: string | Person | undefined
+	blurb?: string | undefined
+	canonical: string
+	chapter?: number
+	charset?: string | undefined
+	children?: Array<string>
+	description: string
+	image?:
+		| {
+			alt: string
+			filename: string
+			height?: string | number
+			isInvertible?: boolean
+			license?: string
+			sources?: Array<ImageSource>
+			type?: ImageType | undefined
+			width?: string | number
+		}
+		| undefined
+	index?: number
+	label?: string
+	language?: string | undefined
+	locale?: string | undefined
+	modifiedDate?: Date | string | undefined
+	noAnalytics?: boolean | undefined
+	publishDate?: Date | string
+	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
+	siteName?: string | undefined
+	subtitle?: string
+	thumbnailUrl?: string | undefined
+	title: string
+	twitter?:
+		| {
+			card: TwitterCard
+			creator?: string | undefined
+			description?: string | undefined
+			image?: string | undefined
+			imageAlt?: string | undefined
+			site?: string | undefined
+			title?: string | undefined
+		}
+		| undefined
+	type?: ObjectType
+	url?: string | undefined
+	viewport?: string | undefined
+}
+
+export type PageMeta<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
+	{
+		canonical?: string | undefined | null
+		description?: string | undefined | null
+		label?: string | undefined | null
+		link?: Partial<LinkAttributes> | undefined | null
+		path?: string | undefined | null
+		title?: string | undefined | null
+		url?: string | undefined | null
+	}
+>
+
 export type CreatePath = (
 	filename: string,
 	size: string,
 	type: string,
-	index: number
+	index: number,
 ) => string
 
 export type ImageMediaType =
@@ -128,6 +207,31 @@ export type ListAttributes = Override<
 		type?: "1" | "a" | "A" | "i" | "I" | undefined | null
 	}
 >
+
+export type Fallback = Override<
+	HTMLAttributes,
+	{
+		href?: string | undefined | null
+		label: string | undefined | null
+	}
+>
+
+export type AriaHeader = Override<
+	HTMLAttributes,
+	{
+		label: string | undefined | null
+		level?: 1 | 2 | 3 | 4 | 5 | 6
+	}
+>
+
+export type Pages = Record<string, Partial<Metadata>>
+
+export type Trail = {
+	fallback?: Fallback | undefined
+	heading?: AriaHeader | undefined
+	page?: Partial<HTMLAttributes> | undefined
+	pages?: Pages | undefined
+}
 
 export type BodyProps<T, Tag extends HTMLTag> = Override<
 	MetadataProps<T, Tag>,
@@ -293,6 +397,27 @@ export type NavListProps<Tag extends HTMLTag> = Override<
 		hideClass?: string | undefined | null
 		level?: 1 | 2 | 3 | 4 | 5 | 6
 		links: Array<LinkProps<Tag>>
+		list?: ListAttributes | undefined | null
+		title?: string | undefined | null
+		type?: "ol" | "ul" | undefined | null
+	}
+>
+
+export type TrailProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
+	{
+		hideClass?: string | undefined | null
+		trail: TrailListProps<Tag>
+	}
+>
+
+export type TrailListProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
+	{
+		crumbs: Array<LinkProps<Tag>>
+		header?: HTMLAttributes | undefined | null
+		hideClass?: string | undefined | null
+		level?: 1 | 2 | 3 | 4 | 5 | 6
 		list?: ListAttributes | undefined | null
 		title?: string | undefined | null
 		type?: "ol" | "ul" | undefined | null
