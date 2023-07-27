@@ -26,6 +26,8 @@ export { default as Nav } from "./src/Nav/index.astro"
 export { default as Picture } from "./src/Picture/Content/index.astro"
 // @ts-expect-error
 export { default as PullQuote } from "./src/PullQuote/index.astro"
+// @ts-expect-error
+export { default as Trail } from "./src/Trail/index.astro"
 
 /* ===== FORM ===== */
 // @ts-expect-error

@@ -17,7 +17,6 @@
 		"example/components.theme.dark.json": true,
 		"example/astro.config.mjs": true,
 		"example/pnpm-lock.yaml": true,
-		"example/tsconfig.json": true,
 		".eslintignore": true,
 		".eslintrc.cjs": true,
 		".editorconfig": true,
@@ -25,8 +24,7 @@
 		".infisical.json": true,
 		".prettierrc.json": true,
 		"deno.jsonc": true,
-		"dprint.json": true,
-		"eslint.config.js": true
+		"dprint.json": true
 	},
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",

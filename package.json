@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -94,6 +94,7 @@
 		"./time-zone-field": "./src/form/TimeZoneField/index.astro",
 		"./time-zone-select": "./src/form/elements/TimeZoneSelect/index.astro",
 		"./time-zone": "./src/metadata/TimeZone/index.astro",
+		"./trail": "./src/Trail/index.astro",
 		"./trilean-field": "./src/form/TrileanField/index.astro",
 		"./url-field": "./src/form/UrlField/index.astro",
 		"./url-input": "./src/form/elements/UrlInput/index.astro",
