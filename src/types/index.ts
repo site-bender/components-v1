@@ -1,3 +1,4 @@
+import type { HTMLTag, Polymorphic } from "astro/types"
 import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
 import type {
 	Audiobook,
@@ -26,11 +27,10 @@ import type {
 	WebPage,
 	WebSite,
 } from "./schema.org"
-import type { HTMLTag, Polymorphic } from "astro/types"
 
+import type { Temporal } from "@js-temporal/polyfill"
 import type { AstroInstance } from "astro"
 import type { TIME_ZONE } from "../constants"
-import type { Temporal } from "@js-temporal/polyfill"
 
 export interface AstroPage extends AstroInstance {
 	metadata: Metadata
@@ -102,16 +102,16 @@ export type Basedata = {
 
 export type Metadata = {
 	article?:
-	| {
-		authors?: Array<string | Person> | undefined
-		license?: string | undefined
-		modifiedDate?: Date | string | undefined
-		publishers?: Array<string | Organization> | undefined
-		publishDate?: Date | string
-		tags?: Array<string> | undefined
-		title?: string
-	}
-	| undefined
+		| {
+			authors?: Array<string | Person> | undefined
+			license?: string | undefined
+			modifiedDate?: Date | string | undefined
+			publishers?: Array<string | Organization> | undefined
+			publishDate?: Date | string
+			tags?: Array<string> | undefined
+			title?: string
+		}
+		| undefined
 	author?: string | Person | undefined
 	blurb?: string | undefined
 	canonical: string
@@ -120,17 +120,17 @@ export type Metadata = {
 	children?: Array<string>
 	description: string
 	image?:
-	| {
-		alt: string
-		filename: string
-		height?: string | number
-		isInvertible?: boolean
-		license?: string
-		sources?: Array<ImageSource>
-		type?: ImageType | undefined
-		width?: string | number
-	}
-	| undefined
+		| {
+			alt: string
+			filename: string
+			height?: string | number
+			isInvertible?: boolean
+			license?: string
+			sources?: Array<ImageSource>
+			type?: ImageType | undefined
+			width?: string | number
+		}
+		| undefined
 	index?: number
 	label?: string
 	language?: string | undefined
@@ -144,16 +144,16 @@ export type Metadata = {
 	thumbnailUrl?: string | undefined
 	title: string
 	twitter?:
-	| {
-		card: TwitterCard
-		creator?: string | undefined
-		description?: string | undefined
-		image?: string | undefined
-		imageAlt?: string | undefined
-		site?: string | undefined
-		title?: string | undefined
-	}
-	| undefined
+		| {
+			card: TwitterCard
+			creator?: string | undefined
+			description?: string | undefined
+			image?: string | undefined
+			imageAlt?: string | undefined
+			site?: string | undefined
+			title?: string | undefined
+		}
+		| undefined
 	type?: ObjectType
 	url?: string | undefined
 	viewport?: string | undefined
@@ -767,12 +767,12 @@ export type DateTimeFormatOptions = {
 	second?: "numeric" | "2-digit"
 	fractionalSecondDigits?: number
 	timeZoneName?:
-	| "long"
-	| "short"
-	| "shortOffset"
-	| "longOffset"
-	| "shortGeneric"
-	| "longGeneric"
+		| "long"
+		| "short"
+		| "shortOffset"
+		| "longOffset"
+		| "shortGeneric"
+		| "longGeneric"
 }
 
 export type NumberStyle = "decimal" | "currency" | "percent" | "unit"

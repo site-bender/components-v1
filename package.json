@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -159,6 +159,7 @@
 	],
 	"scripts": {
 		"build": "astro build",
+		"bump": "npm version patch --force",
 		"check:exports": "npx find-unused-exports",
 		"check:packages": "npx npm-check -u",
 		"config:update": "dprint config update",
@@ -173,7 +174,7 @@
 		"test:int": "vitest"
 	},
 	"dependencies": {
-		"astro": "^2.9.3"
+		"astro": "^2.9.6"
 	},
 	"devDependencies": {
 		"@astrojs/mdx": "^0.19.7",
