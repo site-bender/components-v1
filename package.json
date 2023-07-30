@@ -160,6 +160,8 @@
 	"scripts": {
 		"build": "astro build",
 		"bump": "npm version patch --force",
+		"bump:major": "npm version major --force",
+		"bump:minor": "npm version minor --force",
 		"check:exports": "npx find-unused-exports",
 		"check:packages": "npx npm-check -u",
 		"config:update": "dprint config update",
