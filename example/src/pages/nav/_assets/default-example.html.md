@@ -12,7 +12,7 @@ caption: "Default Nav output"
 	itemscope
 	itemtype="https://schema.org/SiteNavigationElement"
 >
-	<h2 class="off-screen" id="6c6n2oLLrN834MC7iExiop">Links to more info</h2>
+	<h2 class="sb-off-screen" id="6c6n2oLLrN834MC7iExiop">Links to more info</h2>
 	<ul role="presentation">
 		<li>
 			<a

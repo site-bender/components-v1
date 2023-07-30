@@ -1,4 +1,3 @@
-import type { HTMLTag, Polymorphic } from "astro/types"
 import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
 import type {
 	Audiobook,
@@ -27,9 +26,15 @@ import type {
 	WebPage,
 	WebSite,
 } from "./schema.org"
+import type { HTMLTag, Polymorphic } from "astro/types"
 
-import type { Temporal } from "@js-temporal/polyfill"
+import type { AstroInstance } from "astro"
 import type { TIME_ZONE } from "../constants"
+import type { Temporal } from "@js-temporal/polyfill"
+
+export interface AstroPage extends AstroInstance {
+	metadata: Metadata
+}
 
 export type Frontmatter = {
 	anchor?: string | undefined | null
@@ -82,18 +87,31 @@ export type ObjectType = "website" | "article" | "profile"
 
 export type TwitterCard = "app" | "player" | "summary" | "summary_large_image"
 
+export type Basedata = {
+	authors?: Array<string | Person> | undefined
+	canonical?: string
+	charset?: string | undefined
+	imageUrl?: string | undefined
+	locale?: string | undefined
+	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
+	siteName?: string | undefined
+	twitterCard: TwitterCard
+	type?: ObjectType
+	viewport?: string | undefined
+}
+
 export type Metadata = {
 	article?:
-		| {
-			authors?: Array<string | Person> | undefined
-			license?: string | undefined
-			modifiedDate?: Date | string | undefined
-			publishers?: Array<string | Organization> | undefined
-			publishDate?: Date | string
-			tags?: Array<string> | undefined
-			title?: string
-		}
-		| undefined
+	| {
+		authors?: Array<string | Person> | undefined
+		license?: string | undefined
+		modifiedDate?: Date | string | undefined
+		publishers?: Array<string | Organization> | undefined
+		publishDate?: Date | string
+		tags?: Array<string> | undefined
+		title?: string
+	}
+	| undefined
 	author?: string | Person | undefined
 	blurb?: string | undefined
 	canonical: string
@@ -102,17 +120,17 @@ export type Metadata = {
 	children?: Array<string>
 	description: string
 	image?:
-		| {
-			alt: string
-			filename: string
-			height?: string | number
-			isInvertible?: boolean
-			license?: string
-			sources?: Array<ImageSource>
-			type?: ImageType | undefined
-			width?: string | number
-		}
-		| undefined
+	| {
+		alt: string
+		filename: string
+		height?: string | number
+		isInvertible?: boolean
+		license?: string
+		sources?: Array<ImageSource>
+		type?: ImageType | undefined
+		width?: string | number
+	}
+	| undefined
 	index?: number
 	label?: string
 	language?: string | undefined
@@ -126,16 +144,16 @@ export type Metadata = {
 	thumbnailUrl?: string | undefined
 	title: string
 	twitter?:
-		| {
-			card: TwitterCard
-			creator?: string | undefined
-			description?: string | undefined
-			image?: string | undefined
-			imageAlt?: string | undefined
-			site?: string | undefined
-			title?: string | undefined
-		}
-		| undefined
+	| {
+		card: TwitterCard
+		creator?: string | undefined
+		description?: string | undefined
+		image?: string | undefined
+		imageAlt?: string | undefined
+		site?: string | undefined
+		title?: string | undefined
+	}
+	| undefined
 	type?: ObjectType
 	url?: string | undefined
 	viewport?: string | undefined
@@ -233,6 +251,20 @@ export type Trail = {
 	pages?: Pages | undefined
 }
 
+export type ArticleProps<T, Tag extends HTMLTag> =
+	& Polymorphic<{ as: Tag }>
+	& Override<
+		HTMLAttributes,
+		{
+			as?: Tag
+			asColumns?: boolean | undefined | null
+			heading?: Partial<HTMLAttributes> | undefined | null
+			level?: 1 | 2 | 3 | 4 | 5 | 6
+			microdata?: Partial<HTMLAttributes> | undefined | null
+			properties?: Partial<T>
+			title?: string | undefined | null
+		}
+	>
 export type BodyProps<T, Tag extends HTMLTag> = Override<
 	MetadataProps<T, Tag>,
 	{
@@ -268,7 +300,7 @@ export type CardProps<T, Tag extends HTMLTag> = Override<
 		isInvertible?: boolean | undefined | null
 		level?: 1 | 2 | 3 | 4 | 5 | 6
 		link?: Partial<LinkAttributes> | undefined | null
-		picture?: PictureProps | undefined | null
+		picture?: PictureProps<Tag> | undefined | null
 		title?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
 	}
@@ -373,12 +405,48 @@ export type InstantProps<Tag extends HTMLTag> = Override<
 	}
 >
 
+export type ItemsProps<T, Tag extends HTMLTag> = Override<
+	MetadataProps<T, Tag>,
+	{
+		children?: Array<string> | undefined
+		page: string
+		pages: Record<string, Partial<Metadata>>
+		parent: string
+	}
+>
+
 export type LinkProps<Tag extends HTMLTag> = Override<
 	MetadataProps<SiteNavigationElement, Tag>,
 	{
 		href: string
 		label: string
 		link?: Partial<LinkAttributes> | undefined | null
+	}
+>
+
+export type LogotypeProps<Tag extends HTMLTag> = Override<
+	MetadataProps<SiteNavigationElement, Tag>,
+	{
+		ariaLabel?: string | undefined | null
+		href: string
+		label: string
+		level?: 1 | 2 | 3 | 4 | 5 | 6
+		link?: Partial<LinkAttributes> | undefined | null
+	}
+>
+
+export type MainProps<Tag extends HTMLTag> = Override<
+	MetadataProps<SiteNavigationElement, Tag>,
+	{
+		imageUrl?: string | undefined | null
+	}
+>
+
+export type MessengerProps<Tag extends HTMLTag> = Override<
+	MetadataProps<SiteNavigationElement, Tag>,
+	{
+		header?: HTMLAttributes | undefined | null
+		level?: 1 | 2 | 3 | 4 | 5 | 6
 	}
 >
 
@@ -400,6 +468,13 @@ export type NavListProps<Tag extends HTMLTag> = Override<
 		list?: ListAttributes | undefined | null
 		title?: string | undefined | null
 		type?: "ol" | "ul" | undefined | null
+	}
+>
+
+export type PaginatorProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
+	{
+		pages: Record<string, Partial<Metadata>>
 	}
 >
 
@@ -692,12 +767,12 @@ export type DateTimeFormatOptions = {
 	second?: "numeric" | "2-digit"
 	fractionalSecondDigits?: number
 	timeZoneName?:
-		| "long"
-		| "short"
-		| "shortOffset"
-		| "longOffset"
-		| "shortGeneric"
-		| "longGeneric"
+	| "long"
+	| "short"
+	| "shortOffset"
+	| "longOffset"
+	| "shortGeneric"
+	| "longGeneric"
 }
 
 export type NumberStyle = "decimal" | "currency" | "percent" | "unit"

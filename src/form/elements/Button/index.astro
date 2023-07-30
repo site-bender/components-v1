@@ -2,7 +2,7 @@
 import "./index.css"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
-import type { Button as Props } from "../../../types/form"
+import type { ButtonProps as Props } from "../../../types/form"
 
 const {
 	id = generateShortId(),
@@ -11,11 +11,11 @@ const {
 	...attrs
 } = Astro.props
 
-const elemAttrs = mapAttributes(attrs, ["sb-button"])
+const elemAttrs = mapAttributes(attrs, ["sb-button", `sb-button-${type}`])
 
 const lbl = (await Astro.slots.render("default")) || label
 ---
 
-<button {...elemAttrs} data-sb-button={type} {id} {type}>
+<button {...elemAttrs} {id} {type}>
 	{lbl}
 </button>

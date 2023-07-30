@@ -1,0 +1,108 @@
+:root {
+	--sb-paginator-border-color: var(--color-y-ln-mn);
+	--sb-paginator-current-background-color: var(--color-y-ln-mn);
+	--sb-paginator-current-color: var(--color-y-ln-mn);
+	--sb-paginator-link-color: var(--color-y-ln-mn);
+	--sb-paginator-link-color-focus: var(--color-gray-8);
+	--sb-paginator-link-current-color: var(--color-gray-0);
+	--sb-paginator-text-color: var(--color-gray-8);
+	--sb-paginator-item-color-focus: var(--color-icterine);
+}
+
+.sb-remove {
+	display: none;
+}
+
+.sb-paginator {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	top: 2rem;
+	right: 1rem;
+}
+
+.sb-paginator-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.sb-paginator-list li {
+	font-size: 2rem;
+	height: 3rem;
+	width: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--sb-paginator-border-color);
+	border-radius: 3px;
+	position: relative;
+	margin: 0 1px;
+}
+
+.sb-paginator-list li:has(a[aria-current]) {
+	background-color: var(--sb-paginator-current-background-color);
+	color: var(--sb-paginator-current-color);
+}
+
+.sb-paginator-list li a {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	color: var(--sb-paginator-link-color);
+	text-decoration: none;
+	font-variant-numeric: tabular-nums lining-nums;
+	height: 100%;
+	width: 100%;
+}
+
+.sb-paginator-list li a[aria-current] {
+	color: var(--sb-paginator-link-current-color);
+}
+
+.sb-paginator-list li a[aria-current]:hover {
+	outline: none;
+}
+
+.sb-paginator-list li a[aria-current]::after {
+	content: attr(aria-label);
+	font-size: 1rem;
+	position: absolute;
+	top: -1.6rem;
+	right: 0;
+	white-space: nowrap;
+	color: var(--sb-paginator-text-color);
+}
+
+.sb-paginator:hover li a[aria-current]::after {
+	display: none;
+}
+
+.sb-paginator-list li:has(a:not([aria-current])):focus-within,
+.sb-paginator-list li:has(a:not([aria-current])):hover {
+	background-color: var(--sb-paginator-item-color-focus);
+	color: var(--sb-paginator-link-color-focus);
+	outline: 0;
+}
+
+.sb-paginator-list li:hover a:not([aria-current]) {
+	color: var(--sb-paginator-link-color-focus);
+	outline: 0;
+}
+
+.sb-paginator-list li:hover a:not([aria-current])::after {
+	content: attr(aria-label);
+	font-size: 1rem;
+	position: absolute;
+	top: -1.6rem;
+	right: 0;
+	white-space: nowrap;
+	color: var(--sb-paginator-text-color);
+}
+
+@media only screen and (max-width: 42rem) {
+	.sb-paginator-list li.paginator-button {
+		display: none;
+	}
+}

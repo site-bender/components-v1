@@ -25,10 +25,8 @@
 			]
 
 			;[...monthDayFields].forEach((element) => {
-				const monthSelect = element.querySelector(
-					"select[data-sb-select-month]"
-				)
-				const daySelect = element.querySelector("select[data-sb-select-day]")
+				const monthSelect = element.querySelector("select.sb-select-month")
+				const daySelect = element.querySelector("select.sb-select-day")
 
 				monthSelect?.addEventListener("change", function () {
 					const month = parseInt((monthSelect as HTMLSelectElement).value, 10)

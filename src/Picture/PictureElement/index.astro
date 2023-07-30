@@ -11,7 +11,7 @@ const {
 	description = {},
   filename,
   height = 0,
-  hideClass = "off-screen",
+  hideClass = "sb-off-screen",
 	id = generateShortId(),
 	img = {},
   loading = "lazy",
@@ -39,8 +39,8 @@ const h = height || Math.floor(aspectRatio * width)
 
 {
 	link.href ? (
-		<a {...linkAttrs} data-sb-picture="link">
-			<picture {...pictureAttrs} data-sb-picture>
+		<a {...linkAttrs} >
+			<picture {...pictureAttrs} >
 				{sources.map((source: ImageSource) => (
 					<Source
 						{createPath}
@@ -50,7 +50,7 @@ const h = height || Math.floor(aspectRatio * width)
 				))}
 				<img
 					{alt}
-					data-sb-picture="img"
+
 					{...describedById}
 					decoding="async"
 					{...(h ? { height: h } : {})}
@@ -62,7 +62,7 @@ const h = height || Math.floor(aspectRatio * width)
 				{desc ? (
 					<div
 						{...descAttrs}
-						data-sb-picture="description"
+
 						{id}
 						set:html={desc}
 					/>
@@ -70,13 +70,13 @@ const h = height || Math.floor(aspectRatio * width)
 			</picture>
 		</a>
 	) : (
-		<picture {...pictureAttrs} data-sb-picture>
+		<picture {...pictureAttrs} >
 			{sources.map((source: ImageSource) => (
 				<Source {createPath} {filename} {source} />
 			))}
 			<img
 				{alt}
-				data-sb-picture="img"
+
 				{...describedById}
 				decoding="async"
 				{...(h ? { height: h } : {})}
@@ -88,7 +88,7 @@ const h = height || Math.floor(aspectRatio * width)
 			{desc ? (
 				<div
 					{...descAttrs}
-					data-sb-picture="description"
+
 					{id}
 					set:html={desc}
 				/>

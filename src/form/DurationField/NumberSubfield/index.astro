@@ -24,26 +24,14 @@ const elemAttrs = mapAttributes(attrs as HTMLAttributes, [`sb-input-${name}`])
 const outerAttrs = mapAttributes(outer, [`sb-label-${name}`])
 const tagAttrs = mapAttributes(tag, [`sb-label-tag-${name}`])
 
-const inputData = {
-	[`data-sb-input-${name}`]: field,
-}
-const labelData = {
-	[`data-sb-label-${name}`]: field,
-}
-
-const tagData = {
-	[`data-sb-label-tag-${name}`]: field,
-}
-
 const id = `${parentId}_${name}`
 ---
 
-<label {...outerAttrs} {...labelData} for={id}>
-	<span {...tagAttrs} {...tagData} id={`${id}_label`}>{label}</span>
+<label {...outerAttrs} for={id}>
+	<span {...tagAttrs} id={`${id}_label`}>{label}</span>
 	<input
 		{...elemAttrs}
 		aria-labelledby={`${labelledBy} ${id}_label`}
-		{...inputData}
 		{disabled}
 		{form}
 		id={id}

@@ -33,14 +33,10 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	useTel ? (
-		<a {...linkAttrs} data-sb-tel="link" href={telLink}>
-			<Element {...elementAttrs} data-sb-tel>
-				{phone.replaceAll(/[^0-9+]/g, " ")}
-			</Element>
+		<a {...linkAttrs} href={telLink}>
+			<Element {...elementAttrs}>{phone.replaceAll(/[^0-9+]/g, " ")}</Element>
 		</a>
 	) : (
-		<Element {...elementAttrs} data-sb-tel>
-			{phone.replaceAll(/[^0-9+]/g, " ")}
-		</Element>
+		<Element {...elementAttrs}>{phone.replaceAll(/[^0-9+]/g, " ")}</Element>
 	)
 }

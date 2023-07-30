@@ -1,26 +1,31 @@
 ---
 // import LinkedData from "./LinkedData/index.astro";
-import type { Basedata, Metadata } from "../types";
+import type { Basedata, Metadata } from "../../types"
+import type { PersonLeaf } from "../../types/schema.org"
 
 export type Props = {
-  basedata: Basedata;
-  metadata?: Metadata;
-  title?: string | undefined;
-};
+	basedata: Basedata
+	metadata?: Metadata
+	title?: string | undefined
+}
 
-const { basedata = {}, metadata = {} as Metadata, title } = Astro.props;
-const type = metadata.type || basedata.type;
+const {
+	basedata = {} as Basedata,
+	metadata = {} as Metadata,
+	title,
+} = Astro.props
+const type = metadata.type || basedata.type
 
 const author =
-  typeof metadata.author === "string"
-    ? metadata.author
-    : metadata.author?.name || basedata.authors?.at(0)?.name;
+	typeof metadata.author === "string"
+		? metadata.author
+		: metadata.author?.name || (basedata.authors?.at(0) as PersonLeaf)?.name
 
 const src = metadata.image?.src
-  ? metadata.image.src
-  : `${basedata.imageUrl}${metadata.image?.filename}.${
-      metadata.image?.type || "png"
-    }`;
+	? metadata.image.src
+	: `${basedata.imageUrl}${metadata.image?.filename}.${
+			metadata.image?.type || "png"
+	  }`
 ---
 
 <meta charset={metadata.charset || basedata.charset} />
@@ -34,136 +39,138 @@ const src = metadata.image?.src
 <meta name="og:title" content={metadata.title} />
 {src ? <meta name="og:image" content={src} /> : null}
 {
-  metadata.image?.filename && metadata.image.alt ? (
-    <meta name="og:image:alt" content={metadata.image.alt} />
-  ) : null
+	metadata.image?.filename && metadata.image.alt ? (
+		<meta name="og:image:alt" content={metadata.image.alt} />
+	) : null
 }{
-  metadata.image?.filename && metadata.image.height ? (
-    <meta name="og:image:height" content={metadata.image.height.toString()} />
-  ) : null
+	metadata.image?.filename && metadata.image.height ? (
+		<meta name="og:image:height" content={metadata.image.height.toString()} />
+	) : null
 }{
-  metadata.image?.filename ? (
-    <meta name="og:image:type" content="image/avif" />
-  ) : null
+	metadata.image?.filename ? (
+		<meta name="og:image:type" content="image/avif" />
+	) : null
 }{
-  metadata.image?.filename && metadata.image.width ? (
-    <meta name="og:image:width" content={metadata.image.width.toString()} />
-  ) : null
+	metadata.image?.filename && metadata.image.width ? (
+		<meta name="og:image:width" content={metadata.image.width.toString()} />
+	) : null
 }
 {
-  type === "website" ? (
-    <>
-      <meta itemprop="og:type" content="website" />
-      <meta itemprop="og:title" content={title || basedata.siteName} />
-    </>
-  ) : null
+	type === "website" ? (
+		<>
+			<meta itemprop="og:type" content="website" />
+			<meta itemprop="og:title" content={title || basedata.siteName} />
+		</>
+	) : null
 }
 {
-  type === "article" && metadata.article ? (
-    <>
-      <meta itemprop="og:type" content="article" />
-      {metadata.article.authors?.map((author) => (
-        <meta
-          itemprop="article:author"
-          content={typeof author === "string" ? author : author.name}
-        />
-      )) || <meta itemprop="article:author" content={author} />}
-      <meta
-        itemprop="article:modified_time"
-        content={
-          metadata.article.modifiedDate
-            ? metadata.article.modifiedDate.toString()
-            : new Date().toISOString()
-        }
-      />
-      {metadata.article.publishDate ? (
-        <meta
-          itemprop="article:published_time"
-          content={metadata.article.publishDate.toString()}
-        />
-      ) : null}
-      {metadata.article.publishers?.map((publisher) => (
-        <meta
-          itemprop="article:publisher"
-          content={typeof publisher === "string" ? publisher : publisher.name}
-        />
-      ))}
-      {metadata.article.tags?.map((tag) => (
-        <meta itemprop="article:tag" content={tag} />
-      ))}
-      {metadata.article.title ? (
-        <meta itemprop="article:title" content={metadata.article.title} />
-      ) : null}
-    </>
-  ) : null
+	type === "article" && metadata.article ? (
+		<>
+			<meta itemprop="og:type" content="article" />
+			{metadata.article.authors?.map((author) => (
+				<meta
+					itemprop="article:author"
+					content={
+						(typeof author === "string" ? author : author.name) as string
+					}
+				/>
+			)) || <meta itemprop="article:author" content={author} />}
+			<meta
+				itemprop="article:modified_time"
+				content={
+					metadata.article.modifiedDate
+						? metadata.article.modifiedDate.toString()
+						: new Date().toISOString()
+				}
+			/>
+			{metadata.article.publishDate ? (
+				<meta
+					itemprop="article:published_time"
+					content={metadata.article.publishDate.toString()}
+				/>
+			) : null}
+			{metadata.article.publishers?.map((publisher) => (
+				<meta
+					itemprop="article:publisher"
+					content={typeof publisher === "string" ? publisher : publisher.name}
+				/>
+			))}
+			{metadata.article.tags?.map((tag) => (
+				<meta itemprop="article:tag" content={tag} />
+			))}
+			{metadata.article.title ? (
+				<meta itemprop="article:title" content={metadata.article.title} />
+			) : null}
+		</>
+	) : null
 }
 {
-  metadata.description ? (
-    <>
-      <meta name="og:description" content={metadata.description} />
-      <meta name="description" content={metadata.description} />
-    </>
-  ) : null
+	metadata.description ? (
+		<>
+			<meta name="og:description" content={metadata.description} />
+			<meta name="description" content={metadata.description} />
+		</>
+	) : null
 }
 <meta
-  name="twitter:card"
-  content={metadata.twitter?.card || basedata.twitterCard}
+	name="twitter:card"
+	content={metadata.twitter?.card || basedata.twitterCard}
 />
 <meta name="twitter:domain" content="cantankerouscoder.com" />
 <meta name="twitter:url" content="https://cantankerouscoder.com" />
 {
-  metadata.twitter?.creator ? (
-    <meta name="twitter:creator" content={metadata.twitter.creator} />
-  ) : (
-    <>
-      <meta name="twitter:creator" content="@BobsterDobster" />
-      <meta name="twitter:creator:id" content="BobsterDobster" />
-    </>
-  )
+	metadata.twitter?.creator ? (
+		<meta name="twitter:creator" content={metadata.twitter.creator} />
+	) : (
+		<>
+			<meta name="twitter:creator" content="@BobsterDobster" />
+			<meta name="twitter:creator:id" content="BobsterDobster" />
+		</>
+	)
 }
 <meta
-  name="twitter:description"
-  content={metadata.twitter?.description || metadata.description}
+	name="twitter:description"
+	content={metadata.twitter?.description || metadata.description}
 />
 {
-  metadata.image?.filename ? (
-    <meta
-      name="twitter:image"
-      content={`https://cantankerouscoder.com/images/768/${metadata.image?.filename}.avif`}
-    />
-  ) : null
+	metadata.image?.filename ? (
+		<meta
+			name="twitter:image"
+			content={`https://cantankerouscoder.com/images/768/${metadata.image?.filename}.avif`}
+		/>
+	) : null
 }
 {
-  metadata.image?.alt ? (
-    <meta name="twitter:image:alt" content={metadata.image?.alt} />
-  ) : null
+	metadata.image?.alt ? (
+		<meta name="twitter:image:alt" content={metadata.image?.alt} />
+	) : null
 }
 {
-  metadata.image?.height ? (
-    <meta
-      name="twitter:image:height"
-      content={metadata.image?.height.toString()}
-    />
-  ) : null
+	metadata.image?.height ? (
+		<meta
+			name="twitter:image:height"
+			content={metadata.image?.height.toString()}
+		/>
+	) : null
 }
 {
-  metadata.image?.width ? (
-    <meta
-      name="twitter:image:width"
-      content={metadata.image?.width.toString()}
-    />
-  ) : null
+	metadata.image?.width ? (
+		<meta
+			name="twitter:image:width"
+			content={metadata.image?.width.toString()}
+		/>
+	) : null
 }
 {
-  metadata.twitter?.site ? (
-    <meta name="twitter:site" content={metadata.twitter.site} />
-  ) : (
-    <meta name="twitter:site:id" content="@BobsterDobster" />
-  )
+	metadata.twitter?.site ? (
+		<meta name="twitter:site" content={metadata.twitter.site} />
+	) : (
+		<meta name="twitter:site:id" content="@BobsterDobster" />
+	)
 }
 <meta
-  name="twitter:title"
-  content={metadata.twitter?.title || metadata.title}
+	name="twitter:title"
+	content={metadata.twitter?.title || metadata.title}
 />
 
 <meta name="google-site-verification" content="/" />
@@ -177,15 +184,3 @@ const src = metadata.image?.src
 <link rel="apple-touch-icon" href="/logo-180x180.png" />
 <link rel="mask-icon" href="/safari-pinned.svg" color="#0b0014" />
 <link rel="canonical" href={metadata.canonical} />
-
-<!-- <LinkedData metadata={metadata} title={title} /> -->
-
-<!-- {
-	import.metadata.env.MODE === "development" || metadata.noAnalytics ? null : (
-		<script
-			src="https://cdn.usefathom.com/script.js"
-			data-site="ZITIJHVV"
-			defer
-		/>
-	)
-} -->

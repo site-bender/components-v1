@@ -1,13 +1,13 @@
-import type { Metadata, PageMeta } from "@utilities/types"
+import type { Metadata, PageMeta } from "../../types"
 
 export default function getBreadcrumbTrail(
 	pathname?: string,
 	pages?: Record<string, Partial<Metadata>>,
-): Array<PageMeta> {
+): Array<PageMeta<"a">> {
 	const path = pathname?.replace(/^\/|\/$/g, "")
 
 	if (!pages || !path) {
-		return [] as Array<PageMeta>
+		return [] as Array<PageMeta<"a">>
 	}
 
 	const trail = [
@@ -20,5 +20,5 @@ export default function getBreadcrumbTrail(
 			),
 	]
 
-	return trail.map((path) => pages[path]) as Array<PageMeta>
+	return trail.map((path) => pages[path]) as Array<PageMeta<"a">>
 }

@@ -1,0 +1,46 @@
+---
+import "./index.css"
+import Microdata from "../Microdata/index.astro"
+import type { LogotypeProps as Props } from "../types"
+import mapAttributes from "../utilities/mapAttributes"
+import isRoot from "../utilities/isRoot"
+
+
+const {
+  ariaLabel,
+  href,
+  label: lbl,
+  level = 1,
+  link,
+  microdata = {},
+  properties,
+  ...attrs
+} = Astro.props
+
+const linkAttrs = mapAttributes(link, ["sb-logotype-link"])
+const wrapperAttrs = mapAttributes(attrs, ["sb-logotype"])
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+
+const { pathname } = Astro.url;
+
+const Element = `h${level}`
+
+const label = (await Astro.slots.render("default")) || lbl
+---
+
+{
+  isRoot(pathname) ? (
+    <Element {...wrapperAttrs}>
+
+	{useMicrodata ? <Microdata {...microdata} {properties} /> : null}
+			{label}
+		</Element>
+  ) : (
+    <Element {...wrapperAttrs}>
+      <a {...linkAttrs} {href} aria-label={ariaLabel}>
+        {label}
+      </a>
+    </Element>
+  )
+}

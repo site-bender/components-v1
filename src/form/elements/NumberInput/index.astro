@@ -34,12 +34,11 @@ const lst = list ? { list: listId } : {}
 const step = isInteger ? parseInt(String(stp), 10) || 1 : stp
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
+<span {...wrapperAttrs}>
 	<input
 		{...inputAttrs}
 		aria-labelledby={labelledBy}
 		{autocomplete}
-		data-sb-input={field}
 		{form}
 		{id}
 		{...lst}
@@ -51,7 +50,7 @@ const step = isInteger ? parseInt(String(stp), 10) || 1 : stp
 	/>
 	{
 		list ? (
-			<datalist {...datalistAttrs} data-sb-datalist={field} id={listId}>
+			<datalist {...datalistAttrs} id={listId}>
 				<Fragment set:html={createListOptions(list)} />
 			</datalist>
 		) : null

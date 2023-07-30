@@ -1,0 +1,294 @@
+.sb-disabled {
+	border-color: var(--disabled-border-color) !important;
+	color: var(--disabled-color) !important;
+	cursor: not-allowed;
+}
+
+.sb-hide {
+	visibility: hidden;
+}
+
+.sb-off-screen {
+	position: absolute;
+	top: -100000px;
+}
+
+.sb-print-only {
+	display: none !important;
+}
+
+.sb-remove {
+	display: none;
+}
+
+i {
+	font-style: italic;
+	font-weight: revert;
+}
+
+b {
+	font-style: revert;
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+em::after {
+	content: "\200a";
+}
+
+strong {
+	font-weight: 700;
+}
+
+blockquote {
+	margin: 0 0 0 2rem;
+}
+
+mark {
+	background-color: var(--sb-highlight-background-color, hsl(56, 100%, 72%));
+	color: var(--sb-highlight-color, hsl(350, 50%, 30%));
+	margin: var(--sb-highlight-margin, -5px -3px);
+	padding: var(--sb-highlight-padding, 5px 3px);
+}
+
+h1 {
+	background-color: var(--sb-h1-background-color, transparent);
+	color: var(--sb-h1-color, hsl(212, 25%, 15%));
+	font-family: var(--sb-h1-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
+	font-size: var(--sb-h1-font-size, var(--step-4, 2.44rem));
+	font-variant-ligatures: var(--sb-h1-font-variant-ligatures, historical-ligatures);
+	font-variant-numeric: var(--sb-h1-font-variant-numeric, oldstyle-nums proportional-nums);
+	font-weight: var(--sb-h1-font-weight, 400);
+	padding: var(--sb-h1-padding, 0 0 0.5rem);
+	text-transform: var(--sb-h1-text-transform, none);
+}
+
+h2 {
+	background-color: var(--sb-h2-background-color, transparent);
+	color: var(--sb-h2-color, hsl(212, 25%, 15%));
+	font-family: var(--sb-h2-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
+	font-size: var(--sb-h2-font-size, var(--step-3, 1.95rem));
+	font-variant-ligatures: var(--sb-h2-font-variant-ligatures, historical-ligatures);
+	font-variant-numeric: var(--sb-h2-font-variant-numeric, oldstyle-nums proportional-nums);
+	font-weight: var(--sb-h2-font-weight, 500);
+	padding: var(--sb-h2-padding, 0 0 0.5rem);
+	text-transform: var(--sb-h2-text-transform, none);
+}
+
+h3 {
+	background-color: var(--sb-h3-background-color, transparent);
+	color: var(--sb-h3-color, hsl(212, 25%, 15%));
+	font-family: var(--sb-h3-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
+	font-size: var(--sb-h3-font-size, var(--step-2, 1.56rem));
+	font-variant-ligatures: var(--sb-h3-font-variant-ligatures, historical-ligatures);
+	font-variant-numeric: var(--sb-h3-font-variant-numeric, oldstyle-nums proportional-nums);
+	font-weight: var(--sb-h3-font-weight, 500);
+	padding: var(--sb-h3-padding, 0 0 0.5rem);
+	text-transform: var(--sb-h3-text-transform, none);
+}
+
+h4 {
+	background-color: var(--sb-h4-background-color, transparent);
+	color: var(--sb-h4-color, hsl(212, 25%, 15%));
+	font-family: var(--sb-h4-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
+	font-size: var(--sb-h4-font-size, var(--step-1, 1.25rem));
+	font-variant-ligatures: var(--sb-h4-font-variant-ligatures, historical-ligatures);
+	font-variant-numeric: var(--sb-h4-font-variant-numeric, oldstyle-nums proportional-nums);
+	font-weight: var(--sb-h4-font-weight, 500);
+	padding: var(--sb-h4-padding, 0 0 0.5rem);
+	text-transform: var(--sb-h4-text-transform, none);
+}
+
+h5 {
+	background-color: var(--sb-h5-background-color, transparent);
+	color: var(--sb-h5-color, hsl(212, 25%, 15%));
+	font-family: var(--sb-h5-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
+	font-size: var(--sb-h5-font-size, var(--step-0, 1rem));
+	font-variant-ligatures: var(--sb-h5-font-variant-ligatures, historical-ligatures);
+	font-variant-numeric: var(--sb-h5-font-variant-numeric, oldstyle-nums proportional-nums);
+	font-weight: var(--sb-h5-font-weight, 700);
+	padding: var(--sb-h5-padding, 0 0 0.5rem);
+	text-transform: var(--sb-h5-text-transform, none);
+}
+
+p {
+	margin: var(--sb-p-margin, 0.5rem 0);
+}
+
+.sb-subtitle {
+	color: var(--subtitle-color);
+	margin: 0 0 1rem;
+}
+
+p.sb-subtitle {
+	margin: 0 0 2.5rem;
+}
+
+p.sb-byline {
+	font-family: var(--font-titles);
+	font-style: italic;
+	margin: 0;
+}
+
+dl > dt {
+	font-size: var(--sb-dt-font-size, var(--step-1, 1.25rem));
+}
+
+hr {
+	border: none;
+	border-bottom: 1px double hsl(154, 7%, 19%);
+	border-color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
+	color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
+	margin: var(--sb-column-rule-margin, var(--space-xl, 3rem) auto);
+	overflow: visible;
+	text-align: center;
+	width: var(--sb-column-rule-width, 10ch);
+}
+
+hr:after {
+	background-color: var(--sb-column-rule-background-color, hsl(80, 9%, 87%));
+	color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
+	content: var(--sb-column-rule-content, " § ");
+	padding: 0 1ch;
+	position: relative;
+	top: 0.75rem;
+	top: calc(var(--space-s, 1.5rem) / 2);
+}
+
+details > div {
+	padding: 0 1.5rem 1.5rem;
+	padding: 0 var(--space-m, 1.5rem) var(--space-m, 1.5rem);
+}
+
+details > summary,
+details > summary ol li,
+details > summary ul li {
+	list-style-type: none;
+	padding: 0;
+}
+
+summary::marker {
+	content: "";
+}
+
+details > summary:focus,
+details > summary:hover {
+	border-radius: 5px;
+	outline-offset: 3px;
+	outline: 2px dotted hsl(111, 46%, 24%);
+	outline-color: var(--faq-summary-outline-color, hsl(111, 46%, 24%));
+}
+
+details > summary h3 {
+	display: inline;
+}
+
+details > summary::before {
+	content: "\261e\2004";
+}
+
+details[open] > summary::before {
+	display: inline-block;
+	list-style-type: "\261e\2004";
+	transform: rotate(0.25turn) translate(0.25em, 0.3em);
+	transition: transform 0.2s ease-in-out;
+}
+
+pre {
+	border-radius: 5px;
+	padding: 0 0.75rem;
+}
+
+:not(pre) > code {
+	color: hsl(111, 46%, 24%);
+	color: var(--code-color, hsl(111, 46%, 24%));
+}
+
+pre,
+code {
+	font-family: var(--code-block-font-family);
+}
+
+pre > code {
+	display: flex;
+	flex-direction: column;
+	font-size: 1rem;
+	gap: 0;
+	justify-content: flex-start;
+	line-height: 1.3;
+	padding: 0;
+}
+
+pre > code .line {
+	margin: 0;
+	padding: 0;
+}
+
+pre.astro-code > code > span:first-child::before {
+	padding-top: 0.5rem;
+}
+
+pre.astro-code > code > span:last-child::before {
+	padding-bottom: 0.5rem;
+}
+
+pre.astro-code {
+	counter-reset: lines 0;
+	position: relative;
+}
+
+pre.astro-code span.line::before {
+	border-right: var(--code-block-border-right);
+	color: var(--code-block-line-number-color);
+	content: counter(lines) "";
+	counter-increment: lines 1;
+	display: inline-block;
+	margin-right: 1rem;
+	padding: 0.1rem 0.5rem 0.1rem 0;
+	text-align: right;
+	width: var(--line-number-width, 2ch);
+}
+
+main > article dl > dd {
+	margin: var(--sb-main-article-dd-margin, var(--space-2xs, 0.5rem) 0 0 var(--space-m, 1.5rem));
+}
+
+main > article figure > figcaption {
+	font-family: var(--sb-figure-figcaption-font-family);
+	font-size: var(--sb-figure-figcaption-font-size);
+	line-height: var(--sb-figure-figcaption-line-height, 1);
+	padding: var(--sb-figure-figcaption-padding, 0);
+	text-align: var(--sb-figure-figcaption-text-align, center);
+}
+
+figure.sb-is-indexed figcaption::before {
+	content: "Figure " counter(figures) ": ";
+}

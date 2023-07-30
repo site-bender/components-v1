@@ -30,23 +30,16 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 
 {
 	useMicrodata && properties.type ? (
-		<Microdata
-			{as}
-			{...microdataAttrs}
-			data-sb-duration="microdata"
-			properties={meta}
-		>
+		<Microdata {as} {...microdataAttrs} properties={meta}>
 			<meta
 				itemprop="duration"
 				itemtype="https://schema.org/Duration"
 				content={d.toJSON()}
 			/>
-			<span {...elementAttrs} data-sb-duration="span">
-				{formatDuration(d)}
-			</span>
+			<span {...elementAttrs}>{formatDuration(d)}</span>
 		</Microdata>
 	) : (
-		<time {...elementAttrs} data-sb-duration="time" datetime={d.toJSON()}>
+		<time {...elementAttrs} datetime={d.toJSON()}>
 			{formatDuration(d)}
 		</time>
 	)

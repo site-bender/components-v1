@@ -35,7 +35,6 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 			<Number
 				{...attrs}
 				data-sb-currency={options.currency}
-				data-sb-amount={amount}
 				{options}
 				type="MonetaryAmount"
 			>
@@ -46,7 +45,6 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 		<Number
 			{...attrs}
 			data-sb-currency={options.currency}
-			data-sb-amount={amount}
 			{options}
 			type="MonetaryAmount"
 		>

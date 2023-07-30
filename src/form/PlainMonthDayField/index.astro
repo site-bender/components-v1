@@ -61,12 +61,11 @@ const month = day ? parseInt((monthCode || "").substring(1), 10) : undefined
 	{
 		(labelledBy: string) => (
 			<>
-				<label data-sb-label-month={field} for={`${id}_month`}>
+				<label for={`${id}_month`}>
 					<span id={`${id}_month:label`}>Month</span>
 					<MonthSelect
 						{...monthAttributes}
 						calendar={calendar}
-						data-sb-select-month={field}
 						{disabled}
 						{months}
 						{form}
@@ -79,12 +78,11 @@ const month = day ? parseInt((monthCode || "").substring(1), 10) : undefined
 						value={month}
 					/>
 				</label>
-				<label data-sb-label-day={field} for={`${id}_day`}>
+				<label for={`${id}_day`}>
 					<span id={`${id}_day:label`}>Day</span>
 					<DaySelect
 						{...dayAttributes}
 						{days}
-						data-sb-select-day={field}
 						{disabled}
 						{form}
 						id={`${id}_day`}

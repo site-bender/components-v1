@@ -8,7 +8,7 @@ type LP = LinkProps<"a">
 
 const {
 	header = {},
-	hideClass = "off-screen",
+	hideClass = "sb-off-screen",
 	labelledBy,
 	level = 2,
 	links = [],
@@ -18,7 +18,7 @@ const {
 } = Astro.props
 
 const headerAttrs = mapAttributes(header, ["sb-nav-header", hideClass])
-const listAttrs = mapAttributes(list, ["sb-nav-list", hideClass])
+const listAttrs = mapAttributes(list, ["sb-nav-list"])
 
 const { pathname } = Astro.url
 
@@ -26,20 +26,15 @@ const HElement = `h${level}`
 const ListElement = type
 ---
 
-<HElement {...headerAttrs} data-sb-nav="header" id={labelledBy}>
+<HElement {...headerAttrs} id={labelledBy}>
 	{title}
 </HElement>
 
-<ListElement role="presentation" {...listAttrs} data-sb-nav="list">
+<ListElement role="presentation" {...listAttrs}>
 	{
 		links.map(
-			({
-				href,
-				label,
-				link = {},
-				properties,
-				...attrs
-			}: LP) => {
+			({ href, label: lbl, link = {}, properties, title, ...attrs }: LP) => {
+				const label = lbl || title
 				const linkAttrs = mapAttributes(link as HTMLAttributes, ["sb-nav-link"])
 				const props = mapAttributes(attrs, ["sb-nav-list-item"])
 
@@ -51,12 +46,7 @@ const ListElement = type
 					</li>
 				) : (
 					<li {...props}>
-						<Link
-							{...linkAttrs}
-							{href}
-							{label}
-							{properties}
-						/>
+						<Link {...linkAttrs} {href} {label} {properties} />
 					</li>
 				)
 			}

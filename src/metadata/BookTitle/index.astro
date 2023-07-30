@@ -29,23 +29,13 @@ const meta = {
 
 {
 	href ? (
-		<a {...linkAttrs} data-sb-book-title="link" {href}>
-			<Microdata
-				{as}
-				{...elementAttrs}
-				data-sb-book-title="microdata"
-				properties={meta}
-			>
+		<a {...linkAttrs} {href}>
+			<Microdata {as} {...elementAttrs} properties={meta}>
 				{name}
 			</Microdata>
 		</a>
 	) : (
-		<Microdata
-			{as}
-			{...elementAttrs}
-			data-sb-book-title="microdata"
-			properties={meta}
-		>
+		<Microdata {as} {...elementAttrs} properties={meta}>
 			{name}
 		</Microdata>
 	)

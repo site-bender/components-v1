@@ -1,0 +1,44 @@
+#faqs>header {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: space-between;
+}
+
+ul.faq-show-hide-buttons {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.faq-show-hide-buttons li {
+	display: inline-block;
+	margin: 0;
+}
+
+ul.faq-show-hide-buttons li button {
+	background-color: hsl(212, 25%, 98%);
+	background-color: var(--faq-show-hide-button-background-color,
+			hsl(212, 25%, 98%));
+	border: 1px solid hsl(111, 46%, 24%);
+	border-color: var(--faq-show-hide-button-border-color, hsl(111, 46%, 24%));
+	border-radius: 7px;
+	color: hsl(111, 46%, 24%);
+	color: var(--faq-show-hide-button-color, hsl(111, 46%, 24%));
+	margin: 0 0.3rem;
+	padding: 0.4rem 0.7rem;
+	text-transform: lowercase;
+}
+
+ul.faq-show-hide-buttons li button:focus,
+ul.faq-show-hide-buttons li button:hover {
+	background-color: hsl(111, 46%, 24%);
+	background-color: var(--faq-show-hide-button-background-color-hover,
+			hsl(111, 46%, 24%));
+	color: hsl(212, 25%, 98%);
+	color: var(--faq-show-hide-button-color-hover, hsl(212, 25%, 98%));
+	outline: 2px dotted hsl(111, 46%, 24%);
+	outline-color: var(--faq-summary-outline-color, hsl(111, 46%, 24%));
+	outline-offset: 3px;
+}

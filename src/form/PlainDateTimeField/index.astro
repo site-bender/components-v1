@@ -55,11 +55,10 @@ const timeAttributes = mapAttributes(timeAttrs as HTMLAttributes, [])
 	{
 		(labelledBy: string) => (
 			<>
-				<label data-sb-label-date={field} for={`${id}_date`}>
+				<label for={`${id}_date`}>
 					<span id={`${id}_date:label`}>Date</span>
 					<DateInput
 						{...dateAttributes}
-						data-sb-input-date={field}
 						{disabled}
 						{form}
 						id={`${id}_date`}
@@ -72,11 +71,10 @@ const timeAttributes = mapAttributes(timeAttrs as HTMLAttributes, [])
 						value={date}
 					/>
 				</label>
-				<label data-sb-label-time={field} for={`${id}_time`}>
+				<label for={`${id}_time`}>
 					<span id={`${id}_time:label`}>Time</span>
 					<TimeInput
 						{...timeAttributes}
-						data-sb-input-time={field}
 						{disabled}
 						{form}
 						id={`${id}_time`}

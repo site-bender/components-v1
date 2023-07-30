@@ -12,20 +12,13 @@ const lbl = (await Astro.slots.render("label")) || label
 const labelledBy = `${id}_legend`
 
 const element = await Astro.slots.render("default", [labelledBy])
+
+console.log("element", element)
 ---
 
-<fieldset {...outerAttrs} data-sb-button-bar {disabled}>
-	{
-		lbl ? (
-			<legend
-				{...legendAttrs}
-				data-sb-button-bar-label
-				id={labelledBy}
-				set:html={lbl}
-			/>
-		) : null
-	}
-	<div {...groupAttrs} data-sb-button-bar-group>
+<fieldset {...outerAttrs} {disabled}>
+	{lbl ? <legend {...legendAttrs} id={labelledBy} set:html={lbl} /> : null}
+	<div {...groupAttrs}>
 		<Fragment set:html={element} />
 	</div>
 </fieldset>

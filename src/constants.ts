@@ -118,6 +118,8 @@ export const IMAGE_TYPE: Record<string, ImageMediaType> = {
 export const INSTANT_MATCHER =
 	/^[12]\d{3}-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[12][0-9])))T(0[1-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.\d{3}|\.\d{6}|\.\d{9})?Z$/
 
+export const MAX_PAGES = 8
+
 export const MEMBER_FIELD_PIVOT = 3
 
 export const SITE_TITLE =

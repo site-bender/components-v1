@@ -35,14 +35,10 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	useMailto ? (
-		<a {...linkAttrs} data-sb-email="link" href={mailto}>
-			<Element {...elementAttrs} data-sb-email>
-				{emailAddress}
-			</Element>
+		<a {...linkAttrs} href={mailto}>
+			<Element {...elementAttrs}>{emailAddress}</Element>
 		</a>
 	) : (
-		<Element {...elementAttrs} data-sb-email>
-			{emailAddress}
-		</Element>
+		<Element {...elementAttrs}>{emailAddress}</Element>
 	)
 }

@@ -18,9 +18,11 @@ const {
 } = Astro.props
 
 const legendAttrs = mapAttributes(legend, ["sb-code-block-figcaption"])
-const wrapperAttrs = mapAttributes(attrs, ["sb-code-block"])
+const wrapperAttrs = mapAttributes(
+	attrs,
+	isIndexed ? ["sb-code-block", "sb-is-indexed"] : ["sb-code-block"]
+)
 
-const indexed = isIndexed ? { class: "indexed" } : {}
 const cap =
 	snippet.frontmatter.caption ||
 	(await Astro.slots.render("caption")) ||
@@ -36,45 +38,26 @@ const properties = {
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-{useMicrodata ? (
-	<Microdata
-		{...wrapperAttrs}
-		as="figure"
-		data-sb-code-block
-		{...indexed}
-		{properties}
-		{style}
-	>
-		{
-			cap && (
-				<figcaption
-					{...legendAttrs}
-					data-sb-code-block="figcaption"
-				>
+{
+	useMicrodata ? (
+		<Microdata {...wrapperAttrs} as="figure" {properties} {style}>
+			{cap && (
+				<figcaption {...legendAttrs}>
 					{index ? `Figure ${index}: ` : ""}
 					<Fragment set:html={cap} />
 				</figcaption>
-			)
-		}
-		<Fragment set:html={snippet.compiledContent()} />
-	</Microdata>
-) : (
-	<figure
-		{...wrapperAttrs}
-		{...indexed}
-		{style}
-	>
-		{
-			cap && (
-				<figcaption
-					{...legendAttrs}
-					data-sb-code-block="figcaption"
-				>
+			)}
+			<Fragment set:html={snippet.compiledContent()} />
+		</Microdata>
+	) : (
+		<figure {...wrapperAttrs} {style}>
+			{cap && (
+				<figcaption {...legendAttrs}>
 					{index ? `Figure ${index}: ` : ""}
 					<Fragment set:html={cap} />
 				</figcaption>
-			)
-		}
-		<Fragment set:html={snippet.compiledContent()} />
-	</figure>
-)}
+			)}
+			<Fragment set:html={snippet.compiledContent()} />
+		</figure>
+	)
+}

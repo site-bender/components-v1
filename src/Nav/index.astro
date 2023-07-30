@@ -5,13 +5,7 @@ import generateShortId from "../utilities/generateShortId"
 import mapAttributes from "../utilities/mapAttributes"
 import type { NavProps as Props } from "../types"
 
-const {
-	hideClass,
-	id,
-	nav = {},
-	properties,
-	...attrs
-} = Astro.props
+const { hideClass, id, links, nav = {}, properties, ...attrs } = Astro.props
 
 const wrapperAttrs = mapAttributes(attrs, ["sb-nav"])
 
@@ -26,19 +20,13 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 			{...wrapperAttrs}
 			aria-labelledby={labelledBy}
 			as="nav"
-			data-sb-nav
 			{properties}
 		>
-			<NavList {...nav} {hideClass} />
+			<NavList {...nav} {links} {hideClass} />
 		</Microdata>
 	) : (
-		<nav
-			{...wrapperAttrs}
-			aria-labelledby={labelledBy}
-			data-sb-nav
-		>
-			<NavList {...nav} {hideClass} />
+		<nav {...wrapperAttrs} aria-labelledby={labelledBy}>
+			<NavList {...nav} {labelledBy} {links} {hideClass} />
 		</nav>
 	)
 }
-

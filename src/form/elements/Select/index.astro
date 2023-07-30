@@ -26,12 +26,11 @@ const wrapperAttrs = mapAttributes(wrapper, ["sb-select-wrapper"])
 const opts = await Astro.slots.render("default")
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
+<span {...wrapperAttrs}>
 	<select
 		{...selectAttrs}
 		{autocomplete}
 		aria-labelledby={labelledBy}
-		data-sb-select={field}
 		{form}
 		{id}
 		{name}

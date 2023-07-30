@@ -1,0 +1,35 @@
+.sb-skip-link {
+	opacity: 0;
+}
+
+.sb-skip-link:focus {
+	border-radius: var(--sb-skip-link-border-radius, 5px);
+	color: var(--sb-skip-link-color, hsl(200, 82%, 40%));
+	display: var(--sb-skip-link-display, inline-block);
+	font-size: var(--sb-skip-link-font-size, var(--step-1, 1.25rem));
+	font-family: var(--sb-skip-link-font-family,
+			var(--font-body,
+				Inter,
+				Roboto,
+				"Helvetica Neue",
+				"Arial Nova",
+				"Nimbus Sans",
+				Arial,
+				sans-serif));
+	opacity: 1;
+	padding: var(--sb-skip-link-padding, 0.1rem);
+	text-decoration: var(--sb-skip-link-text-decoration, underline);
+}
+
+@media screen and (max-width: 60rem) {
+	.sb-skip-link {
+		opacity: 1;
+		position: absolute;
+		top: -100000px;
+	}
+
+	.sb-skip-link:focus {
+		position: relative;
+		top: 0;
+	}
+}

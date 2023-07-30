@@ -31,12 +31,11 @@ const listId = `${id}_list`
 const lst = list ? { list: listId } : {}
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
+<span {...wrapperAttrs}>
 	<input
 		{...inputAttrs}
 		aria-labelledby={labelledBy}
 		{autocomplete}
-		data-sb-input={field}
 		{form}
 		{id}
 		{...lst}
@@ -47,7 +46,7 @@ const lst = list ? { list: listId } : {}
 	/>
 	{
 		list ? (
-			<datalist {...datalistAttrs} data-sb-datalist={field} id={listId}>
+			<datalist {...datalistAttrs} id={listId}>
 				<Fragment set:html={createListOptions(list)} />
 			</datalist>
 		) : null

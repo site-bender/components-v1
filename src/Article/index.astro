@@ -1,0 +1,39 @@
+---
+import "./index.css"
+import Microdata from "../Microdata/index.astro"
+import mapAttributes from "../utilities/mapAttributes"
+import type { ArticleProps as Props } from "../types"
+
+const {
+	as = "span",
+	asColumns,
+	heading,
+	level = 2,
+	microdata,
+	properties,
+	title,
+	...attrs
+} = Astro.props
+
+const headingAttrs = mapAttributes(heading, ["sb-article-heading"])
+const wrapperAttrs = mapAttributes(
+	attrs,
+	asColumns ? ["sb-article", "sb-as-columns"] : ["sb-article"]
+)
+
+const HElement = `h${level}`
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+---
+
+<article {...wrapperAttrs}>
+	{useMicrodata ? <Microdata {as} {microdata} {properties} /> : null}
+	{
+		title ? (
+			<header {...headingAttrs}>
+				<HElement>{title}</HElement>
+			</header>
+		) : null
+	}
+	<slot />
+</article>

@@ -22,21 +22,20 @@ const {
 } = Astro.props
 
 const wrapperAttrs = mapAttributes(attrs, ["sb-cc-license"])
-const linkAttrs = mapAttributes(link, ["sb-cc-license-link"])
+const linkAttrs = mapAttributes(link, ["sb-cc-license-link", "sb-image"])
 
 const { href, license } = getLicense(Astro.props)
 
 const linkAttributes = {
 	"aria-label": `Creative Commons ${license}`,
-	"class": "image",
 	href,
 	"rel": "license",
 	...linkAttrs,
 }
 ---
 
-<div {...wrapperAttrs} data-sb-cc-licencse>
-	<a {...linkAttributes} data-sb-cc-license="link">
+<div {...wrapperAttrs}>
+	<a {...linkAttributes}>
 		<CreativeCommons {fill} {license} {size} {stroke} />
 		{
 			byAttribution ? (

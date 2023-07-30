@@ -75,11 +75,10 @@ const yearName = `${name}:year`
 	{
 		(labelledBy: string) => (
 			<>
-				<label data-sb-label-time={field} for={yearId}>
+				<label for={yearId}>
 					<span id={`${yearId}:label`}>Year</span>
 					<YearInput
 						{...yearAttributes}
-						data-sb-input-year={field}
 						{form}
 						id={yearId}
 						labelledBy={`${labelledBy} ${yearId}:label`}
@@ -89,11 +88,10 @@ const yearName = `${name}:year`
 						years={years}
 					/>
 				</label>
-				<label data-sb-label-month={field} for={monthId}>
+				<label for={monthId}>
 					<span id={`${monthId}:label`}>Month</span>
 					<MonthSelect
 						{...monthAttributes}
-						data-sb-select-month={field}
 						{form}
 						{format}
 						id={monthId}

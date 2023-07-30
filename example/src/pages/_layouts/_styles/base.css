@@ -1,31 +1,8 @@
-.off-screen {
-	position: absolute;
-	top: -10000px;
-}
-
-.print-only {
-	display: none;
-}
-
-.hide {
-	visibility: hidden;
-}
-
-.remove {
-	display: none;
-}
-
-.disabled {
-	border-color: var(--color-gray-5, hsl(212, 25%, 46%)) !important;
-	color: var(--color-gray-5, hsl(212, 25%, 46%)) !important;
-	cursor: not-allowed;
-}
-
 body {
 	background-color: var(--color-gray-0, hsl(212, 25%, 98%));
 	color: var(--color-gray-6, hsl(212, 25%, 31%));
 	display: grid;
-	grid-template-areas: "header" "nav" "main" "footer";
+	grid-template-areas: "header""nav""main""footer";
 	grid-template-rows: min-content min-content 1fr min-content;
 	font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
 		Arial, sans-serif;
@@ -36,10 +13,10 @@ body {
 	line-height: 1.4;
 	min-height: 100vh;
 	position: relative;
-	quotes: "“" "”" "‘" "’";
+	quotes: "“""”""‘""’";
 }
 
-body > nav {
+body>nav {
 	grid-area: nav;
 }
 
@@ -154,12 +131,12 @@ details.components summary::marker {
 	content: "";
 }
 
-details.components > summary::before {
+details.components>summary::before {
 	content: "▶\2004";
 	font-size: 1rem;
 }
 
-details.components[open] > summary::before {
+details.components[open]>summary::before {
 	display: inline-block;
 	font-size: 1rem;
 	list-style-type: "▼\2004";

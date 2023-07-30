@@ -20,14 +20,7 @@ const formAttrs = mapAttributes(attrs, ["sb-form"])
 const content = await Astro.slots.render("default", [form])
 ---
 
-<form
-	{...formAttrs}
-	aria-labelledBy={labelledBy}
-	{action}
-	data-sb-form
-	id={form}
-	{method}
->
+<form {...formAttrs} aria-labelledBy={labelledBy} {action} id={form} {method}>
 	<input name="_charset_" type="hidden" />
 	<Fragment set:html={content} />
 </form>

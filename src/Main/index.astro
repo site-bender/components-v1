@@ -1,0 +1,22 @@
+---
+import "./index.css"
+import type { MainProps as Props } from "../types"
+import mapAttributes from "../utilities/mapAttributes"
+
+const { imageUrl, ...attrs } = Astro.props
+
+const mainAttrs = mapAttributes(
+	attrs,
+	imageUrl ? ["sb-main", "sb-main-background-image"] : ["sb-main"]
+)
+
+const props = imageUrl
+	? {
+			style: `--sb-main-background-image: url(${imageUrl})`,
+	  }
+	: {}
+---
+
+<main {...mainAttrs} {...props}>
+	<slot />
+</main>

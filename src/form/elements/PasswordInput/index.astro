@@ -21,19 +21,18 @@ const {
 	...attrs
 } = Astro.props
 
-const pwAttrs = mapAttributes(attrs, ["sb-password-input"])
+const pwAttrs = mapAttributes(
+	attrs,
+	allowUnmasked ? ["sb-password-input", "sb-unmaskable"] : ["sb-password-input"]
+)
 const wrapperAttrs = mapAttributes(wrapper, ["sb-input-wrapper"])
-
-const masking = allowUnmasked ? { "data-sb-unmaskable": "" } : {}
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
+<span {...wrapperAttrs}>
 	<input
 		{...pwAttrs}
 		aria-labelledby={labelledBy}
 		{autocomplete}
-		data-sb-input={field}
-		{...masking}
 		{form}
 		{id}
 		{name}

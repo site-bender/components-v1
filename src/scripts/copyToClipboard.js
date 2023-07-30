@@ -6,7 +6,7 @@
 		blocks?.forEach((block) => {
 			const button = document.createElement("button")
 
-			button.classList.add("copy-to-clipboard")
+			button.classList.add("sb-copy-to-clipboard")
 			button.appendChild(document.createTextNode("copy"))
 			button.addEventListener("click", function() {
 				const code = block.querySelector("code")

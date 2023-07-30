@@ -29,14 +29,10 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
 	useLink ? (
-		<a {...linkAttrs} data-sb-url="link" {href}>
-			<Element {...elementAttrs} data-sb-url>
-				{address}
-			</Element>
+		<a {...linkAttrs} {href}>
+			<Element {...elementAttrs}>{address}</Element>
 		</a>
 	) : (
-		<Element {...elementAttrs} data-sb-url>
-			{address}
-		</Element>
+		<Element {...elementAttrs}>{address}</Element>
 	)
 }

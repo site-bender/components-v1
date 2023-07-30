@@ -1,45 +1,43 @@
 ---
+import "./index.css"
+import mapAttributes from "../../utilities/mapAttributes"
+import PasswordField from "../PasswordField/index.astro"
 import type { Honeypot as Props } from "../../types/form"
 
 const {
 	cLabel = "Put nothing in this field as well:",
 	confirmation,
+	field = "funnypot",
 	form,
 	password,
 	pwLabel = "Leave this field as is:",
+	...attrs
 } = Astro.props
+
+const wrapperAttrs = mapAttributes(attrs, ["sb-funnypot"])
+
+const pwValue = password || import.meta.env.HONEYPOT_PASSWORD
+const confValue = confirmation || import.meta.env.HONEYPOT_CONFIRMATION
 ---
 
-<fieldset class="off-screen">
-	<legend>Ignore these fields please</legend>
-	<div class="off-screen">
-		<label for="p1-field" id="p1-field-label">{pwLabel}</label>
-		<input
-			aria-labelledby="p1-field-label"
-			autocomplete="off"
-			{form}
-			id="p1-field"
-			name="password"
-			placeholder="Skip this!"
-			tabindex="-1"
-			type="password"
-			value={password}
-		/>
-	</div>
-	<div class="off-screen">
-		<label for="p2-field" id="p2-field-label">
-			{cLabel}
-		</label>
-		<input
-			aria-labelledby="p2-field-label"
-			autocomplete="off"
-			{form}
-			id="p2-field"
-			name="confirmation"
-			placeholder="Skip this, too!"
-			tabindex="-1"
-			type="password"
-			value={confirmation}
-		/>
-	</div>
+<fieldset {...wrapperAttrs}>
+	<legend>Please ignore these two fields</legend>
+	<PasswordField
+		allowAutocomplete={false}
+		{field}
+		{form}
+		label={pwLabel}
+		name="password"
+		tabindex="-1"
+		value={pwValue}
+	/>
+	<PasswordField
+		allowAutocomplete={false}
+		{field}
+		{form}
+		label={cLabel}
+		name="confirmation"
+		tabindex="-1"
+		value={confValue}
+	/>
 </fieldset>

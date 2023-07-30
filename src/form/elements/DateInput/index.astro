@@ -21,12 +21,11 @@ const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-date-input"])
 const wrapperAttrs = mapAttributes(wrapper, ["sb-date-input-wrapper"])
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
+<span {...wrapperAttrs}>
 	<input
 		{...inputAttrs}
 		aria-labelledby={labelledBy}
 		{autocomplete}
-		data-sb-input={field}
 		{form}
 		{id}
 		{name}

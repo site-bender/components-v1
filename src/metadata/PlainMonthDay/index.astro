@@ -52,6 +52,6 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
-<time {...elementAttrs} data-sb-plain-month-day datetime={value.toString()}>
+<time {...elementAttrs} datetime={value.toString()}>
 	{label}
 </time>

@@ -11,6 +11,6 @@ figure.sb-code-block-figure figcaption {
 	text-align: var(--sb-code-block-figcaption-text-align, center);
 }
 
-figure.sb-code-block button.copy-to-clipboard {
+figure.sb-code-block button.sb-copy-to-clipboard {
 	color: var(--sb-code-block-copy-button-color, #fff);
 }

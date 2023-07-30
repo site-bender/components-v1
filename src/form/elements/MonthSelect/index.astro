@@ -36,12 +36,11 @@ const mnths = getMonths(
 )
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
+<span {...wrapperAttrs}>
 	<select
 		{...selectAttrs}
 		{autocomplete}
 		aria-labelledby={labelledBy}
-		data-sb-select={field}
 		{id}
 		{form}
 		{name}

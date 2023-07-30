@@ -27,12 +27,11 @@ const labelId = `${id}_label`
 const lbl = (await Astro.slots.render("default")) || label
 ---
 
-<label {...wrapperAttrs} data-sb-wrapper={field} id={labelId}>
+<label {...wrapperAttrs} id={labelId}>
 	<input
 		{...inputAttrs}
 		aria-labelledby={`${labelledBy} ${labelId}`}
 		{checked}
-		data-sb-input={field}
 		{form}
 		{id}
 		{name}

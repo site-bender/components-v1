@@ -57,10 +57,10 @@ const {
 	{
 		(labelledBy: string) => {
 			return (
-				<label data-sb-label-date={field} for={`${id}_date`}>
+				<label  for={`${id}_date`}>
 					<span id={`${id}_date:label`}>Date</span>
 					<DateInput
-						data-sb-input-date={field}
+
 						{disabled}
 						{form}
 						id={`${id}_date`}
@@ -74,10 +74,10 @@ const {
 						wrapper={dateAttrs}
 					/>
 				</label>
-				<label data-sb-label-time={field} for={`${id}_time`}>
+				<label  for={`${id}_time`}>
 					<span id={`${id}_time:label`}>Time</span>
 					<TimeInput
-						data-sb-input-time={field}
+
 						{disabled}
 						{form}
 						id={`${id}_time`}
@@ -91,11 +91,11 @@ const {
 						wrapper={timeAttrs}
 					/>
 				</label>
-				<label data-sb-label-time-zone={field} for={`${id}_time-zone`}>
+				<label  for={`${id}_time-zone`}>
 					<span id={`${id}_time-zone:label`}>Time zone</span>
 					<TimeZoneSelect
 						{countries}
-						data-sb-input-time-zone={field}
+
 						{disabled}
 						{form}
 						id={`${id}_timeZone`}

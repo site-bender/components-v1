@@ -23,7 +23,7 @@ export type GenericFormAttributes = Override<
 >
 
 // Use instead of input[type=button|reset|submit]
-export type Button = Override<
+export type ButtonProps = Override<
 	HTMLAttributes,
 	{
 		disabled?: boolean | string | undefined | null
@@ -87,11 +87,11 @@ export type Option = {
 	"alpha3"?: string | undefined | null
 	"checked"?: boolean | string | undefined | null
 	"class:list"?:
-		| Record<string, boolean>
-		| Record<string | number | symbol, unknown>
-		| Iterable<string>
-		| Iterable<unknown>
-		| string
+	| Record<string, boolean>
+	| Record<string | number | symbol, unknown>
+	| Iterable<string>
+	| Iterable<unknown>
+	| string
 	"form"?: string | undefined | null
 	"groupLabelId"?: string | undefined | null
 	"id"?: string | undefined | null
@@ -478,12 +478,12 @@ export type PasswordInput = Override<
 	{
 		allowUnmasked?: boolean | undefined | null
 		autocomplete?:
-			| "off"
-			| "on"
-			| "current-password"
-			| "new-password"
-			| undefined
-			| null
+		| "off"
+		| "on"
+		| "current-password"
+		| "new-password"
+		| undefined
+		| null
 		autocorrect?: never
 		dirname?: string | undefined | null
 		field?: string | undefined | null
@@ -652,13 +652,17 @@ export type EmailField = Override<
 	}
 >
 
-export type Honeypot = {
+export type Honeypot = Override<HTMLAttributes, {
 	cLabel?: string | undefined | null
-	confirmation: string
+	cPlaceholder?: string | undefined | null
+	confirmation?: string | undefined | null
+	field?: string | undefined | null
 	form: string
-	password: string
+	password?: string | undefined | null
 	pwLabel?: string | undefined | null
-}
+	pwPlaceholder?: string | undefined | null
+	wrapper?: Partial<HTMLAttributes> | undefined | null
+}>
 
 export type InstantField = Override<
 	GenericFormAttributes,

@@ -2,10 +2,10 @@
 ---
 
 <script>
-	(function () {
+	;(function () {
 		globalThis.addEventListener("DOMContentLoaded", function () {
-			const forms = document.querySelectorAll("form");
-			const formFields = ["INPUT", "SELECT", "TEXTAREA"];
+			const forms = document.querySelectorAll("form")
+			const formFields = ["INPUT", "SELECT", "TEXTAREA"]
 
 			const VALIDITIES = [
 				"badInput",
@@ -18,20 +18,20 @@
 				"tooShort",
 				"typeMismatch",
 				"valueMissing",
-			];
+			]
 
 			function setTouched(element: HTMLElement) {
 				if (formFields.includes(element.tagName)) {
-					element.setAttribute("data-sb-touched", "");
+					element.classList.add("sb-touched")
 				}
 			}
 
 			function setDirty(element: HTMLInputElement) {
 				if (formFields.includes(element.tagName)) {
 					if (element.value !== element.defaultValue) {
-						element.setAttribute("data-sb-dirty", "");
+						element.classList.add("sb-dirty")
 					} else {
-						element.removeAttribute("data-sb-dirty");
+						element.classList.remove("sb-dirty")
 					}
 				}
 			}
@@ -40,54 +40,54 @@
 				const type =
 					(element.tagName === "INPUT" && (element as HTMLInputElement).type) ||
 					(element.tagName === "SELECT" && "select") ||
-					(element.tagName === "TEXTAREA" && "text");
+					(element.tagName === "TEXTAREA" && "text")
 
 				switch (type) {
 					case "email":
-						return "That's a cool email address!";
+						return "That's a cool email address!"
 					case "tel":
-						return "OK, we got yer number!";
+						return "OK, we got yer number!"
 					case "select":
-						return "Thanks for choosing one.";
+						return "Thanks for choosing one."
 					default:
-						return "Lookin' good!";
+						return "Lookin' good!"
 				}
 			}
 
 			function setHelp(element: HTMLInputElement) {
 				if (formFields.includes(element.tagName)) {
-					const label = element.labels?.[0]?.children?.[0]?.textContent;
+					const label = element.labels?.[0]?.children?.[0]?.textContent
 					const help = (
 						element.closest(".sb-field") || element.closest("fieldset")
-					)?.querySelector(".sb-help");
-					const clean = element.value === element.defaultValue;
+					)?.querySelector(".sb-help")
+					const clean = element.value === element.defaultValue
 
 					if (help && !help.hasAttribute("data-sb-initial")) {
-						const initial = (help as HTMLElement).innerText.trim();
+						const initial = (help as HTMLElement).innerText.trim()
 
-						help.setAttribute("data-sb-initial", initial);
+						help.setAttribute("data-sb-initial", initial)
 					}
 
 					if (clean) {
 						if (help) {
 							help.replaceChildren(
 								help.getAttribute("data-sb-initial") as string
-							);
-							help.classList.remove("sb-help-invalid");
-							help.classList.remove("sb-help-valid");
+							)
+							help.classList.remove("sb-help-invalid")
+							help.classList.remove("sb-help-valid")
 						}
 
-						return;
+						return
 					}
 
 					if (element.validity.valid) {
 						if (help) {
-							help.replaceChildren(valueMissing(element));
-							help.classList.remove("sb-help-invalid");
-							help.classList.add("sb-help-valid");
+							help.replaceChildren(valueMissing(element))
+							help.classList.remove("sb-help-invalid")
+							help.classList.add("sb-help-valid")
 						}
 
-						return valueMissing(element);
+						return valueMissing(element)
 					}
 
 					const errors = VALIDITIES.filter(
@@ -95,116 +95,115 @@
 					).map((validity) => {
 						switch (validity) {
 							case "valueMissing":
-								return valueMissing(element);
+								return valueMissing(element)
 							case "badInput":
-								return "looks wrong";
+								return "looks wrong"
 							case "patternMismatch":
-								return "doesn't match the expected pattern";
+								return "doesn't match the expected pattern"
 							case "rangeOverflow":
-								return `should not be more than ${element.getAttribute("max")}`;
+								return `should not be more than ${element.getAttribute("max")}`
 							case "rangeUnderflow":
-								return `should be at least ${element.getAttribute("min")}`;
+								return `should be at least ${element.getAttribute("min")}`
 							case "stepMismatch":
 								return `should be evenly divisible by ${element.getAttribute(
 									"step"
-								)}`;
+								)}`
 							case "tooLong":
 								return `shouldn't be longer than ${element.getAttribute(
 									"maxlength"
-								)} characters`;
+								)} characters`
 							case "tooShort":
 								return `should be at least ${element.getAttribute(
 									"minlength"
-								)} characters`;
+								)} characters`
 							case "typeMismatch":
 								return `doesn't seem to be a valid ${element.getAttribute(
 									"type"
-								)}`;
+								)}`
 							default:
-								return "";
+								return ""
 						}
-					});
+					})
 
 					if (help) {
-						help.replaceChildren(`${label} ${errors.join(" and ")}`);
-						help.classList.remove("sb-help-valid");
-						help.classList.add("sb-help-invalid");
+						help.replaceChildren(`${label} ${errors.join(" and ")}`)
+						help.classList.remove("sb-help-valid")
+						help.classList.add("sb-help-invalid")
 					}
 
-					return `${label} ${errors.join(" and ")}`;
+					return `${label} ${errors.join(" and ")}`
 				}
 
-				return "";
+				return ""
 			}
 
 			Array.from(forms).forEach((form) => {
-				form.setAttribute("novalidate", "");
-
-				[...form.elements]
+				form.setAttribute("novalidate", "")
+				;[...form.elements]
 					.filter((element) =>
 						["INPUT", "SELECT", "TEXTAREA"].includes(element.tagName)
 					)
 					.forEach((element) => {
 						element.addEventListener("input", function ({ target }) {
-							setDirty(target as HTMLInputElement);
-							setHelp(target as HTMLInputElement);
-						});
-					});
+							setDirty(target as HTMLInputElement)
+							setHelp(target as HTMLInputElement)
+						})
+					})
 
 				form.addEventListener("submit", async function (event) {
-					event.preventDefault();
-					[...form.elements]
+					event.preventDefault()
+					;[...form.elements]
 						.filter((element) =>
 							["INPUT", "SELECT", "TEXTAREA"].includes(element.tagName)
 						)
 						.forEach((element) => {
-							setTouched(element as HTMLElement);
-						});
+							setTouched(element as HTMLElement)
+						})
 
 					if (this.reportValidity()) {
-						const formData = new FormData(this);
-						const action = this.action;
+						const formData = new FormData(this)
+						const action = this.action
 
 						const body = JSON.stringify(
 							[...formData.entries()].reduce((acc, [key, value]) => {
-								const val = acc[key] ? `${acc[key]},${value}` : value;
+								const val = acc[key] ? `${acc[key]},${value}` : value
 
 								return {
 									...acc,
 									[key]: val,
-								};
+								}
 							}, {} as Record<string, unknown>)
-						);
+						)
 
 						const response = await fetch(action, {
 							method: "POST",
 							headers: {
-								Accept: "application/json",
+								"Accept": "application/json",
 								"Content-Type": "application/json",
 							},
 							body,
-						});
+						})
 
-						const json = await response.json();
+						const json = await response.json()
 
-						console.log("json", json);
+						console.log("json", json)
 					} else {
 						globalThis.alert(
 							"There are some issues with your form submission. Please check the form and try again."
-						);
+						)
 					}
-				});
-			});
+				})
+			})
 
 			document.addEventListener("focusin", function ({ target }) {
-				setTouched(target as HTMLInputElement);
-				setDirty(target as HTMLInputElement);
-			});
+				setTouched(target as HTMLInputElement)
+				setDirty(target as HTMLInputElement)
+			})
 
 			document.addEventListener("focusout", function ({ target }) {
-				setDirty(target as HTMLInputElement);
-				setHelp(target as HTMLInputElement);
-			});
-		});
-	})();
+				setDirty(target as HTMLInputElement)
+				setHelp(target as HTMLInputElement)
+			})
+		})
+	})()
 </script>

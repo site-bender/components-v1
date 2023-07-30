@@ -11,7 +11,7 @@ const wrapperAttrs = mapAttributes(attrs, ["sb-footer"])
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<footer {...wrapperAttrs} data-sb-footer>
+<footer {...wrapperAttrs}>
 	{useMicrodata ? <Microdata {...microdata} {properties} /> : null}
 	<slot />
 </footer>

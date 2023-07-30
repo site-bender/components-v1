@@ -11,7 +11,7 @@ const wrapperAttrs = mapAttributes(attrs, ["sb-header"])
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<header {...wrapperAttrs} data-sb-header>
+<header {...wrapperAttrs}>
 	{useMicrodata ? <Microdata {...microdata} {properties} /> : null}
 	<slot />
 </header>

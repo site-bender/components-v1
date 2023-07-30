@@ -6,8 +6,9 @@ import type { PageMeta, TrailListProps as Props } from "../../types"
 
 const {
 	crumbs = [],
+	fallback = {},
 	header = {},
-	hideClass = "off-screen",
+	hideClass = "sb-off-screen",
 	labelledBy,
 	level = 2,
 	list = {},
@@ -16,49 +17,60 @@ const {
 	type = "ul",
 } = Astro.props
 
+const { as = "div", href, label: lbl, ...fallbackAttrs } = fallback
+
 const headerAttrs = mapAttributes(header, ["sb-trail-header", hideClass])
 const listAttrs = mapAttributes(list, ["sb-trail-list"])
 const pageAttrs = mapAttributes(page, ["sb-trail-this-page"])
+const fbAttrs = mapAttributes(fallbackAttrs, ["sb-trail-fallback"])
 
 const HElement = `h${level}`
 const ListElement = type
 
 const links = crumbs as Array<PageMeta<"a">>
+
+const FbElement = href ? "a" : as
 ---
 
-<HElement {...headerAttrs} data-sb-trail="header" id={labelledBy}>
+<HElement {...headerAttrs} id={labelledBy}>
 	{title}
 </HElement>
 
-<ListElement role="presentation" {...listAttrs} data-sb-trail="list">
+<ListElement role="presentation" {...listAttrs}>
 	{
-		links.map(
-			(
-				{ description, label, link, properties, title, url: href, ...attrs },
-				index
-			) => {
-				const lbl = label || title
-				const ttl = description ? { title: description } : {}
+		links.length ? (
+			links.map(
+				(
+					{ description, label: lbl, link, properties, title, url: href },
+					index
+				) => {
+					const label = lbl || title
+					const ttl = description ? { title: description } : {}
 
-				const linkAttrs = mapAttributes(link as HTMLAttributes, [
-					"sb-trail-link",
-				])
-				const propsAttrs = mapAttributes(ttl as HTMLAttributes, [
-					"sb-trail-list-item",
-				])
+					const linkAttrs = mapAttributes(link as HTMLAttributes, [
+						"sb-trail-link",
+					])
+					const propsAttrs = mapAttributes(ttl as HTMLAttributes, [
+						"sb-trail-list-item",
+					])
 
-				return index === crumbs.length - 1 ? (
-					<li {...propsAttrs}>
-						<span aria-current="page" {...pageAttrs}>
-							{lbl}
-						</span>
-					</li>
-				) : (
-					<li {...propsAttrs}>
-						<Link {...linkAttrs} {href} {lbl} {properties} />
-					</li>
-				)
-			}
-		)
+					return index === crumbs.length - 1 ? (
+						<li {...propsAttrs}>
+							<span aria-current="page" {...pageAttrs}>
+								{label}
+							</span>
+						</li>
+					) : (
+						<li {...propsAttrs}>
+							<Link {...linkAttrs} {href} {label} {properties} />
+						</li>
+					)
+				}
+			)
+		) : fallback ? (
+			<FbElement {...fbAttrs} {href}>
+				{lbl}
+			</FbElement>
+		) : null
 	}
 </ListElement>

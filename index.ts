@@ -1,4 +1,6 @@
 // @ts-expect-error
+export { default as Article } from "./src/Article/index.astro"
+// @ts-expect-error
 export { default as Body } from "./src/Body/index.astro"
 // @ts-expect-error
 export { default as Card } from "./src/Card/index.astro"
@@ -6,6 +8,8 @@ export { default as Card } from "./src/Card/index.astro"
 export { default as CCLicense } from "./src/CCLicense/index.astro"
 // @ts-expect-error
 export { default as CodeBlock } from "./src/CodeBlock/index.astro"
+// @ts-expect-error
+export { default as Columns } from "./src/Columns/index.astro"
 // @ts-expect-error
 export { default as Figure } from "./src/Figure/index.astro"
 // @ts-expect-error
@@ -19,19 +23,33 @@ export { default as Html } from "./src/Html/index.astro"
 // @ts-expect-error
 export { default as Link } from "./src/Link/index.astro"
 // @ts-expect-error
+export { default as Logotype } from "./src/Logotype/index.astro"
+// @ts-expect-error
+export { default as Main } from "./src/Main/index.astro"
+// @ts-expect-error
+export { default as Messenger } from "./src/Messenger/index.astro"
+// @ts-expect-error
 export { default as Microdata } from "./src/Microdata/index.astro"
 // @ts-expect-error
 export { default as Nav } from "./src/Nav/index.astro"
 // @ts-expect-error
+export { default as Paginator } from "./src/Paginator/Content/index.astro"
+// @ts-expect-error
 export { default as Picture } from "./src/Picture/Content/index.astro"
 // @ts-expect-error
 export { default as PullQuote } from "./src/PullQuote/index.astro"
+// @ts-expect-error
+export { default as QRCode } from "./src/QRCode/index.astro"
+// @ts-expect-error
+export { default as SkipLink } from "./src/SkipLink/index.astro"
 // @ts-expect-error
 export { default as Trail } from "./src/Trail/index.astro"
 
 /* ===== FORM ===== */
 // @ts-expect-error
 export { default as BooleanField } from "./src/form/BooleanField/index.astro"
+// @ts-expect-error
+export { default as Button } from "./src/form/Button/index.astro"
 // @ts-expect-error
 export { default as ButtonBar } from "./src/form/ButtonBar/index.astro"
 // @ts-expect-error
@@ -126,6 +144,8 @@ export { default as YearWeek } from "./src/metadata/YearWeek/index.astro"
 // @ts-expect-error
 export { default as ZonedDateTime } from "./src/metadata/ZonedDateTime/index.astro"
 
+/* ===== FORMS ===== */
+
 // @ts-expect-error
 export { default as Button } from "./src/form/elements/Button/index.astro"
 // @ts-expect-error
@@ -178,3 +198,30 @@ export { default as UrlInput } from "./src/form/elements/UrlInput/index.astro"
 export { default as WeekSelect } from "./src/form/elements/WeekSelect/index.astro"
 // @ts-expect-error
 export { default as YearInput } from "./src/form/elements/YearInput/index.astro"
+
+/* ===== UTILITIES ===== */
+
+export { default as compact } from "./src/utilities/compact"
+export { default as createClassList } from "./src/utilities/createClassList"
+export { default as createListOptions } from "./src/utilities/createListOptions"
+export { default as createMailto } from "./src/utilities/createMailto"
+export { default as createSelectOptions } from "./src/utilities/createSelectOptions"
+export { default as createTelUrl } from "./src/utilities/createTelUrl"
+export { default as createWeekOptions } from "./src/utilities/createWeekOptions"
+export { default as filterTimeZoneOptions } from "./src/utilities/filterTimeZoneOptions"
+export { default as formatDuration } from "./src/utilities/formatDuration"
+export { default as generateShortId } from "./src/utilities/generateShortId"
+export { default as getBreadcrumbTrail } from "./src/utilities/getBreadcrumbTrail"
+export { default as getLineNumberingWidth } from "./src/utilities/getLineNumberingWidth"
+export { default as getMonths } from "./src/utilities/getMonths"
+export { default as getSlots } from "./src/utilities/getSlots"
+export { default as getTimeZoneOptions } from "./src/utilities/getTimeZoneOptions"
+export { default as isRoot } from "./src/utilities/isRoot"
+export { default as mapAttributes } from "./src/utilities/mapAttributes"
+export { default as mapDataset } from "./src/utilities/mapDataset"
+export { default as not } from "./src/utilities/not"
+export { default as toPlainDateString } from "./src/utilities/toPlainDateString"
+export { default as toPlainYearMonthString } from "./src/utilities/toPlainYearMonthString"
+export { default as toTimeZoneString } from "./src/utilities/toTimeZoneString"
+export { default as toTrainCase } from "./src/utilities/toTrainCase"
+export { default as toUpperCase } from "./src/utilities/toUpperCase"

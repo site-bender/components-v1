@@ -1,6 +1,6 @@
 header.sb-header {
 	align-items: var(--sb-header-align-items, center);
-	background-color: var(--sb-header-background-color, hsl(212, 25%, 23%));
+	background-color: var(--sb-header-background-color, hsl(212, 25%, 15%));
 	border-bottom-color: var(--header-border-color, hsl(212, 25%, 46%));
 	border-bottom-style: var(--sb-header-border-style, solid);
 	border-bottom-width: var(--sb-header-border-width, 1px);

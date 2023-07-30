@@ -24,12 +24,11 @@ const wrapperAttrs = mapAttributes(wrapper, ["sb-textarea-wrapper"])
 const content = value || (await Astro.slots.render("default"))?.trim() || ""
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
+<span {...wrapperAttrs}>
 	<textarea
 		{...inputAttrs}
 		aria-labelledby={labelledBy}
 		{autocomplete}
-		data-sb-textarea={field}
 		{form}
 		{id}
 		{name}

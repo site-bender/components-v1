@@ -20,7 +20,7 @@ fieldset.sb-field {
 	position: relative;
 }
 
-fieldset.sb-field > legend {
+fieldset.sb-field>legend {
 	align-items: flex-start;
 	background-color: unset;
 	border: none;
@@ -36,7 +36,7 @@ fieldset.sb-field > legend {
 	top: -1.5rem;
 }
 
-fieldset.sb-field > legend {
+fieldset.sb-field>legend {
 	margin-top: 0;
 }
 
@@ -49,12 +49,12 @@ fieldset.sb-field > legend {
 	margin: 0;
 }
 
-[data-sb-instant] .sb-group {
+.sb-instant .sb-group {
 	align-items: flex-start;
 	flex-direction: column;
 }
 
-.sb-group > label {
+.sb-group>label {
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
@@ -64,7 +64,7 @@ fieldset.sb-field > legend {
 	justify-content: space-between;
 }
 
-:not(.sb-group) > label {
+:not(.sb-group)>label {
 	display: block;
 	font-family: sans-serif;
 	font-size: 1.2rem;
@@ -91,12 +91,8 @@ input[type="color"] {
 	min-height: 3rem;
 }
 
-input[data-sb-duration] {
+input.sb-duration {
 	width: 7ch;
-}
-
-blockquote {
-	margin: 0 0 0 2rem;
 }
 
 .help {
@@ -109,6 +105,6 @@ textarea {
 	resize: revert;
 }
 
-[data-sb-fieldset-group="duration-field"] input {
+.sb-duration-field input {
 	max-width: 7ch;
 }

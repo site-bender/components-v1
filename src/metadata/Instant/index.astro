@@ -42,15 +42,9 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 
 {
 	useMicrodata && itemtype ? (
-		<Microdata
-			{as}
-			{...elementAttrs}
-			{microdata}
-			data-sb-instant="microdata"
-			{properties}
-		/>
+		<Microdata {as} {...elementAttrs} {microdata} {properties} />
 	) : null
 }
-<time {...elementAttrs} data-sb-instant datetime={value.toJSON()}>
+<time {...elementAttrs} datetime={value.toJSON()}>
 	{label}
 </time>

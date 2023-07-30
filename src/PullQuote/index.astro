@@ -35,54 +35,27 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 
 {
 	useMicrodata ? (
-		<Microdata
-			{...wrapperAttrs}
-			as="figure"
-			data-sb-pull-quote="figure"
-			{id}
-			{properties}
-		>
-			<blockquote
-				{...blockquoteAttrs}
-				data-sb-pull-quote="blockquote"
-				itemprop="text"
-				set:html={quote}
-			/>
-			{
-				auth ? (
-					<figcaption
-						{...figcaptionAttrs}
-						data-sb-pull-quote="figcaption"
-						itemprop={authorItemprop}
-						itemscope
-						itemtype={`https://schema.org/${authorType}`}
-					>
-						<span itemprop="name" set:html={auth} />
-					</figcaption>
-				) : null
-			}
+		<Microdata {...wrapperAttrs} as="figure" {id} {properties}>
+			<blockquote {...blockquoteAttrs} itemprop="text" set:html={quote} />
+			{auth ? (
+				<figcaption
+					{...figcaptionAttrs}
+					itemprop={authorItemprop}
+					itemscope
+					itemtype={`https://schema.org/${authorType}`}
+				>
+					<span itemprop="name" set:html={auth} />
+				</figcaption>
+			) : null}
 		</Microdata>
 	) : (
-		<figure
-			{...wrapperAttrs}
-			data-sb-pull-quote="figure"
-			{id}
-		>
-			<blockquote
-				{...blockquoteAttrs}
-				data-sb-pull-quote="blockquote"
-				set:html={quote}
-			/>
-			{
-				auth ? (
-					<figcaption
-						{...figcaptionAttrs}
-						data-sb-pull-quote="figcaption"
-					>
-						<span set:html={auth} />
-					</figcaption>
-				) : null
-			}
+		<figure {...wrapperAttrs} {id}>
+			<blockquote {...blockquoteAttrs} set:html={quote} />
+			{auth ? (
+				<figcaption {...figcaptionAttrs}>
+					<span set:html={auth} />
+				</figcaption>
+			) : null}
 		</figure>
 	)
 }

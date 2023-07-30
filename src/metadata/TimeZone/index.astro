@@ -33,6 +33,6 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {useMicrodata ? <Microdata {microdata} {properties} /> : null}
-<Element {...elementAttrs} data-sb-timezone={tz.toJSON()}>
+<Element elementAttrs={tz.toJSON()}>
 	{label}
 </Element>

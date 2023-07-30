@@ -1,4 +1,5 @@
 ---
+import "./index.css"
 import Microdata from "../Microdata/index.astro"
 import TrailList from "./TrailList/index.astro"
 import getBreadcrumbTrail from "../utilities/getBreadcrumbTrail"
@@ -7,7 +8,15 @@ import mapAttributes from "../utilities/mapAttributes"
 import type { TrailProps as Props } from "../types"
 import compact from "../utilities/compact"
 
-const { hideClass, id, nav = {}, pages, properties, ...attrs } = Astro.props
+const {
+	fallback,
+	hideClass,
+	id,
+	nav = {},
+	pages,
+	properties,
+	...attrs
+} = Astro.props
 
 const { pathname } = Astro.url
 const crumbs = compact(getBreadcrumbTrail(pathname, pages))
@@ -25,14 +34,13 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 			{...wrapperAttrs}
 			aria-labelledby={labelledBy}
 			as="nav"
-			data-sb-nav
 			{properties}
 		>
-			<TrailList {...nav} {crumbs} {hideClass} />
+			<TrailList {...nav} {crumbs} {fallback} {hideClass} />
 		</Microdata>
 	) : (
-		<nav {...wrapperAttrs} aria-labelledby={labelledBy} data-sb-nav>
-			<TrailList {...nav} {crumbs} {hideClass} />
+		<nav {...wrapperAttrs} aria-labelledby={labelledBy}>
+			<TrailList {...nav} {crumbs} {fallback} {hideClass} />
 		</nav>
 	)
 }

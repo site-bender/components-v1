@@ -21,8 +21,16 @@ const {
 const groupAttrs = mapAttributes(group, ["sb-group"])
 const helpAttrs = mapAttributes(help, ["sb-help"])
 const legendAttrs = mapAttributes(legend, ["sb-label"])
-const outerAttrs = mapAttributes(outer, ["sb-fieldset", `sb-${field}`])
-const tagAttrs = mapAttributes(tag, ["sb-label-tag"])
+const outerAttrs = mapAttributes(
+	outer,
+	required
+		? ["sb-fieldset", `sb-${field}`, "sb-required"]
+		: ["sb-fieldset", `sb-${field}`]
+)
+const tagAttrs = mapAttributes(
+	tag,
+	required ? ["sb-label-tag"] : ["sb-label-tag", "sb-optional"]
+)
 
 const hlp = (await Astro.slots.render("message")) || message
 const helpId = `${id}_help`
@@ -30,38 +38,22 @@ const lbl = (await Astro.slots.render("label")) || label
 const labelId = `${id}_label_tag`
 const labelledBy = `${labelId} ${helpId}`
 const legendId = `${id}_legend`
-const req = required ? { "data-sb-required": "" } : {}
-const opt = required ? {} : { "data-sb-optional": "" }
 
 const element = await Astro.slots.render("default", [labelledBy])
 ---
 
-<fieldset
-	{...outerAttrs}
-	data-sb-fieldset={field}
-	{disabled}
-	{form}
-	{name}
-	{...req}
->
-	<legend {...legendAttrs} data-sb-fieldset-label={field} id={legendId}>
-		<span
-			{...tagAttrs}
-			data-sb-fieldset-label-tag={field}
-			id={labelId}
-			{...opt}
-			set:html={lbl}
-		/>
+<fieldset {...outerAttrs} {disabled} {form} {name}>
+	<legend {...legendAttrs} id={legendId}>
+		<span {...tagAttrs} id={labelId} set:html={lbl} />
 		<span
 			aria-live="assertive"
 			{...helpAttrs}
-			data-sb-fieldset-help={field}
 			id={helpId}
 			role="status"
 			set:html={hlp}
 		/>
 	</legend>
-	<div {...groupAttrs} data-sb-fieldset-group={field}>
+	<div {...groupAttrs}>
 		<Fragment set:html={element} />
 	</div>
 </fieldset>

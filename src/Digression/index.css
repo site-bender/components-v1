@@ -1,0 +1,44 @@
+aside.sb-digression {
+	background-color: var(--digression-background-color);
+	border-radius: 5px;
+	color: var(--digression-color);
+	margin: var(--warning-margin);
+	padding: var(--digression-padding);
+}
+
+aside.sb-digression details {
+	margin-top: 0;
+}
+
+aside.sb-digression summary {
+	font-family: var(--digression-summary-font-family);
+	font-size: var(--digression-summary-font-size);
+	font-weight: 400;
+	outline-color: var(--digression-summary-outline-color);
+}
+
+aside.sb-digression summary:focus,
+aside.sb-digression summary:hover {
+	border-radius: 5px;
+	outline-offset: 3px;
+	outline: 2px dotted var(--digression-summary-outline-color);
+}
+
+aside.sb-digression details[open] summary {
+	margin-bottom: var(--box-open-margin-bottom);
+}
+
+@media print {
+	aside.sb-digression:has(details) {
+		display: none;
+	}
+
+	aside.sb-digression:has(details[open]) {
+		display: block;
+	}
+
+	aside.sb-digression summary {
+		list-style-type: none;
+		margin-bottom: 1rem;
+	}
+}

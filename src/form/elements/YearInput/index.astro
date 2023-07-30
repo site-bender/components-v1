@@ -37,12 +37,11 @@ const lst = list ? { list: listId } : {}
 const size = sze || years ? 7 : 4
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
+<span {...wrapperAttrs}>
 	<input
 		{...inputAttrs}
 		{autocomplete}
 		aria-labelledby={labelledBy}
-		data-sb-input={field}
 		{id}
 		{form}
 		{...lst}
@@ -57,7 +56,7 @@ const size = sze || years ? 7 : 4
 	/>
 	{
 		list ? (
-			<datalist {...datalistAttrs} data-sb-datalist={field} id={listId}>
+			<datalist {...datalistAttrs} id={listId}>
 				<Fragment set:html={createListOptions(list)} />
 			</datalist>
 		) : null

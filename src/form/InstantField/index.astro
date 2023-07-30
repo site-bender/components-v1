@@ -74,11 +74,11 @@ const timeZoneAttributes = mapAttributes(timeZoneAttrs as HTMLAttributes, [
 	{
 		(labelledBy: string) => {
 			return (
-				<label data-sb-label-date={field} for={`${id}_date`}>
+				<label  for={`${id}_date`}>
 					<span id={`${id}_date:label`}>Date</span>
 					<DateInput
 						{...dateAttributes}
-						data-sb-input-date={field}
+
 						{disabled}
 						{form}
 						id={`${id}_date`}
@@ -91,11 +91,11 @@ const timeZoneAttributes = mapAttributes(timeZoneAttrs as HTMLAttributes, [
 						value={date}
 					/>
 				</label>
-				<label data-sb-label-time={field} for={`${id}_time`}>
+				<label  for={`${id}_time`}>
 					<span id={`${id}_time:label`}>Time</span>
 					<TimeInput
 						{...timeAttributes}
-						data-sb-input-time={field}
+
 						{disabled}
 						{form}
 						id={`${id}_time`}
@@ -109,13 +109,13 @@ const timeZoneAttributes = mapAttributes(timeZoneAttrs as HTMLAttributes, [
 					/>
 				</label>
 				<label
-					data-sb-label-fractional-seconds={field}
+
 					for={`${id}_fractional-seconds`}
 				>
 					<span id={`${id}_fractional-seconds:label`}>Fractional seconds</span>
 					<TextInput
 						{...fractionalSecondsAttributes}
-						data-sb-input-fractional-seconds={field}
+
 						{disabled}
 						{form}
 						id={`${id}_fractionalSeconds`}
@@ -126,12 +126,12 @@ const timeZoneAttributes = mapAttributes(timeZoneAttrs as HTMLAttributes, [
 						value={fractionalSeconds}
 					/>
 				</label>
-				<label data-sb-label-time-zone={field} for={`${id}_time-zone`}>
+				<label  for={`${id}_time-zone`}>
 					<span id={`${id}_time-zone:label`}>Time zone</span>
 					<TimeZoneSelect
 						{...timeZoneAttributes}
 						{countries}
-						data-sb-input-time-zone={field}
+
 						{disabled}
 						{form}
 						id={`${id}_timeZone`}

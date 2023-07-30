@@ -26,46 +26,24 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 
 {
 	useMicrodata ? (
-			<Microdata
-				{...wrapperAttrs}
-				as="figure"
-				data-sb-figure
-				{id}
-				{...indexed}
-				{properties}
-			>
-				{
-					caption && (
-						<figcaption
-							{...figcaptionAttrs}
-							data-sb-figure="figcaption"
-						>
-							{index ? `Figure ${index}: ` : ""}
-							<Fragment set:html={caption} />
-						</figcaption>
-					)
-				}
-				<slot />
-			</Microdata>
-		) : (
-			<figure
-				{...wrapperAttrs}
-				data-sb-figure
-				{id}
-				{...indexed}
-			>
-				{
-					caption && (
-						<figcaption
-							{...figcaptionAttrs}
-							data-sb-figure="figcaption"
-						>
-							{index ? `Figure ${index}: ` : ""}
-							<Fragment set:html={caption} />
-						</figcaption>
-					)
-				}
-				<slot />
-			</figure>
+		<Microdata {...wrapperAttrs} as="figure" {id} {...indexed} {properties}>
+			{caption && (
+				<figcaption {...figcaptionAttrs}>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={caption} />
+				</figcaption>
+			)}
+			<slot />
+		</Microdata>
+	) : (
+		<figure {...wrapperAttrs} {id} {...indexed}>
+			{caption && (
+				<figcaption {...figcaptionAttrs}>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={caption} />
+				</figcaption>
+			)}
+			<slot />
+		</figure>
 	)
 }

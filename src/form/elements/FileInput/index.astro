@@ -24,13 +24,12 @@ const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-file-input"])
 const wrapperAttrs = mapAttributes(wrapper, ["sb-file-input-wrapper"])
 ---
 
-<span {...wrapperAttrs} data-sb-wrapper={field}>
+<span {...wrapperAttrs}>
 	<input
 		{accept}
 		{...inputAttrs}
 		aria-labelledby={labelledBy}
 		{capture}
-		data-sb-input={field}
 		{form}
 		{id}
 		{multiple}

@@ -10,13 +10,13 @@ const {
 	["class:list"]: classList = [],
 	description = {},
 	heading = {},
-  href,
+	href,
 	id = generateShortId(),
-  isInvertible,
+	isInvertible,
 	level = 3,
 	link = {},
-  picture = {},
-  title,
+	picture = {},
+	title,
 	...attrs
 } = Astro.props
 
@@ -34,34 +34,21 @@ const descId = `${id}_description`
 const Element = `h${level}`
 ---
 
-<section {...wrapperAttrs} data-sb-card {id}>
-  {
-    href ? (
-      <a
-				{...linkAttrs}
-				aria-describedby={descId}
-				data-sb-card="link"
-				{href}
-			>
-				<Element {...headingAttrs} data-sb-card="heading">
-					{title}
-				</Element>
-        {picture ? (
-          <Picture {...picture} />
-        ) : null}
-      </a>
-    ) : (
-      <div aria-describedby={descId}>
-				<Element {...headingAttrs} data-sb-card="heading">
-					{title}
-				</Element>
-        {picture ? (
-          <Picture {...picture} />
-        ) : null}
-      </div>
-    )
-  }
-  <div {...descAttrs} data-sb-card="description" id={descId}>
-    <Fragment set:html={desc} />
-  </div>
+<section {...wrapperAttrs} {id}>
+	{
+		href ? (
+			<a {...linkAttrs} aria-describedby={descId} {href}>
+				<Element {...headingAttrs}>{title}</Element>
+				{picture ? <Picture {...picture} /> : null}
+			</a>
+		) : (
+			<div aria-describedby={descId}>
+				<Element {...headingAttrs}>{title}</Element>
+				{picture ? <Picture {...picture} /> : null}
+			</div>
+		)
+	}
+	<div {...descAttrs} id={descId}>
+		<Fragment set:html={desc} />
+	</div>
 </section>
