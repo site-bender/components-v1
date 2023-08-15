@@ -1,0 +1,43 @@
+---
+import generateShortId from "../../../../utilities/generateShortId"
+import mapAttributes from "../../../../utilities/mapAttributes"
+import type { PasswordInput as Props } from "../../../../types/form"
+import "./script.astro"
+import type { HTMLAttributes } from "../../../../types/html"
+
+const {
+	allowUnmasked,
+	autocomplete,
+	field = "password-input",
+	form,
+	id = generateShortId(),
+	labelledBy,
+	name,
+	required,
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props
+
+const pwAttrs = mapAttributes(
+	attrs as HTMLAttributes,
+	allowUnmasked ? ["sb-password-input", "sb-unmaskable"] : ["sb-password-input"]
+)
+const wrapperAttrs = mapAttributes(wrapper, ["sb-input-wrapper"])
+---
+
+<span {...wrapperAttrs}>
+	<input
+		{...pwAttrs}
+		aria-labelledby={labelledBy}
+		{autocomplete}
+		{form}
+		{id}
+		{name}
+		{required}
+		spellcheck="false"
+		type="password"
+		{value}
+	/>
+</span>

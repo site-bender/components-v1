@@ -1,7 +1,0 @@
-main {
-	animation-fill-mode: forwards;
-	animation-iteration-count: 1;
-	animation: fadeInAnimation ease-in-out 1s;
-	position: relative;
-	padding: var(--sb-main-padding, 1rem 0);
-}

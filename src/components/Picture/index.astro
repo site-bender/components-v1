@@ -1,0 +1,42 @@
+---
+import Microdata from "../Microdata/index.astro"
+import PictureElement from "./PictureElement/index.astro"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { PictureProps as Props } from "../../types"
+import "./index.css"
+
+const {
+	description,
+	longdesc: desc,
+	properties: props,
+	sources,
+	wrapper = {},
+	...attrs
+} = Astro.props
+
+const wrapperAttrs = mapAttributes(wrapper, ["sb-picture-metadata"])
+
+const longdesc = ((await Astro.slots.render("default")) || desc || "").trim()
+
+const properties = {
+	as: "span",
+	type: "ImageObject",
+	...props,
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+---
+
+{
+	useMicrodata ? (
+		<Microdata {...wrapperAttrs} {properties}>
+			<PictureElement {...attrs} {description} {sources}>
+				<Fragment set:html={longdesc} />
+			</PictureElement>
+		</Microdata>
+	) : (
+		<PictureElement {...attrs} {description} {sources}>
+			<Fragment set:html={longdesc} />
+		</PictureElement>
+	)
+}

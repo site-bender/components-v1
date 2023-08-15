@@ -1,0 +1,45 @@
+---
+import generateShortId from "../../../../utilities/generateShortId"
+import mapAttributes from "../../../../utilities/mapAttributes"
+import type { CheckboxInput as Props } from "../../../../types/form"
+import type { HTMLAttributes } from "../../../../types/html"
+
+const {
+	checked,
+	disabled,
+	field = "checkbox-input",
+	form,
+	groupLabelId,
+	id = generateShortId(),
+	labelledBy,
+	label,
+	name,
+	required,
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props
+
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-checkbox-input"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-checkbox-input-wrapper"])
+
+const labelId = `${id}_label`
+const lbl = (await Astro.slots.render("default")) || label
+---
+
+<label {...wrapperAttrs} id={labelId}>
+	<input
+		{...inputAttrs}
+		aria-labelledby={`${labelledBy} ${labelId}`}
+		{checked}
+		{disabled}
+		{form}
+		{id}
+		{name}
+		{required}
+		type="checkbox"
+		{value}
+	/>
+	<Fragment set:html={lbl} />
+</label>

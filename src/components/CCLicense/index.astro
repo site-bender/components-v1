@@ -1,0 +1,61 @@
+---
+import "./index.css"
+import ByAttribution from "./ByAttribution/index.astro"
+import CreativeCommons from "./CreativeCommons/index.astro"
+import NoDerivatives from "./NoDerivatives/index.astro"
+import NonCommercial from "./NonCommercial/index.astro"
+import PublicDomainDedication from "./PublicDomainDedication/index.astro"
+import ShareAlike from "./ShareAlike/index.astro"
+import getLicense from "./getLicense"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { CCLicenseProps as Props } from "../../types"
+
+const {
+	byAttribution,
+	fill = "var(--sb-cc-license-fill-color, white)",
+	link = {},
+	noDerivatives,
+	nonCommercial,
+	shareAlike,
+	size = "2rem",
+	stroke = "var(--sb-cc-license-stroke-color, black)",
+	...attrs
+} = Astro.props
+
+const wrapperAttrs = mapAttributes(attrs, ["sb-cc-license"])
+const linkAttrs = mapAttributes(link, ["sb-cc-license-link", "sb-image"])
+
+const { href, license } = getLicense(Astro.props)
+
+const linkAttributes = {
+	"aria-label": `Creative Commons ${license}`,
+	href,
+	"rel": "license",
+	...linkAttrs,
+}
+---
+
+<div {...wrapperAttrs}>
+	<a {...linkAttributes}>
+		<CreativeCommons {fill} {license} {size} {stroke} />
+		{
+			byAttribution ? (
+				<ByAttribution {fill} {size} {stroke} />
+			) : (
+				<PublicDomainDedication {fill} {size} {stroke} />
+			)
+		}
+		{
+			byAttribution && nonCommercial ? (
+				<NonCommercial {fill} {size} {stroke} />
+			) : null
+		}
+		{
+			byAttribution && noDerivatives ? (
+				<NoDerivatives {fill} {size} {stroke} />
+			) : byAttribution && shareAlike ? (
+				<ShareAlike {fill} {size} {stroke} />
+			) : null
+		}
+	</a>
+</div>

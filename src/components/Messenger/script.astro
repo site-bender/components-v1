@@ -1,0 +1,32 @@
+<script>
+	const messengers = [...document.querySelectorAll(".sb-messenger")]
+
+	function makeHideMessenger(messenger: Element) {
+		return function () {
+			console.log(`Hiding ${messenger.id}`)
+			messenger.remove()
+			sessionStorage.setItem(messenger.id, "hide")
+		}
+	}
+
+	messengers.forEach((messenger) => {
+		const status = sessionStorage.getItem(messenger.id)
+
+		if (status === "hide") {
+			makeHideMessenger(messenger)()
+			return
+		}
+
+		const closer = document.createElement("BUTTON")
+		closer.appendChild(document.createTextNode(""))
+		closer.classList.add("sb-closer")
+		closer.setAttribute("aria-label", "×: Hide warning")
+		closer.setAttribute("tabindex", "0")
+		closer.addEventListener("click", makeHideMessenger(messenger))
+
+		messenger.appendChild(closer)
+
+		console.info(`« Messenger ${messenger.id} closer injected. »`)
+	})
+	// })()
+</script>

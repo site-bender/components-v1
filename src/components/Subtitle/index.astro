@@ -1,0 +1,13 @@
+---
+import "./index.css"
+import type { SubtitleProps as Props } from "../../types"
+import mapAttributes from "../../utilities/mapAttributes"
+
+const { as = "div", subtitle, ...attrs } = Astro.props
+
+const subtitleAttrs = mapAttributes(attrs, ["sb-subtitle"])
+
+const Element = as
+---
+
+{subtitle ? <Element {...subtitleAttrs}>{subtitle}</Element> : null}

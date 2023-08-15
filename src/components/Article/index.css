@@ -1,0 +1,17 @@
+article.sb-article {
+	margin: var(--sb-article-margin, auto);
+	max-width: 48rem;
+	padding: var(--sb-article-padding, 1.5rem 0)
+}
+
+article.sb-as-columns {
+	margin: 0;
+	max-width: unset;
+	margin: var(--sb-article-columns-margin, 0);
+	padding: var(--sb-article-columns-padding, 1.5rem);
+}
+
+article.sb-article > *+* {
+	margin-top: 1rem;
+	margin-top: var(--sb-space-s, 1rem);
+}

@@ -1,0 +1,42 @@
+---
+import "./index.css"
+import Microdata from "../../Microdata/index.astro"
+import mapAttributes from "../../../utilities/mapAttributes"
+import type { BookTitleProps as Props } from "../../../types"
+import type { HTMLAttributes } from "../../form/html-types"
+
+const {
+	as = "span",
+	dataset,
+	href,
+	link,
+	properties = {},
+	title,
+	...attrs
+} = Astro.props
+
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-email-link"])
+const linkAttrs = mapAttributes(link, ["sb-book-title-link"])
+
+const name = ((await Astro.slots.render("default")) || "").trim() || title
+
+const meta = {
+	type: "Book",
+	name,
+	...properties,
+}
+---
+
+{
+	href ? (
+		<a {...linkAttrs} {href}>
+			<Microdata {as} {...elementAttrs} properties={meta}>
+				{name}
+			</Microdata>
+		</a>
+	) : (
+		<Microdata {as} {...elementAttrs} properties={meta}>
+			{name}
+		</Microdata>
+	)
+}

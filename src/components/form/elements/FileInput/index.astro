@@ -1,0 +1,41 @@
+---
+import generateShortId from "../../../../utilities/generateShortId"
+import mapAttributes from "../../../../utilities/mapAttributes"
+import type { FileInput as Props } from "../../../../types/form"
+import type { HTMLAttributes } from "../../../../types/html"
+
+const {
+	accept,
+	capture,
+	field = "file-input",
+	form,
+	id = generateShortId(),
+	labelledBy,
+	multiple,
+	name,
+	required,
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
+} = Astro.props
+
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-file-input"])
+const wrapperAttrs = mapAttributes(wrapper, ["sb-file-input-wrapper"])
+---
+
+<span {...wrapperAttrs}>
+	<input
+		{accept}
+		{...inputAttrs}
+		aria-labelledby={labelledBy}
+		{capture}
+		{form}
+		{id}
+		{multiple}
+		{name}
+		{required}
+		type="file"
+		{value}
+	/>
+</span>

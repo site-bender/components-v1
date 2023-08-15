@@ -2,8 +2,8 @@ import type {
 	AnchorTarget,
 	Dataset,
 	HTMLAttributes,
-	HTMLAttributes,
 	Override,
+	Validatable,
 } from "./html"
 
 import type { Temporal } from "@js-temporal/polyfill"
@@ -45,17 +45,18 @@ export type Form = Override<
 	GenericFormAttributes,
 	{
 		"accept-charset"?: string | undefined | null
-		"action": string
-		"autocomplete"?: "off" | "on" | undefined | null
-		"autocorrect"?: never
-		"dataset"?: Dataset
-		"enctype"?: string | undefined | null
-		"form"?: never
-		"labelledBy": string | undefined | null
-		"method"?: "get" | "post" | undefined | null
-		"name"?: string | undefined | null
-		"novalidate"?: boolean | string | undefined | null
-		"target"?: AnchorTarget | undefined | null
+		action: string
+		autocomplete?: "off" | "on" | undefined | null
+		autocorrect?: never
+		dataset?: Dataset
+		enctype?: string | undefined | null
+		form?: never
+		labelledBy: string | undefined | null
+		method?: "get" | "post" | undefined | null
+		name?: string | undefined | null
+		validator?: "full" | "fallback" | undefined | null
+		novalidate?: boolean | string | undefined | null
+		target?: AnchorTarget | undefined | null
 	}
 >
 
@@ -79,7 +80,7 @@ export type CheckboxInput = Override<
 		type?: never
 		value: string | number
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type Option = {
@@ -126,7 +127,7 @@ export type CheckboxGroup = Override<
 		selected?: string | number | Array<string | number> | undefined | null
 		tag?: Partial<HTMLAttributes> | undefined | null
 		wrapper?: Partial<Fieldset> | undefined | null
-	}
+	} & Validatable
 >
 
 export type ColorInput = Override<
@@ -140,7 +141,7 @@ export type ColorInput = Override<
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type FileInput = Override<
@@ -154,7 +155,7 @@ export type FileInput = Override<
 		type?: never
 		value?: string | string[] | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type HiddenInput = Override<
@@ -199,7 +200,7 @@ export type RadioInput = Override<
 		type?: never
 		value: string | number
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type RadioGroup = Override<
@@ -221,7 +222,7 @@ export type RadioGroup = Override<
 		selected?: string | number | Array<string | number> | undefined | null
 		tag?: Partial<HTMLAttributes> | undefined | null
 		wrapper?: Partial<Fieldset> | undefined | null
-	}
+	} & Validatable
 >
 
 export type RangeInput = Override<
@@ -234,7 +235,7 @@ export type RangeInput = Override<
 		step?: number | string | undefined | null
 		type?: "range"
 		value?: string | number | undefined | null
-	}
+	} & Validatable
 >
 
 export type DaySelect = Override<
@@ -252,7 +253,7 @@ export type DaySelect = Override<
 		selected?: string | undefined | null
 		type?: never
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type CallingCodeSelect = Override<
@@ -270,7 +271,7 @@ export type CallingCodeSelect = Override<
 		options: Options
 		selected?: string | number | Array<string | number> | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type Select = Override<
@@ -286,7 +287,7 @@ export type Select = Override<
 		options: Options
 		selected?: string | number | Array<string | number> | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type Textarea = Override<
@@ -306,7 +307,7 @@ export type Textarea = Override<
 		value?: string | Array<string> | number | undefined | null
 		wrap?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 // Date and time
@@ -334,7 +335,7 @@ export type DateInput = Override<
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type MonthInput = Override<
@@ -352,7 +353,7 @@ export type MonthInput = Override<
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type MonthSelect = Override<
@@ -371,7 +372,7 @@ export type MonthSelect = Override<
 		selected?: string | undefined | null
 		type?: never
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type NumberSubfield = Override<
@@ -386,7 +387,7 @@ export type NumberSubfield = Override<
 		step?: number | string | undefined | null
 		tag?: Partial<HTMLAttributes> | undefined | null
 		value?: number | string | undefined | null
-	}
+	} & Validatable
 >
 
 export type TimeInput = Override<
@@ -406,7 +407,7 @@ export type TimeInput = Override<
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type TimeZoneSelect = Override<
@@ -426,7 +427,7 @@ export type TimeZoneSelect = Override<
 		type?: never
 		useList?: boolean | undefined | null
 		wrapper?: HTMLAttributes | undefined | null
-	}
+	} & Validatable
 >
 
 export type WeekSelect = Override<
@@ -446,7 +447,7 @@ export type WeekSelect = Override<
 		value?: string | undefined | null
 		weeks?: Array<number> | undefined | null
 		wrapper?: HTMLAttributes | undefined | null
-	}
+	} & Validatable
 >
 
 export type YearInput = Override<
@@ -469,7 +470,7 @@ export type YearInput = Override<
 		value?: string | undefined | null
 		wrapper?: HTMLAttributes | undefined | null
 		years?: Options | undefined | null
-	}
+	} & Validatable
 >
 
 // Textual inputs
@@ -499,7 +500,7 @@ export type PasswordInput = Override<
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type TextInput = Override<
@@ -521,7 +522,7 @@ export type TextInput = Override<
 		type?: never | undefined | null
 		value?: string | Array<string> | number | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 // Numeric inputs
@@ -544,7 +545,7 @@ export type NumberInput = Override<
 		type?: never
 		value?: number | string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 // Other
@@ -594,7 +595,7 @@ export type BooleanField = Override<
 		type?: never
 		value: string | number
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type DurationField = Override<
@@ -622,7 +623,7 @@ export type DurationField = Override<
 		tag?: Partial<HTMLAttributes> | undefined | null
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type EmailField = Override<
@@ -649,20 +650,22 @@ export type EmailField = Override<
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
-export type Honeypot = Override<HTMLAttributes, {
-	cLabel?: string | undefined | null
-	cPlaceholder?: string | undefined | null
-	confirmation?: string | undefined | null
-	field?: string | undefined | null
-	form: string
-	password?: string | undefined | null
-	pwLabel?: string | undefined | null
-	pwPlaceholder?: string | undefined | null
-	wrapper?: Partial<HTMLAttributes> | undefined | null
-}>
+export type Honeypot =
+	& Override<HTMLAttributes, {
+		cLabel?: string | undefined | null
+		cPlaceholder?: string | undefined | null
+		confirmation?: string | undefined | null
+		field?: string | undefined | null
+		form: string
+		password?: string | undefined | null
+		pwLabel?: string | undefined | null
+		pwPlaceholder?: string | undefined | null
+		wrapper?: Partial<HTMLAttributes> | undefined | null
+	}>
+	& Validatable
 
 export type InstantField = Override<
 	GenericFormAttributes,
@@ -697,7 +700,7 @@ export type InstantField = Override<
 		timeZoneAttrs?: Partial<TimeZoneSelect> | undefined | null
 		type?: never
 		useList?: boolean | undefined | null
-	}
+	} & Validatable
 >
 
 export type FieldWrapper = Override<
@@ -712,7 +715,7 @@ export type FieldWrapper = Override<
 		outer?: Partial<Fieldset> | undefined | null
 		required?: boolean | string | undefined | null
 		tag?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type FieldsetWrapper = Override<
@@ -727,7 +730,7 @@ export type FieldsetWrapper = Override<
 		name?: string | undefined | null
 		outer?: Partial<Fieldset> | undefined | null
 		tag?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type MemberField = Override<
@@ -751,7 +754,7 @@ export type MemberField = Override<
 		selected?: string | number | undefined | null
 		tag?: Partial<HTMLAttributes> | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 // Numeric inputs
@@ -773,7 +776,7 @@ export type NumberField = Override<
 		type?: never
 		value?: number | string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type PasswordField = Override<
@@ -795,7 +798,7 @@ export type PasswordField = Override<
 		tag?: Partial<HTMLAttributes> | undefined | null
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type PlainDateField = Override<
@@ -819,7 +822,7 @@ export type PlainDateField = Override<
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type PlainDateTimeField = Override<
@@ -847,7 +850,7 @@ export type PlainDateTimeField = Override<
 		timeAttrs?: Partial<TimeInput> | undefined | null
 		type?: never
 		value?: string | undefined | null
-	}
+	} & Validatable
 >
 
 export type PlainMonthDayField = Override<
@@ -872,7 +875,7 @@ export type PlainMonthDayField = Override<
 		tag?: Partial<HTMLAttributes> | undefined | null
 		type?: never
 		value?: string | Temporal.PlainMonthDayLike
-	}
+	} & Validatable
 >
 
 export type PlainTimeField = Override<
@@ -896,7 +899,7 @@ export type PlainTimeField = Override<
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type PlainYearMonthField = Override<
@@ -926,7 +929,7 @@ export type PlainYearMonthField = Override<
 		year?: string | undefined | null
 		yearAttrs?: Partial<TimeInput> | undefined | null
 		years?: Array<number | string> | undefined | null
-	}
+	} & Validatable
 >
 
 export type YearWeekField = Override<
@@ -951,7 +954,7 @@ export type YearWeekField = Override<
 		year?: string | undefined | null
 		yearAttrs?: Partial<TimeInput> | undefined | null
 		years?: Array<number | string> | undefined | null
-	}
+	} & Validatable
 >
 
 export type ZonedDateTimeField = Override<
@@ -985,7 +988,7 @@ export type ZonedDateTimeField = Override<
 		timeZoneAttrs?: Partial<HTMLAttributes> | undefined | null
 		type?: never
 		useList?: boolean | undefined | null
-	}
+	} & Validatable
 >
 
 export type StringField = Override<
@@ -1016,7 +1019,7 @@ export type StringField = Override<
 		value?: string | Array<string> | number | undefined | null
 		wrap?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type TimeZoneField = Override<
@@ -1040,7 +1043,7 @@ export type TimeZoneField = Override<
 		useList?: boolean | undefined | null
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >
 
 export type SubsetField = Override<
@@ -1060,7 +1063,7 @@ export type SubsetField = Override<
 		selected?: string | number | Array<string | number> | undefined | null
 		tag?: Partial<HTMLAttributes> | undefined | null
 		wrapper?: Partial<Fieldset> | undefined | null
-	}
+	} & Validatable
 >
 
 export type TelField = Override<
@@ -1095,7 +1098,7 @@ export type TelField = Override<
 		tag?: Partial<HTMLAttributes> | undefined | null
 		type?: never
 		value?: string | undefined | null
-	}
+	} & Validatable
 >
 
 export type UrlField = Override<
@@ -1122,5 +1125,5 @@ export type UrlField = Override<
 		type?: never
 		value?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Validatable
 >

@@ -1,0 +1,44 @@
+aside.sb-digression {
+	background-color: var(--sb-digression-background-color);
+	border-radius: 5px;
+	color: var(--sb-digression-color);
+	margin: var(--sb-warning-margin);
+	padding: var(--sb-digression-padding);
+}
+
+aside.sb-digression details {
+	margin-top: 0;
+}
+
+aside.sb-digression summary {
+	font-family: var(--sb-digression-summary-font-family);
+	font-size: var(--sb-digression-summary-font-size);
+	font-weight: 400;
+	outline-color: var(--sb-digression-summary-outline-color);
+}
+
+aside.sb-digression summary:focus,
+aside.sb-digression summary:hover {
+	border-radius: 5px;
+	outline-offset: 3px;
+	outline: 2px dotted var(--sb-digression-summary-outline-color);
+}
+
+aside.sb-digression details[open] summary {
+	margin-bottom: var(--sb-box-open-margin-bottom);
+}
+
+@media print {
+	aside.sb-digression:has(details) {
+		display: none;
+	}
+
+	aside.sb-digression:has(details[open]) {
+		display: block;
+	}
+
+	aside.sb-digression summary {
+		list-style-type: none;
+		margin-bottom: 1rem;
+	}
+}

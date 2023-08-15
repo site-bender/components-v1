@@ -1,0 +1,72 @@
+---
+import Microdata from "../../Microdata/index.astro"
+import mapAttributes from "../../../utilities/mapAttributes"
+import type { PlainDateTimeProps as Props } from "../../../types"
+import {
+	DEFAULT_CALENDAR,
+	DEFAULT_DATE_TIME_OPTIONS,
+	DEFAULT_LOCALES,
+} from "../../../constants"
+import { Intl, Temporal } from "@js-temporal/polyfill"
+import type { HTMLAttributes } from "../../form/html-types"
+
+const {
+	calendar = DEFAULT_CALENDAR,
+	dataset,
+	day,
+	era,
+	eraYear,
+	hour = 0,
+	locales = DEFAULT_LOCALES,
+	microdata = {},
+	microsecond = 0,
+	millisecond = 0,
+	minute = 0,
+	month,
+	monthCode,
+	nanosecond = 0,
+	options = {},
+	plainDateTime = Temporal.Now.plainDateTime(
+		Astro.props.calendar || DEFAULT_CALENDAR
+	),
+	properties = {},
+	second = 0,
+	itemtype,
+	year,
+	...attrs
+} = Astro.props
+
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, [
+	"sb-plain-date-time",
+])
+
+const val = plainDateTime || {
+	calendar,
+	day,
+	hour: Number(hour),
+	microsecond: Number(microsecond),
+	millisecond: Number(millisecond),
+	minute: Number(minute),
+	...(monthCode ? { monthCode } : { month }),
+	nanosecond: Number(nanosecond),
+	second: Number(second),
+	...(era ? { era, eraYear } : { year }),
+}
+
+const value = Temporal.PlainDateTime.from(val)
+
+const opts = {
+	...DEFAULT_DATE_TIME_OPTIONS,
+	calendar: value.calendarId.toString(),
+	...options,
+}
+
+const label = new Intl.DateTimeFormat(locales, opts).format(value)
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+---
+
+{useMicrodata ? <Microdata {microdata} {properties} /> : null}
+<time {...elementAttrs} datetime={value.toJSON()}>
+	{label}
+</time>

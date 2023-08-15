@@ -1,6 +1,6 @@
 .sb-disabled {
-	border-color: var(--disabled-border-color) !important;
-	color: var(--disabled-color) !important;
+	border-color: var(--sb-disabled-border-color) !important;
+	color: var(--sb-disabled-color) !important;
 	cursor: not-allowed;
 }
 
@@ -63,7 +63,7 @@ h1 {
 			"URW Palladio L",
 			P052,
 			serif);
-	font-size: var(--sb-h1-font-size, var(--step-4, 2.44rem));
+	font-size: var(--sb-h1-font-size, var(--sb-step-4, 2.44rem));
 	font-variant-ligatures: var(--sb-h1-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h1-font-variant-numeric, oldstyle-nums proportional-nums);
 	font-weight: var(--sb-h1-font-weight, 400);
@@ -80,7 +80,7 @@ h2 {
 			"URW Palladio L",
 			P052,
 			serif);
-	font-size: var(--sb-h2-font-size, var(--step-3, 1.95rem));
+	font-size: var(--sb-h2-font-size, var(--sb-step-3, 1.95rem));
 	font-variant-ligatures: var(--sb-h2-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h2-font-variant-numeric, oldstyle-nums proportional-nums);
 	font-weight: var(--sb-h2-font-weight, 500);
@@ -97,7 +97,7 @@ h3 {
 			"URW Palladio L",
 			P052,
 			serif);
-	font-size: var(--sb-h3-font-size, var(--step-2, 1.56rem));
+	font-size: var(--sb-h3-font-size, var(--sb-step-2, 1.56rem));
 	font-variant-ligatures: var(--sb-h3-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h3-font-variant-numeric, oldstyle-nums proportional-nums);
 	font-weight: var(--sb-h3-font-weight, 500);
@@ -114,7 +114,7 @@ h4 {
 			"URW Palladio L",
 			P052,
 			serif);
-	font-size: var(--sb-h4-font-size, var(--step-1, 1.25rem));
+	font-size: var(--sb-h4-font-size, var(--sb-step-1, 1.25rem));
 	font-variant-ligatures: var(--sb-h4-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h4-font-variant-numeric, oldstyle-nums proportional-nums);
 	font-weight: var(--sb-h4-font-weight, 500);
@@ -131,7 +131,7 @@ h5 {
 			"URW Palladio L",
 			P052,
 			serif);
-	font-size: var(--sb-h5-font-size, var(--step-0, 1rem));
+	font-size: var(--sb-h5-font-size, var(--sb-step-0, 1rem));
 	font-variant-ligatures: var(--sb-h5-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h5-font-variant-numeric, oldstyle-nums proportional-nums);
 	font-weight: var(--sb-h5-font-weight, 700);
@@ -143,23 +143,8 @@ p {
 	margin: var(--sb-p-margin, 0.5rem 0);
 }
 
-.sb-subtitle {
-	color: var(--subtitle-color);
-	margin: 0 0 1rem;
-}
-
-p.sb-subtitle {
-	margin: 0 0 2.5rem;
-}
-
-p.sb-byline {
-	font-family: var(--font-titles);
-	font-style: italic;
-	margin: 0;
-}
-
 dl > dt {
-	font-size: var(--sb-dt-font-size, var(--step-1, 1.25rem));
+	font-size: var(--sb-dt-font-size, var(--sb-step-1, 1.25rem));
 }
 
 hr {
@@ -167,7 +152,7 @@ hr {
 	border-bottom: 1px double hsl(154, 7%, 19%);
 	border-color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
 	color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
-	margin: var(--sb-column-rule-margin, var(--space-xl, 3rem) auto);
+	margin: var(--sb-column-rule-margin, var(--sb-space-xl, 3rem) auto);
 	overflow: visible;
 	text-align: center;
 	width: var(--sb-column-rule-width, 10ch);
@@ -180,12 +165,12 @@ hr:after {
 	padding: 0 1ch;
 	position: relative;
 	top: 0.75rem;
-	top: calc(var(--space-s, 1.5rem) / 2);
+	top: calc(var(--sb-space-s, 1.5rem) / 2);
 }
 
 details > div {
 	padding: 0 1.5rem 1.5rem;
-	padding: 0 var(--space-m, 1.5rem) var(--space-m, 1.5rem);
+	padding: 0 var(--sb-space-m, 1.5rem) var(--sb-space-m, 1.5rem);
 }
 
 details > summary,
@@ -204,7 +189,7 @@ details > summary:hover {
 	border-radius: 5px;
 	outline-offset: 3px;
 	outline: 2px dotted hsl(111, 46%, 24%);
-	outline-color: var(--faq-summary-outline-color, hsl(111, 46%, 24%));
+	outline-color: var(--sb-faq-summary-outline-color, hsl(111, 46%, 24%));
 }
 
 details > summary h3 {
@@ -229,12 +214,12 @@ pre {
 
 :not(pre) > code {
 	color: hsl(111, 46%, 24%);
-	color: var(--code-color, hsl(111, 46%, 24%));
+	color: var(--sb-code-color, hsl(111, 46%, 24%));
 }
 
 pre,
 code {
-	font-family: var(--code-block-font-family);
+	font-family: var(--sb-code-block-font-family);
 }
 
 pre > code {
@@ -266,29 +251,18 @@ pre.astro-code {
 }
 
 pre.astro-code span.line::before {
-	border-right: var(--code-block-border-right);
-	color: var(--code-block-line-number-color);
+	border-right: var(--sb-code-block-border-right);
+	color: var(--sb-code-block-line-number-color);
 	content: counter(lines) "";
 	counter-increment: lines 1;
 	display: inline-block;
 	margin-right: 1rem;
 	padding: 0.1rem 0.5rem 0.1rem 0;
 	text-align: right;
-	width: var(--line-number-width, 2ch);
+	width: var(--sb-line-number-width, 2ch);
 }
 
 main > article dl > dd {
-	margin: var(--sb-main-article-dd-margin, var(--space-2xs, 0.5rem) 0 0 var(--space-m, 1.5rem));
+	margin: var(--sb-main-article-dd-margin, var(--sb-space-2xs, 0.5rem) 0 0 var(--sb-space-m, 1.5rem));
 }
 
-main > article figure > figcaption {
-	font-family: var(--sb-figure-figcaption-font-family);
-	font-size: var(--sb-figure-figcaption-font-size);
-	line-height: var(--sb-figure-figcaption-line-height, 1);
-	padding: var(--sb-figure-figcaption-padding, 0);
-	text-align: var(--sb-figure-figcaption-text-align, center);
-}
-
-figure.sb-is-indexed figcaption::before {
-	content: "Figure " counter(figures) ": ";
-}

@@ -1,0 +1,47 @@
+---
+import Select from "../Select/index.astro"
+import generateShortId from "../../../../utilities/generateShortId"
+import mapAttributes from "../../../../utilities/mapAttributes"
+import type { DaySelect as Props } from "../../../../types/form"
+import type { HTMLAttributes } from "../../../../types/html"
+
+const {
+	autocomplete,
+	days,
+	field = "day-select",
+	form,
+	id = generateShortId(),
+	includeNull,
+	labelledBy,
+	name = "day",
+	required,
+	selected,
+	wrapper,
+	...attrs
+} = Astro.props
+
+const selectAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-select"])
+
+const options = new Array(31)
+	.fill(0)
+	.map((_, i) => ({
+		label: String(i + 1),
+		value: String(i + 1).padStart(2, "0"),
+	}))
+	.filter(({ label }) => !days || days.includes(Number(label)))
+---
+
+<Select
+	{...selectAttrs}
+	{autocomplete}
+	{field}
+	{form}
+	{id}
+	{includeNull}
+	{labelledBy}
+	{name}
+	{options}
+	{required}
+	{selected}
+	{wrapper}
+/>

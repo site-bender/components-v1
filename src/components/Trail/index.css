@@ -1,0 +1,77 @@
+.sb-trail-list {
+	align-items: var(--sb-trail-list-align-items, center);
+	display: var(--sb-trail-list-display, flex);
+	flex-wrap: var(--sb-trail-list-flex-wrap, wrap);
+	justify-content: var(--sb-trail-list-justify-content, flex-end);
+	list-style-type: var(--sb-trail-list-list-style-type, none);
+	padding: var(--sb-trail-list-padding, 0);
+}
+
+.sb-trail-list-item {
+	line-height: var(--sb-trail-list-item-line-height, 1.5);
+	white-space: var(--sb-trail-list-item-white-space, nowrap);
+}
+
+.sb-trail-link {
+	background-color: var(--sb-trail-link-background-color, transparent);
+	border-radius: var(--sb-trail-link-border-radius, 4px);
+	color: var(--sb-trail-link-color, hsl(56, 100%, 72%));
+	display: var(--sb-trail-link-display, inline-block);
+	line-height: var(--sb-trail-link-line-height, 1);
+	padding: var(--sb-trail-link-padding, 0 3px);
+	text-decoration: var(--sb-trail-link-text-decoration, none);
+	text-transform: var(--sb-trail-link-text-transform, lowercase);
+}
+
+.sb-trail-this-page {
+	border-radius: var(--sb-trail-this-page-border-radius, 4px);
+	display: var(--sb-trail-this-page-display, inline-block);
+	line-height: var(--sb-trail-this-page-line-height, 1);
+	padding: var(--sb-trail-this-page-padding, 0 3px 0 7px);
+	text-decoration: var(--sb-trail-this-page-text-decoration, none);
+	text-transform: var(--sb-trail-this-page-text-transform, lowercase);
+}
+
+.sb-trail-fallback {
+	border-radius: var(--sb-trail-fallback-border-radius, 4px);
+	display: var(--sb-trail-fallback-display, inline-block);
+	line-height: var(--sb-trail-fallback-line-height, 1);
+	padding: var(--sb-trail-fallback-padding, 0 3px);
+	text-decoration: var(--sb-trail-fallback-text-decoration, none);
+	text-transform: var(--sb-trail-fallback-text-transform, lowercase);
+}
+
+a.sb-trail-fallback {
+	background-color: var(--sb-trail-fallback-background-color, hsl(212, 25%, 15%));
+	color: var(--sb-trail-fallback-color, hsl(56, 100%, 72%));
+}
+
+a.sb-trail-link:focus,
+a.sb-trail-link:hover {
+	border-radius: var(--sb-trail-link-border-radius, 5px);
+	color: var(--sb-trail-link-color-focus, hsl(56, 100%, 72%));
+	display: var(--sb-trail-link-display, inline-block);
+	outline: var(--sb-trail-link-outline, 2px solid hsl(56, 100%, 72%));
+	outline-offset: var(--sb-trail-link-outline-offset, 5px);
+	padding: var(--sb-trail-link-padding, 0.1rem);
+	text-decoration: var(--sb-trail-link-text-decoration, none);
+}
+
+a.sb-trail-fallback:focus,
+a.sb-trail-fallback:hover {
+	border-radius: var(--sb-trail-fallback-link-border-radius, 5px);
+	color: var(--sb-trail-fallback-link-color-focus, hsl(56, 100%, 72%));
+	display: var(--sb-trail-fallback-link-display, inline-block);
+	outline: var(--sb-trail-fallback-link-outline, 2px solid hsl(56, 100%, 72%));
+	outline-offset: var(--sb-trail-fallback-link-outline-offset, 5px);
+	padding: var(--sb-trail-fallback-link-padding, 0.1rem);
+	text-decoration: var(--sb-trail-fallback-link-text-decoration, none);
+}
+
+.sb-trail-list-item:not(:last-of-type)::after {
+	content: var(--sb-trail-list-item-after-content, "\2002>\2002");
+}
+
+.sb-trail-link:visited {
+	color: var(--sb-trail-link-visited-color, hsl(56, 100%, 72%));
+}

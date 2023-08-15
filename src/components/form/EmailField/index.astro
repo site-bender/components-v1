@@ -1,0 +1,45 @@
+---
+import EmailInput from "../elements/EmailInput/index.astro"
+import FieldWrapper from "../FieldWrapper/index.astro"
+import generateShortId from "../../../utilities/generateShortId"
+import type { EmailField as Props, TextInput } from "../../../types/form"
+
+const {
+	field = "email-field",
+	help,
+	id = generateShortId(),
+	label = "Email address",
+	legend,
+	message,
+	outer,
+	required,
+	tag,
+	...attrs
+} = Astro.props
+---
+
+<FieldWrapper
+	{field}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => {
+			return (
+				<EmailInput
+					{...(attrs as TextInput)}
+					{field}
+					{id}
+					{labelledBy}
+					{required}
+				/>
+			)
+		}
+	}
+</FieldWrapper>

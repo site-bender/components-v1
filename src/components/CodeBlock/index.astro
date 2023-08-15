@@ -1,0 +1,63 @@
+---
+import "./index.css"
+import Microdata from "../Microdata/index.astro"
+import getLineNumberingWidth from "../../utilities/getLineNumberingWidth"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { CodeBlockProps as Props } from "../../types"
+
+const {
+	caption,
+	index,
+	isIndexed,
+	legend = {},
+	lineNumberingWidth,
+	properties: props,
+	snippet,
+	style: styl = "",
+	...attrs
+} = Astro.props
+
+const legendAttrs = mapAttributes(legend, ["sb-code-block-figcaption"])
+const wrapperAttrs = mapAttributes(
+	attrs,
+	isIndexed ? ["sb-code-block", "sb-is-indexed"] : ["sb-code-block"]
+)
+
+const cap =
+	snippet.frontmatter.caption ||
+	(await Astro.slots.render("caption")) ||
+	caption
+const digits = lineNumberingWidth || getLineNumberingWidth(snippet.rawContent())
+const style = `${styl} --sb-line-number-width: ${digits * 1.5}ch`
+
+const properties = {
+	type: "SoftwareSourceCode",
+	...props,
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+---
+
+{
+	useMicrodata ? (
+		<Microdata {...wrapperAttrs} as="figure" {properties} {style}>
+			{cap && (
+				<figcaption {...legendAttrs}>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={cap} />
+				</figcaption>
+			)}
+			<Fragment set:html={snippet.compiledContent()} />
+		</Microdata>
+	) : (
+		<figure {...wrapperAttrs} {style}>
+			{cap && (
+				<figcaption {...legendAttrs}>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={cap} />
+				</figcaption>
+			)}
+			<Fragment set:html={snippet.compiledContent()} />
+		</figure>
+	)
+}

@@ -1,0 +1,33 @@
+.sb-field {
+	max-width: 48ch;
+}
+
+.sb-field textarea {
+	max-width: 48ch;
+	width: 100%;
+}
+
+.sb-field input,
+.sb-field select,
+.sb-field textarea {
+	border: var(--sb-form-field-border, 2px dotted gray);
+}
+
+.sb-field input:focus,
+.sb-field select:focus,
+.sb-field textarea:focus {
+	border: var(--sb-form-field-border-focused, 2px solid blue);
+}
+
+.sb-field input:required,
+.sb-field select:required,
+.sb-field textarea:required {
+	border: var(--sb-form-field-border-required, 4px double green);
+}
+
+.sb-field input:required:focus,
+.sb-field select:required:focus,
+.sb-field textarea:required:focus {
+	border: var(--sb-form-field-border-required-focused, 2px solid purple);
+	margin: 2px 0;
+}

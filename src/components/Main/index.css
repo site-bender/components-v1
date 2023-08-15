@@ -1,0 +1,11 @@
+.sb-main {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	animation-fill-mode: var(--sb-main-animation-fill-mode, forwards);
+	animation-iteration-count: var(--sb-main-animation-iteration-count, 1);
+	animation: var(--sb-main-animation, fadeInAnimation ease-in-out 1s);
+	position: var(--sb-main-position, relative);
+	padding: var(--sb-main-padding, 0);
+}

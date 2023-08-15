@@ -1,0 +1,49 @@
+---
+import Microdata from "../Microdata/index.astro"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { FigureProps as Props } from "../../types"
+import "./index.css"
+
+const {
+	caption,
+	figcaption = {},
+	id = generateShortId(),
+	index,
+	isIndexed,
+	picture,
+	properties,
+	...attrs
+} = Astro.props
+
+const figcaptionAttrs = mapAttributes(figcaption, ["sb-figure-figcaption"])
+const wrapperAttrs = mapAttributes(attrs, ["sb-figure"])
+
+const indexed = isIndexed ? { class: "indexed" } : {}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+---
+
+{
+	useMicrodata ? (
+		<Microdata {...wrapperAttrs} as="figure" {id} {...indexed} {properties}>
+			{caption && (
+				<figcaption {...figcaptionAttrs}>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={caption} />
+				</figcaption>
+			)}
+			<slot />
+		</Microdata>
+	) : (
+		<figure {...wrapperAttrs} {id} {...indexed}>
+			{caption && (
+				<figcaption {...figcaptionAttrs}>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={caption} />
+				</figcaption>
+			)}
+			<slot />
+		</figure>
+	)
+}

@@ -1,0 +1,39 @@
+---
+import "./index.css"
+import type { BylineProps as Props } from "../../types"
+import PlainDate from "../metadata/PlainDate/index.astro"
+import mapAttributes from "../../utilities/mapAttributes"
+
+const authorFormatter = new Intl.ListFormat("en", {
+	style: "long",
+	type: "conjunction",
+})
+
+const { ariaLabel, as = "div", authors, pubdate, ...attrs } = Astro.props
+
+const bylineAttrs = mapAttributes(attrs, ["sb-byline"])
+
+const Element = as
+
+const names = Array.isArray(authors) ? authors : [authors]
+
+console.log("authors", authors)
+
+const list = authors
+	? names.map(({ givenName = "", familyName = "", href }) => {
+			return href
+				? `<a class="sb-author" href="${href}">${givenName} ${familyName}</a>`
+				: `<span class="sb-author">${givenName} ${familyName}</span>`
+	  })
+	: null
+---
+
+{
+	authors ? (
+		<Element {...bylineAttrs}>
+			{pubdate ? <PlainDate value={pubdate} /> : null}
+			by
+			{list ? <Fragment set:html={authorFormatter.format(list)} /> : null}
+		</Element>
+	) : null
+}

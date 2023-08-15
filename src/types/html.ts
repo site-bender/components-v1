@@ -453,6 +453,103 @@ export type DOMAttributes = {
 	onfullscreenerror?: string | undefined | null
 }
 
+export type EventType =
+	| "abort"
+	| "animationend"
+	| "animationiteration"
+	| "animationstart"
+	| "auxclick"
+	| "beforeinput"
+	| "cancel"
+	| "canplay"
+	| "canplaythrough"
+	| "change"
+	| "click"
+	| "close"
+	| "compositionend"
+	| "compositionstart"
+	| "compositionupdate"
+	| "contextmenu"
+	| "copy"
+	| "cuechange"
+	| "cut"
+	| "dblclick"
+	| "drag"
+	| "dragend"
+	| "dragenter"
+	| "dragexit"
+	| "dragleave"
+	| "dragover"
+	| "dragstart"
+	| "drop"
+	| "durationchange"
+	| "emptied"
+	| "encrypted"
+	| "ended"
+	| "error"
+	| "focusin"
+	| "focusout"
+	| "fullscreenchange"
+	| "fullscreenerror"
+	| "gotpointercapture"
+	| "input"
+	| "invalid"
+	| "keydown"
+	| "keypress"
+	| "keyup"
+	| "load"
+	| "loadeddata"
+	| "loadedmetadata"
+	| "loadstart"
+	| "lostpointercapture"
+	| "message"
+	| "messageerror"
+	| "mousedown"
+	| "mouseenter"
+	| "mouseleave"
+	| "mousemove"
+	| "mouseout"
+	| "mouseover"
+	| "mouseup"
+	| "paste"
+	| "pause"
+	| "play"
+	| "playing"
+	| "pointercancel"
+	| "pointerdown"
+	| "pointerenter"
+	| "pointerleave"
+	| "pointermove"
+	| "pointerout"
+	| "pointerover"
+	| "pointerup"
+	| "progress"
+	| "ratechange"
+	| "reset"
+	| "resize"
+	| "scroll"
+	| "seeked"
+	| "seeking"
+	| "select"
+	| "selectionchange"
+	| "selectstart"
+	| "stalled"
+	| "submit"
+	| "suspend"
+	| "timeupdate"
+	| "toggle"
+	| "touchcancel"
+	| "touchend"
+	| "touchmove"
+	| "touchstart"
+	| "transitioncancel"
+	| "transitionend"
+	| "transitionrun"
+	| "transitionstart"
+	| "volumechange"
+	| "waiting"
+	| "wheel"
+
 export type AstroBuiltinAttributes = {
 	"class:list"?:
 		| Record<string, boolean>
@@ -552,13 +649,22 @@ export type BaseAttributes = Override<
 	{
 		"class:list"?:
 			| Record<string, boolean>
-			| Record<unknown, unknown>
+			| Record<string, unknown>
 			| Iterable<string>
 			| Iterable<unknown>
 			| string
-		"dataset"?: Dataset
+		condition?: string | undefined | null
+		dataset?: Dataset | undefined | null
 	}
 >
+
+export type Formattable = {
+	format?: string | undefined | null
+}
+
+export type Validatable = {
+	validation?: string | undefined | null
+}
 
 export type CcSvgProps = {
 	fill: string

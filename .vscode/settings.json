@@ -1,10 +1,8 @@
 {
 	"files.exclude": {
 		".vscode": true,
-		"node_modules": true,
 		"astro.config.mjs": true,
 		"pnpm-lock.yaml": true,
-		"tsconfig.json": true,
 		".depcheckrc": true,
 		".gitignore": true,
 		".npmcheckrc": true,
@@ -23,11 +21,15 @@
 		".git": true,
 		".infisical.json": true,
 		".prettierrc.json": true,
-		"deno.jsonc": true,
-		"dprint.json": true,
 		"eslint.config.js": true,
+		".cache": true,
+		"README.md": true,
+		"deno.jsonc": true,
+		"dist": true,
+		"dprint.json": true,
+		"example": true,
 		"temp": true,
-		".cache": true
+		"node_modules": true
 	},
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",

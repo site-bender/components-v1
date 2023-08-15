@@ -1,0 +1,98 @@
+---
+import Source from "../Source/index.astro"
+import exifr from "exifr"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import type { ImageSource, PictureElementProps as Props } from "../../../types"
+
+const {
+  alt,
+	createPath,
+	description = {},
+  filename,
+  height = 0,
+  hideClass = "sb-off-screen",
+	id = generateShortId(),
+	img = {},
+  loading = "lazy",
+	longdesc: desc,
+  link = {},
+  sources = [],
+  src,
+  width,
+	...attrs
+} = Astro.props
+
+const descAttrs = mapAttributes(description, ["sb-picture-longdesc", hideClass])
+const imgAttrs = mapAttributes(img, ["sb-picture-img"])
+const linkAttrs = mapAttributes(link, ["sb-picture-link"])
+const pictureAttrs = mapAttributes(attrs, ["sb-picture"])
+
+const tags = src && await exifr.parse(`public${src}`)
+
+const longdesc = ((await Astro.slots.render("default")) || desc || "").trim()
+
+const aspectRatio = (tags?.ImageHeight || 0) / (tags?.ImageWidth || 1)
+const describedById = longdesc ? { "aria-describedby": id } : {}
+const h = height || Math.floor(aspectRatio * width)
+---
+
+{
+	link.href ? (
+		<a {...linkAttrs} >
+			<picture {...pictureAttrs} >
+				{sources.map((source: ImageSource) => (
+					<Source
+						{createPath}
+						{filename}
+						{source}
+					/>
+				))}
+				<img
+					{alt}
+
+					{...describedById}
+					decoding="async"
+					{...(h ? { height: h } : {})}
+					loading={loading}
+					{src}
+					{...(width != null ? { width } : {})}
+					{...imgAttrs}
+				/>
+				{longdesc ? (
+					<div
+						{...descAttrs}
+
+						{id}
+						set:html={longdesc}
+					/>
+				) : null}
+			</picture>
+		</a>
+	) : (
+		<picture {...pictureAttrs} >
+			{sources.map((source: ImageSource) => (
+				<Source {createPath} {filename} {source} />
+			))}
+			<img
+				{alt}
+
+				{...describedById}
+				decoding="async"
+				{...(h ? { height: h } : {})}
+				loading={loading}
+				{src}
+				{...(width != null ? { width } : {})}
+				{...imgAttrs}
+			/>
+			{longdesc ? (
+				<div
+					{...descAttrs}
+
+					{id}
+					set:html={longdesc}
+				/>
+			) : null}
+		</picture>
+	)
+}

@@ -1,0 +1,40 @@
+---
+import "./index.css"
+import generateQRCode from "../../utilities/generateQRCode"
+import mapAttributes from "../../utilities/mapAttributes"
+
+const {
+	color: clr,
+	content = "",
+	isPrintOnly = true,
+	qr = {},
+	size = 8,
+	type = "svg",
+	width = 360,
+	wrapper,
+} = Astro.props
+
+const wrapperAttrs = mapAttributes(wrapper, [
+	"sb-qr-code",
+	...(isPrintOnly ? ["sb-print-only"] : []),
+])
+
+const dark = import.meta.env.QR_CODE_DARK_COLOR || "#234e80"
+const light = import.meta.env.QR_CODE_LIGHT_COLOR || "#f9fafb"
+
+const color = { dark, light, ...clr }
+const options = {
+	color,
+	errorCorrectionLevel: "H",
+	margin: 2,
+	size,
+	type,
+	width,
+	...qr,
+}
+const txt = content || Astro.url.href
+
+const qrCode = await generateQRCode(txt, options)
+---
+
+<div {...wrapperAttrs} set:html={qrCode} />

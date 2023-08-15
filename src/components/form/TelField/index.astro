@@ -1,0 +1,91 @@
+---
+import CallingCodeSelect from "../elements/CallingCodeSelect/index.astro"
+import FieldsetWrapper from "../FieldsetWrapper/index.astro"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import TelInput from "../elements/TelInput/index.astro"
+import type { TelField as Props } from "../../../types/form"
+import type { HTMLAttributes } from "../../../types/html"
+
+const {
+	autocorrect: _autocorrect,
+	code = {},
+	codeWrapper = {},
+	datalist = {},
+	disabled,
+	exclude = [],
+	field = "tel-field",
+	form,
+	group,
+	help,
+	id = generateShortId(),
+	include = [],
+	includeCode,
+	includeNull,
+	label = "Phone",
+	legend,
+	line = {},
+	lineWrapper = {},
+	list,
+	message,
+	name,
+	outer,
+	placeholder: _placeholder,
+	required,
+	tag,
+} = Astro.props
+
+const codeAttrs = mapAttributes(code as HTMLAttributes, ["sb-calling-code-select"])
+const lineAttrs = mapAttributes(line as HTMLAttributes, ["sb-line-number-input"])
+---
+
+<FieldsetWrapper
+	{disabled}
+	{field}
+	{form}
+	{group}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => (
+			<>
+				{includeCode ? (
+					<CallingCodeSelect
+						{...codeAttrs}
+						{disabled}
+						{exclude}
+						{form}
+						id={`${id}_code`}
+						{include}
+						{includeNull}
+						{labelledBy}
+						name={`${name}:code`}
+						{required}
+						wrapper={codeWrapper}
+					/>
+				) : null}
+				<TelInput
+					{...lineAttrs}
+					{datalist}
+					{disabled}
+					{field}
+					{form}
+					id={`${id}${includeCode ? "_line" : ""}`}
+					{labelledBy}
+					{list}
+					name={`${name}${includeCode ? ":line" : ""}`}
+					{required}
+					wrapper={lineWrapper}
+				/>
+			</>
+		)
+	}
+</FieldsetWrapper>

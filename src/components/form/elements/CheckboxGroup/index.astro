@@ -1,0 +1,71 @@
+---
+import CheckboxInput from "../CheckboxInput/index.astro"
+import FieldsetWrapper from "../../FieldsetWrapper/index.astro"
+import generateShortId from "../../../../utilities/generateShortId"
+import mapAttributes from "../../../../utilities/mapAttributes"
+import type { CheckboxGroup as Props } from "../../../../types/form"
+import type { HTMLAttributes } from "../../../../types/html"
+
+const {
+	disabled,
+	field = "checkbox-group",
+	form,
+	group,
+	help,
+	id = generateShortId(),
+	label,
+	legend,
+	message,
+	name,
+	options,
+	outer,
+	required,
+	selected = [],
+	tag,
+	wrapper,
+} = Astro.props
+---
+
+<FieldsetWrapper
+	{disabled}
+	{field}
+	{form}
+	{group}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => {
+			return options.map(({ form: f, label, name: n, value, ...attrs }) => {
+				const inputAttrs = mapAttributes(attrs as HTMLAttributes, [
+					"sb-checkbox-input",
+				])
+
+				return (
+					<CheckboxInput
+						{...inputAttrs}
+						checked={Array.from([selected || []])
+							.flatMap((item) => item)
+							.includes(value || "")}
+						{disabled}
+						{field}
+						{form}
+						{labelledBy}
+						name={(name || n) as string}
+						value={value as string}
+						{wrapper}
+					>
+						<Fragment set:html={label} />
+					</CheckboxInput>
+				)
+			})
+		}
+	}
+</FieldsetWrapper>

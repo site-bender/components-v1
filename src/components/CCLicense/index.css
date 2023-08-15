@@ -1,0 +1,13 @@
+.sb-cc-license-link {
+	align-items: var(--sb-cc-license-link-align-items, center);
+	display: var(--sb-cc-license-link-display, flex);
+	gap: 0.2rem;
+	justify-content: var(--sb-cc-license-link-justify-content, flex-end);
+}
+
+.sb-cc-license-link:focus,
+.sb-cc-license-link:hover {
+	border-radius: var(--sb-cc-license-link-border-radius, 5px);
+	outline: var(--sb-cc-license-link-outline, 2px solid hsl(212, 57%, 32%));
+	outline-offset: var(--sb-cc-license-link-outline-offset, 5px);
+}

@@ -1,0 +1,40 @@
+.sb-pull-quote {
+	background-color: var(--sb-pull-quote-background-color, hsl(111, 46%, 60%));
+	border-radius: var(--sb-pull-quote-border-radius, 5px);
+	color: var(--sb-pull-quote-color, hsl(212, 25%, 15%));
+	display: var(--sb-pull-quote-display, flex);
+	flex-direction: var(--sb-pull-quote-flex-direction, column);
+	font-family: var(
+		--sb-pull-quote-font-family,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif;
+	);
+	font-size: var(--sb-pull-quote-font-size, 1.25rem);
+	font-weight: var(--sb-pull-quote-font-weight, 500);
+	justify-content: var(--sb-pull-quote-justify-content, space-evenly);
+	margin: var(--sb-box-margin);
+	padding: var(--sb-pull-quote-padding, 2rem 2rem 1.5rem);
+}
+
+.sb-pull-quote .sb-pull-quote-author {
+	color: var(--sb-pull-quote-author-color, hsl(212, 25%, 15%));
+	display: var(--sb-pull-quote-author-display, block);
+	font-family: var(
+		--sb-pull-quote-author-font-family,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif;
+	);
+	font-size: var(--sb-pull-quote-author-font-size, 1rem);
+	font-style: var(--sb-pull-quote-author-font-style, italic);
+	text-align: var(--sb-pull-quote-author-text-align, right);
+}
+
+.sb-pull-quote .sb-pull-quote-author::before {
+	content: var(--sb-pull-quote-author-before-content, "~ ");
+}

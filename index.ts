@@ -11,6 +11,10 @@ export { default as CodeBlock } from "./src/CodeBlock/index.astro"
 // @ts-expect-error
 export { default as Columns } from "./src/Columns/index.astro"
 // @ts-expect-error
+export { default as Conditional } from "./src/Conditional/index.astro"
+// @ts-expect-error
+export { default as FallbackScript } from "./src/JavaScript/FallbackScript/index.astro"
+// @ts-expect-error
 export { default as Figure } from "./src/Figure/index.astro"
 // @ts-expect-error
 export { default as Footer } from "./src/Footer/index.astro"
@@ -20,6 +24,8 @@ export { default as Head } from "./src/Head/index.astro"
 export { default as Header } from "./src/Header/index.astro"
 // @ts-expect-error
 export { default as Html } from "./src/Html/index.astro"
+// @ts-expect-error
+export { default as JavaScript } from "./src/JavaScript/index.astro"
 // @ts-expect-error
 export { default as Link } from "./src/Link/index.astro"
 // @ts-expect-error
@@ -37,6 +43,8 @@ export { default as Paginator } from "./src/Paginator/Content/index.astro"
 // @ts-expect-error
 export { default as Picture } from "./src/Picture/Content/index.astro"
 // @ts-expect-error
+export { default as Post } from "./src/Post/Content/index.astro"
+// @ts-expect-error
 export { default as PullQuote } from "./src/PullQuote/index.astro"
 // @ts-expect-error
 export { default as QRCode } from "./src/QRCode/index.astro"
@@ -44,6 +52,8 @@ export { default as QRCode } from "./src/QRCode/index.astro"
 export { default as SkipLink } from "./src/SkipLink/index.astro"
 // @ts-expect-error
 export { default as Trail } from "./src/Trail/index.astro"
+// @ts-expect-error
+export { default as ValidationScript } from "./src/JavaScript/ValidationScript/index.astro"
 
 /* ===== FORM ===== */
 // @ts-expect-error

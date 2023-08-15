@@ -1,0 +1,10 @@
+---
+import type { NumberProps as Props } from "../../../types"
+import Number from "../Number/index.astro"
+
+const { type: _type, value: val, ...attrs } = Astro.props
+
+const value = typeof val === "number" ? val : parseFloat(String(val))
+---
+
+<Number {...attrs} type="Float" {value} />

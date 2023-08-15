@@ -1,0 +1,62 @@
+---
+import Select from "../Select/index.astro"
+import TextInput from "../TextInput/index.astro"
+import generateShortId from "../../../../utilities/generateShortId"
+import filterTimeZoneOptions from "../../../../utilities/filterTimeZoneOptions"
+import type { Options, TimeZoneSelect as Props } from "../../../../types/form"
+
+const {
+	autocomplete,
+	datalist,
+	exclude = [],
+	field = "time-zone",
+	form,
+	id = generateShortId(),
+	include = [],
+	includeNull,
+	labelledBy,
+	name,
+	required,
+	selected,
+	useList,
+	wrapper = {},
+} = Astro.props
+
+const options = filterTimeZoneOptions(
+	exclude as Array<string | number>,
+	include as Array<string | number>
+)
+---
+
+{
+	useList ? (
+		<TextInput
+			{autocomplete}
+			{datalist}
+			{field}
+			{form}
+			{id}
+			{labelledBy}
+			{labelledBy}
+			{name}
+			{required}
+			{wrapper}
+			list={options.flatMap(({ options }) => options) as Options}
+			value={selected}
+		/>
+	) : (
+		<Select
+			{autocomplete}
+			{field}
+			{form}
+			{id}
+			{includeNull}
+			{labelledBy}
+			{name}
+			{options}
+			{required}
+			{selected}
+			{wrapper}
+		/>
+	)
+}

@@ -1,0 +1,89 @@
+---
+---
+
+<script>
+	// Set globalThis
+	if (typeof globalThis !== "object") {
+		Object.defineProperty(Object.prototype, "__magic__", {
+			get: function () {
+				return this
+			},
+			configurable: true,
+		})
+
+		__magic__.globalThis = __magic__
+
+		delete Object.prototype.__magic__
+
+		console.info("« globalThis injected. »")
+	}
+
+	function makeEventHandler(type) {
+		return function (event) {
+			const subscriptions = _sitebender.subscriptions
+
+			const id = event.target?.id
+
+			if (event.target && subscriptions?.[type]?.[id]) {
+				subscriptions[type][id](event)
+			}
+
+			const tag = event.target.tagName
+
+			if (event.target && subscriptions?.[type]?.[tag]) {
+				subscriptions[type][tag](event)
+			}
+
+			if (event.target && subscriptions?.[type]?.__all) {
+				subscriptions[type].__all(event)
+			}
+		}
+	}
+
+	globalThis._sitebender ??= {}
+
+	_sitebender = {
+		..._sitebender,
+		subscriptions: {},
+		disable: function (type) {
+			delete this.listeners[type]
+		},
+		enable: function (type) {
+			if (type in this.listeners) {
+				return
+			}
+
+			this.listeners = {
+				...this.listeners,
+				...makeListener(type),
+			}
+		},
+		subscribe: function (type, id, callback) {
+			this.subscriptions[type]?.length ||
+				document.body.addEventListener(type, makeEventHandler(type))
+
+			this.subscriptions = {
+				...this.subscriptions,
+				[type]: {
+					...this.subscriptions[type],
+					[id]: callback,
+				},
+			}
+		},
+		unsubscribe: function (type, id) {
+			const { [id]: _, ...rest } = this.subscriptions[type] || {}
+
+			this.subscriptions = {
+				...this.subscriptions,
+				[type]: rest,
+			}
+
+			this.subscriptions[type]?.length &&
+				document.body.removeEventListener(...this.listeners[type])
+		},
+	}
+
+	if (globalThis?._sitebender) {
+		console.info("« PubSub enabled. »")
+	}
+</script>

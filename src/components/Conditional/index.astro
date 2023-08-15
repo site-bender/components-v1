@@ -1,0 +1,24 @@
+---
+import Microdata from "../Microdata/index.astro"
+import mapAttributes from "../../utilities/mapAttributes"
+
+const { as = "div", microdata, properties, ...attrs } = Astro.props
+
+const Element = as
+
+const elementAttrs = mapAttributes(attrs, [])
+
+const content = await Astro.slots.render("default")
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+---
+
+{
+	useMicrodata ? (
+		<Microdata {as} {microdata} {properties}>
+			{content}
+		</Microdata>
+	) : (
+		<Element {...elementAttrs}>{content}</Element>
+	)
+}

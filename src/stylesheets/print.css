@@ -22,7 +22,7 @@ a[rel^=external]::after {
 h1 {
 	font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
 	font-size: 3.05rem;
-	font-size: var(--step-5, 3.05rem);
+	font-size: var(--sb-step-5, 3.05rem);
 	font-variant-ligatures: historical-ligatures;
 	font-weight: 400;
 	margin: 0;
@@ -34,7 +34,7 @@ h1 {
 h2 {
 	font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
 	font-size: 2.44rem;
-	font-size: var(--step-4, 2.44rem);
+	font-size: var(--sb-step-4, 2.44rem);
 	margin: 0;
 	padding: 1.5rem 0 0.5rem;
 }
@@ -42,7 +42,7 @@ h2 {
 h3 {
 	font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
 	font-size: 1.95rem;
-	font-size: var(--step-3, 1.95rem);
+	font-size: var(--sb-step-3, 1.95rem);
 	margin: 0;
 	padding: 1.5rem 0 0.5rem;
 }

@@ -1,5 +1,11 @@
 import type { HTMLTag, Polymorphic } from "astro/types"
-import type { AnchorTarget, Dataset, HTMLAttributes, Override } from "./html"
+import type {
+	AnchorTarget,
+	Dataset,
+	Formattable,
+	HTMLAttributes,
+	Override,
+} from "./html"
 import type {
 	Audiobook,
 	Book,
@@ -100,10 +106,14 @@ export type Basedata = {
 	viewport?: string | undefined
 }
 
+export type Author = Override<Person, {
+	href?: string | undefined | null
+}>
+
 export type Metadata = {
 	article?:
 		| {
-			authors?: Array<string | Person> | undefined
+			authors?: Array<string | Author> | undefined
 			license?: string | undefined
 			modifiedDate?: Date | string | undefined
 			publishers?: Array<string | Organization> | undefined
@@ -265,6 +275,7 @@ export type ArticleProps<T, Tag extends HTMLTag> =
 			title?: string | undefined | null
 		}
 	>
+
 export type BodyProps<T, Tag extends HTMLTag> = Override<
 	MetadataProps<T, Tag>,
 	{
@@ -288,8 +299,21 @@ export type BookTitleProps<Tag extends HTMLTag> = Override<
 	{
 		link?: Partial<LinkAttributes> | undefined | null
 		outer?: Partial<HTMLAttributes> | undefined | null
-	}
+	} & Formattable
 >
+
+export type BylineProps<Tag extends HTMLTag> =
+	& Polymorphic<{ as: Tag }>
+	& Override<
+		HTMLAttributes,
+		{
+			ariaLabel?: string | undefined | null
+			as?: Tag
+			author: string
+			href?: string | undefined | null
+			pubdate?: string | Temporal.PlainDate | undefined | null
+		}
+	>
 
 export type CardProps<T, Tag extends HTMLTag> = Override<
 	MetadataProps<T, Tag>,
@@ -350,7 +374,7 @@ export type DurationProps<Tag extends HTMLTag> = Override<
 	>,
 	{
 		duration: string | Temporal.Duration
-	}
+	} & Formattable
 >
 
 export type EmailProps<Tag extends HTMLTag> = Override<
@@ -361,7 +385,7 @@ export type EmailProps<Tag extends HTMLTag> = Override<
 		mailtoOptions?: MailtoOptions
 		type?: "ContactPoint" | "Organization" | "Person"
 		useMailto?: boolean | undefined | null
-	}
+	} & Formattable
 >
 
 export type FigureProps<Tag extends HTMLTag> = Override<
@@ -402,7 +426,7 @@ export type InstantProps<Tag extends HTMLTag> = Override<
 		instant: string | Temporal.Instant
 		locales?: string | Array<string> | undefined | null
 		options?: Intl.DateTimeFormatOptions | undefined | null
-	}
+	} & Formattable
 >
 
 export type ItemsProps<T, Tag extends HTMLTag> = Override<
@@ -421,7 +445,7 @@ export type LinkProps<Tag extends HTMLTag> = Override<
 		href: string
 		label: string
 		link?: Partial<LinkAttributes> | undefined | null
-	}
+	} & Formattable
 >
 
 export type LogotypeProps<Tag extends HTMLTag> = Override<
@@ -509,7 +533,7 @@ export type NumberProps<Tag extends HTMLTag> = Override<
 		type?: "Number" | "Integer" | "Float"
 		useTabularNumerals?: boolean | undefined | null
 		value?: string | number | undefined | null
-	}
+	} & Formattable
 >
 
 export type PictureProps<Tag extends HTMLTag> = Override<
@@ -551,7 +575,7 @@ export type PlainDateProps<Tag extends HTMLTag> = Override<
 		options?: Intl.DateTimeFormatOptions | undefined | null
 		plainDate?: string | Temporal.PlainDateLike | undefined | null
 		year?: number | string | undefined | null
-	}
+	} & Formattable
 >
 
 export type PlainDateTimeProps<Tag extends HTMLTag> = Override<
@@ -573,7 +597,7 @@ export type PlainDateTimeProps<Tag extends HTMLTag> = Override<
 		plainDateTime?: string | Temporal.PlainDateTimeLike | undefined | null
 		second?: number | string | undefined | null
 		year?: number | string | undefined | null
-	}
+	} & Formattable
 >
 
 export type PlainMonthDayProps<Tag extends HTMLTag> = Override<
@@ -589,7 +613,7 @@ export type PlainMonthDayProps<Tag extends HTMLTag> = Override<
 		options?: Intl.DateTimeFormatOptions | undefined | null
 		plainDate?: string | Temporal.PlainMonthDayLike | undefined | null
 		year?: number | string | undefined | null
-	}
+	} & Formattable
 >
 
 export type PlainTimeProps<Tag extends HTMLTag> = Override<
@@ -605,7 +629,7 @@ export type PlainTimeProps<Tag extends HTMLTag> = Override<
 		options?: Intl.DateTimeFormatOptions | undefined | null
 		plainTime?: string | Temporal.PlainTimeLike | undefined | null
 		second?: number | string | undefined | null
-	}
+	} & Formattable
 >
 
 export type PlainYearMonthProps<Tag extends HTMLTag> = Override<
@@ -620,8 +644,25 @@ export type PlainYearMonthProps<Tag extends HTMLTag> = Override<
 		options?: Intl.DateTimeFormatOptions | undefined | null
 		plainDate?: string | Temporal.PlainMonthDayLike | undefined | null
 		year?: number | string | undefined | null
-	}
+	} & Formattable
 >
+
+export type PostProps<T, Tag extends HTMLTag> =
+	& Polymorphic<{ as: Tag }>
+	& Override<
+		HTMLAttributes,
+		{
+			as?: Tag
+			asColumns?: boolean | undefined | null
+			byline?: BylineProps<Tag> | undefined | null
+			heading?: Partial<HTMLAttributes> | undefined | null
+			level?: 1 | 2 | 3 | 4 | 5 | 6
+			microdata?: Partial<HTMLAttributes> | undefined | null
+			properties?: Partial<T>
+			subtitle?: SubtitleProps<Tag> | undefined | null
+			title?: string | undefined | null
+		}
+	>
 
 export type PullQuoteProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<Quotation>, Tag>,
@@ -637,7 +678,7 @@ export type StringProps<T extends Thing, Tag extends HTMLTag> = Override<
 	{
 		link?: Partial<LinkAttributes> | undefined | null
 		value?: string | undefined | null
-	}
+	} & Formattable
 >
 
 export type SourceProps = {
@@ -646,13 +687,23 @@ export type SourceProps = {
 	source: ImageSource
 }
 
+export type SubtitleProps<Tag extends HTMLTag> =
+	& Polymorphic<{ as: Tag }>
+	& Override<
+		HTMLAttributes,
+		{
+			as?: Tag
+			subtitle: string
+		}
+	>
+
 export type TelProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<ContactPointLeaf | OrganizationLeaf | PersonLeaf>, Tag>,
 	{
 		link?: Partial<LinkAttributes> | undefined | null
 		tel?: string | undefined | null
 		useTel?: boolean | undefined | null
-	}
+	} & Formattable
 >
 
 export type TimeZoneProps<Tag extends HTMLTag> = Override<
@@ -661,7 +712,7 @@ export type TimeZoneProps<Tag extends HTMLTag> = Override<
 		display?: "name" | "offset" | "both"
 		localTime?: string | Temporal.Instant | Temporal.ZonedDateTime
 		timeZone: string | Temporal.TimeZone | Temporal.ZonedDateTime
-	}
+	} & Formattable
 >
 
 export type UrlProps<Tag extends HTMLTag> = Override<
@@ -670,7 +721,7 @@ export type UrlProps<Tag extends HTMLTag> = Override<
 		link?: Partial<LinkAttributes> | undefined | null
 		url?: string | undefined | null
 		useLink?: boolean | undefined | null
-	}
+	} & Formattable
 >
 
 export type YearWeekProps<Tag extends HTMLTag> = Override<
@@ -680,7 +731,7 @@ export type YearWeekProps<Tag extends HTMLTag> = Override<
 		plainDate?: string | Temporal.PlainMonthDayLike | undefined | null
 		week?: number | string | undefined | null
 		year?: number | string | undefined | null
-	}
+	} & Formattable
 >
 
 export type ZonedDateTimeProps<Tag extends HTMLTag> = Override<
@@ -704,7 +755,7 @@ export type ZonedDateTimeProps<Tag extends HTMLTag> = Override<
 		timeZone?: keyof typeof TIME_ZONE | Temporal.TimeZoneLike
 		year?: number | string | undefined | null
 		zonedDateTime?: string | Temporal.ZonedDateTimeLike
-	}
+	} & Formattable
 >
 
 export type Calendar =

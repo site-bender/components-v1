@@ -1,0 +1,98 @@
+---
+import "./script.astro"
+import { DEFAULT_LOCALES } from "../../../constants"
+import { Temporal } from "@js-temporal/polyfill"
+import DaySelect from "../elements/DaySelect/index.astro"
+import FieldsetWrapper from "../FieldsetWrapper/index.astro"
+import generateShortId from "../../../utilities/generateShortId"
+import mapAttributes from "../../../utilities/mapAttributes"
+import MonthSelect from "../elements/MonthSelect/index.astro"
+import type { HTMLAttributes } from "../../../types/html"
+import type { PlainMonthDayField as Props } from "../../../types/form"
+
+const {
+	calendar = "iso8601",
+	dayAttrs = {},
+	days,
+	disabled,
+	field = "plain-month-day-field",
+	form,
+	format,
+	group,
+	help,
+	id = generateShortId(),
+	label = "Month and day",
+	legend,
+	locales = DEFAULT_LOCALES,
+	message,
+	monthAttrs = {},
+	months,
+	name,
+	outer,
+	required,
+	tag,
+	value,
+} = Astro.props
+
+const dayAttributes = mapAttributes(dayAttrs as HTMLAttributes, [])
+const monthAttributes = mapAttributes(monthAttrs as HTMLAttributes, [])
+
+const { day, monthCode } = value
+	? Temporal.PlainMonthDay.from(value)
+	: ({} as Temporal.PlainMonthDayLike)
+const month = day ? parseInt((monthCode || "").substring(1), 10) : undefined
+---
+
+<FieldsetWrapper
+	{disabled}
+	{field}
+	{form}
+	{group}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	name={`${name}:wrapper`}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => (
+			<>
+				<label for={`${id}_month`}>
+					<span id={`${id}_month:label`}>Month</span>
+					<MonthSelect
+						{...monthAttributes}
+						calendar={calendar}
+						{disabled}
+						{months}
+						{form}
+						format={format}
+						id={`${id}_month`}
+						labelledBy={`${labelledBy} ${id}_month:label`}
+						{locales}
+						name={`${name}:month`}
+						{required}
+						value={month}
+					/>
+				</label>
+				<label for={`${id}_day`}>
+					<span id={`${id}_day:label`}>Day</span>
+					<DaySelect
+						{...dayAttributes}
+						{days}
+						{disabled}
+						{form}
+						id={`${id}_day`}
+						labelledBy={`${labelledBy} ${id}_day:label`}
+						name={`${name}:day`}
+						{required}
+						selected={day}
+					/>
+				</label>
+			</>
+		)
+	}
+</FieldsetWrapper>

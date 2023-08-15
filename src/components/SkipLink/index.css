@@ -1,0 +1,39 @@
+.sb-skip-link {
+	background-color: var(--sb-skip-link-background-color, hsl(212, 25%, 15%));
+	border-radius: var(--sb-skip-link-border-radius, 5px);
+	color: var(--sb-skip-link-color, hsl(56, 100%, 72%));
+	font-size: var(--sb-skip-link-font-size, var(--sb-step-1, 1.25rem));
+	font-family: var(--sb-skip-link-font-family,
+			var(--sb-font-body,
+				Inter,
+				Roboto,
+				"Helvetica Neue",
+				"Arial Nova",
+				"Nimbus Sans",
+				Arial,
+				sans-serif));
+	opacity: var(--sb-skip-link-opacity, 0);
+	padding: var(--sb-skip-link-padding, 0.1rem);
+}
+
+.sb-skip-link:focus {
+	color: var(--sb-skip-link-color-focus, hsl(56, 100%, 72%));
+	display: var(--sb-skip-link-display-focus, inline-block);
+	opacity: var(--sb-skip-link-opacity-focus, 1);
+	outline: var(--sb-skip-link-outline, 2px solid hsl(56, 100%, 72%));
+	outline-offset: var(--sb-skip-link-outline-offset, 5px);
+	text-decoration: var(--sb-skip-link-text-decoration, none);
+}
+
+@media screen and (max-width: 60rem) {
+	.sb-skip-link {
+		opacity: 1;
+		position: absolute;
+		top: -100000px;
+	}
+
+	.sb-skip-link:focus {
+		position: relative;
+		top: 0;
+	}
+}

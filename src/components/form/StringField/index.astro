@@ -1,0 +1,67 @@
+---
+import Textarea from "../elements/Textarea/index.astro"
+import TextInput from "../elements/TextInput/index.astro"
+import FieldWrapper from "../FieldWrapper/index.astro"
+import generateShortId from "../../../utilities/generateShortId"
+import type { StringField as Props } from "../../../types/form"
+
+const {
+	autocorrect: _autocorrect,
+	datalist = {},
+	field = "string-field",
+	form,
+	help,
+	id = generateShortId(),
+	label = "Text",
+	legend,
+	list,
+	message,
+	name,
+	outer,
+	placeholder: _placeholder,
+	required,
+	rows,
+	tag,
+	value: val,
+	wrapper = {},
+} = Astro.props
+
+const value =
+	(Array.isArray(val) && val.join("\n")) ||
+	val ||
+	(await Astro.slots.render("default"))
+---
+
+<FieldWrapper
+	{field}
+	{help}
+	{id}
+	{label}
+	{legend}
+	{message}
+	{outer}
+	{required}
+	{tag}
+>
+	{
+		(labelledBy: string) => {
+			return parseInt(rows as string) > 0 ? (
+				<Textarea {form} {id} {labelledBy} {name} {required} {rows} {wrapper}>
+					<Fragment set:html={value} />
+				</Textarea>
+			) : (
+				<TextInput
+					{datalist}
+					{form}
+					{id}
+					{labelledBy}
+					{list}
+					{name}
+					{required}
+					{value}
+					{wrapper}
+				/>
+			)
+		}
+	}
+</FieldWrapper>

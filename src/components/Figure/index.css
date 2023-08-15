@@ -1,0 +1,20 @@
+figure.sb-figure {
+	align-items: var(--sb-figure-align-items, stretch);
+	display: var(--sb-figure-display, flex);
+	flex-direction: var(--sb-figure-flex-direction, column-reverse);
+	gap: var(--sb-figure-gap, 0.5rem);
+	justify-content: var(--sb-figure-justify-content, space-between);
+}
+
+figure.sb-figure > figcaption.sb-figure-figcaption {
+	text-align: var(--sb-figure-text-align, center);
+	font-family: var(--sb-figure-figcaption-font-family);
+	font-size: var(--sb-figure-figcaption-font-size);
+	line-height: var(--sb-figure-figcaption-line-height, 1);
+	padding: var(--sb-figure-figcaption-padding, 0);
+	text-align: var(--sb-figure-figcaption-text-align, center);
+}
+
+figure.sb-is-indexed figcaption::before {
+	content: "Figure " counter(figures) ": ";
+}

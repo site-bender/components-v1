@@ -1,0 +1,37 @@
+---
+import mapAttributes from "../../../utilities/mapAttributes"
+import Microdata from "../../Microdata/index.astro"
+import type { StringProps as Props } from "../../../types"
+import type { HTMLAttributes } from "../../form/html-types"
+
+const {
+	as = "span",
+	dataset,
+	link = {},
+	microdata = {},
+	properties = {},
+	value,
+	...attrs
+} = Astro.props
+
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-email"])
+const linkAttrs = mapAttributes(link, ["sb-string-link"])
+
+const text = ((await Astro.slots.render("default")) || value || "").trim()
+const { href } = link
+
+const Element = as
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+---
+
+{useMicrodata ? <Microdata {microdata} {properties} /> : null}
+{
+	href ? (
+		<a {...linkAttrs} {href}>
+			<Element {...elementAttrs}>{text}</Element>
+		</a>
+	) : (
+		<Element {...elementAttrs}>{text}</Element>
+	)
+}

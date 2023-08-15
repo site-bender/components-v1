@@ -1,0 +1,4 @@
+.sb-columns {
+	column-width: 32ch;
+	width: calc(100vw - calc(var(--sb-space-m) * 2));
+}

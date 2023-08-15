@@ -1,0 +1,38 @@
+---
+import "./index.css"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttribtues from "../../utilities/mapAttributes"
+import Script from "./script.astro"
+import type { MessengerProps as Props } from "../../types"
+
+const {
+	as = "aside",
+	header,
+	hideClass = "sb-off-screen",
+	id = generateShortId(),
+	level = 2,
+	title: ttl,
+	type = "info",
+	...attrs
+} = Astro.props
+
+const labelId = `${id}_label`
+
+const headerAttrs = mapAttribtues(header, ["sb-messenger-heading", hideClass])
+const wrapperAttrs = mapAttribtues(attrs, [
+	"sb-messenger",
+	`sb-messenger-${type}`,
+])
+
+const HElement = `h${level}`
+const Element = as
+const title = (await Astro.slots.render("title")) || ttl
+---
+
+<Element {...wrapperAttrs} aria-labelledby={labelId} {id}>
+	<HElement {...headerAttrs} id={labelId}>
+		{title}
+	</HElement>
+	<slot />
+</Element>
+<Script />

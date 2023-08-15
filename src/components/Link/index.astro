@@ -1,0 +1,34 @@
+---
+import Microdata from "../Microdata/index.astro"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { LinkProps as Props } from "../../types"
+
+const { href, label, properties = {}, ...attrs } = Astro.props
+
+const wrapperAttrs = mapAttributes(attrs, ["sb-link"])
+
+const lbl = (await Astro.slots.render("default")) || label
+
+const meta = {
+	type: "SiteNavigationElement",
+	url: href,
+	name: label,
+	...properties,
+}
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+---
+
+{
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			as="a"
+			{href}
+			properties={meta}
+			set:html={lbl}
+		/>
+	) : (
+		<a {...wrapperAttrs} {href} set:html={lbl} />
+	)
+}
