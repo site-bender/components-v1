@@ -13,6 +13,8 @@ export { default as Columns } from "./src/Columns/index.astro"
 // @ts-expect-error
 export { default as Conditional } from "./src/Conditional/index.astro"
 // @ts-expect-error
+export { default as Digression } from "./src/Digression/index.astro"
+// @ts-expect-error
 export { default as FallbackScript } from "./src/JavaScript/FallbackScript/index.astro"
 // @ts-expect-error
 export { default as Figure } from "./src/Figure/index.astro"
@@ -50,6 +52,8 @@ export { default as PullQuote } from "./src/PullQuote/index.astro"
 export { default as QRCode } from "./src/QRCode/index.astro"
 // @ts-expect-error
 export { default as SkipLink } from "./src/SkipLink/index.astro"
+// @ts-expect-error
+export { default as Subtitle } from "./src/Subtitle/index.astro"
 // @ts-expect-error
 export { default as Trail } from "./src/Trail/index.astro"
 // @ts-expect-error

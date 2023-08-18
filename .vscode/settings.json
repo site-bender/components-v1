@@ -27,9 +27,9 @@
 		"deno.jsonc": true,
 		"dist": true,
 		"dprint.json": true,
-		"example": true,
 		"temp": true,
-		"node_modules": true
+		"node_modules": true,
+		"example": true
 	},
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",

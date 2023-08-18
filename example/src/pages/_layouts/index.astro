@@ -4,12 +4,12 @@ import baseCss from "./_styles/base.css?raw"
 import codeCss from "./_styles/code.css?raw"
 import resetCss from "./_styles/reset.css?raw"
 import themeCss from "./_styles/theme.css?raw"
-import Body from "../../../../src/Body/index.astro"
-import Head from "../../../../src/Head/index.astro"
-import Html from "../../../../src/Html/index.astro"
-import CCLicense from "../../../../src/CCLicense/index.astro"
-import Footer from "../../../../src/Footer/index.astro"
-import Header from "../../../../src/Header/index.astro"
+import Body from "../../../../src/components/Body/index.astro"
+import Head from "../../../../src/components/Head/index.astro"
+import Html from "../../../../src/components/Html/index.astro"
+import CCLicense from "../../../../src/components/CCLicense/index.astro"
+import Footer from "../../../../src/components/Footer/index.astro"
+import Header from "../../../../src/components/Header/index.astro"
 import Nav from "../_components/Nav/index.astro"
 import siteProperties from "./siteProperties"
 import defaultPageProperties from "./pageProperties"
@@ -57,5 +57,4 @@ const siteName = "@sitebender/components"
 		</Footer>
 		<slot name="tail" />
 	</Body>
-</Html>
-../../../../src/types/schema.org
+</Html>../../../../src/types/schema.org
