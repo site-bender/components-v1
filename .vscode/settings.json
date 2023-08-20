@@ -20,10 +20,8 @@
 		"eslint.config.js": true,
 		".cache": true,
 		"README.md": true,
-		"dist": true,
 		"temp": true,
-		"node_modules": true,
-		"example": true
+		"node_modules": true
 	},
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",

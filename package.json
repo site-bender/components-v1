@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -178,6 +178,7 @@
 		"fmt": "dprint fmt",
 		"fmt:check": "dprint check",
 		"lint": "deno lint",
+		"prep": "pnpm fmt && pnpm lint && pnpm check:exports && pnpm check:packages && pnpm config:update && git add -A",
 		"publish": "npm publish --access=public",
 		"start": "cd example && astro start",
 		"test": "pnpm test:int",

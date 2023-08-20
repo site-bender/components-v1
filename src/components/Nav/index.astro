@@ -1,5 +1,4 @@
 ---
-import "./index.css"
 import NavList from "./NavList/index.astro"
 import Microdata from "../Microdata/index.astro"
 import generateShortId from "../../utilities/generateShortId"
@@ -31,3 +30,9 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 		</nav>
 	)
 }
+<style>
+	nav.sb-nav a {
+		color: var(--sb-nav-link-color, hsl(193, 73%, 72%));
+		text-decoration: var(--sb-nav-link-text-decoration, none);
+	}
+</style>
