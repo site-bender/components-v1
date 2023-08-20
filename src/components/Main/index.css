@@ -1,11 +1,12 @@
 .sb-main {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
+	align-items: var(--sb-main-align-items, center);
 	animation-fill-mode: var(--sb-main-animation-fill-mode, forwards);
 	animation-iteration-count: var(--sb-main-animation-iteration-count, 1);
 	animation: var(--sb-main-animation, fadeInAnimation ease-in-out 1s);
+	display: var(--sb-main-display, flex);
+	flex-direction: var(--sb-main-flex-direction, column);
+	flex-grow: var(--sb-main-flex-basis, 1);
+	justify-content: var(--sb-main-justify-content, flex-start);
+	padding: var(--sb-main-padding, var(--sb-space-xs) var(--sb-space-m));
 	position: var(--sb-main-position, relative);
-	padding: var(--sb-main-padding, 0);
 }

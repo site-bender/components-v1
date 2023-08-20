@@ -36,7 +36,7 @@
 		"./book-title": "./src/components/metadata/BookTitle/index.astro",
 		"./boolean": "./src/components/metadata/Boolean/index.astro",
 		"./boolean-field": "./src/components/form/BooleanField/index.astro",
-		"./button": "./src/components/form/elements/Button/index.astro",
+		"./button": "./src/components/form/Button/index.astro",
 		"./button-bar": "./src/components/form/ButtonBar/index.astro",
 		"./calling-code-select": "./src/components/form/elements/CallingCodeSelect/index.astro",
 		"./card": "./src/components/Card/index.astro",
@@ -64,6 +64,7 @@
 		"./email-input": "./src/components/form/elements/EmailInput/index.astro",
 		"./fallback-script": "./src/components/JavaScript/FallbackScript/index.astro",
 		"./field-wrapper": "./src/components/form/FieldWrapper/index.astro",
+		"./fieldset": "./src/components/form/Fieldset/index.astro",
 		"./fieldset-wrapper": "./src/components/form/FieldsetWrapper/index.astro",
 		"./figure": "./src/components/Figure/index.astro",
 		"./file-input": "./src/components/form/elements/FileInput/index.astro",
@@ -184,7 +185,7 @@
 		"test:int": "vitest"
 	},
 	"dependencies": {
-		"astro": "^2.10.9"
+		"astro": "^2.10.12"
 	},
 	"devDependencies": {
 		"@astrojs/mdx": "^0.19.7",

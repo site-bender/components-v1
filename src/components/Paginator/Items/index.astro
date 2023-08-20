@@ -65,6 +65,7 @@ const showing = getSlots(items, index)
 						href={item.url}
 						aria-current="page"
 						aria-label={`Page ${idx}: ${item.label || item.title}`}
+						tabindex="-1"
 					>
 						<span class="sb-remove">Page</span>
 						{idx}

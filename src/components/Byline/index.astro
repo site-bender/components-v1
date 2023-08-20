@@ -17,8 +17,6 @@ const Element = as
 
 const names = Array.isArray(authors) ? authors : [authors]
 
-console.log("authors", authors)
-
 const list = authors
 	? names.map(({ givenName = "", familyName = "", href }) => {
 			return href

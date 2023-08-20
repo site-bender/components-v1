@@ -1,16 +1,97 @@
-figure.sb-code-block-figure {
-	align-items: var(--sb-code-block-figure-align-items, stretch);
-	display: var(--sb-code-block-figure-display, flex);
-	flex-direction: var(--sb-code-block-figure-flex-direction, column-reverse);
-	gap: var(--sb-code-block-figure-gap, 0);
-	justify-content: var(--sb-code-block-figure-justify-content, flex-start);
-	margin: var(--sb-code-block-figure-margin, 0 0 2rem);
+figure.sb-code-block {
+	align-items: var(--sb-code-block-align-items, stretch);
+	display: var(--sb-code-block-display, flex);
+	flex-direction: var(--sb-code-block-flex-direction, column-reverse);
+	gap: var(--sb-code-block-gap, 0);
+	justify-content: var(--sb-code-block-justify-content, flex-start);
+	margin: var(--sb-code-block-margin, 0 0 1.5rem);
 }
 
-figure.sb-code-block-figure figcaption {
+figure.sb-code-block figcaption {
 	text-align: var(--sb-code-block-figcaption-text-align, center);
 }
 
 figure.sb-code-block button.sb-copy-to-clipboard {
 	color: var(--sb-code-block-copy-button-color, #fff);
+}
+
+.sb-code-block pre {
+	border-radius: var(--sb-code-block-pre-border-radius, 5px);
+	padding: var(--sb-code-block-pre-padding, 0 0.75rem);
+	margin: var(--sb-code-block-pre-margin, 0.5rem);
+}
+
+.sb-code-block pre,
+.sb-code-block code {
+	font-family: var(--sb-code-block-font-family,
+		var(--sb-font-code,
+		ui-monospace,
+		"Cascadia Code",
+		"Source Code Pro",
+		Menlo,
+		Consolas,
+		"DejaVu Sans Mono",
+		monospace
+	));
+}
+
+.sb-code-block pre > code {
+	display: var(--sb-code-block-pre-code-display, flex);
+	flex-direction: var(--sb-code-block-pre-code-flex-direction, column);
+	font-size: var(--sb-code-block-pre-code-font-size, 1rem);
+	gap: var(--sb-code-block-pre-code-gap, 0);
+	justify-content: var(--sb-code-block-pre-code-justify-content, flex-start);
+	line-height: var(--sb-code-block-pre-code-line-height, 1.3);
+	padding: var(--sb-code-block-pre-code-padding, 0);
+}
+
+.sb-code-block pre > code .line {
+	margin: var(--sb-code-block-pre-code-line-margin, 0);
+	padding: var(--sb-code-block-pre-code-line-padding, 0);
+}
+
+.sb-code-block pre.astro-code > code > span:first-child::before {
+	padding-top: var(--sb-code-block-astro-code-first-child-padding-top, 0.5rem);
+}
+
+.sb-code-block pre.astro-code > code > span:last-child::before {
+	padding-bottom: var(--sb-code-block-astro-code-last-child-padding-bottom, 0.5rem);
+}
+
+.sb-code-block pre.astro-code {
+	counter-reset: var(--sb-code-block-astro-code-counter-reset, lines 0);
+	position: var(--sb-code-block-astro-code-position, relative);
+}
+
+.sb-code-block pre.astro-code span.line::before {
+	border-right: var(--sb-code-block-border-right,
+	1px solid hsl(212, 25%, 23%));
+	color: var(--sb-code-block-line-number-color, hsl(56, 100%, 72%));
+	content: var(--sb-code-block-line-number-content, counter(lines) "");
+	counter-increment: var(--sb-code-block-line-number-counter-increment, lines 1);
+	display: var(--sb-code-block-line-number-display, inline-block);
+	margin-right: var(--sb-code-block-line-number-margin-right, 1rem);
+	padding: var(--sb-code-block-line-number-padding, 0.1rem 0.5rem 0.1rem 0);
+	text-align: var(--sb-code-block-line-number-text-align, right);
+	width: var(--sb-code-block-line-number-width, 2ch);
+}
+
+.sb-code-block button.sb-copy-to-clipboard {
+	background: var(--sb-copy-to-clipboard-background, transparent);
+	border-radius: var(--sb-copy-to-clipboard-border-radius, 5px);
+	border: var(--sb-copy-to-clipboard-border, none);
+	color: var(--sb-copy-to-clipboard-button-color, hsl(210, 20%, 98%));
+	font-family: var(--sb-copy-to-clipboard-font-family);
+	font-size: var(--sb-copy-to-clipboard-font-size, 1rem);
+	padding: var(--sb-copy-to-clipboard-padding, 2px 4px);
+	position: var(--sb-copy-to-clipboard-position, absolute);
+	right: var(--sb-copy-to-clipboard-right, 1rem);
+	top: var(--sb-copy-to-clipboard-top, 0.5rem);
+}
+
+.sb-code-block button.sb-copy-to-clipboard:focus,
+.sb-code-block button.sb-copy-to-clipboard:hover {
+	background-color: var(--sb-copy-to-clipboard-button-background-color-hover, hsl(212, 25%, 15%));
+	color: var(--sb-copy-to-clipboard-button-color-hover, hsl(56, 100%, 72%));
+	outline-color: var(--sb-copy-to-clipboard-button-outline-color, hsl(56, 100%, 72%));
 }

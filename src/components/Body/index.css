@@ -26,13 +26,14 @@ body {
 	display: var(--sb-body-display, flex);
 	flex-direction: var(--sb-body-flex-direction, column);
 	font-family: var(--sb-body-font-family,
+		var(--sb-font-body,
 			Inter,
 			Roboto,
 			"Helvetica Neue",
 			"Arial Nova",
 			"Nimbus Sans",
 			Arial,
-			sans-serif);
+			sans-serif));
 	font-size: var(--sb-body-font-size, var(--sb-step-0, 1rem));
 	font-variant-numeric: var(--sb-font-variant-numeric, oldstyle-nums proportional-nums);
 	font-variant-ligatures: var(--sb-body-font-variant-ligatures, historical-ligatures);

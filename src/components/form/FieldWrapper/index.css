@@ -1,5 +1,15 @@
 .sb-field {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	justify-content: space-between;
+	margin-bottom: var(--sb-space-s, 1.5rem);
 	max-width: 48ch;
+}
+
+.sb-field .sb-label {
+	font-weight: 400;
 }
 
 .sb-field textarea {
@@ -10,24 +20,56 @@
 .sb-field input,
 .sb-field select,
 .sb-field textarea {
-	border: var(--sb-form-field-border, 2px dotted gray);
+	border: var(--sb-form-field-border, 2px solid hsl(212, 25%, 71%));
+	border-radius: var(--sb-field-border-radius, 4px);
+	padding: var(--sb-field-padding, 0.3rem 0.6rem);
 }
 
 .sb-field input:focus,
 .sb-field select:focus,
 .sb-field textarea:focus {
-	border: var(--sb-form-field-border-focused, 2px solid blue);
+	border: var(--sb-form-field-border-focused, 2px solid hsl(200, 82%, 40%));
+}
+
+.sb-field:has(input:focus) .sb-label,
+.sb-field:has(select:focus) .sb-label,
+.sb-field:has(textarea:focus) .sb-label {
+	color: hsl(212, 57%, 32%);
+	font-weight: 600;
 }
 
 .sb-field input:required,
 .sb-field select:required,
 .sb-field textarea:required {
-	border: var(--sb-form-field-border-required, 4px double green);
+	border: var(--sb-form-field-border-required, 4px double hsl(111, 46%, 24%));
 }
 
 .sb-field input:required:focus,
 .sb-field select:required:focus,
 .sb-field textarea:required:focus {
-	border: var(--sb-form-field-border-required-focused, 2px solid purple);
-	margin: 2px 0;
+	border: var(--sb-form-field-border-required-focused, 4px double hsl(111, 46%, 60%));
+}
+
+.sb-field:has(input:required:focus) .sb-label,
+.sb-field:has(select:required:focus) .sb-label,
+.sb-field:has(textarea:required:focus) .sb-label {
+	color: hsl(111, 46%, 24%);
+	font-weight: 600;
+}
+
+.sb-optional::after {
+	content: "(optional)";
+	display: inline-block;
+	margin-left: 0.5rem;
+}
+
+.sb-field input[type="number"] {
+	text-align: right;
+}
+
+.sb-field input[type="color"] {
+	all: revert;
+	border: 2px solid forestgreen;
+	border-radius: 4px;
+	min-height: 3rem;
 }

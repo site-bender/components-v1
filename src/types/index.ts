@@ -267,7 +267,6 @@ export type ArticleProps<T, Tag extends HTMLTag> =
 		HTMLAttributes,
 		{
 			as?: Tag
-			asColumns?: boolean | undefined | null
 			heading?: Partial<HTMLAttributes> | undefined | null
 			level?: 1 | 2 | 3 | 4 | 5 | 6
 			microdata?: Partial<HTMLAttributes> | undefined | null
@@ -356,6 +355,20 @@ export type CodeBlockProps<T, Tag extends HTMLTag> = Override<
 		snippet?: MDXInstance<T> | undefined | null
 	}
 >
+
+export type ColumnsProps<T, Tag extends HTMLTag> =
+	& Polymorphic<{ as: Tag }>
+	& Override<
+		HTMLAttributes,
+		{
+			as?: Tag
+			heading?: Partial<HTMLAttributes> | undefined | null
+			level?: 1 | 2 | 3 | 4 | 5 | 6
+			microdata?: Partial<HTMLAttributes> | undefined | null
+			properties?: Partial<T>
+			title?: string | undefined | null
+		}
+	>
 
 export type DurationProps<Tag extends HTMLTag> = Override<
 	MetadataProps<

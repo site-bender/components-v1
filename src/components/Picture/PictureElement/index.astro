@@ -4,6 +4,7 @@ import exifr from "exifr"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
 import type { ImageSource, PictureElementProps as Props } from "../../../types"
+import not from "../../../utilities/not"
 
 const {
   alt,
@@ -17,6 +18,7 @@ const {
   loading = "lazy",
 	longdesc: desc,
   link = {},
+	role,
   sources = [],
   src,
   width,
@@ -28,7 +30,7 @@ const imgAttrs = mapAttributes(img, ["sb-picture-img"])
 const linkAttrs = mapAttributes(link, ["sb-picture-link"])
 const pictureAttrs = mapAttributes(attrs, ["sb-picture"])
 
-const tags = src && await exifr.parse(`public${src}`)
+const tags = src && not(src.endsWith("svg")) && undefined //await exifr.parse(`public${src}`)
 
 const longdesc = ((await Astro.slots.render("default")) || desc || "").trim()
 
@@ -50,11 +52,11 @@ const h = height || Math.floor(aspectRatio * width)
 				))}
 				<img
 					{alt}
-
 					{...describedById}
 					decoding="async"
 					{...(h ? { height: h } : {})}
 					loading={loading}
+					{role}
 					{src}
 					{...(width != null ? { width } : {})}
 					{...imgAttrs}
@@ -76,11 +78,11 @@ const h = height || Math.floor(aspectRatio * width)
 			))}
 			<img
 				{alt}
-
 				{...describedById}
 				decoding="async"
 				{...(h ? { height: h } : {})}
 				loading={loading}
+				{role}
 				{src}
 				{...(width != null ? { width } : {})}
 				{...imgAttrs}

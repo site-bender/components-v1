@@ -71,6 +71,8 @@ export { default as DurationField } from "./src/form/DurationField/index.astro"
 // @ts-expect-error
 export { default as EmailField } from "./src/form/EmailField/index.astro"
 // @ts-expect-error
+export { default as Fieldset } from "./src/form/Fieldset/index.astro"
+// @ts-expect-error
 export { default as FieldsetWrapper } from "./src/form/FieldsetWrapper/index.astro"
 // @ts-expect-error
 export { default as FieldWrapper } from "./src/form/FieldWrapper/index.astro"
@@ -160,8 +162,6 @@ export { default as ZonedDateTime } from "./src/metadata/ZonedDateTime/index.ast
 
 /* ===== FORMS ===== */
 
-// @ts-expect-error
-export { default as Button } from "./src/form/elements/Button/index.astro"
 // @ts-expect-error
 export { default as CallingCodeSelect } from "./src/form/elements/CallingCodeSelect/index.astro"
 // @ts-expect-error

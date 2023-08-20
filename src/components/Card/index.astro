@@ -28,7 +28,7 @@ const wrapperAttrs = mapAttributes(
 )
 
 const desc = await Astro.slots.render("default")
-const longdesc = ((await Astro.slots.render("default")) || ld || "").trim()
+const longdesc = ((await Astro.slots.render("longdesc")) || ld || "").trim()
 const descId = `${id}_description`
 const Element = `h${level}`
 ---

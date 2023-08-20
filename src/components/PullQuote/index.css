@@ -6,12 +6,13 @@
 	flex-direction: var(--sb-pull-quote-flex-direction, column);
 	font-family: var(
 		--sb-pull-quote-font-family,
-		"Iowan Old Style",
-		"Palatino Linotype",
-		"URW Palladio L",
-		P052,
-		serif;
-	);
+			var(--sb-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif
+		));
 	font-size: var(--sb-pull-quote-font-size, 1.25rem);
 	font-weight: var(--sb-pull-quote-font-weight, 500);
 	justify-content: var(--sb-pull-quote-justify-content, space-evenly);
@@ -19,22 +20,30 @@
 	padding: var(--sb-pull-quote-padding, 2rem 2rem 1.5rem);
 }
 
-.sb-pull-quote .sb-pull-quote-author {
-	color: var(--sb-pull-quote-author-color, hsl(212, 25%, 15%));
-	display: var(--sb-pull-quote-author-display, block);
-	font-family: var(
-		--sb-pull-quote-author-font-family,
-		"Iowan Old Style",
-		"Palatino Linotype",
-		"URW Palladio L",
-		P052,
-		serif;
-	);
-	font-size: var(--sb-pull-quote-author-font-size, 1rem);
-	font-style: var(--sb-pull-quote-author-font-style, italic);
-	text-align: var(--sb-pull-quote-author-text-align, right);
+.sb-pull-quote-blockquote {
+	margin: var(--sb-pull-quote-blockquote-margin, 0);
 }
 
-.sb-pull-quote .sb-pull-quote-author::before {
+.sb-pull-quote .sb-pull-quote-figcaption {
+	align-items: var(--sb-pull-quote-figcaption-align-items, center);
+	color: var(--sb-pull-quote-figcaption-color, hsl(212, 25%, 15%));
+	display: var(--sb-pull-quote-figcaption-display, flex);
+	font-family: var(
+		--sb-pull-quote-figcaption-font-family,
+		var(--sb-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif
+		));
+	font-size: var(--sb-pull-quote-figcaption-font-size, 1rem);
+	font-style: var(--sb-pull-quote-figcaption-font-style, italic);
+	justify-content: var(--sb-pull-quote-figcaption-justify-content, flex-end);
+	text-align: var(--sb-pull-quote-figcaption-text-align, right);
+}
+
+.sb-pull-quote .sb-pull-quote-figcaption::before {
 	content: var(--sb-pull-quote-author-before-content, "~ ");
+	margin-right: var(--sb-pull-quote-author-before-margin-right, 0.25rem);
 }

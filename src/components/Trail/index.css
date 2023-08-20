@@ -18,7 +18,7 @@
 	color: var(--sb-trail-link-color, hsl(56, 100%, 72%));
 	display: var(--sb-trail-link-display, inline-block);
 	line-height: var(--sb-trail-link-line-height, 1);
-	padding: var(--sb-trail-link-padding, 0 3px);
+	padding: var(--sb-trail-link-padding, 3px 5px);
 	text-decoration: var(--sb-trail-link-text-decoration, none);
 	text-transform: var(--sb-trail-link-text-transform, lowercase);
 }
@@ -36,7 +36,7 @@
 	border-radius: var(--sb-trail-fallback-border-radius, 4px);
 	display: var(--sb-trail-fallback-display, inline-block);
 	line-height: var(--sb-trail-fallback-line-height, 1);
-	padding: var(--sb-trail-fallback-padding, 0 3px);
+	padding: var(--sb-trail-fallback-padding, 3px 5px);
 	text-decoration: var(--sb-trail-fallback-text-decoration, none);
 	text-transform: var(--sb-trail-fallback-text-transform, lowercase);
 }
@@ -52,8 +52,8 @@ a.sb-trail-link:hover {
 	color: var(--sb-trail-link-color-focus, hsl(56, 100%, 72%));
 	display: var(--sb-trail-link-display, inline-block);
 	outline: var(--sb-trail-link-outline, 2px solid hsl(56, 100%, 72%));
-	outline-offset: var(--sb-trail-link-outline-offset, 5px);
-	padding: var(--sb-trail-link-padding, 0.1rem);
+	outline-offset: var(--sb-trail-link-outline-offset, 3px);
+	padding: var(--sb-trail-link-padding, 3px 5px);
 	text-decoration: var(--sb-trail-link-text-decoration, none);
 }
 
@@ -63,8 +63,8 @@ a.sb-trail-fallback:hover {
 	color: var(--sb-trail-fallback-link-color-focus, hsl(56, 100%, 72%));
 	display: var(--sb-trail-fallback-link-display, inline-block);
 	outline: var(--sb-trail-fallback-link-outline, 2px solid hsl(56, 100%, 72%));
-	outline-offset: var(--sb-trail-fallback-link-outline-offset, 5px);
-	padding: var(--sb-trail-fallback-link-padding, 0.1rem);
+	outline-offset: var(--sb-trail-fallback-link-outline-offset, 3px);
+	padding: var(--sb-trail-fallback-link-padding, 3px);
 	text-decoration: var(--sb-trail-fallback-link-text-decoration, none);
 }
 

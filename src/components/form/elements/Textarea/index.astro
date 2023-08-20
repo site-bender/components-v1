@@ -18,7 +18,9 @@ const {
 	...attrs
 } = Astro.props
 
-const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-textarea"])
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, [
+	`${field}-textarea`,
+])
 const wrapperAttrs = mapAttributes(wrapper, ["sb-textarea-wrapper"])
 
 const content = value || (await Astro.slots.render("default"))?.trim() || ""
@@ -26,7 +28,7 @@ const content = value || (await Astro.slots.render("default"))?.trim() || ""
 
 <span {...wrapperAttrs}>
 	<textarea
-		{...inputAttrs}
+		{...elementAttrs}
 		aria-labelledby={labelledBy}
 		{autocomplete}
 		{form}

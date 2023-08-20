@@ -1,0 +1,110 @@
+/*
+.sb-checkbox-input-wrapper {
+	display: grid;
+	gap: 1em;
+	grid-template-columns: 1em auto;
+	margin-top: 1rem;
+	width: min(86vw, 100%);
+}
+
+.sb-checkbox-input-wrapper > * {
+	margin: 0;
+}
+
+.sb-checkbox-input-wrapper input[type="checkbox"] {
+	appearance: none;
+	border-radius: 0.15em;
+	border: var(--boolean-field-border);
+	color: var(--boolean-field-color);
+	display: grid;
+	font: inherit;
+	height: 1.15em;
+	margin: 0.15em 0 0;
+	place-content: center;
+	transform: translateY(-0.075em);
+	vertical-align: middle;
+	width: 1.15em;
+	width: auto;
+}
+
+.sb-checkbox-input-wrapper input[type="checkbox"]:checked {
+	background-color: var(--boolean-field-background-color-checked);
+}
+
+.sb-checkbox-input-wrapper input[type="checkbox"]::before {
+	background-color: var(--boolean-field-background-color-before);
+	box-shadow: var(--boolean-field-box-shadow-before);
+	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+	content: "";
+	height: 0.65em;
+	transform-origin: bottom left;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
+	width: 0.65em;
+}
+
+.sb-checkbox-input-wrapper input[type="checkbox"]:checked::before {
+	background-color: var(--boolean-field-background-color-checked-before);
+	transform: scale(1);
+}
+
+.sb-boolean-wrapper input[type="checkbox"]:focus {
+	outline-offset: max(2px, 0.15em);
+	outline: var(--boolean-field-outline);
+}
+
+.sb-boolean-wrapper input:disabled {
+	color: var(--contact-form-input-color-disabled);
+	cursor: not-allowed;
+}
+
+*/
+
+.sb-checkbox-input-wrapper {
+	align-items: center;
+	display: flex;
+	gap: 0.5rem;
+	justify-content: flex-start;
+}
+
+.sb-checkbox-input-wrapper input[type="checkbox"] {
+	appearance: none;
+	border-radius: 0.15rem;
+	border: 2px solid hsl(212, 25%, 71%);
+	display: grid;
+	font: inherit;
+	height: 1.25rem;
+	margin: 0;
+	padding: 0;
+	place-content: center;
+	transform: translateY(-0.075em);
+	/* vertical-align: middle; */
+	width: 1.25rem;
+}
+
+.sb-checkbox-input-wrapper input[type="checkbox"]::before {
+	background-color: hsl(212, 25%, 23%);
+	box-shadow: inset 1rem 1rem hsl(111, 46%, 24%);
+	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+	content: "";
+	height: 0.65em;
+	transform-origin: bottom left;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
+	width: 0.65em;
+}
+
+.sb-checkbox-input-wrapper:focus-within input[type="checkbox"] {
+	border-radius: 0.15rem;
+	outline: 3px solid hsl(111, 46%, 24%);
+	outline-offset: 0.15rem;
+}
+
+.sb-checkbox-input-wrapper input[type="checkbox"]:checked {
+	background-color: hsl(210, 20%, 98%);
+}
+
+.sb-checkbox-input-wrapper input[type="checkbox"]:checked::before {
+	background-color: hsl(212, 25%, 23%);
+	transform: scale(1);
+}

@@ -83,7 +83,8 @@
 	--sb-cc-license-stroke-color: var(--sb-color-y-ln-mn);
 
 	--sb-code-block-border-right: 1px solid var(--sb-color-gray-7);
-	--sb-code-block-font-family: var(--sb-font-code);
+	--sb-code-block-font-family: var(--sb-font-code, ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+	"DejaVu Sans Mono", monospace);
 	--sb-code-block-line-number-color: var(--sb-color-icterine);
 	--sb-code-color: var(--sb-color-hunter-green);
 
@@ -196,8 +197,6 @@
 
 	--sb-form-outline-color: var(--sb-color-blue-ncs);
 
-	--sb-h3-color: var(--sb-color-hunter-green);
-
 	--sb-header-background-color: var(--sb-color-gray-8);
 	--sb-header-border-color: var(--sb-color-gray-7);
 	--sb-header-color: var(--sb-color-gray-0);
@@ -218,18 +217,8 @@
 	--sb-link-color-hover: var(--sb-color-blue-ncs);
 	--sb-link-color-outline: var(--sb-color-blue-ncs);
 	--sb-link-color-visited: var(--sb-color-byzantium);
-	--sb-link-color: var(--sb-color-y-ln-mn);
 
-	--sb-main-padding: 0;
 
-	--sb-paginator-border-color: var(--sb-color-y-ln-mn);
-	--sb-paginator-current-background-color: var(--sb-color-y-ln-mn);
-	--sb-paginator-current-color: var(--sb-color-y-ln-mn);
-	--sb-paginator-link-color: var(--sb-color-y-ln-mn);
-	--sb-paginator-link-color-focus: var(--sb-color-gray-8);
-	--sb-paginator-link-current-color: var(--sb-color-gray-0);
-	--sb-paginator-text-color: var(--sb-color-gray-8);
-	--sb-paginator-item-color-focus: var(--sb-color-icterine);
 
 	--sb-pull-quote-background-color: var(--sb-color-mantis);
 	--sb-pull-quote-color: var(--sb-color-gray-8);

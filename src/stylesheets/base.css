@@ -58,11 +58,12 @@ h1 {
 	background-color: var(--sb-h1-background-color, transparent);
 	color: var(--sb-h1-color, hsl(212, 25%, 15%));
 	font-family: var(--sb-h1-font-titles,
-			"Iowan Old Style",
-			"Palatino Linotype",
-			"URW Palladio L",
-			P052,
-			serif);
+			var(--sb-font-titles,
+				"Iowan Old Style",
+				"Palatino Linotype",
+				"URW Palladio L",
+				P052,
+				serif));
 	font-size: var(--sb-h1-font-size, var(--sb-step-4, 2.44rem));
 	font-variant-ligatures: var(--sb-h1-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h1-font-variant-numeric, oldstyle-nums proportional-nums);
@@ -75,15 +76,16 @@ h2 {
 	background-color: var(--sb-h2-background-color, transparent);
 	color: var(--sb-h2-color, hsl(212, 25%, 15%));
 	font-family: var(--sb-h2-font-titles,
-			"Iowan Old Style",
-			"Palatino Linotype",
-			"URW Palladio L",
-			P052,
-			serif);
+			var(--sb-font-titles,
+				"Iowan Old Style",
+				"Palatino Linotype",
+				"URW Palladio L",
+				P052,
+				serif));
 	font-size: var(--sb-h2-font-size, var(--sb-step-3, 1.95rem));
 	font-variant-ligatures: var(--sb-h2-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h2-font-variant-numeric, oldstyle-nums proportional-nums);
-	font-weight: var(--sb-h2-font-weight, 500);
+	font-weight: var(--sb-h2-font-weight, 400);
 	padding: var(--sb-h2-padding, 0 0 0.5rem);
 	text-transform: var(--sb-h2-text-transform, none);
 }
@@ -92,15 +94,16 @@ h3 {
 	background-color: var(--sb-h3-background-color, transparent);
 	color: var(--sb-h3-color, hsl(212, 25%, 15%));
 	font-family: var(--sb-h3-font-titles,
-			"Iowan Old Style",
-			"Palatino Linotype",
-			"URW Palladio L",
-			P052,
-			serif);
+			var(--sb-font-titles,
+				"Iowan Old Style",
+				"Palatino Linotype",
+				"URW Palladio L",
+				P052,
+				serif));
 	font-size: var(--sb-h3-font-size, var(--sb-step-2, 1.56rem));
 	font-variant-ligatures: var(--sb-h3-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h3-font-variant-numeric, oldstyle-nums proportional-nums);
-	font-weight: var(--sb-h3-font-weight, 500);
+	font-weight: var(--sb-h3-font-weight, 400);
 	padding: var(--sb-h3-padding, 0 0 0.5rem);
 	text-transform: var(--sb-h3-text-transform, none);
 }
@@ -109,11 +112,12 @@ h4 {
 	background-color: var(--sb-h4-background-color, transparent);
 	color: var(--sb-h4-color, hsl(212, 25%, 15%));
 	font-family: var(--sb-h4-font-titles,
-			"Iowan Old Style",
-			"Palatino Linotype",
-			"URW Palladio L",
-			P052,
-			serif);
+			var(--sb-font-titles,
+				"Iowan Old Style",
+				"Palatino Linotype",
+				"URW Palladio L",
+				P052,
+				serif));
 	font-size: var(--sb-h4-font-size, var(--sb-step-1, 1.25rem));
 	font-variant-ligatures: var(--sb-h4-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h4-font-variant-numeric, oldstyle-nums proportional-nums);
@@ -126,11 +130,12 @@ h5 {
 	background-color: var(--sb-h5-background-color, transparent);
 	color: var(--sb-h5-color, hsl(212, 25%, 15%));
 	font-family: var(--sb-h5-font-titles,
-			"Iowan Old Style",
-			"Palatino Linotype",
-			"URW Palladio L",
-			P052,
-			serif);
+			var(--sb-font-titles,
+				"Iowan Old Style",
+				"Palatino Linotype",
+				"URW Palladio L",
+				P052,
+				serif));
 	font-size: var(--sb-h5-font-size, var(--sb-step-0, 1rem));
 	font-variant-ligatures: var(--sb-h5-font-variant-ligatures, historical-ligatures);
 	font-variant-numeric: var(--sb-h5-font-variant-numeric, oldstyle-nums proportional-nums);
@@ -141,6 +146,10 @@ h5 {
 
 p {
 	margin: var(--sb-p-margin, 0.5rem 0);
+}
+
+:not(pre) > code {
+	color: var(--sb-code-color, hsl(111, 46%, 24%));
 }
 
 dl > dt {
@@ -170,12 +179,25 @@ hr:after {
 
 details > div {
 	padding: 0 1.5rem 1.5rem;
-	padding: 0 var(--sb-space-m, 1.5rem) var(--sb-space-m, 1.5rem);
+	padding: 0 var(--sb-space-m, 1.5rem) var(--sb-space-s, 1.25rem);
 }
 
-details > summary,
-details > summary ol li,
-details > summary ul li {
+article ol li,
+details ol li {
+	font-variant-numeric: oldstyle-nums proportional-nums;
+	list-style-type: decimal;
+	margin: 0.5rem 0 0 1.25rem;
+}
+
+article ul li,
+details ul li {
+	list-style-type: square;
+	margin: 0.5rem 0 0 1.25rem;
+}
+
+details > summary {
+	align-items: center;
+	display: flex;
 	list-style-type: none;
 	padding: 0;
 }
@@ -196,14 +218,15 @@ details > summary h3 {
 	display: inline;
 }
 
+/* content: "\261e\2004"; */
 details > summary::before {
-	content: "\261e\2004";
+	content: "\27A4\2004";
+	display: inline-block;
+	padding-bottom: 0.5rem;
 }
 
 details[open] > summary::before {
-	display: inline-block;
-	list-style-type: "\261e\2004";
-	transform: rotate(0.25turn) translate(0.25em, 0.3em);
+	transform: rotate(0.25turn);
 	transition: transform 0.2s ease-in-out;
 }
 
@@ -265,4 +288,3 @@ pre.astro-code span.line::before {
 main > article dl > dd {
 	margin: var(--sb-main-article-dd-margin, var(--sb-space-2xs, 0.5rem) 0 0 var(--sb-space-m, 1.5rem));
 }
-

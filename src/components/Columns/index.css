@@ -1,4 +1,10 @@
-.sb-columns {
-	column-width: 32ch;
-	width: calc(100vw - calc(var(--sb-space-m) * 2));
+article.sb-columns {
+	margin: var(--sb-columns-margin, var(--sb-space-s, 1rem) 0 0);
+	max-width: var(--sb-columns-max-width, unset);
+	width: var(--sb-columns-width, 100%);
+}
+
+article.sb-columns .sb-columns-columns {
+	column-gap: 0.5rem;
+	column-width: 24rem;
 }

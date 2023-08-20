@@ -76,7 +76,7 @@ export type CheckboxInput = Override<
 		field?: string | undefined | null
 		groupLabelId?: string | undefined | null
 		label?: string | undefined | null
-		labelledBy: string | undefined | null
+		labelledBy?: string | undefined | null
 		type?: never
 		value: string | number
 		wrapper?: Partial<HTMLAttributes> | undefined | null
@@ -1000,7 +1000,7 @@ export type StringField = Override<
 		datalist?: HTMLAttributes | undefined | null
 		dirname?: string | undefined | null
 		field?: string | undefined | null
-		help?: Partial<HTMLAttributes> | undefined | null
+		help?: Partial<Help> | undefined | null
 		list?: Options | undefined | null
 		label?: string | undefined | null
 		legend?: Partial<Label> | undefined | null

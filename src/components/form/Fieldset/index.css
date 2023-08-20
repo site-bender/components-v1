@@ -1,0 +1,19 @@
+.sb-fieldset {
+	border-radius: 5px;
+	border: 1px solid hsl(212, 25%, 83%);
+	padding: 1rem;
+}
+
+.sb-fieldset-legend {
+	border-radius: 5px;
+	border: 1px solid hsl(212, 25%, 83%);
+	font-size: var(--sb-step-1, 1.25rem);
+	font-weight: 500;
+	margin-left: 0.5rem;
+	padding: 0.5rem;
+}
+
+.sb-fieldset:focus-within legend {
+	color: hsl(325, 49%, 35%);
+	font-variant-caps: all-small-caps;
+}

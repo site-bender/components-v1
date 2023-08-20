@@ -1,10 +1,19 @@
 .sb-logotype {
 	background-color: var(--sb-logotype-background-color, hsl(212, 25%, 15%));
 	color: var(--sb-logotype-color, hsl(212, 25%, 98%));
-	font-family: var(--sb-logotype-font-family, Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
-	Arial, sans-serif);
+	font-family: var(--sb-logotype-font-family,
+		var(--sb-font-body,
+			Inter,
+			Roboto,
+			"Helvetica Neue",
+			"Arial Nova",
+			"Nimbus Sans",
+			Arial,
+			sans-serif));
 	font-variant-ligatures: var(--sb-logotype-font-variant-ligatures, historical-ligatures);
+	font-weight: var(--sb-logotype-font-weight, 300);
 	line-height: var(--sb-logotype-line-height, 1.2);
+	text-transform: var(--sb-logotype-text-transform, none);
 }
 
 .sb-logotype a.sb-logotype-link {

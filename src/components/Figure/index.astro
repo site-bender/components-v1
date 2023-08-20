@@ -6,7 +6,7 @@ import type { FigureProps as Props } from "../../types"
 import "./index.css"
 
 const {
-	caption,
+	caption: cap,
 	figcaption = {},
 	id = generateShortId(),
 	index,
@@ -22,6 +22,7 @@ const wrapperAttrs = mapAttributes(attrs, ["sb-figure"])
 const indexed = isIndexed ? { class: "indexed" } : {}
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+const caption = (await Astro.slots.render("caption")) || cap
 ---
 
 {

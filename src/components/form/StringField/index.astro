@@ -7,6 +7,7 @@ import type { StringField as Props } from "../../../types/form"
 
 const {
 	autocorrect: _autocorrect,
+	cols,
 	datalist = {},
 	field = "string-field",
 	form,
@@ -21,6 +22,7 @@ const {
 	placeholder: _placeholder,
 	required,
 	rows,
+	size,
 	tag,
 	value: val,
 	wrapper = {},
@@ -46,18 +48,30 @@ const value =
 	{
 		(labelledBy: string) => {
 			return parseInt(rows as string) > 0 ? (
-				<Textarea {form} {id} {labelledBy} {name} {required} {rows} {wrapper}>
+				<Textarea
+					{cols}
+					{field}
+					{form}
+					{id}
+					{labelledBy}
+					{name}
+					{required}
+					{rows}
+					{wrapper}
+				>
 					<Fragment set:html={value} />
 				</Textarea>
 			) : (
 				<TextInput
 					{datalist}
+					{field}
 					{form}
 					{id}
 					{labelledBy}
 					{list}
 					{name}
 					{required}
+					{size}
 					{value}
 					{wrapper}
 				/>
