@@ -140,7 +140,7 @@ details.components[open]>summary::before {
 	display: inline-block;
 	font-size: 1rem;
 	list-style-type: "▼\2004";
-	transform: rotate(0.25turn) translate(0, 0.25em);
+	transform: rotate(0.25turn) translate(2rem, 5em);
 	transition: transform 0.2s ease-in-out;
 }
 

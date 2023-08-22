@@ -226,7 +226,7 @@ details > summary::before {
 }
 
 details[open] > summary::before {
-	transform: rotate(0.25turn);
+	transform: rotate(0.25turn) translate(0, 0.5rem);
 	transition: transform 0.2s ease-in-out;
 }
 

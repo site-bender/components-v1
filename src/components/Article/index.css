@@ -1,8 +1,33 @@
-article.sb-article {
+.sb-article {
 	margin: var(--sb-article-margin, var(--sb-space-s) auto);
 	max-width: var(--sb-article-max-width, 48rem);
+	width: 100%;
 }
 
-article.sb-article > *+* {
+.sb-article > *+* {
 	margin-top: var(--sb-article-children-margin-top, var(--sb-space-s, 1rem));
+}
+
+.sb-article a {
+	color: var(--sb-article-link-color, hsl(212, 57%, 32%));
+	display: inline-block;
+	margin: -0.0625rem -0.1875rem;
+	padding: 0.0625rem 0.1875rem;
+	text-decoration: underline;
+	text-underline-offset: 0.3125rem;
+	text-decoration-skip-ink: none;
+}
+
+.sb-article a:visited {
+	color: var(--sb-article-link-color-visited, hsl(350, 50%, 30%));
+	text-decoration: underline;
+}
+
+.sb-article a:focus,
+.sb-article a:hover {
+	border-radius: 5px;
+	background-color: var(--sb-article-link-background-color-hover, hsl(212, 57%, 32%));
+	color: var(--sb-article-link-color-hover, hsl(210, 20%, 98%));
+	text-decoration: none;
+	text-decoration-skip: none;
 }
