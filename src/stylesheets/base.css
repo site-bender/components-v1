@@ -57,7 +57,7 @@ mark {
 h1 {
 	background-color: var(--sb-h1-background-color, transparent);
 	color: var(--sb-h1-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h1-font-titles,
+	font-family: var(--sb-h1-font-family,
 			var(--sb-font-titles,
 				"Iowan Old Style",
 				"Palatino Linotype",
@@ -75,7 +75,7 @@ h1 {
 h2 {
 	background-color: var(--sb-h2-background-color, transparent);
 	color: var(--sb-h2-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h2-font-titles,
+	font-family: var(--sb-h2-font-family,
 			var(--sb-font-titles,
 				"Iowan Old Style",
 				"Palatino Linotype",
@@ -93,7 +93,7 @@ h2 {
 h3 {
 	background-color: var(--sb-h3-background-color, transparent);
 	color: var(--sb-h3-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h3-font-titles,
+	font-family: var(--sb-h3-font-family,
 			var(--sb-font-titles,
 				"Iowan Old Style",
 				"Palatino Linotype",
@@ -111,7 +111,7 @@ h3 {
 h4 {
 	background-color: var(--sb-h4-background-color, transparent);
 	color: var(--sb-h4-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h4-font-titles,
+	font-family: var(--sb-h4-font-family,
 			var(--sb-font-titles,
 				"Iowan Old Style",
 				"Palatino Linotype",
@@ -129,7 +129,7 @@ h4 {
 h5 {
 	background-color: var(--sb-h5-background-color, transparent);
 	color: var(--sb-h5-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h5-font-titles,
+	font-family: var(--sb-h5-font-family,
 			var(--sb-font-titles,
 				"Iowan Old Style",
 				"Palatino Linotype",
