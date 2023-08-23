@@ -1,53 +1,28 @@
 ---
 import "./index.css"
-import Picture from "../Picture/index.astro"
 import generateShortId from "../../utilities/generateShortId"
 import mapAttributes from "../../utilities/mapAttributes"
 import type { CardProps as Props } from "../../types"
 
 const {
-	description = {},
-	heading = {},
-	href,
+	as = "section",
 	id = generateShortId(),
 	isInvertible,
-	level = 3,
-	link = {},
-	longdesc: ld,
-	picture = {},
-	title,
 	...attrs
 } = Astro.props
 
-const descAttrs = mapAttributes(description, ["sb-card-description"])
-const headingAttrs = mapAttributes(heading, ["sb-card-heading"])
-const linkAttrs = mapAttributes(link, ["sb-card-link"])
 const wrapperAttrs = mapAttributes(
 	attrs,
 	isInvertible ? ["sb-card", "sb-allow-invert"] : ["sb-card"]
 )
 
-const desc = await Astro.slots.render("default")
-const longdesc = ((await Astro.slots.render("longdesc")) || ld || "").trim()
-const descId = `${id}_description`
-const Element = `h${level}`
+const body = await Astro.slots.render("default")
+const heading = await Astro.slots.render("heading")
+
+const Element = as
 ---
 
-<section {...wrapperAttrs} {id}>
-	{
-		href ? (
-			<a {...linkAttrs} aria-describedby={descId} {href}>
-				<Element {...headingAttrs}>{title}</Element>
-				{picture ? <Picture {...picture}>{longdesc}</Picture> : null}
-			</a>
-		) : (
-			<div aria-describedby={descId}>
-				<Element {...headingAttrs}>{title}</Element>
-				{picture ? <Picture {...picture}>{longdesc}</Picture> : null}
-			</div>
-		)
-	}
-	<div {...descAttrs} id={descId}>
-		<Fragment set:html={desc} />
-	</div>
-</section>
+<Element {...wrapperAttrs} {id}>
+	<Fragment set:html={heading} />
+	<Fragment set:html={body} />
+</Element>

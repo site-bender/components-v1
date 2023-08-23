@@ -2,17 +2,9 @@
 	border: var(--sb-card-border, 1px solid hsl(212, 25%, 83%));
 	border-radius: var(--sb-card-border-radius, 5px);
 	break-inside: var(--sb-card-break-inside, avoid);
-	margin: var(--sb-card-margin, 0 0 1rem);
+	margin: var(--sb-card-margin, 0 -1rem 1rem);
 	max-width: var(--sb-card-max-width, 32ch);
 	padding: var(--sb-card-padding, 1rem);
-}
-
-.sb-card > :not(.sb-group) {
-	padding: var(--sb-card-not-group-padding, 0 0 1rem);
-	margin: var(--sb-card-not-group-margin, 0);
-}
-.sb-card > .sb-group > header {
-	padding: var(--sb-card-group-header-padding, 0);
 }
 
 .sb-card h2.sb-card-heading,
@@ -22,35 +14,22 @@
 	margin: var(--sb-card-heading-margin, 0);
 }
 
-.sb-card img {
-	filter: var(--sb-card-img-filter, grayscale(100%));
-	height: var(--sb-card-img-height, auto);
-	margin: var(--sb-card-img-margin, auto);
-	max-width: var(--sb-card-img-max-width, 100%);
-	width: var(--sb-card-img-width, 100%);
-}
-
-.sb-card a:focus img,
-.sb-card a:hover img,
-.sb-card img:focus,
-.sb-card img:hover {
-	filter: var(--sb-card-img-focus-filter, grayscale(0%));
-}
-
-.sb-card-link .sb-card-heading {
-	color: var(--sb-card-link-heading-color, hsl(212, 57%, 32%));
-}
-
-.sb-card:focus-within .sb-card-link .sb-card-heading {
-	color: var(--sb-card-link-heading-color, hsl(4, 57%, 52%));
-}
 
 .sb-card:focus-within,
 .sb-card:has(.sb-card-link:hover) {
 	box-shadow: 3px 3px 10px hsl(212, 25%, 46%);
 }
 
-.sb-card .sb-card-link:hover .sb-card-heading {
-	text-decoration: underline;
+.sb-card .sb-card-link {
+	filter: var(--sb-card-link-filter, grayscale(1))
 }
 
+.sb-card .sb-card-link:focus,
+.sb-card .sb-card-link:hover {
+	filter: var(--sb-card-link-filter-hover, grayscale(0))
+}
+
+.sb-card:focus-within .sb-card-link .sb-card-heading,
+.sb-card .sb-card-link:hover .sb-card-heading  {
+	color: hsl(212, 57%, 32%);
+}
