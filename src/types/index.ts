@@ -401,6 +401,13 @@ export type EmailProps<Tag extends HTMLTag> = Override<
 	} & Formattable
 >
 
+export type FaqProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Thing, Tag>,
+	{
+		question: QuestionProps
+	}
+>
+
 export type FigureProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Thing, Tag>,
 	{
@@ -512,6 +519,13 @@ export type PaginatorProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
 	{
 		pages: Record<string, Partial<Metadata>>
+	}
+>
+
+export type QuestionProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Thing, Tag>,
+	{
+		text?: string | undefined | null
 	}
 >
 

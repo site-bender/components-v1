@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.0.17",
+	"version": "0.0.18",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -186,7 +186,7 @@
 		"test:int": "vitest"
 	},
 	"dependencies": {
-		"astro": "^2.10.12"
+		"astro": "^2.10.13"
 	},
 	"devDependencies": {
 		"@astrojs/mdx": "^0.19.7",

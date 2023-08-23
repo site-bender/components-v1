@@ -1,7 +1,7 @@
 .sb-disabled {
 	border-color: var(--sb-disabled-border-color) !important;
 	color: var(--sb-disabled-color) !important;
-	cursor: not-allowed;
+	cursor: var(--sb-disabled-cursor, not-allowed);
 }
 
 .sb-hide {
@@ -44,7 +44,7 @@ strong {
 }
 
 blockquote {
-	margin: 0 0 0 2rem;
+	margin: 0 2rem;
 }
 
 mark {
@@ -157,77 +157,71 @@ dl > dt {
 }
 
 hr {
-	border: none;
-	border-bottom: 1px double hsl(154, 7%, 19%);
+	border: var(--sb-column-rule-border, none);
+	border-bottom: var(--sb-column-rule-border-bottom, 1px double hsl(154, 7%, 19%));
 	border-color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
 	color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
 	margin: var(--sb-column-rule-margin, var(--sb-space-xl, 3rem) auto);
-	overflow: visible;
-	text-align: center;
+	overflow: var(--sb-column-rule-overflow, visible);
+	text-align: var(--sb-column-rule-text-align, center);
 	width: var(--sb-column-rule-width, 10ch);
 }
 
 hr:after {
-	background-color: var(--sb-column-rule-background-color, hsl(80, 9%, 87%));
-	color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
-	content: var(--sb-column-rule-content, " § ");
-	padding: 0 1ch;
-	position: relative;
-	top: 0.75rem;
-	top: calc(var(--sb-space-s, 1.5rem) / 2);
+	background-color: var(--sb-column-rule-background-color-after, hsl(80, 9%, 87%));
+	color: var(--sb-column-rule-color-after, hsl(154, 7%, 19%));
+	content: var(--sb-column-rule-content-after, " § ");
+	padding: var(--sb-column-rule-padding-after, 0 1ch);
+	position: var(--sb-column-rule-position-after, relative);
+	top: var(--sb-column-rule-top-after, calc(var(--sb-space-s, 1.5rem) / 2));
 }
 
 details > div {
-	padding: 0 1.5rem 1.5rem;
-	padding: 0 var(--sb-space-m, 1.5rem) var(--sb-space-s, 1.25rem);
+	padding: var(--sb-details-div-padding, 0 var(--sb-space-m, 1.5rem) var(--sb-space-s, 1.25rem));
 }
 
 article ol li,
 details ol li {
-	font-variant-numeric: oldstyle-nums proportional-nums;
-	list-style-type: decimal;
-	margin: 0.5rem 0 0 1.25rem;
+	font-variant-numeric: var(--sb-list-item-font-variant-numeric, oldstyle-nums proportional-nums);
+	list-style-type: var(--sb-list-item-list-style-type, decimal);
+	margin: var(--sb-list-item-margin, 0.5rem 0 0 1.25rem);
 }
 
 article ul li,
 details ul li {
-	list-style-type: square;
-	margin: 0.5rem 0 0 1.25rem;
+	list-style-type: var(--sb-bulleted-list-item-list-style-type, square);
+	margin: var(--sb-bulleted-list-item-margin, 0.5rem 0 0 1.25rem);
 }
 
 details > summary {
-	align-items: center;
-	display: flex;
-	list-style-type: none;
-	padding: 0;
+	align-items: var(--sb-details-summary-align-items, center);
+	display: var(--sb-details-summary-display, flex);
+	list-style-type: var(--sb-details-summary-list-style-type, none);
+	padding: var(--sb-details-summary-padding, 0);
 }
 
 summary::marker {
-	content: "";
+	content: var(--sb-summary-marker-content, "");
 }
 
 details > summary:focus,
 details > summary:hover {
-	border-radius: 5px;
-	outline-offset: 3px;
-	outline: 2px dotted hsl(111, 46%, 24%);
-	outline-color: var(--sb-faq-summary-outline-color, hsl(111, 46%, 24%));
-}
-
-details > summary h3 {
-	display: inline;
+	border-radius: var(--sb-details-summary-hover-border-radius, 5px);
+	outline-offset: var(--sb-details-summary-hover-outline-offset, 3px);
+	outline: var(--sb-details-summary-hover-outline, 2px dotted hsl(111, 46%, 24%));
+	outline-color: var(--sb-details-summary-hover-outline-color, var(--sb-faq-summary-outline-color, hsl(111, 46%, 24%)));
 }
 
 /* content: "\261e\2004"; */
 details > summary::before {
-	content: "\27A4\2004";
-	display: inline-block;
-	padding-bottom: 0.5rem;
+	content: var(--sb-details-summary-content-before, "\27A4\2004");
+	display: var(--sb-details-summary-display-before, inline-block);
+	padding-bottom: var(--sb-details-summary-padding-bottom-before, 0.5rem);
 }
 
 details[open] > summary::before {
-	transform: rotate(0.25turn) translate(0, 0.5rem);
-	transition: transform 0.2s ease-in-out;
+	transform: var(--sb-details-open-summary-transform-before, rotate(0.25turn) translate(0, 0.5rem));
+	transition: var(--sb-details-open-summary-transition-before, transform 0.2s ease-in-out);
 }
 
 pre {
@@ -236,8 +230,7 @@ pre {
 }
 
 :not(pre) > code {
-	color: hsl(111, 46%, 24%);
-	color: var(--sb-code-color, hsl(111, 46%, 24%));
+	color: var(--sb-inline-code-color, var(--sb-code-color, hsl(111, 46%, 24%)));
 }
 
 pre,

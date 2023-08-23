@@ -20,8 +20,14 @@
 		"eslint.config.js": true,
 		".cache": true,
 		"README.md": true,
-		"temp": true,
-		"node_modules": true
+		"node_modules": true,
+		"tsconfig.json": true,
+		".editorconfig": true,
+		".eslintignore": true,
+		".eslintrc.cjs": true,
+		".prettierrc.json": true,
+		"deno.jsonc": true,
+		"dprint.json": true
 	},
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",

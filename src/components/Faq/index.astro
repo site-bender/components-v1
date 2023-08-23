@@ -1,0 +1,25 @@
+---
+import "./index.css"
+import type { FaqProps as Props, QuestionProps } from "../../types"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+
+const {
+	id = generateShortId(),
+	question: { text: q, ...qAttrs },
+	...attrs
+} = Astro.props
+
+const faqAttrs = mapAttributes(attrs, ["sb-faq"])
+const questionAttrs = mapAttributes(qAttrs, ["sb-faq-question"])
+
+const answer = await Astro.slots.render("default")
+const question = (await Astro.slots.render("question")) || q
+---
+
+<details {...faqAttrs} id={id}>
+	<summary {...qAttrs}>
+		<Fragment set:html={question} />
+	</summary>
+	<Fragment set:html={answer} />
+</details>
