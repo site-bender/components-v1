@@ -5,11 +5,13 @@ import generateShortId from "../../utilities/generateShortId"
 import mapAttributes from "../../utilities/mapAttributes"
 
 const {
+	answer: aAttrs,
 	id = generateShortId(),
 	question: { text: q, ...qAttrs } = {} as QuestionProps<"summary">,
 	...attrs
 } = Astro.props
 
+const answerAttrs = mapAttributes(aAttrs, ["sb-faq-answer"])
 const faqAttrs = mapAttributes(attrs, ["sb-faq"])
 const questionAttrs = mapAttributes(qAttrs, ["sb-faq-question"])
 
@@ -21,5 +23,7 @@ const question = (await Astro.slots.render("question")) || q
 	<summary {...questionAttrs}>
 		<Fragment set:html={question} />
 	</summary>
-	<Fragment set:html={answer} />
+	<div {...answerAttrs}>
+		<Fragment set:html={answer} />
+	</div>
 </details>

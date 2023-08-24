@@ -216,7 +216,9 @@ details > summary:hover {
 details > summary::before {
 	content: var(--sb-details-summary-content-before, "\27A4\2004");
 	display: var(--sb-details-summary-display-before, inline-block);
-	padding-bottom: var(--sb-details-summary-padding-bottom-before, 0.5rem);
+	margin: var(--sb-details-summary-margin-before, var(--sb-space-2xs, 0.75rem) 0);
+	padding: var(--sb-details-summary-padding-before, 0);
+	transform: translate(0, 0.1rem);
 }
 
 details[open] > summary::before {

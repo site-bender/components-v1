@@ -1,3 +1,26 @@
-.sb-faq {
-	background-color: var(--sb-faq-background-color, red);
+.sb-faq-question {
+	align-items: center;
+	display: flex;
+}
+
+.sb-faq-question > * {
+	font-family: var(--sb-faq-question-font-family,
+		var(--sb-font-body,
+			Inter,
+			Roboto,
+			"Helvetica Neue",
+			"Arial Nova",
+			"Nimbus Sans",
+			Arial,
+			sans-serif));
+	font-size: var(--sb-faq-question-font-size, var(--sb-step-1, 1.25rem));
+	padding: var(--sb-faq-question-padding, 0);
+}
+
+.sb-faq-question::before {
+	font-size: var(--sb-faq-question-font-size-before, var(--sb-step-1, 1.25rem));
+}
+
+.sb-faq-answer {
+	margin: var(--sb-faq-answer-margin, var(--sb-space-s, 1rem) 0);
 }
