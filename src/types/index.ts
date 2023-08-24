@@ -404,7 +404,16 @@ export type EmailProps<Tag extends HTMLTag> = Override<
 export type FaqProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Thing, Tag>,
 	{
-		question: QuestionProps
+		question: QuestionProps<Tag>
+	}
+>
+
+export type FaqsProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Thing, Tag>,
+	{
+		header?: Partial<HTMLAttributes> | undefined | null
+		hideClass?: string | undefined | null
+		title?: string | undefined | null
 	}
 >
 

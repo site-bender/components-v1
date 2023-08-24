@@ -10,7 +10,6 @@ const {
 	header = {},
 	hideClass = "sb-off-screen",
 	labelledBy,
-	level = 2,
 	list = {},
 	page = {},
 	title = "Breadcrumb trail",
@@ -18,13 +17,13 @@ const {
 } = Astro.props
 
 const { as = "div", href, label: lbl, ...fallbackAttrs } = fallback
+const { as: HElement = "h2", ...hAttrs } = header
 
-const headerAttrs = mapAttributes(header, ["sb-trail-header", hideClass])
+const headerAttrs = mapAttributes(hAttrs, ["sb-trail-header", hideClass])
 const listAttrs = mapAttributes(list, ["sb-trail-list"])
 const pageAttrs = mapAttributes(page, ["sb-trail-this-page"])
 const fbAttrs = mapAttributes(fallbackAttrs, ["sb-trail-fallback"])
 
-const HElement = `h${level}`
 const ListElement = type
 
 const links = crumbs as Array<PageMeta<"a">>

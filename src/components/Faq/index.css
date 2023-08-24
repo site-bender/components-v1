@@ -1,0 +1,3 @@
+.sb-faq {
+	background-color: var(--sb-faq-background-color, red);
+}

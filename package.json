@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.0.18",
+	"version": "0.0.19",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -63,6 +63,8 @@
 		"./email-field": "./src/components/form/EmailField/index.astro",
 		"./email-input": "./src/components/form/elements/EmailInput/index.astro",
 		"./fallback-script": "./src/components/JavaScript/FallbackScript/index.astro",
+		"./faq": "./src/components/Faq/index.astro",
+		"./faqs": "./src/components/Faqs/index.astro",
 		"./field-wrapper": "./src/components/form/FieldWrapper/index.astro",
 		"./fieldset": "./src/components/form/Fieldset/index.astro",
 		"./fieldset-wrapper": "./src/components/form/FieldsetWrapper/index.astro",

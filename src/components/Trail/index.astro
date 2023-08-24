@@ -11,7 +11,7 @@ import compact from "../../utilities/compact"
 const {
 	fallback,
 	hideClass,
-	id,
+	id = generateShortId(),
 	nav = {},
 	pages,
 	properties,
@@ -23,7 +23,7 @@ const crumbs = compact(getBreadcrumbTrail(pathname, pages))
 
 const wrapperAttrs = mapAttributes(attrs, ["sb-trail"])
 
-const labelledBy = id || generateShortId()
+const labelledBy = id
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---

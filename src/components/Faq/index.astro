@@ -6,7 +6,7 @@ import mapAttributes from "../../utilities/mapAttributes"
 
 const {
 	id = generateShortId(),
-	question: { text: q, ...qAttrs },
+	question: { text: q, ...qAttrs } = {} as QuestionProps<"summary">,
 	...attrs
 } = Astro.props
 
@@ -18,7 +18,7 @@ const question = (await Astro.slots.render("question")) || q
 ---
 
 <details {...faqAttrs} id={id}>
-	<summary {...qAttrs}>
+	<summary {...questionAttrs}>
 		<Fragment set:html={question} />
 	</summary>
 	<Fragment set:html={answer} />

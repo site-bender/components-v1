@@ -1,0 +1,57 @@
+---
+import "./index.css"
+import type { FaqsProps as Props } from "../../types"
+import Microdata from "../Microdata/index.astro"
+import mapAttributes from "../../utilities/mapAttributes"
+import generateShortId from "../../utilities/generateShortId"
+
+const {
+	as = "section",
+	header = {},
+	hideClass = "sb-off-screen",
+	id = generateShortId(),
+	properties,
+	title = "Questions and answers",
+	...attrs
+} = Astro.props
+
+const { as: HElement = "h2", ...hAttrs } = header
+
+const headerAttrs = mapAttributes(hAttrs, ["sb-trail-header", hideClass])
+const wrapperAttrs = mapAttributes(attrs, ["sb-faqs"])
+
+const faqs = await Astro.slots.render("default")
+
+const labelledBy = id
+
+const Element = as
+
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+---
+
+{
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			aria-labelledby={labelledBy}
+			as="nav"
+			{properties}
+		>
+			<Element {...wrapperAttrs} {id}>
+				<header {...headerAttrs}>
+					<HElement>{title}</HElement>
+				</header>
+				<Fragment set:html={faqs} />
+			</Element>
+		</Microdata>
+	) : (
+		<nav {...wrapperAttrs} aria-labelledby={labelledBy}>
+			<Element {...wrapperAttrs} {id}>
+				<header {...headerAttrs}>
+					<HElement>{title}</HElement>
+				</header>
+				<Fragment set:html={faqs} />
+			</Element>
+		</nav>
+	)
+}
