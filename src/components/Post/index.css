@@ -1,26 +1,18 @@
 article.sb-post {
 	margin: var(--sb-post-margin, auto);
-	max-width: 48rem;
+	max-width: var(--sb-post-max-width, 48rem);
 	padding: var(--sb-post-padding, 1.5rem 0)
 }
 
-article.sb-as-columns {
-	margin: 0;
-	max-width: unset;
-	margin: var(--sb-post-columns-margin, 0);
-	padding: var(--sb-post-columns-padding, 1.5rem);
-}
-
-article.sb-post > *+* {
-	margin-top: 1rem;
-	margin-top: var(--sb-space-s, 1rem);
+article.sb-post > * + * {
+	margin-top: var(--sb-post-children-tail-margin-top, var(--sb-space-s, 1rem));
 }
 
 article.sb-post .sb-post-header {
-	margin: 0 0 2rem;
+	margin: var(--sb-post-header-margin, 0 0 2rem);
 }
 
 article.sb-post .sb-post-header .sb-post-title {
-	margin: 0;
-	padding: 0;
+	margin: var(--sb-post-title-margin, 0);
+	padding: var(--sb-post-title-padding, 0);
 }

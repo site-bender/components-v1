@@ -1,16 +1,5 @@
-/* :root {
-	--sb-paginator-border-color: var(--sb-color-y-ln-mn);
-	--sb-paginator-current-background-color: var(--sb-color-y-ln-mn);
-	--sb-paginator-current-color: var(--sb-color-y-ln-mn);
-	--sb-paginator-link-color: var(--sb-color-y-ln-mn);
-	--sb-paginator-link-color-focus: var(--sb-color-gray-8);
-	--sb-paginator-link-current-color: var(--sb-color-gray-0);
-	--sb-paginator-text-color: var(--sb-color-gray-8);
-	--sb-paginator-item-color-focus: var(--sb-color-icterine);
-} */
-
 .sb-remove {
-	display: none;
+	display: var(--sb-remove-display, none);
 }
 
 .sb-paginator {
@@ -77,11 +66,11 @@
 }
 
 .sb-paginator-list:hover li a[aria-current]::after {
-	display: none;
+	display: var(--sb-paginator-list-display-hover-after, none);
 }
 
-.sb-paginator-list:hover li:hover a[aria-current]::after {
-	display: unset;
+.sb-paginator-list li:hover a[aria-current]::after {
+	display: var(--sb-paginator-list-item-display-hover-after, unset);
 }
 
 .sb-paginator-list li:has(a:not([aria-current])):focus-within,
@@ -94,7 +83,7 @@
 .sb-paginator-list li:hover a:not([aria-current]) {
 	background-color: var(--sb-paginator-link-background-color-focus, hsl(111, 46%, 60%));
 	color: var(--sb-paginator-link-color-focus, hsl(212, 25%, 15%));
-	outline: 0;
+	outline: var(--sb-paginator-link-outline-focus, 0);
 }
 
 .sb-paginator-list li:hover a:not([aria-current])::after {
@@ -109,6 +98,6 @@
 
 @media only screen and (max-width: 42rem) {
 	.sb-paginator-list li.paginator-button {
-		display: none;
+		display: var(--sb-print-paginator-button-display, none);
 	}
 }

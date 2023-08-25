@@ -42,7 +42,7 @@
 		"editor.defaultFormatter": "vscode.html-language-features"
 	},
 	"[css]": {
-		"editor.defaultFormatter": "aeschli.vscode-css-formatter"
+		"editor.defaultFormatter": "vscode.css-language-features"
 	},
 	"css.format.spaceAroundSelectorSeparator": true
 }

@@ -17,7 +17,7 @@
 
 .sb-card:focus-within,
 .sb-card:has(.sb-card-link:hover) {
-	box-shadow: 3px 3px 10px hsl(212, 25%, 46%);
+	box-shadow: var(--sb-card-box-shadow-hover, 3px 3px 10px hsl(212, 25%, 46%));
 }
 
 .sb-card .sb-card-link {
@@ -30,6 +30,6 @@
 }
 
 .sb-card:focus-within .sb-card-link .sb-card-heading,
-.sb-card .sb-card-link:hover .sb-card-heading  {
-	color: hsl(212, 57%, 32%);
+.sb-card .sb-card-link:hover .sb-card-heading {
+	color: var(--sb-card-heading-color-hover, hsl(212, 57%, 32%));
 }

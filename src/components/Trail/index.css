@@ -75,3 +75,8 @@ a.sb-trail-fallback:hover {
 .sb-trail-link:visited {
 	color: var(--sb-trail-link-visited-color, hsl(56, 100%, 72%));
 }
+
+.sb-trail-header {
+	left: var(--sb-trail-header-left, -100000px);
+	top: var(--sb-trail-header-top, -100000px);
+}

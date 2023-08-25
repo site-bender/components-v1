@@ -24,15 +24,14 @@ figure.sb-code-block button.sb-copy-to-clipboard {
 .sb-code-block pre,
 .sb-code-block code {
 	font-family: var(--sb-code-block-font-family,
-		var(--sb-font-code,
-		ui-monospace,
-		"Cascadia Code",
-		"Source Code Pro",
-		Menlo,
-		Consolas,
-		"DejaVu Sans Mono",
-		monospace
-	));
+			var(--sb-font-code,
+				ui-monospace,
+				"Cascadia Code",
+				"Source Code Pro",
+				Menlo,
+				Consolas,
+				"DejaVu Sans Mono",
+				monospace));
 }
 
 .sb-code-block pre > code {
@@ -65,7 +64,7 @@ figure.sb-code-block button.sb-copy-to-clipboard {
 
 .sb-code-block pre.astro-code span.line::before {
 	border-right: var(--sb-code-block-border-right,
-	1px solid hsl(212, 25%, 23%));
+			1px solid hsl(212, 25%, 23%));
 	color: var(--sb-code-block-line-number-color, hsl(56, 100%, 72%));
 	content: var(--sb-code-block-line-number-content, counter(lines) "");
 	counter-increment: var(--sb-code-block-line-number-counter-increment, lines 1);

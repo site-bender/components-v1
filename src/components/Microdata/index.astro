@@ -1,6 +1,7 @@
 ---
 // Validate at https://validator.schema.org/
 import type { MetadataProps as Props } from "../../types"
+import mapAttributes from "../../utilities/mapAttributes"
 
 const {
 	as: Element = "span",
@@ -10,12 +11,20 @@ const {
 	...attrs
 } = Astro.props
 
+const elementAttrs = mapAttributes(attrs, ["sb-microdata"])
+
 const item = property ? { property } : {}
 const { type, ...properties } = props
 const itemtype = `https://schema.org/${type}`
 ---
 
-<Element {...microdata} {...item} itemscope itemtype={itemtype} {...attrs}>
+<Element
+	{...elementAttrs}
+	{...microdata}
+	{...item}
+	itemscope
+	itemtype={itemtype}
+>
 	{
 		Object.entries(properties).map(([property, content]) =>
 			typeof content === "object" ? (

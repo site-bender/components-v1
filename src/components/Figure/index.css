@@ -16,5 +16,5 @@ figure.sb-figure > figcaption.sb-figure-figcaption {
 }
 
 figure.sb-is-indexed figcaption::before {
-	content: "Figure " counter(figures) ": ";
+	content: var(--sb-is-indexed-figure-content-before, "Figure " counter(figures) ": ");
 }

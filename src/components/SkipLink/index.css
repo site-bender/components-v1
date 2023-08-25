@@ -27,13 +27,15 @@
 
 @media screen and (max-width: 60rem) {
 	.sb-skip-link {
-		opacity: 1;
-		position: absolute;
-		top: -100000px;
+		left: var(--sb-print-skip-link-left, -100000px);
+		opacity: var(--sb-print-skip-link-opacity, 1);
+		position: var(--sb-print-skip-link-position, absolute);
+		top: var(--sb-print-skip-link-top, -100000px);
 	}
 
 	.sb-skip-link:focus {
-		position: relative;
-		top: 0;
+		left: var(--sb-print-skip-link-left-focus, 0);
+		position: var(--sb-print-skip-link-position-focus, relative);
+		top: var(--sb-print-skip-link-top-focus, 0);
 	}
 }

@@ -45,13 +45,13 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 			</Element>
 		</Microdata>
 	) : (
-		<nav {...wrapperAttrs} aria-labelledby={labelledBy}>
+		<div {...wrapperAttrs} aria-labelledby={labelledBy}>
 			<Element {...wrapperAttrs} {id}>
 				<header {...headerAttrs}>
 					<HElement>{title}</HElement>
 				</header>
 				<Fragment set:html={faqs} />
 			</Element>
-		</nav>
+		</div>
 	)
 }

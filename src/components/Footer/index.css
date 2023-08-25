@@ -9,7 +9,7 @@ footer.sb-footer {
 	flex-basis: var(--sb-footer-flex-basis, min-content);
 	flex-wrap: var(--sb-footer-flex-wrap, wrap);
 	gap: var(--sb-footer-gap, 1rem);
-	grid-area: footer;
+	grid-area: var(--sb-footer-grid-area, footer);
 	isolation: var(--sb-footer-isolation, isolate);
 	justify-content: var(--sb-footer-justify-content, space-between);
 	padding: var(--sb-footer-padding, 1rem 1.5rem);

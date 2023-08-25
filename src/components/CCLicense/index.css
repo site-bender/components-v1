@@ -1,7 +1,7 @@
 .sb-cc-license-link {
 	align-items: var(--sb-cc-license-link-align-items, center);
 	display: var(--sb-cc-license-link-display, flex);
-	gap: 0.2rem;
+	gap: var(--sb-cc-license-link-gap, 0.2rem);
 	justify-content: var(--sb-cc-license-link-justify-content, flex-end);
 }
 

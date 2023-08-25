@@ -1,4 +1,5 @@
 .sb-funnypot {
-	position: absolute;
-	top: -100000px;
+	left: var(--sb-funnypot-left, -100000px);
+	position: var(--sb-funnypot-position, absolute);
+	top: var(--sb-funnypot-top, -100000px);
 }

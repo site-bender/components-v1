@@ -5,6 +5,6 @@ article.sb-columns {
 }
 
 article.sb-columns .sb-columns-columns {
-	column-gap: 0.5rem;
-	column-width: 24rem;
+	column-gap: var(--sb-columns-columns-column-gap, 0.5rem);
+	column-width: var(--sb-columns-columns-column-width, 24rem);
 }

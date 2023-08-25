@@ -1,4 +1,4 @@
 a[href^="tel:"]:before {
-	content: "\260e";
-	margin-right: 10px;
+	content: var(--sb-tel-link-content, "\260e");
+	margin-right: var(--sb-tel-link-margin, 10px);
 }

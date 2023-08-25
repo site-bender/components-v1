@@ -4,9 +4,9 @@
 	border-radius: var(--sb-button-border-radius, 4px);
 	color: var(--sb-button-color, hsl(212, 25%, 23%));
 	padding: var(--sb-button-padding, 0.25rem 0.75rem);
-	text-transform: lowercase;
-	font-variant-caps: small-caps;
-	letter-spacing: 0.1ch;
+	text-transform: var(--sb-button-text-transform, lowercase);
+	font-variant-caps: var(--sb-button-font-variant-caps, small-caps);
+	letter-spacing: var(--sb-button-letter-spacing, 0.1ch);
 	font-size: var(--sb-step-1, 1.25rem);
 }
 

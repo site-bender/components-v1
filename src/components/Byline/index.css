@@ -1,9 +1,9 @@
 .sb-byline {
-	font-family: var(--sb-font-titles);
-	font-style: italic;
-	margin: 0;
+	font-family: var(--sb-byline-font-family, var(--sb-font-titles));
+	font-style: var(--sb-byline-font-style, italic);
+	margin: var(--sb-byline-margin, 0);
 }
 
 .sb-byline .sb-author {
-	font-style: normal;
+	font-style: var(--sb-author-font-style, normal);
 }
