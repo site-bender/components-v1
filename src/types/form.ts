@@ -41,6 +41,8 @@ export type ButtonProps = Override<
 	}
 >
 
+export type FormValidation = "default" | "fallback" | "operations"
+
 export type Form = Override<
 	GenericFormAttributes,
 	{
@@ -57,6 +59,7 @@ export type Form = Override<
 		validator?: "full" | "fallback" | undefined | null
 		novalidate?: boolean | string | undefined | null
 		target?: AnchorTarget | undefined | null
+		validation?: FormValidation | undefined | null
 	}
 >
 

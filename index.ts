@@ -64,60 +64,59 @@ export { default as Trail } from "./src/components/Trail/index.astro"
 export { default as ValidationScript } from "./src/components/JavaScript/ValidationScript/index.astro"
 
 /* ===== FORM ===== */
+export { default as BooleanField } from "./src/components/Form/BooleanField/index.astro"
 // @ts-expect-error
-export { default as BooleanField } from "./src/components/form/BooleanField/index.astro"
+export { default as Button } from "./src/components/Form/Button/index.astro"
 // @ts-expect-error
-export { default as Button } from "./src/components/form/Button/index.astro"
+export { default as ButtonBar } from "./src/components/Form/ButtonBar/index.astro"
 // @ts-expect-error
-export { default as ButtonBar } from "./src/components/form/ButtonBar/index.astro"
+export { default as DurationField } from "./src/components/Form/DurationField/index.astro"
 // @ts-expect-error
-export { default as DurationField } from "./src/components/form/DurationField/index.astro"
+export { default as EmailField } from "./src/components/Form/EmailField/index.astro"
 // @ts-expect-error
-export { default as EmailField } from "./src/components/form/EmailField/index.astro"
+export { default as Fieldset } from "./src/components/Form/Fieldset/index.astro"
 // @ts-expect-error
-export { default as Fieldset } from "./src/components/form/Fieldset/index.astro"
+export { default as FieldsetWrapper } from "./src/components/Form/FieldsetWrapper/index.astro"
 // @ts-expect-error
-export { default as FieldsetWrapper } from "./src/components/form/FieldsetWrapper/index.astro"
+export { default as FieldWrapper } from "./src/components/Form/FieldWrapper/index.astro"
 // @ts-expect-error
-export { default as FieldWrapper } from "./src/components/form/FieldWrapper/index.astro"
+export { default as Form } from "./src/components/Form/index.astro"
 // @ts-expect-error
-export { default as Form } from "./src/components/form/Form/index.astro"
+export { default as Honeypot } from "./src/components/Form/Honeypot/index.astro"
 // @ts-expect-error
-export { default as Honeypot } from "./src/components/form/Honeypot/index.astro"
+export { default as InstantField } from "./src/components/Form/InstantField/index.astro"
 // @ts-expect-error
-export { default as InstantField } from "./src/components/form/InstantField/index.astro"
+export { default as MemberField } from "./src/components/Form/MemberField/index.astro"
 // @ts-expect-error
-export { default as MemberField } from "./src/components/form/MemberField/index.astro"
+export { default as NumberField } from "./src/components/Form/NumberField/index.astro"
 // @ts-expect-error
-export { default as NumberField } from "./src/components/form/NumberField/index.astro"
+export { default as PasswordField } from "./src/components/Form/PasswordField/index.astro"
 // @ts-expect-error
-export { default as PasswordField } from "./src/components/form/PasswordField/index.astro"
+export { default as PlainDateField } from "./src/components/Form/PlainDateField/index.astro"
 // @ts-expect-error
-export { default as PlainDateField } from "./src/components/form/PlainDateField/index.astro"
+export { default as PlainDateTimeField } from "./src/components/Form/PlainDateTimeField/index.astro"
 // @ts-expect-error
-export { default as PlainDateTimeField } from "./src/components/form/PlainDateTimeField/index.astro"
+export { default as PlainMonthDayField } from "./src/components/Form/PlainMonthDayField/index.astro"
 // @ts-expect-error
-export { default as PlainMonthDayField } from "./src/components/form/PlainMonthDayField/index.astro"
+export { default as PlainTimeField } from "./src/components/Form/PlainTimeField/index.astro"
 // @ts-expect-error
-export { default as PlainTimeField } from "./src/components/form/PlainTimeField/index.astro"
+export { default as PlainYearMonthField } from "./src/components/Form/PlainYearMonthField/index.astro"
 // @ts-expect-error
-export { default as PlainYearMonthField } from "./src/components/form/PlainYearMonthField/index.astro"
+export { default as StringField } from "./src/components/Form/StringField/index.astro"
 // @ts-expect-error
-export { default as StringField } from "./src/components/form/StringField/index.astro"
+export { default as SubsetField } from "./src/components/Form/SubsetField/index.astro"
 // @ts-expect-error
-export { default as SubsetField } from "./src/components/form/SubsetField/index.astro"
+export { default as TelField } from "./src/components/Form/TelField/index.astro"
 // @ts-expect-error
-export { default as TelField } from "./src/components/form/TelField/index.astro"
+export { default as TimeZoneField } from "./src/components/Form/TimeZoneField/index.astro"
 // @ts-expect-error
-export { default as TimeZoneField } from "./src/components/form/TimeZoneField/index.astro"
+export { default as TrileanField } from "./src/components/Form/TrileanField/index.astro"
 // @ts-expect-error
-export { default as TrileanField } from "./src/components/form/TrileanField/index.astro"
+export { default as UrlField } from "./src/components/Form/UrlField/index.astro"
 // @ts-expect-error
-export { default as UrlField } from "./src/components/form/UrlField/index.astro"
+export { default as YearWeekField } from "./src/components/Form/YearWeekField/index.astro"
 // @ts-expect-error
-export { default as YearWeekField } from "./src/components/form/YearWeekField/index.astro"
-// @ts-expect-error
-export { default as ZonedDateTimeField } from "./src/components/form/ZonedDateTimeField/index.astro"
+export { default as ZonedDateTimeField } from "./src/components/Form/ZonedDateTimeField/index.astro"
 
 /* ===== METADATA ===== */
 
@@ -167,55 +166,55 @@ export { default as ZonedDateTime } from "./src/components/metadata/ZonedDateTim
 /* ===== FORMS ===== */
 
 // @ts-expect-error
-export { default as CallingCodeSelect } from "./src/components/form/elements/CallingCodeSelect/index.astro"
+export { default as CallingCodeSelect } from "./src/components/Form/elements/CallingCodeSelect/index.astro"
 // @ts-expect-error
-export { default as CheckboxGroup } from "./src/components/form/elements/CheckboxGroup/index.astro"
+export { default as CheckboxGroup } from "./src/components/Form/elements/CheckboxGroup/index.astro"
 // @ts-expect-error
-export { default as CheckboxInput } from "./src/components/form/elements/CheckboxInput/index.astro"
+export { default as CheckboxInput } from "./src/components/Form/elements/CheckboxInput/index.astro"
 // @ts-expect-error
-export { default as ColorInput } from "./src/components/form/elements/ColorInput/index.astro"
+export { default as ColorInput } from "./src/components/Form/elements/ColorInput/index.astro"
 // @ts-expect-error
-export { default as DateInput } from "./src/components/form/elements/DateInput/index.astro"
+export { default as DateInput } from "./src/components/Form/elements/DateInput/index.astro"
 // @ts-expect-error
-export { default as DaySelect } from "./src/components/form/elements/DaySelect/index.astro"
+export { default as DaySelect } from "./src/components/Form/elements/DaySelect/index.astro"
 // @ts-expect-error
-export { default as EmailInput } from "./src/components/form/elements/EmailInput/index.astro"
+export { default as EmailInput } from "./src/components/Form/elements/EmailInput/index.astro"
 // @ts-expect-error
-export { default as FileInput } from "./src/components/form/elements/FileInput/index.astro"
+export { default as FileInput } from "./src/components/Form/elements/FileInput/index.astro"
 // @ts-expect-error
-export { default as HiddenInput } from "./src/components/form/elements/HiddenInput/index.astro"
+export { default as HiddenInput } from "./src/components/Form/elements/HiddenInput/index.astro"
 // @ts-expect-error
-export { default as ImageInput } from "./src/components/form/elements/ImageInput/index.astro"
+export { default as ImageInput } from "./src/components/Form/elements/ImageInput/index.astro"
 // @ts-expect-error
-export { default as MonthInput } from "./src/components/form/elements/MonthInput/index.astro"
+export { default as MonthInput } from "./src/components/Form/elements/MonthInput/index.astro"
 // @ts-expect-error
-export { default as MonthSelect } from "./src/components/form/elements/MonthSelect/index.astro"
+export { default as MonthSelect } from "./src/components/Form/elements/MonthSelect/index.astro"
 // @ts-expect-error
-export { default as NumberInput } from "./src/components/form/elements/NumberInput/index.astro"
+export { default as NumberInput } from "./src/components/Form/elements/NumberInput/index.astro"
 // @ts-expect-error
-export { default as PasswordInput } from "./src/components/form/elements/PasswordInput/index.astro"
+export { default as PasswordInput } from "./src/components/Form/elements/PasswordInput/index.astro"
 // @ts-expect-error
-export { default as RadioGroup } from "./src/components/form/elements/RadioGroup/index.astro"
+export { default as RadioGroup } from "./src/components/Form/elements/RadioGroup/index.astro"
 // @ts-expect-error
-export { default as SearchInput } from "./src/components/form/elements/SearchInput/index.astro"
+export { default as SearchInput } from "./src/components/Form/elements/SearchInput/index.astro"
 // @ts-expect-error
-export { default as Select } from "./src/components/form/elements/Select/index.astro"
+export { default as Select } from "./src/components/Form/elements/Select/index.astro"
 // @ts-expect-error
-export { default as TelInput } from "./src/components/form/elements/TelInput/index.astro"
+export { default as TelInput } from "./src/components/Form/elements/TelInput/index.astro"
 // @ts-expect-error
-export { default as Textarea } from "./src/components/form/elements/Textarea/index.astro"
+export { default as Textarea } from "./src/components/Form/elements/Textarea/index.astro"
 // @ts-expect-error
-export { default as TextInput } from "./src/components/form/elements/TextInput/index.astro"
+export { default as TextInput } from "./src/components/Form/elements/TextInput/index.astro"
 // @ts-expect-error
-export { default as TimeInput } from "./src/components/form/elements/TimeInput/index.astro"
+export { default as TimeInput } from "./src/components/Form/elements/TimeInput/index.astro"
 // @ts-expect-error
-export { default as TimeZoneSelect } from "./src/components/form/elements/TimeZoneSelect/index.astro"
+export { default as TimeZoneSelect } from "./src/components/Form/elements/TimeZoneSelect/index.astro"
 // @ts-expect-error
-export { default as UrlInput } from "./src/components/form/elements/UrlInput/index.astro"
+export { default as UrlInput } from "./src/components/Form/elements/UrlInput/index.astro"
 // @ts-expect-error
-export { default as WeekSelect } from "./src/components/form/elements/WeekSelect/index.astro"
+export { default as WeekSelect } from "./src/components/Form/elements/WeekSelect/index.astro"
 // @ts-expect-error
-export { default as YearInput } from "./src/components/form/elements/YearInput/index.astro"
+export { default as YearInput } from "./src/components/Form/elements/YearInput/index.astro"
 
 /* ===== UTILITIES ===== */
 

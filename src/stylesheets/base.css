@@ -195,36 +195,7 @@ details ul li {
 }
 
 details > summary {
-	align-items: var(--sb-details-summary-align-items, center);
-	display: var(--sb-details-summary-display, flex);
-	list-style-type: var(--sb-details-summary-list-style-type, none);
-	padding: var(--sb-details-summary-padding, 0);
-}
-
-summary::marker {
-	content: var(--sb-summary-marker-content, "");
-}
-
-details > summary:focus,
-details > summary:hover {
-	border-radius: var(--sb-details-summary-hover-border-radius, 5px);
-	outline-offset: var(--sb-details-summary-hover-outline-offset, 3px);
-	outline: var(--sb-details-summary-hover-outline, 2px dotted hsl(111, 46%, 24%));
-	outline-color: var(--sb-details-summary-hover-outline-color, var(--sb-faq-summary-outline-color, hsl(111, 46%, 24%)));
-}
-
-/* content: "\261e\2004"; */
-details > summary::before {
-	content: var(--sb-details-summary-content-before, "\27A4\2004");
-	display: var(--sb-details-summary-display-before, inline-block);
-	margin: var(--sb-details-summary-margin-before, var(--sb-space-2xs, 0.75rem) 0);
-	padding: var(--sb-details-summary-padding-before, 0);
-	transform: translate(0, 0.1rem);
-}
-
-details[open] > summary::before {
-	transform: var(--sb-details-open-summary-transform-before, rotate(0.25turn) translate(0, 0.5rem));
-	transition: var(--sb-details-open-summary-transition-before, transform 0.2s ease-in-out);
+	list-style-type: revert;
 }
 
 pre {

@@ -1,6 +1,6 @@
 import type { InjectValueOperation } from "../../../../types/operations"
 import type { Value } from "../../../../types/values"
-import parseValue from "../../utilities/parseValue"
+import parseValue from "../../../utilities/parseValue"
 
 export default function getFromCookieStorage(
 	operation: InjectValueOperation,

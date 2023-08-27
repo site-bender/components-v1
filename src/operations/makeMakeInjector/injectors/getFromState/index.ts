@@ -1,14 +1,17 @@
-import type { Injector, InjectValueOperation } from "../../types/operations"
-import type { EmptyValue, Value } from "../../types/values"
+import type {
+	Injector,
+	InjectValueOperation,
+} from "../../../../types/operations"
+import type { EmptyValue, Value } from "../../../../types/values"
 
-import type { Store } from "solid-js/store"
-import type { StoreConfig } from "../.."
-import not from "../../utilities/not"
-import parseValue from "../utilities/parseValue"
+// import type { Store } from "solid-js/store"
+// import type { StoreConfig } from "../.."
+import not from "../../../../utilities/not"
+import parseValue from "../../utilities/parseValue"
 
 export default function getFromState(
 	operation: InjectValueOperation,
-	store: Store<StoreConfig>,
+	store: Record<string, string>,
 ): Injector {
 	const { path = [] } = operation
 
@@ -21,7 +24,7 @@ export default function getFromState(
 			(state, key) => {
 				return typeof state === "object" && key in state ? state[key] : state
 			},
-			{ ...store.interfaces },
+			{ ...(store.interfaces as unknown as Record<string, string>) },
 		)
 
 		return typeof value === "undefined"

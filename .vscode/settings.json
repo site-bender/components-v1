@@ -44,5 +44,8 @@
 	"[css]": {
 		"editor.defaultFormatter": "vscode.css-language-features"
 	},
-	"css.format.spaceAroundSelectorSeparator": true
+	"css.format.spaceAroundSelectorSeparator": true,
+	"[xml]": {
+		"editor.defaultFormatter": "mikeburgh.xml-format"
+	}
 }

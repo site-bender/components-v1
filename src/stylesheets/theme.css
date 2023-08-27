@@ -2,27 +2,38 @@
 	--sb-color-black: hsl(0, 0%, 0%);
 	--sb-color-white: hsl(0, 100%, 100%);
 
-	--sb-color-gray-0: hsl(210, 20%, 98%); /* sea salt */
-	--sb-color-gray-1: hsl(212, 25%, 93%); /* anti-flash white */
-	--sb-color-gray-2: hsl(212, 25%, 89%); /* alice blue */
-	--sb-color-gray-3: hsl(212, 25%, 83%); /* french gray */
-	--sb-color-gray-4: hsl(212, 25%, 71%); /* powder blue */
-	--sb-color-gray-5: hsl(212, 25%, 46%); /* payne's gray */
-	--sb-color-gray-6: hsl(212, 25%, 31%); /* charcoal */
-	--sb-color-gray-7: hsl(212, 25%, 23%); /* darker charcoal */
-	--sb-color-gray-8: hsl(212, 25%, 15%); /* gunmetal */
+	--sb-color-gray-0: #f9fafb;
+	/* sea salt */
+	--sb-color-gray-1: #e9edf2;
+	/* anti-flash white */
+	--sb-color-gray-2: #dce2ea;
+	/* alice blue */
+	--sb-color-gray-3: #c9d3de;
+	/* french gray */
+	--sb-color-gray-4: #a3b4c8;
+	/* powder blue */
+	--sb-color-gray-5: #587393;
+	/* payne's gray */
+	--sb-color-gray-6: #3b4e63;
+	/* charcoal */
+	--sb-color-gray-7: hsl(212, 25%, 23%);
+	/* darker charcoal */
+	--sb-color-gray-8: hsl(212, 25%, 15%);
+	/* gunmetal */
 
-	--sb-color-blue-ncs: hsl(200, 82%, 40%);
-	--sb-color-byzantium: hsl(325, 49%, 35%);
-	--sb-color-wine: hsl(350, 50%, 30%);
-	--sb-color-hunter-green: hsl(111, 46%, 24%);
-	--sb-color-hunyadi-yellow: hsl(36, 97%, 66%);
+	--sb-color-blue-ncs: #1282ba;
+	--sb-color-byzantium: #852e61;
+	--sb-color-mauveine: #8f3394;
+	--sb-color-wine: #732633;
+	--sb-color-hunter-green: #295921;
+	--sb-color-hunyadi-yellow: #fcb954;
 	--sb-color-icterine: hsl(56, 100%, 72%);
-	--sb-color-mantis: hsl(111, 46%, 60%);
-	--sb-color-persian-red: hsl(4, 57%, 52%);
+	--sb-color-mantis: #78c86a;
+	--sb-color-persian-red: #ca483f;
+	--sb-color-auburn: #ac372f;
 	--sb-color-salmon-pink: hsl(0, 57%, 76%);
 	--sb-color-sky-blue: hsl(193, 73%, 72%);
-	--sb-color-y-ln-mn: hsl(212, 57%, 32%);
+	--sb-color-y-ln-mn: #234e80;
 
 	--sb-font-body: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
 		Arial, sans-serif;
@@ -84,7 +95,7 @@
 
 	--sb-code-block-border-right: 1px solid var(--sb-color-gray-7);
 	--sb-code-block-font-family: var(--sb-font-code, ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
-	"DejaVu Sans Mono", monospace);
+			"DejaVu Sans Mono", monospace);
 	--sb-code-block-line-number-color: var(--sb-color-icterine);
 	--sb-code-color: var(--sb-color-hunter-green);
 
@@ -265,6 +276,7 @@
 		--sb-space-3xl: clamp(6rem, calc(5.46rem + 2.68vw), 7.88rem);
 	}
 }
+
 /*
 @media only screen and (prefers-color-scheme: dark) {
 	:root {

@@ -1,6 +1,11 @@
+.sb-faq-question::marker {
+	list-style-type: initial;
+}
+
 .sb-faq-question {
-	align-items: var(--sb-faq-question-items, center);
-	display: var(--sb-faq-question-display, flex);
+	line-height: 2;
+	margin-left: -0.5rem;
+	padding-left: 0.5rem;
 }
 
 .sb-faq-question > * {
@@ -15,10 +20,6 @@
 				sans-serif));
 	font-size: var(--sb-faq-question-content-font-size, var(--sb-step-1, 1.25rem));
 	padding: var(--sb-faq-question-content-padding, 0);
-}
-
-.sb-faq-question::before {
-	font-size: var(--sb-faq-question-font-size-before, var(--sb-step-1, 1.25rem));
 }
 
 .sb-faq-answer {
