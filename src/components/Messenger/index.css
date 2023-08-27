@@ -31,7 +31,7 @@ aside.sb-messenger details {
 
 aside.sb-messenger details * + * {
 	margin: var(--sb-messenger-details-children-margin, 0 auto var(--sb-space-s, 1rem));
-	max-width: var(--sb-messenger-details-children-max-width, 48rem);
+	max-width: var(--sb-messenger-details-children-max-width, min(48rem, 92vw));
 }
 
 aside.sb-messenger summary {

@@ -1,6 +1,6 @@
 .sb-article {
 	margin: var(--sb-article-margin, var(--sb-space-s) auto);
-	max-width: var(--sb-article-max-width, 48rem);
+	max-width: var(--sb-article-max-width, min(48rem, 92vw));
 	width: var(--sb-article-width, 100%);
 }
 

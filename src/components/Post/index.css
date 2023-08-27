@@ -1,6 +1,6 @@
 article.sb-post {
 	margin: var(--sb-post-margin, auto);
-	max-width: var(--sb-post-max-width, 48rem);
+	max-width: var(--sb-post-max-width, min(48rem, 92vw));
 	padding: var(--sb-post-padding, 1.5rem 0)
 }
 

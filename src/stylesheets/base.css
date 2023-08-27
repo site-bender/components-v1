@@ -198,6 +198,10 @@ details > summary {
 	list-style-type: revert;
 }
 
+details > summary > * {
+	display: inline-block;
+}
+
 pre {
 	border-radius: 5px;
 	padding: 0 0.75rem;

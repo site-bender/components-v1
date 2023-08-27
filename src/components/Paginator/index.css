@@ -96,8 +96,12 @@
 	color: var(--sb-paginator-link-not-current-color-after-hover, hsl(212, 25%, 15%));
 }
 
-@media only screen and (max-width: 42rem) {
-	.sb-paginator-list li.paginator-button {
+@media only screen and (max-width: 96rem) {
+	.sb-paginator-list .sb-paginator-list-item:not(:first-child):not(:last-child) {
 		display: var(--sb-print-paginator-button-display, none);
+	}
+
+	.sb-paginator {
+		padding: 1.5rem 0;
 	}
 }
