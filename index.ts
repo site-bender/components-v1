@@ -5,6 +5,8 @@ export { default as Body } from "./src/components/Body/index.astro"
 // @ts-expect-error
 export { default as Card } from "./src/components/Card/index.astro"
 // @ts-expect-error
+export { default as Cards } from "./src/components/Cards/index.astro"
+// @ts-expect-error
 export { default as CCLicense } from "./src/components/CCLicense/index.astro"
 // @ts-expect-error
 export { default as CodeBlock } from "./src/components/CodeBlock/index.astro"
@@ -62,8 +64,11 @@ export { default as Subtitle } from "./src/components/Subtitle/index.astro"
 export { default as Trail } from "./src/components/Trail/index.astro"
 // @ts-expect-error
 export { default as ValidationScript } from "./src/components/JavaScript/ValidationScript/index.astro"
+// @ts-expect-error
+export { default as Wrap } from "./src/components/Wrap/index.astro"
 
 /* ===== FORM ===== */
+// @ts-expect-error
 export { default as BooleanField } from "./src/components/Form/BooleanField/index.astro"
 // @ts-expect-error
 export { default as Button } from "./src/components/Form/Button/index.astro"

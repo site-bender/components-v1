@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.0.23",
+	"version": "0.0.24",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -40,6 +40,7 @@
 		"./button-bar": "./src/components/Form/ButtonBar/index.astro",
 		"./calling-code-select": "./src/components/Form/elements/CallingCodeSelect/index.astro",
 		"./card": "./src/components/Card/index.astro",
+		"./cards": "./src/components/Cards/index.astro",
 		"./cc-license": "./src/components/CCLicense/index.astro",
 		"./checkbox-group": "./src/components/Form/elements/CheckboxGroup/index.astro",
 		"./checkbox-input": "./src/components/Form/elements/CheckboxInput/index.astro",
@@ -157,6 +158,7 @@
 		"./url-input": "./src/components/Form/elements/UrlInput/index.astro",
 		"./validation-script": "./src/components/JavaScript/ValidationScript/index.astro",
 		"./week-select": "./src/components/Form/elements/WeekSelect/index.astro",
+		"./wrap": "./src/components/Wrap/index.astro",
 		"./year-input": "./src/components/Form/elements/YearInput/index.astro",
 		"./year-week": "./src/components/metadata/YearWeek/index.astro",
 		"./year-week-field": "./src/components/Form/YearWeekField/index.astro",

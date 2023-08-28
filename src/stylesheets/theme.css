@@ -23,7 +23,7 @@
 
 	--sb-color-blue-ncs: #1282ba;
 	--sb-color-byzantium: #852e61;
-	--sb-color-mauveine: #8f3394;
+	--sb-color-mauveine: hsl(297, 49%, 39%);
 	--sb-color-wine: #732633;
 	--sb-color-hunter-green: #295921;
 	--sb-color-hunyadi-yellow: #fcb954;
@@ -33,7 +33,7 @@
 	--sb-color-auburn: #ac372f;
 	--sb-color-salmon-pink: hsl(0, 57%, 76%);
 	--sb-color-sky-blue: hsl(193, 73%, 72%);
-	--sb-color-y-ln-mn: #234e80;
+	--sb-color-y-ln-mn: hsl(212, 57%, 32%);
 
 	--sb-font-body: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
 		Arial, sans-serif;

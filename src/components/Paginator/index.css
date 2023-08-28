@@ -81,7 +81,7 @@
 
 .sb-paginator-list li:focus-within a:not([aria-current]),
 .sb-paginator-list li:hover a:not([aria-current]) {
-	background-color: var(--sb-paginator-link-background-color-focus, hsl(111, 46%, 60%));
+	background-color: var(--sb-paginator-link-background-color-focus, hsla(212, 57%, 32%, 0.3));
 	color: var(--sb-paginator-link-color-focus, hsl(212, 25%, 15%));
 	outline: var(--sb-paginator-link-outline-focus, 0);
 }

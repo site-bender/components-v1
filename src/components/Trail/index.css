@@ -80,3 +80,13 @@ a.sb-trail-fallback:hover {
 	left: var(--sb-trail-header-left, -100000px);
 	top: var(--sb-trail-header-top, -100000px);
 }
+
+@media only screen and (max-width: 48rem) {
+	:root {
+		--sb-trail-list-item-after-content: ">\2004";
+	}
+
+	.sb-trail-list {
+		justify-content: var(--sb-trail-list-justify-content, flex-start);
+	}
+}

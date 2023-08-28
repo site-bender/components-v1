@@ -30,9 +30,9 @@ export const CHARS = {
 }
 
 export const DEFAULT_DATE_OPTIONS: Intl.DateTimeFormatOptions = {
-	weekday: "long",
+	// weekday: "long",
 	year: "numeric",
-	month: "long",
+	month: "short",
 	day: "numeric",
 	formatMatcher: "basic",
 }
