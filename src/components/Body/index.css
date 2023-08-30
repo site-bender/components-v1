@@ -40,7 +40,9 @@ body {
 	font-weight: var(--sb-body-font-weight, 400);
 	justify-content: var(--sb-body-justify-content, space-between);
 	line-height: var(--sb-body-line-height, 1.4);
+	margin: var(--sb-body-margin, 0);
 	min-height: var(--sb-body-min-height, 100vh);
+	padding: var(--sb-body-padding, 0);
 	position: var(--sb-body-position, relative);
 	quotes: var(--sb-body-quotes, "“" "”" "‘" "’");
 }

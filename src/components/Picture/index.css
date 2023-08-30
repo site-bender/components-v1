@@ -1,3 +1,5 @@
 .sb-picture img {
 	height: var(--sb-picture-img-height, auto);
+	max-block-size: 100%;
+	max-inline-size: 100%;
 }

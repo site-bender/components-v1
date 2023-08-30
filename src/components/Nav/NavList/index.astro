@@ -7,10 +7,10 @@ import type { LinkProps, NavListProps as Props } from "../../../types"
 type LP = LinkProps<"a">
 
 const {
+	as = "h2",
 	header = {},
 	hideClass = "sb-off-screen",
-	labelledBy,
-	level = 2,
+	id,
 	links = [],
 	list = {},
 	title = "Links to more info",
@@ -22,11 +22,11 @@ const listAttrs = mapAttributes(list, ["sb-nav-list"])
 
 const { pathname } = Astro.url
 
-const HElement = `h${level}`
+const HElement = as
 const ListElement = type
 ---
 
-<HElement {...headerAttrs} id={labelledBy}>
+<HElement {...headerAttrs} {id}>
 	{title}
 </HElement>
 

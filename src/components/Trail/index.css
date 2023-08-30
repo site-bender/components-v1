@@ -42,7 +42,7 @@
 }
 
 a.sb-trail-fallback {
-	background-color: var(--sb-trail-fallback-background-color, hsl(212, 25%, 15%));
+	background-color: var(--sb-trail-fallback-background-color, var(--sb-color-gray-7));
 	color: var(--sb-trail-fallback-color, hsl(56, 100%, 72%));
 }
 

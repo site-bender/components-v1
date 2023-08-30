@@ -1,3 +1,9 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
 .sb-disabled {
 	border-color: var(--sb-disabled-border-color) !important;
 	color: var(--sb-disabled-color) !important;
@@ -178,7 +184,7 @@ hr:after {
 }
 
 details > div {
-	padding: var(--sb-details-div-padding, 0 var(--sb-space-m, 1.5rem) var(--sb-space-s, 1.25rem));
+	padding: var(--sb-details-div-padding, 0);
 }
 
 article ol li,

@@ -3,20 +3,11 @@ import "./index.css"
 import type { MainProps as Props } from "../../types"
 import mapAttributes from "../../utilities/mapAttributes"
 
-const { imageUrl, ...attrs } = Astro.props
+const { id = "main-content", ...attrs } = Astro.props
 
-const mainAttrs = mapAttributes(
-	attrs,
-	imageUrl ? ["sb-main", "sb-main-background-image"] : ["sb-main"]
-)
-
-const props = imageUrl
-	? {
-			style: `--sb-main-background-image: url(${imageUrl})`,
-	  }
-	: {}
+const mainAttrs = mapAttributes(attrs, ["sb-main"])
 ---
 
-<main {...mainAttrs} {...props}>
+<main {...mainAttrs} {id}>
 	<slot />
 </main>

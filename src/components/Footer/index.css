@@ -22,6 +22,7 @@ footer.sb-footer .sb-nav-list {
 	gap: var(--sb-footer-nav-list-gap, 0.25rem);
 	justify-content: var(--sb-footer-nav-list-justify-content, flex-start);
 	list-style-type: var(--sb-footer-nav-list-list-style-type, none);
+	margin: var(--sb-footer-nav-list-margin, 0);
 	padding: var(--sb-footer-nav-list-padding, 0);
 }
 
@@ -38,6 +39,7 @@ footer.sb-footer a.sb-nav-link {
 	background-color: var(--sb-footer-nav-link-background-color, transparent);
 	color: var(--sb-footer-nav-link-color, hsl(212, 57%, 32%));
 	padding: var(--sb-footer-nav-link-padding, 3px 5px);
+	text-decoration: var(--sb-footer-nav-link-text-decoration, none);
 }
 
 footer.sb-footer a.sb-nav-link:focus,

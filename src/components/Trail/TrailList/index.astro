@@ -9,7 +9,7 @@ const {
 	fallback = {},
 	header = {},
 	hideClass = "sb-off-screen",
-	labelledBy,
+	id,
 	list = {},
 	page = {},
 	title = "Breadcrumb trail",
@@ -31,7 +31,7 @@ const links = crumbs as Array<PageMeta<"a">>
 const FbElement = href ? "a" : as
 ---
 
-<HElement {...headerAttrs} id={labelledBy}>
+<HElement {...headerAttrs} {id}>
 	{title}
 </HElement>
 

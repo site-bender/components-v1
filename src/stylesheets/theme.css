@@ -2,23 +2,23 @@
 	--sb-color-black: hsl(0, 0%, 0%);
 	--sb-color-white: hsl(0, 100%, 100%);
 
-	--sb-color-gray-0: #f9fafb;
+	--sb-color-gray-0: hsl(240, 5%, 98%);
 	/* sea salt */
-	--sb-color-gray-1: #e9edf2;
+	--sb-color-gray-1: hsl(240, 5%, 87%);
 	/* anti-flash white */
-	--sb-color-gray-2: #dce2ea;
+	--sb-color-gray-2: hsl(240, 5%, 76%);
 	/* alice blue */
-	--sb-color-gray-3: #c9d3de;
+	--sb-color-gray-3: hsl(240, 5%, 65%);
 	/* french gray */
-	--sb-color-gray-4: #a3b4c8;
+	--sb-color-gray-4: hsl(240, 5%, 54%);
 	/* powder blue */
-	--sb-color-gray-5: #587393;
+	--sb-color-gray-5: hsl(240, 5%, 43%);
 	/* payne's gray */
-	--sb-color-gray-6: #3b4e63;
+	--sb-color-gray-6: hsl(240, 5%, 32%);
 	/* charcoal */
-	--sb-color-gray-7: hsl(212, 25%, 23%);
+	--sb-color-gray-7: hsl(240, 5%, 21%);
 	/* darker charcoal */
-	--sb-color-gray-8: hsl(212, 25%, 15%);
+	--sb-color-gray-8: hsl(240, 5%, 10%);
 	/* gunmetal */
 
 	--sb-color-blue-ncs: #1282ba;
@@ -208,10 +208,10 @@
 
 	--sb-form-outline-color: var(--sb-color-blue-ncs);
 
-	--sb-header-background-color: var(--sb-color-gray-8);
+	--sb-header-background-color: var(--sb-color-gray-7);
 	--sb-header-border-color: var(--sb-color-gray-7);
 	--sb-header-color: var(--sb-color-gray-0);
-	--sb-header-link-background-color: var(--sb-color-gray-8);
+	--sb-header-link-background-color: var(--sb-color-gray-7);
 	--sb-header-link-color: var(--sb-color-icterine);
 	--sb-header-logotype-color: var(--sb-color-gray-0);
 	--sb-header-logotype-color-hover: var(--sb-color-icterine);

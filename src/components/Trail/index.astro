@@ -23,24 +23,17 @@ const crumbs = compact(getBreadcrumbTrail(pathname, pages))
 
 const wrapperAttrs = mapAttributes(attrs, ["sb-trail"])
 
-const labelledBy = id
-
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
 	useMicrodata ? (
-		<Microdata
-			{...wrapperAttrs}
-			aria-labelledby={labelledBy}
-			as="nav"
-			{properties}
-		>
-			<TrailList {...nav} {crumbs} {fallback} {hideClass} />
+		<Microdata {...wrapperAttrs} aria-labelledby={id} as="nav" {properties}>
+			<TrailList {...nav} {crumbs} {fallback} {hideClass} {id} />
 		</Microdata>
 	) : (
-		<nav {...wrapperAttrs} aria-labelledby={labelledBy}>
-			<TrailList {...nav} {crumbs} {fallback} {hideClass} />
+		<nav {...wrapperAttrs} aria-labelledby={id}>
+			<TrailList {...nav} {crumbs} {fallback} {hideClass} {id} />
 		</nav>
 	)
 }

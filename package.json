@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.0.24",
+	"version": "0.0.25",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -25,7 +25,6 @@
 		"./@stylesheets/faqs": "./src/stylesheets/faqs.css",
 		"./@stylesheets/form": "./src/form/Form/index.css",
 		"./@stylesheets/print": "./src/stylesheets/print.css",
-		"./@stylesheets/reset": "./src/stylesheets/reset.css",
 		"./@stylesheets/theme": "./src/stylesheets/theme.css",
 		"./@types": "./src/types/index.ts",
 		"./@types/form": "./src/types/form.ts",
@@ -190,7 +189,7 @@
 		"test:int": "vitest"
 	},
 	"dependencies": {
-		"astro": "^2.10.14"
+		"astro": "^2.10.15"
 	},
 	"devDependencies": {
 		"@astrojs/mdx": "^0.19.7",
