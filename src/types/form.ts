@@ -727,6 +727,7 @@ export type FieldsetWrapper = Override<
 		field?: string | undefined | null
 		group?: Partial<HTMLAttributes> | undefined | null
 		help?: Partial<Help> | undefined | null
+		hideClass?: string | undefined | null
 		label?: string | undefined | null
 		legend?: Partial<Label> | undefined | null
 		message?: string | undefined | null

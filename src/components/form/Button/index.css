@@ -23,6 +23,6 @@
 
 .sb-button:focus,
 .sb-button:hover {
-	box-shadow: 3px 5px 10px hsl(212, 25%, 71%);
+	border-color: var(--sb-button-submit-border-color-hover, hsl(56, 100%, 72%));
 	color: var(--sb-button-submit-color-hover, hsl(56, 100%, 72%));
 }

@@ -1,14 +1,24 @@
 ---
+import "./index.css"
 import mapAttributes from "../../../utilities/mapAttributes"
 import type { FieldsetWrapper as Props } from "../../../types/form"
+import generateShortId from "../../../utilities/generateShortId"
 
-const { disabled, group = {}, id, label, legend = {}, outer = {} } = Astro.props
+const {
+	disabled,
+	group = {},
+	hideClass = "sb-off-screen",
+	id = generateShortId(),
+	label,
+	legend = {},
+	outer = {},
+} = Astro.props
 
 const groupAttrs = mapAttributes(group, ["sb-group"])
-const legendAttrs = mapAttributes(legend, ["sb-label"])
+const legendAttrs = mapAttributes(legend, ["sb-label", hideClass as string])
 const outerAttrs = mapAttributes(outer, ["sb-button-bar"])
 
-const lbl = (await Astro.slots.render("label")) || label
+const lbl = (await Astro.slots.render("label")) || label || "Button bar"
 const labelledBy = `${id}_legend`
 
 const element = await Astro.slots.render("default", [labelledBy])

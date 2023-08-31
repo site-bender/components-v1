@@ -47,11 +47,11 @@ export { default as Microdata } from "./src/components/Microdata/index.astro"
 // @ts-expect-error
 export { default as Nav } from "./src/components/Nav/index.astro"
 // @ts-expect-error
-export { default as Paginator } from "./src/components/Paginator/Content/index.astro"
+export { default as Paginator } from "./src/components/Paginator/index.astro"
 // @ts-expect-error
-export { default as Picture } from "./src/components/Picture/Content/index.astro"
+export { default as Picture } from "./src/components/Picture/index.astro"
 // @ts-expect-error
-export { default as Post } from "./src/components/Post/Content/index.astro"
+export { default as Post } from "./src/components/Post/index.astro"
 // @ts-expect-error
 export { default as PullQuote } from "./src/components/PullQuote/index.astro"
 // @ts-expect-error
