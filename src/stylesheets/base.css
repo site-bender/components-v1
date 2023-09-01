@@ -2,12 +2,13 @@
 *::after,
 *::before {
 	box-sizing: border-box;
+	line-height: 1.5;
 }
 
 .sb-disabled {
 	border-color: var(--sb-disabled-border-color) !important;
 	color: var(--sb-disabled-color) !important;
-	cursor: var(--sb-disabled-cursor, not-allowed);
+	cursor: disabled-cursor;
 }
 
 .sb-hide {
@@ -55,153 +56,144 @@ blockquote {
 }
 
 mark {
-	background-color: var(--sb-highlight-background-color, hsl(56, 100%, 72%));
-	color: var(--sb-highlight-color, hsl(350, 50%, 30%));
-	margin: var(--sb-highlight-margin, -5px -3px);
-	padding: var(--sb-highlight-padding, 5px 3px);
+	background-color: var(--sb-color-highlight, hsl(56, 100%, 72%));
+	color: hsl(240, 5%, 8%);
+	padding: 0;
 }
 
 h1 {
-	background-color: var(--sb-h1-background-color, transparent);
-	color: var(--sb-h1-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h1-font-family,
-			var(--sb-font-titles,
-				"Iowan Old Style",
-				"Palatino Linotype",
-				"URW Palladio L",
-				P052,
-				serif));
-	font-size: var(--sb-h1-font-size, var(--sb-step-4, 2.44rem));
-	font-variant-ligatures: var(--sb-h1-font-variant-ligatures, historical-ligatures);
-	font-variant-numeric: var(--sb-h1-font-variant-numeric, oldstyle-nums proportional-nums);
-	font-weight: var(--sb-h1-font-weight, 400);
-	padding: var(--sb-h1-padding, 0 0 0.5rem);
-	text-transform: var(--sb-h1-text-transform, none);
+	font-family: var(
+		--sb-font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
+	font-size: var(--sb-step-4, 2.44rem);
+	font-variant-ligatures: historical-ligatures;
+	font-variant-numeric: oldstyle-nums proportional-nums;
+	font-weight: 400;
+	padding: 0;
 }
 
 h2 {
-	background-color: var(--sb-h2-background-color, transparent);
-	color: var(--sb-h2-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h2-font-family,
-			var(--sb-font-titles,
-				"Iowan Old Style",
-				"Palatino Linotype",
-				"URW Palladio L",
-				P052,
-				serif));
-	font-size: var(--sb-h2-font-size, var(--sb-step-3, 1.95rem));
-	font-variant-ligatures: var(--sb-h2-font-variant-ligatures, historical-ligatures);
-	font-variant-numeric: var(--sb-h2-font-variant-numeric, oldstyle-nums proportional-nums);
-	font-weight: var(--sb-h2-font-weight, 400);
-	padding: var(--sb-h2-padding, 0 0 0.5rem);
-	text-transform: var(--sb-h2-text-transform, none);
+	font-family: var(
+		--sb-font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
+	font-size: var(--sb-step-3, 1.95rem);
+	font-variant-ligatures: historical-ligatures;
+	font-variant-numeric: oldstyle-nums proportional-nums;
+	font-weight: 400;
+	padding: 0;
 }
 
 h3 {
-	background-color: var(--sb-h3-background-color, transparent);
-	color: var(--sb-h3-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h3-font-family,
-			var(--sb-font-titles,
-				"Iowan Old Style",
-				"Palatino Linotype",
-				"URW Palladio L",
-				P052,
-				serif));
-	font-size: var(--sb-h3-font-size, var(--sb-step-2, 1.56rem));
-	font-variant-ligatures: var(--sb-h3-font-variant-ligatures, historical-ligatures);
-	font-variant-numeric: var(--sb-h3-font-variant-numeric, oldstyle-nums proportional-nums);
-	font-weight: var(--sb-h3-font-weight, 400);
-	padding: var(--sb-h3-padding, 0 0 0.5rem);
-	text-transform: var(--sb-h3-text-transform, none);
+	font-family: var(
+		--sb-font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
+	font-size: var(--sb-step-2, 1.56rem);
+	font-variant-ligatures: historical-ligatures;
+	font-variant-numeric: oldstyle-nums proportional-nums;
+	font-weight: 400;
 }
 
 h4 {
-	background-color: var(--sb-h4-background-color, transparent);
-	color: var(--sb-h4-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h4-font-family,
-			var(--sb-font-titles,
-				"Iowan Old Style",
-				"Palatino Linotype",
-				"URW Palladio L",
-				P052,
-				serif));
-	font-size: var(--sb-h4-font-size, var(--sb-step-1, 1.25rem));
-	font-variant-ligatures: var(--sb-h4-font-variant-ligatures, historical-ligatures);
-	font-variant-numeric: var(--sb-h4-font-variant-numeric, oldstyle-nums proportional-nums);
-	font-weight: var(--sb-h4-font-weight, 500);
-	padding: var(--sb-h4-padding, 0 0 0.5rem);
-	text-transform: var(--sb-h4-text-transform, none);
+	font-family: var(
+		--sb-font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
+	font-size: var(--sb-step-1, 1.25rem);
+	font-variant-ligatures: historical-ligatures;
+	font-variant-numeric: oldstyle-nums proportional-nums;
+	font-weight: 400;
+	padding: 0;
 }
 
 h5 {
-	background-color: var(--sb-h5-background-color, transparent);
-	color: var(--sb-h5-color, hsl(212, 25%, 15%));
-	font-family: var(--sb-h5-font-family,
-			var(--sb-font-titles,
-				"Iowan Old Style",
-				"Palatino Linotype",
-				"URW Palladio L",
-				P052,
-				serif));
-	font-size: var(--sb-h5-font-size, var(--sb-step-0, 1rem));
-	font-variant-ligatures: var(--sb-h5-font-variant-ligatures, historical-ligatures);
-	font-variant-numeric: var(--sb-h5-font-variant-numeric, oldstyle-nums proportional-nums);
-	font-weight: var(--sb-h5-font-weight, 700);
-	padding: var(--sb-h5-padding, 0 0 0.5rem);
-	text-transform: var(--sb-h5-text-transform, none);
+	font-family: var(
+		--sb-font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
+	font-size: var(--sb-step-0, 1rem);
+	font-variant-ligatures: historical-ligatures;
+	font-variant-numeric: oldstyle-nums proportional-nums;
+	font-weight: 700;
+	padding: 0;
 }
 
 p {
-	margin: var(--sb-p-margin, 0.5rem 0);
+	margin: var(--sb-space-s) 0;
 }
 
 :not(pre) > code {
-	color: var(--sb-code-color, hsl(111, 46%, 24%));
+	color: hsl(111, 46%, 24%);
 }
 
 dl > dt {
-	font-size: var(--sb-dt-font-size, var(--sb-step-1, 1.25rem));
+	font-size: var(--sb-step-1, 1.25rem);
 }
 
 hr {
-	border: var(--sb-column-rule-border, none);
-	border-bottom: var(--sb-column-rule-border-bottom, 1px double hsl(154, 7%, 19%));
-	border-color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
-	color: var(--sb-column-rule-color, hsl(154, 7%, 19%));
-	margin: var(--sb-column-rule-margin, var(--sb-space-xl, 3rem) auto);
-	overflow: var(--sb-column-rule-overflow, visible);
-	text-align: var(--sb-column-rule-text-align, center);
-	width: var(--sb-column-rule-width, 10ch);
+	border: none;
+	border-bottom: 1px double hsl(154, 7%, 19%);
+	border-color: hsl(154, 7%, 19%);
+	color: hsl(154, 7%, 19%);
+	margin: var(--sb-space-xl, 3rem) auto;
+	overflow: visible;
+	text-align: center;
+	width: 10ch;
 }
 
 hr:after {
-	background-color: var(--sb-column-rule-background-color-after, hsl(80, 9%, 87%));
-	color: var(--sb-column-rule-color-after, hsl(154, 7%, 19%));
-	content: var(--sb-column-rule-content-after, " § ");
-	padding: var(--sb-column-rule-padding-after, 0 1ch);
-	position: var(--sb-column-rule-position-after, relative);
-	top: var(--sb-column-rule-top-after, calc(var(--sb-space-s, 1.5rem) / 2));
+	background-color: hsl(80, 9%, 87%);
+	color: hsl(154, 7%, 19%);
+	content: " § ";
+	padding: 0 1ch;
+	position: relative;
+	top: calc(var(--sb-space-s, 1.5rem) / 2);
 }
 
 details > div {
-	padding: var(--sb-details-div-padding, 0);
+	padding: details- 0;
+}
+
+ol,
+ul {
+	margin: 0 0 var(--sb-space-s, 1rem);
 }
 
 article ol li,
 details ol li {
-	font-variant-numeric: var(--sb-list-item-font-variant-numeric, oldstyle-nums proportional-nums);
-	list-style-type: var(--sb-list-item-list-style-type, decimal);
-	margin: var(--sb-list-item-margin, 0.5rem 0 0 1.25rem);
+	font-variant-numeric: oldstyle-nums proportional-nums;
+	line-height: 1.7;
+	list-style-type: decimal;
+	margin: 0;
 }
 
 article ul li,
 details ul li {
-	list-style-type: var(--sb-bulleted-list-item-list-style-type, square);
-	margin: var(--sb-bulleted-list-item-margin, 0.5rem 0 0 1.25rem);
-}
-
-details > summary {
-	list-style-type: revert;
+	line-height: 1.7;
+	list-style-type: square;
+	margin: 0;
 }
 
 details > summary > * {
@@ -214,12 +206,21 @@ pre {
 }
 
 :not(pre) > code {
-	color: var(--sb-inline-code-color, var(--sb-code-color, hsl(111, 46%, 24%)));
+	color: var(--sb-code-color, hsl(111, 46%, 24%));
 }
 
 pre,
 code {
-	font-family: var(--sb-code-block-font-family);
+	font-family: var(
+		--sb-font-code,
+		ui-monospace,
+		"Cascadia Code",
+		"Source Code Pro",
+		Menlo,
+		Consolas,
+		"DejaVu Sans Mono",
+		monospace
+	);
 }
 
 pre > code {
@@ -251,17 +252,15 @@ pre.astro-code {
 }
 
 pre.astro-code span.line::before {
-	border-right: var(--sb-code-block-border-right);
-	color: var(--sb-code-block-line-number-color);
 	content: counter(lines) "";
 	counter-increment: lines 1;
 	display: inline-block;
 	margin-right: 1rem;
 	padding: 0.1rem 0.5rem 0.1rem 0;
 	text-align: right;
-	width: var(--sb-line-number-width, 2ch);
+	width: var(--sb-line-number-width, 3ch);
 }
 
 main > article dl > dd {
-	margin: var(--sb-main-article-dd-margin, var(--sb-space-2xs, 0.5rem) 0 0 var(--sb-space-m, 1.5rem));
+	margin: 0;
 }

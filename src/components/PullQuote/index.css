@@ -1,49 +1,47 @@
 .sb-pull-quote {
-	background-color: var(--sb-pull-quote-background-color, hsl(111, 46%, 60%));
-	border-radius: var(--sb-pull-quote-border-radius, 5px);
-	color: var(--sb-pull-quote-color, hsl(212, 25%, 15%));
-	display: var(--sb-pull-quote-display, flex);
-	flex-direction: var(--sb-pull-quote-flex-direction, column);
+	background-color: hsl(111, 46%, 60%);
+	border-radius: 5px;
+	color: hsl(240, 5%, 8%);
+	display: flex;
+	flex-direction: column;
 	font-family: var(
-		--sb-pull-quote-font-family,
-			var(--sb-font-titles,
-			"Iowan Old Style",
-			"Palatino Linotype",
-			"URW Palladio L",
-			P052,
-			serif
-		));
-	font-size: var(--sb-pull-quote-font-size, 1.25rem);
-	font-weight: var(--sb-pull-quote-font-weight, 500);
-	justify-content: var(--sb-pull-quote-justify-content, space-evenly);
-	margin: var(--sb-box-margin);
-	padding: var(--sb-pull-quote-padding, 2rem 2rem 1.5rem);
+		--sb-font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
+	font-size: 1.25rem;
+	font-weight: 500;
+	justify-content: space-evenly;
+	margin: var(--sb-space-s, 1rem) 0;
+	padding: 2rem 2rem 1.5rem;
 }
 
 .sb-pull-quote-blockquote {
-	margin: var(--sb-pull-quote-blockquote-margin, 0);
+	margin: 0;
 }
 
 .sb-pull-quote .sb-pull-quote-figcaption {
-	align-items: var(--sb-pull-quote-figcaption-align-items, center);
-	color: var(--sb-pull-quote-figcaption-color, hsl(212, 25%, 15%));
-	display: var(--sb-pull-quote-figcaption-display, flex);
+	align-items: center;
+	color: hsl(240, 5%, 18%);
+	display: flex;
 	font-family: var(
-		--sb-pull-quote-figcaption-font-family,
-		var(--sb-font-titles,
-			"Iowan Old Style",
-			"Palatino Linotype",
-			"URW Palladio L",
-			P052,
-			serif
-		));
-	font-size: var(--sb-pull-quote-figcaption-font-size, 1rem);
-	font-style: var(--sb-pull-quote-figcaption-font-style, italic);
-	justify-content: var(--sb-pull-quote-figcaption-justify-content, flex-end);
-	text-align: var(--sb-pull-quote-figcaption-text-align, right);
+		--sb-font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
+	font-size: 1rem;
+	font-style: italic;
+	justify-content: flex-end;
+	text-align: right;
 }
 
 .sb-pull-quote .sb-pull-quote-figcaption::before {
-	content: var(--sb-pull-quote-author-before-content, "~ ");
-	margin-right: var(--sb-pull-quote-author-before-margin-right, 0.25rem);
+	content: "~ ";
+	margin-right: 0.25rem;
 }

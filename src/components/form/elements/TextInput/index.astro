@@ -24,7 +24,9 @@ const {
 } = Astro.props
 
 const datalistAttrs = mapAttributes(datalist, ["sb-datalist"])
-const elementAttrs = mapAttributes(attrs as HTMLAttributes, [`${field}-input`])
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, [
+	`sb-${field}-input`,
+])
 const wrapperAttrs = mapAttributes(wrapper, ["sb-input-wrapper"])
 
 const listId = `${id}_list`

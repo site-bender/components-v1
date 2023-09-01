@@ -9,19 +9,21 @@
 }
 
 .sb-faq-question > * {
-	font-family: var(--sb-faq-question-content-font-family,
-			var(--sb-font-body,
-				Inter,
-				Roboto,
-				"Helvetica Neue",
-				"Arial Nova",
-				"Nimbus Sans",
-				Arial,
-				sans-serif));
-	font-size: var(--sb-faq-question-content-font-size, var(--sb-step-1, 1.25rem));
-	padding: var(--sb-faq-question-content-padding, 0);
+	font-family: var(
+		--sb-font-body,
+		Inter,
+		Roboto,
+		"Helvetica Neue",
+		"Arial Nova",
+		"Nimbus Sans",
+		Arial,
+		sans-serif
+	);
+	font-size: var(--sb-step-1, 1.25rem);
+	padding: 0;
 }
 
 .sb-faq-answer {
-	margin: var(--sb-faq-answer-margin, var(--sb-space-s, 1rem) 0);
+	margin: 0 0 var(--sb-space-s, 1rem) 0;
+	padding: 0 var(--sb-space-m, 1rem);
 }

@@ -1,19 +1,19 @@
-header.sb-header {
-	align-items: var(--sb-header-align-items, center);
-	background-color: var(--sb-header-background-color, hsl(212, 25%, 15%));
-	border-bottom-color: var(--sb-header-border-color, hsl(212, 25%, 46%));
-	border-bottom-style: var(--sb-header-border-style, solid);
-	border-bottom-width: var(--sb-header-border-width, 1px);
-	color: var(--sb-header-color, hsl(212, 25%, 98%));
-	display: var(--sb-header-display, flex);
-	flex-basis: var(--sb-header-flex-basis, min-content);
-	flex-wrap: var(--sb-header-flex-wrap, wrap);
-	font-family: var(--sb-header-font-family, inherit);
-	font-size: var(--sb-header-font-size, inherit);
-	gap: var(--sb-header-gap, 1rem);
-	grid-area: var(--sb-header-grid-area, header);
-	isolation: var(--sb-header-isolation, isolate);
-	justify-content: var(--sb-header-justify-content, space-between);
-	max-width: var(--sb-header-max-width, 100vw);
-	padding: var(--sb-header-padding, 0.5rem 1.5rem);
+.sb-header {
+	align-items: center;
+	background-color: hsl(240, 5%, 18%);
+	border-bottom-color: hsl(240, 5%, 48%);
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	color: hsl(240, 5%, 98%);
+	display: flex;
+	flex-basis: min-content;
+	flex-wrap: wrap;
+	font-family: inherit;
+	font-size: inherit;
+	gap: 1rem;
+	grid-area: header;
+	isolation: isolate;
+	justify-content: space-between;
+	max-width: 100vw;
+	padding: var(--sb-space-s) var(--sb-space-m);
 }

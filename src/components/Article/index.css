@@ -1,37 +1,32 @@
 .sb-article {
-	margin: var(--sb-article-margin, var(--sb-space-s) auto);
-	max-width: var(--sb-article-max-width, min(48rem, 92vw));
-	width: var(--sb-article-width, 100%);
+	margin: var(--sb-space-s) auto;
+	max-width: min(48rem, 92vw);
+	width: 100%;
 }
 
 .sb-article > * + * {
-	margin-top: var(--sb-article-children-margin-top, var(--sb-space-s, 1rem));
+	margin-top: var(--sb-space-s, 1rem);
 }
 
 .sb-article a {
-	color: var(--sb-article-link-color, hsl(212, 57%, 32%));
-	display: var(--sb-article-link-display, inline-block);
-	margin: var(--sb-article-link-margin, -0.0625rem -0.1875rem);
-	padding: var(--sb-article-link-padding, 0.0625rem 0.1875rem);
-	text-decoration: var(--sb-article-link-text-decoration, underline);
-	text-underline-offset: var(--sb-article-link-text-underline-offset,
-			0.3125rem);
-	text-decoration-skip-ink: var(--sb-article-link-text-decoration-skip-ink,
-			none);
+	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	display: inline-block;
+	margin: -0.0625rem -0.1875rem;
+	padding: 0.0625rem 0.1875rem;
+	text-decoration: underline;
+	text-underline-offset: 0.3125rem;
+	text-decoration-skip-ink: none;
 }
 
 .sb-article a:visited {
-	color: var(--sb-article-link-color-visited, hsl(350, 50%, 30%));
-	text-decoration: var(--sb-article-link--decoration, underline);
+	color: hsl(350, 50%, 30%);
 }
 
 .sb-article a:focus,
 .sb-article a:hover {
-	border-radius: var(--sb-article-link-border-radius-hover, 5px);
-	background-color: var(--sb-article-link-background-color-hover,
-			var(--sb-article-link-background-color-hover, hsl(212, 57%, 32%)));
-	color: var(--sb-article-link-color-hover,
-			var(--sb-article-link-color-hover, hsl(210, 20%, 98%)));
-	text-decoration: var(--sb-article-link-text-decoration-hover, none);
-	text-decoration-skip: var(--sb-article-link-text-decoration-skip-hover, none);
+	border-radius: 5px;
+	background-color: var(--sb-color-link, hsl(212, 57%, 29%));
+	color: hsl(210, 20%, 98%);
+	text-decoration: none;
+	text-decoration-skip: none;
 }

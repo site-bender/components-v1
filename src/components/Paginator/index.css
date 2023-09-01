@@ -1,104 +1,105 @@
 .sb-remove {
-	display: var(--sb-remove-display, none);
+	display: none;
 }
 
 .sb-paginator {
-	align-items: var(--sb-paginator-align-items, center);
-	display: var(--sb-paginator-display, flex);
-	justify-content: var(--sb-paginator-justify-content, center);
-	position: var(--sb-paginator-position, relative);
-	padding: var(--sb-paginator-padding, 3.2rem 1.5rem 1rem);
-	width: var(--sb-paginator-width, 100vw);
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	padding: 3.2rem 1.5rem 1rem;
+	width: 100vw;
 }
 
 .sb-paginator-list {
-	list-style: var(--sb-paginator-list-list-style, none);
-	margin: var(--sb-paginator-list-margin, 0);
-	padding: var(--sb-paginator-list-padding, 0);
-	display: var(--sb-paginator-list-display, flex);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
 }
 
 .sb-paginator-list li {
-	font-size: var(--sb-paginator-list-li-font-size, 2rem);
-	height: var(--sb-paginator-list-li-height, 3rem);
-	width: var(--sb-paginator-list-li-width, 3rem);
-	display: var(--sb-paginator-list-li-display, flex);
-	align-items: var(--sb-paginator-list-li-align-items, center);
-	justify-content: var(--sb-paginator-list-li-justify-content, center);
-	border: var(--sb-paginator-list-li-border, 1px solid hsl(212, 57%, 32%));
-	border-radius: var(--sb-paginator-list-li-border-radius, 3px);
-	position: var(--sb-paginator-list-li-position, relative);
-	margin: var(--sb-paginator-list-li-margin, 0 1px);
+	font-size: 2rem;
+	height: 3rem;
+	width: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--sb-color-link, hsl(212, 57%, 29%));
+	border-radius: 3px;
+	position: relative;
+	margin: 0 1px;
 }
 
 .sb-paginator-list li:has(a[aria-current]) {
-	background-color: var(--sb-paginator-current-background-color, hsl(212, 57%, 32%));
-	color: var(--sb-paginator-current-color, hsl(210, 20%, 98%));
+	background-color: var(--sb-color-link, hsl(212, 57%, 29%));
+	color: hsl(210, 20%, 98%);
 }
 
 .sb-paginator-list li a {
-	align-items: var(--sb-paginator-link-align-items, center);
-	display: var(--sb-paginator-link-display, flex);
-	justify-content: var(--sb-paginator-link-justify-content, center);
-	color: var(--sb-paginator-link-color, hsl(212, 57%, 32%));
-	text-decoration: var(--sb-paginator-link-text-decoration, none);
-	font-variant-numeric: var(--sb-paginator-link-font-variant-numeric, tabular-nums lining-nums);
-	height: var(--sb-paginator-link-height, 100%);
-	width: var(--sb-paginator-link-width, 100%);
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	text-decoration: none;
+	font-variant-numeric: tabular-nums lining-nums;
+	height: 100%;
+	width: 100%;
 }
 
 .sb-paginator-list li a[aria-current] {
-	color: var(--sb-paginator-link-current-color, hsl(210, 20%, 98%));
+	color: hsl(210, 20%, 98%);
 }
 
 .sb-paginator-list li a[aria-current]:hover {
-	outline: var(--sb-paginator-link-outline-hover, none);
+	outline: none;
 }
 
 .sb-paginator-list li a[aria-current]::after {
-	content: var(--sb-paginator-link-content-after, attr(aria-label));
-	font-size: var(--sb-paginator-link-font-size-after, 1rem);
-	position: var(--sb-paginator-link-position-after, absolute);
-	top: var(--sb-paginator-link-top-after, -1.6rem);
-	left: var(--sb-paginator-link-left-after, 0);
-	white-space: var(--sb-paginator-link-white-space-after, nowrap);
-	color: var(--sb-paginator-link-color-after, var(--sb-paginator-text-color, hsl(212, 25%, 15%)));
+	content: attr(aria-label);
+	font-size: 1rem;
+	position: absolute;
+	top: -1.6rem;
+	left: 0;
+	white-space: nowrap;
+	color: hsl(240, 5%, 18%);
 }
 
 .sb-paginator-list:hover li a[aria-current]::after {
-	display: var(--sb-paginator-list-display-hover-after, none);
+	display: none;
 }
 
 .sb-paginator-list li:hover a[aria-current]::after {
-	display: var(--sb-paginator-list-item-display-hover-after, unset);
+	display: unset;
 }
 
 .sb-paginator-list li:has(a:not([aria-current])):focus-within,
 .sb-paginator-list li:has(a:not([aria-current])):hover {
-	border: var(--sb-paginator-item-border-hover, 2px solid hsl(212, 25%, 15%));
-	outline: var(--sb-paginator-item-outline-hover, 0);
+	border: 2px solid hsl(240, 5%, 18%);
+	outline: 0;
 }
 
 .sb-paginator-list li:focus-within a:not([aria-current]),
 .sb-paginator-list li:hover a:not([aria-current]) {
-	background-color: var(--sb-paginator-link-background-color-focus, hsla(212, 57%, 32%, 0.3));
-	color: var(--sb-paginator-link-color-focus, hsl(212, 25%, 15%));
-	outline: var(--sb-paginator-link-outline-focus, 0);
+	background-color: hsla(212, 57%, 32%, 0.3);
+	color: hsl(240, 5%, 18%);
+	outline: 0;
 }
 
 .sb-paginator-list li:hover a:not([aria-current])::after {
-	content: var(--sb-paginator-link-not-current-content-after-hover, attr(aria-label));
-	font-size: var(--sb-paginator-link-not-current-font-size-after-hover, 1rem);
-	position: var(--sb-paginator-link-not-current-position-after-hover, absolute);
-	top: var(--sb-paginator-link-not-current-top-after-hover, -1.6rem);
-	left: var(--sb-paginator-link-not-current-left-after-hover, 0);
-	white-space: var(--sb-paginator-link-not-current-white-space-after-hover, nowrap);
-	color: var(--sb-paginator-link-not-current-color-after-hover, hsl(212, 25%, 15%));
+	content: attr(aria-label);
+	font-size: 1rem;
+	position: absolute;
+	top: -1.6rem;
+	left: 0;
+	white-space: nowrap;
+	color: hsl(240, 5%, 18%);
 }
 
 @media only screen and (max-width: 96rem) {
-	.sb-paginator-list .sb-paginator-list-item:not(:first-child):not(:last-child) {
-		display: var(--sb-print-paginator-button-display, none);
+	.sb-paginator-list
+		.sb-paginator-list-item:not(:first-child):not(:last-child) {
+		display: none;
 	}
 
 	.sb-paginator {

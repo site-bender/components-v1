@@ -1,6 +1,6 @@
 .sb-qr-code {
-	align-items: var(--sb-qr-code-align-items, center);
-	display: var(--sb-qr-code-display, flex);
-	justify-content: var(--sb-qr-code-justify-content, center);
-	padding: var(--sb-qr-code-padding, 1rem);
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	padding: 1rem;
 }

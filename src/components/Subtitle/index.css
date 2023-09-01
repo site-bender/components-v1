@@ -1,4 +1,4 @@
 .sb-post-subtitle {
-	font-size: var(--sb-post-subtitle-font-size, 1rem);
-	margin: var(--sb-post-subtitle-margin, 0);
+	font-size: 1rem;
+	margin: 0;
 }

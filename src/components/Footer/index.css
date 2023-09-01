@@ -1,53 +1,60 @@
-footer.sb-footer {
-	align-items: var(--sb-footer-align-items, center);
-	background-color: var(--sb-footer-background-color, hsl(212, 25%, 89%));
-	border-top-color: var(--sb-footer-border-color, hsl(212, 25%, 31%));
-	border-top-style: var(--sb-footer-border-style, solid);
-	border-top-width: var(--sb-footer-border-width, 1px);
-	color: var(--sb-footer-color, hsl(212, 25%, 98%));
-	display: var(--sb-footer-display, flex);
-	flex-basis: var(--sb-footer-flex-basis, min-content);
-	flex-wrap: var(--sb-footer-flex-wrap, wrap);
-	gap: var(--sb-footer-gap, 1rem);
-	grid-area: var(--sb-footer-grid-area, footer);
-	isolation: var(--sb-footer-isolation, isolate);
-	justify-content: var(--sb-footer-justify-content, space-between);
-	padding: var(--sb-footer-padding, 1rem 1.5rem);
+.sb-footer {
+	align-items: center;
+	background-color: hsl(240, 5%, 88%);
+	border-top-color: hsl(240, 5%, 28%);
+	border-top-style: solid;
+	border-top-width: 1px;
+	color: hsl(240, 5%, 98%);
+	display: flex;
+	flex-basis: min-content;
+	flex-wrap: wrap;
+	gap: 1rem;
+	grid-area: footer;
+	isolation: isolate;
+	justify-content: space-between;
+	padding: 1rem 1.5rem;
 }
 
-footer.sb-footer .sb-nav-list {
-	align-items: var(--sb-footer-nav-list-align-items, center);
-	display: var(--sb-footer-nav-list-display, flex);
-	flex-wrap: var(--sb-footer-nav-list-flex-wrap, wrap);
-	gap: var(--sb-footer-nav-list-gap, 0.25rem);
-	justify-content: var(--sb-footer-nav-list-justify-content, flex-start);
-	list-style-type: var(--sb-footer-nav-list-list-style-type, none);
-	margin: var(--sb-footer-nav-list-margin, 0);
-	padding: var(--sb-footer-nav-list-padding, 0);
+.sb-footer .sb-nav-list {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+	justify-content: flex-start;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
-footer.sb-footer li {
-	margin-right: var(--sb-footer-li-margin-right, 1rem);
-	white-space: var(--sb-footer-li-white-space, nowrap);
+.sb-footer li {
+	margin-right: 1rem;
+	white-space: nowrap;
 }
 
-footer.sb-footer .sb-nav {
-	text-transform: var(--sb-footer-nav-text-transform, lowercase);
+.sb-footer .sb-nav {
+	text-transform: lowercase;
 }
 
-footer.sb-footer a.sb-nav-link {
-	background-color: var(--sb-footer-nav-link-background-color, transparent);
-	color: var(--sb-footer-nav-link-color, hsl(212, 57%, 32%));
-	padding: var(--sb-footer-nav-link-padding, 3px 5px);
-	text-decoration: var(--sb-footer-nav-link-text-decoration, none);
+.sb-footer .sb-nav-this-page {
+	background-color: var(--sb-color-link, hsl(212, 57%, 29%));
+	border-radius: 4px;
+	color: hsl(240, 5%, 88%);
+	padding: 3px 5px;
 }
 
-footer.sb-footer a.sb-nav-link:focus,
-footer.sb-footer a.sb-nav-link:hover {
-	background-color: var(--sb-footer-nav-link-background-color, hsl(212, 57%, 32%));
-	border-radius: var(--sb-footer-nav-link-border-radius, 4px);
-	color: var(--sb-footer-nav-link-color, hsl(212, 25%, 89%));
-	outline: var(--footer-nav-link-outline, 2px solid hsl(212, 57%, 32%));
-	outline-offset: var(--sb-footer-nav-link-outline-offset, 3px);
-	text-decoration: var(--sb-footer-nav-link-text-decoration, none);
+.sb-footer a.sb-nav-link {
+	background-color: transparent;
+	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	padding: 3px 5px;
+	text-decoration: none;
+}
+
+.sb-footer a.sb-nav-link:focus,
+.sb-footer a.sb-nav-link:hover {
+	background-color: var(--sb-color-link, hsl(212, 57%, 29%));
+	border-radius: 4px;
+	color: hsl(240, 5%, 88%);
+	outline: 2px solid var(--sb-color-link, hsl(212, 57%, 29%));
+	outline-offset: 3px;
+	text-decoration: none;
 }

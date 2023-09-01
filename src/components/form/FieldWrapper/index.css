@@ -1,75 +1,80 @@
 .sb-field {
-	align-items: var(--sb-field-align-items, flex-start);
-	display: var(--sb-field-display, flex);
-	flex-direction: var(--sb-field-flex-direction, column);
-	gap: var(--sb-field-gap, 0.5rem);
-	justify-content: var(--sb-field-justify-content, space-between);
-	margin-bottom: var(--sb-field-margin-bottom, var(--sb-space-s, 1.5rem));
-	max-width: var(--sb-field-max-width, 48ch);
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	justify-content: space-between;
+	margin-bottom: var(--sb-space-s, 1.5rem);
+	max-width: 48ch;
 }
 
 .sb-field .sb-label {
-	font-weight: var(--sb-field-label-font-weight, 400);
+	font-weight: 400;
 }
 
 .sb-field textarea {
-	max-width: var(--sb-field-textarea-max-width, 48ch);
-	width: var(--sb-field-textarea-width, 100%);
+	max-width: 48ch;
+	width: 100%;
 }
 
 .sb-field input,
 .sb-field select,
 .sb-field textarea {
-	border: var(--sb-field-border, 2px solid hsl(212, 25%, 71%));
-	border-radius: var(--sb-field-border-radius, 4px);
-	padding: var(--sb-field-padding, 0.3rem 0.6rem);
+	border: 2px solid hsl(240, 5%, 68%);
+	border-radius: 4px;
+	font-family: var(--sb-font-body);
+	font-size: var(--sb-step-0, 1rem);
+	line-height: 1.4;
+	padding: 0.3rem 0.6rem;
 }
 
 .sb-field input:focus,
 .sb-field select:focus,
 .sb-field textarea:focus {
-	border: var(--sb-field-border-focus, 2px solid hsl(200, 82%, 40%));
+	border: 2px solid var(--sb-color-link, hsl(212, 57%, 29%));
+	outline-offset: 5px;
 }
 
 .sb-field:has(input:focus) .sb-label,
 .sb-field:has(select:focus) .sb-label,
 .sb-field:has(textarea:focus) .sb-label {
-	color: var(--sb-field-label-color-focus, hsl(212, 57%, 32%));
-	font-weight: var(--sb-field-label-font-weight-focus, 600);
+	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	font-weight: 600;
 }
 
 .sb-field input:required,
 .sb-field select:required,
 .sb-field textarea:required {
-	border: var(--sb-field-border-required, 4px double hsl(111, 46%, 24%));
+	border: 4px double hsl(111, 46%, 24%);
 }
 
 .sb-field input:required:focus,
 .sb-field select:required:focus,
 .sb-field textarea:required:focus {
-	border: var(--sb-field-border-required-focused, 4px double hsl(111, 46%, 60%));
+	border: 4px double hsl(111, 46%, 60%);
+	outline-offset: 5px;
 }
 
 .sb-field:has(input:required:focus) .sb-label,
 .sb-field:has(select:required:focus) .sb-label,
 .sb-field:has(textarea:required:focus) .sb-label {
-	color: var(--sb-field-label-color-focus, hsl(111, 46%, 24%));
-	font-weight: var(--sb-field-label-font-weight-focus, 600);
+	color: hsl(111, 46%, 24%);
+	font-weight: 600;
 }
 
 .sb-optional::after {
-	content: var(--sb-optional-content-after, "(optional)");
-	display: var(--sb-optional-display-after, inline-block);
-	margin-left: var(--sb-optional-margin-left-after, 0.5rem);
+	content: "(optional)";
+	display: inline-block;
+	margin-left: 0.5rem;
 }
 
 .sb-field input[type="number"] {
-	text-align: var(--sb-field-input-number-text-align, right);
+	text-align: right;
 }
 
 .sb-field input[type="color"] {
-	all: var(--sb-field-input-color-all, revert);
-	border: var(--sb-field-input-color-border, 2px solid forestgreen);
-	border-radius: var(--sb-field-input-color-border-radius, 4px);
-	min-height: var(--sb-field-input-color-min-height, 3rem);
+	all: revert;
+	border: 2px solid forestgreen;
+	border-radius: 4px;
+	min-height: 3rem;
 }

@@ -1,101 +1,97 @@
-aside.sb-messenger {
-	align-items: var(--sb-messenger-align-items, center);
-	background-color: var(--sb-messenger-background-color, hsl(212, 25%, 89%));
-	box-shadow: var(--sb-messenger-box-shadow, 0 0 12px hsl(212, 25%, 15%));
-	color: var(--sb-messenger-color, hsl(212, 25%, 23%));
-	display: var(--sb-messenger-display, flex);
-	justify-content: var(--sb-messenger-justify-content, space-between);
-	margin: var(--sb-messenger-margin, 0);
-	padding: var(--sb-messenger-padding, 1rem 1.5rem);
+.sb-messenger {
+	align-items: center;
+	background-color: hsl(240, 5%, 88%);
+	box-shadow: 0 0 12px hsl(240, 5%, 18%);
+	color: hsl(240, 5%, 18%);
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+	padding: 1rem 1.5rem;
 }
 
-aside.sb-messenger.sb-messenger-danger {
-	background-color: var(--sb-messenger-background-color-warning, hsl(0, 57%, 76%));
-	color: var(--sb-warning-color, hsl(212, 25%, 15%));
+.sb-messenger.sb-messenger-danger {
+	background-color: hsl(0, 57%, 76%);
+	color: hsl(240, 5%, 18%);
 }
 
-aside.sb-messenger.sb-messenger-info {
-	background-color: var(--sb-messenger-background-color-warning, hsl(193, 73%, 72%));
-	color: var(--sb-warning-color, hsl(212, 25%, 15%));
+.sb-messenger.sb-messenger-info {
+	background-color: hsl(193, 73%, 72%);
+	color: hsl(240, 5%, 18%);
 }
 
-aside.sb-messenger.sb-messenger-warning {
-	background-color: var(--sb-messenger-background-color-warning, hsl(56, 100%, 72%));
-	color: var(--sb-warning-color, hsl(212, 25%, 15%));
+.sb-messenger.sb-messenger-warning {
+	background-color: var(--sb-color-highlight, hsl(56, 100%, 72%));
+	color: hsl(240, 5%, 18%);
 }
 
-aside.sb-messenger details {
-	margin-top: var(--sb-messenger-details-margin-top, 0);
-	position: var(--sb-messenger-details-position, relative);
+.sb-messenger details {
+	margin-top: 0;
+	position: relative;
 }
 
-aside.sb-messenger details * + * {
-	margin: var(--sb-messenger-details-children-margin, 0 auto var(--sb-space-s, 1rem));
-	max-width: var(--sb-messenger-details-children-max-width, min(48rem, 92vw));
+.sb-messenger details * + * {
+	margin: 0 auto var(--sb-space-s, 1rem);
+	max-width: min(48rem, 92vw);
 }
 
-aside.sb-messenger summary {
-	flex-basis: var(--sb-messenger-summary-flex-basis, auto);
-	font-family: var(--sb-messenger-summary-font-family);
-	font-size: var(--sb-messenger-summary-font-size);
-	font-weight: var(--sb-messenger-summary-font-weight, 400);
-	outline-color: var(--sb-messenger-summary-outline-color);
+.sb-messenger summary {
+	flex-basis: auto;
+	font-weight: 400;
 }
 
-aside.sb-messenger details[open] summary {
-	margin-bottom: var(--sb-messenger-details-open-margin-bottom, 1rem);
+.sb-messenger details[open] summary {
+	margin-bottom: 1rem;
 }
 
-aside.sb-messenger .sb-closer {
-	align-items: var(--sb-messenger-closer-align-items, center);
-	display: var(--sb-messenger-closer-display, flex);
-	flex-basis: var(--sb-messenger-closer-flex-basis, min-content);
-	height: var(--sb-messenger-closer-height, 48px);
-	justify-content: var(--sb-messenger-closer-justify-content, center);
-	margin: var(--sb-messenger-closer-margin, 0 0 0 1rem);
-	min-height: var(--sb-messenger-closer-min-height, 48px);
-	min-width: var(--sb-messenger-closer-min-width, 48px);
-	padding: var(--sb-messenger-closer-padding, 0);
+.sb-messenger .sb-closer {
+	align-items: center;
+	display: flex;
+	flex-basis: min-content;
+	height: 48px;
+	justify-content: center;
+	margin: 0 0 0 1rem;
+	min-height: 48px;
+	min-width: 48px;
+	padding: 0;
 }
 
-aside.sb-messenger .sb-closer::after {
-	content: var(--sb-messenger-closer-after-content, "×");
-	font-size: var(--sb-messenger-closer-after-font-size, 2.4rem);
+.sb-messenger .sb-closer::after {
+	content: "×";
+	font-size: 2.4rem;
 }
 
-aside.sb-messenger .sb-closer:focus::after,
-aside.sb-messenger .sb-closer:hover::after {
-	border: var(--sb-messenger-closer-after-border-hover, none);
+.sb-messenger .sb-closer:focus::after,
+.sb-messenger .sb-closer:hover::after {
+	border: none;
 	border-radius: 5px;
-	color: var(--sb-messenger-closer-after-color-hover, hsl(350, 50%, 30%));
-	content: var(--sb-messenger-closer-after-content-hover, "close");
-	font-size: var(--sb-messenger-closer-after-font-size-hover, 1.2rem);
-	outline: var(--sb-messenger-closer-after-outline-hover, 2px solid hsl(350, 50%, 30%));
+	color: hsl(350, 50%, 30%);
+	content: "close";
+	font-size: 1.2rem;
+	outline: 2px solid hsl(350, 50%, 30%);
 	outline-offset: 5px;
 	margin-top: 0.5rem;
 }
 
 @media print {
-	aside.sb-messenger:has(details) {
-		display: var(--sb-messenger-display, none);
+	.sb-messenger:has(details) {
+		display: none;
 	}
 
-	aside.sb-messenger:has(details[open]) {
-		display: var(--sb-messenger-display-open, block);
-		margin: var(--sb-messenger-margin-open, var(--sb-box-margin) 0);
-		padding: var(--sb-messenger-padding-open, var(--sb-box-padding) 0);
+	.sb-messenger:has(details[open]) {
+		display: block;
+		margin: var(--sb-space-s, 1rem) 0;
+		padding: var(--sb-space-s) 0;
 	}
 
-	aside.sb-messenger details[open]::after {
-		color: var(--sb-messenger-color-open-after, var(--sb-separator-color));
-		content: var(--sb-messenger-content-open-after, "\22a3\22a2");
-		display: var(--sb-messenger-display-open-after, flex);
-		font-size: var(--sb-messenger-font-size-open-after, var(--sb-step-1));
-		justify-content: var(--sb-messenger-justify-content-open-after, center);
-		line-height: var(--sb-messenger-line-height-open-after, 3);
+	.sb-messenger details[open]::after {
+		content: "\22a3\22a2";
+		display: flex;
+		font-size: var(--sb-step-1);
+		justify-content: center;
+		line-height: 3;
 	}
 
-	aside.sb-messenger summary {
-		list-style-type: var(--sb-messenger-summary-list-style-type, none);
+	.sb-messenger summary {
+		list-style-type: none;
 	}
 }

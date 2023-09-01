@@ -1,11 +1,12 @@
 .sb-faqs {
-	font-family: var(--sb-faqs-question-font-family,
-			var(--sb-font-body,
-				Inter,
-				Roboto,
-				"Helvetica Neue",
-				"Arial Nova",
-				"Nimbus Sans",
-				Arial,
-				sans-serif));
+	font-family: var(
+		--sb-font-body,
+		Inter,
+		Roboto,
+		"Helvetica Neue",
+		"Arial Nova",
+		"Nimbus Sans",
+		Arial,
+		sans-serif
+	);
 }

@@ -1,44 +1,44 @@
-aside.sb-digression {
-	background-color: var(--sb-digression-background-color, hsl(56, 100%, 72%));
-	border-radius: var(--sb-digression-border-radius, 5px);
-	color: var(--sb-digression-color, hsl(212, 25%, 15%));
-	margin: var(--sb-digression-margin, 0);
-	padding: var(--sb-digression-padding, var(--sb-space-s, 1rem));
+.sb-digression {
+	background-color: var(--sb-color-highlight, hsl(56, 100%, 72%));
+	border-radius: 5px;
+	color: hsl(240, 5%, 18%);
+	margin: 0;
+	padding: var(--sb-space-s, 1rem);
 }
 
-aside.sb-digression details {
-	margin-top: var(--sb-digression-details-margin-top, 0);
+.sb-digression details {
+	margin-top: 0;
 }
 
-aside.sb-digression summary {
-	font-family: var(--sb-digression-summary-font-family, inherit);
-	font-size: var(--sb-digression-summary-font-size, inherit);
-	font-weight: var(--sb-digression-summary-font-weight, 400);
-	outline-color: var(--sb-digression-summary-outline-color, inherit);
+.sb-digression summary {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: 400;
+	outline-color: inherit;
 }
 
-aside.sb-digression summary:focus,
-aside.sb-digression summary:hover {
-	border-radius: var(--sb-digression-summary-border-radius, 5px);
-	outline-offset: var(--sb-digression-summary-outline-offset, 3px);
-	outline: var(--sb-digression-summary-outline, 2px dotted var(--sb-digression-summary-outline-color));
+.sb-digression summary:focus,
+.sb-digression summary:hover {
+	border-radius: 5px;
+	outline-offset: 3px;
+	outline: 2px dotted var(--sb-color-highlight, hsl(56, 100%, 72%));
 }
 
-aside.sb-digression details[open] summary {
-	margin-bottom: var(--sb-box-open-margin-bottom, inherit);
+.sb-digression details[open] summary {
+	margin-bottom: inherit;
 }
 
 @media print {
-	aside.sb-digression:has(details) {
-		display: var(--sb-print-digression-display, none);
+	.sb-digression:has(details) {
+		display: none;
 	}
 
-	aside.sb-digression:has(details[open]) {
-		display: var(--sb-print-digression-display-open, block);
+	.sb-digression:has(details[open]) {
+		display: block;
 	}
 
-	aside.sb-digression summary {
-		list-style-type: var(--sb-digression-summary-list-style-type, none);
-		margin-bottom: var(--sb-digression-summary-margin-bottom, 1rem);
+	.sb-digression summary {
+		list-style-type: none;
+		margin-bottom: 1rem;
 	}
 }

@@ -1,5 +1,11 @@
 import { defineConfig } from "astro/config"
+import sitebenderTheme from "./sitebender.theme.dark.json"
 
-// https://astro.build/config
 // ignore unused exports
-export default defineConfig({})
+export default defineConfig({
+	markdown: {
+		shikiConfig: {
+			theme: sitebenderTheme,
+		},
+	},
+})

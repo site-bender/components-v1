@@ -1,6 +1,6 @@
 .sb-button-bar {
-	border-radius: var(--sb-button-bar-border-radius, 5px);
-	border: var(--sb-button-bar-border, 1px solid hsl(212, 25%, 83%));
-	padding: var(--sb-button-bar-padding, 1rem);
+	border-radius: 5px;
+	border: 1px solid hsl(240, 5%, 88%);
+	padding: 1rem;
 	width: 100%;
 }

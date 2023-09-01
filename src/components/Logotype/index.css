@@ -1,32 +1,32 @@
 .sb-logotype {
-	background-color: var(--sb-logotype-background-color, var(--sb-color-gray-7));
-	color: var(--sb-logotype-color, hsl(212, 25%, 98%));
-	font-family: var(--sb-logotype-font-family,
-			var(--sb-font-body,
-				Inter,
-				Roboto,
-				"Helvetica Neue",
-				"Arial Nova",
-				"Nimbus Sans",
-				Arial,
-				sans-serif));
-	font-variant-ligatures: var(--sb-logotype-font-variant-ligatures, historical-ligatures);
-	font-weight: var(--sb-logotype-font-weight, 300);
-	line-height: var(--sb-logotype-line-height, 1.2);
-	margin: var(--sb-logotype-margin, 0);
-	text-transform: var(--sb-logotype-text-transform, none);
+	background-color: inherit;
+	color: hsl(240, 5%, 98%);
+	font-family: var(
+		--sb-font-body,
+		Inter,
+		Roboto,
+		"Helvetica Neue",
+		"Arial Nova",
+		"Nimbus Sans",
+		Arial,
+		sans-serif
+	);
+	font-variant-ligatures: historical-ligatures;
+	font-weight: 300;
+	line-height: 1.2;
+	margin: 0;
 }
 
-.sb-logotype a.sb-logotype-link {
-	background-color: var(--sb-logotype-link-background-color, var(--sb-color-gray-7));
-	border-radius: var(--sb-logotype-link-border-radius, 5px);
-	color: var(--sb-logotype-link-color, hsl(212, 25%, 98%));
-	text-decoration: var(--sb-logotype-link-text-decoration, none);
+a.sb-logotype-link {
+	background-color: inherit;
+	border-radius: 5px;
+	color: hsl(240, 5%, 98%);
+	text-decoration: none;
 }
 
-.sb-logotype a.sb-logotype-link:focus,
-.sb-logotype a.sb-logotype-link:hover {
-	color: var(--sb-logotype-link-color-hover, hsl(56, 100%, 72%));
-	outline: var(--sb-logotype-link-outline, 2px solid hsl(56, 100%, 72%));
-	outline-offset: var(--sb-logotype-link-outline-offset, 5px);
+a.sb-logotype-link:focus,
+a.sb-logotype-link:hover {
+	color: var(--sb-color-highlight, hsl(56, 100%, 72%));
+	outline: 2px solid var(--sb-color-highlight, hsl(56, 100%, 72%));
+	outline-offset: 5px;
 }

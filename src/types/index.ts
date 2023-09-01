@@ -528,6 +528,7 @@ export type PaginatorProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
 	{
 		pages: Record<string, Partial<Metadata>>
+		position?: "bottom" | "top" | undefined | null
 	}
 >
 

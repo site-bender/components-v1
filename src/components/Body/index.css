@@ -19,30 +19,31 @@
 	--sb-space-3xl: clamp(6rem, calc(5.46rem + 2.68vw), 7.88rem);
 }
 
-body {
-	align-items: var(--sb-body-align-item, stretch);
-	background-color: var(--sb-body-background-color, hsl(212, 25%, 98%));
-	color: var(--sb-body-color, hsl(212, 25%, 31%));
-	display: var(--sb-body-display, flex);
-	flex-direction: var(--sb-body-flex-direction, column);
-	font-family: var(--sb-body-font-family,
-			var(--sb-font-body,
-				Inter,
-				Roboto,
-				"Helvetica Neue",
-				"Arial Nova",
-				"Nimbus Sans",
-				Arial,
-				sans-serif));
-	font-size: var(--sb-body-font-size, var(--sb-step-0, 1rem));
-	font-variant-numeric: var(--sb-font-variant-numeric, oldstyle-nums proportional-nums);
-	font-variant-ligatures: var(--sb-body-font-variant-ligatures, historical-ligatures);
-	font-weight: var(--sb-body-font-weight, 400);
-	justify-content: var(--sb-body-justify-content, space-between);
-	line-height: var(--sb-body-line-height, 1.4);
-	margin: var(--sb-body-margin, 0);
-	min-height: var(--sb-body-min-height, 100vh);
-	padding: var(--sb-body-padding, 0);
-	position: var(--sb-body-position, relative);
-	quotes: var(--sb-body-quotes, "“" "”" "‘" "’");
+.sb-body {
+	align-items: stretch;
+	background-color: hsl(240, 5%, 98%);
+	color: hsl(240, 5%, 28%);
+	display: flex;
+	flex-direction: column;
+	font-family: var(
+		--sb-font-body,
+		Inter,
+		Roboto,
+		"Helvetica Neue",
+		"Arial Nova",
+		"Nimbus Sans",
+		Arial,
+		sans-serif
+	);
+	font-size: var(--sb-step-0, 1rem);
+	font-variant-numeric: oldstyle-nums proportional-nums;
+	font-variant-ligatures: historical-ligatures;
+	font-weight: 400;
+	justify-content: space-between;
+	line-height: 1.5;
+	margin: 0;
+	min-height: 100vh;
+	padding: 0;
+	position: relative;
+	quotes: "“" "”" "‘" "’";
 }

@@ -1,16 +1,16 @@
-article.sb-cards {
-	margin: var(--sb-cards-margin, var(--sb-space-s, 1rem) 0 0);
-	max-width: var(--sb-cards-max-width, unset);
-	width: var(--sb-cards-width, 100%);
+.sb-cards {
+	margin: var(--sb-space-s, 1rem) 0 0;
+	max-width: unset;
+	width: 100%;
 }
 
-article.sb-cards .sb-cards-content {
+.sb-cards .sb-cards-content {
 	display: grid;
-	grid-gap: var(--sb-space-s, 1rem);
+	grid-gap: 1rem;
 }
 
 @supports (width: min(24rem, 100%)) {
-	article.sb-cards .sb-cards-content {
+	.sb-cards .sb-cards-content {
 		grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
 	}
 }

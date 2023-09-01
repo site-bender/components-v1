@@ -1,8 +1,8 @@
 nav.sb-nav a {
-	color: var(--sb-nav-link-color, hsl(193, 73%, 72%));
-	text-decoration: var(--sb-nav-link-text-decoration, none);
+	color: hsl(193, 73%, 72%);
+	text-decoration: none;
 }
 
 .sb-nav-list {
-	margin: var(--sb-nav-list-margin, 0);
+	margin: 0;
 }

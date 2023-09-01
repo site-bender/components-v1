@@ -1,3 +1,3 @@
 .sb-link {
-	text-decoration: var(--sb-link-text-decoration, underline);
+	text-decoration: underline;
 }

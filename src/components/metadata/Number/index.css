@@ -1,4 +1,4 @@
-a.sb-tabular-nums,
-span.sb-tabular-nums {
+.sb-tabular-nums,
+a.sb-tabular-nums {
 	font-variant-numeric: tabular-nums;
 }

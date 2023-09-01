@@ -1,31 +1,29 @@
 .sb-card {
-	border: var(--sb-card-border, 1px solid hsl(212, 25%, 83%));
-	border-radius: var(--sb-card-border-radius, 5px);
-	break-inside: var(--sb-card-break-inside, avoid);
+	break-inside: avoid;
 	flex-grow: 1;
 	flex-shrink: 1;
-	margin: var(--sb-card-margin, 0 -1rem 1rem);
-	max-width: var(--sb-card-max-width, 32rem);
-	padding: var(--sb-card-padding, 1rem);
+	margin: 0 -1rem 1rem;
+	max-width: 32rem;
+	padding: 1rem;
 }
 
 .sb-card h2.sb-card-heading,
 .sb-card h3.sb-card-heading,
 .sb-card h4.sb-card-heading {
-	font-size: var(--sb-card-heading-font-size, var(--sb-step-1, 1.25rem));
-	margin: var(--sb-card-heading-margin, 0);
+	font-size: var(--sb-step-1, 1.25rem);
+	margin: 0;
 }
 
 .sb-card .sb-card-link {
-	filter: var(--sb-card-link-filter, grayscale(1))
+	filter: grayscale(1);
 }
 
 .sb-card .sb-card-link:focus,
 .sb-card .sb-card-link:hover {
-	filter: var(--sb-card-link-filter-hover, grayscale(0))
+	filter: grayscale(0);
 }
 
 .sb-card:focus-within .sb-card-link .sb-card-heading,
 .sb-card .sb-card-link:hover .sb-card-heading {
-	color: var(--sb-card-heading-color-hover, hsl(297, 49%, 37%));
+	color: hsl(297, 49%, 37%);
 }

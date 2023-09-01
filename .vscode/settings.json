@@ -1,7 +1,6 @@
 {
 	"files.exclude": {
 		".vscode": true,
-		"astro.config.mjs": true,
 		"pnpm-lock.yaml": true,
 		".depcheckrc": true,
 		".gitignore": true,
@@ -12,7 +11,6 @@
 		"example/.editorconfig": true,
 		"example/.gitignore": true,
 		"example/.npmcheckrc": true,
-		"example/components.theme.dark.json": true,
 		"example/astro.config.mjs": true,
 		"example/pnpm-lock.yaml": true,
 		".git": true,
@@ -47,5 +45,11 @@
 	"css.format.spaceAroundSelectorSeparator": true,
 	"[xml]": {
 		"editor.defaultFormatter": "mikeburgh.xml-format"
-	}
+	},
+	"cSpell.words": [
+		"funnypot",
+		"icterine",
+		"mauveine",
+		"nums"
+	]
 }
