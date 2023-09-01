@@ -11,7 +11,7 @@ import type {
 	RealNumberValue,
 } from "../../types/values"
 
-import makeOperator from ".."
+import makeOperator from "../"
 
 export default function makeMinimum(operation: MinimumOperation): Injector {
 	const { operands } = operation as MinimumOperation

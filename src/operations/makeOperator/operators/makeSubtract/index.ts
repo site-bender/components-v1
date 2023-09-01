@@ -6,7 +6,7 @@ import type {
 } from "../../types/operations"
 
 import type { NumberValue } from "../../types/values"
-import makeOperator from ".."
+import makeOperator from "../"
 import subtractFractions from "./subtractFractions"
 import subtractIntegers from "./subtractIntegers"
 import subtractPrecisionNumbers from "./subtractPrecisionNumbers"

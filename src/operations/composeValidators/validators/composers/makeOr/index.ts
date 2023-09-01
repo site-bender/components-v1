@@ -6,7 +6,7 @@ import type {
 } from "../../../../../types/constraints"
 
 import pipeAsync from "../../../../../utilities/pipeAsync"
-import composeValidators from "../../.."
+import composeValidators from "../../../"
 
 const orFormatter = new Intl.ListFormat("en", {
 	style: "long",

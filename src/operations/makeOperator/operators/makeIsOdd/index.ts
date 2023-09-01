@@ -5,7 +5,7 @@ import type {
 } from "../../types/operations"
 
 import type { IntegerValue } from "../../types/values"
-import makeOperator from ".."
+import makeOperator from "../"
 import checkIsOdd from "./checkIsOdd"
 
 export default function makeIsOdd(operation: IsOddOperation): Injector {

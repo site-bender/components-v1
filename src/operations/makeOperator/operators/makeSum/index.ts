@@ -2,7 +2,7 @@ import type { TypeOfReturn, TypeOfTruncation } from "../../types/enums"
 import type { Injector, Operation, SumOperation } from "../../types/operations"
 
 import type { NumberValue } from "../../types/values"
-import makeOperator from ".."
+import makeOperator from "../"
 import truncate from "../utilities/truncate"
 import addFractions from "./addFractions"
 import addIntegers from "./addIntegers"

@@ -5,7 +5,7 @@ import {
 } from "../../types/operations"
 
 import type { NumberValue } from "../../types/values"
-import makeOperator from ".."
+import makeOperator from "../"
 import getReciprocal from "./getReciprocal"
 
 export default function makeReciprocal(

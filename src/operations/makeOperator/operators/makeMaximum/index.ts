@@ -11,7 +11,7 @@ import type {
 	RealNumberValue,
 } from "../../types/values"
 
-import makeOperator from ".."
+import makeOperator from "../"
 
 export default function makeMaximum(operation: MaximumOperation): Injector {
 	const { operands } = operation as MaximumOperation

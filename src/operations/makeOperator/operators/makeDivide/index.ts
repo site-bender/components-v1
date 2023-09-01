@@ -6,7 +6,7 @@ import type {
 } from "../../types/operations"
 
 import type { NumberValue } from "../../types/values"
-import makeOperator from ".."
+import makeOperator from "../"
 import divideFractions from "./divideFractions"
 import divideIntegers from "./divideIntegers"
 import dividePrecisionNumbers from "./dividePrecisionNumbers"

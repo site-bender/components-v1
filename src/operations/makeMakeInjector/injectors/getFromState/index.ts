@@ -5,7 +5,7 @@ import type {
 import type { EmptyValue, Value } from "../../../../types/values"
 
 // import type { Store } from "solid-js/store"
-// import type { StoreConfig } from "../.."
+// import type { StoreConfig } from "../../"
 import not from "../../../../utilities/not"
 import parseValue from "../../utilities/parseValue"
 

@@ -5,7 +5,7 @@ import type {
 } from "../../../../types/operations"
 
 import type { NumberValue } from "../../../../types/values"
-import makeOperator from "../.."
+import makeOperator from "../../"
 import calculateAbsoluteValue from "./calculateAbsoluteValue"
 
 export default function makeAbsoluteValue(
