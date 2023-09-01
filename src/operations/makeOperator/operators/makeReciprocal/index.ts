@@ -1,11 +1,11 @@
-import {
+import type {
 	Injector,
 	Operation,
 	ReciprocalOperation,
-} from "../../types/operations"
+} from "../../../../types/operations"
 
-import type { NumberValue } from "../../types/values"
-import makeOperator from "../"
+import type { NumberValue } from "../../../../types/values"
+import makeOperator from "./"
 import getReciprocal from "./getReciprocal"
 
 export default function makeReciprocal(

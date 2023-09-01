@@ -1,9 +1,9 @@
-import type { FractionValue, NumberValue } from "../../../types/values"
+import type { FractionValue, NumberValue } from "../../../../../types/values"
 
-import type { TypeOfTruncation } from "../../../types/enums"
-import type { Injector } from "../../../types/operations"
-import convertToFraction from "../../utilities/convertToFraction"
-import reduceToLowestForm from "../../utilities/reduceToLowestForm"
+import { TypeOfTruncation } from "../../../../../types/enums"
+import type { Injector } from "../../../../../types/operations"
+import convertToFraction from "../../../utilities/convertToFraction"
+import reduceToLowestForm from "../../../utilities/reduceToLowestForm"
 
 export default function multiplyFractions(
 	multiplicands: Array<Injector>,

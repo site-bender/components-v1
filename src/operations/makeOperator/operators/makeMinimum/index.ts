@@ -2,16 +2,16 @@ import type {
 	Injector,
 	MinimumOperation,
 	Operation,
-} from "../../types/operations"
+} from "../../../../types/operations"
 import type {
 	FractionValue,
 	IntegerValue,
 	NonFractionValue,
 	NumberValue,
 	RealNumberValue,
-} from "../../types/values"
+} from "../../../../types/values"
 
-import makeOperator from "../"
+import makeOperator from "./"
 
 export default function makeMinimum(operation: MinimumOperation): Injector {
 	const { operands } = operation as MinimumOperation

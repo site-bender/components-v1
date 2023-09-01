@@ -2,10 +2,10 @@ import type {
 	Injector,
 	IsEvenOperation,
 	Operation,
-} from "../../types/operations"
+} from "../../../../types/operations"
 
-import type { IntegerValue } from "../../types/values"
-import makeOperator from "../"
+import type { IntegerValue } from "../../../../types/values"
+import makeOperator from "./"
 import checkIsEven from "./checkIsEven"
 
 export default function makeIsEven(operation: IsEvenOperation): Injector {

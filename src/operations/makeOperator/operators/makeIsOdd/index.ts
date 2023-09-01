@@ -2,10 +2,10 @@ import type {
 	Injector,
 	IsOddOperation,
 	Operation,
-} from "../../types/operations"
+} from "../../../../types/operations"
 
-import type { IntegerValue } from "../../types/values"
-import makeOperator from "../"
+import type { IntegerValue } from "../../../../types/values"
+import makeOperator from "./"
 import checkIsOdd from "./checkIsOdd"
 
 export default function makeIsOdd(operation: IsOddOperation): Injector {

@@ -1,12 +1,13 @@
-import type { TypeOfReturn, TypeOfTruncation } from "../../types/enums"
 import type {
 	DivideOperation,
 	Injector,
 	Operation,
-} from "../../types/operations"
+} from "../../../../types/operations"
 
-import type { NumberValue } from "../../types/values"
-import makeOperator from "../"
+import { TypeOfReturn } from "../../../../types/enums"
+import type { TypeOfTruncation } from "../../../../types/enums"
+import type { NumberValue } from "../../../../types/values"
+import makeOperator from "./"
 import divideFractions from "./divideFractions"
 import divideIntegers from "./divideIntegers"
 import dividePrecisionNumbers from "./dividePrecisionNumbers"
@@ -16,7 +17,7 @@ export type Divider = (
 	dividend: Injector,
 	divisor: Injector,
 	decimalPlaces?: number,
-	truncationType?: TypeOfTruncation,
+	truncationType?: keyof typeof TypeOfTruncation,
 ) => NumberValue
 
 const dividers = {

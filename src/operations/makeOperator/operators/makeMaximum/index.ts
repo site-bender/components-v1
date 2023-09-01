@@ -2,16 +2,16 @@ import type {
 	Injector,
 	MaximumOperation,
 	Operation,
-} from "../../types/operations"
+} from "../../../../types/operations"
 import type {
 	FractionValue,
 	IntegerValue,
 	NonFractionValue,
 	NumberValue,
 	RealNumberValue,
-} from "../../types/values"
+} from "../../../../types/values"
 
-import makeOperator from "../"
+import makeOperator from "./"
 
 export default function makeMaximum(operation: MaximumOperation): Injector {
 	const { operands } = operation as MaximumOperation

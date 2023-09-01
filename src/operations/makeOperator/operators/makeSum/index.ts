@@ -1,9 +1,13 @@
-import type { TypeOfReturn, TypeOfTruncation } from "../../types/enums"
-import type { Injector, Operation, SumOperation } from "../../types/operations"
+import { TypeOfReturn, TypeOfTruncation } from "../../../../types/enums"
+import type {
+	Injector,
+	Operation,
+	SumOperation,
+} from "../../../../types/operations"
 
-import type { NumberValue } from "../../types/values"
-import makeOperator from "../"
-import truncate from "../utilities/truncate"
+import type { NumberValue } from "../../../../types/values"
+import truncate from "../../utilities/truncate"
+import makeOperator from "./"
 import addFractions from "./addFractions"
 import addIntegers from "./addIntegers"
 import addPrecisionNumbers from "./addPrecisionNumbers"
@@ -12,7 +16,7 @@ import addRealNumbers from "./addRealNumbers"
 export type Summer = (
 	addends: Array<Injector>,
 	decimalPlaces?: number,
-	truncationType?: TypeOfTruncation,
+	truncationType?: keyof typeof TypeOfTruncation,
 ) => NumberValue
 
 const summers = {

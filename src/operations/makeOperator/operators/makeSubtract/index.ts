@@ -1,12 +1,13 @@
-import type { TypeOfReturn, TypeOfTruncation } from "../../types/enums"
 import type {
 	Injector,
 	Operation,
 	SubtractOperation,
-} from "../../types/operations"
+} from "../../../../types/operations"
 
-import type { NumberValue } from "../../types/values"
-import makeOperator from "../"
+import { TypeOfReturn } from "../../../../types/enums"
+import type { TypeOfTruncation } from "../../../../types/enums"
+import type { NumberValue } from "../../../../types/values"
+import makeOperator from "./"
 import subtractFractions from "./subtractFractions"
 import subtractIntegers from "./subtractIntegers"
 import subtractPrecisionNumbers from "./subtractPrecisionNumbers"
@@ -16,7 +17,7 @@ export type Subtractor = (
 	minuend: Injector,
 	subtrahend: Injector,
 	decimalPlaces?: number,
-	truncationType?: TypeOfTruncation,
+	truncationType?: keyof typeof TypeOfTruncation,
 ) => NumberValue
 
 const subtractors = {
