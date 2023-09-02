@@ -78,6 +78,7 @@ h1 {
 }
 
 h2 {
+	color: var(--sb-color-code);
 	font-family: var(
 		--sb-font-titles,
 		"Iowan Old Style",
@@ -206,7 +207,7 @@ pre {
 }
 
 :not(pre) > code {
-	color: var(--sb-code-color, hsl(111, 46%, 24%));
+	color: var(--sb-color-code, hsl(111, 46%, 24%));
 }
 
 pre,

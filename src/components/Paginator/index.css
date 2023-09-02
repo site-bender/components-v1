@@ -31,7 +31,7 @@
 	margin: 0 1px;
 }
 
-.sb-paginator-list li:has(a[aria-current]) {
+.sb-paginator-list li[aria-current] {
 	background-color: var(--sb-color-link, hsl(212, 57%, 29%));
 	color: hsl(210, 20%, 98%);
 }
@@ -47,15 +47,17 @@
 	width: 100%;
 }
 
-.sb-paginator-list li a[aria-current] {
+.sb-paginator-list li[aria-current] span {
 	color: hsl(210, 20%, 98%);
 }
 
-.sb-paginator-list li a[aria-current]:hover {
+.sb-paginator-list li[aria-current] span:hover {
 	outline: none;
 }
 
-.sb-paginator-list li a[aria-current]::after {
+.sb-paginator-list-item[aria-current] span::after,
+.sb-paginator-list-item a:focus::after,
+.sb-paginator-list-item:hover a::after {
 	content: attr(aria-label);
 	font-size: 1rem;
 	position: absolute;
@@ -65,38 +67,24 @@
 	color: hsl(240, 5%, 18%);
 }
 
-.sb-paginator-list:hover li a[aria-current]::after {
+.sb-paginator-list:focus-within li[aria-current] span::after,
+.sb-paginator-list:hover li[aria-current] span::after {
 	display: none;
 }
 
-.sb-paginator-list li:hover a[aria-current]::after {
-	display: unset;
-}
-
-.sb-paginator-list li:has(a:not([aria-current])):focus-within,
-.sb-paginator-list li:has(a:not([aria-current])):hover {
+.sb-paginator-list li:focus-within a,
+.sb-paginator-list li a:hover {
 	border: 2px solid hsl(240, 5%, 18%);
 	outline: 0;
 }
-
-.sb-paginator-list li:focus-within a:not([aria-current]),
-.sb-paginator-list li:hover a:not([aria-current]) {
+.sb-paginator-list li:focus-within a,
+.sb-paginator-list li:hover a {
 	background-color: hsla(212, 57%, 32%, 0.3);
 	color: hsl(240, 5%, 18%);
 	outline: 0;
 }
 
-.sb-paginator-list li:hover a:not([aria-current])::after {
-	content: attr(aria-label);
-	font-size: 1rem;
-	position: absolute;
-	top: -1.6rem;
-	left: 0;
-	white-space: nowrap;
-	color: hsl(240, 5%, 18%);
-}
-
-@media only screen and (max-width: 96rem) {
+@media only screen and (max-width: 39rem) {
 	.sb-paginator-list
 		.sb-paginator-list-item:not(:first-child):not(:last-child) {
 		display: none;

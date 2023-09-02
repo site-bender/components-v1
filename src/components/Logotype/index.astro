@@ -7,10 +7,10 @@ import isRoot from "../../utilities/isRoot"
 
 
 const {
+	as = "h1",
   ariaLabel,
   href,
   label: lbl,
-  level = 1,
   link,
   microdata = {},
   properties,
@@ -24,7 +24,7 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 
 const { pathname } = Astro.url;
 
-const Element = `h${level}`
+const Element = as
 
 const label = (await Astro.slots.render("default")) || lbl
 ---

@@ -4,6 +4,7 @@ figure.sb-figure {
 	flex-direction: column-reverse;
 	gap: 0.5rem;
 	justify-content: space-between;
+	margin: var(--sb-space-m, 1.25rem) 0;
 }
 
 figure.sb-figure > figcaption.sb-figure-figcaption {

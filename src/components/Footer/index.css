@@ -8,11 +8,14 @@
 	display: flex;
 	flex-basis: min-content;
 	flex-wrap: wrap;
-	gap: 1rem;
 	grid-area: footer;
 	isolation: isolate;
 	justify-content: space-between;
 	padding: 1rem 1.5rem;
+}
+
+.sb-footer > * {
+	margin: 1rem 0;
 }
 
 .sb-footer .sb-nav-list {

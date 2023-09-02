@@ -14,3 +14,9 @@
 		grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
 	}
 }
+
+@media only screen and (max-width: 880px) {
+	.sb-cards {
+		max-width: calc(100vw - calc(var(--sb-space-s, 1rem) * 2));
+	}
+}

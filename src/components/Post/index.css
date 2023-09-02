@@ -8,6 +8,16 @@
 	margin-top: var(--sb-space-s, 1rem);
 }
 
+.sb-post a {
+	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	display: inline-block;
+	margin: -0.0625rem -0.1875rem;
+	padding: 0.0625rem 0.1875rem;
+	text-decoration: underline;
+	text-underline-offset: 0.3125rem;
+	text-decoration-skip-ink: none;
+}
+
 .sb-post .sb-post-header {
 	margin: 0 0 2rem;
 }
