@@ -18,14 +18,14 @@ const {
 const formAttrs = mapAttributes(attrs, ["sb-form"])
 
 const content = await Astro.slots.render("default", [form])
-
+const aria = labelledBy ? { "aria-labelledBy": labelledBy } : {}
 const validate =
 	validation === "default" ? {} : { [`data-sb-${validation}`]: true }
 ---
 
 <form
 	{...formAttrs}
-	aria-labelledBy={labelledBy}
+	{...aria}
 	{action}
 	id={form}
 	{method}

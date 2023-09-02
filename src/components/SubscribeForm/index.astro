@@ -1,0 +1,40 @@
+---
+import "./index.css"
+import Button from "../Form/Button/index.astro"
+import ButtonBar from "../Form/ButtonBar/index.astro"
+import Form from "../Form/index.astro"
+import Fieldset from "../Form/Fieldset/index.astro"
+import EmailField from "../Form/EmailField/index.astro"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { Form as Props } from "../../types/form"
+
+const {
+	action = "/api/get-notified",
+	method = "post",
+	name = "getNotifiedForm",
+	...attrs
+} = Astro.props
+
+const formAttrs = mapAttributes(attrs, ["sb-form", "sb-subscribe-form"])
+---
+
+<Form {...formAttrs} {action} {method} {name}>
+	{({ form }: { form: string }) => (
+		<Fieldset label="Get notified">
+		<EmailField
+				{form}
+				label="Your email address"
+				message="Where you want notifications sent."
+				name="email"
+				required
+				size={32}
+				value=""
+			/>
+		</Fieldset>
+		<ButtonBar {form}>
+			<Button {form} type="submit">
+				Get notified
+			</Button>
+		</ButtonBar>
+	)}
+</Form>

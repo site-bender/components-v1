@@ -9,7 +9,20 @@
 }
 
 .sb-field .sb-label {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
 	font-weight: 400;
+	justify-content: space-between;
+}
+
+.sb-label-tag {
+	font-size: var(--sb-step-1, 1.25rem);
+}
+
+.sb-help {
+	color: var(--sb-color-code);
+	font-size: 1rem;
 }
 
 .sb-field textarea {

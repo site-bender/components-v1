@@ -1,6 +1,10 @@
 .sb-button-bar {
+	align-items: center;
 	border-radius: 5px;
 	border: 1px solid hsl(240, 5%, 88%);
+	display: flex;
+	gap: 1rem;
+	justify-content: flex-end;
 	padding: 1rem;
 	width: 100%;
 }

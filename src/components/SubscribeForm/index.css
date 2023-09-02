@@ -1,0 +1,4 @@
+.sb-subscribe-form {
+	max-width: min(48rem, calc(100vw - calc(var(--sb-space-s, 1rem) * 2)));
+	width: 100%;
+}

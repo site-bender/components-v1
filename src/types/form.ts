@@ -53,7 +53,7 @@ export type Form = Override<
 		dataset?: Dataset
 		enctype?: string | undefined | null
 		form?: never
-		labelledBy: string | undefined | null
+		labelledBy?: string | undefined | null
 		method?: "get" | "post" | undefined | null
 		name?: string | undefined | null
 		validator?: "full" | "fallback" | undefined | null
