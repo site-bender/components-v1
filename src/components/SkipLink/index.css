@@ -1,27 +1,25 @@
 .sb-skip-link {
-	background-color: hsl(240, 5%, 18%);
+	background-color: var(--sb-color-gray-8, #2c2c30);
 	border-radius: 5px;
-	color: var(--sb-color-highlight, hsl(56, 100%, 72%));
+	color: var(--sb-color-highlight, #aaf5a3);
 	font-size: var(--sb-step-1, 1.25rem);
-	font-family: var(
-		--sb-font-body,
-		Inter,
-		Roboto,
-		"Helvetica Neue",
-		"Arial Nova",
-		"Nimbus Sans",
-		Arial,
-		sans-serif
-	);
+	font-family: var(--sb-font-body,
+			Inter,
+			Roboto,
+			"Helvetica Neue",
+			"Arial Nova",
+			"Nimbus Sans",
+			Arial,
+			sans-serif);
 	opacity: 0;
 	padding: 0.1rem;
 }
 
 .sb-skip-link:focus {
-	color: var(--sb-color-highlight, hsl(56, 100%, 72%));
+	color: var(--sb-color-highlight, #aaf5a3);
 	display: inline-block;
 	opacity: 1;
-	outline: 2px solid var(--sb-color-highlight, hsl(56, 100%, 72%));
+	outline: 2px solid var(--sb-color-highlight, #aaf5a3);
 	outline-offset: 5px;
 	text-decoration: none;
 }

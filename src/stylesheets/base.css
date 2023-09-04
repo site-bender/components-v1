@@ -56,20 +56,18 @@ blockquote {
 }
 
 mark {
-	background-color: var(--sb-color-highlight, hsl(56, 100%, 72%));
-	color: hsl(240, 5%, 8%);
+	background-color: var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-color-gray-9, #131315);
 	padding: 0;
 }
 
 h1 {
-	font-family: var(
-		--sb-font-titles,
-		"Iowan Old Style",
-		"Palatino Linotype",
-		"URW Palladio L",
-		P052,
-		serif
-	);
+	font-family: var(--sb-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
 	font-size: var(--sb-step-4, 2.44rem);
 	font-variant-ligatures: historical-ligatures;
 	font-variant-numeric: oldstyle-nums proportional-nums;
@@ -79,14 +77,12 @@ h1 {
 
 h2 {
 	color: var(--sb-color-code);
-	font-family: var(
-		--sb-font-titles,
-		"Iowan Old Style",
-		"Palatino Linotype",
-		"URW Palladio L",
-		P052,
-		serif
-	);
+	font-family: var(--sb-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
 	font-size: var(--sb-step-3, 1.95rem);
 	font-variant-ligatures: historical-ligatures;
 	font-variant-numeric: oldstyle-nums proportional-nums;
@@ -95,14 +91,12 @@ h2 {
 }
 
 h3 {
-	font-family: var(
-		--sb-font-titles,
-		"Iowan Old Style",
-		"Palatino Linotype",
-		"URW Palladio L",
-		P052,
-		serif
-	);
+	font-family: var(--sb-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
 	font-size: var(--sb-step-2, 1.56rem);
 	font-variant-ligatures: historical-ligatures;
 	font-variant-numeric: oldstyle-nums proportional-nums;
@@ -110,14 +104,12 @@ h3 {
 }
 
 h4 {
-	font-family: var(
-		--sb-font-titles,
-		"Iowan Old Style",
-		"Palatino Linotype",
-		"URW Palladio L",
-		P052,
-		serif
-	);
+	font-family: var(--sb-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
 	font-size: var(--sb-step-1, 1.25rem);
 	font-variant-ligatures: historical-ligatures;
 	font-variant-numeric: oldstyle-nums proportional-nums;
@@ -126,14 +118,12 @@ h4 {
 }
 
 h5 {
-	font-family: var(
-		--sb-font-titles,
-		"Iowan Old Style",
-		"Palatino Linotype",
-		"URW Palladio L",
-		P052,
-		serif
-	);
+	font-family: var(--sb-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
 	font-size: var(--sb-step-0, 1rem);
 	font-variant-ligatures: historical-ligatures;
 	font-variant-numeric: oldstyle-nums proportional-nums;
@@ -146,7 +136,7 @@ p {
 }
 
 :not(pre) > code {
-	color: hsl(111, 46%, 24%);
+	color: var(--sb-color-green-shaded, #0e4e09);
 }
 
 dl > dt {
@@ -155,9 +145,9 @@ dl > dt {
 
 hr {
 	border: none;
-	border-bottom: 1px double hsl(154, 7%, 19%);
-	border-color: hsl(154, 7%, 19%);
-	color: hsl(154, 7%, 19%);
+	border-bottom: 1px double var(--sb-color-gray-8, #2c2c30);
+	border-color: var(--sb-color-gray-8, #2c2c30);
+	color: var(--sb-color-gray-8, #2c2c30);
 	margin: var(--sb-space-xl, 3rem) auto;
 	overflow: visible;
 	text-align: center;
@@ -165,8 +155,8 @@ hr {
 }
 
 hr:after {
-	background-color: hsl(80, 9%, 87%);
-	color: hsl(154, 7%, 19%);
+	background-color: var(--sb-color-gray-1, #dfdfe2);
+	color: var(--sb-color-gray-8, #2c2c30);
 	content: " § ";
 	padding: 0 1ch;
 	position: relative;
@@ -207,21 +197,19 @@ pre {
 }
 
 :not(pre) > code {
-	color: var(--sb-color-code, hsl(111, 46%, 24%));
+	color: var(--sb-color-code, var(--sb-color-green-shaded, #0e4e09));
 }
 
 pre,
 code {
-	font-family: var(
-		--sb-font-code,
-		ui-monospace,
-		"Cascadia Code",
-		"Source Code Pro",
-		Menlo,
-		Consolas,
-		"DejaVu Sans Mono",
-		monospace
-	);
+	font-family: var(--sb-font-code,
+			ui-monospace,
+			"Cascadia Code",
+			"Source Code Pro",
+			Menlo,
+			Consolas,
+			"DejaVu Sans Mono",
+			monospace);
 }
 
 pre > code {

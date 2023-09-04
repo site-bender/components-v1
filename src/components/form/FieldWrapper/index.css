@@ -33,8 +33,10 @@
 .sb-field input,
 .sb-field select,
 .sb-field textarea {
-	border: 2px solid hsl(240, 5%, 68%);
+	background-color: var(--sb-color-gray-1, #dfdfe2);
+	border: 2px solid var(--sb-color-gray-3, #a9a9b1);
 	border-radius: 4px;
+	color: var(--sb-color-gray-9, #131315);
 	font-family: var(--sb-font-body);
 	font-size: var(--sb-step-0, 1rem);
 	line-height: 1.4;
@@ -44,34 +46,35 @@
 .sb-field input:focus,
 .sb-field select:focus,
 .sb-field textarea:focus {
-	border: 2px solid var(--sb-color-link, hsl(212, 57%, 29%));
-	outline-offset: 5px;
+	border: 2px solid var(--sb-color-blue, #0095ff);
+	color: var(--sb-color-gray-8, #2c2c30);
+	outline: 0;
 }
 
 .sb-field:has(input:focus) .sb-label,
 .sb-field:has(select:focus) .sb-label,
 .sb-field:has(textarea:focus) .sb-label {
-	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	color: var(--sb-color-link, #09314e);
 	font-weight: 600;
 }
 
 .sb-field input:required,
 .sb-field select:required,
 .sb-field textarea:required {
-	border: 4px double hsl(111, 46%, 24%);
+	border: 4px double var(--sb-color-green-shaded, #0e4e09);
 }
 
 .sb-field input:required:focus,
 .sb-field select:required:focus,
 .sb-field textarea:required:focus {
-	border: 4px double hsl(111, 46%, 60%);
+	border: 4px double var(--sb-color-green, #15ff00);
 	outline-offset: 5px;
 }
 
 .sb-field:has(input:required:focus) .sb-label,
 .sb-field:has(select:required:focus) .sb-label,
 .sb-field:has(textarea:required:focus) .sb-label {
-	color: hsl(111, 46%, 24%);
+	color: var(--sb-color-green-shaded, #0e4e09);
 	font-weight: 600;
 }
 

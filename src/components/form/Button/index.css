@@ -1,8 +1,8 @@
 .sb-button {
-	background-color: hsl(240, 5%, 88%);
-	border: 2px solid hsl(240, 5%, 28%);
+	background-color: var(--sb-color-gray-1, #dfdfe2);
+	border: 2px solid var(--sb-color-gray-7, #44444b);
 	border-radius: 4px;
-	color: hsl(240, 5%, 28%);
+	color: var(--sb-color-gray-7, #44444b);
 	padding: 0.25rem 0.75rem;
 	text-transform: lowercase;
 	font-variant-caps: small-caps;
@@ -11,19 +11,19 @@
 }
 
 .sb-button-reset {
-	background-color: var(--sb-color-highlight, hsl(56, 100%, 72%));
-	color: hsl(240, 5%, 18%);
+	background-color: var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-color-gray-8, #2c2c30);
 }
 
 .sb-button-submit {
-	background-color: hsl(111, 46%, 24%);
-	border-color: hsl(111, 46%, 24%);
-	color: hsl(210, 20%, 98%);
+	background-color: var(--sb-color-green-shaded, #0e4e09);
+	border-color: var(--sb-color-green-shaded, #0e4e09);
+	color: var(--sb-color-gray-0, #fafafa);
 }
 
 .sb-button:focus,
 .sb-button:hover {
-	border-color: hsl(111, 46%, 24%);
-	background-color: hsl(240, 5%, 98%);
-	color: hsl(111, 46%, 24%);
+	border-color: var(--sb-color-green-shaded, #0e4e09);
+	background-color: var(--sb-color-gray-0, #fafafa);
+	color: var(--sb-color-green-shaded, #0e4e09);
 }

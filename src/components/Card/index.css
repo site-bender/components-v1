@@ -28,7 +28,7 @@
 .sb-card .sb-card-link:hover .sb-card-subheading,
 .sb-card .sb-card-link:visited:hover .sb-card-heading,
 .sb-card .sb-card-link:visited:hover .sb-card-subheading {
-	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	color: var(--sb-color-link, #09314e);
 }
 
 @media only screen and (max-width: 880px) {

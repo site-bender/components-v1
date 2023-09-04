@@ -1,17 +1,15 @@
 .sb-pull-quote {
-	background-color: hsl(111, 46%, 60%);
+	background-color: var(--sb-color-green-tinted, #aaf5a3);
 	border-radius: 5px;
-	color: hsl(240, 5%, 8%);
+	color: var(--sb-color-gray-9, #131315);
 	display: flex;
 	flex-direction: column;
-	font-family: var(
-		--sb-font-titles,
-		"Iowan Old Style",
-		"Palatino Linotype",
-		"URW Palladio L",
-		P052,
-		serif
-	);
+	font-family: var(--sb-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
 	font-size: 1.25rem;
 	font-weight: 500;
 	justify-content: space-evenly;
@@ -25,16 +23,14 @@
 
 .sb-pull-quote .sb-pull-quote-figcaption {
 	align-items: center;
-	color: hsl(240, 5%, 8%);
+	color: var(--sb-color-gray-9, #131315);
 	display: flex;
-	font-family: var(
-		--sb-font-titles,
-		"Iowan Old Style",
-		"Palatino Linotype",
-		"URW Palladio L",
-		P052,
-		serif
-	);
+	font-family: var(--sb-font-titles,
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
 	font-size: 1rem;
 	font-style: italic;
 	justify-content: flex-end;

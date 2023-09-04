@@ -1,10 +1,10 @@
 .sb-header {
 	align-items: center;
-	background-color: hsl(240, 5%, 18%);
-	border-bottom-color: hsl(240, 5%, 48%);
+	background-color: var(--sb-color-gray-8, #2c2c30);
+	border-bottom-color: var(--sb-color-gray-5, #747481);
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	color: hsl(240, 5%, 98%);
+	color: var(--sb-color-gray-0, #fafafa);
 	display: flex;
 	flex-basis: min-content;
 	flex-wrap: wrap;

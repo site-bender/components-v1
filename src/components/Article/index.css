@@ -9,7 +9,7 @@
 }
 
 .sb-article a {
-	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	color: var(--sb-color-link, #09314e);
 	display: inline-block;
 	margin: -0.0625rem -0.1875rem;
 	padding: 0.0625rem 0.1875rem;
@@ -19,14 +19,14 @@
 }
 
 .sb-article a:visited {
-	color: hsl(350, 50%, 30%);
+	color: var(--sb-color-link-visited, #48094e);
 }
 
 .sb-article a:focus,
 .sb-article a:hover {
 	border-radius: 5px;
-	background-color: var(--sb-color-link, hsl(212, 57%, 29%));
-	color: hsl(210, 20%, 98%);
+	background-color: var(--sb-color-link, #09314e);
+	color: var(--sb-color-gray-0, #fafafa);
 	text-decoration: none;
 	text-decoration-skip: none;
 }

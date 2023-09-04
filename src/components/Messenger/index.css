@@ -1,8 +1,8 @@
 .sb-messenger {
 	align-items: center;
-	background-color: hsl(240, 5%, 88%);
-	box-shadow: 0 0 12px hsl(240, 5%, 18%);
-	color: hsl(240, 5%, 18%);
+	background-color: var(--sb-color-gray-1, #dfdfe2);
+	box-shadow: 0 0 12px var(--sb-color-gray-8, #2c2c30);
+	color: var(--sb-color-gray-8, #2c2c30);
 	display: flex;
 	justify-content: space-between;
 	margin: 0;
@@ -10,18 +10,18 @@
 }
 
 .sb-messenger.sb-messenger-danger {
-	background-color: hsl(0, 57%, 76%);
-	color: hsl(240, 5%, 18%);
+	background-color: var(--sb-color-orange-tinted, #f5c5a3);
+	color: var(--sb-color-gray-8, #2c2c30);
 }
 
 .sb-messenger.sb-messenger-info {
-	background-color: hsl(193, 73%, 72%);
-	color: hsl(240, 5%, 18%);
+	background-color: var(--sb-color-blue-tinted, #a3d3f5);
+	color: var(--sb-color-gray-8, #2c2c30);
 }
 
 .sb-messenger.sb-messenger-warning {
-	background-color: var(--sb-color-highlight, hsl(56, 100%, 72%));
-	color: hsl(240, 5%, 18%);
+	background-color: var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-color-gray-8, #2c2c30);
 }
 
 .sb-messenger details {
@@ -64,10 +64,10 @@
 .sb-messenger .sb-closer:hover::after {
 	border: none;
 	border-radius: 5px;
-	color: hsl(350, 50%, 30%);
+	color: var(--sb-color-orange-shaded, #48094e);
 	content: "close";
 	font-size: 1.2rem;
-	outline: 2px solid hsl(350, 50%, 30%);
+	outline: 2px solid var(--sb-color-orange-shaded, #48094e);
 	outline-offset: 5px;
 	margin-top: 0.5rem;
 }

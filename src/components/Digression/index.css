@@ -1,7 +1,7 @@
 .sb-digression {
-	background-color: var(--sb-color-highlight, hsl(56, 100%, 72%));
+	background-color: var(--sb-color-highlight, #aaf5a3);
 	border-radius: 5px;
-	color: hsl(240, 5%, 18%);
+	color: var(--sb-color-gray-8, #2c2c30);
 	margin: 0;
 	padding: var(--sb-space-s, 1rem);
 }
@@ -21,7 +21,7 @@
 .sb-digression summary:hover {
 	border-radius: 5px;
 	outline-offset: 3px;
-	outline: 2px dotted var(--sb-color-highlight, hsl(56, 100%, 72%));
+	outline: 2px dotted var(--sb-color-highlight, #aaf5a3);
 }
 
 .sb-digression details[open] summary {

@@ -23,16 +23,14 @@
 
 .sb-code-block pre,
 .sb-code-block code {
-	font-family: var(
-		--sb-font-code,
-		ui-monospace,
-		"Cascadia Code",
-		"Source Code Pro",
-		Menlo,
-		Consolas,
-		"DejaVu Sans Mono",
-		monospace
-	);
+	font-family: var(--sb-font-code,
+			ui-monospace,
+			"Cascadia Code",
+			"Source Code Pro",
+			Menlo,
+			Consolas,
+			"DejaVu Sans Mono",
+			monospace);
 }
 
 .sb-code-block pre > code {
@@ -64,8 +62,8 @@
 }
 
 .sb-code-block pre.astro-code span.line::before {
-	border-right: 1px solid hsl(240, 5%, 28%);
-	color: var(--sb-color-highlight, hsl(56, 100%, 72%));
+	border-right: 1px solid var(--sb-color-gray-7, #44444b);
+	color: var(--sb-color-highlight, #aaf5a3);
 	content: counter(lines) "";
 	counter-increment: lines 1;
 	display: inline-block;
@@ -79,17 +77,15 @@
 	background: transparent;
 	border-radius: 5px;
 	border: none;
-	color: hsl(210, 20%, 98%);
-	font-family: var(
-		--sb-font-body,
-		Inter,
-		Roboto,
-		"Helvetica Neue",
-		"Arial Nova",
-		"Nimbus Sans",
-		Arial,
-		sans-serif
-	);
+	color: var(--sb-color-gray-0, #fafafa);
+	font-family: var(--sb-font-body,
+			Inter,
+			Roboto,
+			"Helvetica Neue",
+			"Arial Nova",
+			"Nimbus Sans",
+			Arial,
+			sans-serif);
 	font-size: 1rem;
 	padding: 2px 4px;
 	position: absolute;
@@ -99,7 +95,7 @@
 
 .sb-code-block button.sb-copy-to-clipboard:focus,
 .sb-code-block button.sb-copy-to-clipboard:hover {
-	background-color: hsl(240, 5%, 18%);
-	color: var(--sb-color-highlight, hsl(56, 100%, 72%));
-	outline-color: var(--sb-color-highlight, hsl(56, 100%, 72%));
+	background-color: var(--sb-color-gray-8, #2c2c30);
+	color: var(--sb-color-highlight, #aaf5a3);
+	outline-color: var(--sb-color-highlight, #aaf5a3);
 }

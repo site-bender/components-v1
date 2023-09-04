@@ -9,7 +9,7 @@
 }
 
 .sb-post a {
-	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	color: var(--sb-color-link, #09314e);
 	display: inline-block;
 	margin: -0.0625rem -0.1875rem;
 	padding: 0.0625rem 0.1875rem;

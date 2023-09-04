@@ -25,22 +25,22 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid var(--sb-color-link, hsl(212, 57%, 29%));
+	border: 1px solid var(--sb-color-link, #09314e);
 	border-radius: 3px;
 	position: relative;
 	margin: 0 1px;
 }
 
 .sb-paginator-list li[aria-current] {
-	background-color: var(--sb-color-link, hsl(212, 57%, 29%));
-	color: hsl(210, 20%, 98%);
+	background-color: var(--sb-color-link, #09314e);
+	color: var(--sb-color-gray-0, #fafafa);
 }
 
 .sb-paginator-list li a {
 	align-items: center;
 	display: flex;
 	justify-content: center;
-	color: var(--sb-color-link, hsl(212, 57%, 29%));
+	color: var(--sb-color-link, #09314e);
 	text-decoration: none;
 	font-variant-numeric: tabular-nums lining-nums;
 	height: 100%;
@@ -48,7 +48,7 @@
 }
 
 .sb-paginator-list li[aria-current] span {
-	color: hsl(210, 20%, 98%);
+	color: var(--sb-color-gray-0, #fafafa);
 }
 
 .sb-paginator-list li[aria-current] span:hover {
@@ -64,7 +64,7 @@
 	top: -1.6rem;
 	left: 0;
 	white-space: nowrap;
-	color: hsl(240, 5%, 18%);
+	color: var(--sb-color-gray-8, #2c2c30);
 }
 
 .sb-paginator-list:focus-within li[aria-current] span::after,
@@ -74,19 +74,19 @@
 
 .sb-paginator-list li:focus-within a,
 .sb-paginator-list li a:hover {
-	border: 2px solid hsl(240, 5%, 18%);
+	border: 2px solid var(--sb-color-gray-8, #2c2c30);
 	outline: 0;
 }
+
 .sb-paginator-list li:focus-within a,
 .sb-paginator-list li:hover a {
 	background-color: hsla(212, 57%, 32%, 0.3);
-	color: hsl(240, 5%, 18%);
+	color: var(--sb-color-gray-8, #2c2c30);
 	outline: 0;
 }
 
 @media only screen and (max-width: 39rem) {
-	.sb-paginator-list
-		.sb-paginator-list-item:not(:first-child):not(:last-child) {
+	.sb-paginator-list .sb-paginator-list-item:not(:first-child):not(:last-child) {
 		display: none;
 	}
 

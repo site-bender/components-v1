@@ -1,70 +1,91 @@
-:root {
-	--sb-color-gray-0: hsl(240, 5%, 98%);
-	--sb-color-gray-1: hsl(240, 5%, 88%);
-	--sb-color-gray-2: hsl(240, 5%, 78%);
-	--sb-color-gray-3: hsl(240, 5%, 68%);
-	--sb-color-gray-4: hsl(240, 5%, 58%);
-	--sb-color-gray-5: hsl(240, 5%, 48%);
-	--sb-color-gray-6: hsl(240, 5%, 38%);
-	--sb-color-gray-7: hsl(240, 5%, 28%);
-	--sb-color-gray-8: hsl(240, 5%, 18%);
-	--sb-color-gray-9: hsl(240, 5%, 8%);
-
-	--sb-color-code: hsl(111, 46%, 24%);
-	--sb-color-highlight: hsl(56, 100%, 72%);
-	--sb-color-link: hsl(212, 57%, 29%);
-
-	--sb-color-wine: hsl(350, 50%, 30%);
-	--sb-color-mantis: hsl(111, 46%, 60%);
-	--sb-color-salmon-pink: hsl(0, 57%, 76%);
-	--sb-color-sky-blue: hsl(193, 73%, 72%);
-
-	--sb-font-body: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
-		Arial, sans-serif;
-	--sb-font-code: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
-		Consolas, "DejaVu Sans Mono", monospace;
-	--sb-font-titles: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
-		P052, serif;
-
-	--sb-step--sb-2: 0.64rem;
-	--sb-step--sb-1: 0.8rem;
-	--sb-step-0: 1rem;
-	--sb-step-1: 1.25rem;
-	--sb-step-2: 1.56rem;
-	--sb-step-3: 1.95rem;
-	--sb-step-4: 2.44rem;
-	--sb-step-5: 3.05rem;
-
-	--sb-space-3xs: 0.25rem;
-	--sb-space-2xs: 0.5rem;
-	--sb-space-xs: 0.75rem;
-	--sb-space-s: 1rem;
-	--sb-space-m: 1.5rem;
-	--sb-space-l: 2rem;
-	--sb-space-xl: 3rem;
-	--sb-space-2xl: 4rem;
-	--sb-space-3xl: 6rem;
-}
-
-@supports (width: min(1rem, 2rem)) {
 	:root {
-		--sb-step--sb-2: clamp(0.64rem, calc(0.58rem + 0.28vw), 0.8rem);
-		--sb-step--sb-1: clamp(0.8rem, calc(0.73rem + 0.35vw), 1rem);
-		--sb-step-0: clamp(1rem, calc(0.91rem + 0.43vw), 1.25rem);
-		--sb-step-1: clamp(1.25rem, calc(1.14rem + 0.54vw), 1.56rem);
-		--sb-step-2: clamp(1.56rem, calc(1.43rem + 0.68vw), 1.95rem);
-		--sb-step-3: clamp(1.95rem, calc(1.78rem + 0.85vw), 2.44rem);
-		--sb-step-4: clamp(2.44rem, calc(2.23rem + 1.06vw), 3.05rem);
-		--sb-step-5: clamp(3.05rem, calc(2.79rem + 1.33vw), 3.82rem);
+		--sb-color-gray-0: #fafafa;
+		--sb-color-gray-1: #dfdfe2;
+		--sb-color-gray-2: #c4c4ca;
+		--sb-color-gray-3: #a9a9b1;
+		--sb-color-gray-4: #8f8f99;
+		--sb-color-gray-5: #747481;
+		--sb-color-gray-6: #5c5c66;
+		--sb-color-gray-7: #44444b;
+		--sb-color-gray-8: #2c2c30;
+		--sb-color-gray-9: #131315;
 
-		--sb-space-3xs: clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem);
-		--sb-space-2xs: clamp(0.5rem, calc(0.45rem + 0.27vw), 0.69rem);
-		--sb-space-xs: clamp(0.75rem, calc(0.68rem + 0.36vw), 1rem);
-		--sb-space-s: clamp(1rem, calc(0.91rem + 0.45vw), 1.31rem);
-		--sb-space-m: clamp(1.5rem, calc(1.36rem + 0.71vw), 2rem);
-		--sb-space-l: clamp(2rem, calc(1.82rem + 0.89vw), 2.63rem);
-		--sb-space-xl: clamp(3rem, calc(2.73rem + 1.34vw), 3.94rem);
-		--sb-space-2xl: clamp(4rem, calc(3.64rem + 1.79vw), 5.25rem);
-		--sb-space-3xl: clamp(6rem, calc(5.46rem + 2.68vw), 7.88rem);
+		--sb-color-blue: #0095ff;
+		--sb-color-green: #15ff00;
+		--sb-color-orange: #ff6a00;
+		--sb-color-fuchsia: #ea00ff;
+
+		--sb-color-blue-shaded: #09314e;
+		--sb-color-green-shaded: #0e4e09;
+		--sb-color-orange-shaded: #4e2609;
+		--sb-color-fuchsia-shaded: #48094e;
+
+		--sb-color-blue-tinted: #a3d3f5;
+		--sb-color-green-tinted: #aaf5a3;
+		--sb-color-orange-tinted: #f5c5a3;
+		--sb-color-fuchsia-tinted: #eea3f5;
+
+		--sb-color-code: var(--sb-color-green-shaded);
+
+		--sb-background-color-highlight: var(--sb-color-gray-8, #2c2c30);
+		--sb-color-highlight: var(--sb-color-green-tinted, #aaf5a3);
+		--sb-background-color-highlight-inverse: var(--sb-color-greem-tinted, #aaf5a3);
+		--sb-color-highlight-inverse: var(--sb-color-gray-8, #2c2c30);
+
+		--sb-color-link: var(--sb-blue-shaded);
+		--sb-color-link-visited: var(--sb-fuchsia-shaded);
+		--sb-color-primary: var(--sb-blue-shaded);
+
+		--sb-color-wine: var(--sb-color-orange-shaded, #48094e);
+		--sb-color-mantis: var(--sb-color-green-tinted, #aaf5a3);
+		--sb-color-sky-blue: var(--sb-color-blue-tinted, #a3d3f5);
+
+		--sb-font-body: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+			Arial, sans-serif;
+		--sb-font-code: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
+			Consolas, "DejaVu Sans Mono", monospace;
+		--sb-font-titles: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
+			P052, serif;
+
+		--sb-step--sb-2: 0.64rem;
+		--sb-step--sb-1: 0.8rem;
+		--sb-step-0: 1rem;
+		--sb-step-1: 1.25rem;
+		--sb-step-2: 1.56rem;
+		--sb-step-3: 1.95rem;
+		--sb-step-4: 2.44rem;
+		--sb-step-5: 3.05rem;
+
+		--sb-space-3xs: 0.25rem;
+		--sb-space-2xs: 0.5rem;
+		--sb-space-xs: 0.75rem;
+		--sb-space-s: 1rem;
+		--sb-space-m: 1.5rem;
+		--sb-space-l: 2rem;
+		--sb-space-xl: 3rem;
+		--sb-space-2xl: 4rem;
+		--sb-space-3xl: 6rem;
 	}
-}
+
+	@supports (width: min(1rem, 2rem)) {
+		:root {
+			--sb-step--sb-2: clamp(0.64rem, calc(0.58rem + 0.28vw), 0.8rem);
+			--sb-step--sb-1: clamp(0.8rem, calc(0.73rem + 0.35vw), 1rem);
+			--sb-step-0: clamp(1rem, calc(0.91rem + 0.43vw), 1.25rem);
+			--sb-step-1: clamp(1.25rem, calc(1.14rem + 0.54vw), 1.56rem);
+			--sb-step-2: clamp(1.56rem, calc(1.43rem + 0.68vw), 1.95rem);
+			--sb-step-3: clamp(1.95rem, calc(1.78rem + 0.85vw), 2.44rem);
+			--sb-step-4: clamp(2.44rem, calc(2.23rem + 1.06vw), 3.05rem);
+			--sb-step-5: clamp(3.05rem, calc(2.79rem + 1.33vw), 3.82rem);
+
+			--sb-space-3xs: clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem);
+			--sb-space-2xs: clamp(0.5rem, calc(0.45rem + 0.27vw), 0.69rem);
+			--sb-space-xs: clamp(0.75rem, calc(0.68rem + 0.36vw), 1rem);
+			--sb-space-s: clamp(1rem, calc(0.91rem + 0.45vw), 1.31rem);
+			--sb-space-m: clamp(1.5rem, calc(1.36rem + 0.71vw), 2rem);
+			--sb-space-l: clamp(2rem, calc(1.82rem + 0.89vw), 2.63rem);
+			--sb-space-xl: clamp(3rem, calc(2.73rem + 1.34vw), 3.94rem);
+			--sb-space-2xl: clamp(4rem, calc(3.64rem + 1.79vw), 5.25rem);
+			--sb-space-3xl: clamp(6rem, calc(5.46rem + 2.68vw), 7.88rem);
+		}
+	}

@@ -1,16 +1,14 @@
 .sb-logotype {
 	background-color: inherit;
-	color: hsl(240, 5%, 98%);
-	font-family: var(
-		--sb-font-body,
-		Inter,
-		Roboto,
-		"Helvetica Neue",
-		"Arial Nova",
-		"Nimbus Sans",
-		Arial,
-		sans-serif
-	);
+	color: var(--sb-color-gray-0, #fafafa);
+	font-family: var(--sb-font-body,
+			Inter,
+			Roboto,
+			"Helvetica Neue",
+			"Arial Nova",
+			"Nimbus Sans",
+			Arial,
+			sans-serif);
 	font-variant-ligatures: historical-ligatures;
 	font-weight: 300;
 	line-height: 1.2;
@@ -20,13 +18,13 @@
 a.sb-logotype-link {
 	background-color: inherit;
 	border-radius: 5px;
-	color: hsl(240, 5%, 98%);
+	color: var(--sb-color-gray-0, #fafafa);
 	text-decoration: none;
 }
 
 a.sb-logotype-link:focus,
 a.sb-logotype-link:hover {
-	color: var(--sb-color-highlight, hsl(56, 100%, 72%));
-	outline: 2px solid var(--sb-color-highlight, hsl(56, 100%, 72%));
+	color: var(--sb-color-highlight, #aaf5a3);
+	outline: 2px solid var(--sb-color-highlight, #aaf5a3);
 	outline-offset: 5px;
 }

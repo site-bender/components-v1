@@ -8,6 +8,6 @@
 .sb-cc-license-link:focus,
 .sb-cc-license-link:hover {
 	border-radius: 5px;
-	outline: 2px solid var(--sb-color-link, hsl(212, 57%, 29%));
+	outline: 2px solid var(--sb-color-link, #09314e);
 	outline-offset: 5px;
 }

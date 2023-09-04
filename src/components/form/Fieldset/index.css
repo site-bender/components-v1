@@ -1,13 +1,13 @@
 .sb-fieldset {
 	border-radius: 5px;
-	border: 1px solid hsl(240, 5%, 88%);
+	border: 1px solid var(--sb-color-gray-1, #dfdfe2);
 	padding: 1rem;
 	width: 100%;
 }
 
 .sb-fieldset-legend {
 	border-radius: 5px;
-	border: 1px solid hsl(240, 5%, 88%);
+	border: 1px solid var(--sb-color-gray-1, #dfdfe2);
 	font-size: var(--sb-step-1, 1.25rem);
 	font-weight: 500;
 	margin-left: 0.5rem;
@@ -15,11 +15,11 @@
 }
 
 .sb-fieldset:focus-within {
-	border-color: hsl(111, 46%, 24%);
+	border-color: var(--sb-color-green-shaded, #0e4e09);
 }
 
 .sb-fieldset:focus-within legend {
-	border-color: hsl(111, 46%, 24%);
-	color: hsl(111, 46%, 24%);
+	border-color: var(--sb-color-green-shaded, #0e4e09);
+	color: var(--sb-color-green-shaded, #0e4e09);
 	font-variant-caps: all-small-caps;
 }
