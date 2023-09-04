@@ -15,7 +15,7 @@ const {
 	...attrs
 } = Astro.props
 
-const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-email-link"])
+const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-book-title"])
 const linkAttrs = mapAttributes(link, ["sb-book-title-link"])
 
 const name = ((await Astro.slots.render("default")) || "").trim() || title
