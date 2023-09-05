@@ -67,7 +67,7 @@
 .sb-field input:required:focus,
 .sb-field select:required:focus,
 .sb-field textarea:required:focus {
-	border: 4px double var(--sb-field-required-border-color-focus, var(--sb-color-green, #15ff00));
+	border: 4px double var(--sb-field-required-border-color-focus, var(--sb-color-green, #44ff33));
 	outline-offset: 5px;
 }
 

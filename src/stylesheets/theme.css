@@ -1,6 +1,7 @@
 	:root {
 		--sb-color-gray-0: #fafafa;
 		--sb-color-gray-1: #dfdfe2;
+		/* --sb-color-gray-2: #d1d1d6; */
 		--sb-color-gray-2: #c4c4ca;
 		--sb-color-gray-3: #a9a9b1;
 		--sb-color-gray-4: #8f8f99;
@@ -11,7 +12,7 @@
 		--sb-color-gray-9: #131315;
 
 		--sb-color-blue: #0095ff;
-		--sb-color-green: #15ff00;
+		--sb-color-green: #44ff33;
 		--sb-color-orange: #ff6a00;
 		--sb-color-fuchsia: #ea00ff;
 
