@@ -1,10 +1,10 @@
 .sb-header {
 	align-items: center;
-	background-color: var(--sb-color-gray-8, #2c2c30);
-	border-bottom-color: var(--sb-color-gray-5, #747481);
+	background-color: var(--sb-header-background-color, var(--sb-color-gray-8, #2c2c30));
+	border-bottom-color: var(--sb-header-border-bottom-color, var(--sb-color-gray-5, #747481));
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	color: var(--sb-color-gray-0, #fafafa);
+	color: var(--sb-header-color, var(--sb-color-gray-0, #fafafa));
 	display: flex;
 	flex-basis: min-content;
 	flex-wrap: wrap;
@@ -15,5 +15,5 @@
 	isolation: isolate;
 	justify-content: space-between;
 	max-width: 100vw;
-	padding: var(--sb-space-s) var(--sb-space-m);
+	padding: var(--sb-space-xs, 0.5rem) var(--sb-space-m, 1.5rem);
 }

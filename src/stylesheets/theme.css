@@ -29,12 +29,12 @@
 
 		--sb-background-color-highlight: var(--sb-color-gray-8, #2c2c30);
 		--sb-color-highlight: var(--sb-color-green-tinted, #aaf5a3);
-		--sb-background-color-highlight-inverse: var(--sb-color-greem-tinted, #aaf5a3);
+		--sb-background-color-highlight-inverse: var(--sb-color-green-tinted, #aaf5a3);
 		--sb-color-highlight-inverse: var(--sb-color-gray-8, #2c2c30);
 
-		--sb-color-link: var(--sb-blue-shaded);
-		--sb-color-link-visited: var(--sb-fuchsia-shaded);
-		--sb-color-primary: var(--sb-blue-shaded);
+		--sb-color-link: var(--sb-blue-shaded, #09314e);
+		--sb-color-link-visited: var(--sb-fuchsia-shaded, #48094e);
+		--sb-color-primary: var(--sb-blue-shaded, #09314e);
 
 		--sb-color-wine: var(--sb-color-orange-shaded, #48094e);
 		--sb-color-mantis: var(--sb-color-green-tinted, #aaf5a3);

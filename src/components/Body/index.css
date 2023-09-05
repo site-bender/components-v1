@@ -21,8 +21,8 @@
 
 .sb-body {
 	align-items: stretch;
-	background-color: var(--sb-color-gray-0, #fafafa);
-	color: var(--sb-color-gray-7, #44444b);
+	background-color: var(--sb-body-background-color, var(--sb-color-gray-0, #fafafa));
+	color: var(--sb-body-color, var(--sb-color-gray-7, #44444b));
 	display: flex;
 	flex-direction: column;
 	font-family: var(--sb-font-body,

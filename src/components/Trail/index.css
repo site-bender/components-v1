@@ -14,9 +14,9 @@
 }
 
 .sb-trail-link {
-	background-color: transparent;
+	background-color: var(--sb-trail-link-background-color, transparent);
 	border-radius: 4px;
-	color: var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-trail-link-color, var(--sb-color-highlight, #aaf5a3));
 	display: inline-block;
 	line-height: 1;
 	padding: 3px 5px;
@@ -43,16 +43,16 @@
 }
 
 a.sb-trail-fallback {
-	background-color: var(--sb-color-gray-8, #2c2c30);
-	color: var(--sb-color-highlight, #aaf5a3);
+	background-color: transparent;
+	color: var(--sb-trail-fallback-color, var(--sb-color-highlight, #aaf5a3));
 }
 
 a.sb-trail-link:focus,
 a.sb-trail-link:hover {
 	border-radius: 5px;
-	color: var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-trail-link-color-hover, var(--sb-color-highlight, #aaf5a3));
 	display: inline-block;
-	outline: 2px solid var(--sb-color-highlight, #aaf5a3);
+	outline: 2px solid var(--sb-trail-link-outline-color, var(--sb-color-highlight, #aaf5a3));
 	outline-offset: 3px;
 	padding: 3px 5px;
 	text-decoration: none;
@@ -61,9 +61,9 @@ a.sb-trail-link:hover {
 a.sb-trail-fallback:focus,
 a.sb-trail-fallback:hover {
 	border-radius: 5px;
-	color: var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-trail-fallback-color-hover, var(--sb-color-highlight, #aaf5a3));
 	display: inline-block;
-	outline: 2px solid var(--sb-color-highlight, #aaf5a3);
+	outline: var(--sb-trail-fallback-outline-color-hover, 2px solid var(--sb-color-highlight, #aaf5a3));
 	outline-offset: 3px;
 	padding: 3px;
 	text-decoration: none;
@@ -74,7 +74,7 @@ a.sb-trail-fallback:hover {
 }
 
 .sb-trail-link:visited {
-	color: var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-trail-link-color-visited, var(--sb-color-highlight, #aaf5a3));
 }
 
 .sb-trail-header {

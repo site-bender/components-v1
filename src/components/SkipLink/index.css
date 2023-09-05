@@ -1,7 +1,7 @@
 .sb-skip-link {
-	background-color: var(--sb-color-gray-8, #2c2c30);
+	background-color: var(--sb-skip-link-background-color, transparent);
 	border-radius: 5px;
-	color: var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-skip-link-color, var(--sb-color-highlight, #aaf5a3));
 	font-size: var(--sb-step-1, 1.25rem);
 	font-family: var(--sb-font-body,
 			Inter,
@@ -16,10 +16,10 @@
 }
 
 .sb-skip-link:focus {
-	color: var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-skip-link-color-focus, var(--sb-color-highlight, #aaf5a3));
 	display: inline-block;
 	opacity: 1;
-	outline: 2px solid var(--sb-color-highlight, #aaf5a3);
+	outline: 2px solid var(--sb-skip-link-outline-color-focus, var(--sb-color-highlight, #aaf5a3));
 	outline-offset: 5px;
 	text-decoration: none;
 }

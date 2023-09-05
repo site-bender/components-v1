@@ -8,7 +8,8 @@
 .sb-checkbox-input-wrapper input[type="checkbox"] {
 	appearance: none;
 	border-radius: 0.15rem;
-	border: 2px solid var(--sb-color-gray-3, #a9a9b1);
+	border: 2px solid var(--sb-checkbox-input-wrapper-border-color,
+			var(--sb-color-gray-3, #a9a9b1));
 	display: grid;
 	font-family: inherit;
 	height: 1.25rem;
@@ -20,8 +21,10 @@
 }
 
 .sb-checkbox-input-wrapper input[type="checkbox"]::before {
-	background-color: var(--sb-color-gray-7, #44444b);
-	box-shadow: inset 1rem 1rem var(--sb-color-green-shaded, #0e4e09);
+	background-color: var(--sb-checkbox-input-wrapper-checkbox-background-color-before,
+			var(--sb-color-gray-7, #44444b));
+	box-shadow: inset 1rem 1rem var(--sb-checkbox-input-wrapper-checkbox-box-shadow-color-before,
+			var(--sb-color-green-shaded, #0e4e09));
 	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 	content: "";
 	height: 0.65em;
@@ -33,15 +36,18 @@
 
 .sb-checkbox-input-wrapper:focus-within input[type="checkbox"] {
 	border-radius: 0.15rem;
-	outline: 3px solid var(--sb-color-green-shaded, #0e4e09);
+	outline: 3px solid var(--sb-checkbox-input-wrapper-checkbox-outline-color-focus,
+			var(--sb-color-green-shaded, #0e4e09));
 	outline-offset: 0.15rem;
 }
 
 .sb-checkbox-input-wrapper input[type="checkbox"]:checked {
-	background-color: var(--sb-color-gray-0, #fafafa);
+	background-color: var(--sb-checkbox-input-wrapper-checkbox-background-color-checked,
+			var(--sb-color-gray-0, #fafafa));
 }
 
 .sb-checkbox-input-wrapper input[type="checkbox"]:checked::before {
-	background-color: var(--sb-color-gray-7, #44444b);
+	background-color: var(--sb-checkbox-input-wrapper-checkbox-background-color-checked-before,
+			var(--sb-color-gray-7, #44444b));
 	transform: scale(1);
 }

@@ -1,6 +1,6 @@
 .sb-logotype {
-	background-color: inherit;
-	color: var(--sb-color-gray-0, #fafafa);
+	background-color: var(--sb-logotype-background-color, inherit);
+	color: var(--sb-logotype-color, var(--sb-color-gray-0, #fafafa));
 	font-family: var(--sb-font-body,
 			Inter,
 			Roboto,
@@ -16,15 +16,16 @@
 }
 
 a.sb-logotype-link {
-	background-color: inherit;
+	background-color: var(--sb-logotype-link-background-color, inherit);
 	border-radius: 5px;
-	color: var(--sb-color-gray-0, #fafafa);
+	color: var(--sb-logotype-link-color, var(--sb-color-gray-0, #fafafa));
+	line-height: 1;
 	text-decoration: none;
 }
 
 a.sb-logotype-link:focus,
 a.sb-logotype-link:hover {
-	color: var(--sb-color-highlight, #aaf5a3);
-	outline: 2px solid var(--sb-color-highlight, #aaf5a3);
+	color: var(--sb-logotype-link-color-hover, var(--sb-color-highlight, #aaf5a3));
+	outline: 2px solid var(--sb-logotype-link-outline-color-hover, var(--sb-color-highlight, #aaf5a3));
 	outline-offset: 5px;
 }
