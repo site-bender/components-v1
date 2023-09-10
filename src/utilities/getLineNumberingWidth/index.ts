@@ -4,12 +4,6 @@ export default function getLineNumberingWidth(codeBlock: string): number {
 	return codeBlock
 		.trim()
 		.split(/\n/)
-		.filter((line) =>
-			not(
-				line.startsWith("```") ||
-					line.startsWith("<!-- markdownlint") ||
-					line.startsWith("<!-- dprint"),
-			)
-		)
+		.filter((line) => not(/^(```|<!-- markdownlint|<!-- dprint)/.test(line)))
 		.length.toString().length
 }

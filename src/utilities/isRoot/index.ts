@@ -1,4 +1,3 @@
 export default function isRoot(pathname: string): boolean {
-	return pathname === "/" || pathname.startsWith("?") ||
-		pathname.startsWith("#") || pathname === ""
+	return /^\/?$/.test(pathname) || /^[?#]/.test(pathname)
 }

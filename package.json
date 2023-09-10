@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -56,16 +56,16 @@
 		"test:int": "vitest"
 	},
 	"dependencies": {
-		"astro": "^3.0.9"
+		"astro": "^3.0.12"
 	},
 	"devDependencies": {
-		"@astrojs/mdx": "^1.0.1",
+		"@astrojs/mdx": "^1.0.3",
 		"@js-temporal/polyfill": "^0.4.4",
 		"@types/qrcode": "^1.5.2",
-		"dprint": "^0.40.2",
+		"dprint": "^0.41.0",
 		"exifr": "^7.1.3",
 		"prettier-eslint": "^15.0.1",
 		"qrcode": "^1.5.3",
-		"vitest": "^0.34.3"
+		"vitest": "^0.34.4"
 	}
 }

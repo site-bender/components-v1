@@ -17,8 +17,6 @@ export { default as Conditional } from "./src/components/Conditional/index.astro
 // @ts-expect-error
 export { default as Digression } from "./src/components/Digression/index.astro"
 // @ts-expect-error
-export { default as FallbackScript } from "./src/components/JavaScript/FallbackScript/index.astro"
-// @ts-expect-error
 export { default as Faq } from "./src/components/Faq/index.astro"
 // @ts-expect-error
 export { default as Faqs } from "./src/components/Faqs/index.astro"
@@ -64,8 +62,6 @@ export { default as SubscribeForm } from "./src/components/SubscribeForm/index.a
 export { default as Subtitle } from "./src/components/Subtitle/index.astro"
 // @ts-expect-error
 export { default as Trail } from "./src/components/Trail/index.astro"
-// @ts-expect-error
-export { default as ValidationScript } from "./src/components/JavaScript/ValidationScript/index.astro"
 // @ts-expect-error
 export { default as Wrap } from "./src/components/Wrap/index.astro"
 
@@ -238,6 +234,7 @@ export { default as generateShortId } from "./src/utilities/generateShortId"
 export { default as getBreadcrumbTrail } from "./src/utilities/getBreadcrumbTrail"
 export { default as getLineNumberingWidth } from "./src/utilities/getLineNumberingWidth"
 export { default as getMonths } from "./src/utilities/getMonths"
+export { default as getPages } from "./src/utilities/getPages"
 export { default as getSlots } from "./src/utilities/getSlots"
 export { default as getTimeZoneOptions } from "./src/utilities/getTimeZoneOptions"
 export { default as isRoot } from "./src/utilities/isRoot"
