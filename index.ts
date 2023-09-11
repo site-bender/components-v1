@@ -31,8 +31,6 @@ export { default as Header } from "./src/components/Header/index.astro"
 // @ts-expect-error
 export { default as Html } from "./src/components/Html/index.astro"
 // @ts-expect-error
-export { default as JavaScript } from "./src/components/JavaScript/index.astro"
-// @ts-expect-error
 export { default as Link } from "./src/components/Link/index.astro"
 // @ts-expect-error
 export { default as Logotype } from "./src/components/Logotype/index.astro"
