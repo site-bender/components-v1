@@ -39,16 +39,24 @@
 }
 
 .sb-footer .sb-nav-this-page {
+	align-items: center;
 	background-color: var(--sb-footer-this-page-background-color, var(--sb-color-link, #09314e));
+	box-sizing: border-box;
 	border-radius: 4px;
 	color: var(--sb-footer-this-page-color, var(--sb-color-gray-1, #dfdfe2));
-	padding: 3px 5px;
+	display: flex;
+	justify-content: center;
+	min-height: 48px;
 }
 
 .sb-footer a.sb-nav-link {
+	align-items: center;
 	background-color: var(--sb-footer-nav-link-background-color, transparent);
+	box-sizing: border-box;
 	color: var(--sb-footer-nav-link-color, var(--sb-color-link, #09314e));
-	padding: 3px 5px;
+	display: flex;
+	justify-content: center;
+	min-height: 48px;
 	text-decoration: none;
 }
 
