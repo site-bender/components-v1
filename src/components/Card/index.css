@@ -23,6 +23,10 @@
 	filter: grayscale(0);
 }
 
+.sb-card-subheading {
+	color: var(--sb-hn-color, inherit);
+}
+
 .sb-card:focus-within .sb-card-link .sb-card-heading,
 .sb-card .sb-card-link:hover .sb-card-heading,
 .sb-card .sb-card-link:hover .sb-card-subheading,
