@@ -5,7 +5,6 @@
 	gap: 0.5rem;
 	justify-content: space-between;
 	margin-bottom: var(--sb-space-s, 1.5rem);
-	max-width: 48ch;
 }
 
 .sb-field .sb-label {
@@ -26,7 +25,7 @@
 }
 
 .sb-field textarea {
-	max-width: 48ch;
+	max-width: min(48rem, 100%);
 	width: 100%;
 }
 
@@ -36,6 +35,7 @@
 	background-color: var(--sb-field-background-color, var(--sb-color-gray-1, #dfdfe2));
 	border: 2px solid var(--sb-field-border-color, var(--sb-color-gray-3, #a9a9b1));
 	border-radius: 4px;
+	box-sizing: border-box;
 	color: var(--sb-field-color, var(--sb-color-gray-9, #131315));
 	font-family: var(--sb-font-body);
 	font-size: var(--sb-step-0, 1rem);
