@@ -87,27 +87,27 @@ export type CheckboxInput = Override<
 >
 
 export type Option = {
-	"alpha2"?: string | undefined | null
-	"alpha3"?: string | undefined | null
-	"checked"?: boolean | string | undefined | null
+	alpha2?: string | undefined | null
+	alpha3?: string | undefined | null
+	checked?: boolean | string | undefined | null
 	"class:list"?:
 		| Record<string, boolean>
 		| Record<string | number | symbol, unknown>
 		| Iterable<string>
 		| Iterable<unknown>
 		| string
-	"form"?: string | undefined | null
-	"groupLabelId"?: string | undefined | null
-	"id"?: string | undefined | null
-	"label": string
-	"name"?: string | undefined | null
-	"numeric"?: string | number | undefined | null
-	"options"?: Options | undefined | null
-	"readonly"?: boolean | string | undefined | null
-	"required"?: boolean | string | undefined | null
-	"type"?: never
-	"value"?: string | number | undefined | null
-	"wrapper"?: Partial<Label>
+	form?: string | undefined | null
+	groupLabelId?: string | undefined | null
+	id?: string | undefined | null
+	label: string
+	name?: string | undefined | null
+	numeric?: string | number | undefined | null
+	options?: Options | undefined | null
+	readonly?: boolean | string | undefined | null
+	required?: boolean | string | undefined | null
+	type?: never
+	value?: string | number | undefined | null
+	wrapper?: Partial<Label>
 }
 
 export type Options = Array<Option>
@@ -656,8 +656,9 @@ export type EmailField = Override<
 	} & Validatable
 >
 
-export type Honeypot =
-	& Override<HTMLAttributes, {
+export type Honeypot = Override<
+	HTMLAttributes,
+	{
 		cLabel?: string | undefined | null
 		cPlaceholder?: string | undefined | null
 		confirmation?: string | undefined | null
@@ -667,8 +668,9 @@ export type Honeypot =
 		pwLabel?: string | undefined | null
 		pwPlaceholder?: string | undefined | null
 		wrapper?: Partial<HTMLAttributes> | undefined | null
-	}>
-	& Validatable
+	}
+> &
+	Validatable
 
 export type InstantField = Override<
 	GenericFormAttributes,

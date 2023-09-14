@@ -1,6 +1,6 @@
 import type {
-	Injector,
 	InjectValueOperation,
+	Injector,
 } from "../../../../types/operations"
 
 import not from "../../../../../../utilities/not"
@@ -14,7 +14,7 @@ export default function getFromSessionStorage(
 	const [name, ...rest] = path
 
 	if (not(name)) {
-		return () => ({} as Value)
+		return () => ({}) as Value
 	}
 
 	return function injectValueFromSessionStorage(): Value {

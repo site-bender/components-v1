@@ -12,10 +12,11 @@ export default function makeIsDateTime(
 	constraint: DateTimeTypeConstraint,
 ): (validation: Validation) => Validation {
 	return function isDateTime(validation: Validation): Validation {
-		const value = typeof validation?.value === "object" &&
-				"value" in (validation.value as Value)
-			? (validation.value as Value).value
-			: validation.value
+		const value =
+			typeof validation?.value === "object" &&
+			"value" in (validation.value as Value)
+				? (validation.value as Value).value
+				: validation.value
 
 		try {
 			getPlainDateTime(value as string | Temporal.PlainDateTime | Date)

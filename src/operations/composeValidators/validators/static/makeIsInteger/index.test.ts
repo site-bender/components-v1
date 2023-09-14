@@ -3,8 +3,8 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import makeIsInteger from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: IntegerTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_INTEGER,

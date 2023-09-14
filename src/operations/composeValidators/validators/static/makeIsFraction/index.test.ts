@@ -3,9 +3,9 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
+import makeIsFraction from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { FractionValue } from "../../../../types/values"
-import makeIsFraction from "."
 
 const constraint: FractionTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_FRACTION,

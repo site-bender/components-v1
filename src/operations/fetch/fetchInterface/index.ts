@@ -9,7 +9,7 @@ export default async function fetchInterface(
 			"x-hasura-admin-secret":
 				"vxqJlZIraNka8T4wiefSd7fdQEsmN27xa7W5viCW7RYJ4R8OPFdo8JwNeD4QG2oc",
 			"Content-Type": "application/json",
-			"Accept": "application/json",
+			Accept: "application/json",
 		},
 		body: JSON.stringify({
 			query: `query GetInterface($name: String) {

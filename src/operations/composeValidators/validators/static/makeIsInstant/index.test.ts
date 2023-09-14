@@ -3,9 +3,9 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
+import makeIsInstant from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { InstantValue } from "../../../../types/values"
-import makeIsInstant from "."
 
 const constraint: InstantTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_INSTANT,

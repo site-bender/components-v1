@@ -1,6 +1,6 @@
 // deno-lint-ignore no-extra-semi
-;(function() {
-	function addCopyToClipboard () {
+;(function () {
+	function addCopyToClipboard() {
 		const blocks = document.querySelectorAll(".astro-code")
 
 		blocks?.forEach((block) => {
@@ -8,7 +8,7 @@
 
 			button.classList.add("sb-copy-to-clipboard")
 			button.appendChild(document.createTextNode("copy"))
-			button.addEventListener("click", function() {
+			button.addEventListener("click", function () {
 				const code = block.querySelector("code")
 
 				code &&

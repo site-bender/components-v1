@@ -14,9 +14,9 @@ export default function stringToMap(
 			return not(key)
 				? acc
 				: {
-					...acc,
-					[key]: value,
-				}
+						...acc,
+						[key]: value,
+				  }
 		}, {})
 
 	return new Map(Object.entries(obj)) as Maps

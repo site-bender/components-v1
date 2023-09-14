@@ -5,8 +5,8 @@ import type {
 	XorConstraint,
 } from "../../../../../types/constraints"
 
-import pipeAsync from "../../../../../utilities/pipeAsync"
 import composeValidators from "../../../"
+import pipeAsync from "../../../../../utilities/pipeAsync"
 
 const xorFormatter = new Intl.ListFormat("en", {
 	style: "long",
@@ -36,22 +36,22 @@ export default async function makeXor(
 		return validated.errors?.length === constraint.tests.length - 1
 			? validation
 			: {
-				...(await validation),
-				isInvalid: true,
-				errors: [
-					...xors,
-					{
-						constraint,
-						error: "XOR_ERROR",
-						errors: others,
-						errorMessage: xorFormatter.format(
-							others
-								.map(({ errorMessage }) => errorMessage)
-								.filter((value) => value) as Array<string>,
-						),
-					} as ValidationError,
-				],
-			}
+					...(await validation),
+					isInvalid: true,
+					errors: [
+						...xors,
+						{
+							constraint,
+							error: "XOR_ERROR",
+							errors: others,
+							errorMessage: xorFormatter.format(
+								others
+									.map(({ errorMessage }) => errorMessage)
+									.filter((value) => value) as Array<string>,
+							),
+						} as ValidationError,
+					],
+			  }
 	}
 }
 

@@ -3,8 +3,8 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import superset from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: SupersetConstraint = {
 	constraintType: TypeOfConstraint.SUPERSET,

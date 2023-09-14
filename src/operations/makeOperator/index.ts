@@ -1,6 +1,6 @@
 import type {
-	Injector,
 	InjectValueOperation,
+	Injector,
 	Operation,
 } from "../../types/operations"
 
@@ -114,7 +114,7 @@ const makers = {
 }
 
 // FIXME
-function getRenderer (): [
+function getRenderer(): [
 	boolean,
 	{ makeInjector: (operation: Operation) => Injector },
 ] {
@@ -135,11 +135,12 @@ export default function makeOperator(
 ): () => Value {
 	const [, { makeInjector }] = getRenderer() || [false, { makeInjector: maker }]
 
-	const operator = operation.operatorType === TypeOfOperator.INJECT_VALUE
-		? makeInjector
-		: (makers[operation.operatorType as keyof typeof makers] as (
-			operation: Operation,
-		) => Injector)
+	const operator =
+		operation.operatorType === TypeOfOperator.INJECT_VALUE
+			? makeInjector
+			: (makers[operation.operatorType as keyof typeof makers] as (
+					operation: Operation,
+			  ) => Injector)
 
 	return operator(operation as InjectValueOperation)
 }

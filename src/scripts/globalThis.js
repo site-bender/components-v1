@@ -1,11 +1,11 @@
 // deno-lint-ignore no-extra-semi
-;(function() {
+;(function () {
 	if (typeof globalThis === "object") {
 		return
 	}
 
 	Object.defineProperty(Object.prototype, "__magic__", {
-		get: function() {
+		get: function () {
 			return this
 		},
 		configurable: true,
@@ -13,7 +13,7 @@
 
 	__magic__.globalThis = __magic__
 
-	delete Object.prototype.__magic__
+	Object.prototype.__magic__ = undefined
 
 	console.info("« globalThis injected. »")
 })()

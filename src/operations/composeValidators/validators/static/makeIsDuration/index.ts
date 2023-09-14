@@ -12,10 +12,11 @@ export default function makeIsDuration(
 	constraint: DurationTypeConstraint,
 ): (validation: Validation) => Validation {
 	return function isDuration(validation: Validation): Validation {
-		const value = typeof validation?.value === "object" &&
-				"value" in (validation.value as Value)
-			? (validation.value as Value).value
-			: validation.value
+		const value =
+			typeof validation?.value === "object" &&
+			"value" in (validation.value as Value)
+				? (validation.value as Value).value
+				: validation.value
 
 		try {
 			getDuration(value as Temporal.Duration | DurationOptions | string)

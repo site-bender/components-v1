@@ -3,8 +3,8 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import member from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: MemberConstraint = {
 	constraintType: TypeOfConstraint.MEMBER,

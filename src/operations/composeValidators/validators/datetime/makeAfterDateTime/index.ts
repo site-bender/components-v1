@@ -13,15 +13,17 @@ export default function makeAfterDateTime(
 	constraint: AfterDateTimeConstraint,
 ): (validation: Validation) => Validation {
 	const { operand } = constraint
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand
 
 	return function afterDateTime(validation: Validation): Validation {
 		const injected = injector()
-		const testValue = typeof injected === "object" && "value" in injected
-			? injected.value
-			: injected
+		const testValue =
+			typeof injected === "object" && "value" in injected
+				? injected.value
+				: injected
 
 		try {
 			const testDateTime = getPlainDateTime(

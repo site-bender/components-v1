@@ -7,7 +7,7 @@ export default function getTimeZoneOptions(
 	return TIME_ZONES.filter(({ countryCode }) =>
 		(countries as Array<string>).length
 			? (countries as Array<string>).includes(countryCode)
-			: true
+			: true,
 	).map(({ timeZone }) => ({
 		label: timeZone,
 		value: timeZone,

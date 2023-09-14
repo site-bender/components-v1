@@ -3,8 +3,8 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import makeIsArray from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: ArrayTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_ARRAY,

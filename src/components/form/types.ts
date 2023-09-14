@@ -20,17 +20,17 @@ export type Form = Override<
 	GenericFormAttributes,
 	{
 		"accept-charset"?: string | undefined | null
-		"action": string
-		"autocomplete"?: "off" | "on" | undefined | null
-		"autocorrect"?: never
-		"dataset"?: Dataset
-		"enctype"?: string | undefined | null
-		"form"?: undefined
-		"labelledBy": string | undefined | null
-		"method"?: "GET" | "POST" | undefined | null
-		"name"?: string | undefined | null
-		"novalidate"?: boolean | string | undefined | null
-		"target"?: string | undefined | null
+		action: string
+		autocomplete?: "off" | "on" | undefined | null
+		autocorrect?: never
+		dataset?: Dataset
+		enctype?: string | undefined | null
+		form?: undefined
+		labelledBy: string | undefined | null
+		method?: "GET" | "POST" | undefined | null
+		name?: string | undefined | null
+		novalidate?: boolean | string | undefined | null
+		target?: string | undefined | null
 	}
 >
 

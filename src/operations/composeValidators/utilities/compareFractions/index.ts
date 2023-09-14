@@ -19,7 +19,8 @@ export default function compareFractions(
 		throw new Error(`${JSON.stringify(right.value)} is not a fraction`)
 	}
 
-	const diff = left.value?.numerator * right.value?.denominator -
+	const diff =
+		left.value?.numerator * right.value?.denominator -
 		right.value?.numerator * left.value?.denominator
 
 	return diff === 0 ? 0 : Math.round(diff / Math.abs(diff))

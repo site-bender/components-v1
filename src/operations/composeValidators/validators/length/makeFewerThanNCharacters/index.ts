@@ -13,9 +13,10 @@ export default function makeFewerThanNCharacters(
 ): (validation: Validation) => Validation {
 	const { match, operand } = constraint
 	const matcher = typeof match === "string" ? new RegExp(match) : match
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand
 
 	return function fewerThanNCharacters(validation: Validation): Validation {
 		const injected = injector() as IntegerValue | number
@@ -24,9 +25,10 @@ export default function makeFewerThanNCharacters(
 				? injected.value
 				: injected
 
-		const value: string | Array<string> = (matcher
-			? (validation.value as string).match(matcher)
-			: (validation.value as string)) || ""
+		const value: string | Array<string> =
+			(matcher
+				? (validation.value as string).match(matcher)
+				: (validation.value as string)) || ""
 
 		return value.length < testValue
 			? validation

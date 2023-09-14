@@ -3,8 +3,8 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import lessThanN from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: LessThanNConstraint = {
 	constraintType: TypeOfConstraint.LESS_THAN_N,

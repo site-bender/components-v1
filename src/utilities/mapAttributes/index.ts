@@ -9,7 +9,7 @@ export default function mapAttributes(
 	...attrs: Array<HTMLAttributes>
 ) {
 	const {
-		["class:list"]: classList = [],
+		"class:list": classList = [],
 		condition,
 		dataset = {} as Dataset,
 		format,
@@ -18,25 +18,29 @@ export default function mapAttributes(
 		...attributes
 	} = data as Partial<HTMLAttributes>
 
-	const sbCondition = condition && typeof condition !== "string"
-		? JSON.stringify(condition)
-		: condition
-	const sbFormat = format && typeof format !== "string"
-		? JSON.stringify(format)
-		: format
-	const sbValidation = validation && typeof validation !== "string"
-		? JSON.stringify(validation)
-		: validation
+	const sbCondition =
+		condition && typeof condition !== "string"
+			? JSON.stringify(condition)
+			: condition
+	const sbFormat =
+		format && typeof format !== "string" ? JSON.stringify(format) : format
+	const sbValidation =
+		validation && typeof validation !== "string"
+			? JSON.stringify(validation)
+			: validation
 
 	return {
 		...attributes,
-		["class:list"]: createClassList(...classes, classList as Array<string>),
-		...mapDataset({
-			...dataset,
-			...(sbCondition ? { sbCondition } : {}),
-			...(sbFormat ? { sbFormat } : {}),
-			...(sbValidation ? { sbValidation } : {}),
-		}, prefix as string),
+		"class:list": createClassList(...classes, classList as Array<string>),
+		...mapDataset(
+			{
+				...dataset,
+				...(sbCondition ? { sbCondition } : {}),
+				...(sbFormat ? { sbFormat } : {}),
+				...(sbValidation ? { sbValidation } : {}),
+			},
+			prefix as string,
+		),
 		...attrs,
 	}
 }

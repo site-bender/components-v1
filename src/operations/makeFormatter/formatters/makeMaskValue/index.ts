@@ -10,7 +10,7 @@ export default function makeMaskValue({
 			.map((match, index) =>
 				Object.keys(segments).includes(String(index))
 					? match.replaceAll(/./g, segments[index])
-					: match
+					: match,
 			)
 			.join(separator)
 	}

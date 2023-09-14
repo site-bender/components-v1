@@ -1,3 +1,1 @@
-export default function noOp(): void {
-	return undefined
-}
+export default function noOp(): void {}

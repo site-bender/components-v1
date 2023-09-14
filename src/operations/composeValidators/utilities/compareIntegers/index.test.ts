@@ -1,5 +1,5 @@
-import type { IntegerValue } from "../../../../types/values"
 import compareIntegers from "."
+import type { IntegerValue } from "../../../../types/values"
 
 const one: IntegerValue = {
 	datatype: "integer",

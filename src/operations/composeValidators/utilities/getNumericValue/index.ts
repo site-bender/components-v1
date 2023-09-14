@@ -26,7 +26,7 @@ export default async function getNumericValue(
 		}
 
 		if (typeof val === "object" && "numerator" in val && "denominator" in val) {
-			return val.numerator as number / (val.denominator as number)
+			return (val.numerator as number) / (val.denominator as number)
 		}
 	}
 

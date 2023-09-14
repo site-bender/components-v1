@@ -22,7 +22,8 @@ export default function addFractions(
 				datatype: "fraction",
 				value: {
 					denominator: acc.value.denominator * value.value.denominator,
-					numerator: acc.value.numerator * value.value.denominator +
+					numerator:
+						acc.value.numerator * value.value.denominator +
 						value.value.numerator * acc.value.denominator,
 				},
 			})

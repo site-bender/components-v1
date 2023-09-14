@@ -31,9 +31,10 @@ export default function parseValue(
 		case TypeOfReturn.REAL_NUMBER:
 			return {
 				datatype: "real",
-				value: typeof decimalPlaces === "number"
-					? roundToSignificantDigits(parseFloat(value), decimalPlaces)
-					: parseFloat(value),
+				value:
+					typeof decimalPlaces === "number"
+						? roundToSignificantDigits(parseFloat(value), decimalPlaces)
+						: parseFloat(value),
 				...(typeof decimalPlaces === "number"
 					? { significantDigits: decimalPlaces }
 					: {}),
@@ -41,9 +42,10 @@ export default function parseValue(
 		case TypeOfReturn.PRECISION_NUMBER:
 			return {
 				datatype: "precision",
-				value: typeof decimalPlaces === "number"
-					? roundToSignificantDigits(parseFloat(value), decimalPlaces)
-					: parseFloat(value),
+				value:
+					typeof decimalPlaces === "number"
+						? roundToSignificantDigits(parseFloat(value), decimalPlaces)
+						: parseFloat(value),
 				...(typeof decimalPlaces === "number"
 					? { precision: decimalPlaces }
 					: {}),

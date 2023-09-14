@@ -3,8 +3,8 @@ import type {
 	Validation,
 } from "../../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import confirmed from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: ConfirmationConstraint = {
 	constraintType: TypeOfConstraint.CONFIRMED,

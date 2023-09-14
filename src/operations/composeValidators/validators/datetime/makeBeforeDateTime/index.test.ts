@@ -4,8 +4,8 @@ import {
 } from "../../../../../types/constraints"
 
 import { Temporal } from "@js-temporal/polyfill"
-import type { TypeOfConstraint } from "../../../../types/enums"
 import beforeDateTime from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: BeforeDateTimeConstraint = {
 	constraintType: TypeOfConstraint.BEFORE_DATE_TIME,

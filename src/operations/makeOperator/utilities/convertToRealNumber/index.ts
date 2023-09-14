@@ -18,7 +18,8 @@ export default function convertToRealNumber(
 	if ((value as NumberValue).datatype === "fraction") {
 		return {
 			datatype: "real",
-			value: (value as FractionValue).value.numerator /
+			value:
+				(value as FractionValue).value.numerator /
 				(value as FractionValue).value.denominator,
 		}
 	}

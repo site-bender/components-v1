@@ -3,8 +3,8 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import overlappingSet from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: OverlappingSetConstraint = {
 	constraintType: TypeOfConstraint.OVERLAPPING_SET,

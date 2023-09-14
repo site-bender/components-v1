@@ -13,9 +13,10 @@ export default function makeReciprocal(
 ): Injector {
 	const { operand } = operation as ReciprocalOperation
 
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand
 
 	return function reciprocal() {
 		return getReciprocal(injector() as NumberValue | number)

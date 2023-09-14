@@ -1,9 +1,9 @@
-import type { Injector, InjectValueOperation } from "../../types/operations"
+import type { InjectValueOperation, Injector } from "../../types/operations"
 
 import type { Store } from "solid-js/store"
+import type { StoreConfig } from "../"
 import type { TypeOfSource } from "../../types/enums"
 import type { EmptyValue } from "../../types/values"
-import type { StoreConfig } from "../"
 import getFromLocalStorage from "./getFromLocalStorage"
 import getFromQueryString from "./getFromQueryString"
 import getFromSessionStorage from "./getFromSessionStorage"
@@ -28,7 +28,7 @@ export default function makeMakeInjector(store: Store<StoreConfig>) {
 			// case TypeOfSource.COOKIE_STORAGE:
 			// 	return getFromCookieStorage(operation)
 			default:
-				return () => ({} as EmptyValue)
+				return () => ({}) as EmptyValue
 		}
 	}
 }

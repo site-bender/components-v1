@@ -12,8 +12,8 @@ export default function stringToRecord(
 		return not(key)
 			? acc
 			: {
-				...acc,
-				[key]: value,
-			}
+					...acc,
+					[key]: value,
+			  }
 	}, {}) as Records
 }

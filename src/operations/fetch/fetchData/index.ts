@@ -1,7 +1,7 @@
 export default async function fetchData(
 	operationName: string,
 	query: string,
-	url = "https://imaker.hasura.app/v1/graphql",
+	url,
 	variables: Record<string, unknown>,
 ): Promise<Record<string, unknown>> {
 	const response = await fetch(url, {

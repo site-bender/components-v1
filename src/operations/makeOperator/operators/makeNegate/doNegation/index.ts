@@ -8,13 +8,13 @@ export default function doNegation(value: NumberValue | number): NumberValue {
 	if (typeof value === "number") {
 		return Number.isInteger(value)
 			? {
-				datatype: "integer",
-				value: value * -1,
-			}
+					datatype: "integer",
+					value: value * -1,
+			  }
 			: {
-				datatype: "real",
-				value: value * -1,
-			}
+					datatype: "real",
+					value: value * -1,
+			  }
 	}
 
 	if ((value as NumberValue).datatype === "fraction") {

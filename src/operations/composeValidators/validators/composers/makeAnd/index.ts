@@ -35,22 +35,22 @@ export default async function makeAnd(
 		)
 		const output = validated.isInvalid
 			? {
-				...(await validation),
-				isInvalid: true,
-				errors: [
-					...ands,
-					{
-						constraint,
-						error: "AND_ERROR",
-						errors: others,
-						errorMessage: andFormatter.format(
-							others
-								.map(({ errorMessage }) => errorMessage)
-								.filter((value) => value) as Array<string>,
-						),
-					} as ValidationError,
-				],
-			}
+					...(await validation),
+					isInvalid: true,
+					errors: [
+						...ands,
+						{
+							constraint,
+							error: "AND_ERROR",
+							errors: others,
+							errorMessage: andFormatter.format(
+								others
+									.map(({ errorMessage }) => errorMessage)
+									.filter((value) => value) as Array<string>,
+							),
+						} as ValidationError,
+					],
+			  }
 			: { isInvalid: validated.isInvalid, errors: validated.errors }
 
 		return {

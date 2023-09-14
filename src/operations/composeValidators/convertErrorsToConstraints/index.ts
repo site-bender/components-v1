@@ -9,21 +9,21 @@ export default function convertConstraintsToConstraints(
 
 		return ["and", "or", "xor"].includes(error)
 			? [
-				...acc,
-				{
-					constraintType: error,
-					tests: convertConstraintsToConstraints(
-						errors as Array<ValidationError>,
-					),
-					...(errorMessage ? { errorMessage } : {}),
-				} as Constraint,
-			]
+					...acc,
+					{
+						constraintType: error,
+						tests: convertConstraintsToConstraints(
+							errors as Array<ValidationError>,
+						),
+						...(errorMessage ? { errorMessage } : {}),
+					} as Constraint,
+			  ]
 			: [
-				...acc,
-				{
-					constraintType,
-					...rest,
-				} as Constraint,
-			]
+					...acc,
+					{
+						constraintType,
+						...rest,
+					} as Constraint,
+			  ]
 	}, [] as Array<Constraint>)
 }

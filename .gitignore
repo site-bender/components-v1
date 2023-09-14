@@ -18,5 +18,7 @@ dist/*
 temp/
 coverage/
 
+.vercel/
 docs/*
 temp/*
+.vercel

@@ -19,7 +19,7 @@ export default function makeMinimum(operation: MinimumOperation): Injector {
 	const values = operands.map((operand) =>
 		typeof operand === "object" && "operatorType" in operand
 			? makeOperator(operand as Operation)
-			: () => operand
+			: () => operand,
 	) as unknown as Array<() => NumberValue | number>
 
 	return function minimum() {
@@ -27,18 +27,20 @@ export default function makeMinimum(operation: MinimumOperation): Injector {
 			const first = a() as NumberValue | number
 			const second = b() as NumberValue | number
 
-			const left: number = typeof first === "number"
-				? first
-				: (first as NumberValue).datatype === "fraction"
-				? (first as FractionValue).value.numerator /
-					(first as FractionValue).value.denominator
-				: (first as NonFractionValue).value
-			const right: number = typeof second === "number"
-				? second
-				: (second as NumberValue).datatype === "fraction"
-				? (second as FractionValue).value.numerator /
-					(second as FractionValue).value.denominator
-				: (second as NonFractionValue).value
+			const left: number =
+				typeof first === "number"
+					? first
+					: (first as NumberValue).datatype === "fraction"
+					? (first as FractionValue).value.numerator /
+					  (first as FractionValue).value.denominator
+					: (first as NonFractionValue).value
+			const right: number =
+				typeof second === "number"
+					? second
+					: (second as NumberValue).datatype === "fraction"
+					? (second as FractionValue).value.numerator /
+					  (second as FractionValue).value.denominator
+					: (second as NonFractionValue).value
 
 			return left === right ? 0 : (left - right) / Math.abs(left - right)
 		})[0]

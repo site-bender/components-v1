@@ -79,13 +79,15 @@ export type LanguageType = "en" | "fr"
 
 export type LocaleCompareOptions = {
 	language?: LanguageType | Array<LanguageType> | undefined
-	options?: {
-		ignorePunctuation?: boolean | undefined
-		usage?: "search" | "sort" | undefined
-		sensitivity?: "base" | "accent" | "case" | "variant" | undefined
-		numeric?: boolean | undefined
-		caseFirst?: "upper" | "lower" | "false" | undefined
-	} | undefined
+	options?:
+		| {
+				ignorePunctuation?: boolean | undefined
+				usage?: "search" | "sort" | undefined
+				sensitivity?: "base" | "accent" | "case" | "variant" | undefined
+				numeric?: boolean | undefined
+				caseFirst?: "upper" | "lower" | "false" | undefined
+		  }
+		| undefined
 }
 
 export type Fraction = {

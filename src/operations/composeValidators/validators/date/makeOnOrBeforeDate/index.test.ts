@@ -3,8 +3,8 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import onOrBeforeDate from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: OnOrBeforeDateConstraint = {
 	constraintType: TypeOfConstraint.ON_OR_BEFORE_DATE,

@@ -13,9 +13,10 @@ export default function makeIsReversedList(
 ): (validation: Validation) => Validation {
 	const { operand, separator = "," } = constraint
 
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand
 
 	return function isReversedList(validation: Validation): Validation {
 		const injected = injector()

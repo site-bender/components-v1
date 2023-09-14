@@ -3,8 +3,8 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import disjointSet from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: DisjointSetConstraint = {
 	constraintType: TypeOfConstraint.DISJOINT_SET,

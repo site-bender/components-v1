@@ -3,8 +3,8 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import exactlyNCharacters from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const validation: Validation = {
 	datatype: "string",

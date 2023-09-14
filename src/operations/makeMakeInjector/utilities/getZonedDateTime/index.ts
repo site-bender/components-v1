@@ -9,9 +9,10 @@ export default function getZonedDateTime(
 		return tz ? d.toInstant().toZonedDateTimeISO(tz) : d
 	}
 
-	const instant = d instanceof Date
-		? Temporal.Instant.from(d.toISOString())
-		: Temporal.Instant.from(d)
+	const instant =
+		d instanceof Date
+			? Temporal.Instant.from(d.toISOString())
+			: Temporal.Instant.from(d)
 
 	return instant.toZonedDateTime({
 		calendar: Temporal.Calendar.from(calendar),

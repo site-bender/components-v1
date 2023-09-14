@@ -1,7 +1,7 @@
 import type { MatchConstraint, Validation } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import matches from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: MatchConstraint = {
 	constraintType: TypeOfConstraint.MATCHING,

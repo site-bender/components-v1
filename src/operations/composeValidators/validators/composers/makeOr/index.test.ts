@@ -1,7 +1,7 @@
 import type { OrConstraint, Validation } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import or from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: OrConstraint = {
 	constraintType: "or",

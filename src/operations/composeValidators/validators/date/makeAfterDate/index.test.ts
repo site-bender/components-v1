@@ -3,8 +3,8 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import afterDate from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: AfterDateConstraint = {
 	constraintType: TypeOfConstraint.AFTER_DATE,

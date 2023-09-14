@@ -13,12 +13,13 @@ export default function makeMoreThanN(
 	constraint: MoreThanNConstraint,
 ): (validation: Validation) => Promise<Validation> {
 	const { operand } = constraint
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand
 
 	return async function moreThanN(validation: Validation): Promise<Validation> {
-		const injected = await injector() as NumberValue | number
+		const injected = (await injector()) as NumberValue | number
 		const testValue = await getNumericValue(injected)
 		const value = await getNumericValue(validation)
 

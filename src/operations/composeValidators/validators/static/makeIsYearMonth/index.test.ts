@@ -3,9 +3,9 @@ import type {
 	YearMonthConstraint,
 } from "../../../../types/constraints"
 
+import makeIsYearMonth from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { YearMonthValue } from "../../../../types/values"
-import makeIsYearMonth from "."
 
 const constraint: YearMonthConstraint = {
 	constraintType: TypeOfConstraint.IS_YEAR_MONTH,

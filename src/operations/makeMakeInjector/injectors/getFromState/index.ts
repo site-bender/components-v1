@@ -1,6 +1,6 @@
 import type {
-	Injector,
 	InjectValueOperation,
+	Injector,
 } from "../../../../types/operations"
 import type { EmptyValue, Value } from "../../../../types/values"
 
@@ -16,7 +16,7 @@ export default function getFromState(
 	const { path = [] } = operation
 
 	if (not(path.length)) {
-		return () => ({} as EmptyValue)
+		return () => ({}) as EmptyValue
 	}
 
 	return function injectValueFromState(): Value {

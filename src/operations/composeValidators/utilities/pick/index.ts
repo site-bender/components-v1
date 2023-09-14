@@ -2,7 +2,7 @@ export default function pick<T>(
 	keys: Array<string>,
 	object?: Record<string, T>,
 ): PickReturn<T> {
-	function pickEm (object: Record<string, T>): Record<string, T> {
+	function pickEm(object: Record<string, T>): Record<string, T> {
 		return keys.reduce(
 			(acc, key) => ({
 				...acc,

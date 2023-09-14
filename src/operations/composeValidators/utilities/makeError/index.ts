@@ -8,11 +8,7 @@ import type {
 export default async function makeError<
 	V extends Validation,
 	C extends Constraint,
->(
-	v: V,
-	constraint: C,
-	errorMessage?: string,
-): Promise<V> {
+>(v: V, constraint: C, errorMessage?: string): Promise<V> {
 	const validation = await v
 	const errors = validation.errors || []
 	const wrappedErrors = Array.isArray(errors) ? errors : [errors]

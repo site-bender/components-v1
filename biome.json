@@ -1,0 +1,38 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.1.2/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"formatter": {
+		"enabled": true,
+		"ignore": [
+			"node_modules/*",
+			"dist/*",
+			".astro/*",
+			".vercel/*",
+			"vscode/*",
+			"temp/*"
+		],
+		"indentStyle": "tab",
+		"lineWidth": 80
+	},
+	"javascript": {
+		"formatter": {
+			"semicolons": "asNeeded"
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"ignore": [
+			"node_modules/*",
+			"dist/*",
+			".astro/*",
+			".vercel/*",
+			"vscode/*",
+			"temp/*"
+		],
+		"rules": {
+			"recommended": true
+		}
+	}
+}

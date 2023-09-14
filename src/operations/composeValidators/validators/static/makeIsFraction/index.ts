@@ -13,9 +13,9 @@ export default function makeIsFraction(
 		const value: Fraction = validation.value as Fraction
 
 		return typeof value === "object" &&
-				Number.isInteger(value.denominator) &&
-				value.denominator !== 0 &&
-				Number.isInteger(value.numerator)
+			Number.isInteger(value.denominator) &&
+			value.denominator !== 0 &&
+			Number.isInteger(value.numerator)
 			? validation
 			: makeError(validation, constraint)
 	}

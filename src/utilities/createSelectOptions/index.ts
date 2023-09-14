@@ -7,15 +7,13 @@ export default function createSelectOptions(
 	return list
 		.map((item) =>
 			item.options
-				? `<optgroup label="${item.label || item.value}">${
-					createSelectOptions(
+				? `<optgroup label="${item.label || item.value}">${createSelectOptions(
 						item.options,
 						selected,
-					)
-				}</optgroup>`
+				  )}</optgroup>`
 				: `<option value="${item.value}"${
-					String(item.value) === String(selected) ? " selected" : ""
-				}>${item.label || item.value}</option>`
+						String(item.value) === String(selected) ? " selected" : ""
+				  }>${item.label || item.value}</option>`,
 		)
 		.join("\n")
 }

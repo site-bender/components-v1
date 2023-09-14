@@ -1,4 +1,4 @@
-import type { Arrays, Sets, SetValue } from "../../../../types/values"
+import type { Arrays, SetValue, Sets } from "../../../../types/values"
 
 export default function convertToSet(
 	set: SetValue | Sets | Arrays | string,

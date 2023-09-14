@@ -3,9 +3,9 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
+import makeIsList from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { ListValue } from "../../../../types/values"
-import makeIsList from "."
 
 const constraint: ListTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_LIST,

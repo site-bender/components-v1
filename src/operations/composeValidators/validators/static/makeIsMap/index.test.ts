@@ -3,9 +3,9 @@ import type {
 	Validation,
 } from "../../../../../types/constraints"
 
+import makeIsMap from "."
 import type { MapValue } from "../../../../../types/values"
 import type { TypeOfConstraint } from "../../../../types/enums"
-import makeIsMap from "."
 
 const constraint: MapTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_MAP,

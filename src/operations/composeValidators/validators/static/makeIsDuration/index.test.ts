@@ -3,9 +3,9 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
+import makeIsDuration from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { DurationValue } from "../../../../types/values"
-import makeIsDuration from "."
 
 const constraint: DurationTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_DURATION,

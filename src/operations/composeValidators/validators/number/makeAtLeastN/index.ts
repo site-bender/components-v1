@@ -13,9 +13,10 @@ export default function makeAtLeastN(
 	constraint: AtLeastNConstraint,
 ): (validation: Validation) => Promise<Validation> {
 	const { operand } = constraint
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand
 
 	return async function atLeastN(validation: Validation): Promise<Validation> {
 		const injected = injector() as NumberValue | number

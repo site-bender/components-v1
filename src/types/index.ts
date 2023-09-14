@@ -19,7 +19,7 @@ import type {
 	Movie,
 	MusicRecording,
 	MusicRelease,
-	Number,
+	NumberSO,
 	Organization,
 	OrganizationLeaf,
 	Person,
@@ -77,9 +77,8 @@ export type MailtoOptions = {
 	replyTo?: string
 }
 
-export type MetadataProps<T, Tag extends HTMLTag> =
-	& Polymorphic<{ as: Tag }>
-	& Override<
+export type MetadataProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
 		HTMLAttributes,
 		{
 			as?: Tag
@@ -106,21 +105,24 @@ export type Basedata = {
 	viewport?: string | undefined
 }
 
-export type Author = Override<Person, {
-	href?: string | undefined | null
-}>
+export type Author = Override<
+	Person,
+	{
+		href?: string | undefined | null
+	}
+>
 
 export type Metadata = {
 	article?:
 		| {
-			authors?: Array<string | Author> | undefined
-			license?: string | undefined
-			modifiedDate?: Date | string | undefined
-			publishers?: Array<string | Organization> | undefined
-			publishDate?: Date | string
-			tags?: Array<string> | undefined
-			title?: string
-		}
+				authors?: Array<string | Author> | undefined
+				license?: string | undefined
+				modifiedDate?: Date | string | undefined
+				publishers?: Array<string | Organization> | undefined
+				publishDate?: Date | string
+				tags?: Array<string> | undefined
+				title?: string
+		  }
 		| undefined
 	author?: string | Person | undefined
 	blurb?: string | undefined
@@ -131,15 +133,15 @@ export type Metadata = {
 	description: string
 	image?:
 		| {
-			alt: string
-			filename: string
-			height?: string | number
-			isInvertible?: boolean
-			license?: string
-			sources?: Array<ImageSource>
-			type?: ImageType | undefined
-			width?: string | number
-		}
+				alt: string
+				filename: string
+				height?: string | number
+				isInvertible?: boolean
+				license?: string
+				sources?: Array<ImageSource>
+				type?: ImageType | undefined
+				width?: string | number
+		  }
 		| undefined
 	index?: number
 	label?: string
@@ -155,14 +157,14 @@ export type Metadata = {
 	title: string
 	twitter?:
 		| {
-			card: TwitterCard
-			creator?: string | undefined
-			description?: string | undefined
-			image?: string | undefined
-			imageAlt?: string | undefined
-			site?: string | undefined
-			title?: string | undefined
-		}
+				card: TwitterCard
+				creator?: string | undefined
+				description?: string | undefined
+				image?: string | undefined
+				imageAlt?: string | undefined
+				site?: string | undefined
+				title?: string | undefined
+		  }
 		| undefined
 	type?: ObjectType
 	url?: string | undefined
@@ -261,9 +263,8 @@ export type Trail = {
 	pages?: Pages | undefined
 }
 
-export type ArticleProps<T, Tag extends HTMLTag> =
-	& Polymorphic<{ as: Tag }>
-	& Override<
+export type ArticleProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
 		HTMLAttributes,
 		{
 			as?: Tag
@@ -301,9 +302,8 @@ export type BookTitleProps<Tag extends HTMLTag> = Override<
 	} & Formattable
 >
 
-export type BylineProps<Tag extends HTMLTag> =
-	& Polymorphic<{ as: Tag }>
-	& Override<
+export type BylineProps<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
 		HTMLAttributes,
 		{
 			ariaLabel?: string | undefined | null
@@ -356,9 +356,8 @@ export type CodeBlockProps<T, Tag extends HTMLTag> = Override<
 	}
 >
 
-export type ColumnsProps<T, Tag extends HTMLTag> =
-	& Polymorphic<{ as: Tag }>
-	& Override<
+export type ColumnsProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
 		HTMLAttributes,
 		{
 			as?: Tag
@@ -561,7 +560,7 @@ export type TrailListProps<Tag extends HTMLTag> = Override<
 >
 
 export type NumberProps<Tag extends HTMLTag> = Override<
-	MetadataProps<Partial<Float | Integer | Number>, Tag>, // eslint-disable-line
+	MetadataProps<Partial<Float | Integer | NumberSO>, Tag>, // eslint-disable-line
 	{
 		instant: string | Temporal.Instant
 		link?: Partial<LinkAttributes> | undefined | null
@@ -684,9 +683,8 @@ export type PlainYearMonthProps<Tag extends HTMLTag> = Override<
 	} & Formattable
 >
 
-export type PostProps<T, Tag extends HTMLTag> =
-	& Polymorphic<{ as: Tag }>
-	& Override<
+export type PostProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
 		HTMLAttributes,
 		{
 			as?: Tag
@@ -724,9 +722,8 @@ export type SourceProps = {
 	source: ImageSource
 }
 
-export type SubtitleProps<Tag extends HTMLTag> =
-	& Polymorphic<{ as: Tag }>
-	& Override<
+export type SubtitleProps<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
 		HTMLAttributes,
 		{
 			as?: Tag

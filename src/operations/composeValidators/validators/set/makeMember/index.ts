@@ -2,7 +2,7 @@ import type {
 	MemberConstraint,
 	Validation,
 } from "../../../../../types/constraints"
-import type { Arrays, Sets, SetValue } from "../../../../types/values"
+import type { Arrays, SetValue, Sets } from "../../../../types/values"
 
 import makeOperator from "../../../../makeOperator"
 import type { Operation } from "../../../../types/operations"
@@ -14,9 +14,10 @@ export default function makeMember(
 ): (validation: Validation) => Validation {
 	const { operand } = constraint
 
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand
 
 	return function member(validation: Validation): Validation {
 		const injected = injector()

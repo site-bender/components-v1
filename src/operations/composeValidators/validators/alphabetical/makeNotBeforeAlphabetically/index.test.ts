@@ -3,8 +3,8 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import notBeforeAlphabetically from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: NotBeforeAlphabeticallyConstraint = {
 	constraintType: TypeOfConstraint.NOT_BEFORE_ALPHABETICALLY,

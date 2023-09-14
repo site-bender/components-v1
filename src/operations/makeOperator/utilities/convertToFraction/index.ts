@@ -16,10 +16,11 @@ export default function convertToFraction(
 		return value
 	}
 
-	const exponent: number = typeof value === "object"
-		? (value as RealNumberValue).decimalPlaces || 0
-		: decimalPlaces
-	const multiplier = Math.pow(10, exponent)
+	const exponent: number =
+		typeof value === "object"
+			? (value as RealNumberValue).decimalPlaces || 0
+			: decimalPlaces
+	const multiplier = 10 ** exponent
 	const finalValue = typeof value === "number" ? value : value.value
 
 	return {

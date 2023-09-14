@@ -3,9 +3,9 @@ import type {
 	Validation,
 } from "../../../../../types/constraints"
 
+import makeIsSet from "."
 import type { SetValue } from "../../../../../types/values"
 import type { TypeOfConstraint } from "../../../../types/enums"
-import makeIsSet from "."
 
 const constraint: SetTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_SET,

@@ -25,9 +25,11 @@ export default function subtractFractions(
 	return reduceToLowestForm({
 		datatype: "fraction",
 		value: {
-			denominator: (left as FractionValue).value.denominator *
+			denominator:
+				(left as FractionValue).value.denominator *
 				(right as FractionValue).value.denominator,
-			numerator: (left as FractionValue).value.numerator *
+			numerator:
+				(left as FractionValue).value.numerator *
 					(right as FractionValue).value.denominator -
 				(right as FractionValue).value.numerator *
 					(left as FractionValue).value.denominator,

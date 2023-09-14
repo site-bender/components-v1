@@ -3,9 +3,9 @@ import type {
 	Validation,
 } from "../../../../../types/constraints"
 
+import makeIsString from "."
 import type { StringValue } from "../../../../../types/values"
 import type { TypeOfConstraint } from "../../../../types/enums"
-import makeIsString from "."
 
 const constraint: StringTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_STRING,

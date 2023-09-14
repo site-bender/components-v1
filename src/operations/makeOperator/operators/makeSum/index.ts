@@ -36,19 +36,19 @@ export default function makeSum(operation: SumOperation): Injector {
 				return () =>
 					typeof decimalPlaces === "number"
 						? {
-							datatype: "precision",
-							decimalPlaces,
-							value: truncate(operand, TypeOfTruncation.ROUND, decimalPlaces),
-						}
+								datatype: "precision",
+								decimalPlaces,
+								value: truncate(operand, TypeOfTruncation.ROUND, decimalPlaces),
+						  }
 						: Number.isInteger(operand)
 						? {
-							datatype: "integer",
-							value: operand,
-						}
+								datatype: "integer",
+								value: operand,
+						  }
 						: {
-							datatype: "real",
-							value: operand,
-						}
+								datatype: "real",
+								value: operand,
+						  }
 			}
 
 			if (typeof operand === "object" && "operatorType" in operand) {

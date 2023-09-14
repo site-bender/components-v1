@@ -3,8 +3,8 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import moreThanN from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: EqualToNConstraint = {
 	constraintType: TypeOfConstraint.EQUAL_TO_N,

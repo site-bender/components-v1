@@ -3,8 +3,8 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import atLeastN from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: AtLeastNConstraint = {
 	constraintType: TypeOfConstraint.AT_LEAST_N,

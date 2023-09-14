@@ -13,9 +13,10 @@ export default function makeLessThanN(
 	constraint: LessThanNConstraint,
 ): (validation: Validation) => Promise<Validation> {
 	const { operand } = constraint
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand
 
 	return async function lessThanN(validation: Validation): Promise<Validation> {
 		const injected = injector() as NumberValue | number

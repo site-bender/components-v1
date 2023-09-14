@@ -1,5 +1,5 @@
-import type { PrecisionNumberValue } from "../../../../types/values"
 import compareIntegers from "."
+import type { PrecisionNumberValue } from "../../../../types/values"
 
 const pOne: PrecisionNumberValue = {
 	datatype: "precision",

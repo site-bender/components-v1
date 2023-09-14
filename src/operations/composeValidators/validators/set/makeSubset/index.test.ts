@@ -3,8 +3,8 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import subset from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: SubsetConstraint = {
 	constraintType: TypeOfConstraint.SUBSET,

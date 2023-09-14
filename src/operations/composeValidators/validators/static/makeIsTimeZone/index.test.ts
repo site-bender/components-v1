@@ -3,9 +3,9 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
+import makeIsTimeZone from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { TimeZoneValue } from "../../../../types/values"
-import makeIsTimeZone from "."
 
 const constraint: TimeZoneTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_TIME_ZONE,

@@ -6,15 +6,15 @@ export default function getWebPageData(
 	title: string,
 ) {
 	return {
-		"type": "WebPage",
+		type: "WebPage",
 		"@id": metadata.canonical,
-		"url": metadata.canonical,
-		"name": title,
-		"isPartOf": { "@id": "https://cantankerouscoder.com/#website" },
-		"primaryImageOfPage": {
+		url: metadata.canonical,
+		name: title,
+		isPartOf: { "@id": "https://cantankerouscoder.com/#website" },
+		primaryImageOfPage: {
 			"@id": `${metadata.canonical}#primary-image`,
 		},
-		"image": {
+		image: {
 			"@id": `${metadata.canonical}#primary-image`,
 		},
 		...(metadata.thumbnailUrl ? { thumbnailUrl: metadata.thumbnailUrl } : {}),
@@ -24,14 +24,14 @@ export default function getWebPageData(
 		...(metadata.modifiedDate
 			? { dateModified: metadata.modifiedDate.toString() }
 			: {}),
-		"author": {
+		author: {
 			"@id": "https://cantankerouscoder.com/about/hannah",
 		},
-		"breadcrumb": {
+		breadcrumb: {
 			"@id": "https://cantankerouscoder.com/#/schema/breadcrumb-trail",
 		},
-		"inLanguage": metadata.language || basedata.language,
-		"potentialAction": [
+		inLanguage: metadata.language || basedata.language,
+		potentialAction: [
 			{
 				type: "ReadAction",
 				target: [metadata.canonical],

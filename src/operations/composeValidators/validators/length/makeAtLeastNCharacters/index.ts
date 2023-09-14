@@ -13,9 +13,10 @@ export default function makeAtLeastNCharacters(
 ): (validation: Validation) => Validation {
 	const { match, operand } = constraint
 	const matcher = typeof match === "string" ? new RegExp(match) : match
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand
 
 	return function atLeastNCharacters(validation: Validation): Validation {
 		const injected = injector() as IntegerValue | number
@@ -24,16 +25,17 @@ export default function makeAtLeastNCharacters(
 				? injected.value
 				: injected
 
-		const value: string | Array<string> = (matcher
-			? (validation.value as string).match(matcher)
-			: (validation.value as string)) || ""
+		const value: string | Array<string> =
+			(matcher
+				? (validation.value as string).match(matcher)
+				: (validation.value as string)) || ""
 
 		return value.length >= testValue
 			? validation
 			: makeError(
-				validation,
-				constraint,
-				`include at least ${testValue} characters`,
-			)
+					validation,
+					constraint,
+					`include at least ${testValue} characters`,
+			  )
 	}
 }

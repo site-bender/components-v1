@@ -1,5 +1,5 @@
 // deno-lint-ignore no-extra-semi
-;(function() {
+;(function () {
 	const header = document.querySelector("header#faqs")
 
 	const showAllButton = globalThis._makeElement(
@@ -10,7 +10,7 @@
 		[globalThis._makeTextNode("Show all")],
 	)
 
-	showAllButton.addEventListener("click", function(e) {
+	showAllButton.addEventListener("click", function (e) {
 		e.preventDefault()
 		const details = [...document.getElementsByTagName("DETAILS")]
 		details.forEach((elem) => elem.setAttribute("open", true))
@@ -26,7 +26,7 @@
 		[globalThis._makeTextNode("Hide all")],
 	)
 
-	hideAllButton.addEventListener("click", function(e) {
+	hideAllButton.addEventListener("click", function (e) {
 		e.preventDefault()
 		const details = [...document.getElementsByTagName("DETAILS")]
 		details.forEach((elem) => elem.removeAttribute("open"))

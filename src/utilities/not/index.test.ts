@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 
 import not from "./"
 
-test("[not] returns boolean negating truthiness", function() {
+test("[not] returns boolean negating truthiness", function () {
 	// truthy
 	expect(not(true)).toBe(false)
 	expect(not("hello")).toBe(false)

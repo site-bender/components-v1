@@ -3,9 +3,8 @@ export default function makeInsert({
 	insert = "-",
 	flags = "",
 }: MakeInsertParameters): Formatter {
-	const matcher = typeof pattern === "string"
-		? new RegExp(pattern, flags)
-		: pattern
+	const matcher =
+		typeof pattern === "string" ? new RegExp(pattern, flags) : pattern
 
 	return (value: string) => {
 		const [, ...matches] = value.match(matcher) || []

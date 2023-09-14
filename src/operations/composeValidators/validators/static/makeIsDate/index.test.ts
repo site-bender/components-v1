@@ -3,9 +3,9 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
+import makeIsDate from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { PlainDateValue } from "../../../../types/values"
-import makeIsDate from "."
 
 const constraint: DateTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_DATE,

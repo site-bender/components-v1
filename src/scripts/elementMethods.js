@@ -1,4 +1,4 @@
-globalThis._makeElement = function(tagName, attributes = {}, children = []) {
+globalThis._makeElement = function (tagName, attributes = {}, children = []) {
 	const elem = document.createElement(tagName)
 
 	Object.entries(attributes).forEach(([key, value]) => {
@@ -16,7 +16,7 @@ globalThis._makeElement = function(tagName, attributes = {}, children = []) {
 	return elem
 }
 
-globalThis._makeTextNode = function(txt) {
+globalThis._makeTextNode = function (txt) {
 	return document.createTextNode(txt)
 }
 

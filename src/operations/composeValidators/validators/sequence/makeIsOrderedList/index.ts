@@ -13,24 +13,24 @@ export default function makeIsOrderedList(
 ): (validation: Validation) => Validation {
 	const { operand, separator = "," } = constraint
 
-	const injector = typeof operand === "object" && "operatorType" in operand
-		? makeOperator(operand as Operation)
-		: () => operand as string
+	const injector =
+		typeof operand === "object" && "operatorType" in operand
+			? makeOperator(operand as Operation)
+			: () => operand as string
 
 	return function isOrderedList(validation: Validation): Validation {
 		const injected = injector()
 
-		const list: Array<string> = typeof injected === "string"
-			? injected.split(separator)
-			: injected
-		const values: Array<unknown> = typeof validation.value === "string"
-			? validation.value.split((validation as ListValue).separator || ",")
-			: (validation.value as Array<unknown>)
+		const list: Array<string> =
+			typeof injected === "string" ? injected.split(separator) : injected
+		const values: Array<unknown> =
+			typeof validation.value === "string"
+				? validation.value.split((validation as ListValue).separator || ",")
+				: (validation.value as Array<unknown>)
 
 		const test = values.reduce(
 			(ordered: number, value: number) =>
-				"indexOf" in list &&
-					list.indexOf(value) >= ordered
+				"indexOf" in list && list.indexOf(value) >= ordered
 					? list.indexOf(value)
 					: Infinity,
 			0,

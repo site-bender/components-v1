@@ -448,11 +448,9 @@ export type AstroBuiltinAttributes = {
 	"is:raw"?: boolean
 }
 
-export type HTMLAttributes =
-	& AriaAttributes
-	& DOMAttributes
-	& AstroBuiltinAttributes
-	& {
+export type HTMLAttributes = AriaAttributes &
+	DOMAttributes &
+	AstroBuiltinAttributes & {
 		// Standard HTML Attributes
 		accesskey?: string | undefined | null
 		autocapitalize?: string | undefined | null

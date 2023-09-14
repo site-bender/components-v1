@@ -1,5 +1,5 @@
-import type { FractionValue } from "../../../../types/values"
 import compareFractions from "."
+import type { FractionValue } from "../../../../types/values"
 
 const half: FractionValue = {
 	datatype: "fraction",

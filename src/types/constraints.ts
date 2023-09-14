@@ -8,8 +8,8 @@ import type {
 	LocaleCompareOptions,
 	NumberValue,
 	RegularExpressionValue,
-	Sets,
 	SetValue,
+	Sets,
 	StringValue,
 	Value,
 } from "./values"
@@ -35,23 +35,22 @@ export type MessageCollector = (messages: Array<string>) => Array<string>
 		===== Alphabetical constraints =====
 	*/
 export type AfterAlphabeticallyConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["AFTER_ALPHABETICALLY"]
+	readonly constraintType: typeof TypeOfConstraint["AFTER_ALPHABETICALLY"]
 	operand: Operation | StringValue | string
 } & LocaleCompareOptions
 
 export type BeforeAlphabeticallyConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["BEFORE_ALPHABETICALLY"]
+	readonly constraintType: typeof TypeOfConstraint["BEFORE_ALPHABETICALLY"]
 	operand: Operation | StringValue | string
 } & LocaleCompareOptions
 
 export type NotAfterAlphabeticallyConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["NOT_AFTER_ALPHABETICALLY"]
+	readonly constraintType: typeof TypeOfConstraint["NOT_AFTER_ALPHABETICALLY"]
 	operand: Operation | StringValue | string
 } & LocaleCompareOptions
 
 export type NotBeforeAlphabeticallyConstraint = {
-	readonly constraintType:
-		(typeof TypeOfConstraint)["NOT_BEFORE_ALPHABETICALLY"]
+	readonly constraintType: typeof TypeOfConstraint["NOT_BEFORE_ALPHABETICALLY"]
 	operand: Operation | StringValue | string
 } & LocaleCompareOptions
 
@@ -59,22 +58,22 @@ export type NotBeforeAlphabeticallyConstraint = {
 	===== Relative to date constraints =====
  */
 export type AfterDateConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["AFTER_DATE"]
+	readonly constraintType: typeof TypeOfConstraint["AFTER_DATE"]
 	operand: Operation | AnyDateValue
 }
 
 export type BeforeDateConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["BEFORE_DATE"]
+	readonly constraintType: typeof TypeOfConstraint["BEFORE_DATE"]
 	operand: Operation | AnyDateValue
 }
 
 export type OnOrAfterDateConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["ON_OR_AFTER_DATE"]
+	readonly constraintType: typeof TypeOfConstraint["ON_OR_AFTER_DATE"]
 	operand: Operation | AnyDateValue
 }
 
 export type OnOrBeforeDateConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["ON_OR_BEFORE_DATE"]
+	readonly constraintType: typeof TypeOfConstraint["ON_OR_BEFORE_DATE"]
 	operand: Operation | AnyDateValue
 }
 
@@ -82,12 +81,12 @@ export type OnOrBeforeDateConstraint = {
 		===== Relative to date-time constraints =====
 	*/
 export type AfterDateTimeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["AFTER_DATE_TIME"]
+	readonly constraintType: typeof TypeOfConstraint["AFTER_DATE_TIME"]
 	operand: Operation | AnyDateTimeValue
 }
 
 export type BeforeDateTimeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["BEFORE_DATE_TIME"]
+	readonly constraintType: typeof TypeOfConstraint["BEFORE_DATE_TIME"]
 	operand: Operation | AnyDateTimeValue
 }
 
@@ -97,31 +96,31 @@ export type BeforeDateTimeConstraint = {
 export type AtLeastNCharactersConstraint = {
 	match?: string | RegExp
 	operand: Operation | IntegerValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["AT_LEAST_N_CHARACTERS"]
+	readonly constraintType: typeof TypeOfConstraint["AT_LEAST_N_CHARACTERS"]
 }
 
 export type AtMostNCharactersConstraint = {
 	match?: string | RegExp
 	operand: Operation | IntegerValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["AT_MOST_N_CHARACTERS"]
+	readonly constraintType: typeof TypeOfConstraint["AT_MOST_N_CHARACTERS"]
 }
 
 export type ExactlyNCharactersConstraint = {
 	match?: string | RegExp
 	operand: Operation | IntegerValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["EXACTLY_N_CHARACTERS"]
+	readonly constraintType: typeof TypeOfConstraint["EXACTLY_N_CHARACTERS"]
 }
 
 export type FewerThanNCharactersConstraint = {
 	match?: string | RegExp
 	operand: Operation | IntegerValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["FEWER_THAN_N_CHARACTERS"]
+	readonly constraintType: typeof TypeOfConstraint["FEWER_THAN_N_CHARACTERS"]
 }
 
 export type MoreThanNCharactersConstraint = {
 	match?: string | RegExp
 	operand: Operation | IntegerValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["MORE_THAN_N_CHARACTERS"]
+	readonly constraintType: typeof TypeOfConstraint["MORE_THAN_N_CHARACTERS"]
 }
 
 /*
@@ -129,39 +128,39 @@ export type MoreThanNCharactersConstraint = {
 	*/
 export type AtLeastNConstraint = {
 	operand: Operation | NumberValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["AT_LEAST_N"]
+	readonly constraintType: typeof TypeOfConstraint["AT_LEAST_N"]
 }
 
 export type AtMostNConstraint = {
 	operand: Operation | NumberValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["AT_MOST_N"]
+	readonly constraintType: typeof TypeOfConstraint["AT_MOST_N"]
 }
 
 export type EqualToNConstraint = {
 	operand: Operation | NumberValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["EQUAL_TO_N"]
+	readonly constraintType: typeof TypeOfConstraint["EQUAL_TO_N"]
 }
 
 export type LessThanNConstraint = {
 	operand: Operation | NumberValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["LESS_THAN_N"]
+	readonly constraintType: typeof TypeOfConstraint["LESS_THAN_N"]
 }
 
 export type MoreThanNConstraint = {
 	operand: Operation | NumberValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["MORE_THAN_N"]
+	readonly constraintType: typeof TypeOfConstraint["MORE_THAN_N"]
 }
 
 export type NotEqualToNConstraint = {
 	operand: Operation | NumberValue | number
-	readonly constraintType: (typeof TypeOfConstraint)["NOT_EQUAL_TO_N"]
+	readonly constraintType: typeof TypeOfConstraint["NOT_EQUAL_TO_N"]
 }
 
 /*
 		===== Confirmation constraint =====
 	*/
 export type ConfirmationConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["CONFIRMED"]
+	readonly constraintType: typeof TypeOfConstraint["CONFIRMED"]
 }
 
 /*
@@ -169,7 +168,7 @@ export type ConfirmationConstraint = {
 	*/
 export type MatchConstraint = {
 	operand: Operation | RegularExpressionValue | StringValue | string | RegExp
-	readonly constraintType: (typeof TypeOfConstraint)["MATCHING"]
+	readonly constraintType: typeof TypeOfConstraint["MATCHING"]
 	flags?: string
 }
 
@@ -178,31 +177,31 @@ export type MatchConstraint = {
 	*/
 export type DisjointSetConstraint = {
 	operand: Operation | SetValue | Sets | Arrays | string
-	readonly constraintType: (typeof TypeOfConstraint)["DISJOINT_SET"]
+	readonly constraintType: typeof TypeOfConstraint["DISJOINT_SET"]
 	separator?: string | RegExp
 }
 
 export type MemberConstraint = {
 	operand: Operation | SetValue | Sets | Arrays | string
-	readonly constraintType: (typeof TypeOfConstraint)["MEMBER"]
+	readonly constraintType: typeof TypeOfConstraint["MEMBER"]
 	separator?: string | RegExp
 }
 
 export type OverlappingSetConstraint = {
 	operand: Operation | SetValue | Sets | Arrays | string
-	readonly constraintType: (typeof TypeOfConstraint)["OVERLAPPING_SET"]
+	readonly constraintType: typeof TypeOfConstraint["OVERLAPPING_SET"]
 	separator?: string | RegExp
 }
 
 export type SubsetConstraint = {
 	operand: Operation | SetValue | Sets | Arrays | string
-	readonly constraintType: (typeof TypeOfConstraint)["SUBSET"]
+	readonly constraintType: typeof TypeOfConstraint["SUBSET"]
 	separator?: string | RegExp
 }
 
 export type SupersetConstraint = {
 	operand: Operation | SetValue | Sets | Arrays | string
-	readonly constraintType: (typeof TypeOfConstraint)["SUPERSET"]
+	readonly constraintType: typeof TypeOfConstraint["SUPERSET"]
 	separator?: string | RegExp
 }
 
@@ -211,13 +210,13 @@ export type SupersetConstraint = {
 	*/
 export type OrderedListConstraint = {
 	operand: Operation | ListValue | Arrays | string
-	readonly constraintType: (typeof TypeOfConstraint)["ORDERED_LIST"]
+	readonly constraintType: typeof TypeOfConstraint["ORDERED_LIST"]
 	separator?: string | RegExp
 }
 
 export type ReversedListConstraint = {
 	operand: Operation | ListValue | Arrays | string
-	readonly constraintType: (typeof TypeOfConstraint)["REVERSED_LIST"]
+	readonly constraintType: typeof TypeOfConstraint["REVERSED_LIST"]
 	separator?: string | RegExp
 }
 
@@ -225,86 +224,86 @@ export type ReversedListConstraint = {
 		===== Static type constraints =====
 	*/
 export type ArrayTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_ARRAY"]
+	readonly constraintType: typeof TypeOfConstraint["IS_ARRAY"]
 	readonly datatype: "array"
 	separator?: string | RegExp
 }
 
 export type TypeOfBooleanConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_BOOLEAN"]
+	readonly constraintType: typeof TypeOfConstraint["IS_BOOLEAN"]
 }
 
 export type DateTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_DATE"]
+	readonly constraintType: typeof TypeOfConstraint["IS_DATE"]
 }
 
 export type DateTimeTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_DATE_TIME"]
+	readonly constraintType: typeof TypeOfConstraint["IS_DATE_TIME"]
 }
 
 export type DurationTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_DURATION"]
+	readonly constraintType: typeof TypeOfConstraint["IS_DURATION"]
 }
 
 export type FractionTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_FRACTION"]
+	readonly constraintType: typeof TypeOfConstraint["IS_FRACTION"]
 }
 
 export type InstantTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_INSTANT"]
+	readonly constraintType: typeof TypeOfConstraint["IS_INSTANT"]
 }
 
 export type IntegerTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_INTEGER"]
+	readonly constraintType: typeof TypeOfConstraint["IS_INTEGER"]
 }
 
 export type ListTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_LIST"]
+	readonly constraintType: typeof TypeOfConstraint["IS_LIST"]
 	separator?: string | RegExp
 }
 
 export type MapTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_MAP"]
+	readonly constraintType: typeof TypeOfConstraint["IS_MAP"]
 	separator?: string | RegExp
 	keyValueSeparator?: string | RegExp
 }
 
 export type MemberTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_MEMBER"]
+	readonly constraintType: typeof TypeOfConstraint["IS_MEMBER"]
 }
 
 export type MonthDayConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_MONTH_DAY"]
+	readonly constraintType: typeof TypeOfConstraint["IS_MONTH_DAY"]
 }
 
 export type PrecisionTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_PRECISION"]
+	readonly constraintType: typeof TypeOfConstraint["IS_PRECISION"]
 	decimalPlaces: number
 }
 
 export type RealTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_REAL"]
+	readonly constraintType: typeof TypeOfConstraint["IS_REAL"]
 }
 
 export type SetTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_SET"]
+	readonly constraintType: typeof TypeOfConstraint["IS_SET"]
 }
 
 export type StringTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_STRING"]
+	readonly constraintType: typeof TypeOfConstraint["IS_STRING"]
 	match?: string
 }
 
 export type TimeZoneTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_TIME_ZONE"]
+	readonly constraintType: typeof TypeOfConstraint["IS_TIME_ZONE"]
 }
 
 export type YearMonthConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_YEAR_MONTH"]
+	readonly constraintType: typeof TypeOfConstraint["IS_YEAR_MONTH"]
 }
 
 export type ZonedDateTimeTypeConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["IS_ZONED_DATE_TIME"]
+	readonly constraintType: typeof TypeOfConstraint["IS_ZONED_DATE_TIME"]
 }
 
 /*
@@ -365,17 +364,17 @@ export type RelationalConstraint =
 export type LeafConstraint = RelationalConstraint | StaticConstraint
 
 export type AndConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["AND"]
+	readonly constraintType: typeof TypeOfConstraint["AND"]
 	tests: Array<Constraint>
 }
 
 export type OrConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["OR"]
+	readonly constraintType: typeof TypeOfConstraint["OR"]
 	tests: Array<Constraint>
 }
 
 export type XorConstraint = {
-	readonly constraintType: (typeof TypeOfConstraint)["XOR"]
+	readonly constraintType: typeof TypeOfConstraint["XOR"]
 	tests: Array<Constraint>
 }
 

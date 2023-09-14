@@ -29,22 +29,21 @@ test("[compareRealNumbers] returns -1 if left is less than right", () => {
 	expect(compareRealNumbers(pTwo, pOne)).toBe(1)
 })
 
-test(
-	`[compareRealNumbers] has a fixed precision of ${1 / REAL_NUMBER_PRECISION}`,
-	() => {
-		const tooSmallOne: RealNumberValue = {
-			datatype: "real",
-			value: 1 + 1 / REAL_NUMBER_PRECISION / 10,
-		}
+test(`[compareRealNumbers] has a fixed precision of ${
+	1 / REAL_NUMBER_PRECISION
+}`, () => {
+	const tooSmallOne: RealNumberValue = {
+		datatype: "real",
+		value: 1 + 1 / REAL_NUMBER_PRECISION / 10,
+	}
 
-		const tooSmallTwo: RealNumberValue = {
-			datatype: "real",
-			value: 1 + 2 / REAL_NUMBER_PRECISION / 10,
-		}
+	const tooSmallTwo: RealNumberValue = {
+		datatype: "real",
+		value: 1 + 2 / REAL_NUMBER_PRECISION / 10,
+	}
 
-		expect(compareRealNumbers(tooSmallTwo, tooSmallOne)).toBe(0)
-	},
-)
+	expect(compareRealNumbers(tooSmallTwo, tooSmallOne)).toBe(0)
+})
 
 test("[compareRealNumbers] throws an error if left argument is not a real number", () => {
 	// @ts-expect-error override for testing purposes

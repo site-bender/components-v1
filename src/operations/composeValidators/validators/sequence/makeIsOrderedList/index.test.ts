@@ -3,8 +3,8 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import orderedList from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: OrderedListConstraint = {
 	constraintType: TypeOfConstraint.ORDERED_LIST,

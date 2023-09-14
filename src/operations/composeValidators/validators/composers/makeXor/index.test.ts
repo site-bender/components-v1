@@ -1,7 +1,7 @@
 import type { Validation, XorConstraint } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import xor from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: XorConstraint = {
 	constraintType: "xor",

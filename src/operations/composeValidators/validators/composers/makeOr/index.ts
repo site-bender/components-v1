@@ -5,8 +5,8 @@ import type {
 	ValidationError,
 } from "../../../../../types/constraints"
 
-import pipeAsync from "../../../../../utilities/pipeAsync"
 import composeValidators from "../../../"
+import pipeAsync from "../../../../../utilities/pipeAsync"
 
 const orFormatter = new Intl.ListFormat("en", {
 	style: "long",
@@ -34,31 +34,31 @@ export default async function makeOr(
 		)
 		const output = validated.isInvalid
 			? {
-				...(await validation),
-				isInvalid: true,
-				errors: [
-					...ors,
-					{
-						constraint,
-						error: "OR_ERROR",
-						errors: others,
-						errorMessage: orFormatter.format(
-							others
-								.map(({ errorMessage }) => errorMessage)
-								.filter((value) => value) as Array<string>,
-						),
-					} as ValidationError,
-				],
-			}
+					...(await validation),
+					isInvalid: true,
+					errors: [
+						...ors,
+						{
+							constraint,
+							error: "OR_ERROR",
+							errors: others,
+							errorMessage: orFormatter.format(
+								others
+									.map(({ errorMessage }) => errorMessage)
+									.filter((value) => value) as Array<string>,
+							),
+						} as ValidationError,
+					],
+			  }
 			: { isInvalid: validated.isInvalid, errors: validated.errors }
 
 		return ((validated.errors || []) as Array<ValidationError>).length <
-				constraint.tests.length
+			constraint.tests.length
 			? validation
 			: {
-				...validation,
-				...output,
-			}
+					...validation,
+					...output,
+			  }
 	}
 }
 

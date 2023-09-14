@@ -3,9 +3,9 @@ import type {
 	Validation,
 } from "../../../../types/constraints"
 
+import makeIsMonthDay from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { MonthDayValue } from "../../../../types/values"
-import makeIsMonthDay from "."
 
 const constraint: MonthDayConstraint = {
 	constraintType: TypeOfConstraint.IS_MONTH_DAY,

@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -37,35 +37,43 @@
 		"index.ts"
 	],
 	"scripts": {
+		"api": "vercel dev",
+		"astro": "astro",
 		"build": "astro build",
-		"bump": "npm version patch --force",
-		"bump:major": "npm version major --force",
-		"bump:minor": "npm version minor --force",
-		"check:exports": "npx find-unused-exports",
-		"check:packages": "npx npm-check -u",
-		"config:update": "dprint config update",
-		"dep:dev": "pnpm fmt && pnpm lint && pnpm check:exports && pnpm check:packages && pnpm config:update && git add -A",
+		"bump": "pnpm version patch --force",
+		"bump:major": "pnpm version major --force",
+		"bump:minor": "pnpm version minor --force",
+		"check:exports": "pnpx find-unused-exports",
+		"check:packages": "pnpx npm-check -u",
+		"dep:dev": "pnpm fmt && pnpm lint && pnpm check:exports && pnpm check:packages && infisical run -- pnpm build && rm -rf .cache .history dist",
+		"dep:prod": "pnpm dep:dev && vercel deploy",
 		"dev": "astro dev",
-		"fmt": "dprint fmt",
-		"fmt:check": "dprint check",
-		"lint": "deno lint",
+		"fmt": "pnpm biome format --write ./",
+		"lint": "pnpm biome check --apply-unsafe ./",
+		"preview": "astro preview",
 		"publish": "npm publish --access=public",
-		"start": "astro start",
+		"push": "git add -A && pnpm bump && git push",
+		"start": "astro dev",
 		"test": "pnpm test:int",
 		"test:cov": "vitest run --coverage",
 		"test:int": "vitest"
 	},
-	"dependencies": {
-		"astro": "^3.0.12"
-	},
 	"devDependencies": {
 		"@astrojs/mdx": "^1.0.3",
+		"@astrojs/sitemap": "^3.0.0",
+		"@biomejs/biome": "1.1.2",
 		"@js-temporal/polyfill": "^0.4.4",
 		"@types/qrcode": "^1.5.2",
-		"dprint": "^0.41.0",
+		"@vitest/coverage-v8": "^0.34.4",
+		"astro": "^3.0.13",
 		"exifr": "^7.1.3",
-		"prettier-eslint": "^15.0.1",
+		"exifreader": "^4.13.0",
+		"postmark": "^3.0.19",
 		"qrcode": "^1.5.3",
+		"rollup": "^3.29.1",
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9",
+		"vite-plugin-compress": "^2.1.1",
 		"vitest": "^0.34.4"
 	}
 }

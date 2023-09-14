@@ -110,7 +110,7 @@ const validators = {
 		await import("./validators/composers/makeXor"),
 }
 
-function noOp (validation: Validation): Validation {
+function noOp(validation: Validation): Validation {
 	return validation
 }
 
@@ -121,11 +121,10 @@ export default async function composeValidators(
 		return noOp
 	}
 
-	const importer = validators[
-		constraint.constraintType as keyof typeof TypeOfConstraint
-	]
+	const importer =
+		validators[constraint.constraintType as keyof typeof TypeOfConstraint]
 
 	const { default: makeValidator } = await importer()
 
-	return makeValidator ? makeValidator(constraint) : () => ({} as Validation)
+	return makeValidator ? makeValidator(constraint) : () => ({}) as Validation
 }

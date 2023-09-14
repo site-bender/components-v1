@@ -10,13 +10,13 @@ export default function calculateAbsoluteValue(
 	if (typeof value === "number") {
 		return Number.isInteger(value)
 			? {
-				datatype: "integer",
-				value: Math.abs(value),
-			}
+					datatype: "integer",
+					value: Math.abs(value),
+			  }
 			: {
-				datatype: "real",
-				value: Math.abs(value),
-			}
+					datatype: "real",
+					value: Math.abs(value),
+			  }
 	}
 
 	if ((value as NumberValue).datatype === "fraction") {

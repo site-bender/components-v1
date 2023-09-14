@@ -6,12 +6,12 @@ export default function flattenOptions<T>(
 	return (
 		isGrouped
 			? (optionGroups as Array<OptionGroup<T>>).reduce<Array<Option<T>>>(
-				(acc: Array<Option<T>>, optionGroup: OptionGroup<T>) => [
-					...acc,
-					...(optionGroup.options || []),
-				],
-				[],
-			)
+					(acc: Array<Option<T>>, optionGroup: OptionGroup<T>) => [
+						...acc,
+						...(optionGroup.options || []),
+					],
+					[],
+			  )
 			: optionGroups
 	) as Array<Option<T>>
 }

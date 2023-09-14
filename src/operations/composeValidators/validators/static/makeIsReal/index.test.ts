@@ -3,9 +3,9 @@ import type {
 	Validation,
 } from "../../../../../types/constraints"
 
+import makeIsReal from "."
 import type { RealNumberValue } from "../../../../../types/values"
 import type { TypeOfConstraint } from "../../../../types/enums"
-import makeIsReal from "."
 
 const constraint: RealTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_REAL,

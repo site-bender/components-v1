@@ -163,110 +163,87 @@ export type ValidityProps = {
 
 // ===== Components =====
 
-export type AddressFieldType =
-	& CommonProps
-	& FieldProps
-	& MatchProps
-	& TextProps
-	& ValidityProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["ADDRESS_FIELD"]
+export type AddressFieldType = CommonProps &
+	FieldProps &
+	MatchProps &
+	TextProps &
+	ValidityProps & {
+		readonly componentType: typeof TypeOfComponent["ADDRESS_FIELD"]
 		useLookup?: boolean
-	}
-	& StringValue
+	} & StringValue
 
-export type AutocompleteFieldType =
-	& CommonProps
-	& FieldProps
-	& MatchProps
-	& TextProps
-	& ValidityProps
-	& {
+export type AutocompleteFieldType = CommonProps &
+	FieldProps &
+	MatchProps &
+	TextProps &
+	ValidityProps & {
 		autoComplete?: boolean
 		format?: keyof typeof StringFormat
-		readonly componentType: (typeof TypeOfComponent)["AUTOCOMPLETE_FIELD"]
-	}
-	& StringValue
+		readonly componentType: typeof TypeOfComponent["AUTOCOMPLETE_FIELD"]
+	} & StringValue
 
-export type ButtonType =
-	& CommonProps
-	& FieldProps
-	& {
+export type ButtonType = CommonProps &
+	FieldProps & {
 		buttonLayout?: keyof typeof ButtonLayout
 		buttonType: keyof typeof TypeOfButton
 		icon?: keyof typeof TypeOfIcon
 		iconStyle?: IconStyleAttributes
-		readonly componentType: (typeof TypeOfComponent)["BUTTON"]
+		readonly componentType: typeof TypeOfComponent["BUTTON"]
 	}
 
-export type ButtonBarType =
-	& BranchProps
-	& CommonProps
-	& {
+export type ButtonBarType = BranchProps &
+	CommonProps & {
 		buttonLayout?: keyof typeof ButtonLayout
 		buttonType: keyof typeof TypeOfButton
 		icon?: keyof typeof TypeOfIcon
 		iconStyle?: IconStyleAttributes
-		readonly componentType: (typeof TypeOfComponent)["BUTTON_BAR"]
+		readonly componentType: typeof TypeOfComponent["BUTTON_BAR"]
 		title?: string
 	}
 
-export type ChooseOneFieldType =
-	& ChoiceProps
-	& CommonProps
-	& FieldProps
-	& ValidityProps
-	& {
+export type ChooseOneFieldType = ChoiceProps &
+	CommonProps &
+	FieldProps &
+	ValidityProps & {
 		autoComplete?: boolean
 		choiceType: keyof typeof TypeOfChoice
 		columns?: number
-		readonly componentType: (typeof TypeOfComponent)["CHOOSE_ONE_FIELD"]
+		readonly componentType: typeof TypeOfComponent["CHOOSE_ONE_FIELD"]
 		selected?: Option
-	}
-	& MemberValue
+	} & MemberValue
 
-export type ChooseSomeFieldType =
-	& ChoiceProps
-	& CommonProps
-	& FieldProps
-	& ValidityProps
-	& {
+export type ChooseSomeFieldType = ChoiceProps &
+	CommonProps &
+	FieldProps &
+	ValidityProps & {
 		autoComplete?: boolean
 		choiceType: keyof typeof TypeOfChoice
 		columns?: number
-		readonly componentType: (typeof TypeOfComponent)["CHOOSE_SOME_FIELD"]
+		readonly componentType: typeof TypeOfComponent["CHOOSE_SOME_FIELD"]
 		selected?: Array<Option>
-	}
-	& SetValue
+	} & SetValue
 
-export type CompositeFieldType =
-	& BranchProps
-	& CommonProps
-	& {
+export type CompositeFieldType = BranchProps &
+	CommonProps & {
 		datatype: string
-		readonly componentType: (typeof TypeOfComponent)["COMPOSITE_FIELD"]
+		readonly componentType: typeof TypeOfComponent["COMPOSITE_FIELD"]
 		title?: string
 	}
 
-export type DateFieldType =
-	& CommonProps
-	& DateProps
-	& FieldProps
-	& ValidityProps
-	& {
+export type DateFieldType = CommonProps &
+	DateProps &
+	FieldProps &
+	ValidityProps & {
 		format?: keyof typeof DateFormat
-		readonly componentType: (typeof TypeOfComponent)["DATE_FIELD"]
-	}
-	& PlainDateValue
+		readonly componentType: typeof TypeOfComponent["DATE_FIELD"]
+	} & PlainDateValue
 
-export type DateRangeFieldType =
-	& CommonProps
-	& DateProps
-	& FieldProps
-	& ValidityProps
-	& {
+export type DateRangeFieldType = CommonProps &
+	DateProps &
+	FieldProps &
+	ValidityProps & {
 		format?: keyof typeof DateFormat
-		readonly componentType: (typeof TypeOfComponent)["DATE_RANGE_FIELD"]
+		readonly componentType: typeof TypeOfComponent["DATE_RANGE_FIELD"]
 		readonly datatype: "range"
 		value: {
 			end: PlainDateValue
@@ -274,27 +251,22 @@ export type DateRangeFieldType =
 		}
 	}
 
-export type DateTimeFieldType =
-	& CommonProps
-	& DateProps
-	& FieldProps
-	& TimeProps
-	& ValidityProps
-	& {
+export type DateTimeFieldType = CommonProps &
+	DateProps &
+	FieldProps &
+	TimeProps &
+	ValidityProps & {
 		format?: keyof typeof DateTimeFormat
-		readonly componentType: (typeof TypeOfComponent)["DATE_TIME_FIELD"]
-	}
-	& PlainDateTimeValue
+		readonly componentType: typeof TypeOfComponent["DATE_TIME_FIELD"]
+	} & PlainDateTimeValue
 
-export type DateTimeRangeFieldType =
-	& CommonProps
-	& DateProps
-	& FieldProps
-	& TimeProps
-	& ValidityProps
-	& {
+export type DateTimeRangeFieldType = CommonProps &
+	DateProps &
+	FieldProps &
+	TimeProps &
+	ValidityProps & {
 		format?: keyof typeof DateTimeFormat
-		readonly componentType: (typeof TypeOfComponent)["DATE_TIME_RANGE_FIELD"]
+		readonly componentType: typeof TypeOfComponent["DATE_TIME_RANGE_FIELD"]
 		readonly datatype: "range"
 		value: {
 			end: PlainDateTimeValue
@@ -302,276 +274,211 @@ export type DateTimeRangeFieldType =
 		}
 	}
 
-export type EmailFieldType =
-	& CommonProps
-	& FieldProps
-	& MatchProps
-	& TextProps
-	& ValidityProps
-	& {
-		readonly format: (typeof StringFormat)["EMAIL_ADDRESS"]
-		readonly componentType: (typeof TypeOfComponent)["EMAIL_FIELD"]
+export type EmailFieldType = CommonProps &
+	FieldProps &
+	MatchProps &
+	TextProps &
+	ValidityProps & {
+		readonly format: typeof StringFormat["EMAIL_ADDRESS"]
+		readonly componentType: typeof TypeOfComponent["EMAIL_FIELD"]
 		validate?: boolean
-	}
-	& StringValue
+	} & StringValue
 
-export type FieldsetType =
-	& BranchProps
-	& CommonProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["FIELDSET"]
+export type FieldsetType = BranchProps &
+	CommonProps & {
+		readonly componentType: typeof TypeOfComponent["FIELDSET"]
 		title?: string
 	}
 
-export type HiddenFieldType =
-	& CommonProps
-	& FieldProps
-	& ValidityProps
-	& {
+export type HiddenFieldType = CommonProps &
+	FieldProps &
+	ValidityProps & {
 		autoGenerateId?: boolean
-		readonly componentType: (typeof TypeOfComponent)["HIDDEN_FIELD"]
-	}
-	& StringValue
+		readonly componentType: typeof TypeOfComponent["HIDDEN_FIELD"]
+	} & StringValue
 
-export type IntegerFieldType =
-	& CommonProps
-	& FieldProps
-	& NumberProps
-	& ValidityProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["INTEGER_FIELD"]
-	}
-	& IntegerValue
+export type IntegerFieldType = CommonProps &
+	FieldProps &
+	NumberProps &
+	ValidityProps & {
+		readonly componentType: typeof TypeOfComponent["INTEGER_FIELD"]
+	} & IntegerValue
 
-export type MenuType =
-	& BranchProps
-	& CommonProps
-	& {
+export type MenuType = BranchProps &
+	CommonProps & {
 		children: Array<MenuItemType | MenuFlyoutType>
-		readonly componentType: (typeof TypeOfComponent)["MENU"]
+		readonly componentType: typeof TypeOfComponent["MENU"]
 	}
 
-export type MenuFlyoutType =
-	& BranchProps
-	& CommonProps
-	& {
+export type MenuFlyoutType = BranchProps &
+	CommonProps & {
 		children: Array<MenuItemType | MenuFlyoutType>
-		readonly componentType: (typeof TypeOfComponent)["MENU_FLYOUT"]
+		readonly componentType: typeof TypeOfComponent["MENU_FLYOUT"]
 	}
 
 export type MenuItemType = CommonProps & {
 	autoGenerateId?: boolean
 	icon?: keyof typeof TypeOfIcon
 	label: string
-	readonly componentType: (typeof TypeOfComponent)["HIDDEN_FIELD"]
+	readonly componentType: typeof TypeOfComponent["HIDDEN_FIELD"]
 } & StringValue
 
-export type MoneyFieldType =
-	& CommonProps
-	& FieldProps
-	& NumberProps
-	& ValidityProps
-	& {
+export type MoneyFieldType = CommonProps &
+	FieldProps &
+	NumberProps &
+	ValidityProps & {
 		currency: Option
-		readonly componentType: (typeof TypeOfComponent)["MONEY_FIELD"]
-	}
-	& PrecisionNumberValue
+		readonly componentType: typeof TypeOfComponent["MONEY_FIELD"]
+	} & PrecisionNumberValue
 
-export type NoteType =
-	& CommonProps
-	& FieldProps
-	& MatchProps
-	& TextProps
-	& {
+export type NoteType = CommonProps &
+	FieldProps &
+	MatchProps &
+	TextProps & {
 		autoGenerateId?: boolean
-		readonly componentType: (typeof TypeOfComponent)["NOTE"]
-	}
-	& StringValue
+		readonly componentType: typeof TypeOfComponent["NOTE"]
+	} & StringValue
 
-export type NumberRangeFieldType =
-	& CommonProps
-	& FieldProps
-	& NumberProps
-	& ValidityProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["PRECISION_NUMBER_FIELD"]
+export type NumberRangeFieldType = CommonProps &
+	FieldProps &
+	NumberProps &
+	ValidityProps & {
+		readonly componentType: typeof TypeOfComponent["PRECISION_NUMBER_FIELD"]
 		value?: {
 			end: NumberValue
 			start: NumberValue
 		}
-	}
-	& PrecisionNumberValue
+	} & PrecisionNumberValue
 
-export type OrdinalFieldType =
-	& CommonProps
-	& FieldProps
-	& ValidityProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["ORDINAL_FIELD"]
-	}
-	& ListValue
+export type OrdinalFieldType = CommonProps &
+	FieldProps &
+	ValidityProps & {
+		readonly componentType: typeof TypeOfComponent["ORDINAL_FIELD"]
+	} & ListValue
 
-export type PageType =
-	& BranchProps
-	& CommonProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["PAGE"]
+export type PageType = BranchProps &
+	CommonProps & {
+		readonly componentType: typeof TypeOfComponent["PAGE"]
 	}
 
-export type PhoneFieldType =
-	& CommonProps
-	& FieldProps
-	& MatchProps
-	& TextProps
-	& ValidityProps
-	& {
-		readonly format: (typeof StringFormat)["TELEPHONE_NUMBER"]
-		readonly componentType: (typeof TypeOfComponent)["PHONE_FIELD"]
+export type PhoneFieldType = CommonProps &
+	FieldProps &
+	MatchProps &
+	TextProps &
+	ValidityProps & {
+		readonly format: typeof StringFormat["TELEPHONE_NUMBER"]
+		readonly componentType: typeof TypeOfComponent["PHONE_FIELD"]
 		verify?: boolean
-	}
-	& StringValue
+	} & StringValue
 
-export type PrecisionNumberFieldType =
-	& CommonProps
-	& FieldProps
-	& NumberProps
-	& ValidityProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["PRECISION_NUMBER_FIELD"]
-	}
-	& PrecisionNumberValue
+export type PrecisionNumberFieldType = CommonProps &
+	FieldProps &
+	NumberProps &
+	ValidityProps & {
+		readonly componentType: typeof TypeOfComponent["PRECISION_NUMBER_FIELD"]
+	} & PrecisionNumberValue
 
-export type ReadOnlyFieldType =
-	& CommonProps
-	& FieldProps
-	& TextProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["READ_ONLY_FIELD"]
-	}
-	& StringValue
+export type ReadOnlyFieldType = CommonProps &
+	FieldProps &
+	TextProps & {
+		readonly componentType: typeof TypeOfComponent["READ_ONLY_FIELD"]
+	} & StringValue
 
-export type RealNumberFieldType =
-	& CommonProps
-	& FieldProps
-	& NumberProps
-	& ValidityProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["REAL_NUMBER_FIELD"]
-	}
-	& RealNumberValue
+export type RealNumberFieldType = CommonProps &
+	FieldProps &
+	NumberProps &
+	ValidityProps & {
+		readonly componentType: typeof TypeOfComponent["REAL_NUMBER_FIELD"]
+	} & RealNumberValue
 
-export type SelectorFieldType =
-	& ChoiceProps
-	& CommonProps
-	& FieldProps
-	& ValidityProps
-	& {
+export type SelectorFieldType = ChoiceProps &
+	CommonProps &
+	FieldProps &
+	ValidityProps & {
 		autoComplete?: boolean
-		readonly componentType: (typeof TypeOfComponent)["SELECTOR_FIELD"]
+		readonly componentType: typeof TypeOfComponent["SELECTOR_FIELD"]
 		selected?: Option
-	}
-	& MemberValue
+	} & MemberValue
 
-export type SeparatorType =
-	& BranchProps
-	& CommonProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["SEPARATOR"]
+export type SeparatorType = BranchProps &
+	CommonProps & {
+		readonly componentType: typeof TypeOfComponent["SEPARATOR"]
 	}
 
 export type TabType = CommonProps & {
 	description?: string
 	icon?: keyof typeof TypeOfIcon
 	iconStyle?: IconStyleAttributes
-	readonly componentType: (typeof TypeOfComponent)["TAB"]
+	readonly componentType: typeof TypeOfComponent["TAB"]
 	tabStyle: keyof typeof TabStyle
 	title: string
 }
 
-export type TabSetType =
-	& BranchProps
-	& CommonProps
-	& {
-		readonly componentType: (typeof TypeOfComponent)["TAB_SET"]
+export type TabSetType = BranchProps &
+	CommonProps & {
+		readonly componentType: typeof TypeOfComponent["TAB_SET"]
 		selected?: string
 		tab: TabType
 		tabName: string
 	}
 
-export type TabsType =
-	& BranchProps
-	& CommonProps
-	& {
+export type TabsType = BranchProps &
+	CommonProps & {
 		children?: Array<TabSetType>
-		readonly componentType: (typeof TypeOfComponent)["TABS"]
+		readonly componentType: typeof TypeOfComponent["TABS"]
 		selected?: string
 	}
 
-export type TextFieldType =
-	& CommonProps
-	& FieldProps
-	& MatchProps
-	& TextProps
-	& ValidityProps
-	& {
+export type TextFieldType = CommonProps &
+	FieldProps &
+	MatchProps &
+	TextProps &
+	ValidityProps & {
 		autoExpand?: boolean
 		readonly format: keyof typeof StringFormat
-		readonly componentType: (typeof TypeOfComponent)["TEXT_FIELD"]
+		readonly componentType: typeof TypeOfComponent["TEXT_FIELD"]
 		rows?: number | string
-	}
-	& StringValue
+	} & StringValue
 
-export type ToolbarType =
-	& BranchProps
-	& CommonProps
-	& {
+export type ToolbarType = BranchProps &
+	CommonProps & {
 		buttonLayout?: keyof typeof ButtonLayout
 		children?: Array<ToolbarButtonType | SeparatorType | ToolbarGroupType>
-		readonly componentType: (typeof TypeOfComponent)["TOOLBAR"]
+		readonly componentType: typeof TypeOfComponent["TOOLBAR"]
 	}
 
-export type ToolbarGroupType =
-	& BranchProps
-	& CommonProps
-	& {
+export type ToolbarGroupType = BranchProps &
+	CommonProps & {
 		buttonLayout?: keyof typeof ButtonLayout
 		children?: Array<ToolbarButtonType | SeparatorType>
 		title?: string
-		readonly componentType: (typeof TypeOfComponent)["TOOLBAR_GROUP"]
+		readonly componentType: typeof TypeOfComponent["TOOLBAR_GROUP"]
 	}
 
-export type ToolbarButtonType =
-	& CommonProps
-	& FieldProps
-	& {
+export type ToolbarButtonType = CommonProps &
+	FieldProps & {
 		buttonLayout?: keyof typeof ButtonLayout
 		buttonType: keyof typeof TypeOfButton
 		icon?: keyof typeof TypeOfIcon
 		iconStyle?: IconStyleAttributes
-		readonly componentType: (typeof TypeOfComponent)["TOOLBAR_BUTTON"]
+		readonly componentType: typeof TypeOfComponent["TOOLBAR_BUTTON"]
 	}
 
-export type UrlFieldType =
-	& CommonProps
-	& FieldProps
-	& MatchProps
-	& TextProps
-	& ValidityProps
-	& {
-		readonly format: (typeof StringFormat)["URL"]
-		readonly componentType: (typeof TypeOfComponent)["URL_FIELD"]
-	}
-	& StringValue
+export type UrlFieldType = CommonProps &
+	FieldProps &
+	MatchProps &
+	TextProps &
+	ValidityProps & {
+		readonly format: typeof StringFormat["URL"]
+		readonly componentType: typeof TypeOfComponent["URL_FIELD"]
+	} & StringValue
 
-export type YesNoFieldType =
-	& CommonProps
-	& FieldProps
-	& ValidityProps
-	& {
+export type YesNoFieldType = CommonProps &
+	FieldProps &
+	ValidityProps & {
 		booleanType?: keyof typeof TypeOfBoolean
-		readonly componentType: (typeof TypeOfComponent)["YES_NO_FIELD"]
-	}
-	& BooleanValue
+		readonly componentType: typeof TypeOfComponent["YES_NO_FIELD"]
+	} & BooleanValue
 
 export type BranchType =
 	| ButtonBarType

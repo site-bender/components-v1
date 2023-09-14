@@ -3,8 +3,8 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import reversedList from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: ReversedListConstraint = {
 	constraintType: TypeOfConstraint.REVERSED_LIST,

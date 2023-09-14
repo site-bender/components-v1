@@ -3,42 +3,42 @@ globalThis._subscriptions ??= {}
 const listeners = {
 	blur: [
 		"focusout",
-		function(event) {
+		function (event) {
 			const id = event.target.id
 			event.target && globalThis._subscriptions.blur?.[id]?.(event)
 		},
 	],
 	click: [
 		"click",
-		function(event) {
+		function (event) {
 			const id = event.target.id
 			event.target && globalThis._subscriptions.click?.[id]?.(event)
 		},
 	],
 	focus: [
 		"focusin",
-		function(event) {
+		function (event) {
 			const id = event.target.id
 			event.target && globalThis._subscriptions.focus?.[id]?.(event)
 		},
 	],
 	input: [
 		"input",
-		function(event) {
+		function (event) {
 			const id = event.target.id
 			event.target && globalThis._subscriptions.input?.[id]?.(event)
 		},
 	],
 	submit: [
 		"submit",
-		function(event) {
+		function (event) {
 			const id = event.target.id
 			event.target && globalThis._subscriptions.submit?.[id]?.(event)
 		},
 	],
 }
 
-globalThis._subscribe = function(type, id, callback) {
+globalThis._subscribe = function (type, id, callback) {
 	if (!globalThis._subscriptions[type]?.length) {
 		document.body.addEventListener(...listeners[type])
 	}
@@ -52,7 +52,7 @@ globalThis._subscribe = function(type, id, callback) {
 	}
 }
 
-globalThis._unsubscribe = function(type, id) {
+globalThis._unsubscribe = function (type, id) {
 	const { [id]: _, ...rest } = globalThis._subscriptions[type] || {}
 
 	globalThis._subscriptions = {

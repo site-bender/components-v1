@@ -3,9 +3,9 @@ import {
 	Validation,
 } from "../../../../../types/constraints"
 
+import makeIsBoolean from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { BooleanValue } from "../../../../types/values"
-import makeIsBoolean from "."
 
 const constraint: TypeOfBooleanConstraint = {
 	constraintType: TypeOfConstraint.IS_BOOLEAN,

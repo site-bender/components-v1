@@ -13,8 +13,8 @@ export default function getRecord(
 
 	return record instanceof Map
 		? (Array.from(record as Iterable<string>).reduce((obj, [key, value]) => {
-			obj[key] = value
-			return obj
-		}, {} as Records) as Records)
+				obj[key] = value
+				return obj
+		  }, {} as Records) as Records)
 		: record
 }

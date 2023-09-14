@@ -12,10 +12,11 @@ export default function makeIsDate(
 	constraint: DateTypeConstraint,
 ): (validation: Validation) => Validation {
 	return function isDate(validation: Validation): Validation {
-		const value = typeof validation?.value === "object" &&
-				"value" in (validation.value as Value)
-			? (validation.value as Value).value
-			: validation.value
+		const value =
+			typeof validation?.value === "object" &&
+			"value" in (validation.value as Value)
+				? (validation.value as Value).value
+				: validation.value
 
 		try {
 			getPlainDate(value as string | Temporal.PlainDate | Date)

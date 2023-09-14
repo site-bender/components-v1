@@ -1,7 +1,7 @@
 import type { AndConstraint, Validation } from "../../../../types/constraints"
 
-import type { TypeOfConstraint } from "../../../../types/enums"
 import and from "."
+import type { TypeOfConstraint } from "../../../../types/enums"
 
 const constraint: AndConstraint = {
 	constraintType: "and",

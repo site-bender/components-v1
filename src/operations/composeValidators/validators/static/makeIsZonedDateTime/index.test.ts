@@ -3,9 +3,9 @@ import {
 	ZonedDateTimeTypeConstraint,
 } from "../../../../../types/constraints"
 
+import makeIsZonedDateTime from "."
 import type { TypeOfConstraint } from "../../../../types/enums"
 import type { ZonedDateTimeValue } from "../../../../types/values"
-import makeIsZonedDateTime from "."
 
 const constraint: ZonedDateTimeTypeConstraint = {
 	constraintType: TypeOfConstraint.IS_ZONED_DATE_TIME,

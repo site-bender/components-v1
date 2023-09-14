@@ -8,12 +8,12 @@ export default function getPages(
 			...acc,
 			...(url != null
 				? {
-					[url || "/"]: {
-						...metadata,
-						path: url.slice(url.lastIndexOf("/") + 1) || "/",
-						url: url || "/",
-					},
-				}
+						[url || "/"]: {
+							...metadata,
+							path: url.slice(url.lastIndexOf("/") + 1) || "/",
+							url: url || "/",
+						},
+				  }
 				: {}),
 		}),
 		{},
