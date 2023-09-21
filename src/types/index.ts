@@ -98,6 +98,7 @@ export type Basedata = {
 	charset?: string | undefined
 	imageUrl?: string | undefined
 	locale?: string | undefined
+	publishers?: Array<string | Organization> | undefined
 	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
 	siteName?: string | undefined
 	twitterCard: TwitterCard
@@ -139,6 +140,7 @@ export type Metadata = {
 				isInvertible?: boolean
 				license?: string
 				sources?: Array<ImageSource>
+				src?: string | undefined
 				type?: ImageType | undefined
 				width?: string | number
 		  }
@@ -150,6 +152,7 @@ export type Metadata = {
 	modifiedDate?: Date | string | undefined
 	noAnalytics?: boolean | undefined
 	publishDate?: Date | string
+	publisher?: string | Organization | undefined
 	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
 	siteName?: string | undefined
 	subtitle?: string

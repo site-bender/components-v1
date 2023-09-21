@@ -1,59 +1,59 @@
 {
-  "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[xml]": {
-    "editor.defaultFormatter": "mikeburgh.xml-format"
-  },
-  "cSpell.words": [
-    "apos",
-    "configurers",
-    "exifr",
-    "exifreader",
-    "funnypot",
-    "hrefs",
-    "icterine",
-    "mauveine",
-    "nums",
-    "typeof"
-  ],
-  "css.format.spaceAroundSelectorSeparator": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "editor.insertSpaces": false,
-  "editor.tabSize": 2,
-  "files.exclude": {
-    ".astro": true,
-    ".cache": true,
-    ".depcheckrc": true,
-    ".editorconfig": true,
-    ".git": true,
-    ".gitignore": true,
-    ".infisical.json": true,
-    ".npmcheckrc": true,
-    ".npmrc": true,
-    ".vercel": true,
-    ".vscode": true,
-    "README.md": true,
-    "biome.json": true,
-    "coverage": true,
-    "node_modules": true,
-    "pnpm-lock.yaml": true,
-    "sitebender.theme.dark.json": true,
-    "tsconfig.json": true,
-    "vercel.json": true,
-    "astro.config.mjs": true
-  },
-  "javascript.format.semicolons": "remove",
-  "terminal.integrated.tabStopWidth": 4,
-  "typescript.extension.sortImports.omitSemicolon": true
+	"[css]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[xml]": {
+		"editor.defaultFormatter": "mikeburgh.xml-format"
+	},
+	"cSpell.words": [
+		"apos",
+		"configurers",
+		"exifr",
+		"exifreader",
+		"funnypot",
+		"hrefs",
+		"icterine",
+		"mauveine",
+		"nums",
+		"typeof"
+	],
+	"css.format.spaceAroundSelectorSeparator": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
+	"files.exclude": {
+		".astro": true,
+		".cache": true,
+		".depcheckrc": true,
+		".editorconfig": true,
+		".git": true,
+		".gitignore": true,
+		".infisical.json": true,
+		".npmcheckrc": true,
+		".npmrc": true,
+		".vercel": true,
+		".vscode": true,
+		"README.md": true,
+		"biome.json": true,
+		"coverage": true,
+		"node_modules": true,
+		"pnpm-lock.yaml": true,
+		"sitebender.theme.dark.json": true,
+		"tsconfig.json": true,
+		"vercel.json": true,
+		"astro.config.mjs": true
+	},
+	"javascript.format.semicolons": "remove",
+	"terminal.integrated.tabStopWidth": 4,
+	"typescript.extension.sortImports.omitSemicolon": true
 }

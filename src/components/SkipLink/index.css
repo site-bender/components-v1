@@ -24,17 +24,14 @@
 	text-decoration: none;
 }
 
-@media screen and (max-width: 60rem) {
-	.sb-skip-link {
+@media screen and (max-width: 47rem) {
+
+	.sb-skip-link,
+	.sb-skip-link:focus,
+	.sb-skip-link:hover {
 		left: -100000px;
 		opacity: 1;
 		position: absolute;
 		top: -100000px;
-	}
-
-	.sb-skip-link:focus {
-		left: 0;
-		position: relative;
-		top: 0;
 	}
 }
