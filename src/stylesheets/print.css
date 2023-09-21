@@ -2,12 +2,11 @@ body {
 	color: darkslategrey;
 	background-color: oldlace;
 	font-family: var(--sb-font-titles,
-	"Iowan Old Style",
-	"Palatino Linotype",
-	"URW Palladio L",
-	P052,
-	serif
-);
+			"Iowan Old Style",
+			"Palatino Linotype",
+			"URW Palladio L",
+			P052,
+			serif);
 	font-size: 16px;
 }
 
@@ -16,24 +15,21 @@ a {
 	text-decoration: none;
 }
 
-a[rel^=external]::after {
+a[rel^="external"]::after {
 	color: slateblue;
-}
-
-a[rel^=external]::after {
-	content: " «"attr(href) "»";
+	content: " «" attr(href) "»";
 	text-decoration: none;
 }
 
 h1 {
 	font-family: var(--sb-font-body,
-		Inter,
-		Roboto,
-		"Helvetica Neue",
-		"Arial Nova",
-		"Nimbus Sans",
-		Arial,
-		sans-serif);
+			Inter,
+			Roboto,
+			"Helvetica Neue",
+			"Arial Nova",
+			"Nimbus Sans",
+			Arial,
+			sans-serif);
 	font-size: 3.05rem;
 	font-size: var(--sb-step-5, 3.05rem);
 	font-variant-ligatures: historical-ligatures;
@@ -46,13 +42,13 @@ h1 {
 
 h2 {
 	font-family: var(--sb-font-body,
-		Inter,
-		Roboto,
-		"Helvetica Neue",
-		"Arial Nova",
-		"Nimbus Sans",
-		Arial,
-		sans-serif);
+			Inter,
+			Roboto,
+			"Helvetica Neue",
+			"Arial Nova",
+			"Nimbus Sans",
+			Arial,
+			sans-serif);
 	font-size: 2.44rem;
 	font-size: var(--sb-step-4, 2.44rem);
 	margin: 0;
@@ -61,13 +57,13 @@ h2 {
 
 h3 {
 	font-family: var(--sb-font-body,
-		Inter,
-		Roboto,
-		"Helvetica Neue",
-		"Arial Nova",
-		"Nimbus Sans",
-		Arial,
-		sans-serif);
+			Inter,
+			Roboto,
+			"Helvetica Neue",
+			"Arial Nova",
+			"Nimbus Sans",
+			Arial,
+			sans-serif);
 	font-size: 1.95rem;
 	font-size: var(--sb-step-3, 1.95rem);
 	margin: 0;
@@ -101,13 +97,13 @@ figure figcaption,
 figure figcaption p,
 figure picture {
 	font-family: var(--sb-font-body,
-		Inter,
-		Roboto,
-		"Helvetica Neue",
-		"Arial Nova",
-		"Nimbus Sans",
-		Arial,
-		sans-serif);
+			Inter,
+			Roboto,
+			"Helvetica Neue",
+			"Arial Nova",
+			"Nimbus Sans",
+			Arial,
+			sans-serif);
 	margin: 0;
 	padding: 0;
 	text-align: center;
@@ -115,14 +111,14 @@ figure picture {
 
 .sb-no-print,
 .sb-paginator,
-body>aside,
-body>header nav,
-footer>*,
+body > aside,
+body > header nav,
+footer > *,
 form {
 	display: none;
 }
 
-body>main img {
+body > main img {
 	height: auto;
 	width: 100%;
 }

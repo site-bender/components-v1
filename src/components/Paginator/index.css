@@ -80,13 +80,13 @@
 
 .sb-paginator-list li:focus-within a,
 .sb-paginator-list li:hover a {
-	background-color: hsla(212, 57%, 32%, 0.3);
+	background-color: hsla(212deg, 57%, 32%, 30%);
 	color: var(--sb-color-gray-8, #2c2c30);
 	outline: 0;
 }
 
 @media only screen and (max-width: 39rem) {
-	.sb-paginator-list .sb-paginator-list-item:not(:first-child):not(:last-child) {
+	.sb-paginator-list .sb-paginator-list-item:not(:first-child, :last-child) {
 		display: none;
 	}
 

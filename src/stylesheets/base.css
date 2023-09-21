@@ -139,10 +139,6 @@ p {
 	margin: var(--sb-space-s) 0;
 }
 
-:not(pre) > code {
-	color: var(--sb-inline-code-color, var(--sb-color-green-shaded, #0e4e09));
-}
-
 dl > dt {
 	font-size: var(--sb-step-1, 1.25rem);
 }
@@ -157,7 +153,7 @@ hr {
 	width: 10ch;
 }
 
-hr:after {
+hr::after {
 	background-color: var(--sb-hr-background-color-after, var(--sb-color-gray-1, #dfdfe2));
 	color: var(--sb-hr-color-after, var(--sb-color-gray-8, #2c2c30));
 	content: " § ";
@@ -209,6 +205,10 @@ code {
 			Consolas,
 			"DejaVu Sans Mono",
 			monospace);
+}
+
+:not(pre) > code {
+	color: var(--sb-inline-code-color, var(--sb-color-green-shaded, #0e4e09));
 }
 
 pre > code {

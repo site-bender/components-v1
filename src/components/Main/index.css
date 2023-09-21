@@ -1,8 +1,8 @@
 .sb-main {
 	align-items: center;
+	animation: fadeInAnimation ease-in-out 1s;
 	animation-fill-mode: forwards;
 	animation-iteration-count: 1;
-	animation: fadeInAnimation ease-in-out 1s;
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;

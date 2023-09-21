@@ -1,9 +1,7 @@
 .sb-footer {
 	align-items: center;
 	background-color: var(--sb-footer-background-color, var(--sb-color-gray-1, #dfdfe2));
-	border-top-color: var(--sb-footer-border-top-color, var(--sb-color-gray-7, #44444b));
-	border-top-style: solid;
-	border-top-width: 1px;
+	border-top: 1px solid var(--sb-footer-border-top-color, var(--sb-color-gray-7, #44444b));
 	color: var(--sb-footer-color, var(--sb-color-gray-9, #131315));
 	display: flex;
 	flex-basis: min-content;

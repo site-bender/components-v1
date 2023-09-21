@@ -1,9 +1,7 @@
 .sb-header {
 	align-items: center;
 	background-color: var(--sb-header-background-color, var(--sb-color-gray-8, #2c2c30));
-	border-bottom-color: var(--sb-header-border-bottom-color, var(--sb-color-gray-5, #747481));
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
+	border-bottom: 1px solid var(--sb-header-border-bottom-color, var(--sb-color-gray-5, #747481));
 	color: var(--sb-header-color, var(--sb-color-gray-0, #fafafa));
 	display: flex;
 	flex-basis: min-content;

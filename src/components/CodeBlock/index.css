@@ -11,10 +11,6 @@
 	text-align: center;
 }
 
-.sb-code-block button.sb-copy-to-clipboard {
-	color: #fff;
-}
-
 .sb-code-block pre {
 	border-radius: 5px;
 	padding: 0 0.75rem;
