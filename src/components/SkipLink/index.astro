@@ -1,14 +1,14 @@
 ---
-import "./index.css"
-import mapAttributes from "../../utilities/mapAttributes"
+import "./index.css";
+import mapAttributes from "../../utilities/mapAttributes";
 
 const {
-	href = "#main-content",
-	label = "Skip to content",
-	...attrs
-} = Astro.props
+  href = "#main-content",
+  label = "Skip to content",
+  ...attrs
+} = Astro.props;
 
-const linkAttrs = mapAttributes(attrs, ["sb-skip-link"])
+const linkAttrs = mapAttributes(attrs, ["sb-skip-link"]);
 ---
 
 <a {...linkAttrs} {href}>{label}</a>

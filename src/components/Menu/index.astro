@@ -1,0 +1,8 @@
+---
+import "./index.css";
+import SiteMap from "../SiteMap/index.astro";
+
+const { pages } = Astro.props;
+---
+
+<SiteMap class:list={["sb-menu"]} {pages} />

@@ -1,0 +1,64 @@
+.sb-menu-toggle {
+	border: 2px solid transparent;
+	border-radius: 3px;
+	align-items: center;
+	background-color: var(--sb-header-background-color);
+	color: var(--sb-header-color);
+	display: flex;
+	flex-direction: column;
+	height: 48px;
+	justify-content: space-between;
+	padding: 6px;
+	width: 54px;
+	position: absolute;
+	margin-top: 0.2rem;
+	max-width: 54px;
+	top: var(--sb-space-xs);
+	right: var(--sb-space-s);
+	z-index: 1000000;
+	transition: all 0.5s ease-in-out;
+}
+
+header.sb-header {
+	padding-right: 90px;
+}
+
+.sb-menu-toggle:focus,
+.sb-menu-toggle:hover {
+	border-color: #1c0;
+	transition: all 0.5s ease-in-out;
+}
+
+.sb-menu-toggle span {
+	background-color: var(--sb-menu-toggle-color, #fafafa);
+	border-radius: 2px;
+	height: 7px;
+	width: 100%;
+	transition: all 0.5s ease-in-out;
+}
+
+.sb-menu-toggle:focus span,
+.sb-menu-toggle:hover span {
+	background-color: #1c0;
+}
+
+.sb-menu-toggle input#sb-menu-toggle {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+}
+
+.sb-menu-toggle:has(input#sb-menu-toggle:checked) span:nth-child(1) {
+	transform: translate(0, 13px) rotate(45deg);
+	transition: all 0.5s ease-in-out;
+}
+
+.sb-menu-toggle:has(input#sb-menu-toggle:checked) span:nth-child(2) {
+	opacity: 0;
+	transition: all 0.5s ease-in-out;
+}
+
+.sb-menu-toggle:has(input#sb-menu-toggle:checked) span:nth-child(3) {
+	transform: translate(0, -13px) rotate(-45deg);
+	transition: all 0.5s ease-in-out;
+}

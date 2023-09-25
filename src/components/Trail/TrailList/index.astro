@@ -1,80 +1,82 @@
 ---
-import Link from "../../Link/index.astro"
-import mapAttributes from "../../../utilities/mapAttributes"
-import type { HTMLAttributes } from "../../../types/html"
-import type { PageMeta, TrailListProps as Props } from "../../../types"
+import Link from "../../Link/index.astro";
+import mapAttributes from "../../../utilities/mapAttributes";
+import type { HTMLAttributes } from "../../../types/html";
+import type { PageMeta, TrailListProps as Props } from "../../../types";
 
 const {
-	crumbs = [],
-	fallback = {},
-	header = {},
-	hideClass = "sb-off-screen",
-	id,
-	list = {},
-	page = {},
-	title = "Breadcrumb trail",
-	type = "ul",
-} = Astro.props
+  crumbs = [],
+  fallback = {},
+  header = {},
+  hideClass = "sb-off-screen",
+  id,
+  list = {},
+  page = {},
+  title = "Breadcrumb trail",
+  type = "ul",
+} = Astro.props;
 
-const { as = "div", href, label: lbl, ...fallbackAttrs } = fallback
-const { as: HElement = "h2", ...hAttrs } = header
+const { as = "div", href, label: lbl, ...fallbackAttrs } = fallback;
+const { as: HElement = "h2", ...hAttrs } = header;
 
-const headerAttrs = mapAttributes(hAttrs, ["sb-trail-header", hideClass])
-const listAttrs = mapAttributes(list, ["sb-trail-list"])
-const pageAttrs = mapAttributes(page, ["sb-trail-this-page"])
-const fbAttrs = mapAttributes(fallbackAttrs, ["sb-trail-fallback"])
+const headerAttrs = mapAttributes(hAttrs, ["sb-trail-header", hideClass]);
+const listAttrs = mapAttributes(list, ["sb-trail-list"]);
+const pageAttrs = mapAttributes(page, ["sb-trail-this-page"]);
+const fbAttrs = mapAttributes(fallbackAttrs, ["sb-trail-fallback"]);
 
-const ListElement = type
+const ListElement = type;
 
-const links = crumbs as Array<PageMeta<"a">>
+const links = crumbs as Array<PageMeta<"a">>;
 
-const FbElement = href ? "a" : as
+const FbElement = href ? "a" : as;
 ---
 
 <HElement {...headerAttrs} {id}>
-	{title}
+  {title}
 </HElement>
 
 {
-	links.length ? (
-		<ListElement role="presentation" {...listAttrs}>
-			{
-				links.map(
-					(
-						{ description, label: lbl, link, properties, title, url: href },
-						index
-					) => {
-						const label = lbl || title
-						const ttl = description ? { title: description } : {}
+  links.length ? (
+    <ListElement role="presentation" {...listAttrs}>
+      {links.map(
+        (
+          {
+            description,
+            label: lbl,
+            link,
+            path: href = "/",
+            properties,
+            title,
+          },
+          index
+        ) => {
+          const label = lbl || title;
+          const ttl = description ? { title: description } : {};
 
-						const linkAttrs = mapAttributes(link as HTMLAttributes, [
-							"sb-trail-link",
-						])
-						const propsAttrs = mapAttributes(ttl as HTMLAttributes, [
-							"sb-trail-list-item",
-						])
+          const linkAttrs = mapAttributes(link as HTMLAttributes, [
+            "sb-trail-link",
+          ]);
+          const propsAttrs = mapAttributes(ttl as HTMLAttributes, [
+            "sb-trail-list-item",
+          ]);
 
-						return index === crumbs.length - 1 ? (
-							<li {...propsAttrs}>
-								<span aria-current="page" {...pageAttrs}>
-									{label}
-								</span>
-							</li>
-						) : (
-							<li {...propsAttrs}>
-								<Link {...linkAttrs} {href} {label} {properties} />
-							</li>
-						)
-					}
-				)
-			}
-		</ListElement>
-	) :
-		fallback ? (
-			<FbElement {...fbAttrs} {href}>
-				{lbl}
-			</FbElement>
-		) : null
+          return index === crumbs.length - 1 ? (
+            <li {...propsAttrs}>
+              <span aria-current="page" {...pageAttrs}>
+                {label}
+              </span>
+            </li>
+          ) : (
+            <li {...propsAttrs}>
+              <Link {...linkAttrs} {href} {label} {properties} />
+            </li>
+          );
+        }
+      )}
+    </ListElement>
+  ) : fallback ? (
+    <FbElement {...fbAttrs} {href}>
+      {lbl}
+    </FbElement>
+  ) : null
 }
-
-

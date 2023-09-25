@@ -51,7 +51,8 @@
 		"sitebender.theme.dark.json": true,
 		"tsconfig.json": true,
 		"vercel.json": true,
-		"astro.config.mjs": true
+		"astro.config.mjs": true,
+		".stylelintrc.json": true
 	},
 	"javascript.format.semicolons": "remove",
 	"terminal.integrated.tabStopWidth": 4,

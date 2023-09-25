@@ -37,6 +37,10 @@ export { default as Logotype } from "./src/components/Logotype/index.astro"
 // @ts-expect-error
 export { default as Main } from "./src/components/Main/index.astro"
 // @ts-expect-error
+export { default as Menu } from "./src/components/Menu/index.astro"
+// @ts-expect-error
+export { default as MenuToggle } from "./src/components/MenuToggle/index.astro"
+// @ts-expect-error
 export { default as Messenger } from "./src/components/Messenger/index.astro"
 // @ts-expect-error
 export { default as Microdata } from "./src/components/Microdata/index.astro"
@@ -52,6 +56,8 @@ export { default as Post } from "./src/components/Post/index.astro"
 export { default as PullQuote } from "./src/components/PullQuote/index.astro"
 // @ts-expect-error
 export { default as QRCode } from "./src/components/QRCode/index.astro"
+// @ts-expect-error
+export { default as SiteMap } from "./src/components/SiteMap/index.astro"
 // @ts-expect-error
 export { default as SkipLink } from "./src/components/SkipLink/index.astro"
 // @ts-expect-error
