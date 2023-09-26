@@ -1,8 +1,33 @@
 ---
 import "./index.css";
-import SiteMap from "../SiteMap/index.astro";
+import MenuItemTree from "./MenuItemTree/index.astro";
+import generateShortId from "../../utilities/generateShortId";
+import mapAttributes from "../../utilities/mapAttributes";
+import type { MenuProps as Props } from "../../types";
 
-const { pages } = Astro.props;
+const {
+  as = "ul",
+  header = {},
+  hideClass = "sb-off-screen",
+  id = generateShortId(),
+  links,
+  nav = {},
+  pages,
+  properties,
+  title = "Site menu",
+  ...attrs
+} = Astro.props;
+
+const headerAttrs = mapAttributes(header, ["sb-menu-header", hideClass]);
+const wrapperAttrs = mapAttributes(attrs, ["sb-menu"]);
+
+const { as: HElement = "h2" } = header;
+const { as: Element = "nav" } = nav;
 ---
 
-<SiteMap class:list={["sb-menu"]} {pages} />
+<Element {...wrapperAttrs} aria-labelledby={id}>
+  <HElement {...headerAttrs} {id}>
+    {title}
+  </HElement>
+  <MenuItemTree {as} {pages} />
+</Element>

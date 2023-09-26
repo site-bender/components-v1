@@ -19,7 +19,7 @@ import type {
 	Movie,
 	MusicRecording,
 	MusicRelease,
-	NumberSO,
+	Number as NumberSO,
 	Organization,
 	OrganizationLeaf,
 	Person,
@@ -151,6 +151,7 @@ export type Metadata = {
 	locale?: string | undefined
 	modifiedDate?: Date | string | undefined
 	noAnalytics?: boolean | undefined
+	path?: string | undefined
 	publishDate?: Date | string
 	publisher?: string | Organization | undefined
 	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
@@ -176,15 +177,7 @@ export type Metadata = {
 
 export type PageMeta<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
-	{
-		canonical?: string | undefined | null
-		description?: string | undefined | null
-		label?: string | undefined | null
-		link?: Partial<LinkAttributes> | undefined | null
-		path?: string | undefined | null
-		title?: string | undefined | null
-		url?: string | undefined | null
-	}
+	Metadata
 >
 
 export type CreatePath = (
@@ -494,6 +487,30 @@ export type MainProps<Tag extends HTMLTag> = Override<
 	MetadataProps<SiteNavigationElement, Tag>,
 	{
 		imageUrl?: string | undefined | null
+	}
+>
+
+export type MenuItemTreeProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
+	{
+		header?: HTMLAttributes | undefined | null
+		hideClass?: string | undefined | null
+		level?: 1 | 2 | 3 | 4 | 5 | 6
+		links: Array<LinkProps<Tag>>
+		list?: ListAttributes | undefined | null
+		title?: string | undefined | null
+		type?: "ol" | "ul" | undefined | null
+	}
+>
+
+export type MenuProps<Tag extends HTMLTag> = Override<
+	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
+	{
+		as?: Tag
+		hideClass?: string | undefined | null
+		nav: NavListProps<Tag>
+		pages?: Array<PageMeta<"a">> | undefined | null
+		showDescription?: boolean | undefined | null
 	}
 >
 

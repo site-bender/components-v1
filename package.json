@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.1.11",
+	"version": "0.1.12",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -45,7 +45,7 @@
 		"bump:minor": "pnpm version minor --force",
 		"check:exports": "pnpx find-unused-exports",
 		"check:packages": "pnpx npm-check -u",
-		"dep:dev": "pnpm fmt && pnpm lint && pnpm lint:fix && pnpm check:exports && pnpm check:packages && infisical run -- pnpm build && rm -rf .cache .history dist",
+		"dep:dev": "pnpm fmt && pnpm lint && pnpm lint:fix && pnpm check:packages && infisical run -- pnpm build && rm -rf .cache .history dist",
 		"dep:prod": "pnpm dep:dev && vercel deploy",
 		"dev": "astro dev",
 		"fmt": "pnpm biome format --write ./",
@@ -67,7 +67,7 @@
 		"@js-temporal/polyfill": "^0.4.4",
 		"@types/qrcode": "^1.5.2",
 		"@vitest/coverage-v8": "^0.34.5",
-		"astro": "^3.1.2",
+		"astro": "^3.1.4",
 		"exifr": "^7.1.3",
 		"exifreader": "^4.13.0",
 		"postmark": "^3.0.19",

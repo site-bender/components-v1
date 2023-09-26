@@ -49,7 +49,6 @@
 		"node_modules": true,
 		"pnpm-lock.yaml": true,
 		"sitebender.theme.dark.json": true,
-		"tsconfig.json": true,
 		"vercel.json": true,
 		"astro.config.mjs": true,
 		".stylelintrc.json": true
