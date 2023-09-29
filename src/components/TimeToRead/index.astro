@@ -1,0 +1,62 @@
+---
+import "./index.css";
+import type { TimeToReadProps as Props } from "../../types";
+import generateShortId from "../../utilities/generateShortId";
+import mapAttributes from "../../utilities/mapAttributes";
+import formatOrdinal from "../../utilities/formatOrdinal";
+import formatTimeToRead from "../../utilities/formatTimeToRead";
+import { HTMLAttributes } from "../../types/html";
+
+const {
+  header = {},
+  hideClass = "sb-off-screen",
+  id = generateShortId(),
+  readability,
+  timeToRead = {},
+  title = "Time to read",
+  words,
+  ...attrs
+} = Astro.props;
+
+const { as: HElement = "h2", ...hAttrs } = header;
+
+const headerAttrs = mapAttributes(hAttrs, [
+  "sb-time-to-read-heading",
+  hideClass,
+]);
+const ttrAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-time-to-read"]);
+---
+
+<section {...ttrAttrs} {id}>
+  <HElement {...headerAttrs}>{title}</HElement>
+  <p>
+    {
+      timeToRead ? (
+        <time
+          class="sb-time-to-read-time"
+          datetime={`PT${timeToRead.minutes || 0}M${timeToRead.seconds || 0}S`}
+        >
+          {formatTimeToRead(timeToRead)}
+        </time>
+      ) : null
+    }
+    {
+      words ? (
+        <>
+          {timeToRead ? ", " : ""}
+          <span class="sb-time-to-read-words">{words} words</span>
+        </>
+      ) : null
+    }
+    {
+      readability ? (
+        <>
+          {words || timeToRead ? ", " : ""}
+          <span class="sb-time-to-read-readability">
+            {formatOrdinal(readability)} grade
+          </span>
+        </>
+      ) : null
+    }
+  </p>
+</section>

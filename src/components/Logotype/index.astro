@@ -1,13 +1,12 @@
 ---
-import "./index.css"
-import Microdata from "../Microdata/index.astro"
-import type { LogotypeProps as Props } from "../../types"
-import mapAttributes from "../../utilities/mapAttributes"
-import isRoot from "../../utilities/isRoot"
-
+import "./index.css";
+import Microdata from "../Microdata/index.astro";
+import type { LogotypeProps as Props } from "../../types";
+import mapAttributes from "../../utilities/mapAttributes";
+import isRoot from "../../utilities/isRoot";
 
 const {
-	as = "h1",
+  as = "h2",
   ariaLabel,
   href,
   label: lbl,
@@ -15,26 +14,26 @@ const {
   microdata = {},
   properties,
   ...attrs
-} = Astro.props
+} = Astro.props;
 
-const linkAttrs = mapAttributes(link, ["sb-logotype-link"])
-const wrapperAttrs = mapAttributes(attrs, ["sb-logotype"])
+const linkAttrs = mapAttributes(link, ["sb-logotype-link"]);
+const wrapperAttrs = mapAttributes(attrs, ["sb-logotype"]);
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 
 const { pathname } = Astro.url;
 
-const Element = as
+const Element = as;
 
-const label = (await Astro.slots.render("default")) || lbl
+const label = (await Astro.slots.render("default")) || lbl;
 ---
 
 {
   isRoot(pathname) ? (
     <Element {...wrapperAttrs}>
-			{useMicrodata ? <Microdata {...microdata} {properties} /> : null}
-			{label}
-		</Element>
+      {useMicrodata ? <Microdata {...microdata} {properties} /> : null}
+      {label}
+    </Element>
   ) : (
     <Element {...wrapperAttrs}>
       <a {...linkAttrs} {href} aria-label={ariaLabel}>

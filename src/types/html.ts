@@ -653,6 +653,7 @@ export type BaseAttributes = Override<
 			| string
 		condition?: string | undefined | null
 		dataset?: Dataset | undefined | null
+		style?: string | undefined | null
 	}
 >
 

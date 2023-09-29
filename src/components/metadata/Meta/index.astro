@@ -78,6 +78,8 @@ const src = metadata.image?.src
     </>
   ) : null
 }
+{metadata.prev ? <link href={metadata.prev} rel="prev" /> : null}
+{metadata.next ? <link href={metadata.next} rel="next" /> : null}
 {
   type === "article" && metadata.article ? (
     <>

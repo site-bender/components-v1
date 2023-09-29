@@ -88,6 +88,20 @@ export type MetadataProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
 		}
 	>
 
+export type TimeToReadProps<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
+		HTMLAttributes,
+		{
+			header?: (HTMLAttributes & { as: Tag }) | undefined | null
+			hideClass?: string | undefined
+			id?: string | undefined | null
+			readability?: number | undefined | null
+			timeToRead?: DurationOptions | undefined | null
+			title?: string | undefined | null
+			words?: number | undefined | null
+		}
+	>
+
 export type ObjectType = "website" | "article" | "profile"
 
 export type TwitterCard = "app" | "player" | "summary" | "summary_large_image"
@@ -113,19 +127,35 @@ export type Author = Override<
 	}
 >
 
+export type DurationOptions = {
+	years?: number | undefined
+	months?: number | undefined
+	weeks?: number | undefined
+	days?: number | undefined
+	hours?: number | undefined
+	minutes?: number | undefined
+	seconds?: number | undefined
+	milliseconds?: number | undefined
+	microseconds?: number | undefined
+	nanoseconds?: number | undefined
+}
+
 export type Metadata = {
 	article?:
 		| {
-				authors?: Array<string | Author> | undefined
+				authors?: Array<string | LdPerson> | undefined
 				license?: string | undefined
 				modifiedDate?: Date | string | undefined
-				publishers?: Array<string | Organization> | undefined
+				publishers?: Array<string | LdOrganization> | undefined
 				publishDate?: Date | string
+				readability?: number | undefined
 				tags?: Array<string> | undefined
+				timeToRead?: DurationOptions | undefined
 				title?: string
+				words?: number | undefined
 		  }
 		| undefined
-	author?: string | Person | undefined
+	author?: string | LdPerson | undefined
 	blurb?: string | undefined
 	canonical: string
 	chapter?: number
@@ -135,13 +165,11 @@ export type Metadata = {
 	image?:
 		| {
 				alt: string
-				filename: string
 				height?: string | number
 				isInvertible?: boolean
 				license?: string
-				sources?: Array<ImageSource>
-				src?: string | undefined
-				type?: ImageType | undefined
+				src: string
+				type: ImageType
 				width?: string | number
 		  }
 		| undefined
@@ -150,10 +178,10 @@ export type Metadata = {
 	language?: string | undefined
 	locale?: string | undefined
 	modifiedDate?: Date | string | undefined
+	next?: string | undefined
 	noAnalytics?: boolean | undefined
-	path?: string | undefined
+	prev?: string | undefined
 	publishDate?: Date | string
-	publisher?: string | Organization | undefined
 	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
 	siteName?: string | undefined
 	subtitle?: string

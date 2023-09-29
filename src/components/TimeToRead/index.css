@@ -1,0 +1,4 @@
+.sb-time-to-read {
+	color: var(--sb-time-to-read-color, #0e4e09);
+	font-size: 1rem;
+}

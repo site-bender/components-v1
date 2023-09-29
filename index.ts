@@ -63,6 +63,8 @@ export { default as SubscribeForm } from "./src/components/SubscribeForm/index.a
 // @ts-expect-error
 export { default as Subtitle } from "./src/components/Subtitle/index.astro"
 // @ts-expect-error
+export { default as TimeToRead } from "./src/components/TimeToRead/index.astro"
+// @ts-expect-error
 export { default as Trail } from "./src/components/Trail/index.astro"
 // @ts-expect-error
 export { default as Wrap } from "./src/components/Wrap/index.astro"
@@ -232,6 +234,8 @@ export { default as createTelUrl } from "./src/utilities/createTelUrl"
 export { default as createWeekOptions } from "./src/utilities/createWeekOptions"
 export { default as filterTimeZoneOptions } from "./src/utilities/filterTimeZoneOptions"
 export { default as formatDuration } from "./src/utilities/formatDuration"
+export { default as formatOrdinal } from "./src/utilities/formatOrdinal"
+export { default as formatTimeToRead } from "./src/utilities/formatTimeToRead"
 export { default as generateShortId } from "./src/utilities/generateShortId"
 export { default as getBreadcrumbTrail } from "./src/utilities/getBreadcrumbTrail"
 export { default as getLineNumberingWidth } from "./src/utilities/getLineNumberingWidth"

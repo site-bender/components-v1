@@ -9,6 +9,7 @@
 			"Nimbus Sans",
 			Arial,
 			sans-serif);
+	font-size: var(--sb-step-4, 2.44rem);
 	font-variant-ligatures: historical-ligatures;
 	font-weight: 300;
 	line-height: 1.2;

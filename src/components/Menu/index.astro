@@ -31,3 +31,51 @@ const { as: Element = "nav" } = nav;
   </HElement>
   <MenuItemTree {as} {pages} />
 </Element>
+
+<script>
+  function createToggle(): string {
+    return `<svg height="1rem" viewBox="0 0 650 650" width="1rem" xmlns="http://www.w3.org/2000/svg">
+	<rect fill="#fafafa" height="618" rx="24" ry="24" stroke="#09314e" stroke-width="32" width="618" x="16" y="16" />
+	<rect class="sb-vertical-bar" fill="#09314e" height="360" width="60" x="295" y="145" />
+	<rect fill="#09314e" height="60" width="360" x="145" y="295" />
+</svg>`;
+  }
+
+  function toggleSubmenu({ target }: MouseEvent): void {
+    const listItem = (target as HTMLElement)?.closest(".sb-menu-item");
+
+    listItem?.classList.toggle("sb-toggle-shut");
+  }
+
+  function setToggle(element: HTMLElement, shut?: boolean): void {
+    shut && element.classList.add("sb-toggle-shut");
+    const span = document.createElement("SPAN");
+    span.classList.add("sb-toggle");
+    span.addEventListener("click", toggleSubmenu);
+    span.innerHTML = createToggle();
+    element.prepend(span);
+  }
+
+  function enhanceMenu() {
+    const open = [
+      ...document.querySelectorAll(
+        ".sb-menu-item:has(.sb-foldable):has(.sb-menu-this-page)"
+      ),
+    ];
+    const shut = [
+      ...document.querySelectorAll(
+        ".sb-menu-item:has(.sb-foldable):not(:has(.sb-menu-this-page))"
+      ),
+    ];
+
+    open.forEach((element) => {
+      setToggle(element as HTMLElement);
+    });
+
+    shut.forEach((element) => {
+      setToggle(element as HTMLElement, true);
+    });
+  }
+
+  globalThis.addEventListener("DOMContentLoaded", enhanceMenu);
+</script>

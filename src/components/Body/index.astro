@@ -1,42 +1,42 @@
 ---
-import "./index.css"
-import Microdata from "../Microdata/index.astro"
-import mapAttributes from "../../utilities/mapAttributes"
-import type { BodyProps as Props } from "../../types"
+import "./index.css";
+import Microdata from "../Microdata/index.astro";
+import mapAttributes from "../../utilities/mapAttributes";
+import type { BodyProps as Props } from "../../types";
 
-const { pageProperties, site, siteProperties, title, ...attrs } = Astro.props
+const { pageProperties, site, siteProperties, title, ...attrs } = Astro.props;
 
-const wrapperAttrs = mapAttributes(attrs, ["sb-body"])
+const wrapperAttrs = mapAttributes(attrs, ["sb-body"]);
 
-const name = site || import.meta.env.SITE_NAME
+const name = site || import.meta.env.SITE_NAME;
 
-const { origin } = Astro.url
+const { origin } = Astro.url;
 
 const siteMeta = {
-	type: "WebSite",
-	name,
-	url: origin,
-	...siteProperties,
-}
+  type: "WebSite",
+  name,
+  url: origin,
+  ...siteProperties,
+};
 
 const pageMeta = {
-	type: "WebPage",
-	name: title,
-	url: Astro.url.href,
-	...pageProperties,
-}
+  type: "WebPage",
+  name: title,
+  url: Astro.url.href,
+  ...pageProperties,
+};
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 ---
 
 <body {...wrapperAttrs}>
-	{
-		useMicrodata ? (
-			<>
-				<Microdata as="span" properties={siteMeta} />
-				<Microdata as="span" properties={pageMeta} />
-			</>
-		) : null
-	}
-	<slot />
+  {
+    useMicrodata ? (
+      <>
+        <Microdata as="span" properties={siteMeta} />
+        <Microdata as="span" properties={pageMeta} />
+      </>
+    ) : null
+  }
+  <slot />
 </body>

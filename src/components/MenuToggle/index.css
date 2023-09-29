@@ -23,7 +23,7 @@ header.sb-header {
 	padding-right: 90px;
 }
 
-.sb-menu-toggle:focus,
+.sb-menu-toggle:focus-within,
 .sb-menu-toggle:hover {
 	border-color: #1c0;
 	transition: all 0.5s ease-in-out;
@@ -37,7 +37,7 @@ header.sb-header {
 	transition: all 0.5s ease-in-out;
 }
 
-.sb-menu-toggle:focus span,
+.sb-menu-toggle:focus-within span,
 .sb-menu-toggle:hover span {
 	background-color: #1c0;
 }
