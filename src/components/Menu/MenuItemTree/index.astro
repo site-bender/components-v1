@@ -3,19 +3,18 @@ import Link from "../../Link/index.astro";
 import mapAttributes from "../../../utilities/mapAttributes";
 import createPageTree from "./createPageTree";
 import type { HTMLAttributes } from "../../../types/html";
-import { Code } from "astro:components";
 import type { LinkProps, MenuItemTreeProps as Props } from "../../../types";
 
 type LP = LinkProps<"a">;
 
-const {
-  as = "ul",
-  pages = [],
-} = Astro.props;
+const { as = "ul", pages = [] } = Astro.props;
 
-const pageTree = createPageTree(pages)
+const pageTree = createPageTree(pages);
 
-const listAttrs = mapAttributes({}, ["sb-menu-list", ...(Astro.props["data-foldable"] ? ["sb-foldable"] : [])]);
+const listAttrs = mapAttributes({}, [
+  "sb-menu-list",
+  ...(Astro.props["data-foldable"] ? ["sb-foldable"] : []),
+]);
 
 const { pathname } = Astro.url;
 
@@ -23,9 +22,10 @@ const Element = as;
 ---
 
 <Element {...listAttrs}>
-  {pageTree.map(
+  {
+    pageTree.map(
       ({
-				children = [],
+        children = [],
         label: lbl,
         link = {},
         path: href,
@@ -43,12 +43,16 @@ const Element = as;
             <span aria-current="page" class="sb-menu-this-page">
               {label}
             </span>
-						{children.length ? <Astro.self data-foldable pages={children} /> : null}
+            {children.length ? (
+              <Astro.self data-foldable pages={children} />
+            ) : null}
           </li>
         ) : (
           <li {...props}>
             <Link {...linkAttrs} {href} {label} {properties} />
-						{children.length ? <Astro.self data-foldable pages={children} /> : null}
+            {children.length ? (
+              <Astro.self data-foldable pages={children} />
+            ) : null}
           </li>
         );
       }

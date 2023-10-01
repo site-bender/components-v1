@@ -2,6 +2,7 @@
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
+	gap: 2px;
 	justify-content: flex-end;
 	list-style-type: none;
 	margin: 0;
@@ -20,6 +21,7 @@
 	display: inline-block;
 	line-height: 1;
 	padding: 3px 5px;
+	margin-left: -5px;
 	text-decoration: none;
 	text-transform: lowercase;
 }
@@ -29,6 +31,7 @@
 	display: inline-block;
 	line-height: 1;
 	padding: 0 3px 0 7px;
+	margin-left: -5px;
 	text-decoration: none;
 	text-transform: lowercase;
 }
@@ -38,6 +41,7 @@
 	display: inline-block;
 	line-height: 1;
 	padding: 3px 5px;
+	margin-left: -5px;
 	text-decoration: none;
 	text-transform: lowercase;
 }

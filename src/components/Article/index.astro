@@ -3,12 +3,12 @@ import "./index.css"
 import Microdata from "../Microdata/index.astro"
 import mapAttributes from "../../utilities/mapAttributes"
 import type { ArticleProps as Props } from "../../types"
+import generateShortId from "../../utilities/generateShortId"
 
 const {
 	as = "span",
 	asColumns,
 	heading = {},
-	level = 2,
 	microdata,
 	properties,
 	title,
@@ -24,15 +24,16 @@ const wrapperAttrs = mapAttributes(
 )
 
 const articleTitle = await Astro.slots.render("title") || title
+const id = generateShortId()
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<article {...wrapperAttrs}>
+<article aria-labelledby={id} {...wrapperAttrs}>
 	{useMicrodata ? <Microdata {as} {microdata} {properties} /> : null}
 	{
 		articleTitle ? (
-			<header {...headingAttrs}>
+			<header {...headingAttrs} {id}>
 				<HElement set:html={articleTitle}>
 			</header>
 		) : null

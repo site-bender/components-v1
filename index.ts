@@ -57,6 +57,8 @@ export { default as PullQuote } from "./src/components/PullQuote/index.astro"
 // @ts-expect-error
 export { default as QRCode } from "./src/components/QRCode/index.astro"
 // @ts-expect-error
+export { default as Section } from "./src/components/Section/index.astro"
+// @ts-expect-error
 export { default as SkipLink } from "./src/components/SkipLink/index.astro"
 // @ts-expect-error
 export { default as SubscribeForm } from "./src/components/SubscribeForm/index.astro"

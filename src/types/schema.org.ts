@@ -41,7 +41,8 @@ interface EmployeeRoleBase extends OrganizationRoleBase {
 	salaryCurrency?: SchemaValue<Text, "salaryCurrency">
 }
 type EmployeeRoleLeaf<TContent, TProperty extends string> = EmployeeRoleBase & {
-	type: "EmployeeRole"
+	"@context": "https://schema.org"
+	"@type": "EmployeeRole"
 } & {
 	[key in TProperty]: TContent
 }
@@ -58,7 +59,8 @@ interface LinkRoleBase extends RoleBase {
 	linkRelationship?: SchemaValue<Text, "linkRelationship">
 }
 type LinkRoleLeaf<TContent, TProperty extends string> = LinkRoleBase & {
-	type: "LinkRole"
+	"@context": "https://schema.org"
+	"@type": "LinkRole"
 } & {
 	[key in TProperty]: TContent
 }
@@ -85,7 +87,8 @@ type OrganizationRoleLeaf<
 	TContent,
 	TProperty extends string,
 > = OrganizationRoleBase & {
-	type: "OrganizationRole"
+	"@context": "https://schema.org"
+	"@type": "OrganizationRole"
 } & {
 	[key in TProperty]: TContent
 }
@@ -105,7 +108,8 @@ type PerformanceRoleLeaf<
 	TContent,
 	TProperty extends string,
 > = PerformanceRoleBase & {
-	type: "PerformanceRole"
+	"@context": "https://schema.org"
+	"@type": "PerformanceRole"
 } & {
 	[key in TProperty]: TContent
 }
@@ -130,7 +134,8 @@ interface RoleBase extends ThingBase {
 	startDate?: SchemaValue<Date | DateTime, "startDate">
 }
 type RoleLeaf<TContent, TProperty extends string> = RoleBase & {
-	type: "Role"
+	"@context": "https://schema.org"
+	"@type": "Role"
 } & {
 	[key in TProperty]: TContent
 }
@@ -164,19 +169,22 @@ interface _3DModelBase extends MediaObjectBase {
 	isResizable?: SchemaValue<Boolean, "isResizable">
 }
 interface _3DModelLeaf extends _3DModelBase {
-	type: "3DModel"
+	"@context": "https://schema.org"
+	"@type": "3DModel"
 }
 /** A 3D model represents some kind of 3D content, which may have {@link https://schema.org/encoding encoding}s in one or more {@link https://schema.org/MediaObject MediaObject}s. Many 3D formats are available (e.g. see {@link https://en.wikipedia.org/wiki/Category:3D_graphics_file_formats Wikipedia}); specific encoding formats can be represented using the {@link https://schema.org/encodingFormat encodingFormat} property applied to the relevant {@link https://schema.org/MediaObject MediaObject}. For the case of a single file published after Zip compression, the convention of appending '+zip' to the {@link https://schema.org/encodingFormat encodingFormat} can be used. Geospatial, AR/VR, artistic/animation, gaming, engineering and scientific content can all be represented using {@link https://schema.org/3DModel 3DModel}. */
 export type _3DModel = _3DModelLeaf
 
 interface AboutPageLeaf extends WebPageBase {
-	type: "AboutPage"
+	"@context": "https://schema.org"
+	"@type": "AboutPage"
 }
 /** Web page type: About page. */
 export type AboutPage = AboutPageLeaf
 
 interface AcceptActionLeaf extends ActionBase {
-	type: "AcceptAction"
+	"@context": "https://schema.org"
+	"@type": "AcceptAction"
 }
 /**
  * The act of committing to/adopting an object.
@@ -238,7 +246,8 @@ interface AccommodationBase extends PlaceBase {
 	yearBuilt?: SchemaValue<Number, "yearBuilt">
 }
 interface AccommodationLeaf extends AccommodationBase {
-	type: "Accommodation"
+	"@context": "https://schema.org"
+	"@type": "Accommodation"
 }
 /**
  * An accommodation is a place that can accommodate human beings, e.g. a hotel room, a camping pitch, or a meeting room. Many accommodations are for overnight stays, but this is not a mandatory requirement. For more specific types of accommodations not defined in schema.org, one can use [[additionalType]] with external vocabularies.
@@ -255,7 +264,8 @@ export type Accommodation =
 	| string
 
 interface AccountingServiceLeaf extends FinancialServiceBase {
-	type: "AccountingService"
+	"@context": "https://schema.org"
+	"@type": "AccountingService"
 }
 /**
  * Accountancy business.
@@ -265,7 +275,8 @@ interface AccountingServiceLeaf extends FinancialServiceBase {
 export type AccountingService = AccountingServiceLeaf | string
 
 interface AchieveActionLeaf extends ActionBase {
-	type: "AchieveAction"
+	"@context": "https://schema.org"
+	"@type": "AchieveAction"
 }
 /** The act of accomplishing something via previous efforts. It is an instantaneous action rather than an ongoing process. */
 export type AchieveAction =
@@ -312,7 +323,8 @@ interface ActionBase extends ThingBase {
 	target?: SchemaValue<EntryPoint | URL | IdReference, "target">
 }
 interface ActionLeaf extends ActionBase {
-	type: "Action"
+	"@context": "https://schema.org"
+	"@type": "Action"
 }
 /**
  * An action performed by a direct agent and indirect participants upon a direct object. Optionally happens at a location with the help of an inanimate instrument. The execution of the action may produce a result. Specific action sub-type documentation specifies the exact expectation of each argument/role.
@@ -375,13 +387,15 @@ interface ActionAccessSpecificationBase extends ThingBase {
 	>
 }
 interface ActionAccessSpecificationLeaf extends ActionAccessSpecificationBase {
-	type: "ActionAccessSpecification"
+	"@context": "https://schema.org"
+	"@type": "ActionAccessSpecification"
 }
 /** A set of requirements that must be fulfilled in order to perform an Action. */
 export type ActionAccessSpecification = ActionAccessSpecificationLeaf
 
 interface ActionStatusTypeLeaf extends EnumerationBase {
-	type: "ActionStatusType"
+	"@context": "https://schema.org"
+	"@type": "ActionStatusType"
 }
 /** The status of an Action. */
 export type ActionStatusType =
@@ -396,19 +410,22 @@ export type ActionStatusType =
 	| ActionStatusTypeLeaf
 
 interface ActivateActionLeaf extends ActionBase {
-	type: "ActivateAction"
+	"@context": "https://schema.org"
+	"@type": "ActivateAction"
 }
 /** The act of starting or activating a device or application (e.g. starting a timer or turning on a flashlight). */
 export type ActivateAction = ActivateActionLeaf
 
 interface AddActionLeaf extends UpdateActionBase {
-	type: "AddAction"
+	"@context": "https://schema.org"
+	"@type": "AddAction"
 }
 /** The act of editing by adding an object to a collection. */
 export type AddAction = AddActionLeaf | InsertAction
 
 interface AdministrativeAreaLeaf extends PlaceBase {
-	type: "AdministrativeArea"
+	"@context": "https://schema.org"
+	"@type": "AdministrativeArea"
 }
 /** A geographical region, typically under the jurisdiction of a particular government. */
 export type AdministrativeArea =
@@ -420,13 +437,15 @@ export type AdministrativeArea =
 	| string
 
 interface AdultEntertainmentLeaf extends LocalBusinessBase {
-	type: "AdultEntertainment"
+	"@context": "https://schema.org"
+	"@type": "AdultEntertainment"
 }
 /** An adult entertainment establishment. */
 export type AdultEntertainment = AdultEntertainmentLeaf | string
 
 interface AdultOrientedEnumerationLeaf extends EnumerationBase {
-	type: "AdultOrientedEnumeration"
+	"@context": "https://schema.org"
+	"@type": "AdultOrientedEnumeration"
 }
 /** Enumeration of considerations that make a product relevant or potentially restricted for adults only. */
 export type AdultOrientedEnumeration =
@@ -453,7 +472,8 @@ export type AdultOrientedEnumeration =
 	| AdultOrientedEnumerationLeaf
 
 interface AdvertiserContentArticleLeaf extends ArticleBase {
-	type: "AdvertiserContentArticle"
+	"@context": "https://schema.org"
+	"@type": "AdvertiserContentArticle"
 }
 /** An {@link https://schema.org/Article Article} that an external entity has paid to place or to produce to its specifications. Includes {@link https://en.wikipedia.org/wiki/Advertorial advertorials}, sponsored content, native advertising and other paid content. */
 export type AdvertiserContentArticle = AdvertiserContentArticleLeaf
@@ -481,7 +501,8 @@ interface AggregateOfferBase extends OfferBase {
 	offers?: SchemaValue<Demand | Offer | IdReference, "offers">
 }
 interface AggregateOfferLeaf extends AggregateOfferBase {
-	type: "AggregateOffer"
+	"@context": "https://schema.org"
+	"@type": "AggregateOffer"
 }
 /**
  * When a single product is associated with multiple offers (for example, the same pair of shoes is offered by different merchants), then AggregateOffer can be used.
@@ -499,13 +520,15 @@ interface AggregateRatingBase extends RatingBase {
 	reviewCount?: SchemaValue<Integer, "reviewCount">
 }
 interface AggregateRatingLeaf extends AggregateRatingBase {
-	type: "AggregateRating"
+	"@context": "https://schema.org"
+	"@type": "AggregateRating"
 }
 /** The average rating based on multiple ratings or reviews. */
 export type AggregateRating = AggregateRatingLeaf | EmployerAggregateRating
 
 interface AgreeActionLeaf extends ActionBase {
-	type: "AgreeAction"
+	"@context": "https://schema.org"
+	"@type": "AgreeAction"
 }
 /** The act of expressing a consistency of opinion with the object. An agent agrees to/about an object (a proposition, topic or theme) with participants. */
 export type AgreeAction = AgreeActionLeaf
@@ -520,7 +543,8 @@ interface AirlineBase extends OrganizationBase {
 	iataCode?: SchemaValue<Text, "iataCode">
 }
 interface AirlineLeaf extends AirlineBase {
-	type: "Airline"
+	"@context": "https://schema.org"
+	"@type": "Airline"
 }
 /** An organization that provides flights for passengers. */
 export type Airline = AirlineLeaf | string
@@ -532,7 +556,8 @@ interface AirportBase extends CivicStructureBase {
 	icaoCode?: SchemaValue<Text, "icaoCode">
 }
 interface AirportLeaf extends AirportBase {
-	type: "Airport"
+	"@context": "https://schema.org"
+	"@type": "Airport"
 }
 /** An airport. */
 export type Airport = AirportLeaf | string
@@ -550,7 +575,8 @@ interface AlignmentObjectBase extends ThingBase {
 	targetUrl?: SchemaValue<URL, "targetUrl">
 }
 interface AlignmentObjectLeaf extends AlignmentObjectBase {
-	type: "AlignmentObject"
+	"@context": "https://schema.org"
+	"@type": "AlignmentObject"
 }
 /**
  * An intangible item that describes an alignment between a learning resource and a node in an educational framework.
@@ -560,7 +586,8 @@ interface AlignmentObjectLeaf extends AlignmentObjectBase {
 export type AlignmentObject = AlignmentObjectLeaf
 
 interface AllocateActionLeaf extends ActionBase {
-	type: "AllocateAction"
+	"@context": "https://schema.org"
+	"@type": "AllocateAction"
 }
 /** The act of organizing tasks/objects/events by associating resources to it. */
 export type AllocateAction =
@@ -572,25 +599,29 @@ export type AllocateAction =
 
 interface AmpStoryBase extends CreativeWorkBase, MediaObjectBase {}
 interface AmpStoryLeaf extends AmpStoryBase {
-	type: "AmpStory"
+	"@context": "https://schema.org"
+	"@type": "AmpStory"
 }
 /** A creative work with a visual storytelling format intended to be viewed online, particularly on mobile devices. */
 export type AmpStory = AmpStoryLeaf
 
 interface AMRadioChannelLeaf extends BroadcastChannelBase {
-	type: "AMRadioChannel"
+	"@context": "https://schema.org"
+	"@type": "AMRadioChannel"
 }
 /** A radio channel that uses AM. */
 export type AMRadioChannel = AMRadioChannelLeaf
 
 interface AmusementParkLeaf extends LocalBusinessBase {
-	type: "AmusementPark"
+	"@context": "https://schema.org"
+	"@type": "AmusementPark"
 }
 /** An amusement park. */
 export type AmusementPark = AmusementParkLeaf | string
 
 interface AnalysisNewsArticleLeaf extends NewsArticleBase {
-	type: "AnalysisNewsArticle"
+	"@context": "https://schema.org"
+	"@type": "AnalysisNewsArticle"
 }
 /** An AnalysisNewsArticle is a {@link https://schema.org/NewsArticle NewsArticle} that, while based on factual reporting, incorporates the expertise of the author/producer, offering interpretations and conclusions. */
 export type AnalysisNewsArticle = AnalysisNewsArticleLeaf
@@ -617,7 +648,8 @@ interface AnatomicalStructureBase extends MedicalEntityBase {
 	subStructure?: SchemaValue<AnatomicalStructure | IdReference, "subStructure">
 }
 interface AnatomicalStructureLeaf extends AnatomicalStructureBase {
-	type: "AnatomicalStructure"
+	"@context": "https://schema.org"
+	"@type": "AnatomicalStructure"
 }
 /** Any part of the human body, typically a component of an anatomical system. Organs, tissues, and cells are all anatomical structures. */
 export type AnatomicalStructure =
@@ -652,13 +684,15 @@ interface AnatomicalSystemBase extends MedicalEntityBase {
 	relatedTherapy?: SchemaValue<MedicalTherapy | IdReference, "relatedTherapy">
 }
 interface AnatomicalSystemLeaf extends AnatomicalSystemBase {
-	type: "AnatomicalSystem"
+	"@context": "https://schema.org"
+	"@type": "AnatomicalSystem"
 }
 /** An anatomical system is a group of anatomical structures that work together to perform a certain task. Anatomical systems, such as organ systems, are one organizing principle of anatomy, and can include circulatory, digestive, endocrine, integumentary, immune, lymphatic, muscular, nervous, reproductive, respiratory, skeletal, urinary, vestibular, and other systems. */
 export type AnatomicalSystem = AnatomicalSystemLeaf
 
 interface AnimalShelterLeaf extends LocalBusinessBase {
-	type: "AnimalShelter"
+	"@context": "https://schema.org"
+	"@type": "AnimalShelter"
 }
 /** Animal shelter. */
 export type AnimalShelter = AnimalShelterLeaf | string
@@ -671,7 +705,8 @@ interface AnswerBase extends CommentBase {
 	>
 }
 interface AnswerLeaf extends AnswerBase {
-	type: "Answer"
+	"@context": "https://schema.org"
+	"@type": "Answer"
 }
 /** An answer offered to a question; perhaps correct, perhaps opinionated or wrong. */
 export type Answer = AnswerLeaf
@@ -686,7 +721,8 @@ interface ApartmentBase extends AccommodationBase {
 	occupancy?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
 }
 interface ApartmentLeaf extends ApartmentBase {
-	type: "Apartment"
+	"@context": "https://schema.org"
+	"@type": "Apartment"
 }
 /** An apartment (in American English) or flat (in British English) is a self-contained housing unit (a type of residential real estate) that occupies only part of a building (source: Wikipedia, the free encyclopedia, see {@link http://en.wikipedia.org/wiki/Apartment http://en.wikipedia.org/wiki/Apartment}). */
 export type Apartment = ApartmentLeaf | string
@@ -713,7 +749,8 @@ interface ApartmentComplexBase extends ResidenceBase {
 	tourBookingPage?: SchemaValue<URL, "tourBookingPage">
 }
 interface ApartmentComplexLeaf extends ApartmentComplexBase {
-	type: "ApartmentComplex"
+	"@context": "https://schema.org"
+	"@type": "ApartmentComplex"
 }
 /** Residence type: Apartment complex. */
 export type ApartmentComplex = ApartmentComplexLeaf | string
@@ -735,19 +772,22 @@ interface APIReferenceBase extends TechArticleBase {
 	targetPlatform?: SchemaValue<Text, "targetPlatform">
 }
 interface APIReferenceLeaf extends APIReferenceBase {
-	type: "APIReference"
+	"@context": "https://schema.org"
+	"@type": "APIReference"
 }
 /** Reference documentation for application programming interfaces (APIs). */
 export type APIReference = APIReferenceLeaf
 
 interface AppendActionLeaf extends InsertActionBase {
-	type: "AppendAction"
+	"@context": "https://schema.org"
+	"@type": "AppendAction"
 }
 /** The act of inserting at the end if an ordered collection. */
 export type AppendAction = AppendActionLeaf
 
 interface ApplyActionLeaf extends ActionBase {
-	type: "ApplyAction"
+	"@context": "https://schema.org"
+	"@type": "ApplyAction"
 }
 /**
  * The act of registering to an organization/service without the guarantee to receive it.
@@ -758,13 +798,15 @@ interface ApplyActionLeaf extends ActionBase {
 export type ApplyAction = ApplyActionLeaf
 
 interface ApprovedIndicationLeaf extends MedicalEntityBase {
-	type: "ApprovedIndication"
+	"@context": "https://schema.org"
+	"@type": "ApprovedIndication"
 }
 /** An indication for a medical therapy that has been formally specified or approved by a regulatory body that regulates use of the therapy; for example, the US FDA approves indications for most drugs in the US. */
 export type ApprovedIndication = ApprovedIndicationLeaf
 
 interface AquariumLeaf extends CivicStructureBase {
-	type: "Aquarium"
+	"@context": "https://schema.org"
+	"@type": "Aquarium"
 }
 /** Aquarium. */
 export type Aquarium = AquariumLeaf | string
@@ -782,7 +824,8 @@ interface ArchiveComponentBase extends CreativeWorkBase {
 	>
 }
 interface ArchiveComponentLeaf extends ArchiveComponentBase {
-	type: "ArchiveComponent"
+	"@context": "https://schema.org"
+	"@type": "ArchiveComponent"
 }
 /** An intangible type to be applied to any archive content, carrying with it a set of properties required to describe archival items and collections. */
 export type ArchiveComponent = ArchiveComponentLeaf
@@ -792,13 +835,15 @@ interface ArchiveOrganizationBase extends LocalBusinessBase {
 	archiveHeld?: SchemaValue<ArchiveComponent | IdReference, "archiveHeld">
 }
 interface ArchiveOrganizationLeaf extends ArchiveOrganizationBase {
-	type: "ArchiveOrganization"
+	"@context": "https://schema.org"
+	"@type": "ArchiveOrganization"
 }
 /** An organization with archival holdings. An organization which keeps and preserves archival material and typically makes it accessible to the public. */
 export type ArchiveOrganization = ArchiveOrganizationLeaf | string
 
 interface ArriveActionLeaf extends MoveActionBase {
-	type: "ArriveAction"
+	"@context": "https://schema.org"
+	"@type": "ArriveAction"
 }
 /** The act of arriving at a place. An agent arrives at a destination from a fromLocation, optionally with participants. */
 export type ArriveAction = ArriveActionLeaf
@@ -813,13 +858,15 @@ interface ArteryBase extends AnatomicalStructureBase {
 	supplyTo?: SchemaValue<AnatomicalStructure | IdReference, "supplyTo">
 }
 interface ArteryLeaf extends ArteryBase {
-	type: "Artery"
+	"@context": "https://schema.org"
+	"@type": "Artery"
 }
 /** A type of blood vessel that specifically carries blood away from the heart. */
 export type Artery = ArteryLeaf
 
 interface ArtGalleryLeaf extends LocalBusinessBase {
-	type: "ArtGallery"
+	"@context": "https://schema.org"
+	"@type": "ArtGallery"
 }
 /** An art gallery. */
 export type ArtGallery = ArtGalleryLeaf | string
@@ -857,8 +904,9 @@ interface ArticleBase extends CreativeWorkBase {
 	/** The number of words in the text of the Article. */
 	wordCount?: SchemaValue<Integer, "wordCount">
 }
-interface ArticleLeaf extends ArticleBase {
-	type: "Article"
+export interface ArticleLeaf extends ArticleBase {
+	"@context": "https://schema.org"
+	"@type": "Article"
 }
 /**
  * An article, such as a news article or piece of investigative report. Newspapers and magazines have articles of many different types and this is intended to cover them all.
@@ -880,7 +928,8 @@ interface AskActionBase extends CommunicateActionBase {
 	question?: SchemaValue<Question | IdReference, "question">
 }
 interface AskActionLeaf extends AskActionBase {
-	type: "AskAction"
+	"@context": "https://schema.org"
+	"@type": "AskAction"
 }
 /**
  * The act of posing a question / favor to someone.
@@ -891,13 +940,15 @@ interface AskActionLeaf extends AskActionBase {
 export type AskAction = AskActionLeaf
 
 interface AskPublicNewsArticleLeaf extends NewsArticleBase {
-	type: "AskPublicNewsArticle"
+	"@context": "https://schema.org"
+	"@type": "AskPublicNewsArticle"
 }
 /** A {@link https://schema.org/NewsArticle NewsArticle} expressing an open call by a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} asking the public for input, insights, clarifications, anecdotes, documentation, etc., on an issue, for reporting purposes. */
 export type AskPublicNewsArticle = AskPublicNewsArticleLeaf
 
 interface AssessActionLeaf extends ActionBase {
-	type: "AssessAction"
+	"@context": "https://schema.org"
+	"@type": "AssessAction"
 }
 /** The act of forming one's opinion, reaction or sentiment. */
 export type AssessAction =
@@ -908,19 +959,22 @@ export type AssessAction =
 	| ReviewAction
 
 interface AssignActionLeaf extends ActionBase {
-	type: "AssignAction"
+	"@context": "https://schema.org"
+	"@type": "AssignAction"
 }
 /** The act of allocating an action/event/task to some destination (someone or something). */
 export type AssignAction = AssignActionLeaf
 
 interface AtlasLeaf extends CreativeWorkBase {
-	type: "Atlas"
+	"@context": "https://schema.org"
+	"@type": "Atlas"
 }
 /** A collection or bound volume of maps, charts, plates or tables, physical or in media form illustrating any subject. */
 export type Atlas = AtlasLeaf
 
 interface AttorneyLeaf extends LocalBusinessBase {
-	type: "Attorney"
+	"@context": "https://schema.org"
+	"@type": "Attorney"
 }
 /**
  * Professional service: Attorney.
@@ -939,7 +993,8 @@ interface AudienceBase extends ThingBase {
 	>
 }
 interface AudienceLeaf extends AudienceBase {
-	type: "Audience"
+	"@context": "https://schema.org"
+	"@type": "Audience"
 }
 /** Intended audience for an item, i.e. the group for whom the item was created. */
 export type Audience =
@@ -957,7 +1012,8 @@ interface AudiobookBase extends BookBase, AudioObjectBase {
 	readBy?: SchemaValue<Person | IdReference, "readBy">
 }
 interface AudiobookLeaf extends AudiobookBase {
-	type: "Audiobook"
+	"@context": "https://schema.org"
+	"@type": "Audiobook"
 }
 /** An audiobook. */
 export type Audiobook = AudiobookLeaf
@@ -971,13 +1027,15 @@ interface AudioObjectBase extends MediaObjectBase {
 	transcript?: SchemaValue<Text, "transcript">
 }
 interface AudioObjectLeaf extends AudioObjectBase {
-	type: "AudioObject"
+	"@context": "https://schema.org"
+	"@type": "AudioObject"
 }
 /** An audio file. */
 export type AudioObject = AudioObjectLeaf | Audiobook | AudioObjectSnapshot
 
 interface AudioObjectSnapshotLeaf extends AudioObjectBase {
-	type: "AudioObjectSnapshot"
+	"@context": "https://schema.org"
+	"@type": "AudioObjectSnapshot"
 }
 /** A specific and exact (byte-for-byte) version of an {@link https://schema.org/AudioObject AudioObject}. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren't represented in their actual content, do not affect this notion of identity. */
 export type AudioObjectSnapshot = AudioObjectSnapshotLeaf
@@ -990,31 +1048,36 @@ interface AuthorizeActionBase extends ActionBase {
 	>
 }
 interface AuthorizeActionLeaf extends AuthorizeActionBase {
-	type: "AuthorizeAction"
+	"@context": "https://schema.org"
+	"@type": "AuthorizeAction"
 }
 /** The act of granting permission to an object. */
 export type AuthorizeAction = AuthorizeActionLeaf
 
 interface AutoBodyShopLeaf extends LocalBusinessBase {
-	type: "AutoBodyShop"
+	"@context": "https://schema.org"
+	"@type": "AutoBodyShop"
 }
 /** Auto body shop. */
 export type AutoBodyShop = AutoBodyShopLeaf | string
 
 interface AutoDealerLeaf extends LocalBusinessBase {
-	type: "AutoDealer"
+	"@context": "https://schema.org"
+	"@type": "AutoDealer"
 }
 /** An car dealership. */
 export type AutoDealer = AutoDealerLeaf | string
 
 interface AutomatedTellerLeaf extends FinancialServiceBase {
-	type: "AutomatedTeller"
+	"@context": "https://schema.org"
+	"@type": "AutomatedTeller"
 }
 /** ATM/cash machine. */
 export type AutomatedTeller = AutomatedTellerLeaf | string
 
 interface AutomotiveBusinessLeaf extends LocalBusinessBase {
-	type: "AutomotiveBusiness"
+	"@context": "https://schema.org"
+	"@type": "AutomotiveBusiness"
 }
 /** Car repair, sales, or parts. */
 export type AutomotiveBusiness =
@@ -1032,37 +1095,43 @@ export type AutomotiveBusiness =
 
 interface AutoPartsStoreBase extends LocalBusinessBase, LocalBusinessBase {}
 interface AutoPartsStoreLeaf extends AutoPartsStoreBase {
-	type: "AutoPartsStore"
+	"@context": "https://schema.org"
+	"@type": "AutoPartsStore"
 }
 /** An auto parts store. */
 export type AutoPartsStore = AutoPartsStoreLeaf | string
 
 interface AutoRentalLeaf extends LocalBusinessBase {
-	type: "AutoRental"
+	"@context": "https://schema.org"
+	"@type": "AutoRental"
 }
 /** A car rental business. */
 export type AutoRental = AutoRentalLeaf | string
 
 interface AutoRepairLeaf extends LocalBusinessBase {
-	type: "AutoRepair"
+	"@context": "https://schema.org"
+	"@type": "AutoRepair"
 }
 /** Car repair business. */
 export type AutoRepair = AutoRepairLeaf | string
 
 interface AutoWashLeaf extends LocalBusinessBase {
-	type: "AutoWash"
+	"@context": "https://schema.org"
+	"@type": "AutoWash"
 }
 /** A car wash business. */
 export type AutoWash = AutoWashLeaf | string
 
 interface BackgroundNewsArticleLeaf extends NewsArticleBase {
-	type: "BackgroundNewsArticle"
+	"@context": "https://schema.org"
+	"@type": "BackgroundNewsArticle"
 }
 /** A {@link https://schema.org/NewsArticle NewsArticle} providing historical context, definition and detail on a specific topic (aka "explainer" or "backgrounder"). For example, an in-depth article or frequently-asked-questions ({@link https://en.wikipedia.org/wiki/FAQ FAQ}) document on topics such as Climate Change or the European Union. Other kinds of background material from a non-news setting are often described using {@link https://schema.org/Book Book} or {@link https://schema.org/Article Article}, in particular {@link https://schema.org/ScholarlyArticle ScholarlyArticle}. See also {@link https://schema.org/NewsArticle NewsArticle} for related vocabulary from a learning/education perspective. */
 export type BackgroundNewsArticle = BackgroundNewsArticleLeaf
 
 interface BakeryLeaf extends FoodEstablishmentBase {
-	type: "Bakery"
+	"@context": "https://schema.org"
+	"@type": "Bakery"
 }
 /** A bakery. */
 export type Bakery = BakeryLeaf | string
@@ -1082,43 +1151,50 @@ interface BankAccountBase extends FinancialProductBase {
 	bankAccountType?: SchemaValue<Text | URL, "bankAccountType">
 }
 interface BankAccountLeaf extends BankAccountBase {
-	type: "BankAccount"
+	"@context": "https://schema.org"
+	"@type": "BankAccount"
 }
 /** A product or service offered by a bank whereby one may deposit, withdraw or transfer money and in some cases be paid interest. */
 export type BankAccount = BankAccountLeaf | DepositAccount
 
 interface BankOrCreditUnionLeaf extends FinancialServiceBase {
-	type: "BankOrCreditUnion"
+	"@context": "https://schema.org"
+	"@type": "BankOrCreditUnion"
 }
 /** Bank or credit union. */
 export type BankOrCreditUnion = BankOrCreditUnionLeaf | string
 
 interface BarcodeLeaf extends ImageObjectBase {
-	type: "Barcode"
+	"@context": "https://schema.org"
+	"@type": "Barcode"
 }
 /** An image of a visual machine-readable code such as a barcode or QR code. */
 export type Barcode = BarcodeLeaf
 
 interface BarOrPubLeaf extends FoodEstablishmentBase {
-	type: "BarOrPub"
+	"@context": "https://schema.org"
+	"@type": "BarOrPub"
 }
 /** A bar or pub. */
 export type BarOrPub = BarOrPubLeaf | string
 
 interface BeachLeaf extends CivicStructureBase {
-	type: "Beach"
+	"@context": "https://schema.org"
+	"@type": "Beach"
 }
 /** Beach. */
 export type Beach = BeachLeaf | string
 
 interface BeautySalonLeaf extends LocalBusinessBase {
-	type: "BeautySalon"
+	"@context": "https://schema.org"
+	"@type": "BeautySalon"
 }
 /** Beauty salon. */
 export type BeautySalon = BeautySalonLeaf | string
 
 interface BedAndBreakfastLeaf extends LodgingBusinessBase {
-	type: "BedAndBreakfast"
+	"@context": "https://schema.org"
+	"@type": "BedAndBreakfast"
 }
 /**
  * Bed and breakfast.
@@ -1134,19 +1210,22 @@ interface BedDetailsBase extends ThingBase {
 	typeOfBed?: SchemaValue<BedType | Text | IdReference, "typeOfBed">
 }
 interface BedDetailsLeaf extends BedDetailsBase {
-	type: "BedDetails"
+	"@context": "https://schema.org"
+	"@type": "BedDetails"
 }
 /** An entity holding detailed information about the available bed types, e.g. the quantity of twin beds for a hotel room. For the single case of just one bed of a certain type, you can use bed directly with a text. See also {@link https://schema.org/BedType BedType} (under development). */
 export type BedDetails = BedDetailsLeaf
 
 interface BedTypeLeaf extends QualitativeValueBase {
-	type: "BedType"
+	"@context": "https://schema.org"
+	"@type": "BedType"
 }
 /** A type of bed. This is used for indicating the bed or beds available in an accommodation. */
 export type BedType = BedTypeLeaf
 
 interface BefriendActionLeaf extends ActionBase {
-	type: "BefriendAction"
+	"@context": "https://schema.org"
+	"@type": "BefriendAction"
 }
 /**
  * The act of forming a personal connection with someone (object) mutually/bidirectionally/symmetrically.
@@ -1157,7 +1236,8 @@ interface BefriendActionLeaf extends ActionBase {
 export type BefriendAction = BefriendActionLeaf
 
 interface BikeStoreLeaf extends LocalBusinessBase {
-	type: "BikeStore"
+	"@context": "https://schema.org"
+	"@type": "BikeStore"
 }
 /** A bike store. */
 export type BikeStore = BikeStoreLeaf | string
@@ -1224,7 +1304,8 @@ interface BioChemEntityBase extends ThingBase {
 	>
 }
 interface BioChemEntityLeaf extends BioChemEntityBase {
-	type: "BioChemEntity"
+	"@context": "https://schema.org"
+	"@type": "BioChemEntity"
 }
 /** Any biological, chemical, or biochemical thing. For example: a protein; a gene; a chemical; a synthetic chemical. */
 export type BioChemEntity =
@@ -1247,25 +1328,29 @@ interface BlogBase extends CreativeWorkBase {
 	issn?: SchemaValue<Text, "issn">
 }
 interface BlogLeaf extends BlogBase {
-	type: "Blog"
+	"@context": "https://schema.org"
+	"@type": "Blog"
 }
 /** A {@link https://en.wikipedia.org/wiki/Blog blog}, sometimes known as a "weblog". Note that the individual posts ({@link https://schema.org/BlogPosting BlogPosting}s) in a {@link https://schema.org/Blog Blog} are often colloquially referred to by the same term. */
 export type Blog = BlogLeaf
 
 interface BlogPostingLeaf extends SocialMediaPostingBase {
-	type: "BlogPosting"
+	"@context": "https://schema.org"
+	"@type": "BlogPosting"
 }
 /** A blog post. */
 export type BlogPosting = BlogPostingLeaf | LiveBlogPosting
 
 interface BloodTestLeaf extends MedicalTestBase {
-	type: "BloodTest"
+	"@context": "https://schema.org"
+	"@type": "BloodTest"
 }
 /** A medical test performed on a sample of a patient's blood. */
 export type BloodTest = BloodTestLeaf
 
 interface BoardingPolicyTypeLeaf extends EnumerationBase {
-	type: "BoardingPolicyType"
+	"@context": "https://schema.org"
+	"@type": "BoardingPolicyType"
 }
 /** A type of boarding policy used by an airline. */
 export type BoardingPolicyType =
@@ -1276,7 +1361,8 @@ export type BoardingPolicyType =
 	| BoardingPolicyTypeLeaf
 
 interface BoatReservationLeaf extends ReservationBase {
-	type: "BoatReservation"
+	"@context": "https://schema.org"
+	"@type": "BoatReservation"
 }
 /**
  * A reservation for boat travel.
@@ -1286,7 +1372,8 @@ interface BoatReservationLeaf extends ReservationBase {
 export type BoatReservation = BoatReservationLeaf
 
 interface BoatTerminalLeaf extends CivicStructureBase {
-	type: "BoatTerminal"
+	"@context": "https://schema.org"
+	"@type": "BoatTerminal"
 }
 /** A terminal for boats, ships, and other water vessels. */
 export type BoatTerminal = BoatTerminalLeaf | string
@@ -1304,13 +1391,15 @@ interface BoatTripBase extends TripBase {
 	>
 }
 interface BoatTripLeaf extends BoatTripBase {
-	type: "BoatTrip"
+	"@context": "https://schema.org"
+	"@type": "BoatTrip"
 }
 /** A trip on a commercial ferry line. */
 export type BoatTrip = BoatTripLeaf
 
 interface BodyMeasurementTypeEnumerationLeaf extends EnumerationBase {
-	type: "BodyMeasurementTypeEnumeration"
+	"@context": "https://schema.org"
+	"@type": "BodyMeasurementTypeEnumeration"
 }
 /** Enumerates types (or dimensions) of a person's body measurements, for example for fitting of clothes. */
 export type BodyMeasurementTypeEnumeration =
@@ -1343,7 +1432,8 @@ export type BodyMeasurementTypeEnumeration =
 	| BodyMeasurementTypeEnumerationLeaf
 
 interface BodyOfWaterLeaf extends PlaceBase {
-	type: "BodyOfWater"
+	"@context": "https://schema.org"
+	"@type": "BodyOfWater"
 }
 /** A body of water, such as a sea, ocean, or lake. */
 export type BodyOfWater =
@@ -1359,7 +1449,8 @@ export type BodyOfWater =
 	| string
 
 interface BoneLeaf extends AnatomicalStructureBase {
-	type: "Bone"
+	"@context": "https://schema.org"
+	"@type": "Bone"
 }
 /** Rigid connective tissue that comprises up the skeletal structure of the human body. */
 export type Bone = BoneLeaf
@@ -1379,13 +1470,15 @@ interface BookBase extends CreativeWorkBase {
 	numberOfPages?: SchemaValue<Integer, "numberOfPages">
 }
 interface BookLeaf extends BookBase {
-	type: "Book"
+	"@context": "https://schema.org"
+	"@type": "Book"
 }
 /** A book. */
 export type Book = BookLeaf | Audiobook
 
 interface BookFormatTypeLeaf extends EnumerationBase {
-	type: "BookFormatType"
+	"@context": "https://schema.org"
+	"@type": "BookFormatType"
 }
 /** The publication format of the book. */
 export type BookFormatType =
@@ -1402,19 +1495,22 @@ export type BookFormatType =
 	| BookFormatTypeLeaf
 
 interface BookmarkActionLeaf extends ActionBase {
-	type: "BookmarkAction"
+	"@context": "https://schema.org"
+	"@type": "BookmarkAction"
 }
 /** An agent bookmarks/flags/labels/tags/marks an object. */
 export type BookmarkAction = BookmarkActionLeaf
 
 interface BookSeriesLeaf extends CreativeWorkSeriesBase {
-	type: "BookSeries"
+	"@context": "https://schema.org"
+	"@type": "BookSeries"
 }
 /** A series of books. Included books can be indicated with the hasPart property. */
 export type BookSeries = BookSeriesLeaf
 
 interface BookStoreLeaf extends LocalBusinessBase {
-	type: "BookStore"
+	"@context": "https://schema.org"
+	"@type": "BookStore"
 }
 /** A bookstore. */
 export type BookStore = BookStoreLeaf | string
@@ -1424,7 +1520,8 @@ interface BorrowActionBase extends TransferActionBase {
 	lender?: SchemaValue<Organization | Person | IdReference, "lender">
 }
 interface BorrowActionLeaf extends BorrowActionBase {
-	type: "BorrowAction"
+	"@context": "https://schema.org"
+	"@type": "BorrowAction"
 }
 /**
  * The act of obtaining an object under an agreement to return it at a later date. Reciprocal of LendAction.
@@ -1435,13 +1532,15 @@ interface BorrowActionLeaf extends BorrowActionBase {
 export type BorrowAction = BorrowActionLeaf
 
 interface BowlingAlleyLeaf extends LocalBusinessBase {
-	type: "BowlingAlley"
+	"@context": "https://schema.org"
+	"@type": "BowlingAlley"
 }
 /** A bowling alley. */
 export type BowlingAlley = BowlingAlleyLeaf | string
 
 interface BrainStructureLeaf extends AnatomicalStructureBase {
-	type: "BrainStructure"
+	"@context": "https://schema.org"
+	"@type": "BrainStructure"
 }
 /** Any anatomical structure which pertains to the soft nervous tissue functioning as the coordinating center of sensation and intellectual and nervous activity. */
 export type BrainStructure = BrainStructureLeaf
@@ -1460,13 +1559,15 @@ interface BrandBase extends ThingBase {
 	slogan?: SchemaValue<Text, "slogan">
 }
 interface BrandLeaf extends BrandBase {
-	type: "Brand"
+	"@context": "https://schema.org"
+	"@type": "Brand"
 }
 /** A brand is a name used by an organization or business person for labeling a product, product group, or similar. */
 export type Brand = BrandLeaf
 
 interface BreadcrumbListLeaf extends ItemListBase {
-	type: "BreadcrumbList"
+	"@context": "https://schema.org"
+	"@type": "BreadcrumbList"
 }
 /**
  * A BreadcrumbList is an ItemList consisting of a chain of linked Web pages, typically described using at least their URL and their name, and typically ending with the current page.
@@ -1476,13 +1577,15 @@ interface BreadcrumbListLeaf extends ItemListBase {
 export type BreadcrumbList = BreadcrumbListLeaf
 
 interface BreweryLeaf extends FoodEstablishmentBase {
-	type: "Brewery"
+	"@context": "https://schema.org"
+	"@type": "Brewery"
 }
 /** Brewery. */
 export type Brewery = BreweryLeaf | string
 
 interface BridgeLeaf extends CivicStructureBase {
-	type: "Bridge"
+	"@context": "https://schema.org"
+	"@type": "Bridge"
 }
 /** A bridge. */
 export type Bridge = BridgeLeaf | string
@@ -1511,7 +1614,8 @@ interface BroadcastChannelBase extends ThingBase {
 	>
 }
 interface BroadcastChannelLeaf extends BroadcastChannelBase {
-	type: "BroadcastChannel"
+	"@context": "https://schema.org"
+	"@type": "BroadcastChannel"
 }
 /** A unique instance of a BroadcastService on a CableOrSatelliteService lineup. */
 export type BroadcastChannel =
@@ -1533,7 +1637,8 @@ interface BroadcastEventBase extends PublicationEventBase {
 	videoFormat?: SchemaValue<Text, "videoFormat">
 }
 interface BroadcastEventLeaf extends BroadcastEventBase {
-	type: "BroadcastEvent"
+	"@context": "https://schema.org"
+	"@type": "BroadcastEvent"
 }
 /** An over the air or online broadcast event. */
 export type BroadcastEvent = BroadcastEventLeaf
@@ -1554,7 +1659,8 @@ interface BroadcastFrequencySpecificationBase extends ThingBase {
 }
 interface BroadcastFrequencySpecificationLeaf
 	extends BroadcastFrequencySpecificationBase {
-	type: "BroadcastFrequencySpecification"
+	"@context": "https://schema.org"
+	"@type": "BroadcastFrequencySpecification"
 }
 /** The frequency in MHz and the modulation used for a particular BroadcastService. */
 export type BroadcastFrequencySpecification =
@@ -1598,19 +1704,22 @@ interface BroadcastServiceBase extends ServiceBase {
 	videoFormat?: SchemaValue<Text, "videoFormat">
 }
 interface BroadcastServiceLeaf extends BroadcastServiceBase {
-	type: "BroadcastService"
+	"@context": "https://schema.org"
+	"@type": "BroadcastService"
 }
 /** A delivery service through which content is provided via broadcast over the air or online. */
 export type BroadcastService = BroadcastServiceLeaf | RadioBroadcastService
 
 interface BrokerageAccountLeaf extends InvestmentOrDepositBase {
-	type: "BrokerageAccount"
+	"@context": "https://schema.org"
+	"@type": "BrokerageAccount"
 }
 /** An account that allows an investor to deposit funds and place investment orders with a licensed broker or brokerage firm. */
 export type BrokerageAccount = BrokerageAccountLeaf
 
 interface BuddhistTempleLeaf extends CivicStructureBase {
-	type: "BuddhistTemple"
+	"@context": "https://schema.org"
+	"@type": "BuddhistTemple"
 }
 /** A Buddhist temple. */
 export type BuddhistTemple = BuddhistTempleLeaf | string
@@ -1630,13 +1739,15 @@ interface BusinessAudienceBase extends AudienceBase {
 	>
 }
 interface BusinessAudienceLeaf extends BusinessAudienceBase {
-	type: "BusinessAudience"
+	"@context": "https://schema.org"
+	"@type": "BusinessAudience"
 }
 /** A set of characteristics belonging to businesses, e.g. who compose an item's target audience. */
 export type BusinessAudience = BusinessAudienceLeaf
 
 interface BusinessEntityTypeLeaf extends EnumerationBase {
-	type: "BusinessEntityType"
+	"@context": "https://schema.org"
+	"@type": "BusinessEntityType"
 }
 /**
  * A business entity type is a conceptual entity representing the legal form, the size, the main line of business, the position in the value chain, or any combination thereof, of an organization or business person.
@@ -1650,13 +1761,15 @@ interface BusinessEntityTypeLeaf extends EnumerationBase {
 export type BusinessEntityType = BusinessEntityTypeLeaf
 
 interface BusinessEventLeaf extends EventBase {
-	type: "BusinessEvent"
+	"@context": "https://schema.org"
+	"@type": "BusinessEvent"
 }
 /** Event type: Business event. */
 export type BusinessEvent = BusinessEventLeaf
 
 interface BusinessFunctionLeaf extends EnumerationBase {
-	type: "BusinessFunction"
+	"@context": "https://schema.org"
+	"@type": "BusinessFunction"
 }
 /**
  * The business function specifies the type of activity or access (i.e., the bundle of rights) offered by the organization or business person through the offer. Typical are sell, rental or lease, maintenance or repair, manufacture / produce, recycle / dispose, engineering / construction, or installation. Proprietary specifications of access rights are also instances of this class.
@@ -1687,13 +1800,15 @@ interface BusOrCoachBase extends VehicleBase {
 	roofLoad?: SchemaValue<QuantitativeValue | IdReference, "roofLoad">
 }
 interface BusOrCoachLeaf extends BusOrCoachBase {
-	type: "BusOrCoach"
+	"@context": "https://schema.org"
+	"@type": "BusOrCoach"
 }
 /** A bus (also omnibus or autobus) is a road vehicle designed to carry passengers. Coaches are luxury busses, usually in service for long distance travel. */
 export type BusOrCoach = BusOrCoachLeaf
 
 interface BusReservationLeaf extends ReservationBase {
-	type: "BusReservation"
+	"@context": "https://schema.org"
+	"@type": "BusReservation"
 }
 /**
  * A reservation for bus travel.
@@ -1703,13 +1818,15 @@ interface BusReservationLeaf extends ReservationBase {
 export type BusReservation = BusReservationLeaf
 
 interface BusStationLeaf extends CivicStructureBase {
-	type: "BusStation"
+	"@context": "https://schema.org"
+	"@type": "BusStation"
 }
 /** A bus station. */
 export type BusStation = BusStationLeaf | string
 
 interface BusStopLeaf extends CivicStructureBase {
-	type: "BusStop"
+	"@context": "https://schema.org"
+	"@type": "BusStop"
 }
 /** A bus stop. */
 export type BusStop = BusStopLeaf | string
@@ -1731,7 +1848,8 @@ interface BusTripBase extends TripBase {
 	>
 }
 interface BusTripLeaf extends BusTripBase {
-	type: "BusTrip"
+	"@context": "https://schema.org"
+	"@type": "BusTrip"
 }
 /** A trip on a commercial bus line. */
 export type BusTrip = BusTripLeaf
@@ -1756,26 +1874,30 @@ interface BuyActionBase extends TradeActionBase {
 	>
 }
 interface BuyActionLeaf extends BuyActionBase {
-	type: "BuyAction"
+	"@context": "https://schema.org"
+	"@type": "BuyAction"
 }
 /** The act of giving money to a seller in exchange for goods or services rendered. An agent buys an object, product, or service from a seller for a price. Reciprocal of SellAction. */
 export type BuyAction = BuyActionLeaf
 
 interface CableOrSatelliteServiceLeaf extends ServiceBase {
-	type: "CableOrSatelliteService"
+	"@context": "https://schema.org"
+	"@type": "CableOrSatelliteService"
 }
 /** A service which provides access to media programming like TV or radio. Access may be via cable or satellite. */
 export type CableOrSatelliteService = CableOrSatelliteServiceLeaf
 
 interface CafeOrCoffeeShopLeaf extends FoodEstablishmentBase {
-	type: "CafeOrCoffeeShop"
+	"@context": "https://schema.org"
+	"@type": "CafeOrCoffeeShop"
 }
 /** A cafe or coffee shop. */
 export type CafeOrCoffeeShop = CafeOrCoffeeShopLeaf | string
 
 interface CampgroundBase extends CivicStructureBase, LodgingBusinessBase {}
 interface CampgroundLeaf extends CampgroundBase {
-	type: "Campground"
+	"@context": "https://schema.org"
+	"@type": "Campground"
 }
 /**
  * A camping site, campsite, or {@link https://schema.org/Campground Campground} is a place used for overnight stay in the outdoors, typically containing individual {@link https://schema.org/CampingPitch CampingPitch} locations.
@@ -1787,7 +1909,8 @@ interface CampgroundLeaf extends CampgroundBase {
 export type Campground = CampgroundLeaf | string
 
 interface CampingPitchLeaf extends AccommodationBase {
-	type: "CampingPitch"
+	"@context": "https://schema.org"
+	"@type": "CampingPitch"
 }
 /**
  * A {@link https://schema.org/CampingPitch CampingPitch} is an individual place for overnight stay in the outdoors, typically being part of a larger camping site, or {@link https://schema.org/Campground Campground}.
@@ -1799,13 +1922,15 @@ interface CampingPitchLeaf extends AccommodationBase {
 export type CampingPitch = CampingPitchLeaf | string
 
 interface CanalLeaf extends PlaceBase {
-	type: "Canal"
+	"@context": "https://schema.org"
+	"@type": "Canal"
 }
 /** A canal, like the Panama Canal. */
 export type Canal = CanalLeaf | string
 
 interface CancelActionLeaf extends PlanActionBase {
-	type: "CancelAction"
+	"@context": "https://schema.org"
+	"@type": "CancelAction"
 }
 /**
  * The act of asserting that a future event/action is no longer going to happen.
@@ -1829,13 +1954,15 @@ interface CarBase extends VehicleBase {
 	roofLoad?: SchemaValue<QuantitativeValue | IdReference, "roofLoad">
 }
 interface CarLeaf extends CarBase {
-	type: "Car"
+	"@context": "https://schema.org"
+	"@type": "Car"
 }
 /** A car is a wheeled, self-powered motor vehicle used for transportation. */
 export type Car = CarLeaf
 
 interface CarUsageTypeLeaf extends EnumerationBase {
-	type: "CarUsageType"
+	"@context": "https://schema.org"
+	"@type": "CarUsageType"
 }
 /** A value indicating a special usage of a car, e.g. commercial rental, driving school, or as a taxi. */
 export type CarUsageType =
@@ -1848,7 +1975,8 @@ export type CarUsageType =
 	| CarUsageTypeLeaf
 
 interface CasinoLeaf extends LocalBusinessBase {
-	type: "Casino"
+	"@context": "https://schema.org"
+	"@type": "Casino"
 }
 /** A casino. */
 export type Casino = CasinoLeaf | string
@@ -1860,7 +1988,8 @@ interface CategoryCodeBase extends DefinedTermBase {
 	inCodeSet?: SchemaValue<CategoryCodeSet | URL | IdReference, "inCodeSet">
 }
 interface CategoryCodeLeaf extends CategoryCodeBase {
-	type: "CategoryCode"
+	"@context": "https://schema.org"
+	"@type": "CategoryCode"
 }
 /** A Category Code. */
 export type CategoryCode = CategoryCodeLeaf | MedicalCode
@@ -1870,13 +1999,15 @@ interface CategoryCodeSetBase extends DefinedTermSetBase {
 	hasCategoryCode?: SchemaValue<CategoryCode | IdReference, "hasCategoryCode">
 }
 interface CategoryCodeSetLeaf extends CategoryCodeSetBase {
-	type: "CategoryCodeSet"
+	"@context": "https://schema.org"
+	"@type": "CategoryCodeSet"
 }
 /** A set of Category Code values. */
 export type CategoryCodeSet = CategoryCodeSetLeaf
 
 interface CatholicChurchLeaf extends CivicStructureBase {
-	type: "CatholicChurch"
+	"@context": "https://schema.org"
+	"@type": "CatholicChurch"
 }
 /** A Catholic church. */
 export type CatholicChurch = CatholicChurchLeaf | string
@@ -1918,13 +2049,15 @@ interface CDCPMDRecordBase extends ThingBase {
 	datePosted?: SchemaValue<Date | DateTime, "datePosted">
 }
 interface CDCPMDRecordLeaf extends CDCPMDRecordBase {
-	type: "CDCPMDRecord"
+	"@context": "https://schema.org"
+	"@type": "CDCPMDRecord"
 }
 /** A CDCPMDRecord is a data structure representing a record in a CDC tabular data format used for hospital data reporting. See {@link /docs/cdc-covid.html documentation} for details, and the linked CDC materials for authoritative definitions used as the source here. */
 export type CDCPMDRecord = CDCPMDRecordLeaf
 
 interface CemeteryLeaf extends CivicStructureBase {
-	type: "Cemetery"
+	"@context": "https://schema.org"
+	"@type": "Cemetery"
 }
 /** A graveyard. */
 export type Cemetery = CemeteryLeaf | string
@@ -1938,19 +2071,22 @@ interface ChapterBase extends CreativeWorkBase {
 	pagination?: SchemaValue<Text, "pagination">
 }
 interface ChapterLeaf extends ChapterBase {
-	type: "Chapter"
+	"@context": "https://schema.org"
+	"@type": "Chapter"
 }
 /** One of the sections into which a book is divided. A chapter usually has a section number or a name. */
 export type Chapter = ChapterLeaf
 
 interface CheckActionLeaf extends ActionBase {
-	type: "CheckAction"
+	"@context": "https://schema.org"
+	"@type": "CheckAction"
 }
 /** An agent inspects, determines, investigates, inquires, or examines an object's accuracy, quality, condition, or state. */
 export type CheckAction = CheckActionLeaf
 
 interface CheckInActionLeaf extends CommunicateActionBase {
-	type: "CheckInAction"
+	"@context": "https://schema.org"
+	"@type": "CheckInAction"
 }
 /**
  * The act of an agent communicating (service provider, social media, etc) their arrival by registering/confirming for a previously reserved service (e.g. flight check-in) or at a place (e.g. hotel), possibly resulting in a result (boarding pass, etc).
@@ -1963,7 +2099,8 @@ interface CheckInActionLeaf extends CommunicateActionBase {
 export type CheckInAction = CheckInActionLeaf
 
 interface CheckOutActionLeaf extends CommunicateActionBase {
-	type: "CheckOutAction"
+	"@context": "https://schema.org"
+	"@type": "CheckOutAction"
 }
 /**
  * The act of an agent communicating (service provider, social media, etc) their departure of a previously reserved service (e.g. flight check-in) or place (e.g. hotel).
@@ -1976,7 +2113,8 @@ interface CheckOutActionLeaf extends CommunicateActionBase {
 export type CheckOutAction = CheckOutActionLeaf
 
 interface CheckoutPageLeaf extends WebPageBase {
-	type: "CheckoutPage"
+	"@context": "https://schema.org"
+	"@type": "CheckoutPage"
 }
 /** Web page type: Checkout page. */
 export type CheckoutPage = CheckoutPageLeaf
@@ -1990,19 +2128,22 @@ interface ChemicalSubstanceBase extends BioChemEntityBase {
 	potentialUse?: SchemaValue<DefinedTerm | IdReference, "potentialUse">
 }
 interface ChemicalSubstanceLeaf extends ChemicalSubstanceBase {
-	type: "ChemicalSubstance"
+	"@context": "https://schema.org"
+	"@type": "ChemicalSubstance"
 }
 /** A chemical substance is 'a portion of matter of constant composition, composed of molecular entities of the same type or of different types' (source: {@link https://www.ebi.ac.uk/chebi/searchId.do?chebiId=59999 ChEBI:59999}). */
 export type ChemicalSubstance = ChemicalSubstanceLeaf
 
 interface ChildCareLeaf extends LocalBusinessBase {
-	type: "ChildCare"
+	"@context": "https://schema.org"
+	"@type": "ChildCare"
 }
 /** A Childcare center. */
 export type ChildCare = ChildCareLeaf | string
 
 interface ChildrensEventLeaf extends EventBase {
-	type: "ChildrensEvent"
+	"@context": "https://schema.org"
+	"@type": "ChildrensEvent"
 }
 /** Event type: Children's event. */
 export type ChildrensEvent = ChildrensEventLeaf
@@ -2018,25 +2159,29 @@ interface ChooseActionBase extends ActionBase {
 	option?: SchemaValue<Text | Thing | IdReference, "option">
 }
 interface ChooseActionLeaf extends ChooseActionBase {
-	type: "ChooseAction"
+	"@context": "https://schema.org"
+	"@type": "ChooseAction"
 }
 /** The act of expressing a preference from a set of options or a large or unbounded set of choices/options. */
 export type ChooseAction = ChooseActionLeaf | VoteAction
 
 interface ChurchLeaf extends CivicStructureBase {
-	type: "Church"
+	"@context": "https://schema.org"
+	"@type": "Church"
 }
 /** A church. */
 export type Church = ChurchLeaf | CatholicChurch | string
 
 interface CityLeaf extends PlaceBase {
-	type: "City"
+	"@context": "https://schema.org"
+	"@type": "City"
 }
 /** A city or town. */
 export type City = CityLeaf | string
 
 interface CityHallLeaf extends CivicStructureBase {
-	type: "CityHall"
+	"@context": "https://schema.org"
+	"@type": "CityHall"
 }
 /** A city hall. */
 export type CityHall = CityHallLeaf | string
@@ -2052,7 +2197,8 @@ interface CivicStructureBase extends PlaceBase {
 	openingHours?: SchemaValue<Text, "openingHours">
 }
 interface CivicStructureLeaf extends CivicStructureBase {
-	type: "CivicStructure"
+	"@context": "https://schema.org"
+	"@type": "CivicStructure"
 }
 /** A public structure, such as a town hall or concert hall. */
 export type CivicStructure =
@@ -2102,7 +2248,8 @@ interface ClaimBase extends CreativeWorkBase {
 	firstAppearance?: SchemaValue<CreativeWork | IdReference, "firstAppearance">
 }
 interface ClaimLeaf extends ClaimBase {
-	type: "Claim"
+	"@context": "https://schema.org"
+	"@type": "Claim"
 }
 /**
  * A {@link https://schema.org/Claim Claim} in Schema.org represents a specific, factually-oriented claim that could be the {@link https://schema.org/itemReviewed itemReviewed} in a {@link https://schema.org/ClaimReview ClaimReview}. The content of a claim can be summarized with the {@link https://schema.org/text text} property. Variations on well known claims can have their common identity indicated via {@link https://schema.org/sameAs sameAs} links, and summarized with a {@link https://schema.org/name name}. Ideally, a {@link https://schema.org/Claim Claim} description includes enough contextual information to minimize the risk of ambiguity or inclarity. In practice, many claims are better understood in the context in which they appear or the interpretations provided by claim reviews.
@@ -2118,7 +2265,8 @@ interface ClaimReviewBase extends ReviewBase {
 	claimReviewed?: SchemaValue<Text, "claimReviewed">
 }
 interface ClaimReviewLeaf extends ClaimReviewBase {
-	type: "ClaimReview"
+	"@context": "https://schema.org"
+	"@type": "ClaimReview"
 }
 /** A fact-checking review of claims made (or reported) in some creative work (referenced via itemReviewed). */
 export type ClaimReview = ClaimReviewLeaf
@@ -2131,7 +2279,8 @@ interface ClassBase extends ThingBase {
 	>
 }
 interface ClassLeaf extends ClassBase {
-	type: "Class"
+	"@context": "https://schema.org"
+	"@type": "Class"
 }
 /** A class, also often called a 'Type'; equivalent to rdfs:Class. */
 export type Class = ClassLeaf
@@ -2169,19 +2318,22 @@ interface ClipBase extends CreativeWorkBase {
 	startOffset?: SchemaValue<HyperTocEntry | Number | IdReference, "startOffset">
 }
 interface ClipLeaf extends ClipBase {
-	type: "Clip"
+	"@context": "https://schema.org"
+	"@type": "Clip"
 }
 /** A short TV or radio program or a segment/part of a program. */
 export type Clip = ClipLeaf | MovieClip | RadioClip | TVClip | VideoGameClip
 
 interface ClothingStoreLeaf extends LocalBusinessBase {
-	type: "ClothingStore"
+	"@context": "https://schema.org"
+	"@type": "ClothingStore"
 }
 /** A clothing store. */
 export type ClothingStore = ClothingStoreLeaf | string
 
 interface CodeLeaf extends CreativeWorkBase {
-	type: "Code"
+	"@context": "https://schema.org"
+	"@type": "Code"
 }
 /**
  * Computer programming source code. Example: Full (compile ready) solutions, code snippet samples, scripts, templates.
@@ -2195,38 +2347,44 @@ interface CollectionBase extends CreativeWorkBase {
 	collectionSize?: SchemaValue<Integer, "collectionSize">
 }
 interface CollectionLeaf extends CollectionBase {
-	type: "Collection"
+	"@context": "https://schema.org"
+	"@type": "Collection"
 }
 /** A collection of items, e.g. creative works or products. */
 export type Collection = CollectionLeaf | ProductCollection
 
 interface CollectionPageLeaf extends WebPageBase {
-	type: "CollectionPage"
+	"@context": "https://schema.org"
+	"@type": "CollectionPage"
 }
 /** Web page type: Collection page. */
 export type CollectionPage = CollectionPageLeaf | MediaGallery
 
 interface CollegeOrUniversityLeaf extends EducationalOrganizationBase {
-	type: "CollegeOrUniversity"
+	"@context": "https://schema.org"
+	"@type": "CollegeOrUniversity"
 }
 /** A college, university, or other third-level educational institution. */
 export type CollegeOrUniversity = CollegeOrUniversityLeaf | string
 
 interface ComedyClubLeaf extends LocalBusinessBase {
-	type: "ComedyClub"
+	"@context": "https://schema.org"
+	"@type": "ComedyClub"
 }
 /** A comedy club. */
 export type ComedyClub = ComedyClubLeaf | string
 
 interface ComedyEventLeaf extends EventBase {
-	type: "ComedyEvent"
+	"@context": "https://schema.org"
+	"@type": "ComedyEvent"
 }
 /** Event type: Comedy event. */
 export type ComedyEvent = ComedyEventLeaf
 
 interface ComicCoverArtBase extends VisualArtworkBase, ComicStoryBase {}
 interface ComicCoverArtLeaf extends ComicCoverArtBase {
-	type: "ComicCoverArt"
+	"@context": "https://schema.org"
+	"@type": "ComicCoverArt"
 }
 /** The artwork on the cover of a comic. */
 export type ComicCoverArt = ComicCoverArtLeaf
@@ -2246,13 +2404,15 @@ interface ComicIssueBase extends PublicationIssueBase {
 	variantCover?: SchemaValue<Text, "variantCover">
 }
 interface ComicIssueLeaf extends ComicIssueBase {
-	type: "ComicIssue"
+	"@context": "https://schema.org"
+	"@type": "ComicIssue"
 }
 /** Individual comic issues are serially published as part of a larger series. For the sake of consistency, even one-shot issues belong to a series comprised of a single issue. All comic issues can be uniquely identified by: the combination of the name and volume number of the series to which the issue belongs; the issue number; and the variant description of the issue (if any). */
 export type ComicIssue = ComicIssueLeaf
 
 interface ComicSeriesLeaf extends CreativeWorkSeriesBase {
-	type: "ComicSeries"
+	"@context": "https://schema.org"
+	"@type": "ComicSeries"
 }
 /** A sequential publication of comic stories under a unifying title, for example "The Amazing Spider-Man" or "Groo the Wanderer". */
 export type ComicSeries = ComicSeriesLeaf
@@ -2270,7 +2430,8 @@ interface ComicStoryBase extends CreativeWorkBase {
 	penciler?: SchemaValue<Person | IdReference, "penciler">
 }
 interface ComicStoryLeaf extends ComicStoryBase {
-	type: "ComicStory"
+	"@context": "https://schema.org"
+	"@type": "ComicStory"
 }
 /** The term "story" is any indivisible, re-printable unit of a comic, including the interior stories, covers, and backmatter. Most comics have at least two stories: a cover (ComicCoverArt) and an interior story. */
 export type ComicStory = ComicStoryLeaf | ComicCoverArt
@@ -2284,7 +2445,8 @@ interface CommentBase extends CreativeWorkBase {
 	upvoteCount?: SchemaValue<Integer, "upvoteCount">
 }
 interface CommentLeaf extends CommentBase {
-	type: "Comment"
+	"@context": "https://schema.org"
+	"@type": "Comment"
 }
 /** A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the {@link https://schema.org/text text} property, and its topic via {@link https://schema.org/about about}, properties shared with all CreativeWorks. */
 export type Comment = CommentLeaf | Answer | CorrectionComment | Question
@@ -2294,7 +2456,8 @@ interface CommentActionBase extends CommunicateActionBase {
 	resultComment?: SchemaValue<Comment | IdReference, "resultComment">
 }
 interface CommentActionLeaf extends CommentActionBase {
-	type: "CommentAction"
+	"@context": "https://schema.org"
+	"@type": "CommentAction"
 }
 /** The act of generating a comment about a subject. */
 export type CommentAction = CommentActionLeaf
@@ -2317,7 +2480,8 @@ interface CommunicateActionBase extends ActionBase {
 	>
 }
 interface CommunicateActionLeaf extends CommunicateActionBase {
-	type: "CommunicateAction"
+	"@context": "https://schema.org"
+	"@type": "CommunicateAction"
 }
 /** The act of conveying information to another person via a communication medium (instrument) such as speech, email, or telephone conversation. */
 export type CommunicateAction =
@@ -2332,13 +2496,15 @@ export type CommunicateAction =
 	| ShareAction
 
 interface CommunityHealthLeaf extends LocalBusinessBase {
-	type: "CommunityHealth"
+	"@context": "https://schema.org"
+	"@type": "CommunityHealth"
 }
 /** A field of public health focusing on improving health characteristics of a defined population in relation with their geographical or environment areas. */
 export type CommunityHealth = CommunityHealthLeaf | string
 
 interface CompleteDataFeedLeaf extends DataFeedBase {
-	type: "CompleteDataFeed"
+	"@context": "https://schema.org"
+	"@type": "CompleteDataFeed"
 }
 /**
  * A {@link https://schema.org/CompleteDataFeed CompleteDataFeed} is a {@link https://schema.org/DataFeed DataFeed} whose standard representation includes content for every item currently in the feed.
@@ -2361,25 +2527,29 @@ interface CompoundPriceSpecificationBase extends PriceSpecificationBase {
 }
 interface CompoundPriceSpecificationLeaf
 	extends CompoundPriceSpecificationBase {
-	type: "CompoundPriceSpecification"
+	"@context": "https://schema.org"
+	"@type": "CompoundPriceSpecification"
 }
 /** A compound price specification is one that bundles multiple prices that all apply in combination for different dimensions of consumption. Use the name property of the attached unit price specification for indicating the dimension of a price component (e.g. "electricity" or "final cleaning"). */
 export type CompoundPriceSpecification = CompoundPriceSpecificationLeaf
 
 interface ComputerLanguageLeaf extends ThingBase {
-	type: "ComputerLanguage"
+	"@context": "https://schema.org"
+	"@type": "ComputerLanguage"
 }
 /** This type covers computer programming languages such as Scheme and Lisp, as well as other language-like computer representations. Natural languages are best represented with the {@link https://schema.org/Language Language} type. */
 export type ComputerLanguage = ComputerLanguageLeaf
 
 interface ComputerStoreLeaf extends LocalBusinessBase {
-	type: "ComputerStore"
+	"@context": "https://schema.org"
+	"@type": "ComputerStore"
 }
 /** A computer store. */
 export type ComputerStore = ComputerStoreLeaf | string
 
 interface ConfirmActionLeaf extends InformActionBase {
-	type: "ConfirmAction"
+	"@context": "https://schema.org"
+	"@type": "ConfirmAction"
 }
 /**
  * The act of notifying someone that a future event/action is going to happen as expected.
@@ -2390,7 +2560,8 @@ interface ConfirmActionLeaf extends InformActionBase {
 export type ConfirmAction = ConfirmActionLeaf
 
 interface ConsortiumLeaf extends OrganizationBase {
-	type: "Consortium"
+	"@context": "https://schema.org"
+	"@type": "Consortium"
 }
 /** A Consortium is a membership {@link https://schema.org/Organization Organization} whose members are typically Organizations. */
 export type Consortium = ConsortiumLeaf | string
@@ -2405,7 +2576,8 @@ interface ConstraintNodeBase extends ThingBase {
 	numConstraints?: SchemaValue<Integer, "numConstraints">
 }
 interface ConstraintNodeLeaf extends ConstraintNodeBase {
-	type: "ConstraintNode"
+	"@context": "https://schema.org"
+	"@type": "ConstraintNode"
 }
 /** The ConstraintNode type is provided to support usecases in which a node in a structured data graph is described with properties which appear to describe a single entity, but are being used in a situation where they serve a more abstract purpose. A {@link https://schema.org/ConstraintNode ConstraintNode} can be described using {@link https://schema.org/constraintProperty constraintProperty} and {@link https://schema.org/numConstraints numConstraints}. These constraint properties can serve a variety of purposes, and their values may sometimes be understood to indicate sets of possible values rather than single, exact and specific values. */
 export type ConstraintNode = ConstraintNodeLeaf | StatisticalVariable
@@ -2420,7 +2592,8 @@ interface ConsumeActionBase extends ActionBase {
 	expectsAcceptanceOf?: SchemaValue<Offer | IdReference, "expectsAcceptanceOf">
 }
 interface ConsumeActionLeaf extends ConsumeActionBase {
-	type: "ConsumeAction"
+	"@context": "https://schema.org"
+	"@type": "ConsumeAction"
 }
 /** The act of ingesting information/resources/food. */
 export type ConsumeAction =
@@ -2436,7 +2609,8 @@ export type ConsumeAction =
 	| WatchAction
 
 interface ContactPageLeaf extends WebPageBase {
-	type: "ContactPage"
+	"@context": "https://schema.org"
+	"@type": "ContactPage"
 }
 /** Web page type: Contact page. */
 export type ContactPage = ContactPageLeaf
@@ -2483,13 +2657,15 @@ interface ContactPointBase extends ThingBase {
 	telephone?: SchemaValue<Text, "telephone">
 }
 export interface ContactPointLeaf extends ContactPointBase {
-	type: "ContactPoint"
+	"@context": "https://schema.org"
+	"@type": "ContactPoint"
 }
 /** A contact point—for example, a Customer Complaints department. */
 export type ContactPoint = ContactPointLeaf | PostalAddress
 
 interface ContactPointOptionLeaf extends EnumerationBase {
-	type: "ContactPointOption"
+	"@context": "https://schema.org"
+	"@type": "ContactPointOption"
 }
 /** Enumerated options related to a ContactPoint. */
 export type ContactPointOption =
@@ -2500,13 +2676,15 @@ export type ContactPointOption =
 	| ContactPointOptionLeaf
 
 interface ContinentLeaf extends PlaceBase {
-	type: "Continent"
+	"@context": "https://schema.org"
+	"@type": "Continent"
 }
 /** One of the continents (for example, Europe or Africa). */
 export type Continent = ContinentLeaf | string
 
 interface ControlActionLeaf extends ActionBase {
-	type: "ControlAction"
+	"@context": "https://schema.org"
+	"@type": "ControlAction"
 }
 /** An agent controls a device or application. */
 export type ControlAction =
@@ -2517,13 +2695,15 @@ export type ControlAction =
 	| SuspendAction
 
 interface ConvenienceStoreLeaf extends LocalBusinessBase {
-	type: "ConvenienceStore"
+	"@context": "https://schema.org"
+	"@type": "ConvenienceStore"
 }
 /** A convenience store. */
 export type ConvenienceStore = ConvenienceStoreLeaf | string
 
 interface ConversationLeaf extends CreativeWorkBase {
-	type: "Conversation"
+	"@context": "https://schema.org"
+	"@type": "Conversation"
 }
 /** One or more messages between organizations or people on a particular topic. Individual messages can be linked to the conversation with isPartOf or hasPart properties. */
 export type Conversation = ConversationLeaf
@@ -2540,7 +2720,8 @@ interface CookActionBase extends ActionBase {
 	recipe?: SchemaValue<Recipe | IdReference, "recipe">
 }
 interface CookActionLeaf extends CookActionBase {
-	type: "CookAction"
+	"@context": "https://schema.org"
+	"@type": "CookAction"
 }
 /** The act of producing/preparing food. */
 export type CookAction = CookActionLeaf
@@ -2550,19 +2731,22 @@ interface CorporationBase extends OrganizationBase {
 	tickerSymbol?: SchemaValue<Text, "tickerSymbol">
 }
 interface CorporationLeaf extends CorporationBase {
-	type: "Corporation"
+	"@context": "https://schema.org"
+	"@type": "Corporation"
 }
 /** Organization: A business corporation. */
 export type Corporation = CorporationLeaf | string
 
 interface CorrectionCommentLeaf extends CommentBase {
-	type: "CorrectionComment"
+	"@context": "https://schema.org"
+	"@type": "CorrectionComment"
 }
 /** A {@link https://schema.org/comment comment} that corrects {@link https://schema.org/CreativeWork CreativeWork}. */
 export type CorrectionComment = CorrectionCommentLeaf
 
 interface CountryLeaf extends PlaceBase {
-	type: "Country"
+	"@context": "https://schema.org"
+	"@type": "Country"
 }
 /** A country. */
 export type Country = CountryLeaf | string
@@ -2611,7 +2795,8 @@ interface CourseBase extends CreativeWorkBase, LearningResourceBase {
 	totalHistoricalEnrollment?: SchemaValue<Integer, "totalHistoricalEnrollment">
 }
 interface CourseLeaf extends CourseBase {
-	type: "Course"
+	"@context": "https://schema.org"
+	"@type": "Course"
 }
 /** A description of an educational course which may be offered as distinct instances which take place at different times or take place at different locations, or be offered through different media or modes of study. An educational course is a sequence of one or more educational events and/or creative works which aims to build knowledge, competence or ability of learners. */
 export type Course = CourseLeaf
@@ -2627,31 +2812,36 @@ interface CourseInstanceBase extends EventBase {
 	instructor?: SchemaValue<Person | IdReference, "instructor">
 }
 interface CourseInstanceLeaf extends CourseInstanceBase {
-	type: "CourseInstance"
+	"@context": "https://schema.org"
+	"@type": "CourseInstance"
 }
 /** An instance of a {@link https://schema.org/Course Course} which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students. */
 export type CourseInstance = CourseInstanceLeaf
 
 interface CourthouseLeaf extends CivicStructureBase {
-	type: "Courthouse"
+	"@context": "https://schema.org"
+	"@type": "Courthouse"
 }
 /** A courthouse. */
 export type Courthouse = CourthouseLeaf | string
 
 interface CoverArtLeaf extends VisualArtworkBase {
-	type: "CoverArt"
+	"@context": "https://schema.org"
+	"@type": "CoverArt"
 }
 /** The artwork on the outer surface of a CreativeWork. */
 export type CoverArt = CoverArtLeaf | ComicCoverArt
 
 interface CovidTestingFacilityLeaf extends MedicalClinicBase {
-	type: "CovidTestingFacility"
+	"@context": "https://schema.org"
+	"@type": "CovidTestingFacility"
 }
 /** A CovidTestingFacility is a {@link https://schema.org/MedicalClinic MedicalClinic} where testing for the COVID-19 Coronavirus disease is available. If the facility is being made available from an established {@link https://schema.org/Pharmacy Pharmacy}, {@link https://schema.org/Hotel Hotel}, or other non-medical organization, multiple types can be listed. This makes it easier to re-use existing schema.org information about that place, e.g. contact info, address, opening hours. Note that in an emergency, such information may not always be reliable. */
 export type CovidTestingFacility = CovidTestingFacilityLeaf | string
 
 interface CreateActionLeaf extends ActionBase {
-	type: "CreateAction"
+	"@context": "https://schema.org"
+	"@type": "CreateAction"
 }
 /** The act of deliberately creating/producing/generating/building a result out of the agent. */
 export type CreateAction =
@@ -2663,7 +2853,7 @@ export type CreateAction =
 	| PhotographAction
 	| WriteAction
 
-interface CreativeWorkBase extends ThingBase {
+export interface CreativeWorkBase extends ThingBase {
 	/** The subject matter of the content. */
 	about?: SchemaValue<Thing | IdReference, "about">
 	/** An abstract is a short description that summarizes a {@link https://schema.org/CreativeWork CreativeWork}. */
@@ -3007,7 +3197,8 @@ interface CreativeWorkBase extends ThingBase {
 	workTranslation?: SchemaValue<CreativeWork | IdReference, "workTranslation">
 }
 interface CreativeWorkLeaf extends CreativeWorkBase {
-	type: "CreativeWork"
+	"@context": "https://schema.org"
+	"@type": "CreativeWork"
 }
 /** The most generic kind of creative work, including books, movies, photographs, software programs, etc. */
 export type CreativeWork =
@@ -3118,7 +3309,8 @@ interface CreativeWorkSeasonBase extends CreativeWorkBase {
 	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface CreativeWorkSeasonLeaf extends CreativeWorkSeasonBase {
-	type: "CreativeWorkSeason"
+	"@context": "https://schema.org"
+	"@type": "CreativeWorkSeason"
 }
 /** A media season, e.g. TV, radio, video game etc. */
 export type CreativeWorkSeason =
@@ -3136,7 +3328,8 @@ interface CreativeWorkSeriesBase extends CreativeWorkBase, ThingBase {
 	startDate?: SchemaValue<Date | DateTime, "startDate">
 }
 interface CreativeWorkSeriesLeaf extends CreativeWorkSeriesBase {
-	type: "CreativeWorkSeries"
+	"@context": "https://schema.org"
+	"@type": "CreativeWorkSeries"
 }
 /**
  * A CreativeWorkSeries in schema.org is a group of related items, typically but not necessarily of the same kind. CreativeWorkSeries are usually organized into some order, often chronological. Unlike {@link https://schema.org/ItemList ItemList} which is a general purpose data structure for lists of things, the emphasis with CreativeWorkSeries is on published materials (written e.g. books and periodicals, or media such as TV, radio and games).
@@ -3157,7 +3350,8 @@ export type CreativeWorkSeries =
 
 interface CreditCardBase extends LoanOrCreditBase, PaymentCardBase {}
 interface CreditCardLeaf extends CreditCardBase {
-	type: "CreditCard"
+	"@context": "https://schema.org"
+	"@type": "CreditCard"
 }
 /**
  * A card payment method of a particular brand or name. Used to mark up a particular payment method and/or the financial product/service that supplies the card account.
@@ -3173,13 +3367,15 @@ interface CreditCardLeaf extends CreditCardBase {
 export type CreditCard = CreditCardLeaf
 
 interface CrematoriumLeaf extends CivicStructureBase {
-	type: "Crematorium"
+	"@context": "https://schema.org"
+	"@type": "Crematorium"
 }
 /** A crematorium. */
 export type Crematorium = CrematoriumLeaf | string
 
 interface CriticReviewLeaf extends ReviewBase {
-	type: "CriticReview"
+	"@context": "https://schema.org"
+	"@type": "CriticReview"
 }
 /** A {@link https://schema.org/CriticReview CriticReview} is a more specialized form of Review written or published by a source that is recognized for its reviewing activities. These can include online columns, travel and food guides, TV and radio shows, blogs and other independent Web sites. {@link https://schema.org/CriticReview CriticReview}s are typically more in-depth and professionally written. For simpler, casually written user/visitor/viewer/customer reviews, it is more appropriate to use the {@link https://schema.org/UserReview UserReview} type. Review aggregator sites such as Metacritic already separate out the site's user reviews from selected critic reviews that originate from third-party sources. */
 export type CriticReview = CriticReviewLeaf | ReviewNewsArticle
@@ -3188,19 +3384,22 @@ export type CriticReview = CriticReviewLeaf | ReviewNewsArticle
 export type CssSelectorType = string
 
 interface CurrencyConversionServiceLeaf extends FinancialProductBase {
-	type: "CurrencyConversionService"
+	"@context": "https://schema.org"
+	"@type": "CurrencyConversionService"
 }
 /** A service to convert funds from one currency to another currency. */
 export type CurrencyConversionService = CurrencyConversionServiceLeaf
 
 interface DanceEventLeaf extends EventBase {
-	type: "DanceEvent"
+	"@context": "https://schema.org"
+	"@type": "DanceEvent"
 }
 /** Event type: A social dance. */
 export type DanceEvent = DanceEventLeaf
 
 interface DanceGroupLeaf extends OrganizationBase {
-	type: "DanceGroup"
+	"@context": "https://schema.org"
+	"@type": "DanceGroup"
 }
 /** A dance group—for example, the Alvin Ailey Dance Theater or Riverdance. */
 export type DanceGroup = DanceGroupLeaf | string
@@ -3228,7 +3427,8 @@ interface DataCatalogBase extends CreativeWorkBase {
 	>
 }
 interface DataCatalogLeaf extends DataCatalogBase {
-	type: "DataCatalog"
+	"@context": "https://schema.org"
+	"@type": "DataCatalog"
 }
 /** A collection of datasets. */
 export type DataCatalog = DataCatalogLeaf
@@ -3254,7 +3454,8 @@ interface DataDownloadBase extends MediaObjectBase {
 	>
 }
 interface DataDownloadLeaf extends DataDownloadBase {
-	type: "DataDownload"
+	"@context": "https://schema.org"
+	"@type": "DataDownload"
 }
 /** All or part of a {@link https://schema.org/Dataset Dataset} in downloadable form. */
 export type DataDownload = DataDownloadLeaf
@@ -3267,7 +3468,8 @@ interface DataFeedBase extends DatasetBase {
 	>
 }
 interface DataFeedLeaf extends DataFeedBase {
-	type: "DataFeed"
+	"@context": "https://schema.org"
+	"@type": "DataFeed"
 }
 /** A single feed providing structured information about one or more entities or topics. */
 export type DataFeed = DataFeedLeaf | CompleteDataFeed
@@ -3283,7 +3485,8 @@ interface DataFeedItemBase extends ThingBase {
 	item?: SchemaValue<Thing | IdReference, "item">
 }
 interface DataFeedItemLeaf extends DataFeedItemBase {
-	type: "DataFeedItem"
+	"@context": "https://schema.org"
+	"@type": "DataFeedItem"
 }
 /** A single item within a larger data feed. */
 export type DataFeedItem = DataFeedItemLeaf
@@ -3349,7 +3552,8 @@ interface DatasetBase extends CreativeWorkBase {
 	>
 }
 interface DatasetLeaf extends DatasetBase {
-	type: "Dataset"
+	"@context": "https://schema.org"
+	"@type": "Dataset"
 }
 /** A body of structured information describing some topic(s) of interest. */
 export type Dataset = DatasetLeaf | DataFeed
@@ -3369,7 +3573,8 @@ interface DatedMoneySpecificationBase extends ThingBase {
 	startDate?: SchemaValue<Date | DateTime, "startDate">
 }
 interface DatedMoneySpecificationLeaf extends DatedMoneySpecificationBase {
-	type: "DatedMoneySpecification"
+	"@context": "https://schema.org"
+	"@type": "DatedMoneySpecification"
 }
 /**
  * A DatedMoneySpecification represents monetary values with optional start and end dates. For example, this could represent an employee's salary over a specific period of time. __Note:__ This type has been superseded by {@link https://schema.org/MonetaryAmount MonetaryAmount}, use of that type is recommended.
@@ -3379,7 +3584,8 @@ interface DatedMoneySpecificationLeaf extends DatedMoneySpecificationBase {
 export type DatedMoneySpecification = DatedMoneySpecificationLeaf
 
 interface DayOfWeekLeaf extends EnumerationBase {
-	type: "DayOfWeek"
+	"@context": "https://schema.org"
+	"@type": "DayOfWeek"
 }
 /**
  * The day of the week, e.g. used to specify to which day the opening hours of an OpeningHoursSpecification refer.
@@ -3406,7 +3612,8 @@ export type DayOfWeek =
 	| DayOfWeekLeaf
 
 interface DaySpaLeaf extends LocalBusinessBase {
-	type: "DaySpa"
+	"@context": "https://schema.org"
+	"@type": "DaySpa"
 }
 /** A day spa. */
 export type DaySpa = DaySpaLeaf | string
@@ -3421,19 +3628,22 @@ interface DDxElementBase extends MedicalEntityBase {
 	>
 }
 interface DDxElementLeaf extends DDxElementBase {
-	type: "DDxElement"
+	"@context": "https://schema.org"
+	"@type": "DDxElement"
 }
 /** An alternative, closely-related condition typically considered later in the differential diagnosis process along with the signs that are used to distinguish it. */
 export type DDxElement = DDxElementLeaf
 
 interface DeactivateActionLeaf extends ActionBase {
-	type: "DeactivateAction"
+	"@context": "https://schema.org"
+	"@type": "DeactivateAction"
 }
 /** The act of stopping or deactivating a device or application (e.g. stopping a timer or turning off a flashlight). */
 export type DeactivateAction = DeactivateActionLeaf
 
 interface DefenceEstablishmentLeaf extends CivicStructureBase {
-	type: "DefenceEstablishment"
+	"@context": "https://schema.org"
+	"@type": "DefenceEstablishment"
 }
 /** A defence establishment, such as an army or navy base. */
 export type DefenceEstablishment = DefenceEstablishmentLeaf | string
@@ -3454,7 +3664,8 @@ interface DefinedRegionBase extends ThingBase {
 	>
 }
 interface DefinedRegionLeaf extends DefinedRegionBase {
-	type: "DefinedRegion"
+	"@context": "https://schema.org"
+	"@type": "DefinedRegion"
 }
 /**
  * A DefinedRegion is a geographic area defined by potentially arbitrary (rather than political, administrative or natural geographical) criteria. Properties are provided for defining a region by reference to sets of postal codes.
@@ -3477,7 +3688,8 @@ interface DefinedTermBase extends ThingBase {
 	termCode?: SchemaValue<Text, "termCode">
 }
 interface DefinedTermLeaf extends DefinedTermBase {
-	type: "DefinedTerm"
+	"@context": "https://schema.org"
+	"@type": "DefinedTerm"
 }
 /** A word, name, acronym, phrase, etc. with a formal definition. Often used in the context of category or subject classification, glossaries or dictionaries, product or creative work types, etc. Use the name property for the term being defined, use termCode if the term has an alpha-numeric code allocated, use description to provide the definition of the term. */
 export type DefinedTerm = DefinedTermLeaf | CategoryCode
@@ -3487,13 +3699,15 @@ interface DefinedTermSetBase extends CreativeWorkBase {
 	hasDefinedTerm?: SchemaValue<DefinedTerm | IdReference, "hasDefinedTerm">
 }
 interface DefinedTermSetLeaf extends DefinedTermSetBase {
-	type: "DefinedTermSet"
+	"@context": "https://schema.org"
+	"@type": "DefinedTermSet"
 }
 /** A set of defined terms, for example a set of categories or a classification scheme, a glossary, dictionary or enumeration. */
 export type DefinedTermSet = DefinedTermSetLeaf | CategoryCodeSet
 
 interface DeleteActionLeaf extends UpdateActionBase {
-	type: "DeleteAction"
+	"@context": "https://schema.org"
+	"@type": "DeleteAction"
 }
 /** The act of editing a recipient by removing one of its objects. */
 export type DeleteAction = DeleteActionLeaf
@@ -3530,7 +3744,8 @@ interface DeliveryChargeSpecificationBase extends PriceSpecificationBase {
 }
 interface DeliveryChargeSpecificationLeaf
 	extends DeliveryChargeSpecificationBase {
-	type: "DeliveryChargeSpecification"
+	"@context": "https://schema.org"
+	"@type": "DeliveryChargeSpecification"
 }
 /** The price for the delivery of an offer using a particular delivery method. */
 export type DeliveryChargeSpecification = DeliveryChargeSpecificationLeaf
@@ -3549,13 +3764,15 @@ interface DeliveryEventBase extends EventBase {
 	>
 }
 interface DeliveryEventLeaf extends DeliveryEventBase {
-	type: "DeliveryEvent"
+	"@context": "https://schema.org"
+	"@type": "DeliveryEvent"
 }
 /** An event involving the delivery of an item. */
 export type DeliveryEvent = DeliveryEventLeaf
 
 interface DeliveryMethodLeaf extends EnumerationBase {
-	type: "DeliveryMethod"
+	"@context": "https://schema.org"
+	"@type": "DeliveryMethod"
 }
 /**
  * A delivery method is a standardized procedure for transferring the product or service to the destination of fulfillment chosen by the customer. Delivery methods are characterized by the means of transportation used, and by the organization or group that is the contracting party for the sending organization or person.
@@ -3593,7 +3810,8 @@ interface DeliveryTimeSettingsBase extends ThingBase {
 	transitTimeLabel?: SchemaValue<Text, "transitTimeLabel">
 }
 interface DeliveryTimeSettingsLeaf extends DeliveryTimeSettingsBase {
-	type: "DeliveryTimeSettings"
+	"@context": "https://schema.org"
+	"@type": "DeliveryTimeSettings"
 }
 /** A DeliveryTimeSettings represents re-usable pieces of shipping information, relating to timing. It is designed for publication on an URL that may be referenced via the {@link https://schema.org/shippingSettingsLink shippingSettingsLink} property of an {@link https://schema.org/OfferShippingDetails OfferShippingDetails}. Several occurrences can be published, distinguished (and identified/referenced) by their different values for {@link https://schema.org/transitTimeLabel transitTimeLabel}. */
 export type DeliveryTimeSettings = DeliveryTimeSettingsLeaf
@@ -3742,7 +3960,8 @@ interface DemandBase extends ThingBase {
 	warranty?: SchemaValue<WarrantyPromise | IdReference, "warranty">
 }
 interface DemandLeaf extends DemandBase {
-	type: "Demand"
+	"@context": "https://schema.org"
+	"@type": "Demand"
 }
 /** A demand entity represents the public, not necessarily binding, not necessarily exclusive, announcement by an organization or person to seek a certain type of goods or services. For describing demand using this type, the very same properties used for Offer apply. */
 export type Demand = DemandLeaf
@@ -3752,32 +3971,37 @@ interface DentistBase
 		LocalBusinessBase,
 		MedicalOrganizationBase {}
 interface DentistLeaf extends DentistBase {
-	type: "Dentist"
+	"@context": "https://schema.org"
+	"@type": "Dentist"
 }
 /** A dentist. */
 export type Dentist = DentistLeaf | string
 
 interface DepartActionLeaf extends MoveActionBase {
-	type: "DepartAction"
+	"@context": "https://schema.org"
+	"@type": "DepartAction"
 }
 /** The act of departing from a place. An agent departs from a fromLocation for a destination, optionally with participants. */
 export type DepartAction = DepartActionLeaf
 
 interface DepartmentStoreLeaf extends LocalBusinessBase {
-	type: "DepartmentStore"
+	"@context": "https://schema.org"
+	"@type": "DepartmentStore"
 }
 /** A department store. */
 export type DepartmentStore = DepartmentStoreLeaf | string
 
 interface DepositAccountBase extends InvestmentOrDepositBase, BankAccountBase {}
 interface DepositAccountLeaf extends DepositAccountBase {
-	type: "DepositAccount"
+	"@context": "https://schema.org"
+	"@type": "DepositAccount"
 }
 /** A type of Bank Account with a main purpose of depositing funds to gain interest or other benefits. */
 export type DepositAccount = DepositAccountLeaf
 
 interface DermatologyLeaf extends LocalBusinessBase {
-	type: "Dermatology"
+	"@context": "https://schema.org"
+	"@type": "Dermatology"
 }
 /** A specific branch of medical science that pertains to diagnosis and treatment of disorders of skin. */
 export type Dermatology = DermatologyLeaf | string
@@ -3787,13 +4011,15 @@ interface DiagnosticLabBase extends MedicalOrganizationBase {
 	availableTest?: SchemaValue<MedicalTest | IdReference, "availableTest">
 }
 interface DiagnosticLabLeaf extends DiagnosticLabBase {
-	type: "DiagnosticLab"
+	"@context": "https://schema.org"
+	"@type": "DiagnosticLab"
 }
 /** A medical laboratory that offers on-site or off-site diagnostic services. */
 export type DiagnosticLab = DiagnosticLabLeaf | string
 
 interface DiagnosticProcedureLeaf extends MedicalProcedureBase {
-	type: "DiagnosticProcedure"
+	"@context": "https://schema.org"
+	"@type": "DiagnosticProcedure"
 }
 /** A medical procedure intended primarily for diagnostic, as opposed to therapeutic, purposes. */
 export type DiagnosticProcedure = DiagnosticProcedureLeaf
@@ -3811,7 +4037,8 @@ interface DietBase extends CreativeWorkBase, MedicalEntityBase {
 	risks?: SchemaValue<Text, "risks">
 }
 interface DietLeaf extends DietBase {
-	type: "Diet"
+	"@context": "https://schema.org"
+	"@type": "Diet"
 }
 /** A strategy of regulating the intake of food to achieve or maintain a specific health-related goal. */
 export type Diet = DietLeaf
@@ -3848,13 +4075,15 @@ interface DietarySupplementBase extends ProductBase, SubstanceBase {
 	targetPopulation?: SchemaValue<Text, "targetPopulation">
 }
 interface DietarySupplementLeaf extends DietarySupplementBase {
-	type: "DietarySupplement"
+	"@context": "https://schema.org"
+	"@type": "DietarySupplement"
 }
 /** A product taken by mouth that contains a dietary ingredient intended to supplement the diet. Dietary ingredients may include vitamins, minerals, herbs or other botanicals, amino acids, and substances such as enzymes, organ tissues, glandulars and metabolites. */
 export type DietarySupplement = DietarySupplementLeaf
 
 interface DietNutritionLeaf extends LocalBusinessBase {
-	type: "DietNutrition"
+	"@context": "https://schema.org"
+	"@type": "DietNutrition"
 }
 /** Dietetics and nutrition as a medical specialty. */
 export type DietNutrition = DietNutritionLeaf | string
@@ -3867,7 +4096,8 @@ interface DigitalDocumentBase extends CreativeWorkBase {
 	>
 }
 interface DigitalDocumentLeaf extends DigitalDocumentBase {
-	type: "DigitalDocument"
+	"@context": "https://schema.org"
+	"@type": "DigitalDocument"
 }
 /** An electronic file or document. */
 export type DigitalDocument =
@@ -3890,13 +4120,15 @@ interface DigitalDocumentPermissionBase extends ThingBase {
 	>
 }
 interface DigitalDocumentPermissionLeaf extends DigitalDocumentPermissionBase {
-	type: "DigitalDocumentPermission"
+	"@context": "https://schema.org"
+	"@type": "DigitalDocumentPermission"
 }
 /** A permission for a particular person or group to access a particular file. */
 export type DigitalDocumentPermission = DigitalDocumentPermissionLeaf
 
 interface DigitalDocumentPermissionTypeLeaf extends EnumerationBase {
-	type: "DigitalDocumentPermissionType"
+	"@context": "https://schema.org"
+	"@type": "DigitalDocumentPermissionType"
 }
 /** A type of permission which can be granted for accessing a digital document. */
 export type DigitalDocumentPermissionType =
@@ -3909,7 +4141,8 @@ export type DigitalDocumentPermissionType =
 	| DigitalDocumentPermissionTypeLeaf
 
 interface DigitalPlatformEnumerationLeaf extends EnumerationBase {
-	type: "DigitalPlatformEnumeration"
+	"@context": "https://schema.org"
+	"@type": "DigitalPlatformEnumeration"
 }
 /** Enumerates some common technology platforms, for use with properties such as {@link https://schema.org/actionPlatform actionPlatform}. It is not supposed to be comprehensive - when a suitable code is not enumerated here, textual or URL values can be used instead. These codes are at a fairly high level and do not deal with versioning and other nuance. Additional codes can be suggested {@link https://github.com/schemaorg/schemaorg/issues/3057 in github}. */
 export type DigitalPlatformEnumeration =
@@ -3926,37 +4159,43 @@ export type DigitalPlatformEnumeration =
 	| DigitalPlatformEnumerationLeaf
 
 interface DisagreeActionLeaf extends ActionBase {
-	type: "DisagreeAction"
+	"@context": "https://schema.org"
+	"@type": "DisagreeAction"
 }
 /** The act of expressing a difference of opinion with the object. An agent disagrees to/about an object (a proposition, topic or theme) with participants. */
 export type DisagreeAction = DisagreeActionLeaf
 
 interface DiscoverActionLeaf extends ActionBase {
-	type: "DiscoverAction"
+	"@context": "https://schema.org"
+	"@type": "DiscoverAction"
 }
 /** The act of discovering/finding an object. */
 export type DiscoverAction = DiscoverActionLeaf
 
 interface DiscussionForumPostingLeaf extends SocialMediaPostingBase {
-	type: "DiscussionForumPosting"
+	"@context": "https://schema.org"
+	"@type": "DiscussionForumPosting"
 }
 /** A posting to a discussion forum. */
 export type DiscussionForumPosting = DiscussionForumPostingLeaf
 
 interface DislikeActionLeaf extends ActionBase {
-	type: "DislikeAction"
+	"@context": "https://schema.org"
+	"@type": "DislikeAction"
 }
 /** The act of expressing a negative sentiment about the object. An agent dislikes an object (a proposition, topic or theme) with participants. */
 export type DislikeAction = DislikeActionLeaf
 
 interface DistanceLeaf extends ThingBase {
-	type: "Distance"
+	"@context": "https://schema.org"
+	"@type": "Distance"
 }
 /** Properties that take Distances as values are of the form '<Number> <Length unit of measure>'. E.g., '7 ft'. */
 export type Distance = DistanceLeaf | string
 
 interface DistilleryLeaf extends FoodEstablishmentBase {
-	type: "Distillery"
+	"@context": "https://schema.org"
+	"@type": "Distillery"
 }
 /** A distillery. */
 export type Distillery = DistilleryLeaf | string
@@ -3969,7 +4208,8 @@ interface DonateActionBase extends TradeActionBase {
 	>
 }
 interface DonateActionLeaf extends DonateActionBase {
-	type: "DonateAction"
+	"@context": "https://schema.org"
+	"@type": "DonateAction"
 }
 /** The act of providing goods, services, or money without compensation, often for philanthropic reasons. */
 export type DonateAction = DonateActionLeaf
@@ -3985,7 +4225,8 @@ interface DoseScheduleBase extends MedicalEntityBase {
 	targetPopulation?: SchemaValue<Text, "targetPopulation">
 }
 interface DoseScheduleLeaf extends DoseScheduleBase {
-	type: "DoseSchedule"
+	"@context": "https://schema.org"
+	"@type": "DoseSchedule"
 }
 /** A specific dosing schedule for a drug or supplement. */
 export type DoseSchedule =
@@ -3995,31 +4236,36 @@ export type DoseSchedule =
 	| ReportedDoseSchedule
 
 interface DownloadActionLeaf extends TransferActionBase {
-	type: "DownloadAction"
+	"@context": "https://schema.org"
+	"@type": "DownloadAction"
 }
 /** The act of downloading an object. */
 export type DownloadAction = DownloadActionLeaf
 
 interface DrawActionLeaf extends ActionBase {
-	type: "DrawAction"
+	"@context": "https://schema.org"
+	"@type": "DrawAction"
 }
 /** The act of producing a visual/graphical representation of an object, typically with a pen/pencil and paper as instruments. */
 export type DrawAction = DrawActionLeaf
 
 interface DrawingLeaf extends CreativeWorkBase {
-	type: "Drawing"
+	"@context": "https://schema.org"
+	"@type": "Drawing"
 }
 /** A picture or diagram made with a pencil, pen, or crayon rather than paint. */
 export type Drawing = DrawingLeaf
 
 interface DrinkActionLeaf extends ConsumeActionBase {
-	type: "DrinkAction"
+	"@context": "https://schema.org"
+	"@type": "DrinkAction"
 }
 /** The act of swallowing liquids. */
 export type DrinkAction = DrinkActionLeaf
 
 interface DriveWheelConfigurationValueLeaf extends QualitativeValueBase {
-	type: "DriveWheelConfigurationValue"
+	"@context": "https://schema.org"
+	"@type": "DriveWheelConfigurationValue"
 }
 /** A value indicating which roadwheels will receive torque. */
 export type DriveWheelConfigurationValue =
@@ -4118,7 +4364,8 @@ interface DrugBase extends ProductBase, SubstanceBase {
 	warning?: SchemaValue<Text | URL, "warning">
 }
 interface DrugLeaf extends DrugBase {
-	type: "Drug"
+	"@context": "https://schema.org"
+	"@type": "Drug"
 }
 /** A chemical or biologic substance, used as a medical therapy, that has a physiological effect on an organism. Here the term drug is used interchangeably with the term medicine although clinical knowledge makes a clear difference between them. */
 export type Drug = DrugLeaf
@@ -4128,7 +4375,8 @@ interface DrugClassBase extends MedicalEntityBase {
 	drug?: SchemaValue<Drug | IdReference, "drug">
 }
 interface DrugClassLeaf extends DrugClassBase {
-	type: "DrugClass"
+	"@context": "https://schema.org"
+	"@type": "DrugClass"
 }
 /** A class of medical drugs, e.g., statins. Classes can represent general pharmacological class, common mechanisms of action, common physiological effects, etc. */
 export type DrugClass = DrugClassLeaf
@@ -4154,13 +4402,15 @@ interface DrugCostBase extends MedicalEntityBase {
 	drugUnit?: SchemaValue<Text, "drugUnit">
 }
 interface DrugCostLeaf extends DrugCostBase {
-	type: "DrugCost"
+	"@context": "https://schema.org"
+	"@type": "DrugCost"
 }
 /** The cost per unit of a medical drug. Note that this type is not meant to represent the price in an offer of a drug for sale; see the Offer type for that. This type will typically be used to tag wholesale or average retail cost of a drug, or maximum reimbursable cost. Costs of medical drugs vary widely depending on how and where they are paid for, so while this type captures some of the variables, costs should be used with caution by consumers of this schema's markup. */
 export type DrugCost = DrugCostLeaf
 
 interface DrugCostCategoryLeaf extends EnumerationBase {
-	type: "DrugCostCategory"
+	"@context": "https://schema.org"
+	"@type": "DrugCostCategory"
 }
 /** Enumerated categories of medical drug costs. */
 export type DrugCostCategory =
@@ -4180,13 +4430,15 @@ interface DrugLegalStatusBase extends MedicalEntityBase {
 	>
 }
 interface DrugLegalStatusLeaf extends DrugLegalStatusBase {
-	type: "DrugLegalStatus"
+	"@context": "https://schema.org"
+	"@type": "DrugLegalStatus"
 }
 /** The legal availability status of a medical drug. */
 export type DrugLegalStatus = DrugLegalStatusLeaf
 
 interface DrugPregnancyCategoryLeaf extends EnumerationBase {
-	type: "DrugPregnancyCategory"
+	"@context": "https://schema.org"
+	"@type": "DrugPregnancyCategory"
 }
 /** Categories that represent an assessment of the risk of fetal injury due to a drug or pharmaceutical used as directed by the mother during pregnancy. */
 export type DrugPregnancyCategory =
@@ -4205,7 +4457,8 @@ export type DrugPregnancyCategory =
 	| DrugPregnancyCategoryLeaf
 
 interface DrugPrescriptionStatusLeaf extends EnumerationBase {
-	type: "DrugPrescriptionStatus"
+	"@context": "https://schema.org"
+	"@type": "DrugPrescriptionStatus"
 }
 /** Indicates whether this drug is available by prescription or over-the-counter. */
 export type DrugPrescriptionStatus =
@@ -4231,25 +4484,29 @@ interface DrugStrengthBase extends MedicalEntityBase {
 	strengthValue?: SchemaValue<Number, "strengthValue">
 }
 interface DrugStrengthLeaf extends DrugStrengthBase {
-	type: "DrugStrength"
+	"@context": "https://schema.org"
+	"@type": "DrugStrength"
 }
 /** A specific strength in which a medical drug is available in a specific country. */
 export type DrugStrength = DrugStrengthLeaf
 
 interface DryCleaningOrLaundryLeaf extends LocalBusinessBase {
-	type: "DryCleaningOrLaundry"
+	"@context": "https://schema.org"
+	"@type": "DryCleaningOrLaundry"
 }
 /** A dry-cleaning business. */
 export type DryCleaningOrLaundry = DryCleaningOrLaundryLeaf | string
 
 export interface DurationLeaf extends ThingBase {
-	type: "Duration"
+	"@context": "https://schema.org"
+	"@type": "Duration"
 }
 /** Quantity: Duration (use {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 duration format}). */
 export type Duration = DurationLeaf | string
 
 interface EatActionLeaf extends ConsumeActionBase {
-	type: "EatAction"
+	"@context": "https://schema.org"
+	"@type": "EatAction"
 }
 /** The act of swallowing solid objects. */
 export type EatAction = EatActionLeaf
@@ -4259,7 +4516,8 @@ interface EducationalAudienceBase extends AudienceBase {
 	educationalRole?: SchemaValue<Text, "educationalRole">
 }
 interface EducationalAudienceLeaf extends EducationalAudienceBase {
-	type: "EducationalAudience"
+	"@context": "https://schema.org"
+	"@type": "EducationalAudience"
 }
 /** An EducationalAudience. */
 export type EducationalAudience = EducationalAudienceLeaf
@@ -4289,7 +4547,8 @@ interface EducationalOccupationalCredentialBase extends CreativeWorkBase {
 }
 interface EducationalOccupationalCredentialLeaf
 	extends EducationalOccupationalCredentialBase {
-	type: "EducationalOccupationalCredential"
+	"@context": "https://schema.org"
+	"@type": "EducationalOccupationalCredential"
 }
 /** An educational or occupational credential. A diploma, academic degree, certification, qualification, badge, etc., that may be awarded to a person or other entity that meets the requirements defined by the credentialer. */
 export type EducationalOccupationalCredential =
@@ -4382,7 +4641,8 @@ interface EducationalOccupationalProgramBase extends ThingBase {
 }
 interface EducationalOccupationalProgramLeaf
 	extends EducationalOccupationalProgramBase {
-	type: "EducationalOccupationalProgram"
+	"@context": "https://schema.org"
+	"@type": "EducationalOccupationalProgram"
 }
 /** A program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. This would define a discrete set of opportunities (e.g., job, courses) that together constitute a program with a clear start, end, set of requirements, and transition to a new occupational opportunity (e.g., a job), or sometimes a higher educational opportunity (e.g., an advanced degree). */
 export type EducationalOccupationalProgram =
@@ -4396,7 +4656,8 @@ interface EducationalOrganizationBase
 	alumni?: SchemaValue<Person | IdReference, "alumni">
 }
 interface EducationalOrganizationLeaf extends EducationalOrganizationBase {
-	type: "EducationalOrganization"
+	"@context": "https://schema.org"
+	"@type": "EducationalOrganization"
 }
 /** An educational organization. */
 export type EducationalOrganization =
@@ -4421,49 +4682,57 @@ interface EducationEventBase extends EventBase {
 	teaches?: SchemaValue<DefinedTerm | Text | IdReference, "teaches">
 }
 interface EducationEventLeaf extends EducationEventBase {
-	type: "EducationEvent"
+	"@context": "https://schema.org"
+	"@type": "EducationEvent"
 }
 /** Event type: Education event. */
 export type EducationEvent = EducationEventLeaf
 
 interface ElectricianLeaf extends LocalBusinessBase {
-	type: "Electrician"
+	"@context": "https://schema.org"
+	"@type": "Electrician"
 }
 /** An electrician. */
 export type Electrician = ElectricianLeaf | string
 
 interface ElectronicsStoreLeaf extends LocalBusinessBase {
-	type: "ElectronicsStore"
+	"@context": "https://schema.org"
+	"@type": "ElectronicsStore"
 }
 /** An electronics store. */
 export type ElectronicsStore = ElectronicsStoreLeaf | string
 
 interface ElementarySchoolLeaf extends EducationalOrganizationBase {
-	type: "ElementarySchool"
+	"@context": "https://schema.org"
+	"@type": "ElementarySchool"
 }
 /** An elementary school. */
 export type ElementarySchool = ElementarySchoolLeaf | string
 
 interface EmailMessageLeaf extends MessageBase {
-	type: "EmailMessage"
+	"@context": "https://schema.org"
+	"@type": "EmailMessage"
 }
 /** An email message. */
 export type EmailMessage = EmailMessageLeaf
 
 interface EmbassyLeaf extends CivicStructureBase {
-	type: "Embassy"
+	"@context": "https://schema.org"
+	"@type": "Embassy"
 }
 /** An embassy. */
 export type Embassy = EmbassyLeaf | string
 
 interface EmergencyLeaf extends LocalBusinessBase {
-	type: "Emergency"
+	"@context": "https://schema.org"
+	"@type": "Emergency"
 }
 /** A specific branch of medical science that deals with the evaluation and initial treatment of medical conditions caused by trauma or sudden illness. */
 export type Emergency = EmergencyLeaf | string
 
 interface EmergencyServiceLeaf extends LocalBusinessBase {
-	type: "EmergencyService"
+	"@context": "https://schema.org"
+	"@type": "EmergencyService"
 }
 /** An emergency service, such as a fire station or ER. */
 export type EmergencyService =
@@ -4474,19 +4743,22 @@ export type EmergencyService =
 	| string
 
 interface EmployerAggregateRatingLeaf extends AggregateRatingBase {
-	type: "EmployerAggregateRating"
+	"@context": "https://schema.org"
+	"@type": "EmployerAggregateRating"
 }
 /** An aggregate rating of an Organization related to its role as an employer. */
 export type EmployerAggregateRating = EmployerAggregateRatingLeaf
 
 interface EmployerReviewLeaf extends ReviewBase {
-	type: "EmployerReview"
+	"@context": "https://schema.org"
+	"@type": "EmployerReview"
 }
 /** An {@link https://schema.org/EmployerReview EmployerReview} is a review of an {@link https://schema.org/Organization Organization} regarding its role as an employer, written by a current or former employee of that organization. */
 export type EmployerReview = EmployerReviewLeaf
 
 interface EmploymentAgencyLeaf extends LocalBusinessBase {
-	type: "EmploymentAgency"
+	"@context": "https://schema.org"
+	"@type": "EmploymentAgency"
 }
 /** An employment agency. */
 export type EmploymentAgency = EmploymentAgencyLeaf | string
@@ -4496,13 +4768,15 @@ interface EndorseActionBase extends ActionBase {
 	endorsee?: SchemaValue<Organization | Person | IdReference, "endorsee">
 }
 interface EndorseActionLeaf extends EndorseActionBase {
-	type: "EndorseAction"
+	"@context": "https://schema.org"
+	"@type": "EndorseAction"
 }
 /** An agent approves/certifies/likes/supports/sanctions an object. */
 export type EndorseAction = EndorseActionLeaf
 
 interface EndorsementRatingLeaf extends RatingBase {
-	type: "EndorsementRating"
+	"@context": "https://schema.org"
+	"@type": "EndorsementRating"
 }
 /**
  * An EndorsementRating is a rating that expresses some level of endorsement, for example inclusion in a "critic's pick" blog, a "Like" or "+1" on a social network. It can be considered the {@link https://schema.org/result result} of an {@link https://schema.org/EndorseAction EndorseAction} in which the {@link https://schema.org/object object} of the action is rated positively by some {@link https://schema.org/agent agent}. As is common elsewhere in schema.org, it is sometimes more useful to describe the results of such an action without explicitly describing the {@link https://schema.org/Action Action}.
@@ -4512,7 +4786,8 @@ interface EndorsementRatingLeaf extends RatingBase {
 export type EndorsementRating = EndorsementRatingLeaf
 
 interface EnergyLeaf extends ThingBase {
-	type: "Energy"
+	"@context": "https://schema.org"
+	"@type": "Energy"
 }
 /** Properties that take Energy as values are of the form '<Number> <Energy unit of measure>'. */
 export type Energy = EnergyLeaf | string
@@ -4535,13 +4810,15 @@ interface EnergyConsumptionDetailsBase extends ThingBase {
 	>
 }
 interface EnergyConsumptionDetailsLeaf extends EnergyConsumptionDetailsBase {
-	type: "EnergyConsumptionDetails"
+	"@context": "https://schema.org"
+	"@type": "EnergyConsumptionDetails"
 }
 /** EnergyConsumptionDetails represents information related to the energy efficiency of a product that consumes energy. The information that can be provided is based on international regulations such as for example {@link https://eur-lex.europa.eu/eli/reg/2017/1369/oj EU directive 2017/1369} for energy labeling and the {@link https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/energy-water-use-labeling-consumer Energy labeling rule} under the Energy Policy and Conservation Act (EPCA) in the US. */
 export type EnergyConsumptionDetails = EnergyConsumptionDetailsLeaf
 
 interface EnergyEfficiencyEnumerationLeaf extends EnumerationBase {
-	type: "EnergyEfficiencyEnumeration"
+	"@context": "https://schema.org"
+	"@type": "EnergyEfficiencyEnumeration"
 }
 /** Enumerates energy efficiency levels (also known as "classes" or "ratings") and certifications that are part of several international energy efficiency standards. */
 export type EnergyEfficiencyEnumeration =
@@ -4550,7 +4827,8 @@ export type EnergyEfficiencyEnumeration =
 	| EUEnergyEfficiencyEnumeration
 
 interface EnergyStarEnergyEfficiencyEnumerationLeaf extends EnumerationBase {
-	type: "EnergyStarEnergyEfficiencyEnumeration"
+	"@context": "https://schema.org"
+	"@type": "EnergyStarEnergyEfficiencyEnumeration"
 }
 /** Used to indicate whether a product is EnergyStar certified. */
 export type EnergyStarEnergyEfficiencyEnumeration =
@@ -4597,13 +4875,15 @@ interface EngineSpecificationBase extends ThingBase {
 	torque?: SchemaValue<QuantitativeValue | IdReference, "torque">
 }
 interface EngineSpecificationLeaf extends EngineSpecificationBase {
-	type: "EngineSpecification"
+	"@context": "https://schema.org"
+	"@type": "EngineSpecification"
 }
 /** Information about the engine of the vehicle. A vehicle can have multiple engines represented by multiple engine specification entities. */
 export type EngineSpecification = EngineSpecificationLeaf
 
 interface EntertainmentBusinessLeaf extends LocalBusinessBase {
-	type: "EntertainmentBusiness"
+	"@context": "https://schema.org"
+	"@type": "EntertainmentBusiness"
 }
 /** A business providing entertainment. */
 export type EntertainmentBusiness =
@@ -4644,7 +4924,8 @@ interface EntryPointBase extends ThingBase {
 	urlTemplate?: SchemaValue<Text, "urlTemplate">
 }
 interface EntryPointLeaf extends EntryPointBase {
-	type: "EntryPoint"
+	"@context": "https://schema.org"
+	"@type": "EntryPoint"
 }
 /** An entry point, within some Web-based protocol. */
 export type EntryPoint = EntryPointLeaf | string
@@ -4657,7 +4938,8 @@ interface EnumerationBase extends ThingBase {
 	>
 }
 interface EnumerationLeaf extends EnumerationBase {
-	type: "Enumeration"
+	"@context": "https://schema.org"
+	"@type": "Enumeration"
 }
 /** Lists or enumerations—for example, a list of cuisines or music genres, etc. */
 export type Enumeration =
@@ -4748,13 +5030,15 @@ interface EpisodeBase extends CreativeWorkBase {
 	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface EpisodeLeaf extends EpisodeBase {
-	type: "Episode"
+	"@context": "https://schema.org"
+	"@type": "Episode"
 }
 /** A media episode (e.g. TV, radio, video game) which can be part of a series or season. */
 export type Episode = EpisodeLeaf | PodcastEpisode | RadioEpisode | TVEpisode
 
 interface EUEnergyEfficiencyEnumerationLeaf extends EnumerationBase {
-	type: "EUEnergyEfficiencyEnumeration"
+	"@context": "https://schema.org"
+	"@type": "EUEnergyEfficiencyEnumeration"
 }
 /** Enumerates the EU energy efficiency classes A-G as well as A+, A++, and A+++ as defined in EU directive 2017/1369. */
 export type EUEnergyEfficiencyEnumeration =
@@ -4892,7 +5176,8 @@ interface EventBase extends ThingBase {
 	workPerformed?: SchemaValue<CreativeWork | IdReference, "workPerformed">
 }
 interface EventLeaf extends EventBase {
-	type: "Event"
+	"@context": "https://schema.org"
+	"@type": "Event"
 }
 /** An event happening at a certain time and location, such as a concert, lecture, or festival. Ticketing information may be added via the {@link https://schema.org/offers offers} property. Repeated events may be structured as separate Event objects. */
 export type Event =
@@ -4921,7 +5206,8 @@ export type Event =
 	| VisualArtsEvent
 
 interface EventAttendanceModeEnumerationLeaf extends EnumerationBase {
-	type: "EventAttendanceModeEnumeration"
+	"@context": "https://schema.org"
+	"@type": "EventAttendanceModeEnumeration"
 }
 /** An EventAttendanceModeEnumeration value is one of potentially several modes of organising an event, relating to whether it is online or offline. */
 export type EventAttendanceModeEnumeration =
@@ -4934,7 +5220,8 @@ export type EventAttendanceModeEnumeration =
 	| EventAttendanceModeEnumerationLeaf
 
 interface EventReservationLeaf extends ReservationBase {
-	type: "EventReservation"
+	"@context": "https://schema.org"
+	"@type": "EventReservation"
 }
 /**
  * A reservation for an event like a concert, sporting event, or lecture.
@@ -4945,7 +5232,8 @@ export type EventReservation = EventReservationLeaf
 
 interface EventSeriesBase extends ThingBase, EventBase {}
 interface EventSeriesLeaf extends EventSeriesBase {
-	type: "EventSeries"
+	"@context": "https://schema.org"
+	"@type": "EventSeries"
 }
 /**
  * A series of {@link https://schema.org/Event Event}s. Included events can relate with the series using the {@link https://schema.org/superEvent superEvent} property.
@@ -4959,7 +5247,8 @@ interface EventSeriesLeaf extends EventSeriesBase {
 export type EventSeries = EventSeriesLeaf
 
 interface EventStatusTypeLeaf extends EnumerationBase {
-	type: "EventStatusType"
+	"@context": "https://schema.org"
+	"@type": "EventStatusType"
 }
 /** EventStatusType is an enumeration type whose instances represent several states that an Event may be in. */
 export type EventStatusType =
@@ -4976,7 +5265,8 @@ export type EventStatusType =
 	| EventStatusTypeLeaf
 
 interface EventVenueLeaf extends CivicStructureBase {
-	type: "EventVenue"
+	"@context": "https://schema.org"
+	"@type": "EventVenue"
 }
 /** An event venue. */
 export type EventVenue = EventVenueLeaf | string
@@ -5000,7 +5290,8 @@ interface ExchangeRateSpecificationBase extends ThingBase {
 	>
 }
 interface ExchangeRateSpecificationLeaf extends ExchangeRateSpecificationBase {
-	type: "ExchangeRateSpecification"
+	"@context": "https://schema.org"
+	"@type": "ExchangeRateSpecification"
 }
 /** A structured value representing exchange rate. */
 export type ExchangeRateSpecification = ExchangeRateSpecificationLeaf
@@ -5041,13 +5332,15 @@ interface ExerciseActionBase extends PlayActionBase {
 	toLocation?: SchemaValue<Place | IdReference, "toLocation">
 }
 interface ExerciseActionLeaf extends ExerciseActionBase {
-	type: "ExerciseAction"
+	"@context": "https://schema.org"
+	"@type": "ExerciseAction"
 }
 /** The act of participating in exertive activity for the purposes of improving health and fitness. */
 export type ExerciseAction = ExerciseActionLeaf
 
 interface ExerciseGymLeaf extends LocalBusinessBase {
-	type: "ExerciseGym"
+	"@context": "https://schema.org"
+	"@type": "ExerciseGym"
 }
 /** A gym. */
 export type ExerciseGym = ExerciseGymLeaf | string
@@ -5083,37 +5376,43 @@ interface ExercisePlanBase extends CreativeWorkBase, PhysicalActivityBase {
 	workload?: SchemaValue<Energy | QuantitativeValue | IdReference, "workload">
 }
 interface ExercisePlanLeaf extends ExercisePlanBase {
-	type: "ExercisePlan"
+	"@context": "https://schema.org"
+	"@type": "ExercisePlan"
 }
 /** Fitness-related activity designed for a specific health-related purpose, including defined exercise routines as well as activity prescribed by a clinician. */
 export type ExercisePlan = ExercisePlanLeaf
 
 interface ExhibitionEventLeaf extends EventBase {
-	type: "ExhibitionEvent"
+	"@context": "https://schema.org"
+	"@type": "ExhibitionEvent"
 }
 /** Event type: Exhibition event, e.g. at a museum, library, archive, tradeshow, ... */
 export type ExhibitionEvent = ExhibitionEventLeaf
 
 interface FAQPageLeaf extends WebPageBase {
-	type: "FAQPage"
+	"@context": "https://schema.org"
+	"@type": "FAQPage"
 }
 /** A {@link https://schema.org/FAQPage FAQPage} is a {@link https://schema.org/WebPage WebPage} presenting one or more "{@link https://en.wikipedia.org/wiki/FAQ Frequently asked questions}" (see also {@link https://schema.org/QAPage QAPage}). */
 export type FAQPage = FAQPageLeaf
 
 interface FastFoodRestaurantLeaf extends FoodEstablishmentBase {
-	type: "FastFoodRestaurant"
+	"@context": "https://schema.org"
+	"@type": "FastFoodRestaurant"
 }
 /** A fast-food restaurant. */
 export type FastFoodRestaurant = FastFoodRestaurantLeaf | string
 
 interface FestivalLeaf extends EventBase {
-	type: "Festival"
+	"@context": "https://schema.org"
+	"@type": "Festival"
 }
 /** Event type: Festival. */
 export type Festival = FestivalLeaf
 
 interface FilmActionLeaf extends ActionBase {
-	type: "FilmAction"
+	"@context": "https://schema.org"
+	"@type": "FilmAction"
 }
 /** The act of capturing sound and moving images on film, video, or digitally. */
 export type FilmAction = FilmActionLeaf
@@ -5136,7 +5435,8 @@ interface FinancialProductBase extends ServiceBase {
 	>
 }
 interface FinancialProductLeaf extends FinancialProductBase {
-	type: "FinancialProduct"
+	"@context": "https://schema.org"
+	"@type": "FinancialProduct"
 }
 /** A product provided to consumers and businesses by financial institutions such as banks, insurance companies, brokerage firms, consumer finance companies, and investment companies which comprise the financial services industry. */
 export type FinancialProduct =
@@ -5156,7 +5456,8 @@ interface FinancialServiceBase extends LocalBusinessBase {
 	>
 }
 interface FinancialServiceLeaf extends FinancialServiceBase {
-	type: "FinancialService"
+	"@context": "https://schema.org"
+	"@type": "FinancialService"
 }
 /** Financial services business. */
 export type FinancialService =
@@ -5168,7 +5469,8 @@ export type FinancialService =
 	| string
 
 interface FindActionLeaf extends ActionBase {
-	type: "FindAction"
+	"@context": "https://schema.org"
+	"@type": "FindAction"
 }
 /**
  * The act of finding an object.
@@ -5184,7 +5486,8 @@ export type FindAction =
 
 interface FireStationBase extends CivicStructureBase, LocalBusinessBase {}
 interface FireStationLeaf extends FireStationBase {
-	type: "FireStation"
+	"@context": "https://schema.org"
+	"@type": "FireStation"
 }
 /** A fire station. With firemen. */
 export type FireStation = FireStationLeaf | string
@@ -5232,7 +5535,8 @@ interface FlightBase extends TripBase {
 	webCheckinTime?: SchemaValue<DateTime, "webCheckinTime">
 }
 interface FlightLeaf extends FlightBase {
-	type: "Flight"
+	"@context": "https://schema.org"
+	"@type": "Flight"
 }
 /** An airline flight. */
 export type Flight = FlightLeaf
@@ -5251,7 +5555,8 @@ interface FlightReservationBase extends ReservationBase {
 	securityScreening?: SchemaValue<Text, "securityScreening">
 }
 interface FlightReservationLeaf extends FlightReservationBase {
-	type: "FlightReservation"
+	"@context": "https://schema.org"
+	"@type": "FlightReservation"
 }
 /**
  * A reservation for air travel.
@@ -5308,19 +5613,22 @@ interface FloorPlanBase extends ThingBase {
 	petsAllowed?: SchemaValue<Boolean | Text, "petsAllowed">
 }
 interface FloorPlanLeaf extends FloorPlanBase {
-	type: "FloorPlan"
+	"@context": "https://schema.org"
+	"@type": "FloorPlan"
 }
 /** A FloorPlan is an explicit representation of a collection of similar accommodations, allowing the provision of common information (room counts, sizes, layout diagrams) and offers for rental or sale. In typical use, some {@link https://schema.org/ApartmentComplex ApartmentComplex} has an {@link https://schema.org/accommodationFloorPlan accommodationFloorPlan} which is a {@link https://schema.org/FloorPlan FloorPlan}. A FloorPlan is always in the context of a particular place, either a larger {@link https://schema.org/ApartmentComplex ApartmentComplex} or a single {@link https://schema.org/Apartment Apartment}. The visual/spatial aspects of a floor plan (i.e. room layout, {@link https://en.wikipedia.org/wiki/Floor_plan see wikipedia}) can be indicated using {@link https://schema.org/image image}. */
 export type FloorPlan = FloorPlanLeaf
 
 interface FloristLeaf extends LocalBusinessBase {
-	type: "Florist"
+	"@context": "https://schema.org"
+	"@type": "Florist"
 }
 /** A florist. */
 export type Florist = FloristLeaf | string
 
 interface FMRadioChannelLeaf extends BroadcastChannelBase {
-	type: "FMRadioChannel"
+	"@context": "https://schema.org"
+	"@type": "FMRadioChannel"
 }
 /** A radio channel that uses FM. */
 export type FMRadioChannel = FMRadioChannelLeaf
@@ -5330,7 +5638,8 @@ interface FollowActionBase extends ActionBase {
 	followee?: SchemaValue<Organization | Person | IdReference, "followee">
 }
 interface FollowActionLeaf extends FollowActionBase {
-	type: "FollowAction"
+	"@context": "https://schema.org"
+	"@type": "FollowAction"
 }
 /**
  * The act of forming a personal connection with someone/something (object) unidirectionally/asymmetrically to get updates polled from.
@@ -5361,7 +5670,8 @@ interface FoodEstablishmentBase extends LocalBusinessBase {
 	starRating?: SchemaValue<Rating | IdReference, "starRating">
 }
 interface FoodEstablishmentLeaf extends FoodEstablishmentBase {
-	type: "FoodEstablishment"
+	"@context": "https://schema.org"
+	"@type": "FoodEstablishment"
 }
 /** A food-related business. */
 export type FoodEstablishment =
@@ -5398,7 +5708,8 @@ interface FoodEstablishmentReservationBase extends ReservationBase {
 }
 interface FoodEstablishmentReservationLeaf
 	extends FoodEstablishmentReservationBase {
-	type: "FoodEstablishmentReservation"
+	"@context": "https://schema.org"
+	"@type": "FoodEstablishmentReservation"
 }
 /**
  * A reservation to dine at a food-related business.
@@ -5408,19 +5719,22 @@ interface FoodEstablishmentReservationLeaf
 export type FoodEstablishmentReservation = FoodEstablishmentReservationLeaf
 
 interface FoodEventLeaf extends EventBase {
-	type: "FoodEvent"
+	"@context": "https://schema.org"
+	"@type": "FoodEvent"
 }
 /** Event type: Food event. */
 export type FoodEvent = FoodEventLeaf
 
 interface FoodServiceLeaf extends ServiceBase {
-	type: "FoodService"
+	"@context": "https://schema.org"
+	"@type": "FoodService"
 }
 /** A food service, like breakfast, lunch, or dinner. */
 export type FoodService = FoodServiceLeaf
 
 interface FundingAgencyLeaf extends OrganizationBase {
-	type: "FundingAgency"
+	"@context": "https://schema.org"
+	"@type": "FundingAgency"
 }
 /**
  * A FundingAgency is an organization that implements one or more {@link https://schema.org/FundingScheme FundingScheme}s and manages the granting process (via {@link https://schema.org/Grant Grant}s, typically {@link https://schema.org/MonetaryGrant MonetaryGrant}s). A funding agency is not always required for grant funding, e.g. philanthropic giving, corporate sponsorship etc.
@@ -5430,13 +5744,15 @@ interface FundingAgencyLeaf extends OrganizationBase {
 export type FundingAgency = FundingAgencyLeaf | string
 
 interface FundingSchemeLeaf extends OrganizationBase {
-	type: "FundingScheme"
+	"@context": "https://schema.org"
+	"@type": "FundingScheme"
 }
 /** A FundingScheme combines organizational, project and policy aspects of grant-based funding that sets guidelines, principles and mechanisms to support other kinds of projects and activities. Funding is typically organized via {@link https://schema.org/Grant Grant} funding. Examples of funding schemes: Swiss Priority Programmes (SPPs); EU Framework 7 (FP7); Horizon 2020; the NIH-R01 Grant Program; Wellcome institutional strategic support fund. For large scale public sector funding, the management and administration of grant awards is often handled by other, dedicated, organizations - {@link https://schema.org/FundingAgency FundingAgency}s such as ERC, REA, ... */
 export type FundingScheme = FundingSchemeLeaf | string
 
 interface FurnitureStoreLeaf extends LocalBusinessBase {
-	type: "FurnitureStore"
+	"@context": "https://schema.org"
+	"@type": "FurnitureStore"
 }
 /** A furniture store. */
 export type FurnitureStore = FurnitureStoreLeaf | string
@@ -5460,13 +5776,15 @@ interface GameBase extends CreativeWorkBase {
 	quest?: SchemaValue<Thing | IdReference, "quest">
 }
 interface GameLeaf extends GameBase {
-	type: "Game"
+	"@context": "https://schema.org"
+	"@type": "Game"
 }
 /** The Game type represents things which are games. These are typically rule-governed recreational activities, e.g. role-playing games in which players assume the role of characters in a fictional setting. */
 export type Game = GameLeaf | VideoGame
 
 interface GameAvailabilityEnumerationLeaf extends EnumerationBase {
-	type: "GameAvailabilityEnumeration"
+	"@context": "https://schema.org"
+	"@type": "GameAvailabilityEnumeration"
 }
 /** For a {@link https://schema.org/VideoGame VideoGame}, such as used with a {@link https://schema.org/PlayGameAction PlayGameAction}, an enumeration of the kind of game availability offered. */
 export type GameAvailabilityEnumeration =
@@ -5477,7 +5795,8 @@ export type GameAvailabilityEnumeration =
 	| GameAvailabilityEnumerationLeaf
 
 interface GamePlayModeLeaf extends EnumerationBase {
-	type: "GamePlayMode"
+	"@context": "https://schema.org"
+	"@type": "GamePlayMode"
 }
 /** Indicates whether this game is multi-player, co-op or single-player. */
 export type GamePlayMode =
@@ -5498,13 +5817,15 @@ interface GameServerBase extends ThingBase {
 	serverStatus?: SchemaValue<GameServerStatus | IdReference, "serverStatus">
 }
 interface GameServerLeaf extends GameServerBase {
-	type: "GameServer"
+	"@context": "https://schema.org"
+	"@type": "GameServer"
 }
 /** Server that provides game interaction in a multiplayer game. */
 export type GameServer = GameServerLeaf
 
 interface GameServerStatusLeaf extends EnumerationBase {
-	type: "GameServerStatus"
+	"@context": "https://schema.org"
+	"@type": "GameServerStatus"
 }
 /** Status of a game server. */
 export type GameServerStatus =
@@ -5519,25 +5840,29 @@ export type GameServerStatus =
 	| GameServerStatusLeaf
 
 interface GardenStoreLeaf extends LocalBusinessBase {
-	type: "GardenStore"
+	"@context": "https://schema.org"
+	"@type": "GardenStore"
 }
 /** A garden store. */
 export type GardenStore = GardenStoreLeaf | string
 
 interface GasStationLeaf extends LocalBusinessBase {
-	type: "GasStation"
+	"@context": "https://schema.org"
+	"@type": "GasStation"
 }
 /** A gas station. */
 export type GasStation = GasStationLeaf | string
 
 interface GatedResidenceCommunityLeaf extends ResidenceBase {
-	type: "GatedResidenceCommunity"
+	"@context": "https://schema.org"
+	"@type": "GatedResidenceCommunity"
 }
 /** Residence type: Gated community. */
 export type GatedResidenceCommunity = GatedResidenceCommunityLeaf | string
 
 interface GenderTypeLeaf extends EnumerationBase {
-	type: "GenderType"
+	"@context": "https://schema.org"
+	"@type": "GenderType"
 }
 /** An enumeration of genders. */
 export type GenderType =
@@ -5568,13 +5893,15 @@ interface GeneBase extends BioChemEntityBase {
 	hasBioPolymerSequence?: SchemaValue<Text, "hasBioPolymerSequence">
 }
 interface GeneLeaf extends GeneBase {
-	type: "Gene"
+	"@context": "https://schema.org"
+	"@type": "Gene"
 }
 /** A discrete unit of inheritance which affects one or more biological traits (Source: {@link https://en.wikipedia.org/wiki/Gene https://en.wikipedia.org/wiki/Gene}). Examples include FOXP2 (Forkhead box protein P2), SCARNA21 (small Cajal body-specific RNA 21), A- (agouti genotype). */
 export type Gene = GeneLeaf
 
 interface GeneralContractorLeaf extends LocalBusinessBase {
-	type: "GeneralContractor"
+	"@context": "https://schema.org"
+	"@type": "GeneralContractor"
 }
 /** A general contractor. */
 export type GeneralContractor = GeneralContractorLeaf | string
@@ -5586,7 +5913,8 @@ interface GeoCircleBase extends GeoShapeBase {
 	geoRadius?: SchemaValue<Distance | Number | Text | IdReference, "geoRadius">
 }
 interface GeoCircleLeaf extends GeoCircleBase {
-	type: "GeoCircle"
+	"@context": "https://schema.org"
+	"@type": "GeoCircle"
 }
 /** A GeoCircle is a GeoShape representing a circular geographic area. As it is a GeoShape it provides the simple textual property 'circle', but also allows the combination of postalCode alongside geoRadius. The center of the circle can be indicated via the 'geoMidpoint' property, or more approximately using 'address', 'postalCode'. */
 export type GeoCircle = GeoCircleLeaf
@@ -5606,7 +5934,8 @@ interface GeoCoordinatesBase extends ThingBase {
 	postalCode?: SchemaValue<Text, "postalCode">
 }
 interface GeoCoordinatesLeaf extends GeoCoordinatesBase {
-	type: "GeoCoordinates"
+	"@context": "https://schema.org"
+	"@type": "GeoCoordinates"
 }
 /** The geographic coordinates of a place or event. */
 export type GeoCoordinates = GeoCoordinatesLeaf
@@ -5630,7 +5959,8 @@ interface GeoShapeBase extends ThingBase {
 	postalCode?: SchemaValue<Text, "postalCode">
 }
 interface GeoShapeLeaf extends GeoShapeBase {
-	type: "GeoShape"
+	"@context": "https://schema.org"
+	"@type": "GeoShape"
 }
 /** The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. */
 export type GeoShape = GeoShapeLeaf | GeoCircle
@@ -5679,13 +6009,15 @@ interface GeospatialGeometryBase extends ThingBase {
 	geoWithin?: SchemaValue<GeospatialGeometry | Place | IdReference, "geoWithin">
 }
 interface GeospatialGeometryLeaf extends GeospatialGeometryBase {
-	type: "GeospatialGeometry"
+	"@context": "https://schema.org"
+	"@type": "GeospatialGeometry"
 }
 /** (Eventually to be defined as) a supertype of GeoShape designed to accommodate definitions from Geo-Spatial best practices. */
 export type GeospatialGeometry = GeospatialGeometryLeaf
 
 interface GeriatricLeaf extends LocalBusinessBase {
-	type: "Geriatric"
+	"@context": "https://schema.org"
+	"@type": "Geriatric"
 }
 /** A specific branch of medical science that is concerned with the diagnosis and treatment of diseases, debilities and provision of care to the aged. */
 export type Geriatric = GeriatricLeaf | string
@@ -5698,7 +6030,8 @@ interface GiveActionBase extends TransferActionBase {
 	>
 }
 interface GiveActionLeaf extends GiveActionBase {
-	type: "GiveAction"
+	"@context": "https://schema.org"
+	"@type": "GiveAction"
 }
 /**
  * The act of transferring ownership of an object to a destination. Reciprocal of TakeAction.
@@ -5710,13 +6043,15 @@ interface GiveActionLeaf extends GiveActionBase {
 export type GiveAction = GiveActionLeaf
 
 interface GolfCourseLeaf extends LocalBusinessBase {
-	type: "GolfCourse"
+	"@context": "https://schema.org"
+	"@type": "GolfCourse"
 }
 /** A golf course. */
 export type GolfCourse = GolfCourseLeaf | string
 
 interface GovernmentBenefitsTypeLeaf extends EnumerationBase {
-	type: "GovernmentBenefitsType"
+	"@context": "https://schema.org"
+	"@type": "GovernmentBenefitsType"
 }
 /** GovernmentBenefitsType enumerates several kinds of government benefits to support the COVID-19 situation. Note that this structure may not capture all benefits offered. */
 export type GovernmentBenefitsType =
@@ -5739,7 +6074,8 @@ export type GovernmentBenefitsType =
 	| GovernmentBenefitsTypeLeaf
 
 interface GovernmentBuildingLeaf extends CivicStructureBase {
-	type: "GovernmentBuilding"
+	"@context": "https://schema.org"
+	"@type": "GovernmentBuilding"
 }
 /** A government building. */
 export type GovernmentBuilding =
@@ -5752,19 +6088,22 @@ export type GovernmentBuilding =
 	| string
 
 interface GovernmentOfficeLeaf extends LocalBusinessBase {
-	type: "GovernmentOffice"
+	"@context": "https://schema.org"
+	"@type": "GovernmentOffice"
 }
 /** A government office—for example, an IRS or DMV office. */
 export type GovernmentOffice = GovernmentOfficeLeaf | PostOffice | string
 
 interface GovernmentOrganizationLeaf extends OrganizationBase {
-	type: "GovernmentOrganization"
+	"@context": "https://schema.org"
+	"@type": "GovernmentOrganization"
 }
 /** A governmental organization or agency. */
 export type GovernmentOrganization = GovernmentOrganizationLeaf | string
 
 interface GovernmentPermitLeaf extends PermitBase {
-	type: "GovernmentPermit"
+	"@context": "https://schema.org"
+	"@type": "GovernmentPermit"
 }
 /** A permit issued by a government agency. */
 export type GovernmentPermit = GovernmentPermitLeaf
@@ -5779,7 +6118,8 @@ interface GovernmentServiceBase extends ServiceBase {
 	serviceOperator?: SchemaValue<Organization | IdReference, "serviceOperator">
 }
 interface GovernmentServiceLeaf extends GovernmentServiceBase {
-	type: "GovernmentService"
+	"@context": "https://schema.org"
+	"@type": "GovernmentService"
 }
 /** A service provided by a government organization, e.g. food stamps, veterans benefits, etc. */
 export type GovernmentService = GovernmentServiceLeaf
@@ -5803,7 +6143,8 @@ interface GrantBase extends ThingBase {
 	sponsor?: SchemaValue<Organization | Person | IdReference, "sponsor">
 }
 interface GrantLeaf extends GrantBase {
-	type: "Grant"
+	"@context": "https://schema.org"
+	"@type": "Grant"
 }
 /**
  * A grant, typically financial or otherwise quantifiable, of resources. Typically a {@link https://schema.org/funder funder} sponsors some {@link https://schema.org/MonetaryAmount MonetaryAmount} to an {@link https://schema.org/Organization Organization} or {@link https://schema.org/Person Person}, sometimes not necessarily via a dedicated or long-lived {@link https://schema.org/Project Project}, resulting in one or more outputs, or {@link https://schema.org/fundedItem fundedItem}s. For financial sponsorship, indicate the {@link https://schema.org/funder funder} of a {@link https://schema.org/MonetaryGrant MonetaryGrant}. For non-financial support, indicate {@link https://schema.org/sponsor sponsor} of {@link https://schema.org/Grant Grant}s of resources (e.g. office space).
@@ -5815,7 +6156,8 @@ interface GrantLeaf extends GrantBase {
 export type Grant = GrantLeaf | MonetaryGrant
 
 interface GroceryStoreLeaf extends LocalBusinessBase {
-	type: "GroceryStore"
+	"@context": "https://schema.org"
+	"@type": "GroceryStore"
 }
 /** A grocery store. */
 export type GroceryStore = GroceryStoreLeaf | string
@@ -5825,37 +6167,43 @@ interface GuideBase extends CreativeWorkBase {
 	reviewAspect?: SchemaValue<Text, "reviewAspect">
 }
 interface GuideLeaf extends GuideBase {
-	type: "Guide"
+	"@context": "https://schema.org"
+	"@type": "Guide"
 }
 /** {@link https://schema.org/Guide Guide} is a page or article that recommends specific products or services, or aspects of a thing for a user to consider. A {@link https://schema.org/Guide Guide} may represent a Buying Guide and detail aspects of products or services for a user to consider. A {@link https://schema.org/Guide Guide} may represent a Product Guide and recommend specific products or services. A {@link https://schema.org/Guide Guide} may represent a Ranked List and recommend specific products or services with ranking. */
 export type Guide = GuideLeaf
 
 interface GynecologicLeaf extends LocalBusinessBase {
-	type: "Gynecologic"
+	"@context": "https://schema.org"
+	"@type": "Gynecologic"
 }
 /** A specific branch of medical science that pertains to the health care of women, particularly in the diagnosis and treatment of disorders affecting the female reproductive system. */
 export type Gynecologic = GynecologicLeaf | string
 
 interface HackathonLeaf extends EventBase {
-	type: "Hackathon"
+	"@context": "https://schema.org"
+	"@type": "Hackathon"
 }
 /** A {@link https://en.wikipedia.org/wiki/Hackathon hackathon} event. */
 export type Hackathon = HackathonLeaf
 
 interface HairSalonLeaf extends LocalBusinessBase {
-	type: "HairSalon"
+	"@context": "https://schema.org"
+	"@type": "HairSalon"
 }
 /** A hair salon. */
 export type HairSalon = HairSalonLeaf | string
 
 interface HardwareStoreLeaf extends LocalBusinessBase {
-	type: "HardwareStore"
+	"@context": "https://schema.org"
+	"@type": "HardwareStore"
 }
 /** A hardware store. */
 export type HardwareStore = HardwareStoreLeaf | string
 
 interface HealthAndBeautyBusinessLeaf extends LocalBusinessBase {
-	type: "HealthAndBeautyBusiness"
+	"@context": "https://schema.org"
+	"@type": "HealthAndBeautyBusiness"
 }
 /** Health and beauty. */
 export type HealthAndBeautyBusiness =
@@ -5869,7 +6217,8 @@ export type HealthAndBeautyBusiness =
 	| string
 
 interface HealthAspectEnumerationLeaf extends EnumerationBase {
-	type: "HealthAspectEnumeration"
+	"@context": "https://schema.org"
+	"@type": "HealthAspectEnumeration"
 }
 /** HealthAspectEnumeration enumerates several aspects of health content online, each of which might be described using {@link https://schema.org/hasHealthAspect hasHealthAspect} and {@link https://schema.org/HealthTopicContent HealthTopicContent}. */
 export type HealthAspectEnumeration =
@@ -5935,7 +6284,8 @@ export type HealthAspectEnumeration =
 
 interface HealthClubBase extends LocalBusinessBase, LocalBusinessBase {}
 interface HealthClubLeaf extends HealthClubBase {
-	type: "HealthClub"
+	"@context": "https://schema.org"
+	"@type": "HealthClub"
 }
 /** A health club. */
 export type HealthClub = HealthClubLeaf | string
@@ -5967,7 +6317,8 @@ interface HealthInsurancePlanBase extends ThingBase {
 	usesHealthPlanIdStandard?: SchemaValue<Text | URL, "usesHealthPlanIdStandard">
 }
 interface HealthInsurancePlanLeaf extends HealthInsurancePlanBase {
-	type: "HealthInsurancePlan"
+	"@context": "https://schema.org"
+	"@type": "HealthInsurancePlan"
 }
 /** A US-style health insurance plan, including PPOs, EPOs, and HMOs. */
 export type HealthInsurancePlan = HealthInsurancePlanLeaf
@@ -5989,7 +6340,8 @@ interface HealthPlanCostSharingSpecificationBase extends ThingBase {
 }
 interface HealthPlanCostSharingSpecificationLeaf
 	extends HealthPlanCostSharingSpecificationBase {
-	type: "HealthPlanCostSharingSpecification"
+	"@context": "https://schema.org"
+	"@type": "HealthPlanCostSharingSpecification"
 }
 /** A description of costs to the patient under a given network or formulary. */
 export type HealthPlanCostSharingSpecification =
@@ -6004,7 +6356,8 @@ interface HealthPlanFormularyBase extends ThingBase {
 	offersPrescriptionByMail?: SchemaValue<Boolean, "offersPrescriptionByMail">
 }
 interface HealthPlanFormularyLeaf extends HealthPlanFormularyBase {
-	type: "HealthPlanFormulary"
+	"@context": "https://schema.org"
+	"@type": "HealthPlanFormulary"
 }
 /** For a given health insurance plan, the specification for costs and coverage of prescription drugs. */
 export type HealthPlanFormulary = HealthPlanFormularyLeaf
@@ -6018,7 +6371,8 @@ interface HealthPlanNetworkBase extends ThingBase {
 	healthPlanNetworkTier?: SchemaValue<Text, "healthPlanNetworkTier">
 }
 interface HealthPlanNetworkLeaf extends HealthPlanNetworkBase {
-	type: "HealthPlanNetwork"
+	"@context": "https://schema.org"
+	"@type": "HealthPlanNetwork"
 }
 /** A US-style health insurance plan network. */
 export type HealthPlanNetwork = HealthPlanNetworkLeaf
@@ -6031,31 +6385,36 @@ interface HealthTopicContentBase extends CreativeWorkBase {
 	>
 }
 interface HealthTopicContentLeaf extends HealthTopicContentBase {
-	type: "HealthTopicContent"
+	"@context": "https://schema.org"
+	"@type": "HealthTopicContent"
 }
 /** {@link https://schema.org/HealthTopicContent HealthTopicContent} is {@link https://schema.org/WebContent WebContent} that is about some aspect of a health topic, e.g. a condition, its symptoms or treatments. Such content may be comprised of several parts or sections and use different types of media. Multiple instances of {@link https://schema.org/WebContent WebContent} (and hence {@link https://schema.org/HealthTopicContent HealthTopicContent}) can be related using {@link https://schema.org/hasPart hasPart} / {@link https://schema.org/isPartOf isPartOf} where there is some kind of content hierarchy, and their content described with {@link https://schema.org/about about} and {@link https://schema.org/mentions mentions} e.g. building upon the existing {@link https://schema.org/MedicalCondition MedicalCondition} vocabulary. */
 export type HealthTopicContent = HealthTopicContentLeaf
 
 interface HighSchoolLeaf extends EducationalOrganizationBase {
-	type: "HighSchool"
+	"@context": "https://schema.org"
+	"@type": "HighSchool"
 }
 /** A high school. */
 export type HighSchool = HighSchoolLeaf | string
 
 interface HinduTempleLeaf extends CivicStructureBase {
-	type: "HinduTemple"
+	"@context": "https://schema.org"
+	"@type": "HinduTemple"
 }
 /** A Hindu temple. */
 export type HinduTemple = HinduTempleLeaf | string
 
 interface HobbyShopLeaf extends LocalBusinessBase {
-	type: "HobbyShop"
+	"@context": "https://schema.org"
+	"@type": "HobbyShop"
 }
 /** A store that sells materials useful or necessary for various hobbies. */
 export type HobbyShop = HobbyShopLeaf | string
 
 interface HomeAndConstructionBusinessLeaf extends LocalBusinessBase {
-	type: "HomeAndConstructionBusiness"
+	"@context": "https://schema.org"
+	"@type": "HomeAndConstructionBusiness"
 }
 /**
  * A construction business.
@@ -6077,7 +6436,8 @@ export type HomeAndConstructionBusiness =
 	| string
 
 interface HomeGoodsStoreLeaf extends LocalBusinessBase {
-	type: "HomeGoodsStore"
+	"@context": "https://schema.org"
+	"@type": "HomeGoodsStore"
 }
 /** A home goods store. */
 export type HomeGoodsStore = HomeGoodsStoreLeaf | string
@@ -6103,13 +6463,15 @@ interface HospitalBase
 	>
 }
 interface HospitalLeaf extends HospitalBase {
-	type: "Hospital"
+	"@context": "https://schema.org"
+	"@type": "Hospital"
 }
 /** A hospital. */
 export type Hospital = HospitalLeaf | string
 
 interface HostelLeaf extends LodgingBusinessBase {
-	type: "Hostel"
+	"@context": "https://schema.org"
+	"@type": "Hostel"
 }
 /**
  * A hostel - cheap accommodation, often in shared dormitories.
@@ -6119,7 +6481,8 @@ interface HostelLeaf extends LodgingBusinessBase {
 export type Hostel = HostelLeaf | string
 
 interface HotelLeaf extends LodgingBusinessBase {
-	type: "Hotel"
+	"@context": "https://schema.org"
+	"@type": "Hotel"
 }
 /**
  * A hotel is an establishment that provides lodging paid on a short-term basis (source: Wikipedia, the free encyclopedia, see http://en.wikipedia.org/wiki/Hotel).
@@ -6135,7 +6498,8 @@ interface HotelRoomBase extends AccommodationBase {
 	occupancy?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
 }
 interface HotelRoomLeaf extends HotelRoomBase {
-	type: "HotelRoom"
+	"@context": "https://schema.org"
+	"@type": "HotelRoom"
 }
 /**
  * A hotel room is a single room in a hotel.
@@ -6152,13 +6516,15 @@ interface HouseBase extends AccommodationBase {
 	>
 }
 interface HouseLeaf extends HouseBase {
-	type: "House"
+	"@context": "https://schema.org"
+	"@type": "House"
 }
 /** A house is a building or structure that has the ability to be occupied for habitation by humans or other creatures (source: Wikipedia, the free encyclopedia, see {@link http://en.wikipedia.org/wiki/House http://en.wikipedia.org/wiki/House}). */
 export type House = HouseLeaf | SingleFamilyResidence | string
 
 interface HousePainterLeaf extends LocalBusinessBase {
-	type: "HousePainter"
+	"@context": "https://schema.org"
+	"@type": "HousePainter"
 }
 /** A house painting service. */
 export type HousePainter = HousePainterLeaf | string
@@ -6194,7 +6560,8 @@ interface HowToBase extends CreativeWorkBase {
 	yield?: SchemaValue<QuantitativeValue | Text | IdReference, "yield">
 }
 interface HowToLeaf extends HowToBase {
-	type: "HowTo"
+	"@context": "https://schema.org"
+	"@type": "HowTo"
 }
 /** Instructions that explain how to achieve a result by performing a sequence of steps. */
 export type HowTo = HowToLeaf | Recipe
@@ -6218,7 +6585,8 @@ interface HowToDirectionBase extends CreativeWorkBase, ListItemBase {
 	totalTime?: SchemaValue<Duration | IdReference, "totalTime">
 }
 interface HowToDirectionLeaf extends HowToDirectionBase {
-	type: "HowToDirection"
+	"@context": "https://schema.org"
+	"@type": "HowToDirection"
 }
 /** A direction indicating a single action to do in the instructions for how to achieve a result. */
 export type HowToDirection = HowToDirectionLeaf
@@ -6231,7 +6599,8 @@ interface HowToItemBase extends ListItemBase {
 	>
 }
 interface HowToItemLeaf extends HowToItemBase {
-	type: "HowToItem"
+	"@context": "https://schema.org"
+	"@type": "HowToItem"
 }
 /** An item used as either a tool or supply when performing the instructions for how to achieve a result. */
 export type HowToItem = HowToItemLeaf | HowToSupply | HowToTool
@@ -6248,14 +6617,16 @@ interface HowToSectionBase
 	steps?: SchemaValue<CreativeWork | ItemList | Text | IdReference, "steps">
 }
 interface HowToSectionLeaf extends HowToSectionBase {
-	type: "HowToSection"
+	"@context": "https://schema.org"
+	"@type": "HowToSection"
 }
 /** A sub-grouping of steps in the instructions for how to achieve a result (e.g. steps for making a pie crust within a pie recipe). */
 export type HowToSection = HowToSectionLeaf
 
 interface HowToStepBase extends CreativeWorkBase, ItemListBase, ListItemBase {}
 interface HowToStepLeaf extends HowToStepBase {
-	type: "HowToStep"
+	"@context": "https://schema.org"
+	"@type": "HowToStep"
 }
 /** A step in the instructions for how to achieve a result. It is an ordered list with HowToDirection and/or HowToTip items. */
 export type HowToStep = HowToStepLeaf
@@ -6268,26 +6639,30 @@ interface HowToSupplyBase extends HowToItemBase {
 	>
 }
 interface HowToSupplyLeaf extends HowToSupplyBase {
-	type: "HowToSupply"
+	"@context": "https://schema.org"
+	"@type": "HowToSupply"
 }
 /** A supply consumed when performing the instructions for how to achieve a result. */
 export type HowToSupply = HowToSupplyLeaf
 
 interface HowToTipBase extends CreativeWorkBase, ListItemBase {}
 interface HowToTipLeaf extends HowToTipBase {
-	type: "HowToTip"
+	"@context": "https://schema.org"
+	"@type": "HowToTip"
 }
 /** An explanation in the instructions for how to achieve a result. It provides supplementary information about a technique, supply, author's preference, etc. It can explain what could be done, or what should not be done, but doesn't specify what should be done (see HowToDirection). */
 export type HowToTip = HowToTipLeaf
 
 interface HowToToolLeaf extends HowToItemBase {
-	type: "HowToTool"
+	"@context": "https://schema.org"
+	"@type": "HowToTool"
 }
 /** A tool used (but not consumed) when performing instructions for how to achieve a result. */
 export type HowToTool = HowToToolLeaf
 
 interface HVACBusinessLeaf extends LocalBusinessBase {
-	type: "HVACBusiness"
+	"@context": "https://schema.org"
+	"@type": "HVACBusiness"
 }
 /** A business that provides Heating, Ventilation and Air Conditioning services. */
 export type HVACBusiness = HVACBusinessLeaf | string
@@ -6299,7 +6674,8 @@ interface HyperTocBase extends CreativeWorkBase {
 	tocEntry?: SchemaValue<HyperTocEntry | IdReference, "tocEntry">
 }
 interface HyperTocLeaf extends HyperTocBase {
-	type: "HyperToc"
+	"@context": "https://schema.org"
+	"@type": "HyperToc"
 }
 /** A HyperToc represents a hypertext table of contents for complex media objects, such as {@link https://schema.org/VideoObject VideoObject}, {@link https://schema.org/AudioObject AudioObject}. Items in the table of contents are indicated using the {@link https://schema.org/tocEntry tocEntry} property, and typed {@link https://schema.org/HyperTocEntry HyperTocEntry}. For cases where the same larger work is split into multiple files, {@link https://schema.org/associatedMedia associatedMedia} can be used on individual {@link https://schema.org/HyperTocEntry HyperTocEntry} items. */
 export type HyperToc = HyperTocLeaf
@@ -6313,25 +6689,29 @@ interface HyperTocEntryBase extends CreativeWorkBase {
 	utterances?: SchemaValue<Text, "utterances">
 }
 interface HyperTocEntryLeaf extends HyperTocEntryBase {
-	type: "HyperTocEntry"
+	"@context": "https://schema.org"
+	"@type": "HyperTocEntry"
 }
 /** A HyperToEntry is an item within a {@link https://schema.org/HyperToc HyperToc}, which represents a hypertext table of contents for complex media objects, such as {@link https://schema.org/VideoObject VideoObject}, {@link https://schema.org/AudioObject AudioObject}. The media object itself is indicated using {@link https://schema.org/associatedMedia associatedMedia}. Each section of interest within that content can be described with a {@link https://schema.org/HyperTocEntry HyperTocEntry}, with associated {@link https://schema.org/startOffset startOffset} and {@link https://schema.org/endOffset endOffset}. When several entries are all from the same file, {@link https://schema.org/associatedMedia associatedMedia} is used on the overarching {@link https://schema.org/HyperTocEntry HyperTocEntry}; if the content has been split into multiple files, they can be referenced using {@link https://schema.org/associatedMedia associatedMedia} on each {@link https://schema.org/HyperTocEntry HyperTocEntry}. */
 export type HyperTocEntry = HyperTocEntryLeaf
 
 interface IceCreamShopLeaf extends FoodEstablishmentBase {
-	type: "IceCreamShop"
+	"@context": "https://schema.org"
+	"@type": "IceCreamShop"
 }
 /** An ice cream shop. */
 export type IceCreamShop = IceCreamShopLeaf | string
 
 interface IgnoreActionLeaf extends ActionBase {
-	type: "IgnoreAction"
+	"@context": "https://schema.org"
+	"@type": "IgnoreAction"
 }
 /** The act of intentionally disregarding the object. An agent ignores an object. */
 export type IgnoreAction = IgnoreActionLeaf
 
 interface ImageGalleryLeaf extends WebPageBase {
-	type: "ImageGallery"
+	"@context": "https://schema.org"
+	"@type": "ImageGallery"
 }
 /** Web page type: Image gallery page. */
 export type ImageGallery = ImageGalleryLeaf
@@ -6347,13 +6727,15 @@ interface ImageObjectBase extends MediaObjectBase {
 	representativeOfPage?: SchemaValue<Boolean, "representativeOfPage">
 }
 interface ImageObjectLeaf extends ImageObjectBase {
-	type: "ImageObject"
+	"@context": "https://schema.org"
+	"@type": "ImageObject"
 }
 /** An image file. */
 export type ImageObject = ImageObjectLeaf | Barcode | ImageObjectSnapshot
 
 interface ImageObjectSnapshotLeaf extends ImageObjectBase {
-	type: "ImageObjectSnapshot"
+	"@context": "https://schema.org"
+	"@type": "ImageObjectSnapshot"
 }
 /** A specific and exact (byte-for-byte) version of an {@link https://schema.org/ImageObject ImageObject}. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata (e.g. XMP, EXIF) the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren't represented in their actual content, do not affect this notion of identity. */
 export type ImageObjectSnapshot = ImageObjectSnapshotLeaf
@@ -6366,7 +6748,8 @@ interface ImagingTestBase extends MedicalTestBase {
 	>
 }
 interface ImagingTestLeaf extends ImagingTestBase {
-	type: "ImagingTest"
+	"@context": "https://schema.org"
+	"@type": "ImagingTest"
 }
 /** Any medical imaging modality typically used for diagnostic purposes. */
 export type ImagingTest = ImagingTestLeaf
@@ -6376,13 +6759,15 @@ interface IndividualProductBase extends ProductBase {
 	serialNumber?: SchemaValue<Text, "serialNumber">
 }
 interface IndividualProductLeaf extends IndividualProductBase {
-	type: "IndividualProduct"
+	"@context": "https://schema.org"
+	"@type": "IndividualProduct"
 }
 /** A single, identifiable product instance (e.g. a laptop with a particular serial number). */
 export type IndividualProduct = IndividualProductLeaf
 
 interface InfectiousAgentClassLeaf extends EnumerationBase {
-	type: "InfectiousAgentClass"
+	"@context": "https://schema.org"
+	"@type": "InfectiousAgentClass"
 }
 /** Classes of agents or pathogens that transmit infectious diseases. Enumerated type. */
 export type InfectiousAgentClass =
@@ -6412,7 +6797,8 @@ interface InfectiousDiseaseBase extends MedicalConditionBase {
 	transmissionMethod?: SchemaValue<Text, "transmissionMethod">
 }
 interface InfectiousDiseaseLeaf extends InfectiousDiseaseBase {
-	type: "InfectiousDisease"
+	"@context": "https://schema.org"
+	"@type": "InfectiousDisease"
 }
 /** An infectious disease is a clinically evident human disease resulting from the presence of pathogenic microbial agents, like pathogenic viruses, pathogenic bacteria, fungi, protozoa, multicellular parasites, and prions. To be considered an infectious disease, such pathogens are known to be able to cause this disease. */
 export type InfectiousDisease = InfectiousDiseaseLeaf
@@ -6422,7 +6808,8 @@ interface InformActionBase extends CommunicateActionBase {
 	event?: SchemaValue<Event | IdReference, "event">
 }
 interface InformActionLeaf extends InformActionBase {
-	type: "InformAction"
+	"@context": "https://schema.org"
+	"@type": "InformAction"
 }
 /** The act of notifying someone of information pertinent to them, with no expectation of a response. */
 export type InformAction = InformActionLeaf | ConfirmAction | RsvpAction
@@ -6432,25 +6819,29 @@ interface InsertActionBase extends UpdateActionBase {
 	toLocation?: SchemaValue<Place | IdReference, "toLocation">
 }
 interface InsertActionLeaf extends InsertActionBase {
-	type: "InsertAction"
+	"@context": "https://schema.org"
+	"@type": "InsertAction"
 }
 /** The act of adding at a specific location in an ordered collection. */
 export type InsertAction = InsertActionLeaf | AppendAction | PrependAction
 
 interface InstallActionLeaf extends ConsumeActionBase {
-	type: "InstallAction"
+	"@context": "https://schema.org"
+	"@type": "InstallAction"
 }
 /** The act of installing an application. */
 export type InstallAction = InstallActionLeaf
 
 interface InsuranceAgencyLeaf extends FinancialServiceBase {
-	type: "InsuranceAgency"
+	"@context": "https://schema.org"
+	"@type": "InsuranceAgency"
 }
 /** An Insurance agency. */
 export type InsuranceAgency = InsuranceAgencyLeaf | string
 
 interface IntangibleLeaf extends ThingBase {
-	type: "Intangible"
+	"@context": "https://schema.org"
+	"@type": "Intangible"
 }
 /** A utility class that serves as the umbrella for a number of 'intangible' things such as quantities, structured values, etc. */
 export type Intangible =
@@ -6522,7 +6913,8 @@ export type Intangible =
 export type Integer = number | `${number}`
 
 interface InteractActionLeaf extends ActionBase {
-	type: "InteractAction"
+	"@context": "https://schema.org"
+	"@type": "InteractAction"
 }
 /** The act of interacting with another person or organization. */
 export type InteractAction =
@@ -6566,19 +6958,22 @@ interface InteractionCounterBase extends ThingBase {
 	userInteractionCount?: SchemaValue<Integer, "userInteractionCount">
 }
 interface InteractionCounterLeaf extends InteractionCounterBase {
-	type: "InteractionCounter"
+	"@context": "https://schema.org"
+	"@type": "InteractionCounter"
 }
 /** A summary of how users have interacted with this CreativeWork. In most cases, authors will use a subtype to specify the specific type of interaction. */
 export type InteractionCounter = InteractionCounterLeaf
 
 interface InternetCafeLeaf extends LocalBusinessBase {
-	type: "InternetCafe"
+	"@context": "https://schema.org"
+	"@type": "InternetCafe"
 }
 /** An internet cafe. */
 export type InternetCafe = InternetCafeLeaf | string
 
 interface InvestmentFundLeaf extends InvestmentOrDepositBase {
-	type: "InvestmentFund"
+	"@context": "https://schema.org"
+	"@type": "InvestmentFund"
 }
 /** A company or fund that gathers capital from a number of investors to create a pool of money that is then re-invested into stocks, bonds and other assets. */
 export type InvestmentFund = InvestmentFundLeaf
@@ -6588,7 +6983,8 @@ interface InvestmentOrDepositBase extends FinancialProductBase {
 	amount?: SchemaValue<MonetaryAmount | Number | IdReference, "amount">
 }
 interface InvestmentOrDepositLeaf extends InvestmentOrDepositBase {
-	type: "InvestmentOrDeposit"
+	"@context": "https://schema.org"
+	"@type": "InvestmentOrDeposit"
 }
 /** A type of financial product that typically requires the client to transfer funds to a financial service in return for potential beneficial financial return. */
 export type InvestmentOrDeposit =
@@ -6602,7 +6998,8 @@ interface InviteActionBase extends CommunicateActionBase {
 	event?: SchemaValue<Event | IdReference, "event">
 }
 interface InviteActionLeaf extends InviteActionBase {
-	type: "InviteAction"
+	"@context": "https://schema.org"
+	"@type": "InviteAction"
 }
 /** The act of asking someone to attend an event. Reciprocal of RsvpAction. */
 export type InviteAction = InviteActionLeaf
@@ -6658,13 +7055,15 @@ interface InvoiceBase extends ThingBase {
 	>
 }
 interface InvoiceLeaf extends InvoiceBase {
-	type: "Invoice"
+	"@context": "https://schema.org"
+	"@type": "Invoice"
 }
 /** A statement of the money due for goods or services; a bill. */
 export type Invoice = InvoiceLeaf
 
 interface ItemAvailabilityLeaf extends EnumerationBase {
-	type: "ItemAvailability"
+	"@context": "https://schema.org"
+	"@type": "ItemAvailability"
 }
 /** A list of possible product availability options. */
 export type ItemAvailability =
@@ -6711,7 +7110,8 @@ interface ItemListBase extends ThingBase {
 	numberOfItems?: SchemaValue<Integer, "numberOfItems">
 }
 interface ItemListLeaf extends ItemListBase {
-	type: "ItemList"
+	"@context": "https://schema.org"
+	"@type": "ItemList"
 }
 /** A list of items of any sort—for example, Top 10 Movies About Weathermen, or Top 100 Party Songs. Not to be confused with HTML lists, which are often used only for formatting. */
 export type ItemList =
@@ -6722,7 +7122,8 @@ export type ItemList =
 	| OfferCatalog
 
 interface ItemListOrderTypeLeaf extends EnumerationBase {
-	type: "ItemListOrderType"
+	"@context": "https://schema.org"
+	"@type": "ItemListOrderType"
 }
 /** Enumerated for values for itemListOrder for indicating how an ordered ItemList is organized. */
 export type ItemListOrderType =
@@ -6735,13 +7136,15 @@ export type ItemListOrderType =
 	| ItemListOrderTypeLeaf
 
 interface ItemPageLeaf extends WebPageBase {
-	type: "ItemPage"
+	"@context": "https://schema.org"
+	"@type": "ItemPage"
 }
 /** A page devoted to a single item, such as a particular product or hotel. */
 export type ItemPage = ItemPageLeaf
 
 interface JewelryStoreLeaf extends LocalBusinessBase {
-	type: "JewelryStore"
+	"@context": "https://schema.org"
+	"@type": "JewelryStore"
 }
 /** A jewelry store. */
 export type JewelryStore = JewelryStoreLeaf | string
@@ -6880,7 +7283,8 @@ interface JobPostingBase extends ThingBase {
 	workHours?: SchemaValue<Text, "workHours">
 }
 interface JobPostingLeaf extends JobPostingBase {
-	type: "JobPosting"
+	"@context": "https://schema.org"
+	"@type": "JobPosting"
 }
 /** A listing that describes a job opening in a certain organization. */
 export type JobPosting = JobPostingLeaf
@@ -6890,7 +7294,8 @@ interface JoinActionBase extends ActionBase {
 	event?: SchemaValue<Event | IdReference, "event">
 }
 interface JoinActionLeaf extends JoinActionBase {
-	type: "JoinAction"
+	"@context": "https://schema.org"
+	"@type": "JoinAction"
 }
 /**
  * An agent joins an event/group with participants/friends at a location.
@@ -6914,19 +7319,22 @@ interface JointBase extends AnatomicalStructureBase {
 	structuralClass?: SchemaValue<Text, "structuralClass">
 }
 interface JointLeaf extends JointBase {
-	type: "Joint"
+	"@context": "https://schema.org"
+	"@type": "Joint"
 }
 /** The anatomical location at which two or more bones make contact. */
 export type Joint = JointLeaf
 
 interface LakeBodyOfWaterLeaf extends PlaceBase {
-	type: "LakeBodyOfWater"
+	"@context": "https://schema.org"
+	"@type": "LakeBodyOfWater"
 }
 /** A lake (for example, Lake Pontrachain). */
 export type LakeBodyOfWater = LakeBodyOfWaterLeaf | string
 
 interface LandformLeaf extends PlaceBase {
-	type: "Landform"
+	"@context": "https://schema.org"
+	"@type": "Landform"
 }
 /** A landform or physical feature. Landform elements include mountains, plains, lakes, rivers, seascape and oceanic waterbody interface features such as bays, peninsulas, seas and so forth, including sub-aqueous terrain features such as submersed mountain ranges, volcanoes, and the great ocean basins. */
 export type Landform =
@@ -6938,7 +7346,8 @@ export type Landform =
 	| string
 
 interface LandmarksOrHistoricalBuildingsLeaf extends PlaceBase {
-	type: "LandmarksOrHistoricalBuildings"
+	"@context": "https://schema.org"
+	"@type": "LandmarksOrHistoricalBuildings"
 }
 /** An historical landmark or building. */
 export type LandmarksOrHistoricalBuildings =
@@ -6946,7 +7355,8 @@ export type LandmarksOrHistoricalBuildings =
 	| string
 
 interface LanguageLeaf extends ThingBase {
-	type: "Language"
+	"@context": "https://schema.org"
+	"@type": "Language"
 }
 /** Natural languages such as Spanish, Tamil, Hindi, English, etc. Formal language code tags expressed in {@link https://en.wikipedia.org/wiki/IETF_language_tag BCP 47} can be used via the {@link https://schema.org/alternateName alternateName} property. The Language type previously also covered programming languages such as Scheme and Lisp, which are now best represented using {@link https://schema.org/ComputerLanguage ComputerLanguage}. */
 export type Language = LanguageLeaf
@@ -6987,7 +7397,8 @@ interface LearningResourceBase extends CreativeWorkBase {
 	teaches?: SchemaValue<DefinedTerm | Text | IdReference, "teaches">
 }
 interface LearningResourceLeaf extends LearningResourceBase {
-	type: "LearningResource"
+	"@context": "https://schema.org"
+	"@type": "LearningResource"
 }
 /**
  * The LearningResource type can be used to indicate {@link https://schema.org/CreativeWork CreativeWork}s (whether physical or digital) that have a particular and explicit orientation towards learning, education, skill acquisition, and other educational purposes.
@@ -7003,7 +7414,8 @@ interface LeaveActionBase extends ActionBase {
 	event?: SchemaValue<Event | IdReference, "event">
 }
 interface LeaveActionLeaf extends LeaveActionBase {
-	type: "LeaveAction"
+	"@context": "https://schema.org"
+	"@type": "LeaveAction"
 }
 /**
  * An agent leaves an event / group with participants/friends at a location.
@@ -7015,7 +7427,8 @@ interface LeaveActionLeaf extends LeaveActionBase {
 export type LeaveAction = LeaveActionLeaf
 
 interface LegalForceStatusLeaf extends EnumerationBase {
-	type: "LegalForceStatus"
+	"@context": "https://schema.org"
+	"@type": "LegalForceStatus"
 }
 /** A list of possible statuses for the legal force of a legislation. */
 export type LegalForceStatus =
@@ -7028,7 +7441,8 @@ export type LegalForceStatus =
 	| LegalForceStatusLeaf
 
 interface LegalServiceLeaf extends LocalBusinessBase {
-	type: "LegalService"
+	"@context": "https://schema.org"
+	"@type": "LegalService"
 }
 /**
  * A LegalService is a business that provides legally-oriented services, advice and representation, e.g. law firms.
@@ -7038,7 +7452,8 @@ interface LegalServiceLeaf extends LocalBusinessBase {
 export type LegalService = LegalServiceLeaf | Attorney | Notary | string
 
 interface LegalValueLevelLeaf extends EnumerationBase {
-	type: "LegalValueLevel"
+	"@context": "https://schema.org"
+	"@type": "LegalValueLevel"
 }
 /** A list of possible levels for the legal validity of a legislation. */
 export type LegalValueLevel =
@@ -7111,7 +7526,8 @@ interface LegislationBase extends CreativeWorkBase {
 	>
 }
 interface LegislationLeaf extends LegislationBase {
-	type: "Legislation"
+	"@context": "https://schema.org"
+	"@type": "Legislation"
 }
 /** A legal document such as an act, decree, bill, etc. (enforceable or not) or a component of a legal act (like an article). */
 export type Legislation = LegislationLeaf | LegislationObject
@@ -7124,13 +7540,15 @@ interface LegislationObjectBase extends LegislationBase, MediaObjectBase {
 	>
 }
 interface LegislationObjectLeaf extends LegislationObjectBase {
-	type: "LegislationObject"
+	"@context": "https://schema.org"
+	"@type": "LegislationObject"
 }
 /** A specific object or file containing a Legislation. Note that the same Legislation can be published in multiple files. For example, a digitally signed PDF, a plain PDF and an HTML version. */
 export type LegislationObject = LegislationObjectLeaf
 
 interface LegislativeBuildingLeaf extends CivicStructureBase {
-	type: "LegislativeBuilding"
+	"@context": "https://schema.org"
+	"@type": "LegislativeBuilding"
 }
 /** A legislative building—for example, the state capitol. */
 export type LegislativeBuilding = LegislativeBuildingLeaf | string
@@ -7140,7 +7558,8 @@ interface LendActionBase extends TransferActionBase {
 	borrower?: SchemaValue<Person | IdReference, "borrower">
 }
 interface LendActionLeaf extends LendActionBase {
-	type: "LendAction"
+	"@context": "https://schema.org"
+	"@type": "LendAction"
 }
 /**
  * The act of providing an object under an agreement that it will be returned at a later date. Reciprocal of BorrowAction.
@@ -7151,19 +7570,22 @@ interface LendActionLeaf extends LendActionBase {
 export type LendAction = LendActionLeaf
 
 interface LibraryLeaf extends LocalBusinessBase {
-	type: "Library"
+	"@context": "https://schema.org"
+	"@type": "Library"
 }
 /** A library. */
 export type Library = LibraryLeaf | string
 
 interface LibrarySystemLeaf extends OrganizationBase {
-	type: "LibrarySystem"
+	"@context": "https://schema.org"
+	"@type": "LibrarySystem"
 }
 /** A {@link https://schema.org/LibrarySystem LibrarySystem} is a collaborative system amongst several libraries. */
 export type LibrarySystem = LibrarySystemLeaf | string
 
 interface LifestyleModificationLeaf extends MedicalEntityBase {
-	type: "LifestyleModification"
+	"@context": "https://schema.org"
+	"@type": "LifestyleModification"
 }
 /** A process of care involving exercise, changes to diet, fitness routines, and other lifestyle changes aimed at improving a health condition. */
 export type LifestyleModification =
@@ -7172,25 +7594,29 @@ export type LifestyleModification =
 	| PhysicalActivity
 
 interface LigamentLeaf extends AnatomicalStructureBase {
-	type: "Ligament"
+	"@context": "https://schema.org"
+	"@type": "Ligament"
 }
 /** A short band of tough, flexible, fibrous connective tissue that functions to connect multiple bones, cartilages, and structurally support joints. */
 export type Ligament = LigamentLeaf
 
 interface LikeActionLeaf extends ActionBase {
-	type: "LikeAction"
+	"@context": "https://schema.org"
+	"@type": "LikeAction"
 }
 /** The act of expressing a positive sentiment about the object. An agent likes an object (a proposition, topic or theme) with participants. */
 export type LikeAction = LikeActionLeaf
 
 interface LiquorStoreLeaf extends LocalBusinessBase {
-	type: "LiquorStore"
+	"@context": "https://schema.org"
+	"@type": "LiquorStore"
 }
 /** A shop that sells alcoholic drinks such as wine, beer, whisky and other spirits. */
 export type LiquorStore = LiquorStoreLeaf | string
 
 interface ListenActionLeaf extends ConsumeActionBase {
-	type: "ListenAction"
+	"@context": "https://schema.org"
+	"@type": "ListenAction"
 }
 /** The act of consuming audio content. */
 export type ListenAction = ListenActionLeaf
@@ -7206,7 +7632,8 @@ interface ListItemBase extends ThingBase {
 	previousItem?: SchemaValue<ListItem | IdReference, "previousItem">
 }
 interface ListItemLeaf extends ListItemBase {
-	type: "ListItem"
+	"@context": "https://schema.org"
+	"@type": "ListItem"
 }
 /** An list item, e.g. a step in a checklist or how-to description. */
 export type ListItem =
@@ -7218,7 +7645,8 @@ export type ListItem =
 	| HowToTip
 
 interface LiteraryEventLeaf extends EventBase {
-	type: "LiteraryEvent"
+	"@context": "https://schema.org"
+	"@type": "LiteraryEvent"
 }
 /** Event type: Literary event. */
 export type LiteraryEvent = LiteraryEventLeaf
@@ -7232,7 +7660,8 @@ interface LiveBlogPostingBase extends SocialMediaPostingBase {
 	liveBlogUpdate?: SchemaValue<BlogPosting | IdReference, "liveBlogUpdate">
 }
 interface LiveBlogPostingLeaf extends LiveBlogPostingBase {
-	type: "LiveBlogPosting"
+	"@context": "https://schema.org"
+	"@type": "LiveBlogPosting"
 }
 /** A {@link https://schema.org/LiveBlogPosting LiveBlogPosting} is a {@link https://schema.org/BlogPosting BlogPosting} intended to provide a rolling textual coverage of an ongoing event through continuous updates. */
 export type LiveBlogPosting = LiveBlogPostingLeaf
@@ -7268,7 +7697,8 @@ interface LoanOrCreditBase extends FinancialProductBase {
 	>
 }
 interface LoanOrCreditLeaf extends LoanOrCreditBase {
-	type: "LoanOrCredit"
+	"@context": "https://schema.org"
+	"@type": "LoanOrCredit"
 }
 /** A financial product for the loaning of an amount of money, or line of credit, under agreed terms and charges. */
 export type LoanOrCredit = LoanOrCreditLeaf | CreditCard | MortgageLoan
@@ -7300,7 +7730,8 @@ interface LocalBusinessBase extends PlaceBase, OrganizationBase {
 	priceRange?: SchemaValue<Text, "priceRange">
 }
 interface LocalBusinessLeaf extends LocalBusinessBase {
-	type: "LocalBusiness"
+	"@context": "https://schema.org"
+	"@type": "LocalBusiness"
 }
 /** A particular physical business or branch of an organization. Examples of LocalBusiness include a restaurant, a particular branch of a restaurant chain, a branch of a bank, a medical practice, a club, a bowling alley, etc. */
 export type LocalBusiness =
@@ -7350,13 +7781,15 @@ interface LocationFeatureSpecificationBase extends PropertyValueBase {
 }
 interface LocationFeatureSpecificationLeaf
 	extends LocationFeatureSpecificationBase {
-	type: "LocationFeatureSpecification"
+	"@context": "https://schema.org"
+	"@type": "LocationFeatureSpecification"
 }
 /** Specifies a location feature by providing a structured value representing a feature of an accommodation as a property-value pair of varying degrees of formality. */
 export type LocationFeatureSpecification = LocationFeatureSpecificationLeaf
 
 interface LocksmithLeaf extends LocalBusinessBase {
-	type: "Locksmith"
+	"@context": "https://schema.org"
+	"@type": "Locksmith"
 }
 /** A locksmith. */
 export type Locksmith = LocksmithLeaf | string
@@ -7389,7 +7822,8 @@ interface LodgingBusinessBase extends LocalBusinessBase {
 	starRating?: SchemaValue<Rating | IdReference, "starRating">
 }
 interface LodgingBusinessLeaf extends LodgingBusinessBase {
-	type: "LodgingBusiness"
+	"@context": "https://schema.org"
+	"@type": "LodgingBusiness"
 }
 /** A lodging business, such as a motel, hotel, or inn. */
 export type LodgingBusiness =
@@ -7427,7 +7861,8 @@ interface LodgingReservationBase extends ReservationBase {
 	>
 }
 interface LodgingReservationLeaf extends LodgingReservationBase {
-	type: "LodgingReservation"
+	"@context": "https://schema.org"
+	"@type": "LodgingReservation"
 }
 /**
  * A reservation for lodging at a hotel, motel, inn, etc.
@@ -7441,7 +7876,8 @@ interface LoseActionBase extends ActionBase {
 	winner?: SchemaValue<Person | IdReference, "winner">
 }
 interface LoseActionLeaf extends LoseActionBase {
-	type: "LoseAction"
+	"@context": "https://schema.org"
+	"@type": "LoseAction"
 }
 /** The act of being defeated in a competitive activity. */
 export type LoseAction = LoseActionLeaf
@@ -7458,13 +7894,15 @@ interface LymphaticVesselBase extends AnatomicalStructureBase {
 	runsTo?: SchemaValue<Vessel | IdReference, "runsTo">
 }
 interface LymphaticVesselLeaf extends LymphaticVesselBase {
-	type: "LymphaticVessel"
+	"@context": "https://schema.org"
+	"@type": "LymphaticVessel"
 }
 /** A type of blood vessel that specifically carries lymph fluid unidirectionally toward the heart. */
 export type LymphaticVessel = LymphaticVesselLeaf
 
 interface ManuscriptLeaf extends CreativeWorkBase {
-	type: "Manuscript"
+	"@context": "https://schema.org"
+	"@type": "Manuscript"
 }
 /** A book, document, or piece of music written by hand rather than typed or printed. */
 export type Manuscript = ManuscriptLeaf
@@ -7474,13 +7912,15 @@ interface MapBase extends CreativeWorkBase {
 	mapType?: SchemaValue<MapCategoryType | IdReference, "mapType">
 }
 interface MapLeaf extends MapBase {
-	type: "Map"
+	"@context": "https://schema.org"
+	"@type": "Map"
 }
 /** A map. */
 export type Map = MapLeaf
 
 interface MapCategoryTypeLeaf extends EnumerationBase {
-	type: "MapCategoryType"
+	"@context": "https://schema.org"
+	"@type": "MapCategoryType"
 }
 /** An enumeration of several kinds of Map. */
 export type MapCategoryType =
@@ -7495,13 +7935,15 @@ export type MapCategoryType =
 	| MapCategoryTypeLeaf
 
 interface MarryActionLeaf extends ActionBase {
-	type: "MarryAction"
+	"@context": "https://schema.org"
+	"@type": "MarryAction"
 }
 /** The act of marrying a person. */
 export type MarryAction = MarryActionLeaf
 
 interface MassLeaf extends ThingBase {
-	type: "Mass"
+	"@context": "https://schema.org"
+	"@type": "Mass"
 }
 /** Properties that take Mass as values are of the form '<Number> <Mass unit of measure>'. E.g., '7 kg'. */
 export type Mass = MassLeaf | string
@@ -7514,19 +7956,22 @@ interface MathSolverBase extends CreativeWorkBase {
 	>
 }
 interface MathSolverLeaf extends MathSolverBase {
-	type: "MathSolver"
+	"@context": "https://schema.org"
+	"@type": "MathSolver"
 }
 /** A math solver which is capable of solving a subset of mathematical problems. */
 export type MathSolver = MathSolverLeaf
 
 interface MaximumDoseScheduleLeaf extends DoseScheduleBase {
-	type: "MaximumDoseSchedule"
+	"@context": "https://schema.org"
+	"@type": "MaximumDoseSchedule"
 }
 /** The maximum dosing schedule considered safe for a drug or supplement as recommended by an authority or by the drug/supplement's manufacturer. Capture the recommending authority in the recognizingAuthority property of MedicalEntity. */
 export type MaximumDoseSchedule = MaximumDoseScheduleLeaf
 
 interface MeasurementMethodEnumLeaf extends EnumerationBase {
-	type: "MeasurementMethodEnum"
+	"@context": "https://schema.org"
+	"@type": "MeasurementMethodEnum"
 }
 /** Enumeration(s) for use with {@link https://schema.org/measurementMethod measurementMethod}. */
 export type MeasurementMethodEnum =
@@ -7535,7 +7980,8 @@ export type MeasurementMethodEnum =
 	| MeasurementMethodEnumLeaf
 
 interface MeasurementTypeEnumerationLeaf extends EnumerationBase {
-	type: "MeasurementTypeEnumeration"
+	"@context": "https://schema.org"
+	"@type": "MeasurementTypeEnumeration"
 }
 /** Enumeration of common measurement types (or dimensions), for example "chest" for a person, "inseam" for pants, "gauge" for screws, or "wheel" for bicycles. */
 export type MeasurementTypeEnumeration =
@@ -7544,13 +7990,15 @@ export type MeasurementTypeEnumeration =
 	| WearableMeasurementTypeEnumeration
 
 interface MediaGalleryLeaf extends WebPageBase {
-	type: "MediaGallery"
+	"@context": "https://schema.org"
+	"@type": "MediaGallery"
 }
 /** Web page type: Media gallery page. A mixed-media page that can contain media such as images, videos, and other multimedia. */
 export type MediaGallery = MediaGalleryLeaf | ImageGallery | VideoGallery
 
 interface MediaManipulationRatingEnumerationLeaf extends EnumerationBase {
-	type: "MediaManipulationRatingEnumeration"
+	"@context": "https://schema.org"
+	"@type": "MediaManipulationRatingEnumeration"
 }
 /** Codes for use with the {@link https://schema.org/mediaAuthenticityCategory mediaAuthenticityCategory} property, indicating the authenticity of a media object (in the context of how it was published or shared). In general these codes are not mutually exclusive, although some combinations (such as 'original' versus 'transformed', 'edited' and 'staged') would be contradictory if applied in the same {@link https://schema.org/MediaReview MediaReview}. Note that the application of these codes is with regard to a piece of media shared or published in a particular context. */
 export type MediaManipulationRatingEnumeration =
@@ -7644,7 +8092,8 @@ interface MediaObjectBase extends CreativeWorkBase {
 	width?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
 }
 interface MediaObjectLeaf extends MediaObjectBase {
-	type: "MediaObject"
+	"@context": "https://schema.org"
+	"@type": "MediaObject"
 }
 /** A media object, such as an image, video, audio, or text object embedded in a web page or a downloadable dataset i.e. DataDownload. Note that a creative work may have many media objects associated with it on the same web page. For example, a page about a single song (MusicRecording) may have a music video (VideoObject), and a high and low bandwidth audio stream (2 AudioObject's). */
 export type MediaObject =
@@ -7677,7 +8126,8 @@ interface MediaReviewBase extends ReviewBase {
 	>
 }
 interface MediaReviewLeaf extends MediaReviewBase {
-	type: "MediaReview"
+	"@context": "https://schema.org"
+	"@type": "MediaReview"
 }
 /** A {@link https://schema.org/MediaReview MediaReview} is a more specialized form of Review dedicated to the evaluation of media content online, typically in the context of fact-checking and misinformation. For more general reviews of media in the broader sense, use {@link https://schema.org/UserReview UserReview}, {@link https://schema.org/CriticReview CriticReview} or other {@link https://schema.org/Review Review} types. This definition is a work in progress. While the {@link https://schema.org/MediaManipulationRatingEnumeration MediaManipulationRatingEnumeration} list reflects significant community review amongst fact-checkers and others working to combat misinformation, the specific structures for representing media objects, their versions and publication context, are still evolving. Similarly, best practices for the relationship between {@link https://schema.org/MediaReview MediaReview} and {@link https://schema.org/ClaimReview ClaimReview} markup have not yet been finalized. */
 export type MediaReview = MediaReviewLeaf
@@ -7690,7 +8140,8 @@ interface MediaReviewItemBase extends CreativeWorkBase {
 	>
 }
 interface MediaReviewItemLeaf extends MediaReviewItemBase {
-	type: "MediaReviewItem"
+	"@context": "https://schema.org"
+	"@type": "MediaReviewItem"
 }
 /** Represents an item or group of closely related items treated as a unit for the sake of evaluation in a {@link https://schema.org/MediaReview MediaReview}. Authorship etc. apply to the items rather than to the curation/grouping or reviewing party. */
 export type MediaReviewItem = MediaReviewItemLeaf
@@ -7702,20 +8153,23 @@ interface MediaSubscriptionBase extends ThingBase {
 	expectsAcceptanceOf?: SchemaValue<Offer | IdReference, "expectsAcceptanceOf">
 }
 interface MediaSubscriptionLeaf extends MediaSubscriptionBase {
-	type: "MediaSubscription"
+	"@context": "https://schema.org"
+	"@type": "MediaSubscription"
 }
 /** A subscription which allows a user to access media including audio, video, books, etc. */
 export type MediaSubscription = MediaSubscriptionLeaf
 
 interface MedicalAudienceBase extends PeopleAudienceBase, AudienceBase {}
 interface MedicalAudienceLeaf extends MedicalAudienceBase {
-	type: "MedicalAudience"
+	"@context": "https://schema.org"
+	"@type": "MedicalAudience"
 }
 /** Target audiences for medical web pages. */
 export type MedicalAudience = MedicalAudienceLeaf | Patient
 
 interface MedicalAudienceTypeLeaf extends EnumerationBase {
-	type: "MedicalAudienceType"
+	"@context": "https://schema.org"
+	"@type": "MedicalAudienceType"
 }
 /** Target audiences types for medical web pages. Enumerated type. */
 export type MedicalAudienceType =
@@ -7726,7 +8180,8 @@ export type MedicalAudienceType =
 	| MedicalAudienceTypeLeaf
 
 interface MedicalBusinessLeaf extends LocalBusinessBase {
-	type: "MedicalBusiness"
+	"@context": "https://schema.org"
+	"@type": "MedicalBusiness"
 }
 /** A particular physical or virtual business of an organization for medical purposes. Examples of MedicalBusiness include different businesses run by health professionals. */
 export type MedicalBusiness =
@@ -7762,7 +8217,8 @@ interface MedicalCauseBase extends MedicalEntityBase {
 	causeOf?: SchemaValue<MedicalEntity | IdReference, "causeOf">
 }
 interface MedicalCauseLeaf extends MedicalCauseBase {
-	type: "MedicalCause"
+	"@context": "https://schema.org"
+	"@type": "MedicalCause"
 }
 /** The causative agent(s) that are responsible for the pathophysiologic process that eventually results in a medical condition, symptom or sign. In this schema, unless otherwise specified this is meant to be the proximate cause of the medical condition, symptom or sign. The proximate cause is defined as the causative agent that most directly results in the medical condition, symptom or sign. For example, the HIV virus could be considered a cause of AIDS. Or in a diagnostic context, if a patient fell and sustained a hip fracture and two days later sustained a pulmonary embolism which eventuated in a cardiac arrest, the cause of the cardiac arrest (the proximate cause) would be the pulmonary embolism and not the fall. Medical causes can include cardiovascular, chemical, dermatologic, endocrine, environmental, gastroenterologic, genetic, hematologic, gynecologic, iatrogenic, infectious, musculoskeletal, neurologic, nutritional, obstetric, oncologic, otolaryngologic, pharmacologic, psychiatric, pulmonary, renal, rheumatologic, toxic, traumatic, or urologic causes; medical conditions can be causes as well. */
 export type MedicalCause = MedicalCauseLeaf
@@ -7780,7 +8236,8 @@ interface MedicalClinicBase extends LocalBusinessBase, MedicalOrganizationBase {
 	>
 }
 interface MedicalClinicLeaf extends MedicalClinicBase {
-	type: "MedicalClinic"
+	"@context": "https://schema.org"
+	"@type": "MedicalClinic"
 }
 /** A facility, often associated with a hospital or medical school, that is devoted to the specific diagnosis and/or healthcare. Previously limited to outpatients but with evolution it may be open to inpatients as well. */
 export type MedicalClinic = MedicalClinicLeaf | CovidTestingFacility | string
@@ -7792,7 +8249,8 @@ interface MedicalCodeBase extends CategoryCodeBase, MedicalEntityBase {
 	codingSystem?: SchemaValue<Text, "codingSystem">
 }
 interface MedicalCodeLeaf extends MedicalCodeBase {
-	type: "MedicalCode"
+	"@context": "https://schema.org"
+	"@type": "MedicalCode"
 }
 /** A code for a medical entity. */
 export type MedicalCode = MedicalCodeLeaf
@@ -7853,7 +8311,8 @@ interface MedicalConditionBase extends MedicalEntityBase {
 	typicalTest?: SchemaValue<MedicalTest | IdReference, "typicalTest">
 }
 interface MedicalConditionLeaf extends MedicalConditionBase {
-	type: "MedicalCondition"
+	"@context": "https://schema.org"
+	"@type": "MedicalCondition"
 }
 /** Any condition of the human body that affects the normal functioning of a person, whether physically or mentally. Includes diseases, injuries, disabilities, disorders, syndromes, etc. */
 export type MedicalCondition =
@@ -7868,13 +8327,15 @@ interface MedicalConditionStageBase extends MedicalEntityBase {
 	subStageSuffix?: SchemaValue<Text, "subStageSuffix">
 }
 interface MedicalConditionStageLeaf extends MedicalConditionStageBase {
-	type: "MedicalConditionStage"
+	"@context": "https://schema.org"
+	"@type": "MedicalConditionStage"
 }
 /** A stage of a medical condition, such as 'Stage IIIa'. */
 export type MedicalConditionStage = MedicalConditionStageLeaf
 
 interface MedicalContraindicationLeaf extends MedicalEntityBase {
-	type: "MedicalContraindication"
+	"@context": "https://schema.org"
+	"@type": "MedicalContraindication"
 }
 /** A condition or factor that serves as a reason to withhold a certain medical therapy. Contraindications can be absolute (there are no reasonable circumstances for undertaking a course of action) or relative (the patient is at higher risk of complications, but these risks may be outweighed by other considerations or mitigated by other measures). */
 export type MedicalContraindication = MedicalContraindicationLeaf
@@ -7900,13 +8361,15 @@ interface MedicalDeviceBase extends MedicalEntityBase {
 	>
 }
 interface MedicalDeviceLeaf extends MedicalDeviceBase {
-	type: "MedicalDevice"
+	"@context": "https://schema.org"
+	"@type": "MedicalDevice"
 }
 /** Any object used in a medical capacity, such as to diagnose or treat a patient. */
 export type MedicalDevice = MedicalDeviceLeaf
 
 interface MedicalDevicePurposeLeaf extends EnumerationBase {
-	type: "MedicalDevicePurpose"
+	"@context": "https://schema.org"
+	"@type": "MedicalDevicePurpose"
 }
 /** Categories of medical devices, organized by the purpose or intended use of the device. */
 export type MedicalDevicePurpose =
@@ -7944,7 +8407,8 @@ interface MedicalEntityBase extends ThingBase {
 	study?: SchemaValue<MedicalStudy | IdReference, "study">
 }
 interface MedicalEntityLeaf extends MedicalEntityBase {
-	type: "MedicalEntity"
+	"@context": "https://schema.org"
+	"@type": "MedicalEntity"
 }
 /** The most generic type of entity related to health and the practice of medicine. */
 export type MedicalEntity =
@@ -7970,7 +8434,8 @@ export type MedicalEntity =
 	| SuperficialAnatomy
 
 interface MedicalEnumerationLeaf extends EnumerationBase {
-	type: "MedicalEnumeration"
+	"@context": "https://schema.org"
+	"@type": "MedicalEnumeration"
 }
 /** Enumerations related to health and the practice of medicine: A concept that is used to attribute a quality to another concept, as a qualifier, a collection of items or a listing of all of the elements of a set in medicine practice. */
 export type MedicalEnumeration =
@@ -7992,7 +8457,8 @@ export type MedicalEnumeration =
 	| PhysicalExam
 
 interface MedicalEvidenceLevelLeaf extends EnumerationBase {
-	type: "MedicalEvidenceLevel"
+	"@context": "https://schema.org"
+	"@type": "MedicalEvidenceLevel"
 }
 /** Level of evidence for a medical guideline. Enumerated type. */
 export type MedicalEvidenceLevel =
@@ -8021,7 +8487,8 @@ interface MedicalGuidelineBase extends MedicalEntityBase {
 	>
 }
 interface MedicalGuidelineLeaf extends MedicalGuidelineBase {
-	type: "MedicalGuideline"
+	"@context": "https://schema.org"
+	"@type": "MedicalGuideline"
 }
 /** Any recommendation made by a standard society (e.g. ACC/AHA) or consensus statement that denotes how to diagnose and treat a particular condition. Note: this type should be used to tag the actual guideline recommendation; if the guideline recommendation occurs in a larger scholarly article, use MedicalScholarlyArticle to tag the overall article, not this type. Note also: the organization making the recommendation should be captured in the recognizingAuthority base property of MedicalEntity. */
 export type MedicalGuideline =
@@ -8030,7 +8497,8 @@ export type MedicalGuideline =
 	| MedicalGuidelineRecommendation
 
 interface MedicalGuidelineContraindicationLeaf extends MedicalGuidelineBase {
-	type: "MedicalGuidelineContraindication"
+	"@context": "https://schema.org"
+	"@type": "MedicalGuidelineContraindication"
 }
 /** A guideline contraindication that designates a process as harmful and where quality of the data supporting the contraindication is sound. */
 export type MedicalGuidelineContraindication =
@@ -8042,13 +8510,15 @@ interface MedicalGuidelineRecommendationBase extends MedicalGuidelineBase {
 }
 interface MedicalGuidelineRecommendationLeaf
 	extends MedicalGuidelineRecommendationBase {
-	type: "MedicalGuidelineRecommendation"
+	"@context": "https://schema.org"
+	"@type": "MedicalGuidelineRecommendation"
 }
 /** A guideline recommendation that is regarded as efficacious and where quality of the data supporting the recommendation is sound. */
 export type MedicalGuidelineRecommendation = MedicalGuidelineRecommendationLeaf
 
 interface MedicalImagingTechniqueLeaf extends EnumerationBase {
-	type: "MedicalImagingTechnique"
+	"@context": "https://schema.org"
+	"@type": "MedicalImagingTechnique"
 }
 /** Any medical imaging modality typically used for diagnostic purposes. Enumerated type. */
 export type MedicalImagingTechnique =
@@ -8067,7 +8537,8 @@ export type MedicalImagingTechnique =
 	| MedicalImagingTechniqueLeaf
 
 interface MedicalIndicationLeaf extends MedicalEntityBase {
-	type: "MedicalIndication"
+	"@context": "https://schema.org"
+	"@type": "MedicalIndication"
 }
 /** A condition or factor that indicates use of a medical therapy, including signs, symptoms, risk factors, anatomical states, etc. */
 export type MedicalIndication =
@@ -8077,7 +8548,8 @@ export type MedicalIndication =
 	| TreatmentIndication
 
 interface MedicalIntangibleLeaf extends MedicalEntityBase {
-	type: "MedicalIntangible"
+	"@context": "https://schema.org"
+	"@type": "MedicalIntangible"
 }
 /** A utility class that serves as the umbrella for a number of 'intangible' things in the medical space. */
 export type MedicalIntangible =
@@ -8097,13 +8569,15 @@ interface MedicalObservationalStudyBase extends MedicalStudyBase {
 	>
 }
 interface MedicalObservationalStudyLeaf extends MedicalObservationalStudyBase {
-	type: "MedicalObservationalStudy"
+	"@context": "https://schema.org"
+	"@type": "MedicalObservationalStudy"
 }
 /** An observational study is a type of medical study that attempts to infer the possible effect of a treatment through observation of a cohort of subjects over a period of time. In an observational study, the assignment of subjects into treatment groups versus control groups is outside the control of the investigator. This is in contrast with controlled studies, such as the randomized controlled trials represented by MedicalTrial, where each subject is randomly assigned to a treatment group or a control group before the start of the treatment. */
 export type MedicalObservationalStudy = MedicalObservationalStudyLeaf
 
 interface MedicalObservationalStudyDesignLeaf extends EnumerationBase {
-	type: "MedicalObservationalStudyDesign"
+	"@context": "https://schema.org"
+	"@type": "MedicalObservationalStudyDesign"
 }
 /** Design models for observational medical studies. Enumerated type. */
 export type MedicalObservationalStudyDesign =
@@ -8133,7 +8607,8 @@ interface MedicalOrganizationBase extends OrganizationBase {
 	>
 }
 interface MedicalOrganizationLeaf extends MedicalOrganizationBase {
-	type: "MedicalOrganization"
+	"@context": "https://schema.org"
+	"@type": "MedicalOrganization"
 }
 /** A medical organization (physical or not), such as hospital, institution or clinic. */
 export type MedicalOrganization =
@@ -8168,7 +8643,8 @@ interface MedicalProcedureBase extends MedicalEntityBase {
 	>
 }
 interface MedicalProcedureLeaf extends MedicalProcedureBase {
-	type: "MedicalProcedure"
+	"@context": "https://schema.org"
+	"@type": "MedicalProcedure"
 }
 /** A process of care used in either a diagnostic, therapeutic, preventive or palliative capacity that relies on invasive (surgical), non-invasive, or other techniques. */
 export type MedicalProcedure =
@@ -8180,7 +8656,8 @@ export type MedicalProcedure =
 	| TherapeuticProcedure
 
 interface MedicalProcedureTypeLeaf extends EnumerationBase {
-	type: "MedicalProcedureType"
+	"@context": "https://schema.org"
+	"@type": "MedicalProcedureType"
 }
 /** An enumeration that describes different types of medical procedures. */
 export type MedicalProcedureType =
@@ -8191,7 +8668,8 @@ export type MedicalProcedureType =
 	| MedicalProcedureTypeLeaf
 
 interface MedicalRiskCalculatorLeaf extends MedicalRiskEstimatorBase {
-	type: "MedicalRiskCalculator"
+	"@context": "https://schema.org"
+	"@type": "MedicalRiskCalculator"
 }
 /** A complex mathematical calculation requiring an online calculator, used to assess prognosis. Note: use the url property of Thing to record any URLs for online calculators. */
 export type MedicalRiskCalculator = MedicalRiskCalculatorLeaf
@@ -8206,7 +8684,8 @@ interface MedicalRiskEstimatorBase extends MedicalEntityBase {
 	>
 }
 interface MedicalRiskEstimatorLeaf extends MedicalRiskEstimatorBase {
-	type: "MedicalRiskEstimator"
+	"@context": "https://schema.org"
+	"@type": "MedicalRiskEstimator"
 }
 /** Any rule set or interactive tool for estimating the risk of developing a complication or condition. */
 export type MedicalRiskEstimator =
@@ -8219,7 +8698,8 @@ interface MedicalRiskFactorBase extends MedicalEntityBase {
 	increasesRiskOf?: SchemaValue<MedicalEntity | IdReference, "increasesRiskOf">
 }
 interface MedicalRiskFactorLeaf extends MedicalRiskFactorBase {
-	type: "MedicalRiskFactor"
+	"@context": "https://schema.org"
+	"@type": "MedicalRiskFactor"
 }
 /** A risk factor is anything that increases a person's likelihood of developing or contracting a disease, medical condition, or complication. */
 export type MedicalRiskFactor = MedicalRiskFactorLeaf
@@ -8229,7 +8709,8 @@ interface MedicalRiskScoreBase extends MedicalRiskEstimatorBase {
 	algorithm?: SchemaValue<Text, "algorithm">
 }
 interface MedicalRiskScoreLeaf extends MedicalRiskScoreBase {
-	type: "MedicalRiskScore"
+	"@context": "https://schema.org"
+	"@type": "MedicalRiskScore"
 }
 /** A simple system that adds up the number of risk factors to yield a score that is associated with prognosis, e.g. CHAD score, TIMI risk score. */
 export type MedicalRiskScore = MedicalRiskScoreLeaf
@@ -8239,7 +8720,8 @@ interface MedicalScholarlyArticleBase extends ArticleBase {
 	publicationType?: SchemaValue<Text, "publicationType">
 }
 interface MedicalScholarlyArticleLeaf extends MedicalScholarlyArticleBase {
-	type: "MedicalScholarlyArticle"
+	"@context": "https://schema.org"
+	"@type": "MedicalScholarlyArticle"
 }
 /** A scholarly article in the medical domain. */
 export type MedicalScholarlyArticle = MedicalScholarlyArticleLeaf
@@ -8251,7 +8733,8 @@ interface MedicalSignBase extends MedicalSignOrSymptomBase {
 	identifyingTest?: SchemaValue<MedicalTest | IdReference, "identifyingTest">
 }
 interface MedicalSignLeaf extends MedicalSignBase {
-	type: "MedicalSign"
+	"@context": "https://schema.org"
+	"@type": "MedicalSign"
 }
 /** Any physical manifestation of a person's medical condition discoverable by objective diagnostic tests or physical examination. */
 export type MedicalSign = MedicalSignLeaf | VitalSign
@@ -8264,7 +8747,8 @@ interface MedicalSignOrSymptomBase extends MedicalConditionBase {
 	>
 }
 interface MedicalSignOrSymptomLeaf extends MedicalSignOrSymptomBase {
-	type: "MedicalSignOrSymptom"
+	"@context": "https://schema.org"
+	"@type": "MedicalSignOrSymptom"
 }
 /** Any feature associated or not with a medical condition. In medicine a symptom is generally subjective while a sign is objective. */
 export type MedicalSignOrSymptom =
@@ -8274,7 +8758,8 @@ export type MedicalSignOrSymptom =
 
 interface MedicalSpecialtyBase extends EnumerationBase, EnumerationBase {}
 interface MedicalSpecialtyLeaf extends MedicalSpecialtyBase {
-	type: "MedicalSpecialty"
+	"@context": "https://schema.org"
+	"@type": "MedicalSpecialty"
 }
 /** Any specific branch of medical science or practice. Medical specialities include clinical specialties that pertain to particular organ systems and their respective disease states, as well as allied health specialties. Enumerated type. */
 export type MedicalSpecialty =
@@ -8383,7 +8868,8 @@ interface MedicalStudyBase extends MedicalEntityBase {
 	studySubject?: SchemaValue<MedicalEntity | IdReference, "studySubject">
 }
 interface MedicalStudyLeaf extends MedicalStudyBase {
-	type: "MedicalStudy"
+	"@context": "https://schema.org"
+	"@type": "MedicalStudy"
 }
 /** A medical study is an umbrella type covering all kinds of research studies relating to human medicine or health, including observational studies and interventional trials and registries, randomized, controlled or not. When the specific type of study is known, use one of the extensions of this type, such as MedicalTrial or MedicalObservationalStudy. Also, note that this type should be used to mark up data that describes the study itself; to tag an article that publishes the results of a study, use MedicalScholarlyArticle. Note: use the code property of MedicalEntity to store study IDs, e.g. clinicaltrials.gov ID. */
 export type MedicalStudy =
@@ -8392,7 +8878,8 @@ export type MedicalStudy =
 	| MedicalTrial
 
 interface MedicalStudyStatusLeaf extends EnumerationBase {
-	type: "MedicalStudyStatus"
+	"@context": "https://schema.org"
+	"@type": "MedicalStudyStatus"
 }
 /** The status of a medical study. Enumerated type. */
 export type MedicalStudyStatus =
@@ -8419,7 +8906,8 @@ export type MedicalStudyStatus =
 	| MedicalStudyStatusLeaf
 
 interface MedicalSymptomLeaf extends MedicalSignOrSymptomBase {
-	type: "MedicalSymptom"
+	"@context": "https://schema.org"
+	"@type": "MedicalSymptom"
 }
 /** Any complaint sensed and expressed by the patient (therefore defined as subjective) like stomachache, lower-back pain, or fatigue. */
 export type MedicalSymptom = MedicalSymptomLeaf
@@ -8440,7 +8928,8 @@ interface MedicalTestBase extends MedicalEntityBase {
 	usesDevice?: SchemaValue<MedicalDevice | IdReference, "usesDevice">
 }
 interface MedicalTestLeaf extends MedicalTestBase {
-	type: "MedicalTest"
+	"@context": "https://schema.org"
+	"@type": "MedicalTest"
 }
 /** Any medical test, typically performed for diagnostic purposes. */
 export type MedicalTest =
@@ -8455,7 +8944,8 @@ interface MedicalTestPanelBase extends MedicalTestBase {
 	subTest?: SchemaValue<MedicalTest | IdReference, "subTest">
 }
 interface MedicalTestPanelLeaf extends MedicalTestPanelBase {
-	type: "MedicalTestPanel"
+	"@context": "https://schema.org"
+	"@type": "MedicalTestPanel"
 }
 /** Any collection of tests commonly ordered together. */
 export type MedicalTestPanel = MedicalTestPanelLeaf
@@ -8478,7 +8968,8 @@ interface MedicalTherapyBase extends TherapeuticProcedureBase {
 	>
 }
 interface MedicalTherapyLeaf extends MedicalTherapyBase {
-	type: "MedicalTherapy"
+	"@context": "https://schema.org"
+	"@type": "MedicalTherapy"
 }
 /** Any medical intervention designed to prevent, treat, and cure human diseases and medical conditions, including both curative and palliative therapies. Medical therapies are typically processes of care relying upon pharmacotherapy, behavioral therapy, supportive therapy (with fluid or nutrition for example), or detoxification (e.g. hemodialysis) aimed at improving or preventing a health condition. */
 export type MedicalTherapy =
@@ -8494,13 +8985,15 @@ interface MedicalTrialBase extends MedicalStudyBase {
 	trialDesign?: SchemaValue<MedicalTrialDesign | IdReference, "trialDesign">
 }
 interface MedicalTrialLeaf extends MedicalTrialBase {
-	type: "MedicalTrial"
+	"@context": "https://schema.org"
+	"@type": "MedicalTrial"
 }
 /** A medical trial is a type of medical study that uses a scientific process to compare the safety and efficacy of medical therapies or medical procedures. In general, medical trials are controlled and subjects are allocated at random to the different treatment and/or control groups. */
 export type MedicalTrial = MedicalTrialLeaf
 
 interface MedicalTrialDesignLeaf extends EnumerationBase {
-	type: "MedicalTrialDesign"
+	"@context": "https://schema.org"
+	"@type": "MedicalTrialDesign"
 }
 /** Design models for medical trials. Enumerated type. */
 export type MedicalTrialDesign =
@@ -8538,13 +9031,15 @@ interface MedicalWebPageBase extends WebPageBase {
 	>
 }
 interface MedicalWebPageLeaf extends MedicalWebPageBase {
-	type: "MedicalWebPage"
+	"@context": "https://schema.org"
+	"@type": "MedicalWebPage"
 }
 /** A web page that provides medical information. */
 export type MedicalWebPage = MedicalWebPageLeaf
 
 interface MedicineSystemLeaf extends EnumerationBase {
-	type: "MedicineSystem"
+	"@context": "https://schema.org"
+	"@type": "MedicineSystem"
 }
 /** Systems of medical practice. */
 export type MedicineSystem =
@@ -8563,7 +9058,8 @@ export type MedicineSystem =
 	| MedicineSystemLeaf
 
 interface MeetingRoomLeaf extends AccommodationBase {
-	type: "MeetingRoom"
+	"@context": "https://schema.org"
+	"@type": "MeetingRoom"
 }
 /**
  * A meeting room, conference room, or conference hall is a room provided for singular events such as business conferences and meetings (source: Wikipedia, the free encyclopedia, see {@link http://en.wikipedia.org/wiki/Conference_hall http://en.wikipedia.org/wiki/Conference_hall}).
@@ -8573,7 +9069,8 @@ interface MeetingRoomLeaf extends AccommodationBase {
 export type MeetingRoom = MeetingRoomLeaf | string
 
 interface MensClothingStoreLeaf extends LocalBusinessBase {
-	type: "MensClothingStore"
+	"@context": "https://schema.org"
+	"@type": "MensClothingStore"
 }
 /** A men's clothing store. */
 export type MensClothingStore = MensClothingStoreLeaf | string
@@ -8585,7 +9082,8 @@ interface MenuBase extends CreativeWorkBase {
 	hasMenuSection?: SchemaValue<MenuSection | IdReference, "hasMenuSection">
 }
 interface MenuLeaf extends MenuBase {
-	type: "Menu"
+	"@context": "https://schema.org"
+	"@type": "Menu"
 }
 /** A structured representation of food or drink items available from a FoodEstablishment. */
 export type Menu = MenuLeaf
@@ -8601,7 +9099,8 @@ interface MenuItemBase extends ThingBase {
 	suitableForDiet?: SchemaValue<RestrictedDiet | IdReference, "suitableForDiet">
 }
 interface MenuItemLeaf extends MenuItemBase {
-	type: "MenuItem"
+	"@context": "https://schema.org"
+	"@type": "MenuItem"
 }
 /** A food or drink item listed in a menu or menu section. */
 export type MenuItem = MenuItemLeaf
@@ -8613,13 +9112,15 @@ interface MenuSectionBase extends CreativeWorkBase {
 	hasMenuSection?: SchemaValue<MenuSection | IdReference, "hasMenuSection">
 }
 interface MenuSectionLeaf extends MenuSectionBase {
-	type: "MenuSection"
+	"@context": "https://schema.org"
+	"@type": "MenuSection"
 }
 /** A sub-grouping of food or drink items in a menu. E.g. courses (such as 'Dinner', 'Breakfast', etc.), specific type of dishes (such as 'Meat', 'Vegan', 'Drinks', etc.), or some other classification made by the menu provider. */
 export type MenuSection = MenuSectionLeaf
 
 interface MerchantReturnEnumerationLeaf extends EnumerationBase {
-	type: "MerchantReturnEnumeration"
+	"@context": "https://schema.org"
+	"@type": "MerchantReturnEnumeration"
 }
 /** Enumerates several kinds of product return policies. */
 export type MerchantReturnEnumeration =
@@ -8730,7 +9231,8 @@ interface MerchantReturnPolicyBase extends ThingBase {
 	>
 }
 interface MerchantReturnPolicyLeaf extends MerchantReturnPolicyBase {
-	type: "MerchantReturnPolicy"
+	"@context": "https://schema.org"
+	"@type": "MerchantReturnPolicy"
 }
 /** A MerchantReturnPolicy provides information about product return policies associated with an {@link https://schema.org/Organization Organization}, {@link https://schema.org/Product Product}, or {@link https://schema.org/Offer Offer}. */
 export type MerchantReturnPolicy = MerchantReturnPolicyLeaf
@@ -8753,7 +9255,8 @@ interface MerchantReturnPolicySeasonalOverrideBase extends ThingBase {
 }
 interface MerchantReturnPolicySeasonalOverrideLeaf
 	extends MerchantReturnPolicySeasonalOverrideBase {
-	type: "MerchantReturnPolicySeasonalOverride"
+	"@context": "https://schema.org"
+	"@type": "MerchantReturnPolicySeasonalOverride"
 }
 /** A seasonal override of a return policy, for example used for holidays. */
 export type MerchantReturnPolicySeasonalOverride =
@@ -8795,19 +9298,22 @@ interface MessageBase extends CreativeWorkBase {
 	>
 }
 interface MessageLeaf extends MessageBase {
-	type: "Message"
+	"@context": "https://schema.org"
+	"@type": "Message"
 }
 /** A single message from a sender to one or more organizations or people. */
 export type Message = MessageLeaf | EmailMessage
 
 interface MiddleSchoolLeaf extends EducationalOrganizationBase {
-	type: "MiddleSchool"
+	"@context": "https://schema.org"
+	"@type": "MiddleSchool"
 }
 /** A middle school (typically for children aged around 11-14, although this varies somewhat). */
 export type MiddleSchool = MiddleSchoolLeaf | string
 
 interface MidwiferyLeaf extends LocalBusinessBase {
-	type: "Midwifery"
+	"@context": "https://schema.org"
+	"@type": "Midwifery"
 }
 /** A nurse-like health profession that deals with pregnancy, childbirth, and the postpartum period (including care of the newborn), besides sexual and reproductive health of women throughout their lives. */
 export type Midwifery = MidwiferyLeaf | string
@@ -8817,13 +9323,15 @@ interface MobileApplicationBase extends SoftwareApplicationBase {
 	carrierRequirements?: SchemaValue<Text, "carrierRequirements">
 }
 interface MobileApplicationLeaf extends MobileApplicationBase {
-	type: "MobileApplication"
+	"@context": "https://schema.org"
+	"@type": "MobileApplication"
 }
 /** A software application designed specifically to work well on a mobile device such as a telephone. */
 export type MobileApplication = MobileApplicationLeaf
 
 interface MobilePhoneStoreLeaf extends LocalBusinessBase {
-	type: "MobilePhoneStore"
+	"@context": "https://schema.org"
+	"@type": "MobilePhoneStore"
 }
 /** A store that sells mobile phones and related accessories. */
 export type MobilePhoneStore = MobilePhoneStoreLeaf | string
@@ -8855,7 +9363,8 @@ interface MolecularEntityBase extends BioChemEntityBase {
 	smiles?: SchemaValue<Text, "smiles">
 }
 interface MolecularEntityLeaf extends MolecularEntityBase {
-	type: "MolecularEntity"
+	"@context": "https://schema.org"
+	"@type": "MolecularEntity"
 }
 /** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity. */
 export type MolecularEntity = MolecularEntityLeaf
@@ -8888,7 +9397,8 @@ interface MonetaryAmountBase extends ThingBase {
 	>
 }
 interface MonetaryAmountLeaf extends MonetaryAmountBase {
-	type: "MonetaryAmount"
+	"@context": "https://schema.org"
+	"@type": "MonetaryAmount"
 }
 /** A monetary value or range. This type can be used to describe an amount of money such as $50 USD, or a range as in describing a bank account being suitable for a balance between £1,000 and £1,000,000 GBP, or the value of a salary, etc. It is recommended to use {@link https://schema.org/PriceSpecification PriceSpecification} Types to describe the price of an Offer, Invoice, etc. */
 export type MonetaryAmount = MonetaryAmountLeaf
@@ -8904,7 +9414,8 @@ interface MonetaryAmountDistributionBase
 }
 interface MonetaryAmountDistributionLeaf
 	extends MonetaryAmountDistributionBase {
-	type: "MonetaryAmountDistribution"
+	"@context": "https://schema.org"
+	"@type": "MonetaryAmountDistribution"
 }
 /** A statistical distribution of monetary amounts. */
 export type MonetaryAmountDistribution = MonetaryAmountDistributionLeaf
@@ -8916,7 +9427,8 @@ interface MonetaryGrantBase extends GrantBase {
 	funder?: SchemaValue<Organization | Person | IdReference, "funder">
 }
 interface MonetaryGrantLeaf extends MonetaryGrantBase {
-	type: "MonetaryGrant"
+	"@context": "https://schema.org"
+	"@type": "MonetaryGrant"
 }
 /** A monetary grant. */
 export type MonetaryGrant = MonetaryGrantLeaf
@@ -8931,7 +9443,8 @@ interface MoneyTransferBase extends TransferActionBase {
 	>
 }
 interface MoneyTransferLeaf extends MoneyTransferBase {
-	type: "MoneyTransfer"
+	"@context": "https://schema.org"
+	"@type": "MoneyTransfer"
 }
 /** The act of transferring money from one place to another place. This may occur electronically or physically. */
 export type MoneyTransfer = MoneyTransferLeaf
@@ -8946,19 +9459,22 @@ interface MortgageLoanBase extends LoanOrCreditBase {
 	>
 }
 interface MortgageLoanLeaf extends MortgageLoanBase {
-	type: "MortgageLoan"
+	"@context": "https://schema.org"
+	"@type": "MortgageLoan"
 }
 /** A loan in which property or real estate is used as collateral. (A loan securitized against some real estate.) */
 export type MortgageLoan = MortgageLoanLeaf
 
 interface MosqueLeaf extends CivicStructureBase {
-	type: "Mosque"
+	"@context": "https://schema.org"
+	"@type": "Mosque"
 }
 /** A mosque. */
 export type Mosque = MosqueLeaf | string
 
 interface MotelLeaf extends LodgingBusinessBase {
-	type: "Motel"
+	"@context": "https://schema.org"
+	"@type": "Motel"
 }
 /**
  * A motel.
@@ -8968,31 +9484,36 @@ interface MotelLeaf extends LodgingBusinessBase {
 export type Motel = MotelLeaf | string
 
 interface MotorcycleLeaf extends VehicleBase {
-	type: "Motorcycle"
+	"@context": "https://schema.org"
+	"@type": "Motorcycle"
 }
 /** A motorcycle or motorbike is a single-track, two-wheeled motor vehicle. */
 export type Motorcycle = MotorcycleLeaf
 
 interface MotorcycleDealerLeaf extends LocalBusinessBase {
-	type: "MotorcycleDealer"
+	"@context": "https://schema.org"
+	"@type": "MotorcycleDealer"
 }
 /** A motorcycle dealer. */
 export type MotorcycleDealer = MotorcycleDealerLeaf | string
 
 interface MotorcycleRepairLeaf extends LocalBusinessBase {
-	type: "MotorcycleRepair"
+	"@context": "https://schema.org"
+	"@type": "MotorcycleRepair"
 }
 /** A motorcycle repair shop. */
 export type MotorcycleRepair = MotorcycleRepairLeaf | string
 
 interface MotorizedBicycleLeaf extends VehicleBase {
-	type: "MotorizedBicycle"
+	"@context": "https://schema.org"
+	"@type": "MotorizedBicycle"
 }
 /** A motorized bicycle is a bicycle with an attached motor used to power the vehicle, or to assist with pedaling. */
 export type MotorizedBicycle = MotorizedBicycleLeaf
 
 interface MountainLeaf extends PlaceBase {
-	type: "Mountain"
+	"@context": "https://schema.org"
+	"@type": "Mountain"
 }
 /** A mountain, like Mount Whitney or Mount Everest. */
 export type Mountain = MountainLeaf | string
@@ -9004,7 +9525,8 @@ interface MoveActionBase extends ActionBase {
 	toLocation?: SchemaValue<Place | IdReference, "toLocation">
 }
 interface MoveActionLeaf extends MoveActionBase {
-	type: "MoveAction"
+	"@context": "https://schema.org"
+	"@type": "MoveAction"
 }
 /**
  * The act of an agent relocating to a place.
@@ -9069,19 +9591,22 @@ interface MovieBase extends CreativeWorkBase {
 	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface MovieLeaf extends MovieBase {
-	type: "Movie"
+	"@context": "https://schema.org"
+	"@type": "Movie"
 }
 /** A movie. */
 export type Movie = MovieLeaf
 
 interface MovieClipLeaf extends ClipBase {
-	type: "MovieClip"
+	"@context": "https://schema.org"
+	"@type": "MovieClip"
 }
 /** A short segment/part of a movie. */
 export type MovieClip = MovieClipLeaf
 
 interface MovieRentalStoreLeaf extends LocalBusinessBase {
-	type: "MovieRentalStore"
+	"@context": "https://schema.org"
+	"@type": "MovieRentalStore"
 }
 /** A movie rental store. */
 export type MovieRentalStore = MovieRentalStoreLeaf | string
@@ -9114,7 +9639,8 @@ interface MovieSeriesBase extends CreativeWorkSeriesBase {
 	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface MovieSeriesLeaf extends MovieSeriesBase {
-	type: "MovieSeries"
+	"@context": "https://schema.org"
+	"@type": "MovieSeries"
 }
 /** A series of movies. Included movies can be indicated with the hasPart property. */
 export type MovieSeries = MovieSeriesLeaf
@@ -9124,13 +9650,15 @@ interface MovieTheaterBase extends CivicStructureBase, LocalBusinessBase {
 	screenCount?: SchemaValue<Number, "screenCount">
 }
 interface MovieTheaterLeaf extends MovieTheaterBase {
-	type: "MovieTheater"
+	"@context": "https://schema.org"
+	"@type": "MovieTheater"
 }
 /** A movie theater. */
 export type MovieTheater = MovieTheaterLeaf | string
 
 interface MovingCompanyLeaf extends LocalBusinessBase {
-	type: "MovingCompany"
+	"@context": "https://schema.org"
+	"@type": "MovingCompany"
 }
 /** A moving company. */
 export type MovingCompany = MovingCompanyLeaf | string
@@ -9148,13 +9676,15 @@ interface MuscleBase extends AnatomicalStructureBase {
 	nerve?: SchemaValue<Nerve | IdReference, "nerve">
 }
 interface MuscleLeaf extends MuscleBase {
-	type: "Muscle"
+	"@context": "https://schema.org"
+	"@type": "Muscle"
 }
 /** A muscle is an anatomical structure consisting of a contractile form of tissue that animals use to effect movement. */
 export type Muscle = MuscleLeaf
 
 interface MuseumLeaf extends CivicStructureBase {
-	type: "Museum"
+	"@context": "https://schema.org"
+	"@type": "Museum"
 }
 /** A museum. */
 export type Museum = MuseumLeaf | string
@@ -9176,13 +9706,15 @@ interface MusicAlbumBase extends MusicPlaylistBase {
 	byArtist?: SchemaValue<MusicGroup | Person | IdReference, "byArtist">
 }
 interface MusicAlbumLeaf extends MusicAlbumBase {
-	type: "MusicAlbum"
+	"@context": "https://schema.org"
+	"@type": "MusicAlbum"
 }
 /** A collection of music tracks. */
 export type MusicAlbum = MusicAlbumLeaf
 
 interface MusicAlbumProductionTypeLeaf extends EnumerationBase {
-	type: "MusicAlbumProductionType"
+	"@context": "https://schema.org"
+	"@type": "MusicAlbumProductionType"
 }
 /** Classification of the album by its type of content: soundtrack, live album, studio album, etc. */
 export type MusicAlbumProductionType =
@@ -9207,7 +9739,8 @@ export type MusicAlbumProductionType =
 	| MusicAlbumProductionTypeLeaf
 
 interface MusicAlbumReleaseTypeLeaf extends EnumerationBase {
-	type: "MusicAlbumReleaseType"
+	"@context": "https://schema.org"
+	"@type": "MusicAlbumReleaseType"
 }
 /** The kind of release which this album is: single, EP or album. */
 export type MusicAlbumReleaseType =
@@ -9250,13 +9783,15 @@ interface MusicCompositionBase extends CreativeWorkBase {
 	recordedAs?: SchemaValue<MusicRecording | IdReference, "recordedAs">
 }
 interface MusicCompositionLeaf extends MusicCompositionBase {
-	type: "MusicComposition"
+	"@context": "https://schema.org"
+	"@type": "MusicComposition"
 }
 /** A musical composition. */
 export type MusicComposition = MusicCompositionLeaf
 
 interface MusicEventLeaf extends EventBase {
-	type: "MusicEvent"
+	"@context": "https://schema.org"
+	"@type": "MusicEvent"
 }
 /** Event type: Music event. */
 export type MusicEvent = MusicEventLeaf
@@ -9288,7 +9823,8 @@ interface MusicGroupBase extends OrganizationBase {
 	tracks?: SchemaValue<MusicRecording | IdReference, "tracks">
 }
 interface MusicGroupLeaf extends MusicGroupBase {
-	type: "MusicGroup"
+	"@context": "https://schema.org"
+	"@type": "MusicGroup"
 }
 /** A musical group, such as a band, an orchestra, or a choir. Can also be a solo musician. */
 export type MusicGroup = MusicGroupLeaf | string
@@ -9306,7 +9842,8 @@ interface MusicPlaylistBase extends CreativeWorkBase {
 	tracks?: SchemaValue<MusicRecording | IdReference, "tracks">
 }
 interface MusicPlaylistLeaf extends MusicPlaylistBase {
-	type: "MusicPlaylist"
+	"@context": "https://schema.org"
+	"@type": "MusicPlaylist"
 }
 /** A collection of music tracks in playlist form. */
 export type MusicPlaylist = MusicPlaylistLeaf | MusicAlbum | MusicRelease
@@ -9326,7 +9863,8 @@ interface MusicRecordingBase extends CreativeWorkBase {
 	recordingOf?: SchemaValue<MusicComposition | IdReference, "recordingOf">
 }
 interface MusicRecordingLeaf extends MusicRecordingBase {
-	type: "MusicRecording"
+	"@context": "https://schema.org"
+	"@type": "MusicRecording"
 }
 /** A music recording (track), usually a single song. */
 export type MusicRecording = MusicRecordingLeaf
@@ -9349,13 +9887,15 @@ interface MusicReleaseBase extends MusicPlaylistBase {
 	releaseOf?: SchemaValue<MusicAlbum | IdReference, "releaseOf">
 }
 interface MusicReleaseLeaf extends MusicReleaseBase {
-	type: "MusicRelease"
+	"@context": "https://schema.org"
+	"@type": "MusicRelease"
 }
 /** A MusicRelease is a specific release of a music album. */
 export type MusicRelease = MusicReleaseLeaf
 
 interface MusicReleaseFormatTypeLeaf extends EnumerationBase {
-	type: "MusicReleaseFormatType"
+	"@context": "https://schema.org"
+	"@type": "MusicReleaseFormatType"
 }
 /** Format of this release (the type of recording media used, i.e. compact disc, digital media, LP, etc.). */
 export type MusicReleaseFormatType =
@@ -9376,25 +9916,29 @@ export type MusicReleaseFormatType =
 	| MusicReleaseFormatTypeLeaf
 
 interface MusicStoreLeaf extends LocalBusinessBase {
-	type: "MusicStore"
+	"@context": "https://schema.org"
+	"@type": "MusicStore"
 }
 /** A music store. */
 export type MusicStore = MusicStoreLeaf | string
 
 interface MusicVenueLeaf extends CivicStructureBase {
-	type: "MusicVenue"
+	"@context": "https://schema.org"
+	"@type": "MusicVenue"
 }
 /** A music venue. */
 export type MusicVenue = MusicVenueLeaf | string
 
 interface MusicVideoObjectLeaf extends MediaObjectBase {
-	type: "MusicVideoObject"
+	"@context": "https://schema.org"
+	"@type": "MusicVideoObject"
 }
 /** A music video file. */
 export type MusicVideoObject = MusicVideoObjectLeaf
 
 interface NailSalonLeaf extends LocalBusinessBase {
-	type: "NailSalon"
+	"@context": "https://schema.org"
+	"@type": "NailSalon"
 }
 /** A nail salon. */
 export type NailSalon = NailSalonLeaf | string
@@ -9417,7 +9961,8 @@ interface NerveBase extends AnatomicalStructureBase {
 	sourcedFrom?: SchemaValue<BrainStructure | IdReference, "sourcedFrom">
 }
 interface NerveLeaf extends NerveBase {
-	type: "Nerve"
+	"@context": "https://schema.org"
+	"@type": "Nerve"
 }
 /** A common pathway for the electrochemical nerve impulses that are transmitted along each of the axons. */
 export type Nerve = NerveLeaf
@@ -9441,7 +9986,8 @@ interface NewsArticleBase extends ArticleBase {
 	printSection?: SchemaValue<Text, "printSection">
 }
 interface NewsArticleLeaf extends NewsArticleBase {
-	type: "NewsArticle"
+	"@context": "https://schema.org"
+	"@type": "NewsArticle"
 }
 /**
  * A NewsArticle is an article whose content reports news, or provides background context and supporting materials for understanding the news.
@@ -9509,31 +10055,36 @@ interface NewsMediaOrganizationBase extends OrganizationBase {
 	>
 }
 interface NewsMediaOrganizationLeaf extends NewsMediaOrganizationBase {
-	type: "NewsMediaOrganization"
+	"@context": "https://schema.org"
+	"@type": "NewsMediaOrganization"
 }
 /** A News/Media organization such as a newspaper or TV station. */
 export type NewsMediaOrganization = NewsMediaOrganizationLeaf | string
 
 interface NewspaperLeaf extends CreativeWorkSeriesBase {
-	type: "Newspaper"
+	"@context": "https://schema.org"
+	"@type": "Newspaper"
 }
 /** A publication containing information about varied topics that are pertinent to general information, a geographic area, or a specific subject matter (i.e. business, culture, education). Often published daily. */
 export type Newspaper = NewspaperLeaf
 
 interface NGOLeaf extends OrganizationBase {
-	type: "NGO"
+	"@context": "https://schema.org"
+	"@type": "NGO"
 }
 /** Organization: Non-governmental Organization. */
 export type NGO = NGOLeaf | string
 
 interface NightClubLeaf extends LocalBusinessBase {
-	type: "NightClub"
+	"@context": "https://schema.org"
+	"@type": "NightClub"
 }
 /** A nightclub or discotheque. */
 export type NightClub = NightClubLeaf | string
 
 interface NLNonprofitTypeLeaf extends EnumerationBase {
-	type: "NLNonprofitType"
+	"@context": "https://schema.org"
+	"@type": "NLNonprofitType"
 }
 /** NLNonprofitType: Non-profit organization type originating from the Netherlands. */
 export type NLNonprofitType =
@@ -9544,7 +10095,8 @@ export type NLNonprofitType =
 	| NLNonprofitTypeLeaf
 
 interface NonprofitTypeLeaf extends EnumerationBase {
-	type: "NonprofitType"
+	"@context": "https://schema.org"
+	"@type": "NonprofitType"
 }
 /** NonprofitType enumerates several kinds of official non-profit types of which a non-profit organization can be. */
 export type NonprofitType =
@@ -9554,19 +10106,22 @@ export type NonprofitType =
 	| USNonprofitType
 
 interface NotaryLeaf extends LocalBusinessBase {
-	type: "Notary"
+	"@context": "https://schema.org"
+	"@type": "Notary"
 }
 /** A notary. */
 export type Notary = NotaryLeaf | string
 
 interface NoteDigitalDocumentLeaf extends DigitalDocumentBase {
-	type: "NoteDigitalDocument"
+	"@context": "https://schema.org"
+	"@type": "NoteDigitalDocument"
 }
 /** A file containing a note, primarily for the author. */
 export type NoteDigitalDocument = NoteDigitalDocumentLeaf
 
 interface NursingLeaf extends LocalBusinessBase {
-	type: "Nursing"
+	"@context": "https://schema.org"
+	"@type": "Nursing"
 }
 /** A health profession of a person formally educated and trained in the care of the sick or infirm person. */
 export type Nursing = NursingLeaf | string
@@ -9601,7 +10156,8 @@ interface NutritionInformationBase extends ThingBase {
 	>
 }
 interface NutritionInformationLeaf extends NutritionInformationBase {
-	type: "NutritionInformation"
+	"@context": "https://schema.org"
+	"@type": "NutritionInformation"
 }
 /** Nutritional information about the recipe. */
 export type NutritionInformation = NutritionInformationLeaf
@@ -9655,7 +10211,8 @@ interface ObservationBase extends ThingBase, QuantitativeValueBase {
 	>
 }
 interface ObservationLeaf extends ObservationBase {
-	type: "Observation"
+	"@context": "https://schema.org"
+	"@type": "Observation"
 }
 /**
  * Instances of the class {@link https://schema.org/Observation Observation} are used to specify observations about an entity at a particular time. The principal properties of an {@link https://schema.org/Observation Observation} are {@link https://schema.org/observationAbout observationAbout}, {@link https://schema.org/measuredProperty measuredProperty}, {@link https://schema.org/statType statType}, [[value] and {@link https://schema.org/observationDate observationDate} and {@link https://schema.org/measuredProperty measuredProperty}. Some but not all Observations represent a {@link https://schema.org/QuantitativeValue QuantitativeValue}. Quantitative observations can be about a {@link https://schema.org/StatisticalVariable StatisticalVariable}, which is an abstract specification about which we can make observations that are grounded at a particular location and time.
@@ -9667,7 +10224,8 @@ interface ObservationLeaf extends ObservationBase {
 export type Observation = ObservationLeaf
 
 interface ObstetricLeaf extends LocalBusinessBase {
-	type: "Obstetric"
+	"@context": "https://schema.org"
+	"@type": "Obstetric"
 }
 /** A specific branch of medical science that specializes in the care of women during the prenatal and postnatal care and with the delivery of the child. */
 export type Obstetric = ObstetricLeaf | string
@@ -9713,7 +10271,8 @@ interface OccupationBase extends ThingBase {
 	skills?: SchemaValue<DefinedTerm | Text | IdReference, "skills">
 }
 interface OccupationLeaf extends OccupationBase {
-	type: "Occupation"
+	"@context": "https://schema.org"
+	"@type": "Occupation"
 }
 /** A profession, may involve prolonged training and/or a formal qualification. */
 export type Occupation = OccupationLeaf
@@ -9724,20 +10283,23 @@ interface OccupationalExperienceRequirementsBase extends ThingBase {
 }
 interface OccupationalExperienceRequirementsLeaf
 	extends OccupationalExperienceRequirementsBase {
-	type: "OccupationalExperienceRequirements"
+	"@context": "https://schema.org"
+	"@type": "OccupationalExperienceRequirements"
 }
 /** Indicates employment-related experience requirements, e.g. {@link https://schema.org/monthsOfExperience monthsOfExperience}. */
 export type OccupationalExperienceRequirements =
 	OccupationalExperienceRequirementsLeaf
 
 interface OccupationalTherapyLeaf extends MedicalTherapyBase {
-	type: "OccupationalTherapy"
+	"@context": "https://schema.org"
+	"@type": "OccupationalTherapy"
 }
 /** A treatment of people with physical, emotional, or social problems, using purposeful activity to help them overcome or learn to deal with their problems. */
 export type OccupationalTherapy = OccupationalTherapyLeaf
 
 interface OceanBodyOfWaterLeaf extends PlaceBase {
-	type: "OceanBodyOfWater"
+	"@context": "https://schema.org"
+	"@type": "OceanBodyOfWater"
 }
 /** An ocean (for example, the Pacific). */
 export type OceanBodyOfWater = OceanBodyOfWaterLeaf | string
@@ -9961,7 +10523,8 @@ interface OfferBase extends ThingBase {
 	warranty?: SchemaValue<WarrantyPromise | IdReference, "warranty">
 }
 interface OfferLeaf extends OfferBase {
-	type: "Offer"
+	"@context": "https://schema.org"
+	"@type": "Offer"
 }
 /**
  * An offer to transfer some rights to an item or to provide a service — for example, an offer to sell tickets to an event, to rent the DVD of a movie, to stream a TV show over the internet, to repair a motorcycle, or to loan a book.
@@ -9977,25 +10540,29 @@ export type Offer =
 	| OfferForPurchase
 
 interface OfferCatalogLeaf extends ItemListBase {
-	type: "OfferCatalog"
+	"@context": "https://schema.org"
+	"@type": "OfferCatalog"
 }
 /** An OfferCatalog is an ItemList that contains related Offers and/or further OfferCatalogs that are offeredBy the same provider. */
 export type OfferCatalog = OfferCatalogLeaf
 
 interface OfferForLeaseLeaf extends OfferBase {
-	type: "OfferForLease"
+	"@context": "https://schema.org"
+	"@type": "OfferForLease"
 }
 /** An {@link https://schema.org/OfferForLease OfferForLease} in Schema.org represents an {@link https://schema.org/Offer Offer} to lease out something, i.e. an {@link https://schema.org/Offer Offer} whose {@link https://schema.org/businessFunction businessFunction} is {@link http://purl.org/goodrelations/v1#LeaseOut. lease out}. See {@link https://en.wikipedia.org/wiki/GoodRelations Good Relations} for background on the underlying concepts. */
 export type OfferForLease = OfferForLeaseLeaf
 
 interface OfferForPurchaseLeaf extends OfferBase {
-	type: "OfferForPurchase"
+	"@context": "https://schema.org"
+	"@type": "OfferForPurchase"
 }
 /** An {@link https://schema.org/OfferForPurchase OfferForPurchase} in Schema.org represents an {@link https://schema.org/Offer Offer} to sell something, i.e. an {@link https://schema.org/Offer Offer} whose {@link https://schema.org/businessFunction businessFunction} is {@link http://purl.org/goodrelations/v1#Sell. sell}. See {@link https://en.wikipedia.org/wiki/GoodRelations Good Relations} for background on the underlying concepts. */
 export type OfferForPurchase = OfferForPurchaseLeaf
 
 interface OfferItemConditionLeaf extends EnumerationBase {
-	type: "OfferItemCondition"
+	"@context": "https://schema.org"
+	"@type": "OfferItemCondition"
 }
 /** A list of possible conditions for the item. */
 export type OfferItemCondition =
@@ -10039,7 +10606,8 @@ interface OfferShippingDetailsBase extends ThingBase {
 	width?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
 }
 interface OfferShippingDetailsLeaf extends OfferShippingDetailsBase {
-	type: "OfferShippingDetails"
+	"@context": "https://schema.org"
+	"@type": "OfferShippingDetails"
 }
 /**
  * OfferShippingDetails represents information about shipping destinations.
@@ -10057,31 +10625,36 @@ interface OfferShippingDetailsLeaf extends OfferShippingDetailsBase {
 export type OfferShippingDetails = OfferShippingDetailsLeaf
 
 interface OfficeEquipmentStoreLeaf extends LocalBusinessBase {
-	type: "OfficeEquipmentStore"
+	"@context": "https://schema.org"
+	"@type": "OfficeEquipmentStore"
 }
 /** An office equipment store. */
 export type OfficeEquipmentStore = OfficeEquipmentStoreLeaf | string
 
 interface OncologicLeaf extends LocalBusinessBase {
-	type: "Oncologic"
+	"@context": "https://schema.org"
+	"@type": "Oncologic"
 }
 /** A specific branch of medical science that deals with benign and malignant tumors, including the study of their development, diagnosis, treatment and prevention. */
 export type Oncologic = OncologicLeaf | string
 
 interface OnDemandEventLeaf extends PublicationEventBase {
-	type: "OnDemandEvent"
+	"@context": "https://schema.org"
+	"@type": "OnDemandEvent"
 }
 /** A publication event, e.g. catch-up TV or radio podcast, during which a program is available on-demand. */
 export type OnDemandEvent = OnDemandEventLeaf
 
 interface OnlineBusinessLeaf extends OrganizationBase {
-	type: "OnlineBusiness"
+	"@context": "https://schema.org"
+	"@type": "OnlineBusiness"
 }
 /** A particular online business, either standalone or the online part of a broader organization. Examples include an eCommerce site, an online travel booking site, an online learning site, an online logistics and shipping provider, an online (virtual) doctor, etc. */
 export type OnlineBusiness = OnlineBusinessLeaf | OnlineStore | string
 
 interface OnlineStoreLeaf extends OrganizationBase {
-	type: "OnlineStore"
+	"@context": "https://schema.org"
+	"@type": "OnlineStore"
 }
 /** An eCommerce site. */
 export type OnlineStore = OnlineStoreLeaf | string
@@ -10099,7 +10672,8 @@ interface OpeningHoursSpecificationBase extends ThingBase {
 	validThrough?: SchemaValue<Date | DateTime, "validThrough">
 }
 interface OpeningHoursSpecificationLeaf extends OpeningHoursSpecificationBase {
-	type: "OpeningHoursSpecification"
+	"@context": "https://schema.org"
+	"@type": "OpeningHoursSpecification"
 }
 /**
  * A structured value providing information about the opening hours of a place or a certain service inside a place.
@@ -10111,19 +10685,22 @@ interface OpeningHoursSpecificationLeaf extends OpeningHoursSpecificationBase {
 export type OpeningHoursSpecification = OpeningHoursSpecificationLeaf
 
 interface OpinionNewsArticleLeaf extends NewsArticleBase {
-	type: "OpinionNewsArticle"
+	"@context": "https://schema.org"
+	"@type": "OpinionNewsArticle"
 }
 /** An {@link https://schema.org/OpinionNewsArticle OpinionNewsArticle} is a {@link https://schema.org/NewsArticle NewsArticle} that primarily expresses opinions rather than journalistic reporting of news and events. For example, a {@link https://schema.org/NewsArticle NewsArticle} consisting of a column or {@link https://schema.org/Blog Blog}/{@link https://schema.org/BlogPosting BlogPosting} entry in the Opinions section of a news publication. */
 export type OpinionNewsArticle = OpinionNewsArticleLeaf
 
 interface OpticianLeaf extends LocalBusinessBase {
-	type: "Optician"
+	"@context": "https://schema.org"
+	"@type": "Optician"
 }
 /** A store that sells reading glasses and similar devices for improving vision. */
 export type Optician = OpticianLeaf | string
 
 interface OptometricLeaf extends LocalBusinessBase {
-	type: "Optometric"
+	"@context": "https://schema.org"
+	"@type": "Optometric"
 }
 /** The science or practice of testing visual acuity and prescribing corrective lenses. */
 export type Optometric = OptometricLeaf | string
@@ -10190,7 +10767,8 @@ interface OrderBase extends ThingBase {
 	seller?: SchemaValue<Organization | Person | IdReference, "seller">
 }
 interface OrderLeaf extends OrderBase {
-	type: "Order"
+	"@context": "https://schema.org"
+	"@type": "Order"
 }
 /** An order is a confirmation of a transaction (a receipt), which can contain multiple line items, each represented by an Offer that has been accepted by the customer. */
 export type Order = OrderLeaf
@@ -10200,7 +10778,8 @@ interface OrderActionBase extends TradeActionBase {
 	deliveryMethod?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
 }
 interface OrderActionLeaf extends OrderActionBase {
-	type: "OrderAction"
+	"@context": "https://schema.org"
+	"@type": "OrderAction"
 }
 /** An agent orders an object/product/service to be delivered/sent. */
 export type OrderAction = OrderActionLeaf
@@ -10221,13 +10800,15 @@ interface OrderItemBase extends ThingBase {
 	orderQuantity?: SchemaValue<Number, "orderQuantity">
 }
 interface OrderItemLeaf extends OrderItemBase {
-	type: "OrderItem"
+	"@context": "https://schema.org"
+	"@type": "OrderItem"
 }
 /** An order item is a line of an order. It includes the quantity and shipping details of a bought offer. */
 export type OrderItem = OrderItemLeaf
 
 interface OrderStatusLeaf extends EnumerationBase {
-	type: "OrderStatus"
+	"@context": "https://schema.org"
+	"@type": "OrderStatus"
 }
 /** Enumerated status values for Order. */
 export type OrderStatus =
@@ -10480,7 +11061,8 @@ interface OrganizationBase extends ThingBase {
 	vatID?: SchemaValue<Text, "vatID">
 }
 export interface OrganizationLeaf extends OrganizationBase {
-	type: "Organization"
+	"@context": "https://schema.org"
+	"@type": "Organization"
 }
 /** An organization such as a school, NGO, corporation, club, etc. */
 export type Organization =
@@ -10507,7 +11089,8 @@ export type Organization =
 	| string
 
 interface OrganizeActionLeaf extends ActionBase {
-	type: "OrganizeAction"
+	"@context": "https://schema.org"
+	"@type": "OrganizeAction"
 }
 /** The act of manipulating/administering/supervising/controlling one or more objects. */
 export type OrganizeAction =
@@ -10518,13 +11101,15 @@ export type OrganizeAction =
 	| PlanAction
 
 interface OtolaryngologicLeaf extends LocalBusinessBase {
-	type: "Otolaryngologic"
+	"@context": "https://schema.org"
+	"@type": "Otolaryngologic"
 }
 /** A specific branch of medical science that is concerned with the ear, nose and throat and their respective disease states. */
 export type Otolaryngologic = OtolaryngologicLeaf | string
 
 interface OutletStoreLeaf extends LocalBusinessBase {
-	type: "OutletStore"
+	"@context": "https://schema.org"
+	"@type": "OutletStore"
 }
 /** An outlet store. */
 export type OutletStore = OutletStoreLeaf | string
@@ -10543,19 +11128,22 @@ interface OwnershipInfoBase extends ThingBase {
 	typeOfGood?: SchemaValue<Product | Service | IdReference, "typeOfGood">
 }
 interface OwnershipInfoLeaf extends OwnershipInfoBase {
-	type: "OwnershipInfo"
+	"@context": "https://schema.org"
+	"@type": "OwnershipInfo"
 }
 /** A structured value providing information about when a certain organization or person owned a certain product. */
 export type OwnershipInfo = OwnershipInfoLeaf
 
 interface PaintActionLeaf extends ActionBase {
-	type: "PaintAction"
+	"@context": "https://schema.org"
+	"@type": "PaintAction"
 }
 /** The act of producing a painting, typically with paint and canvas as instruments. */
 export type PaintAction = PaintActionLeaf
 
 interface PaintingLeaf extends CreativeWorkBase {
-	type: "Painting"
+	"@context": "https://schema.org"
+	"@type": "Painting"
 }
 /** A painting. */
 export type Painting = PaintingLeaf
@@ -10564,7 +11152,8 @@ interface PalliativeProcedureBase
 	extends MedicalProcedureBase,
 		MedicalTherapyBase {}
 interface PalliativeProcedureLeaf extends PalliativeProcedureBase {
-	type: "PalliativeProcedure"
+	"@context": "https://schema.org"
+	"@type": "PalliativeProcedure"
 }
 /** A medical procedure intended primarily for palliative purposes, aimed at relieving the symptoms of an underlying health condition. */
 export type PalliativeProcedure = PalliativeProcedureLeaf
@@ -10603,7 +11192,8 @@ interface ParcelDeliveryBase extends ThingBase {
 	trackingUrl?: SchemaValue<URL, "trackingUrl">
 }
 interface ParcelDeliveryLeaf extends ParcelDeliveryBase {
-	type: "ParcelDelivery"
+	"@context": "https://schema.org"
+	"@type": "ParcelDelivery"
 }
 /** The delivery of a parcel either via the postal service or a commercial service. */
 export type ParcelDelivery = ParcelDeliveryLeaf
@@ -10615,19 +11205,22 @@ interface ParentAudienceBase extends PeopleAudienceBase {
 	childMinAge?: SchemaValue<Number, "childMinAge">
 }
 interface ParentAudienceLeaf extends ParentAudienceBase {
-	type: "ParentAudience"
+	"@context": "https://schema.org"
+	"@type": "ParentAudience"
 }
 /** A set of characteristics describing parents, who can be interested in viewing some content. */
 export type ParentAudience = ParentAudienceLeaf
 
 interface ParkLeaf extends CivicStructureBase {
-	type: "Park"
+	"@context": "https://schema.org"
+	"@type": "Park"
 }
 /** A park. */
 export type Park = ParkLeaf | string
 
 interface ParkingFacilityLeaf extends CivicStructureBase {
-	type: "ParkingFacility"
+	"@context": "https://schema.org"
+	"@type": "ParkingFacility"
 }
 /** A parking lot or other parking facility. */
 export type ParkingFacility = ParkingFacilityLeaf | string
@@ -10637,7 +11230,8 @@ interface PathologyTestBase extends MedicalTestBase {
 	tissueSample?: SchemaValue<Text, "tissueSample">
 }
 interface PathologyTestLeaf extends PathologyTestBase {
-	type: "PathologyTest"
+	"@context": "https://schema.org"
+	"@type": "PathologyTest"
 }
 /** A medical test performed by a laboratory that typically involves examination of a tissue sample by a pathologist. */
 export type PathologyTest = PathologyTestLeaf
@@ -10654,13 +11248,15 @@ interface PatientBase extends PersonBase, MedicalAudienceBase {
 	>
 }
 interface PatientLeaf extends PatientBase {
-	type: "Patient"
+	"@context": "https://schema.org"
+	"@type": "Patient"
 }
 /** A patient is any person recipient of health care services. */
 export type Patient = PatientLeaf | string
 
 interface PawnShopLeaf extends LocalBusinessBase {
-	type: "PawnShop"
+	"@context": "https://schema.org"
+	"@type": "PawnShop"
 }
 /** A shop that will buy, or lend money against the security of, personal possessions. */
 export type PawnShop = PawnShopLeaf | string
@@ -10673,7 +11269,8 @@ interface PayActionBase extends TradeActionBase {
 	>
 }
 interface PayActionLeaf extends PayActionBase {
-	type: "PayAction"
+	"@context": "https://schema.org"
+	"@type": "PayAction"
 }
 /** An agent pays a price to a participant. */
 export type PayAction = PayActionLeaf
@@ -10692,7 +11289,8 @@ interface PaymentCardBase extends EnumerationBase, FinancialProductBase {
 	>
 }
 interface PaymentCardLeaf extends PaymentCardBase {
-	type: "PaymentCard"
+	"@context": "https://schema.org"
+	"@type": "PaymentCard"
 }
 /** A payment method using a credit, debit, store or other card to associate the payment with an account. */
 export type PaymentCard = PaymentCardLeaf | CreditCard
@@ -10711,13 +11309,15 @@ interface PaymentChargeSpecificationBase extends PriceSpecificationBase {
 }
 interface PaymentChargeSpecificationLeaf
 	extends PaymentChargeSpecificationBase {
-	type: "PaymentChargeSpecification"
+	"@context": "https://schema.org"
+	"@type": "PaymentChargeSpecification"
 }
 /** The costs of settling the payment using a particular payment method. */
 export type PaymentChargeSpecification = PaymentChargeSpecificationLeaf
 
 interface PaymentMethodLeaf extends EnumerationBase {
-	type: "PaymentMethod"
+	"@context": "https://schema.org"
+	"@type": "PaymentMethod"
 }
 /**
  * A payment method is a standardized procedure for transferring the monetary amount for a purchase. Payment methods are characterized by the legal and technical structures used, and by the organization or group carrying out the transaction.
@@ -10736,13 +11336,15 @@ interface PaymentMethodLeaf extends EnumerationBase {
 export type PaymentMethod = PaymentMethodLeaf | PaymentCard
 
 interface PaymentServiceLeaf extends FinancialProductBase {
-	type: "PaymentService"
+	"@context": "https://schema.org"
+	"@type": "PaymentService"
 }
 /** A Service to transfer funds from a person or organization to a beneficiary person or organization. */
 export type PaymentService = PaymentServiceLeaf
 
 interface PaymentStatusTypeLeaf extends EnumerationBase {
-	type: "PaymentStatusType"
+	"@context": "https://schema.org"
+	"@type": "PaymentStatusType"
 }
 /** A specific payment status. For example, PaymentDue, PaymentComplete, etc. */
 export type PaymentStatusType =
@@ -10759,7 +11361,8 @@ export type PaymentStatusType =
 	| PaymentStatusTypeLeaf
 
 interface PediatricLeaf extends LocalBusinessBase {
-	type: "Pediatric"
+	"@context": "https://schema.org"
+	"@type": "Pediatric"
 }
 /** A specific branch of medical science that specializes in the care of infants, children and adolescents. */
 export type Pediatric = PediatricLeaf | string
@@ -10794,7 +11397,8 @@ interface PeopleAudienceBase extends AudienceBase {
 	suggestedMinAge?: SchemaValue<Number, "suggestedMinAge">
 }
 interface PeopleAudienceLeaf extends PeopleAudienceBase {
-	type: "PeopleAudience"
+	"@context": "https://schema.org"
+	"@type": "PeopleAudience"
 }
 /** A set of characteristics belonging to people, e.g. who compose an item's target audience. */
 export type PeopleAudience =
@@ -10810,19 +11414,22 @@ interface PerformActionBase extends PlayActionBase {
 	>
 }
 interface PerformActionLeaf extends PerformActionBase {
-	type: "PerformAction"
+	"@context": "https://schema.org"
+	"@type": "PerformAction"
 }
 /** The act of participating in performance arts. */
 export type PerformAction = PerformActionLeaf
 
 interface PerformingArtsTheaterLeaf extends CivicStructureBase {
-	type: "PerformingArtsTheater"
+	"@context": "https://schema.org"
+	"@type": "PerformingArtsTheater"
 }
 /** A theater or other performing art center. */
 export type PerformingArtsTheater = PerformingArtsTheaterLeaf | string
 
 interface PerformingGroupLeaf extends OrganizationBase {
-	type: "PerformingGroup"
+	"@context": "https://schema.org"
+	"@type": "PerformingGroup"
 }
 /** A performance group, such as a band, an orchestra, or a circus. */
 export type PerformingGroup =
@@ -10833,7 +11440,8 @@ export type PerformingGroup =
 	| string
 
 interface PeriodicalLeaf extends CreativeWorkSeriesBase {
-	type: "Periodical"
+	"@context": "https://schema.org"
+	"@type": "Periodical"
 }
 /**
  * A publication in any medium issued in successive parts bearing numerical or chronological designations and intended to continue indefinitely, such as a magazine, scholarly journal, or newspaper.
@@ -10859,7 +11467,8 @@ interface PermitBase extends ThingBase {
 	validUntil?: SchemaValue<Date, "validUntil">
 }
 interface PermitLeaf extends PermitBase {
-	type: "Permit"
+	"@context": "https://schema.org"
+	"@type": "Permit"
 }
 /** A permit issued by an organization, e.g. a parking pass. */
 export type Permit = PermitLeaf | GovernmentPermit
@@ -11035,32 +11644,37 @@ interface PersonBase extends ThingBase {
 	worksFor?: SchemaValue<Organization | IdReference, "worksFor">
 }
 export interface PersonLeaf extends PersonBase {
-	type: "Person"
+	"@context": "https://schema.org"
+	"@type": "Person"
 }
 /** A person (alive, dead, undead, or fictional). */
 export type Person = PersonLeaf | Patient | string
 
 interface PetStoreLeaf extends LocalBusinessBase {
-	type: "PetStore"
+	"@context": "https://schema.org"
+	"@type": "PetStore"
 }
 /** A pet store. */
 export type PetStore = PetStoreLeaf | string
 
 interface PharmacyBase extends LocalBusinessBase, MedicalOrganizationBase {}
 interface PharmacyLeaf extends PharmacyBase {
-	type: "Pharmacy"
+	"@context": "https://schema.org"
+	"@type": "Pharmacy"
 }
 /** A pharmacy or drugstore. */
 export type Pharmacy = PharmacyLeaf | string
 
 interface PhotographLeaf extends CreativeWorkBase {
-	type: "Photograph"
+	"@context": "https://schema.org"
+	"@type": "Photograph"
 }
 /** A photograph. */
 export type Photograph = PhotographLeaf
 
 interface PhotographActionLeaf extends ActionBase {
-	type: "PhotographAction"
+	"@context": "https://schema.org"
+	"@type": "PhotographAction"
 }
 /** The act of capturing still images of objects using a camera. */
 export type PhotographAction = PhotographActionLeaf
@@ -11082,13 +11696,15 @@ interface PhysicalActivityBase extends MedicalEntityBase {
 	pathophysiology?: SchemaValue<Text, "pathophysiology">
 }
 interface PhysicalActivityLeaf extends PhysicalActivityBase {
-	type: "PhysicalActivity"
+	"@context": "https://schema.org"
+	"@type": "PhysicalActivity"
 }
 /** Any bodily activity that enhances or maintains physical fitness and overall health and wellness. Includes activity that is part of daily living and routine, structured exercise, and exercise prescribed as part of a medical treatment or recovery plan. */
 export type PhysicalActivity = PhysicalActivityLeaf | ExercisePlan
 
 interface PhysicalActivityCategoryLeaf extends EnumerationBase {
-	type: "PhysicalActivityCategory"
+	"@context": "https://schema.org"
+	"@type": "PhysicalActivityCategory"
 }
 /** Categories of physical activity, organized by physiologic classification. */
 export type PhysicalActivityCategory =
@@ -11110,7 +11726,8 @@ export type PhysicalActivityCategory =
 
 interface PhysicalExamBase extends MedicalProcedureBase, EnumerationBase {}
 interface PhysicalExamLeaf extends PhysicalExamBase {
-	type: "PhysicalExam"
+	"@context": "https://schema.org"
+	"@type": "PhysicalExam"
 }
 /** A type of physical examination of a patient performed by a physician. */
 export type PhysicalExam =
@@ -11145,7 +11762,8 @@ export type PhysicalExam =
 	| PhysicalExamLeaf
 
 interface PhysicalTherapyLeaf extends MedicalTherapyBase {
-	type: "PhysicalTherapy"
+	"@context": "https://schema.org"
+	"@type": "PhysicalTherapy"
 }
 /** A process of progressive physical care and rehabilitation aimed at improving a health condition. */
 export type PhysicalTherapy = PhysicalTherapyLeaf
@@ -11168,13 +11786,15 @@ interface PhysicianBase extends LocalBusinessBase, MedicalOrganizationBase {
 	>
 }
 interface PhysicianLeaf extends PhysicianBase {
-	type: "Physician"
+	"@context": "https://schema.org"
+	"@type": "Physician"
 }
 /** A doctor's office. */
 export type Physician = PhysicianLeaf | string
 
 interface PhysiotherapyLeaf extends LocalBusinessBase {
-	type: "Physiotherapy"
+	"@context": "https://schema.org"
+	"@type": "Physiotherapy"
 }
 /** The practice of treatment of disease, injury, or deformity by physical methods such as massage, heat treatment, and exercise rather than by drugs or surgery. */
 export type Physiotherapy = PhysiotherapyLeaf | string
@@ -11344,7 +11964,8 @@ interface PlaceBase extends ThingBase {
 	tourBookingPage?: SchemaValue<URL, "tourBookingPage">
 }
 export interface PlaceLeaf extends PlaceBase {
-	type: "Place"
+	"@context": "https://schema.org"
+	"@type": "Place"
 }
 /** Entities that have a somewhat fixed, physical extension. */
 export type Place =
@@ -11361,7 +11982,8 @@ export type Place =
 	| string
 
 interface PlaceOfWorshipLeaf extends CivicStructureBase {
-	type: "PlaceOfWorship"
+	"@context": "https://schema.org"
+	"@type": "PlaceOfWorship"
 }
 /** Place of worship, such as a church, synagogue, or mosque. */
 export type PlaceOfWorship =
@@ -11378,7 +12000,8 @@ interface PlanActionBase extends ActionBase {
 	scheduledTime?: SchemaValue<Date | DateTime, "scheduledTime">
 }
 interface PlanActionLeaf extends PlanActionBase {
-	type: "PlanAction"
+	"@context": "https://schema.org"
+	"@type": "PlanAction"
 }
 /** The act of planning the execution of an event/task/action/reservation/plan to a future date. */
 export type PlanAction =
@@ -11388,13 +12011,15 @@ export type PlanAction =
 	| ScheduleAction
 
 interface PlasticSurgeryLeaf extends LocalBusinessBase {
-	type: "PlasticSurgery"
+	"@context": "https://schema.org"
+	"@type": "PlasticSurgery"
 }
 /** A specific branch of medical science that pertains to therapeutic or cosmetic repair or re-formation of missing, injured or malformed tissues or body parts by manual and instrumental means. */
 export type PlasticSurgery = PlasticSurgeryLeaf | string
 
 interface PlayLeaf extends CreativeWorkBase {
-	type: "Play"
+	"@context": "https://schema.org"
+	"@type": "Play"
 }
 /** A play is a form of literature, usually consisting of dialogue between characters, intended for theatrical performance rather than just reading. Note: A performance of a Play would be a {@link https://schema.org/TheaterEvent TheaterEvent} or {@link https://schema.org/BroadcastEvent BroadcastEvent} - the _Play_ being the {@link https://schema.org/workPerformed workPerformed}. */
 export type Play = PlayLeaf
@@ -11406,7 +12031,8 @@ interface PlayActionBase extends ActionBase {
 	event?: SchemaValue<Event | IdReference, "event">
 }
 interface PlayActionLeaf extends PlayActionBase {
-	type: "PlayAction"
+	"@context": "https://schema.org"
+	"@type": "PlayAction"
 }
 /**
  * The act of playing/exercising/training/performing for enjoyment, leisure, recreation, competition or exercise.
@@ -11425,31 +12051,36 @@ interface PlayGameActionBase extends ConsumeActionBase {
 	>
 }
 interface PlayGameActionLeaf extends PlayGameActionBase {
-	type: "PlayGameAction"
+	"@context": "https://schema.org"
+	"@type": "PlayGameAction"
 }
 /** The act of playing a video game. */
 export type PlayGameAction = PlayGameActionLeaf
 
 interface PlaygroundLeaf extends CivicStructureBase {
-	type: "Playground"
+	"@context": "https://schema.org"
+	"@type": "Playground"
 }
 /** A playground. */
 export type Playground = PlaygroundLeaf | string
 
 interface PlumberLeaf extends LocalBusinessBase {
-	type: "Plumber"
+	"@context": "https://schema.org"
+	"@type": "Plumber"
 }
 /** A plumbing service. */
 export type Plumber = PlumberLeaf | string
 
 interface PodcastEpisodeLeaf extends EpisodeBase {
-	type: "PodcastEpisode"
+	"@context": "https://schema.org"
+	"@type": "PodcastEpisode"
 }
 /** A single episode of a podcast series. */
 export type PodcastEpisode = PodcastEpisodeLeaf
 
 interface PodcastSeasonLeaf extends CreativeWorkSeasonBase {
-	type: "PodcastSeason"
+	"@context": "https://schema.org"
+	"@type": "PodcastSeason"
 }
 /** A single season of a podcast. Many podcasts do not break down into separate seasons. In that case, PodcastSeries should be used. */
 export type PodcastSeason = PodcastSeasonLeaf
@@ -11461,32 +12092,37 @@ interface PodcastSeriesBase extends CreativeWorkSeriesBase {
 	webFeed?: SchemaValue<DataFeed | URL | IdReference, "webFeed">
 }
 interface PodcastSeriesLeaf extends PodcastSeriesBase {
-	type: "PodcastSeries"
+	"@context": "https://schema.org"
+	"@type": "PodcastSeries"
 }
 /** A podcast is an episodic series of digital audio or video files which a user can download and listen to. */
 export type PodcastSeries = PodcastSeriesLeaf
 
 interface PodiatricLeaf extends LocalBusinessBase {
-	type: "Podiatric"
+	"@context": "https://schema.org"
+	"@type": "Podiatric"
 }
 /** Podiatry is the care of the human foot, especially the diagnosis and treatment of foot disorders. */
 export type Podiatric = PodiatricLeaf | string
 
 interface PoliceStationBase extends CivicStructureBase, LocalBusinessBase {}
 interface PoliceStationLeaf extends PoliceStationBase {
-	type: "PoliceStation"
+	"@context": "https://schema.org"
+	"@type": "PoliceStation"
 }
 /** A police station. */
 export type PoliceStation = PoliceStationLeaf | string
 
 interface PoliticalPartyLeaf extends OrganizationBase {
-	type: "PoliticalParty"
+	"@context": "https://schema.org"
+	"@type": "PoliticalParty"
 }
 /** Organization: Political Party. */
 export type PoliticalParty = PoliticalPartyLeaf | string
 
 interface PondLeaf extends PlaceBase {
-	type: "Pond"
+	"@context": "https://schema.org"
+	"@type": "Pond"
 }
 /** A pond. */
 export type Pond = PondLeaf | string
@@ -11506,7 +12142,8 @@ interface PostalAddressBase extends ContactPointBase {
 	streetAddress?: SchemaValue<Text, "streetAddress">
 }
 interface PostalAddressLeaf extends PostalAddressBase {
-	type: "PostalAddress"
+	"@context": "https://schema.org"
+	"@type": "PostalAddress"
 }
 /** The mailing address. */
 export type PostalAddress = PostalAddressLeaf
@@ -11519,55 +12156,64 @@ interface PostalCodeRangeSpecificationBase extends ThingBase {
 }
 interface PostalCodeRangeSpecificationLeaf
 	extends PostalCodeRangeSpecificationBase {
-	type: "PostalCodeRangeSpecification"
+	"@context": "https://schema.org"
+	"@type": "PostalCodeRangeSpecification"
 }
 /** Indicates a range of postal codes, usually defined as the set of valid codes between {@link https://schema.org/postalCodeBegin postalCodeBegin} and {@link https://schema.org/postalCodeEnd postalCodeEnd}, inclusively. */
 export type PostalCodeRangeSpecification = PostalCodeRangeSpecificationLeaf
 
 interface PosterLeaf extends CreativeWorkBase {
-	type: "Poster"
+	"@context": "https://schema.org"
+	"@type": "Poster"
 }
 /** A large, usually printed placard, bill, or announcement, often illustrated, that is posted to advertise or publicize something. */
 export type Poster = PosterLeaf
 
 interface PostOfficeLeaf extends LocalBusinessBase {
-	type: "PostOffice"
+	"@context": "https://schema.org"
+	"@type": "PostOffice"
 }
 /** A post office. */
 export type PostOffice = PostOfficeLeaf | string
 
 interface PreOrderActionLeaf extends TradeActionBase {
-	type: "PreOrderAction"
+	"@context": "https://schema.org"
+	"@type": "PreOrderAction"
 }
 /** An agent orders a (not yet released) object/product/service to be delivered/sent. */
 export type PreOrderAction = PreOrderActionLeaf
 
 interface PrependActionLeaf extends InsertActionBase {
-	type: "PrependAction"
+	"@context": "https://schema.org"
+	"@type": "PrependAction"
 }
 /** The act of inserting at the beginning if an ordered collection. */
 export type PrependAction = PrependActionLeaf
 
 interface PreschoolLeaf extends EducationalOrganizationBase {
-	type: "Preschool"
+	"@context": "https://schema.org"
+	"@type": "Preschool"
 }
 /** A preschool. */
 export type Preschool = PreschoolLeaf | string
 
 interface PresentationDigitalDocumentLeaf extends DigitalDocumentBase {
-	type: "PresentationDigitalDocument"
+	"@context": "https://schema.org"
+	"@type": "PresentationDigitalDocument"
 }
 /** A file containing slides or used for a presentation. */
 export type PresentationDigitalDocument = PresentationDigitalDocumentLeaf
 
 interface PreventionIndicationLeaf extends MedicalEntityBase {
-	type: "PreventionIndication"
+	"@context": "https://schema.org"
+	"@type": "PreventionIndication"
 }
 /** An indication for preventing an underlying condition, symptom, etc. */
 export type PreventionIndication = PreventionIndicationLeaf
 
 interface PriceComponentTypeEnumerationLeaf extends EnumerationBase {
-	type: "PriceComponentTypeEnumeration"
+	"@context": "https://schema.org"
+	"@type": "PriceComponentTypeEnumeration"
 }
 /** Enumerates different price components that together make up the total price for an offered product. */
 export type PriceComponentTypeEnumeration =
@@ -11624,7 +12270,8 @@ interface PriceSpecificationBase extends ThingBase {
 	valueAddedTaxIncluded?: SchemaValue<Boolean, "valueAddedTaxIncluded">
 }
 interface PriceSpecificationLeaf extends PriceSpecificationBase {
-	type: "PriceSpecification"
+	"@context": "https://schema.org"
+	"@type": "PriceSpecification"
 }
 /** A structured value representing a price or price range. Typically, only the subclasses of this type are used for markup. It is recommended to use {@link https://schema.org/MonetaryAmount MonetaryAmount} to describe independent amounts of money such as a salary, credit card limits, etc. */
 export type PriceSpecification =
@@ -11635,7 +12282,8 @@ export type PriceSpecification =
 	| UnitPriceSpecification
 
 interface PriceTypeEnumerationLeaf extends EnumerationBase {
-	type: "PriceTypeEnumeration"
+	"@context": "https://schema.org"
+	"@type": "PriceTypeEnumeration"
 }
 /** Enumerates different price types, for example list price, invoice price, and sale price. */
 export type PriceTypeEnumeration =
@@ -11654,7 +12302,8 @@ export type PriceTypeEnumeration =
 	| PriceTypeEnumerationLeaf
 
 interface PrimaryCareLeaf extends LocalBusinessBase {
-	type: "PrimaryCare"
+	"@context": "https://schema.org"
+	"@type": "PrimaryCare"
 }
 /** The medical care by a physician, or other health-care professional, who is the patient's first contact with the health-care system and who may recommend a specialist if necessary. */
 export type PrimaryCare = PrimaryCareLeaf | string
@@ -11861,7 +12510,8 @@ interface ProductBase extends ThingBase {
 	width?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
 }
 interface ProductLeaf extends ProductBase {
-	type: "Product"
+	"@context": "https://schema.org"
+	"@type": "Product"
 }
 /** Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online. */
 export type Product =
@@ -11883,7 +12533,8 @@ interface ProductCollectionBase extends ProductBase, CollectionBase {
 	>
 }
 interface ProductCollectionLeaf extends ProductCollectionBase {
-	type: "ProductCollection"
+	"@context": "https://schema.org"
+	"@type": "ProductCollection"
 }
 /** A set of products (either {@link https://schema.org/ProductGroup ProductGroup}s or specific variants) that are listed together e.g. in an {@link https://schema.org/Offer Offer}. */
 export type ProductCollection = ProductCollectionLeaf
@@ -11897,7 +12548,8 @@ interface ProductGroupBase extends ProductBase {
 	variesBy?: SchemaValue<DefinedTerm | Text | IdReference, "variesBy">
 }
 interface ProductGroupLeaf extends ProductGroupBase {
-	type: "ProductGroup"
+	"@context": "https://schema.org"
+	"@type": "ProductGroup"
 }
 /**
  * A ProductGroup represents a group of {@link https://schema.org/Product Product}s that vary only in certain well-described ways, such as by {@link https://schema.org/size size}, {@link https://schema.org/color color}, {@link https://schema.org/material material} etc.
@@ -11918,13 +12570,15 @@ interface ProductModelBase extends ProductBase {
 	successorOf?: SchemaValue<ProductModel | IdReference, "successorOf">
 }
 interface ProductModelLeaf extends ProductModelBase {
-	type: "ProductModel"
+	"@context": "https://schema.org"
+	"@type": "ProductModel"
 }
 /** A datasheet or vendor specification of a product (in the sense of a prototypical description). */
 export type ProductModel = ProductModelLeaf
 
 interface ProductReturnEnumerationLeaf extends EnumerationBase {
-	type: "ProductReturnEnumeration"
+	"@context": "https://schema.org"
+	"@type": "ProductReturnEnumeration"
 }
 /**
  * ProductReturnEnumeration enumerates several kinds of product return policy. Note that this structure may not capture all aspects of the policy.
@@ -11957,7 +12611,8 @@ interface ProductReturnPolicyBase extends ThingBase {
 	productReturnLink?: SchemaValue<URL, "productReturnLink">
 }
 interface ProductReturnPolicyLeaf extends ProductReturnPolicyBase {
-	type: "ProductReturnPolicy"
+	"@context": "https://schema.org"
+	"@type": "ProductReturnPolicy"
 }
 /**
  * A ProductReturnPolicy provides information about product return policies associated with an {@link https://schema.org/Organization Organization} or {@link https://schema.org/Product Product}.
@@ -11967,7 +12622,8 @@ interface ProductReturnPolicyLeaf extends ProductReturnPolicyBase {
 export type ProductReturnPolicy = ProductReturnPolicyLeaf
 
 interface ProfessionalServiceLeaf extends LocalBusinessBase {
-	type: "ProfessionalService"
+	"@context": "https://schema.org"
+	"@type": "ProfessionalService"
 }
 /**
  * Original definition: "provider of professional services."
@@ -11977,7 +12633,8 @@ interface ProfessionalServiceLeaf extends LocalBusinessBase {
 export type ProfessionalService = ProfessionalServiceLeaf | string
 
 interface ProfilePageLeaf extends WebPageBase {
-	type: "ProfilePage"
+	"@context": "https://schema.org"
+	"@type": "ProfilePage"
 }
 /** Web page type: Profile page. */
 export type ProfilePage = ProfilePageLeaf
@@ -12007,13 +12664,15 @@ interface ProgramMembershipBase extends ThingBase {
 	programName?: SchemaValue<Text, "programName">
 }
 interface ProgramMembershipLeaf extends ProgramMembershipBase {
-	type: "ProgramMembership"
+	"@context": "https://schema.org"
+	"@type": "ProgramMembership"
 }
 /** Used to describe membership in a loyalty programs (e.g. "StarAliance"), traveler clubs (e.g. "AAA"), purchase clubs ("Safeway Club"), etc. */
 export type ProgramMembership = ProgramMembershipLeaf
 
 interface ProjectLeaf extends OrganizationBase {
-	type: "Project"
+	"@context": "https://schema.org"
+	"@type": "Project"
 }
 /** An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim. Use properties from {@link https://schema.org/Organization Organization}, {@link https://schema.org/subOrganization subOrganization}/{@link https://schema.org/parentOrganization parentOrganization} to indicate project sub-structures. */
 export type Project = ProjectLeaf | FundingAgency | ResearchProject | string
@@ -12029,7 +12688,8 @@ interface PronounceableTextBase extends Partial<IdReference> {
 	textValue?: SchemaValue<Text, "textValue">
 }
 interface PronounceableTextLeaf extends PronounceableTextBase {
-	type: "PronounceableText"
+	"@context": "https://schema.org"
+	"@type": "PronounceableText"
 }
 /** Data type: PronounceableText. */
 export type PronounceableText = PronounceableTextLeaf | string
@@ -12048,7 +12708,8 @@ interface PropertyBase extends ThingBase {
 	>
 }
 interface PropertyLeaf extends PropertyBase {
-	type: "Property"
+	"@context": "https://schema.org"
+	"@type": "Property"
 }
 /** A property, used to indicate attributes and relationships of some Thing; equivalent to rdf:Property. */
 export type Property = PropertyLeaf
@@ -12108,7 +12769,8 @@ interface PropertyValueBase extends ThingBase {
 	>
 }
 interface PropertyValueLeaf extends PropertyValueBase {
-	type: "PropertyValue"
+	"@context": "https://schema.org"
+	"@type": "PropertyValue"
 }
 /**
  * A property-value pair, e.g. representing a feature of a product or place. Use the 'name' property for the name of the property. If there is an additional human-readable version of the value, put that into the 'description' property.
@@ -12143,7 +12805,8 @@ interface PropertyValueSpecificationBase extends ThingBase {
 }
 interface PropertyValueSpecificationLeaf
 	extends PropertyValueSpecificationBase {
-	type: "PropertyValueSpecification"
+	"@context": "https://schema.org"
+	"@type": "PropertyValueSpecification"
 }
 /** A Property value specification. */
 export type PropertyValueSpecification = PropertyValueSpecificationLeaf
@@ -12153,19 +12816,22 @@ interface ProteinBase extends BioChemEntityBase {
 	hasBioPolymerSequence?: SchemaValue<Text, "hasBioPolymerSequence">
 }
 interface ProteinLeaf extends ProteinBase {
-	type: "Protein"
+	"@context": "https://schema.org"
+	"@type": "Protein"
 }
 /** Protein is here used in its widest possible definition, as classes of amino acid based molecules. Amyloid-beta Protein in human (UniProt P05067), eukaryota (e.g. an OrthoDB group) or even a single molecule that one can point to are all of type :Protein. A protein can thus be a subclass of another protein, e.g. :Protein as a UniProt record can have multiple isoforms inside it which would also be :Protein. They can be imagined, synthetic, hypothetical or naturally occurring. */
 export type Protein = ProteinLeaf
 
 interface PsychiatricLeaf extends LocalBusinessBase {
-	type: "Psychiatric"
+	"@context": "https://schema.org"
+	"@type": "Psychiatric"
 }
 /** A specific branch of medical science that is concerned with the study, treatment, and prevention of mental illness, using both medical and psychological therapies. */
 export type Psychiatric = PsychiatricLeaf | string
 
 interface PsychologicalTreatmentLeaf extends TherapeuticProcedureBase {
-	type: "PsychologicalTreatment"
+	"@context": "https://schema.org"
+	"@type": "PsychologicalTreatment"
 }
 /** A process of care relying upon counseling, dialogue and communication aimed at improving a mental health condition without use of drugs. */
 export type PsychologicalTreatment = PsychologicalTreatmentLeaf
@@ -12183,7 +12849,8 @@ interface PublicationEventBase extends EventBase {
 	publishedOn?: SchemaValue<BroadcastService | IdReference, "publishedOn">
 }
 interface PublicationEventLeaf extends PublicationEventBase {
-	type: "PublicationEvent"
+	"@context": "https://schema.org"
+	"@type": "PublicationEvent"
 }
 /** A PublicationEvent corresponds indifferently to the event of publication for a CreativeWork of any type, e.g. a broadcast event, an on-demand event, a book/journal publication via a variety of delivery media. */
 export type PublicationEvent =
@@ -12202,7 +12869,8 @@ interface PublicationIssueBase extends CreativeWorkBase {
 	pagination?: SchemaValue<Text, "pagination">
 }
 interface PublicationIssueLeaf extends PublicationIssueBase {
-	type: "PublicationIssue"
+	"@context": "https://schema.org"
+	"@type": "PublicationIssue"
 }
 /**
  * A part of a successively published publication such as a periodical or publication volume, often numbered, usually containing a grouping of works such as articles.
@@ -12222,7 +12890,8 @@ interface PublicationVolumeBase extends CreativeWorkBase {
 	volumeNumber?: SchemaValue<Integer | Text, "volumeNumber">
 }
 interface PublicationVolumeLeaf extends PublicationVolumeBase {
-	type: "PublicationVolume"
+	"@context": "https://schema.org"
+	"@type": "PublicationVolume"
 }
 /**
  * A part of a successively published publication such as a periodical or multi-volume work, often numbered. It may represent a time span, such as a year.
@@ -12232,25 +12901,29 @@ interface PublicationVolumeLeaf extends PublicationVolumeBase {
 export type PublicationVolume = PublicationVolumeLeaf
 
 interface PublicHealthLeaf extends LocalBusinessBase {
-	type: "PublicHealth"
+	"@context": "https://schema.org"
+	"@type": "PublicHealth"
 }
 /** Branch of medicine that pertains to the health services to improve and protect community health, especially epidemiology, sanitation, immunization, and preventive medicine. */
 export type PublicHealth = PublicHealthLeaf | string
 
 interface PublicSwimmingPoolLeaf extends LocalBusinessBase {
-	type: "PublicSwimmingPool"
+	"@context": "https://schema.org"
+	"@type": "PublicSwimmingPool"
 }
 /** A public swimming pool. */
 export type PublicSwimmingPool = PublicSwimmingPoolLeaf | string
 
 interface PublicToiletLeaf extends CivicStructureBase {
-	type: "PublicToilet"
+	"@context": "https://schema.org"
+	"@type": "PublicToilet"
 }
 /** A public toilet is a room or small building containing one or more toilets (and possibly also urinals) which is available for use by the general public, or by customers or employees of certain businesses. */
 export type PublicToilet = PublicToiletLeaf | string
 
 interface QAPageLeaf extends WebPageBase {
-	type: "QAPage"
+	"@context": "https://schema.org"
+	"@type": "QAPage"
 }
 /** A QAPage is a WebPage focussed on a specific Question and its Answer(s), e.g. in a question answering site or documenting Frequently Asked Questions (FAQs). */
 export type QAPage = QAPageLeaf
@@ -12292,7 +12965,8 @@ interface QualitativeValueBase extends EnumerationBase {
 	>
 }
 interface QualitativeValueLeaf extends QualitativeValueBase {
-	type: "QualitativeValue"
+	"@context": "https://schema.org"
+	"@type": "QualitativeValue"
 }
 /** A predefined value for a product characteristic, e.g. the power cord plug type 'US' or the garment sizes 'S', 'M', 'L', and 'XL'. */
 export type QualitativeValue =
@@ -12346,7 +13020,8 @@ interface QuantitativeValueBase extends ThingBase {
 	>
 }
 interface QuantitativeValueLeaf extends QuantitativeValueBase {
-	type: "QuantitativeValue"
+	"@context": "https://schema.org"
+	"@type": "QuantitativeValue"
 }
 /** A point value or interval for product characteristics and other purposes. */
 export type QuantitativeValue = QuantitativeValueLeaf | Observation
@@ -12367,7 +13042,8 @@ interface QuantitativeValueDistributionBase extends ThingBase {
 }
 interface QuantitativeValueDistributionLeaf
 	extends QuantitativeValueDistributionBase {
-	type: "QuantitativeValueDistribution"
+	"@context": "https://schema.org"
+	"@type": "QuantitativeValueDistribution"
 }
 /** A statistical distribution of values. */
 export type QuantitativeValueDistribution =
@@ -12375,7 +13051,8 @@ export type QuantitativeValueDistribution =
 	| MonetaryAmountDistribution
 
 interface QuantityLeaf extends ThingBase {
-	type: "Quantity"
+	"@context": "https://schema.org"
+	"@type": "Quantity"
 }
 /** Quantities such as distance, time, mass, weight, etc. Particular instances of say Mass are entities like '3 kg' or '4 milligrams'. */
 export type Quantity =
@@ -12403,13 +13080,15 @@ interface QuestionBase extends CommentBase {
 	>
 }
 interface QuestionLeaf extends QuestionBase {
-	type: "Question"
+	"@context": "https://schema.org"
+	"@type": "Question"
 }
 /** A specific question - e.g. from a user seeking answers online, or collected in a Frequently Asked Questions (FAQ) document. */
 export type Question = QuestionLeaf
 
 interface QuizLeaf extends LearningResourceBase {
-	type: "Quiz"
+	"@context": "https://schema.org"
+	"@type": "Quiz"
 }
 /** Quiz: A test of knowledge, skills and abilities. */
 export type Quiz = QuizLeaf
@@ -12422,49 +13101,57 @@ interface QuotationBase extends CreativeWorkBase {
 	>
 }
 interface QuotationLeaf extends QuotationBase {
-	type: "Quotation"
+	"@context": "https://schema.org"
+	"@type": "Quotation"
 }
 /** A quotation. Often but not necessarily from some written work, attributable to a real world author and - if associated with a fictional character - to any fictional Person. Use {@link https://schema.org/isBasedOn isBasedOn} to link to source/origin. The {@link https://schema.org/recordedIn recordedIn} property can be used to reference a Quotation from an {@link https://schema.org/Event Event}. */
 export type Quotation = QuotationLeaf
 
 interface QuoteActionLeaf extends TradeActionBase {
-	type: "QuoteAction"
+	"@context": "https://schema.org"
+	"@type": "QuoteAction"
 }
 /** An agent quotes/estimates/appraises an object/product/service with a price at a location/store. */
 export type QuoteAction = QuoteActionLeaf
 
 interface RadiationTherapyLeaf extends MedicalTherapyBase {
-	type: "RadiationTherapy"
+	"@context": "https://schema.org"
+	"@type": "RadiationTherapy"
 }
 /** A process of care using radiation aimed at improving a health condition. */
 export type RadiationTherapy = RadiationTherapyLeaf
 
 interface RadioBroadcastServiceLeaf extends BroadcastServiceBase {
-	type: "RadioBroadcastService"
+	"@context": "https://schema.org"
+	"@type": "RadioBroadcastService"
 }
 /** A delivery service through which radio content is provided via broadcast over the air or online. */
 export type RadioBroadcastService = RadioBroadcastServiceLeaf
 
 interface RadioChannelLeaf extends BroadcastChannelBase {
-	type: "RadioChannel"
+	"@context": "https://schema.org"
+	"@type": "RadioChannel"
 }
 /** A unique instance of a radio BroadcastService on a CableOrSatelliteService lineup. */
 export type RadioChannel = RadioChannelLeaf | AMRadioChannel | FMRadioChannel
 
 interface RadioClipLeaf extends ClipBase {
-	type: "RadioClip"
+	"@context": "https://schema.org"
+	"@type": "RadioClip"
 }
 /** A short radio program or a segment/part of a radio program. */
 export type RadioClip = RadioClipLeaf
 
 interface RadioEpisodeLeaf extends EpisodeBase {
-	type: "RadioEpisode"
+	"@context": "https://schema.org"
+	"@type": "RadioEpisode"
 }
 /** A radio episode which can be part of a series or season. */
 export type RadioEpisode = RadioEpisodeLeaf
 
 interface RadioSeasonLeaf extends CreativeWorkSeasonBase {
-	type: "RadioSeason"
+	"@context": "https://schema.org"
+	"@type": "RadioSeason"
 }
 /** Season dedicated to radio broadcast and associated online delivery. */
 export type RadioSeason = RadioSeasonLeaf
@@ -12526,13 +13213,15 @@ interface RadioSeriesBase extends CreativeWorkSeriesBase {
 	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface RadioSeriesLeaf extends RadioSeriesBase {
-	type: "RadioSeries"
+	"@context": "https://schema.org"
+	"@type": "RadioSeries"
 }
 /** CreativeWorkSeries dedicated to radio broadcast and associated online delivery. */
 export type RadioSeries = RadioSeriesLeaf
 
 interface RadioStationLeaf extends LocalBusinessBase {
-	type: "RadioStation"
+	"@context": "https://schema.org"
+	"@type": "RadioStation"
 }
 /** A radio station. */
 export type RadioStation = RadioStationLeaf | string
@@ -12558,13 +13247,15 @@ interface RatingBase extends ThingBase {
 	worstRating?: SchemaValue<Number | Text, "worstRating">
 }
 interface RatingLeaf extends RatingBase {
-	type: "Rating"
+	"@context": "https://schema.org"
+	"@type": "Rating"
 }
 /** A rating is an evaluation on a numeric scale, such as 1 to 5 stars. */
 export type Rating = RatingLeaf | AggregateRating | EndorsementRating
 
 interface ReactActionLeaf extends ActionBase {
-	type: "ReactAction"
+	"@context": "https://schema.org"
+	"@type": "ReactAction"
 }
 /** The act of responding instinctively and emotionally to an object, expressing a sentiment. */
 export type ReactAction =
@@ -12577,13 +13268,15 @@ export type ReactAction =
 	| WantAction
 
 interface ReadActionLeaf extends ConsumeActionBase {
-	type: "ReadAction"
+	"@context": "https://schema.org"
+	"@type": "ReadAction"
 }
 /** The act of consuming written content. */
 export type ReadAction = ReadActionLeaf
 
 interface RealEstateAgentLeaf extends LocalBusinessBase {
-	type: "RealEstateAgent"
+	"@context": "https://schema.org"
+	"@type": "RealEstateAgent"
 }
 /** A real-estate agent. */
 export type RealEstateAgent = RealEstateAgentLeaf | string
@@ -12598,7 +13291,8 @@ interface RealEstateListingBase extends WebPageBase {
 	>
 }
 interface RealEstateListingLeaf extends RealEstateListingBase {
-	type: "RealEstateListing"
+	"@context": "https://schema.org"
+	"@type": "RealEstateListing"
 }
 /** A {@link https://schema.org/RealEstateListing RealEstateListing} is a listing that describes one or more real-estate {@link https://schema.org/Offer Offer}s (whose {@link https://schema.org/businessFunction businessFunction} is typically to lease out, or to sell). The {@link https://schema.org/RealEstateListing RealEstateListing} type itself represents the overall listing, as manifested in some {@link https://schema.org/WebPage WebPage}. */
 export type RealEstateListing = RealEstateListingLeaf
@@ -12610,7 +13304,8 @@ interface ReceiveActionBase extends TransferActionBase {
 	sender?: SchemaValue<Audience | Organization | Person | IdReference, "sender">
 }
 interface ReceiveActionLeaf extends ReceiveActionBase {
-	type: "ReceiveAction"
+	"@context": "https://schema.org"
+	"@type": "ReceiveAction"
 }
 /**
  * The act of physically/electronically taking delivery of an object that has been transferred from an origin to a destination. Reciprocal of SendAction.
@@ -12654,7 +13349,8 @@ interface RecipeBase extends HowToBase {
 	suitableForDiet?: SchemaValue<RestrictedDiet | IdReference, "suitableForDiet">
 }
 interface RecipeLeaf extends RecipeBase {
-	type: "Recipe"
+	"@context": "https://schema.org"
+	"@type": "Recipe"
 }
 /** A recipe. For dietary restrictions covered by the recipe, a few common restrictions are enumerated via {@link https://schema.org/suitableForDiet suitableForDiet}. The {@link https://schema.org/keywords keywords} property can also be used to add more detail. */
 export type Recipe = RecipeLeaf
@@ -12667,25 +13363,29 @@ interface RecommendationBase extends ReviewBase {
 	>
 }
 interface RecommendationLeaf extends RecommendationBase {
-	type: "Recommendation"
+	"@context": "https://schema.org"
+	"@type": "Recommendation"
 }
 /** {@link https://schema.org/Recommendation Recommendation} is a type of {@link https://schema.org/Review Review} that suggests or proposes something as the best option or best course of action. Recommendations may be for products or services, or other concrete things, as in the case of a ranked list or product guide. A {@link https://schema.org/Guide Guide} may list multiple recommendations for different categories. For example, in a {@link https://schema.org/Guide Guide} about which TVs to buy, the author may have several {@link https://schema.org/Recommendation Recommendation}s. */
 export type Recommendation = RecommendationLeaf
 
 interface RecommendedDoseScheduleLeaf extends DoseScheduleBase {
-	type: "RecommendedDoseSchedule"
+	"@context": "https://schema.org"
+	"@type": "RecommendedDoseSchedule"
 }
 /** A recommended dosing schedule for a drug or supplement as prescribed or recommended by an authority or by the drug/supplement's manufacturer. Capture the recommending authority in the recognizingAuthority property of MedicalEntity. */
 export type RecommendedDoseSchedule = RecommendedDoseScheduleLeaf
 
 interface RecyclingCenterLeaf extends LocalBusinessBase {
-	type: "RecyclingCenter"
+	"@context": "https://schema.org"
+	"@type": "RecyclingCenter"
 }
 /** A recycling center. */
 export type RecyclingCenter = RecyclingCenterLeaf | string
 
 interface RefundTypeEnumerationLeaf extends EnumerationBase {
-	type: "RefundTypeEnumeration"
+	"@context": "https://schema.org"
+	"@type": "RefundTypeEnumeration"
 }
 /** Enumerates several kinds of product return refund types. */
 export type RefundTypeEnumeration =
@@ -12698,7 +13398,8 @@ export type RefundTypeEnumeration =
 	| RefundTypeEnumerationLeaf
 
 interface RegisterActionLeaf extends ActionBase {
-	type: "RegisterAction"
+	"@context": "https://schema.org"
+	"@type": "RegisterAction"
 }
 /**
  * The act of registering to be a user of a service, product or web page.
@@ -12711,7 +13412,8 @@ interface RegisterActionLeaf extends ActionBase {
 export type RegisterAction = RegisterActionLeaf
 
 interface RejectActionLeaf extends ActionBase {
-	type: "RejectAction"
+	"@context": "https://schema.org"
+	"@type": "RejectAction"
 }
 /**
  * The act of rejecting to/adopting an object.
@@ -12731,7 +13433,8 @@ interface RentActionBase extends TradeActionBase {
 	>
 }
 interface RentActionLeaf extends RentActionBase {
-	type: "RentAction"
+	"@context": "https://schema.org"
+	"@type": "RentAction"
 }
 /** The act of giving money in return for temporary use, but not ownership, of an object such as a vehicle or property. For example, an agent rents a property from a landlord in exchange for a periodic payment. */
 export type RentAction = RentActionLeaf
@@ -12747,7 +13450,8 @@ interface RentalCarReservationBase extends ReservationBase {
 	pickupTime?: SchemaValue<DateTime, "pickupTime">
 }
 interface RentalCarReservationLeaf extends RentalCarReservationBase {
-	type: "RentalCarReservation"
+	"@context": "https://schema.org"
+	"@type": "RentalCarReservation"
 }
 /**
  * A reservation for a rental car.
@@ -12778,7 +13482,8 @@ interface RepaymentSpecificationBase extends ThingBase {
 	numberOfLoanPayments?: SchemaValue<Number, "numberOfLoanPayments">
 }
 interface RepaymentSpecificationLeaf extends RepaymentSpecificationBase {
-	type: "RepaymentSpecification"
+	"@context": "https://schema.org"
+	"@type": "RepaymentSpecification"
 }
 /** A structured value representing repayment. */
 export type RepaymentSpecification = RepaymentSpecificationLeaf
@@ -12790,7 +13495,8 @@ interface ReplaceActionBase extends UpdateActionBase {
 	replacer?: SchemaValue<Thing | IdReference, "replacer">
 }
 interface ReplaceActionLeaf extends ReplaceActionBase {
-	type: "ReplaceAction"
+	"@context": "https://schema.org"
+	"@type": "ReplaceAction"
 }
 /** The act of editing a recipient by replacing an old object with a new object. */
 export type ReplaceAction = ReplaceActionLeaf
@@ -12800,7 +13506,8 @@ interface ReplyActionBase extends CommunicateActionBase {
 	resultComment?: SchemaValue<Comment | IdReference, "resultComment">
 }
 interface ReplyActionLeaf extends ReplyActionBase {
-	type: "ReplyAction"
+	"@context": "https://schema.org"
+	"@type": "ReplyAction"
 }
 /**
  * The act of responding to a question/message asked/sent by the object. Related to {@link https://schema.org/AskAction AskAction}.
@@ -12815,13 +13522,15 @@ interface ReportBase extends ArticleBase {
 	reportNumber?: SchemaValue<Text, "reportNumber">
 }
 interface ReportLeaf extends ReportBase {
-	type: "Report"
+	"@context": "https://schema.org"
+	"@type": "Report"
 }
 /** A Report generated by governmental or non-governmental organization. */
 export type Report = ReportLeaf
 
 interface ReportageNewsArticleLeaf extends NewsArticleBase {
-	type: "ReportageNewsArticle"
+	"@context": "https://schema.org"
+	"@type": "ReportageNewsArticle"
 }
 /**
  * The {@link https://schema.org/ReportageNewsArticle ReportageNewsArticle} type is a subtype of {@link https://schema.org/NewsArticle NewsArticle} representing news articles which are the result of journalistic news reporting conventions.
@@ -12835,25 +13544,29 @@ interface ReportageNewsArticleLeaf extends NewsArticleBase {
 export type ReportageNewsArticle = ReportageNewsArticleLeaf
 
 interface ReportedDoseScheduleLeaf extends DoseScheduleBase {
-	type: "ReportedDoseSchedule"
+	"@context": "https://schema.org"
+	"@type": "ReportedDoseSchedule"
 }
 /** A patient-reported or observed dosing schedule for a drug or supplement. */
 export type ReportedDoseSchedule = ReportedDoseScheduleLeaf
 
 interface ResearcherLeaf extends AudienceBase {
-	type: "Researcher"
+	"@context": "https://schema.org"
+	"@type": "Researcher"
 }
 /** Researchers. */
 export type Researcher = ResearcherLeaf
 
 interface ResearchOrganizationLeaf extends OrganizationBase {
-	type: "ResearchOrganization"
+	"@context": "https://schema.org"
+	"@type": "ResearchOrganization"
 }
 /** A Research Organization (e.g. scientific institute, research company). */
 export type ResearchOrganization = ResearchOrganizationLeaf | string
 
 interface ResearchProjectLeaf extends OrganizationBase {
-	type: "ResearchProject"
+	"@context": "https://schema.org"
+	"@type": "ResearchProject"
 }
 /** A Research project. */
 export type ResearchProject = ResearchProjectLeaf | string
@@ -12913,7 +13626,8 @@ interface ReservationBase extends ThingBase {
 	underName?: SchemaValue<Organization | Person | IdReference, "underName">
 }
 interface ReservationLeaf extends ReservationBase {
-	type: "Reservation"
+	"@context": "https://schema.org"
+	"@type": "Reservation"
 }
 /**
  * Describes a reservation for travel, dining or an event. Some reservations require tickets.
@@ -12938,13 +13652,15 @@ interface ReservationPackageBase extends ReservationBase {
 	subReservation?: SchemaValue<Reservation | IdReference, "subReservation">
 }
 interface ReservationPackageLeaf extends ReservationPackageBase {
-	type: "ReservationPackage"
+	"@context": "https://schema.org"
+	"@type": "ReservationPackage"
 }
 /** A group of multiple reservations with common values for all sub-reservations. */
 export type ReservationPackage = ReservationPackageLeaf
 
 interface ReservationStatusTypeLeaf extends EnumerationBase {
-	type: "ReservationStatusType"
+	"@context": "https://schema.org"
+	"@type": "ReservationStatusType"
 }
 /** Enumerated status values for Reservation. */
 export type ReservationStatusType =
@@ -12959,7 +13675,8 @@ export type ReservationStatusType =
 	| ReservationStatusTypeLeaf
 
 interface ReserveActionLeaf extends PlanActionBase {
-	type: "ReserveAction"
+	"@context": "https://schema.org"
+	"@type": "ReserveAction"
 }
 /**
  * Reserving a concrete object.
@@ -12970,7 +13687,8 @@ interface ReserveActionLeaf extends PlanActionBase {
 export type ReserveAction = ReserveActionLeaf
 
 interface ReservoirLeaf extends PlaceBase {
-	type: "Reservoir"
+	"@context": "https://schema.org"
+	"@type": "Reservoir"
 }
 /** A reservoir of water, typically an artificially created lake, like the Lake Kariba reservoir. */
 export type Reservoir = ReservoirLeaf | string
@@ -12983,7 +13701,8 @@ interface ResidenceBase extends PlaceBase {
 	>
 }
 interface ResidenceLeaf extends ResidenceBase {
-	type: "Residence"
+	"@context": "https://schema.org"
+	"@type": "Residence"
 }
 /** The place where a person lives. */
 export type Residence =
@@ -12993,7 +13712,8 @@ export type Residence =
 	| string
 
 interface ResortLeaf extends LodgingBusinessBase {
-	type: "Resort"
+	"@context": "https://schema.org"
+	"@type": "Resort"
 }
 /**
  * A resort is a place used for relaxation or recreation, attracting visitors for holidays or vacations. Resorts are places, towns or sometimes commercial establishments operated by a single company (source: Wikipedia, the free encyclopedia, see {@link http://en.wikipedia.org/wiki/Resort http://en.wikipedia.org/wiki/Resort}).
@@ -13003,19 +13723,22 @@ interface ResortLeaf extends LodgingBusinessBase {
 export type Resort = ResortLeaf | SkiResort | string
 
 interface RespiratoryTherapyLeaf extends MedicalTherapyBase {
-	type: "RespiratoryTherapy"
+	"@context": "https://schema.org"
+	"@type": "RespiratoryTherapy"
 }
 /** The therapy that is concerned with the maintenance or improvement of respiratory function (as in patients with pulmonary disease). */
 export type RespiratoryTherapy = RespiratoryTherapyLeaf
 
 interface RestaurantLeaf extends FoodEstablishmentBase {
-	type: "Restaurant"
+	"@context": "https://schema.org"
+	"@type": "Restaurant"
 }
 /** A restaurant. */
 export type Restaurant = RestaurantLeaf | string
 
 interface RestrictedDietLeaf extends EnumerationBase {
-	type: "RestrictedDiet"
+	"@context": "https://schema.org"
+	"@type": "RestrictedDiet"
 }
 /** A diet restricted to certain foods or preparations for cultural, religious, health or lifestyle reasons. */
 export type RestrictedDiet =
@@ -13044,7 +13767,8 @@ export type RestrictedDiet =
 	| RestrictedDietLeaf
 
 interface ResumeActionLeaf extends ActionBase {
-	type: "ResumeAction"
+	"@context": "https://schema.org"
+	"@type": "ResumeAction"
 }
 /** The act of resuming a device or application which was formerly paused (e.g. resume music playback or resume a timer). */
 export type ResumeAction = ResumeActionLeaf
@@ -13057,13 +13781,15 @@ interface ReturnActionBase extends TransferActionBase {
 	>
 }
 interface ReturnActionLeaf extends ReturnActionBase {
-	type: "ReturnAction"
+	"@context": "https://schema.org"
+	"@type": "ReturnAction"
 }
 /** The act of returning to the origin that which was previously received (concrete objects) or taken (ownership). */
 export type ReturnAction = ReturnActionLeaf
 
 interface ReturnFeesEnumerationLeaf extends EnumerationBase {
-	type: "ReturnFeesEnumeration"
+	"@context": "https://schema.org"
+	"@type": "ReturnFeesEnumeration"
 }
 /** Enumerates several kinds of policies for product return fees. */
 export type ReturnFeesEnumeration =
@@ -13080,7 +13806,8 @@ export type ReturnFeesEnumeration =
 	| ReturnFeesEnumerationLeaf
 
 interface ReturnLabelSourceEnumerationLeaf extends EnumerationBase {
-	type: "ReturnLabelSourceEnumeration"
+	"@context": "https://schema.org"
+	"@type": "ReturnLabelSourceEnumeration"
 }
 /** Enumerates several types of return labels for product returns. */
 export type ReturnLabelSourceEnumeration =
@@ -13093,7 +13820,8 @@ export type ReturnLabelSourceEnumeration =
 	| ReturnLabelSourceEnumerationLeaf
 
 interface ReturnMethodEnumerationLeaf extends EnumerationBase {
-	type: "ReturnMethodEnumeration"
+	"@context": "https://schema.org"
+	"@type": "ReturnMethodEnumeration"
 }
 /** Enumerates several types of product return methods. */
 export type ReturnMethodEnumeration =
@@ -13150,7 +13878,8 @@ interface ReviewBase extends CreativeWorkBase {
 	reviewRating?: SchemaValue<Rating | IdReference, "reviewRating">
 }
 interface ReviewLeaf extends ReviewBase {
-	type: "Review"
+	"@context": "https://schema.org"
+	"@type": "Review"
 }
 /** A review of an item - for example, of a restaurant, movie, or store. */
 export type Review =
@@ -13167,32 +13896,37 @@ interface ReviewActionBase extends ActionBase {
 	resultReview?: SchemaValue<Review | IdReference, "resultReview">
 }
 interface ReviewActionLeaf extends ReviewActionBase {
-	type: "ReviewAction"
+	"@context": "https://schema.org"
+	"@type": "ReviewAction"
 }
 /** The act of producing a balanced opinion about the object for an audience. An agent reviews an object with participants resulting in a review. */
 export type ReviewAction = ReviewActionLeaf
 
 interface ReviewNewsArticleBase extends NewsArticleBase, ReviewBase {}
 interface ReviewNewsArticleLeaf extends ReviewNewsArticleBase {
-	type: "ReviewNewsArticle"
+	"@context": "https://schema.org"
+	"@type": "ReviewNewsArticle"
 }
 /** A {@link https://schema.org/NewsArticle NewsArticle} and {@link https://schema.org/CriticReview CriticReview} providing a professional critic's assessment of a service, product, performance, or artistic or literary work. */
 export type ReviewNewsArticle = ReviewNewsArticleLeaf
 
 interface RiverBodyOfWaterLeaf extends PlaceBase {
-	type: "RiverBodyOfWater"
+	"@context": "https://schema.org"
+	"@type": "RiverBodyOfWater"
 }
 /** A river (for example, the broad majestic Shannon). */
 export type RiverBodyOfWater = RiverBodyOfWaterLeaf | string
 
 interface RoofingContractorLeaf extends LocalBusinessBase {
-	type: "RoofingContractor"
+	"@context": "https://schema.org"
+	"@type": "RoofingContractor"
 }
 /** A roofing contractor. */
 export type RoofingContractor = RoofingContractorLeaf | string
 
 interface RoomLeaf extends AccommodationBase {
-	type: "Room"
+	"@context": "https://schema.org"
+	"@type": "Room"
 }
 /**
  * A room is a distinguishable space within a structure, usually separated from other spaces by interior walls (source: Wikipedia, the free encyclopedia, see {@link http://en.wikipedia.org/wiki/Room http://en.wikipedia.org/wiki/Room}).
@@ -13210,13 +13944,15 @@ interface RsvpActionBase extends InformActionBase {
 	rsvpResponse?: SchemaValue<RsvpResponseType | IdReference, "rsvpResponse">
 }
 interface RsvpActionLeaf extends RsvpActionBase {
-	type: "RsvpAction"
+	"@context": "https://schema.org"
+	"@type": "RsvpAction"
 }
 /** The act of notifying an event organizer as to whether you expect to attend the event. */
 export type RsvpAction = RsvpActionLeaf
 
 interface RsvpResponseTypeLeaf extends EnumerationBase {
-	type: "RsvpResponseType"
+	"@context": "https://schema.org"
+	"@type": "RsvpResponseType"
 }
 /** RsvpResponseType is an enumeration type whose instances represent responding to an RSVP request. */
 export type RsvpResponseType =
@@ -13229,19 +13965,22 @@ export type RsvpResponseType =
 	| RsvpResponseTypeLeaf
 
 interface RVParkLeaf extends CivicStructureBase {
-	type: "RVPark"
+	"@context": "https://schema.org"
+	"@type": "RVPark"
 }
 /** A place offering space for "Recreational Vehicles", Caravans, mobile homes and the like. */
 export type RVPark = RVParkLeaf | string
 
 interface SaleEventLeaf extends EventBase {
-	type: "SaleEvent"
+	"@context": "https://schema.org"
+	"@type": "SaleEvent"
 }
 /** Event type: Sales event. */
 export type SaleEvent = SaleEventLeaf
 
 interface SatiricalArticleLeaf extends ArticleBase {
-	type: "SatiricalArticle"
+	"@context": "https://schema.org"
+	"@type": "SatiricalArticle"
 }
 /** An {@link https://schema.org/Article Article} whose content is primarily {@link https://schema.org/satirical satirical}(https://en.wikipedia.org/wiki/Satire) in nature, i.e. unlikely to be literally true. A satirical article is sometimes but not necessarily also a {@link https://schema.org/NewsArticle NewsArticle}. {@link https://schema.org/ScholarlyArticle ScholarlyArticle}s are also sometimes satirized. */
 export type SatiricalArticle = SatiricalArticleLeaf
@@ -13286,13 +14025,15 @@ interface ScheduleBase extends ThingBase {
 	startTime?: SchemaValue<DateTime | Time, "startTime">
 }
 interface ScheduleLeaf extends ScheduleBase {
-	type: "Schedule"
+	"@context": "https://schema.org"
+	"@type": "Schedule"
 }
 /** A schedule defines a repeating time period used to describe a regularly occurring {@link https://schema.org/Event Event}. At a minimum a schedule will specify {@link https://schema.org/repeatFrequency repeatFrequency} which describes the interval between occurrences of the event. Additional information can be provided to specify the schedule more precisely. This includes identifying the day(s) of the week or month when the recurring event will take place, in addition to its start and end time. Schedules may also have start and end dates to indicate when they are active, e.g. to define a limited calendar of events. */
 export type Schedule = ScheduleLeaf
 
 interface ScheduleActionLeaf extends PlanActionBase {
-	type: "ScheduleAction"
+	"@context": "https://schema.org"
+	"@type": "ScheduleAction"
 }
 /**
  * Scheduling future actions, events, or tasks.
@@ -13303,19 +14044,22 @@ interface ScheduleActionLeaf extends PlanActionBase {
 export type ScheduleAction = ScheduleActionLeaf
 
 interface ScholarlyArticleLeaf extends ArticleBase {
-	type: "ScholarlyArticle"
+	"@context": "https://schema.org"
+	"@type": "ScholarlyArticle"
 }
 /** A scholarly article. */
 export type ScholarlyArticle = ScholarlyArticleLeaf | MedicalScholarlyArticle
 
 interface SchoolLeaf extends EducationalOrganizationBase {
-	type: "School"
+	"@context": "https://schema.org"
+	"@type": "School"
 }
 /** A school. */
 export type School = SchoolLeaf | string
 
 interface SchoolDistrictLeaf extends PlaceBase {
-	type: "SchoolDistrict"
+	"@context": "https://schema.org"
+	"@type": "SchoolDistrict"
 }
 /** A School District is an administrative area for the administration of schools. */
 export type SchoolDistrict = SchoolDistrictLeaf | string
@@ -13332,19 +14076,22 @@ interface ScreeningEventBase extends EventBase {
 	workPresented?: SchemaValue<Movie | IdReference, "workPresented">
 }
 interface ScreeningEventLeaf extends ScreeningEventBase {
-	type: "ScreeningEvent"
+	"@context": "https://schema.org"
+	"@type": "ScreeningEvent"
 }
 /** A screening of a movie or other video. */
 export type ScreeningEvent = ScreeningEventLeaf
 
 interface SculptureLeaf extends CreativeWorkBase {
-	type: "Sculpture"
+	"@context": "https://schema.org"
+	"@type": "Sculpture"
 }
 /** A piece of sculpture. */
 export type Sculpture = SculptureLeaf
 
 interface SeaBodyOfWaterLeaf extends PlaceBase {
-	type: "SeaBodyOfWater"
+	"@context": "https://schema.org"
+	"@type": "SeaBodyOfWater"
 }
 /** A sea (for example, the Caspian sea). */
 export type SeaBodyOfWater = SeaBodyOfWaterLeaf | string
@@ -13354,7 +14101,8 @@ interface SearchActionBase extends ActionBase {
 	query?: SchemaValue<Text, "query">
 }
 interface SearchActionLeaf extends SearchActionBase {
-	type: "SearchAction"
+	"@context": "https://schema.org"
+	"@type": "SearchAction"
 }
 /**
  * The act of searching for an object.
@@ -13365,19 +14113,22 @@ interface SearchActionLeaf extends SearchActionBase {
 export type SearchAction = SearchActionLeaf
 
 interface SearchRescueOrganizationLeaf extends OrganizationBase {
-	type: "SearchRescueOrganization"
+	"@context": "https://schema.org"
+	"@type": "SearchRescueOrganization"
 }
 /** A Search and Rescue organization of some kind. */
 export type SearchRescueOrganization = SearchRescueOrganizationLeaf | string
 
 interface SearchResultsPageLeaf extends WebPageBase {
-	type: "SearchResultsPage"
+	"@context": "https://schema.org"
+	"@type": "SearchResultsPage"
 }
 /** Web page type: Search results page. */
 export type SearchResultsPage = SearchResultsPageLeaf
 
 interface SeasonLeaf extends CreativeWorkBase {
-	type: "Season"
+	"@context": "https://schema.org"
+	"@type": "Season"
 }
 /**
  * A media season, e.g. TV, radio, video game etc.
@@ -13400,7 +14151,8 @@ interface SeatBase extends ThingBase {
 	seatSection?: SchemaValue<Text, "seatSection">
 }
 interface SeatLeaf extends SeatBase {
-	type: "Seat"
+	"@context": "https://schema.org"
+	"@type": "Seat"
 }
 /** Used to describe a seat, such as a reserved seat in an event reservation. */
 export type Seat = SeatLeaf
@@ -13410,13 +14162,15 @@ interface SeekToActionBase extends ActionBase {
 	startOffset?: SchemaValue<HyperTocEntry | Number | IdReference, "startOffset">
 }
 interface SeekToActionLeaf extends SeekToActionBase {
-	type: "SeekToAction"
+	"@context": "https://schema.org"
+	"@type": "SeekToAction"
 }
 /** This is the {@link https://schema.org/Action Action} of navigating to a specific {@link https://schema.org/startOffset startOffset} timestamp within a {@link https://schema.org/VideoObject VideoObject}, typically represented with a URL template structure. */
 export type SeekToAction = SeekToActionLeaf
 
 interface SelfStorageLeaf extends LocalBusinessBase {
-	type: "SelfStorage"
+	"@context": "https://schema.org"
+	"@type": "SelfStorage"
 }
 /** A self-storage facility. */
 export type SelfStorage = SelfStorageLeaf | string
@@ -13435,7 +14189,8 @@ interface SellActionBase extends TradeActionBase {
 	>
 }
 interface SellActionLeaf extends SellActionBase {
-	type: "SellAction"
+	"@context": "https://schema.org"
+	"@type": "SellAction"
 }
 /** The act of taking money from a buyer in exchange for goods or services rendered. An agent sells an object, product, or service to a buyer for a price. Reciprocal of BuyAction. */
 export type SellAction = SellActionLeaf
@@ -13450,7 +14205,8 @@ interface SendActionBase extends TransferActionBase {
 	>
 }
 interface SendActionLeaf extends SendActionBase {
-	type: "SendAction"
+	"@context": "https://schema.org"
+	"@type": "SendAction"
 }
 /**
  * The act of physically/electronically dispatching an object for transfer from an origin to a destination. Related actions:
@@ -13460,7 +14216,8 @@ interface SendActionLeaf extends SendActionBase {
 export type SendAction = SendActionLeaf
 
 interface SeriesLeaf extends ThingBase {
-	type: "Series"
+	"@context": "https://schema.org"
+	"@type": "Series"
 }
 /** A Series in schema.org is a group of related items, typically but not necessarily of the same kind. See also {@link https://schema.org/CreativeWorkSeries CreativeWorkSeries}, {@link https://schema.org/EventSeries EventSeries}. */
 export type Series = SeriesLeaf | CreativeWorkSeries | EventSeries
@@ -13549,7 +14306,8 @@ interface ServiceBase extends ThingBase {
 	termsOfService?: SchemaValue<Text | URL, "termsOfService">
 }
 interface ServiceLeaf extends ServiceBase {
-	type: "Service"
+	"@context": "https://schema.org"
+	"@type": "Service"
 }
 /** A service provided by an organization, e.g. delivery service, print services, etc. */
 export type Service =
@@ -13588,19 +14346,22 @@ interface ServiceChannelBase extends ThingBase {
 	serviceUrl?: SchemaValue<URL, "serviceUrl">
 }
 interface ServiceChannelLeaf extends ServiceChannelBase {
-	type: "ServiceChannel"
+	"@context": "https://schema.org"
+	"@type": "ServiceChannel"
 }
 /** A means for accessing a service, e.g. a government office location, web site, or phone number. */
 export type ServiceChannel = ServiceChannelLeaf
 
 interface ShareActionLeaf extends CommunicateActionBase {
-	type: "ShareAction"
+	"@context": "https://schema.org"
+	"@type": "ShareAction"
 }
 /** The act of distributing content to people for their amusement or edification. */
 export type ShareAction = ShareActionLeaf
 
 interface SheetMusicLeaf extends CreativeWorkBase {
-	type: "SheetMusic"
+	"@context": "https://schema.org"
+	"@type": "SheetMusic"
 }
 /** Printed music, as opposed to performed or recorded music. */
 export type SheetMusic = SheetMusicLeaf
@@ -13619,7 +14380,8 @@ interface ShippingDeliveryTimeBase extends ThingBase {
 	transitTime?: SchemaValue<QuantitativeValue | IdReference, "transitTime">
 }
 interface ShippingDeliveryTimeLeaf extends ShippingDeliveryTimeBase {
-	type: "ShippingDeliveryTime"
+	"@context": "https://schema.org"
+	"@type": "ShippingDeliveryTime"
 }
 /** ShippingDeliveryTime provides various pieces of information about delivery times for shipping. */
 export type ShippingDeliveryTime = ShippingDeliveryTimeLeaf
@@ -13645,25 +14407,29 @@ interface ShippingRateSettingsBase extends ThingBase {
 	shippingRate?: SchemaValue<MonetaryAmount | IdReference, "shippingRate">
 }
 interface ShippingRateSettingsLeaf extends ShippingRateSettingsBase {
-	type: "ShippingRateSettings"
+	"@context": "https://schema.org"
+	"@type": "ShippingRateSettings"
 }
 /** A ShippingRateSettings represents re-usable pieces of shipping information. It is designed for publication on an URL that may be referenced via the {@link https://schema.org/shippingSettingsLink shippingSettingsLink} property of an {@link https://schema.org/OfferShippingDetails OfferShippingDetails}. Several occurrences can be published, distinguished and matched (i.e. identified/referenced) by their different values for {@link https://schema.org/shippingLabel shippingLabel}. */
 export type ShippingRateSettings = ShippingRateSettingsLeaf
 
 interface ShoeStoreLeaf extends LocalBusinessBase {
-	type: "ShoeStore"
+	"@context": "https://schema.org"
+	"@type": "ShoeStore"
 }
 /** A shoe store. */
 export type ShoeStore = ShoeStoreLeaf | string
 
 interface ShoppingCenterLeaf extends LocalBusinessBase {
-	type: "ShoppingCenter"
+	"@context": "https://schema.org"
+	"@type": "ShoppingCenter"
 }
 /** A shopping center or mall. */
 export type ShoppingCenter = ShoppingCenterLeaf | string
 
 interface ShortStoryLeaf extends CreativeWorkBase {
-	type: "ShortStory"
+	"@context": "https://schema.org"
+	"@type": "ShortStory"
 }
 /** Short story or tale. A brief work of literature, usually written in narrative prose. */
 export type ShortStory = ShortStoryLeaf
@@ -13678,19 +14444,22 @@ interface SingleFamilyResidenceBase extends HouseBase {
 	occupancy?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
 }
 interface SingleFamilyResidenceLeaf extends SingleFamilyResidenceBase {
-	type: "SingleFamilyResidence"
+	"@context": "https://schema.org"
+	"@type": "SingleFamilyResidence"
 }
 /** Residence type: Single-family home. */
 export type SingleFamilyResidence = SingleFamilyResidenceLeaf | string
 
 export interface SiteNavigationElementLeaf extends WebPageElementBase {
-	type: "SiteNavigationElement"
+	"@context": "https://schema.org"
+	"@type": "SiteNavigationElement"
 }
 /** A navigation element of the page. */
 export type SiteNavigationElement = SiteNavigationElementLeaf
 
 interface SizeGroupEnumerationLeaf extends EnumerationBase {
-	type: "SizeGroupEnumeration"
+	"@context": "https://schema.org"
+	"@type": "SizeGroupEnumeration"
 }
 /** Enumerates common size groups for various product categories. */
 export type SizeGroupEnumeration =
@@ -13727,13 +14496,15 @@ interface SizeSpecificationBase extends QualitativeValueBase {
 	>
 }
 interface SizeSpecificationLeaf extends SizeSpecificationBase {
-	type: "SizeSpecification"
+	"@context": "https://schema.org"
+	"@type": "SizeSpecification"
 }
 /** Size related properties of a product, typically a size code ({@link https://schema.org/name name}) and optionally a {@link https://schema.org/sizeSystem sizeSystem}, {@link https://schema.org/sizeGroup sizeGroup}, and product measurements ({@link https://schema.org/hasMeasurement hasMeasurement}). In addition, the intended audience can be defined through {@link https://schema.org/suggestedAge suggestedAge}, {@link https://schema.org/suggestedGender suggestedGender}, and suggested body measurements ({@link https://schema.org/suggestedMeasurement suggestedMeasurement}). */
 export type SizeSpecification = SizeSpecificationLeaf
 
 interface SizeSystemEnumerationLeaf extends EnumerationBase {
-	type: "SizeSystemEnumeration"
+	"@context": "https://schema.org"
+	"@type": "SizeSystemEnumeration"
 }
 /** Enumerates common size systems for different categories of products, for example "EN-13402" or "UK" for wearables or "Imperial" for screws. */
 export type SizeSystemEnumeration =
@@ -13746,13 +14517,15 @@ export type SizeSystemEnumeration =
 
 interface SkiResortBase extends LodgingBusinessBase, LocalBusinessBase {}
 interface SkiResortLeaf extends SkiResortBase {
-	type: "SkiResort"
+	"@context": "https://schema.org"
+	"@type": "SkiResort"
 }
 /** A ski resort. */
 export type SkiResort = SkiResortLeaf | string
 
 interface SocialEventLeaf extends EventBase {
-	type: "SocialEvent"
+	"@context": "https://schema.org"
+	"@type": "SocialEvent"
 }
 /** Event type: Social event. */
 export type SocialEvent = SocialEventLeaf
@@ -13762,7 +14535,8 @@ interface SocialMediaPostingBase extends ArticleBase {
 	sharedContent?: SchemaValue<CreativeWork | IdReference, "sharedContent">
 }
 interface SocialMediaPostingLeaf extends SocialMediaPostingBase {
-	type: "SocialMediaPosting"
+	"@context": "https://schema.org"
+	"@type": "SocialMediaPosting"
 }
 /** A post to a social media platform, including blog posts, tweets, Facebook posts, etc. */
 export type SocialMediaPosting =
@@ -13832,7 +14606,8 @@ interface SoftwareApplicationBase extends CreativeWorkBase {
 	supportingData?: SchemaValue<DataFeed | IdReference, "supportingData">
 }
 interface SoftwareApplicationLeaf extends SoftwareApplicationBase {
-	type: "SoftwareApplication"
+	"@context": "https://schema.org"
+	"@type": "SoftwareApplication"
 }
 /** A software application. */
 export type SoftwareApplication =
@@ -13872,7 +14647,8 @@ interface SoftwareSourceCodeBase extends CreativeWorkBase {
 	>
 }
 interface SoftwareSourceCodeLeaf extends SoftwareSourceCodeBase {
-	type: "SoftwareSourceCode"
+	"@context": "https://schema.org"
+	"@type": "SoftwareSourceCode"
 }
 /** Computer programming source code. Example: Full (compile ready) solutions, code snippet samples, scripts, templates. */
 export type SoftwareSourceCode = SoftwareSourceCodeLeaf
@@ -13882,7 +14658,8 @@ interface SolveMathActionBase extends ActionBase {
 	eduQuestionType?: SchemaValue<Text, "eduQuestionType">
 }
 interface SolveMathActionLeaf extends SolveMathActionBase {
-	type: "SolveMathAction"
+	"@context": "https://schema.org"
+	"@type": "SolveMathAction"
 }
 /** The action that takes in a math expression and directs users to a page potentially capable of solving/simplifying that expression. */
 export type SolveMathAction = SolveMathActionLeaf
@@ -13895,7 +14672,8 @@ interface SomeProductsBase extends ProductBase {
 	>
 }
 interface SomeProductsLeaf extends SomeProductsBase {
-	type: "SomeProducts"
+	"@context": "https://schema.org"
+	"@type": "SomeProducts"
 }
 /** A placeholder for multiple similar products of the same kind. */
 export type SomeProducts = SomeProductsLeaf
@@ -13907,7 +14685,8 @@ interface SpeakableSpecificationBase extends ThingBase {
 	xpath?: SchemaValue<XPathType, "xpath">
 }
 interface SpeakableSpecificationLeaf extends SpeakableSpecificationBase {
-	type: "SpeakableSpecification"
+	"@context": "https://schema.org"
+	"@type": "SpeakableSpecification"
 }
 /** A SpeakableSpecification indicates (typically via {@link https://schema.org/xpath xpath} or {@link https://schema.org/cssSelector cssSelector}) sections of a document that are highlighted as particularly {@link https://schema.org/speakable speakable}. Instances of this type are expected to be used primarily as values of the {@link https://schema.org/speakable speakable} property. */
 export type SpeakableSpecification = SpeakableSpecificationLeaf
@@ -13971,7 +14750,8 @@ interface SpecialAnnouncementBase extends CreativeWorkBase {
 	webFeed?: SchemaValue<DataFeed | URL | IdReference, "webFeed">
 }
 interface SpecialAnnouncementLeaf extends SpecialAnnouncementBase {
-	type: "SpecialAnnouncement"
+	"@context": "https://schema.org"
+	"@type": "SpecialAnnouncement"
 }
 /**
  * A SpecialAnnouncement combines a simple date-stamped textual information update with contextualized Web links and other structured data. It represents an information update made by a locally-oriented organization, for example schools, pharmacies, healthcare providers, community groups, police, local government.
@@ -13999,19 +14779,22 @@ interface SpecialAnnouncementLeaf extends SpecialAnnouncementBase {
 export type SpecialAnnouncement = SpecialAnnouncementLeaf
 
 interface SpecialtyLeaf extends EnumerationBase {
-	type: "Specialty"
+	"@context": "https://schema.org"
+	"@type": "Specialty"
 }
 /** Any branch of a field in which people typically develop specific expertise, usually after significant study, time, and effort. */
 export type Specialty = SpecialtyLeaf | MedicalSpecialty
 
 interface SportingGoodsStoreLeaf extends LocalBusinessBase {
-	type: "SportingGoodsStore"
+	"@context": "https://schema.org"
+	"@type": "SportingGoodsStore"
 }
 /** A sporting goods store. */
 export type SportingGoodsStore = SportingGoodsStoreLeaf | string
 
 interface SportsActivityLocationLeaf extends LocalBusinessBase {
-	type: "SportsActivityLocation"
+	"@context": "https://schema.org"
+	"@type": "SportsActivityLocation"
 }
 /** A sports location, such as a playing field. */
 export type SportsActivityLocation =
@@ -14028,7 +14811,8 @@ export type SportsActivityLocation =
 	| string
 
 interface SportsClubLeaf extends LocalBusinessBase {
-	type: "SportsClub"
+	"@context": "https://schema.org"
+	"@type": "SportsClub"
 }
 /** A sports club. */
 export type SportsClub = SportsClubLeaf | string
@@ -14044,7 +14828,8 @@ interface SportsEventBase extends EventBase {
 	sport?: SchemaValue<Text | URL, "sport">
 }
 interface SportsEventLeaf extends SportsEventBase {
-	type: "SportsEvent"
+	"@context": "https://schema.org"
+	"@type": "SportsEvent"
 }
 /** Event type: Sports event. */
 export type SportsEvent = SportsEventLeaf
@@ -14054,7 +14839,8 @@ interface SportsOrganizationBase extends OrganizationBase {
 	sport?: SchemaValue<Text | URL, "sport">
 }
 interface SportsOrganizationLeaf extends SportsOrganizationBase {
-	type: "SportsOrganization"
+	"@context": "https://schema.org"
+	"@type": "SportsOrganization"
 }
 /** Represents the collection of all sports organizations, including sports teams, governing bodies, and sports associations. */
 export type SportsOrganization = SportsOrganizationLeaf | SportsTeam | string
@@ -14068,32 +14854,37 @@ interface SportsTeamBase extends SportsOrganizationBase {
 	gender?: SchemaValue<GenderType | Text | IdReference, "gender">
 }
 interface SportsTeamLeaf extends SportsTeamBase {
-	type: "SportsTeam"
+	"@context": "https://schema.org"
+	"@type": "SportsTeam"
 }
 /** Organization: Sports team. */
 export type SportsTeam = SportsTeamLeaf | string
 
 interface SpreadsheetDigitalDocumentLeaf extends DigitalDocumentBase {
-	type: "SpreadsheetDigitalDocument"
+	"@context": "https://schema.org"
+	"@type": "SpreadsheetDigitalDocument"
 }
 /** A spreadsheet file. */
 export type SpreadsheetDigitalDocument = SpreadsheetDigitalDocumentLeaf
 
 interface StadiumOrArenaBase extends CivicStructureBase, LocalBusinessBase {}
 interface StadiumOrArenaLeaf extends StadiumOrArenaBase {
-	type: "StadiumOrArena"
+	"@context": "https://schema.org"
+	"@type": "StadiumOrArena"
 }
 /** A stadium. */
 export type StadiumOrArena = StadiumOrArenaLeaf | string
 
 interface StateLeaf extends PlaceBase {
-	type: "State"
+	"@context": "https://schema.org"
+	"@type": "State"
 }
 /** A state or province of a country. */
 export type State = StateLeaf | string
 
 interface StatementLeaf extends CreativeWorkBase {
-	type: "Statement"
+	"@context": "https://schema.org"
+	"@type": "Statement"
 }
 /** A statement about something, for example a fun or interesting fact. If known, the main entity this statement is about can be indicated using mainEntity. For more formal claims (e.g. in Fact Checking), consider using {@link https://schema.org/Claim Claim} instead. Use the {@link https://schema.org/text text} property to capture the text of the statement. */
 export type Statement = StatementLeaf
@@ -14103,7 +14894,8 @@ interface StatisticalPopulationBase extends ThingBase {
 	populationType?: SchemaValue<Class | IdReference, "populationType">
 }
 interface StatisticalPopulationLeaf extends StatisticalPopulationBase {
-	type: "StatisticalPopulation"
+	"@context": "https://schema.org"
+	"@type": "StatisticalPopulation"
 }
 /** A StatisticalPopulation is a set of instances of a certain given type that satisfy some set of constraints. The property {@link https://schema.org/populationType populationType} is used to specify the type. Any property that can be used on instances of that type can appear on the statistical population. For example, a {@link https://schema.org/StatisticalPopulation StatisticalPopulation} representing all {@link https://schema.org/Person Person}s with a {@link https://schema.org/homeLocation homeLocation} of East Podunk California would be described by applying the appropriate {@link https://schema.org/homeLocation homeLocation} and {@link https://schema.org/populationType populationType} properties to a {@link https://schema.org/StatisticalPopulation StatisticalPopulation} item that stands for that set of people. The properties {@link https://schema.org/numConstraints numConstraints} and {@link https://schema.org/constraintProperty constraintProperty} are used to specify which of the populations properties are used to specify the population. Note that the sense of "population" used here is the general sense of a statistical population, and does not imply that the population consists of people. For example, a {@link https://schema.org/populationType populationType} of {@link https://schema.org/Event Event} or {@link https://schema.org/NewsArticle NewsArticle} could be used. See also {@link https://schema.org/Observation Observation}, where a {@link https://schema.org/populationType populationType} such as {@link https://schema.org/Person Person} or {@link https://schema.org/Event Event} can be indicated directly. In most cases it may be better to use {@link https://schema.org/StatisticalVariable StatisticalVariable} instead of {@link https://schema.org/StatisticalPopulation StatisticalPopulation}. */
 export type StatisticalPopulation = StatisticalPopulationLeaf
@@ -14145,13 +14937,15 @@ interface StatisticalVariableBase extends ConstraintNodeBase {
 	statType?: SchemaValue<Property | Text | URL | IdReference, "statType">
 }
 interface StatisticalVariableLeaf extends StatisticalVariableBase {
-	type: "StatisticalVariable"
+	"@context": "https://schema.org"
+	"@type": "StatisticalVariable"
 }
 /** {@link https://schema.org/StatisticalVariable StatisticalVariable} represents any type of statistical metric that can be measured at a place and time. The usage pattern for {@link https://schema.org/StatisticalVariable StatisticalVariable} is typically expressed using {@link https://schema.org/Observation Observation} with an explicit {@link https://schema.org/populationType populationType}, which is a type, typically drawn from Schema.org. Each {@link https://schema.org/StatisticalVariable StatisticalVariable} is marked as a {@link https://schema.org/ConstraintNode ConstraintNode}, meaning that some properties (those listed using {@link https://schema.org/constraintProperty constraintProperty}) serve in this setting solely to define the statistical variable rather than literally describe a specific person, place or thing. For example, a {@link https://schema.org/StatisticalVariable StatisticalVariable} Median_Height_Person_Female representing the median height of women, could be written as follows: the population type is {@link https://schema.org/Person Person}; the measuredProperty {@link https://schema.org/height height}; the {@link https://schema.org/statType statType} {@link https://schema.org/median median}; the {@link https://schema.org/gender gender} {@link https://schema.org/Female Female}. It is important to note that there are many kinds of scientific quantitative observation which are not fully, perfectly or unambiguously described following this pattern, or with solely Schema.org terminology. The approach taken here is designed to allow partial, incremental or minimal description of {@link https://schema.org/StatisticalVariable StatisticalVariable}s, and the use of detailed sets of entity and property IDs from external repositories. The {@link https://schema.org/measurementMethod measurementMethod}, {@link https://schema.org/unitCode unitCode} and {@link https://schema.org/unitText unitText} properties can also be used to clarify the specific nature and notation of an observed measurement. */
 export type StatisticalVariable = StatisticalVariableLeaf
 
 interface StatusEnumerationLeaf extends EnumerationBase {
-	type: "StatusEnumeration"
+	"@context": "https://schema.org"
+	"@type": "StatusEnumeration"
 }
 /** Lists or enumerations dealing with status types. */
 export type StatusEnumeration =
@@ -14165,7 +14959,8 @@ export type StatusEnumeration =
 	| ReservationStatusType
 
 interface SteeringPositionValueLeaf extends QualitativeValueBase {
-	type: "SteeringPositionValue"
+	"@context": "https://schema.org"
+	"@type": "SteeringPositionValue"
 }
 /** A value indicating a steering position. */
 export type SteeringPositionValue =
@@ -14176,7 +14971,8 @@ export type SteeringPositionValue =
 	| SteeringPositionValueLeaf
 
 interface StoreLeaf extends LocalBusinessBase {
-	type: "Store"
+	"@context": "https://schema.org"
+	"@type": "Store"
 }
 /** A retail good store. */
 export type Store =
@@ -14214,7 +15010,8 @@ export type Store =
 	| string
 
 interface StructuredValueLeaf extends ThingBase {
-	type: "StructuredValue"
+	"@context": "https://schema.org"
+	"@type": "StructuredValue"
 }
 /** Structured values are used when the value of a property has a more complex structure than simply being a textual value or a reference to another thing. */
 export type StructuredValue =
@@ -14253,13 +15050,15 @@ interface StupidTypeBase extends ThingBase {
 	>
 }
 interface StupidTypeLeaf extends StupidTypeBase {
-	type: "StupidType"
+	"@context": "https://schema.org"
+	"@type": "StupidType"
 }
 /** A StupidType for testing. */
 export type StupidType = StupidTypeLeaf
 
 interface SubscribeActionLeaf extends ActionBase {
-	type: "SubscribeAction"
+	"@context": "https://schema.org"
+	"@type": "SubscribeAction"
 }
 /**
  * The act of forming a personal connection with someone/something (object) unidirectionally/asymmetrically to get updates pushed to.
@@ -14281,13 +15080,15 @@ interface SubstanceBase extends MedicalEntityBase {
 	>
 }
 interface SubstanceLeaf extends SubstanceBase {
-	type: "Substance"
+	"@context": "https://schema.org"
+	"@type": "Substance"
 }
 /** Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical. */
 export type Substance = SubstanceLeaf | DietarySupplement | Drug
 
 interface SubwayStationLeaf extends CivicStructureBase {
-	type: "SubwayStation"
+	"@context": "https://schema.org"
+	"@type": "SubwayStation"
 }
 /** A subway station. */
 export type SubwayStation = SubwayStationLeaf | string
@@ -14304,7 +15105,8 @@ interface SuiteBase extends AccommodationBase {
 	occupancy?: SchemaValue<QuantitativeValue | IdReference, "occupancy">
 }
 interface SuiteLeaf extends SuiteBase {
-	type: "Suite"
+	"@context": "https://schema.org"
+	"@type": "Suite"
 }
 /**
  * A suite in a hotel or other public accommodation, denotes a class of luxury accommodations, the key feature of which is multiple rooms (source: Wikipedia, the free encyclopedia, see {@link http://en.wikipedia.org/wiki/Suite_(hotel) http://en.wikipedia.org/wiki/Suite_(hotel)}).
@@ -14332,43 +15134,50 @@ interface SuperficialAnatomyBase extends MedicalEntityBase {
 	significance?: SchemaValue<Text, "significance">
 }
 interface SuperficialAnatomyLeaf extends SuperficialAnatomyBase {
-	type: "SuperficialAnatomy"
+	"@context": "https://schema.org"
+	"@type": "SuperficialAnatomy"
 }
 /** Anatomical features that can be observed by sight (without dissection), including the form and proportions of the human body as well as surface landmarks that correspond to deeper subcutaneous structures. Superficial anatomy plays an important role in sports medicine, phlebotomy, and other medical specialties as underlying anatomical structures can be identified through surface palpation. For example, during back surgery, superficial anatomy can be used to palpate and count vertebrae to find the site of incision. Or in phlebotomy, superficial anatomy can be used to locate an underlying vein; for example, the median cubital vein can be located by palpating the borders of the cubital fossa (such as the epicondyles of the humerus) and then looking for the superficial signs of the vein, such as size, prominence, ability to refill after depression, and feel of surrounding tissue support. As another example, in a subluxation (dislocation) of the glenohumeral joint, the bony structure becomes pronounced with the deltoid muscle failing to cover the glenohumeral joint allowing the edges of the scapula to be superficially visible. Here, the superficial anatomy is the visible edges of the scapula, implying the underlying dislocation of the joint (the related anatomical structure). */
 export type SuperficialAnatomy = SuperficialAnatomyLeaf
 
 interface SurgicalProcedureLeaf extends MedicalProcedureBase {
-	type: "SurgicalProcedure"
+	"@context": "https://schema.org"
+	"@type": "SurgicalProcedure"
 }
 /** A medical procedure involving an incision with instruments; performed for diagnose, or therapeutic purposes. */
 export type SurgicalProcedure = SurgicalProcedureLeaf
 
 interface SuspendActionLeaf extends ActionBase {
-	type: "SuspendAction"
+	"@context": "https://schema.org"
+	"@type": "SuspendAction"
 }
 /** The act of momentarily pausing a device or application (e.g. pause music playback or pause a timer). */
 export type SuspendAction = SuspendActionLeaf
 
 interface SyllabusLeaf extends LearningResourceBase {
-	type: "Syllabus"
+	"@context": "https://schema.org"
+	"@type": "Syllabus"
 }
 /** A syllabus that describes the material covered in a course, often with several such sections per {@link https://schema.org/Course Course} so that a distinct {@link https://schema.org/timeRequired timeRequired} can be provided for that section of the {@link https://schema.org/Course Course}. */
 export type Syllabus = SyllabusLeaf
 
 interface SynagogueLeaf extends CivicStructureBase {
-	type: "Synagogue"
+	"@context": "https://schema.org"
+	"@type": "Synagogue"
 }
 /** A synagogue. */
 export type Synagogue = SynagogueLeaf | string
 
 interface TableLeaf extends WebPageElementBase {
-	type: "Table"
+	"@context": "https://schema.org"
+	"@type": "Table"
 }
 /** A table on a Web page. */
 export type Table = TableLeaf
 
 interface TakeActionLeaf extends TransferActionBase {
-	type: "TakeAction"
+	"@context": "https://schema.org"
+	"@type": "TakeAction"
 }
 /**
  * The act of gaining ownership of an object from an origin. Reciprocal of GiveAction.
@@ -14380,13 +15189,15 @@ interface TakeActionLeaf extends TransferActionBase {
 export type TakeAction = TakeActionLeaf
 
 interface TattooParlorLeaf extends LocalBusinessBase {
-	type: "TattooParlor"
+	"@context": "https://schema.org"
+	"@type": "TattooParlor"
 }
 /** A tattoo parlor. */
 export type TattooParlor = TattooParlorLeaf | string
 
 interface TaxiLeaf extends ServiceBase {
-	type: "Taxi"
+	"@context": "https://schema.org"
+	"@type": "Taxi"
 }
 /**
  * A taxi.
@@ -14407,7 +15218,8 @@ interface TaxiReservationBase extends ReservationBase {
 	pickupTime?: SchemaValue<DateTime, "pickupTime">
 }
 interface TaxiReservationLeaf extends TaxiReservationBase {
-	type: "TaxiReservation"
+	"@context": "https://schema.org"
+	"@type": "TaxiReservation"
 }
 /**
  * A reservation for a taxi.
@@ -14417,13 +15229,15 @@ interface TaxiReservationLeaf extends TaxiReservationBase {
 export type TaxiReservation = TaxiReservationLeaf
 
 interface TaxiServiceLeaf extends ServiceBase {
-	type: "TaxiService"
+	"@context": "https://schema.org"
+	"@type": "TaxiService"
 }
 /** A service for a vehicle for hire with a driver for local travel. Fares are usually calculated based on distance traveled. */
 export type TaxiService = TaxiServiceLeaf
 
 interface TaxiStandLeaf extends CivicStructureBase {
-	type: "TaxiStand"
+	"@context": "https://schema.org"
+	"@type": "TaxiStand"
 }
 /** A taxi stand. */
 export type TaxiStand = TaxiStandLeaf | string
@@ -14439,7 +15253,8 @@ interface TaxonBase extends ThingBase {
 	taxonRank?: SchemaValue<PropertyValue | Text | URL | IdReference, "taxonRank">
 }
 interface TaxonLeaf extends TaxonBase {
-	type: "Taxon"
+	"@context": "https://schema.org"
+	"@type": "Taxon"
 }
 /** A set of organisms asserted to represent a natural cohesive biological unit. */
 export type Taxon = TaxonLeaf
@@ -14451,49 +15266,57 @@ interface TechArticleBase extends ArticleBase {
 	proficiencyLevel?: SchemaValue<Text, "proficiencyLevel">
 }
 interface TechArticleLeaf extends TechArticleBase {
-	type: "TechArticle"
+	"@context": "https://schema.org"
+	"@type": "TechArticle"
 }
 /** A technical article - Example: How-to (task) topics, step-by-step, procedural troubleshooting, specifications, etc. */
 export type TechArticle = TechArticleLeaf | APIReference
 
 interface TelevisionChannelLeaf extends BroadcastChannelBase {
-	type: "TelevisionChannel"
+	"@context": "https://schema.org"
+	"@type": "TelevisionChannel"
 }
 /** A unique instance of a television BroadcastService on a CableOrSatelliteService lineup. */
 export type TelevisionChannel = TelevisionChannelLeaf
 
 interface TelevisionStationLeaf extends LocalBusinessBase {
-	type: "TelevisionStation"
+	"@context": "https://schema.org"
+	"@type": "TelevisionStation"
 }
 /** A television station. */
 export type TelevisionStation = TelevisionStationLeaf | string
 
 interface TennisComplexLeaf extends LocalBusinessBase {
-	type: "TennisComplex"
+	"@context": "https://schema.org"
+	"@type": "TennisComplex"
 }
 /** A tennis complex. */
 export type TennisComplex = TennisComplexLeaf | string
 
 interface TextDigitalDocumentLeaf extends DigitalDocumentBase {
-	type: "TextDigitalDocument"
+	"@context": "https://schema.org"
+	"@type": "TextDigitalDocument"
 }
 /** A file composed primarily of text. */
 export type TextDigitalDocument = TextDigitalDocumentLeaf
 
 interface TextObjectLeaf extends MediaObjectBase {
-	type: "TextObject"
+	"@context": "https://schema.org"
+	"@type": "TextObject"
 }
 /** A text file. The text can be unformatted or contain markup, html, etc. */
 export type TextObject = TextObjectLeaf
 
 interface TheaterEventLeaf extends EventBase {
-	type: "TheaterEvent"
+	"@context": "https://schema.org"
+	"@type": "TheaterEvent"
 }
 /** Event type: Theater performance. */
 export type TheaterEvent = TheaterEventLeaf
 
 interface TheaterGroupLeaf extends OrganizationBase {
-	type: "TheaterGroup"
+	"@context": "https://schema.org"
+	"@type": "TheaterGroup"
 }
 /** A theater group or company, for example, the Royal Shakespeare Company or Druid Theatre. */
 export type TheaterGroup = TheaterGroupLeaf | string
@@ -14507,7 +15330,8 @@ interface TherapeuticProcedureBase extends MedicalProcedureBase {
 	drug?: SchemaValue<Drug | IdReference, "drug">
 }
 interface TherapeuticProcedureLeaf extends TherapeuticProcedureBase {
-	type: "TherapeuticProcedure"
+	"@context": "https://schema.org"
+	"@type": "TherapeuticProcedure"
 }
 /** A medical procedure intended primarily for therapeutic purposes, aimed at improving a health condition. */
 export type TherapeuticProcedure =
@@ -14520,12 +15344,13 @@ interface ThesisBase extends CreativeWorkBase {
 	inSupportOf?: SchemaValue<Text, "inSupportOf">
 }
 interface ThesisLeaf extends ThesisBase {
-	type: "Thesis"
+	"@context": "https://schema.org"
+	"@type": "Thesis"
 }
 /** A thesis or dissertation document submitted in support of candidature for an academic degree or professional qualification. */
 export type Thesis = ThesisLeaf
 
-interface ThingBase extends Partial<IdReference> {
+export interface ThingBase extends Partial<IdReference> {
 	/** An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. Typically the value is a URI-identified RDF class, and in this case corresponds to the use of rdf:type in RDF. Text values can be used sparingly, for cases where useful information can be added without their being an appropriate schema to reference. In the case of text values, the class label should follow the schema.org {@link https://schema.org/docs/styleguide.html style guide} */
 	additionalType?: SchemaValue<Text | URL, "additionalType">
 	/** An alias for the item. */
@@ -14558,7 +15383,8 @@ interface ThingBase extends Partial<IdReference> {
 	url?: SchemaValue<URL, "url">
 }
 interface ThingLeaf extends ThingBase {
-	type: "Thing"
+	"@context": "https://schema.org"
+	"@type": "Thing"
 }
 /** The most generic type of item. */
 export type Thing =
@@ -14608,13 +15434,15 @@ interface TicketBase extends ThingBase {
 	underName?: SchemaValue<Organization | Person | IdReference, "underName">
 }
 interface TicketLeaf extends TicketBase {
-	type: "Ticket"
+	"@context": "https://schema.org"
+	"@type": "Ticket"
 }
 /** Used to describe a ticket to an event, a flight, a bus ride, etc. */
 export type Ticket = TicketLeaf
 
 interface TieActionLeaf extends ActionBase {
-	type: "TieAction"
+	"@context": "https://schema.org"
+	"@type": "TieAction"
 }
 /** The act of reaching a draw in a competitive activity. */
 export type TieAction = TieActionLeaf
@@ -14627,13 +15455,15 @@ interface TipActionBase extends TradeActionBase {
 	>
 }
 interface TipActionLeaf extends TipActionBase {
-	type: "TipAction"
+	"@context": "https://schema.org"
+	"@type": "TipAction"
 }
 /** The act of giving money voluntarily to a beneficiary in recognition of services rendered. */
 export type TipAction = TipActionLeaf
 
 interface TireShopLeaf extends LocalBusinessBase {
-	type: "TireShop"
+	"@context": "https://schema.org"
+	"@type": "TireShop"
 }
 /** A tire shop. */
 export type TireShop = TireShopLeaf | string
@@ -14648,7 +15478,8 @@ interface TouristAttractionBase extends PlaceBase {
 	touristType?: SchemaValue<Audience | Text | IdReference, "touristType">
 }
 interface TouristAttractionLeaf extends TouristAttractionBase {
-	type: "TouristAttraction"
+	"@context": "https://schema.org"
+	"@type": "TouristAttraction"
 }
 /** A tourist attraction. In principle any Thing can be a {@link https://schema.org/TouristAttraction TouristAttraction}, from a {@link https://schema.org/Mountain Mountain} and {@link https://schema.org/LandmarksOrHistoricalBuildings LandmarksOrHistoricalBuildings} to a {@link https://schema.org/LocalBusiness LocalBusiness}. This Type can be used on its own to describe a general {@link https://schema.org/TouristAttraction TouristAttraction}, or be used as an {@link https://schema.org/additionalType additionalType} to add tourist attraction properties to any other type. (See examples below) */
 export type TouristAttraction = TouristAttractionLeaf | string
@@ -14663,13 +15494,15 @@ interface TouristDestinationBase extends PlaceBase {
 	touristType?: SchemaValue<Audience | Text | IdReference, "touristType">
 }
 interface TouristDestinationLeaf extends TouristDestinationBase {
-	type: "TouristDestination"
+	"@context": "https://schema.org"
+	"@type": "TouristDestination"
 }
 /** A tourist destination. In principle any {@link https://schema.org/Place Place} can be a {@link https://schema.org/TouristDestination TouristDestination} from a {@link https://schema.org/City City}, Region or {@link https://schema.org/Country Country} to an {@link https://schema.org/AmusementPark AmusementPark} or {@link https://schema.org/Hotel Hotel}. This Type can be used on its own to describe a general {@link https://schema.org/TouristDestination TouristDestination}, or be used as an {@link https://schema.org/additionalType additionalType} to add tourist relevant properties to any other {@link https://schema.org/Place Place}. A {@link https://schema.org/TouristDestination TouristDestination} is defined as a {@link https://schema.org/Place Place} that contains, or is colocated with, one or more {@link https://schema.org/TouristAttraction TouristAttraction}s, often linked by a similar theme or interest to a particular {@link https://schema.org/touristType touristType}. The {@link http://www2.unwto.org/ UNWTO} defines Destination (main destination of a tourism trip) as the place visited that is central to the decision to take the trip. (See examples below.) */
 export type TouristDestination = TouristDestinationLeaf | string
 
 interface TouristInformationCenterLeaf extends LocalBusinessBase {
-	type: "TouristInformationCenter"
+	"@context": "https://schema.org"
+	"@type": "TouristInformationCenter"
 }
 /** A tourist information center. */
 export type TouristInformationCenter = TouristInformationCenterLeaf | string
@@ -14679,13 +15512,15 @@ interface TouristTripBase extends TripBase {
 	touristType?: SchemaValue<Audience | Text | IdReference, "touristType">
 }
 interface TouristTripLeaf extends TouristTripBase {
-	type: "TouristTrip"
+	"@context": "https://schema.org"
+	"@type": "TouristTrip"
 }
 /** A tourist trip. A created itinerary of visits to one or more places of interest ({@link https://schema.org/TouristAttraction TouristAttraction}/{@link https://schema.org/TouristDestination TouristDestination}) often linked by a similar theme, geographic area, or interest to a particular {@link https://schema.org/touristType touristType}. The {@link http://www2.unwto.org/ UNWTO} defines tourism trip as the Trip taken by visitors. (See examples below.) */
 export type TouristTrip = TouristTripLeaf
 
 interface ToyStoreLeaf extends LocalBusinessBase {
-	type: "ToyStore"
+	"@context": "https://schema.org"
+	"@type": "ToyStore"
 }
 /** A toy store. */
 export type ToyStore = ToyStoreLeaf | string
@@ -14695,7 +15530,8 @@ interface TrackActionBase extends ActionBase {
 	deliveryMethod?: SchemaValue<DeliveryMethod | IdReference, "deliveryMethod">
 }
 interface TrackActionLeaf extends TrackActionBase {
-	type: "TrackAction"
+	"@context": "https://schema.org"
+	"@type": "TrackAction"
 }
 /**
  * An agent tracks an object for updates.
@@ -14730,7 +15566,8 @@ interface TradeActionBase extends ActionBase {
 	>
 }
 interface TradeActionLeaf extends TradeActionBase {
-	type: "TradeAction"
+	"@context": "https://schema.org"
+	"@type": "TradeAction"
 }
 /** The act of participating in an exchange of goods and services for monetary compensation. An agent trades an object, product or service with a participant in exchange for a one time or periodic payment. */
 export type TradeAction =
@@ -14746,7 +15583,8 @@ export type TradeAction =
 	| TipAction
 
 interface TrainReservationLeaf extends ReservationBase {
-	type: "TrainReservation"
+	"@context": "https://schema.org"
+	"@type": "TrainReservation"
 }
 /**
  * A reservation for train travel.
@@ -14756,7 +15594,8 @@ interface TrainReservationLeaf extends ReservationBase {
 export type TrainReservation = TrainReservationLeaf
 
 interface TrainStationLeaf extends CivicStructureBase {
-	type: "TrainStation"
+	"@context": "https://schema.org"
+	"@type": "TrainStation"
 }
 /** A train station. */
 export type TrainStation = TrainStationLeaf | string
@@ -14776,7 +15615,8 @@ interface TrainTripBase extends TripBase {
 	trainNumber?: SchemaValue<Text, "trainNumber">
 }
 interface TrainTripLeaf extends TrainTripBase {
-	type: "TrainTrip"
+	"@context": "https://schema.org"
+	"@type": "TrainTrip"
 }
 /** A trip on a commercial train line. */
 export type TrainTrip = TrainTripLeaf
@@ -14788,7 +15628,8 @@ interface TransferActionBase extends ActionBase {
 	toLocation?: SchemaValue<Place | IdReference, "toLocation">
 }
 interface TransferActionLeaf extends TransferActionBase {
-	type: "TransferAction"
+	"@context": "https://schema.org"
+	"@type": "TransferAction"
 }
 /** The act of transferring/moving (abstract or concrete) animate or inanimate objects from one place to another. */
 export type TransferAction =
@@ -14808,19 +15649,22 @@ interface TravelActionBase extends MoveActionBase {
 	distance?: SchemaValue<Distance | IdReference, "distance">
 }
 interface TravelActionLeaf extends TravelActionBase {
-	type: "TravelAction"
+	"@context": "https://schema.org"
+	"@type": "TravelAction"
 }
 /** The act of traveling from a fromLocation to a destination by a specified mode of transport, optionally with participants. */
 export type TravelAction = TravelActionLeaf
 
 interface TravelAgencyLeaf extends LocalBusinessBase {
-	type: "TravelAgency"
+	"@context": "https://schema.org"
+	"@type": "TravelAgency"
 }
 /** A travel agency. */
 export type TravelAgency = TravelAgencyLeaf | string
 
 interface TreatmentIndicationLeaf extends MedicalEntityBase {
-	type: "TreatmentIndication"
+	"@context": "https://schema.org"
+	"@type": "TreatmentIndication"
 }
 /** An indication for treating an underlying condition, symptom, etc. */
 export type TreatmentIndication = TreatmentIndicationLeaf
@@ -14842,7 +15686,8 @@ interface TripBase extends ThingBase {
 	subTrip?: SchemaValue<Trip | IdReference, "subTrip">
 }
 interface TripLeaf extends TripBase {
-	type: "Trip"
+	"@context": "https://schema.org"
+	"@type": "Trip"
 }
 /** A trip or journey. An itinerary of visits to one or more places. */
 export type Trip =
@@ -14862,7 +15707,8 @@ interface TVClipBase extends ClipBase {
 	partOfTVSeries?: SchemaValue<TVSeries | IdReference, "partOfTVSeries">
 }
 interface TVClipLeaf extends TVClipBase {
-	type: "TVClip"
+	"@context": "https://schema.org"
+	"@type": "TVClip"
 }
 /** A short TV program or a segment/part of a TV program. */
 export type TVClip = TVClipLeaf
@@ -14897,7 +15743,8 @@ interface TVEpisodeBase extends EpisodeBase {
 	titleEIDR?: SchemaValue<Text | URL, "titleEIDR">
 }
 interface TVEpisodeLeaf extends TVEpisodeBase {
-	type: "TVEpisode"
+	"@context": "https://schema.org"
+	"@type": "TVEpisode"
 }
 /** A TV episode which can be part of a series or season. */
 export type TVEpisode = TVEpisodeLeaf
@@ -14927,7 +15774,8 @@ interface TVSeasonBase extends CreativeWorkBase, CreativeWorkSeasonBase {
 	titleEIDR?: SchemaValue<Text | URL, "titleEIDR">
 }
 interface TVSeasonLeaf extends TVSeasonBase {
-	type: "TVSeason"
+	"@context": "https://schema.org"
+	"@type": "TVSeason"
 }
 /** Season dedicated to TV broadcast and associated online delivery. */
 export type TVSeason = TVSeasonLeaf
@@ -15005,7 +15853,8 @@ interface TVSeriesBase extends CreativeWorkBase, CreativeWorkSeriesBase {
 	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface TVSeriesLeaf extends TVSeriesBase {
-	type: "TVSeries"
+	"@context": "https://schema.org"
+	"@type": "TVSeries"
 }
 /** CreativeWorkSeries dedicated to TV broadcast and associated online delivery. */
 export type TVSeries = TVSeriesLeaf
@@ -15026,13 +15875,15 @@ interface TypeAndQuantityNodeBase extends ThingBase {
 	unitText?: SchemaValue<Text, "unitText">
 }
 interface TypeAndQuantityNodeLeaf extends TypeAndQuantityNodeBase {
-	type: "TypeAndQuantityNode"
+	"@context": "https://schema.org"
+	"@type": "TypeAndQuantityNode"
 }
 /** A structured value indicating the quantity, unit of measurement, and business function of goods included in a bundle offer. */
 export type TypeAndQuantityNode = TypeAndQuantityNodeLeaf
 
 interface UKNonprofitTypeLeaf extends EnumerationBase {
-	type: "UKNonprofitType"
+	"@context": "https://schema.org"
+	"@type": "UKNonprofitType"
 }
 /** UKNonprofitType: Non-profit organization type originating from the United Kingdom. */
 export type UKNonprofitType =
@@ -15077,13 +15928,15 @@ interface UnitPriceSpecificationBase extends PriceSpecificationBase {
 	unitText?: SchemaValue<Text, "unitText">
 }
 interface UnitPriceSpecificationLeaf extends UnitPriceSpecificationBase {
-	type: "UnitPriceSpecification"
+	"@context": "https://schema.org"
+	"@type": "UnitPriceSpecification"
 }
 /** The price asked for a given offer by the respective organization or person. */
 export type UnitPriceSpecification = UnitPriceSpecificationLeaf
 
 interface UnRegisterActionLeaf extends ActionBase {
-	type: "UnRegisterAction"
+	"@context": "https://schema.org"
+	"@type": "UnRegisterAction"
 }
 /**
  * The act of un-registering from a service.
@@ -15105,7 +15958,8 @@ interface UpdateActionBase extends ActionBase {
 	targetCollection?: SchemaValue<Thing | IdReference, "targetCollection">
 }
 interface UpdateActionLeaf extends UpdateActionBase {
-	type: "UpdateAction"
+	"@context": "https://schema.org"
+	"@type": "UpdateAction"
 }
 /** The act of managing by changing/editing the state of the object. */
 export type UpdateAction =
@@ -15118,13 +15972,15 @@ export type UpdateAction =
 export type URL = string
 
 interface UseActionLeaf extends ConsumeActionBase {
-	type: "UseAction"
+	"@context": "https://schema.org"
+	"@type": "UseAction"
 }
 /** The act of applying an object to its intended purpose. */
 export type UseAction = UseActionLeaf | WearAction
 
 interface UserBlocksLeaf extends EventBase {
-	type: "UserBlocks"
+	"@context": "https://schema.org"
+	"@type": "UserBlocks"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15134,7 +15990,8 @@ interface UserBlocksLeaf extends EventBase {
 export type UserBlocks = UserBlocksLeaf
 
 interface UserCheckinsLeaf extends EventBase {
-	type: "UserCheckins"
+	"@context": "https://schema.org"
+	"@type": "UserCheckins"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15156,7 +16013,8 @@ interface UserCommentsBase extends EventBase {
 	replyToUrl?: SchemaValue<URL, "replyToUrl">
 }
 interface UserCommentsLeaf extends UserCommentsBase {
-	type: "UserComments"
+	"@context": "https://schema.org"
+	"@type": "UserComments"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15166,7 +16024,8 @@ interface UserCommentsLeaf extends UserCommentsBase {
 export type UserComments = UserCommentsLeaf
 
 interface UserDownloadsLeaf extends EventBase {
-	type: "UserDownloads"
+	"@context": "https://schema.org"
+	"@type": "UserDownloads"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15176,7 +16035,8 @@ interface UserDownloadsLeaf extends EventBase {
 export type UserDownloads = UserDownloadsLeaf
 
 interface UserInteractionLeaf extends EventBase {
-	type: "UserInteraction"
+	"@context": "https://schema.org"
+	"@type": "UserInteraction"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15196,7 +16056,8 @@ export type UserInteraction =
 	| UserTweets
 
 interface UserLikesLeaf extends EventBase {
-	type: "UserLikes"
+	"@context": "https://schema.org"
+	"@type": "UserLikes"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15206,7 +16067,8 @@ interface UserLikesLeaf extends EventBase {
 export type UserLikes = UserLikesLeaf
 
 interface UserPageVisitsLeaf extends EventBase {
-	type: "UserPageVisits"
+	"@context": "https://schema.org"
+	"@type": "UserPageVisits"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15216,7 +16078,8 @@ interface UserPageVisitsLeaf extends EventBase {
 export type UserPageVisits = UserPageVisitsLeaf
 
 interface UserPlaysLeaf extends EventBase {
-	type: "UserPlays"
+	"@context": "https://schema.org"
+	"@type": "UserPlays"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15226,7 +16089,8 @@ interface UserPlaysLeaf extends EventBase {
 export type UserPlays = UserPlaysLeaf
 
 interface UserPlusOnesLeaf extends EventBase {
-	type: "UserPlusOnes"
+	"@context": "https://schema.org"
+	"@type": "UserPlusOnes"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15236,13 +16100,15 @@ interface UserPlusOnesLeaf extends EventBase {
 export type UserPlusOnes = UserPlusOnesLeaf
 
 interface UserReviewLeaf extends ReviewBase {
-	type: "UserReview"
+	"@context": "https://schema.org"
+	"@type": "UserReview"
 }
 /** A review created by an end-user (e.g. consumer, purchaser, attendee etc.), in contrast with {@link https://schema.org/CriticReview CriticReview}. */
 export type UserReview = UserReviewLeaf
 
 interface UserTweetsLeaf extends EventBase {
-	type: "UserTweets"
+	"@context": "https://schema.org"
+	"@type": "UserTweets"
 }
 /**
  * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
@@ -15252,7 +16118,8 @@ interface UserTweetsLeaf extends EventBase {
 export type UserTweets = UserTweetsLeaf
 
 interface USNonprofitTypeLeaf extends EnumerationBase {
-	type: "USNonprofitType"
+	"@context": "https://schema.org"
+	"@type": "USNonprofitType"
 }
 /** USNonprofitType: Non-profit organization type originating from the United States. */
 export type USNonprofitType =
@@ -15331,7 +16198,8 @@ export type USNonprofitType =
 	| USNonprofitTypeLeaf
 
 interface VacationRentalLeaf extends LodgingBusinessBase {
-	type: "VacationRental"
+	"@context": "https://schema.org"
+	"@type": "VacationRental"
 }
 /** A kind of lodging business that focuses on renting single properties for limited time. */
 export type VacationRental = VacationRentalLeaf | string
@@ -15569,7 +16437,8 @@ interface VehicleBase extends ProductBase {
 	wheelbase?: SchemaValue<QuantitativeValue | IdReference, "wheelbase">
 }
 interface VehicleLeaf extends VehicleBase {
-	type: "Vehicle"
+	"@context": "https://schema.org"
+	"@type": "Vehicle"
 }
 /** A vehicle is a device that is designed or used to transport people or cargo over land, water, air, or through space. */
 export type Vehicle =
@@ -15591,25 +16460,29 @@ interface VeinBase extends AnatomicalStructureBase {
 	tributary?: SchemaValue<AnatomicalStructure | IdReference, "tributary">
 }
 interface VeinLeaf extends VeinBase {
-	type: "Vein"
+	"@context": "https://schema.org"
+	"@type": "Vein"
 }
 /** A type of blood vessel that specifically carries blood to the heart. */
 export type Vein = VeinLeaf
 
 interface VesselLeaf extends AnatomicalStructureBase {
-	type: "Vessel"
+	"@context": "https://schema.org"
+	"@type": "Vessel"
 }
 /** A component of the human body circulatory system comprised of an intricate network of hollow tubes that transport blood throughout the entire body. */
 export type Vessel = VesselLeaf | Artery | LymphaticVessel | Vein
 
 interface VeterinaryCareLeaf extends MedicalOrganizationBase {
-	type: "VeterinaryCare"
+	"@context": "https://schema.org"
+	"@type": "VeterinaryCare"
 }
 /** A vet's office. */
 export type VeterinaryCare = VeterinaryCareLeaf | string
 
 interface VideoGalleryLeaf extends WebPageBase {
-	type: "VideoGallery"
+	"@context": "https://schema.org"
+	"@type": "VideoGallery"
 }
 /** Web page type: Video gallery page. */
 export type VideoGallery = VideoGalleryLeaf
@@ -15649,13 +16522,15 @@ interface VideoGameBase extends SoftwareApplicationBase, GameBase {
 	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface VideoGameLeaf extends VideoGameBase {
-	type: "VideoGame"
+	"@context": "https://schema.org"
+	"@type": "VideoGame"
 }
 /** A video game is an electronic game that involves human interaction with a user interface to generate visual feedback on a video device. */
 export type VideoGame = VideoGameLeaf
 
 interface VideoGameClipLeaf extends ClipBase {
-	type: "VideoGameClip"
+	"@context": "https://schema.org"
+	"@type": "VideoGameClip"
 }
 /** A short segment/part of a video game. */
 export type VideoGameClip = VideoGameClipLeaf
@@ -15739,7 +16614,8 @@ interface VideoGameSeriesBase extends CreativeWorkSeriesBase {
 	trailer?: SchemaValue<VideoObject | IdReference, "trailer">
 }
 interface VideoGameSeriesLeaf extends VideoGameSeriesBase {
-	type: "VideoGameSeries"
+	"@context": "https://schema.org"
+	"@type": "VideoGameSeries"
 }
 /** A video game series. */
 export type VideoGameSeries = VideoGameSeriesLeaf
@@ -15775,31 +16651,36 @@ interface VideoObjectBase extends MediaObjectBase {
 	videoQuality?: SchemaValue<Text, "videoQuality">
 }
 interface VideoObjectLeaf extends VideoObjectBase {
-	type: "VideoObject"
+	"@context": "https://schema.org"
+	"@type": "VideoObject"
 }
 /** A video file. */
 export type VideoObject = VideoObjectLeaf | VideoObjectSnapshot
 
 interface VideoObjectSnapshotLeaf extends VideoObjectBase {
-	type: "VideoObjectSnapshot"
+	"@context": "https://schema.org"
+	"@type": "VideoObjectSnapshot"
 }
 /** A specific and exact (byte-for-byte) version of a {@link https://schema.org/VideoObject VideoObject}. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren't represented in their actual content, do not affect this notion of identity. */
 export type VideoObjectSnapshot = VideoObjectSnapshotLeaf
 
 interface ViewActionLeaf extends ConsumeActionBase {
-	type: "ViewAction"
+	"@context": "https://schema.org"
+	"@type": "ViewAction"
 }
 /** The act of consuming static visual content. */
 export type ViewAction = ViewActionLeaf
 
 interface VirtualLocationLeaf extends ThingBase {
-	type: "VirtualLocation"
+	"@context": "https://schema.org"
+	"@type": "VirtualLocation"
 }
 /** An online or virtual location for attending events. For example, one may attend an online seminar or educational event. While a virtual location may be used as the location of an event, virtual locations should not be confused with physical locations in the real world. */
 export type VirtualLocation = VirtualLocationLeaf
 
 interface VisualArtsEventLeaf extends EventBase {
-	type: "VisualArtsEvent"
+	"@context": "https://schema.org"
+	"@type": "VisualArtsEvent"
 }
 /** Event type: Visual arts event. */
 export type VisualArtsEvent = VisualArtsEventLeaf
@@ -15837,19 +16718,22 @@ interface VisualArtworkBase extends CreativeWorkBase {
 	width?: SchemaValue<Distance | QuantitativeValue | IdReference, "width">
 }
 interface VisualArtworkLeaf extends VisualArtworkBase {
-	type: "VisualArtwork"
+	"@context": "https://schema.org"
+	"@type": "VisualArtwork"
 }
 /** A work of art that is primarily visual in character. */
 export type VisualArtwork = VisualArtworkLeaf | CoverArt
 
 interface VitalSignLeaf extends MedicalSignBase {
-	type: "VitalSign"
+	"@context": "https://schema.org"
+	"@type": "VitalSign"
 }
 /** Vital signs are measures of various physiological functions in order to assess the most basic body functions. */
 export type VitalSign = VitalSignLeaf
 
 interface VolcanoLeaf extends PlaceBase {
-	type: "Volcano"
+	"@context": "https://schema.org"
+	"@type": "Volcano"
 }
 /** A volcano, like Fujisan. */
 export type Volcano = VolcanoLeaf | string
@@ -15859,13 +16743,15 @@ interface VoteActionBase extends ChooseActionBase {
 	candidate?: SchemaValue<Person | IdReference, "candidate">
 }
 interface VoteActionLeaf extends VoteActionBase {
-	type: "VoteAction"
+	"@context": "https://schema.org"
+	"@type": "VoteAction"
 }
 /** The act of expressing a preference from a fixed/finite/structured set of choices/options. */
 export type VoteAction = VoteActionLeaf
 
 interface WantActionLeaf extends ActionBase {
-	type: "WantAction"
+	"@context": "https://schema.org"
+	"@type": "WantAction"
 }
 /** The act of expressing a desire about the object. An agent wants an object. */
 export type WantAction = WantActionLeaf
@@ -15880,13 +16766,15 @@ interface WarrantyPromiseBase extends ThingBase {
 	warrantyScope?: SchemaValue<WarrantyScope | IdReference, "warrantyScope">
 }
 interface WarrantyPromiseLeaf extends WarrantyPromiseBase {
-	type: "WarrantyPromise"
+	"@context": "https://schema.org"
+	"@type": "WarrantyPromise"
 }
 /** A structured value representing the duration and scope of services that will be provided to a customer free of charge in case of a defect or malfunction of a product. */
 export type WarrantyPromise = WarrantyPromiseLeaf
 
 interface WarrantyScopeLeaf extends EnumerationBase {
-	type: "WarrantyScope"
+	"@context": "https://schema.org"
+	"@type": "WarrantyScope"
 }
 /**
  * A range of services that will be provided to a customer free of charge in case of a defect or malfunction of a product.
@@ -15899,19 +16787,22 @@ interface WarrantyScopeLeaf extends EnumerationBase {
 export type WarrantyScope = WarrantyScopeLeaf
 
 interface WatchActionLeaf extends ConsumeActionBase {
-	type: "WatchAction"
+	"@context": "https://schema.org"
+	"@type": "WatchAction"
 }
 /** The act of consuming dynamic/moving visual content. */
 export type WatchAction = WatchActionLeaf
 
 interface WaterfallLeaf extends PlaceBase {
-	type: "Waterfall"
+	"@context": "https://schema.org"
+	"@type": "Waterfall"
 }
 /** A waterfall, like Niagara. */
 export type Waterfall = WaterfallLeaf | string
 
 interface WearableMeasurementTypeEnumerationLeaf extends EnumerationBase {
-	type: "WearableMeasurementTypeEnumeration"
+	"@context": "https://schema.org"
+	"@type": "WearableMeasurementTypeEnumeration"
 }
 /** Enumerates common types of measurement for wearables products. */
 export type WearableMeasurementTypeEnumeration =
@@ -15942,7 +16833,8 @@ export type WearableMeasurementTypeEnumeration =
 	| WearableMeasurementTypeEnumerationLeaf
 
 interface WearableSizeGroupEnumerationLeaf extends EnumerationBase {
-	type: "WearableSizeGroupEnumeration"
+	"@context": "https://schema.org"
+	"@type": "WearableSizeGroupEnumeration"
 }
 /** Enumerates common size groups (also known as "size types") for wearable products. */
 export type WearableSizeGroupEnumeration =
@@ -15983,7 +16875,8 @@ export type WearableSizeGroupEnumeration =
 	| WearableSizeGroupEnumerationLeaf
 
 interface WearableSizeSystemEnumerationLeaf extends EnumerationBase {
-	type: "WearableSizeSystemEnumeration"
+	"@context": "https://schema.org"
+	"@type": "WearableSizeSystemEnumeration"
 }
 /** Enumerates common size systems specific for wearable products */
 export type WearableSizeSystemEnumeration =
@@ -16018,7 +16911,8 @@ export type WearableSizeSystemEnumeration =
 	| WearableSizeSystemEnumerationLeaf
 
 interface WearActionLeaf extends ConsumeActionBase {
-	type: "WearAction"
+	"@context": "https://schema.org"
+	"@type": "WearAction"
 }
 /** The act of dressing oneself in clothing. */
 export type WearAction = WearActionLeaf
@@ -16028,7 +16922,8 @@ interface WebAPIBase extends ServiceBase {
 	documentation?: SchemaValue<CreativeWork | URL | IdReference, "documentation">
 }
 interface WebAPILeaf extends WebAPIBase {
-	type: "WebAPI"
+	"@context": "https://schema.org"
+	"@type": "WebAPI"
 }
 /** An application programming interface accessible over Web/Internet technologies. */
 export type WebAPI = WebAPILeaf
@@ -16038,13 +16933,15 @@ interface WebApplicationBase extends SoftwareApplicationBase {
 	browserRequirements?: SchemaValue<Text, "browserRequirements">
 }
 interface WebApplicationLeaf extends WebApplicationBase {
-	type: "WebApplication"
+	"@context": "https://schema.org"
+	"@type": "WebApplication"
 }
 /** Web applications. */
 export type WebApplication = WebApplicationLeaf
 
 interface WebContentLeaf extends CreativeWorkBase {
-	type: "WebContent"
+	"@context": "https://schema.org"
+	"@type": "WebContent"
 }
 /** WebContent is a type representing all {@link https://schema.org/WebPage WebPage}, {@link https://schema.org/WebSite WebSite} and {@link https://schema.org/WebPageElement WebPageElement} content. It is sometimes the case that detailed distinctions between Web pages, sites and their parts are not always important or obvious. The {@link https://schema.org/WebContent WebContent} type makes it easier to describe Web-addressable content without requiring such distinctions to always be stated. (The intent is that the existing types {@link https://schema.org/WebPage WebPage}, {@link https://schema.org/WebSite WebSite} and {@link https://schema.org/WebPageElement WebPageElement} will eventually be declared as subtypes of {@link https://schema.org/WebContent WebContent}.) */
 export type WebContent = WebContentLeaf | HealthTopicContent
@@ -16097,7 +16994,8 @@ interface WebPageBase extends CreativeWorkBase {
 	specialty?: SchemaValue<Specialty | IdReference, "specialty">
 }
 interface WebPageLeaf extends WebPageBase {
-	type: "WebPage"
+	"@context": "https://schema.org"
+	"@type": "WebPage"
 }
 /** A web page. Every web page is implicitly assumed to be declared to be of type WebPage, so the various properties about that webpage, such as `breadcrumb` may be used. We recommend explicit declaration if these properties are specified, but if they are found outside of an itemscope, they will be assumed to be about the page. */
 export type WebPage =
@@ -16121,7 +17019,8 @@ interface WebPageElementBase extends CreativeWorkBase {
 	xpath?: SchemaValue<XPathType, "xpath">
 }
 interface WebPageElementLeaf extends WebPageElementBase {
-	type: "WebPageElement"
+	"@context": "https://schema.org"
+	"@type": "WebPageElement"
 }
 /** A web page element, like a table or an image. */
 export type WebPageElement =
@@ -16138,13 +17037,15 @@ interface WebSiteBase extends CreativeWorkBase {
 	issn?: SchemaValue<Text, "issn">
 }
 interface WebSiteLeaf extends WebSiteBase {
-	type: "WebSite"
+	"@context": "https://schema.org"
+	"@type": "WebSite"
 }
 /** A WebSite is a set of related web pages and other items typically served from a single web domain and accessible via URLs. */
 export type WebSite = WebSiteLeaf
 
 interface WholesaleStoreLeaf extends LocalBusinessBase {
-	type: "WholesaleStore"
+	"@context": "https://schema.org"
+	"@type": "WholesaleStore"
 }
 /** A wholesale store. */
 export type WholesaleStore = WholesaleStoreLeaf | string
@@ -16154,13 +17055,15 @@ interface WinActionBase extends ActionBase {
 	loser?: SchemaValue<Person | IdReference, "loser">
 }
 interface WinActionLeaf extends WinActionBase {
-	type: "WinAction"
+	"@context": "https://schema.org"
+	"@type": "WinAction"
 }
 /** The act of achieving victory in a competitive activity. */
 export type WinAction = WinActionLeaf
 
 interface WineryLeaf extends FoodEstablishmentBase {
-	type: "Winery"
+	"@context": "https://schema.org"
+	"@type": "Winery"
 }
 /** A winery. */
 export type Winery = WineryLeaf | string
@@ -16182,37 +17085,43 @@ interface WorkBasedProgramBase extends EducationalOccupationalProgramBase {
 	>
 }
 interface WorkBasedProgramLeaf extends WorkBasedProgramBase {
-	type: "WorkBasedProgram"
+	"@context": "https://schema.org"
+	"@type": "WorkBasedProgram"
 }
 /** A program with both an educational and employment component. Typically based at a workplace and structured around work-based learning, with the aim of instilling competencies related to an occupation. WorkBasedProgram is used to distinguish programs such as apprenticeships from school, college or other classroom based educational programs. */
 export type WorkBasedProgram = WorkBasedProgramLeaf
 
 interface WorkersUnionLeaf extends OrganizationBase {
-	type: "WorkersUnion"
+	"@context": "https://schema.org"
+	"@type": "WorkersUnion"
 }
 /** A Workers Union (also known as a Labor Union, Labour Union, or Trade Union) is an organization that promotes the interests of its worker members by collectively bargaining with management, organizing, and political lobbying. */
 export type WorkersUnion = WorkersUnionLeaf | string
 
 interface WPAdBlockLeaf extends WebPageElementBase {
-	type: "WPAdBlock"
+	"@context": "https://schema.org"
+	"@type": "WPAdBlock"
 }
 /** An advertising section of the page. */
 export type WPAdBlock = WPAdBlockLeaf
 
 interface WPFooterLeaf extends WebPageElementBase {
-	type: "WPFooter"
+	"@context": "https://schema.org"
+	"@type": "WPFooter"
 }
 /** The footer section of the page. */
 export type WPFooter = WPFooterLeaf
 
 interface WPHeaderLeaf extends WebPageElementBase {
-	type: "WPHeader"
+	"@context": "https://schema.org"
+	"@type": "WPHeader"
 }
 /** The header section of the page. */
 export type WPHeader = WPHeaderLeaf
 
 interface WPSideBarLeaf extends WebPageElementBase {
-	type: "WPSideBar"
+	"@context": "https://schema.org"
+	"@type": "WPSideBar"
 }
 /** A sidebar section of the page. */
 export type WPSideBar = WPSideBarLeaf
@@ -16228,7 +17137,8 @@ interface WriteActionBase extends ActionBase {
 	language?: SchemaValue<Language | IdReference, "language">
 }
 interface WriteActionLeaf extends WriteActionBase {
-	type: "WriteAction"
+	"@context": "https://schema.org"
+	"@type": "WriteAction"
 }
 /** The act of authoring written creative content. */
 export type WriteAction = WriteActionLeaf
@@ -16237,7 +17147,8 @@ export type WriteAction = WriteActionLeaf
 export type XPathType = string
 
 interface ZooLeaf extends CivicStructureBase {
-	type: "Zoo"
+	"@context": "https://schema.org"
+	"@type": "Zoo"
 }
 /** A zoo. */
 export type Zoo = ZooLeaf | string

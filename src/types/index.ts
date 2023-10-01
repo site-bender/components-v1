@@ -7,6 +7,7 @@ import type {
 	Override,
 } from "./html"
 import type {
+	ArticleLeaf,
 	Audiobook,
 	Book,
 	ContactPointLeaf,
@@ -96,9 +97,9 @@ export type TimeToReadProps<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
 			hideClass?: string | undefined
 			id?: string | undefined | null
 			readability?: number | undefined | null
-			timeToRead?: DurationOptions | undefined | null
+			timeRequired?: DurationOptions | undefined | null
 			title?: string | undefined | null
-			words?: number | undefined | null
+			wordCount?: number | undefined | null
 		}
 	>
 
@@ -106,19 +107,19 @@ export type ObjectType = "website" | "article" | "profile"
 
 export type TwitterCard = "app" | "player" | "summary" | "summary_large_image"
 
-export type Basedata = {
-	authors?: Array<string | Person> | undefined
-	canonical?: string
-	charset?: string | undefined
-	imageUrl?: string | undefined
-	locale?: string | undefined
-	publishers?: Array<string | Organization> | undefined
-	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
-	siteName?: string | undefined
-	twitterCard: TwitterCard
-	type?: ObjectType
-	viewport?: string | undefined
-}
+// export type Basedata = {
+// 	authors?: Array<string | Person> | undefined
+// 	canonical?: string
+// 	charset?: string | undefined
+// 	imageUrl?: string | undefined
+// 	locale?: string | undefined
+// 	publishers?: Array<string | Organization> | undefined
+// 	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
+// 	siteName?: string | undefined
+// 	twitterCard: TwitterCard
+// 	type?: ObjectType
+// 	viewport?: string | undefined
+// }
 
 export type Author = Override<
 	Person,
@@ -141,66 +142,9 @@ export type DurationOptions = {
 }
 
 export type Metadata = {
-	article?:
-		| {
-				authors?: Array<string | LdPerson> | undefined
-				license?: string | undefined
-				modifiedDate?: Date | string | undefined
-				publishers?: Array<string | LdOrganization> | undefined
-				publishDate?: Date | string
-				readability?: number | undefined
-				tags?: Array<string> | undefined
-				timeToRead?: DurationOptions | undefined
-				title?: string
-				words?: number | undefined
-		  }
-		| undefined
-	author?: string | LdPerson | undefined
-	blurb?: string | undefined
-	canonical: string
-	chapter?: number
-	charset?: string | undefined
-	children?: Array<string>
-	description: string
-	image?:
-		| {
-				alt: string
-				height?: string | number
-				isInvertible?: boolean
-				license?: string
-				src: string
-				type: ImageType
-				width?: string | number
-		  }
-		| undefined
-	index?: number
-	label?: string
-	language?: string | undefined
-	locale?: string | undefined
-	modifiedDate?: Date | string | undefined
-	next?: string | undefined
-	noAnalytics?: boolean | undefined
-	prev?: string | undefined
-	publishDate?: Date | string
-	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
-	siteName?: string | undefined
-	subtitle?: string
-	thumbnailUrl?: string | undefined
-	title: string
-	twitter?:
-		| {
-				card: TwitterCard
-				creator?: string | undefined
-				description?: string | undefined
-				image?: string | undefined
-				imageAlt?: string | undefined
-				site?: string | undefined
-				title?: string | undefined
-		  }
-		| undefined
-	type?: ObjectType
-	url?: string | undefined
-	viewport?: string | undefined
+	article?: ArticleLeaf | undefined
+	webPage?: WebPage | undefined
+	webSite?: WebSite | undefined
 }
 
 export type PageMeta<Tag extends HTMLTag> = Override<
@@ -494,9 +438,11 @@ export type ItemsProps<T, Tag extends HTMLTag> = Override<
 export type LinkProps<Tag extends HTMLTag> = Override<
 	MetadataProps<SiteNavigationElement, Tag>,
 	{
+		description?: string | undefined | null
 		href: string
 		label: string
 		link?: Partial<LinkAttributes> | undefined | null
+		title?: string | undefined | null
 	} & Formattable
 >
 
@@ -558,18 +504,17 @@ export type NavProps<Tag extends HTMLTag> = Override<
 	}
 >
 
-export type NavListProps<Tag extends HTMLTag> = Override<
-	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
-	{
-		header?: HTMLAttributes | undefined | null
-		hideClass?: string | undefined | null
-		level?: 1 | 2 | 3 | 4 | 5 | 6
-		links: Array<LinkProps<Tag>>
-		list?: ListAttributes | undefined | null
-		title?: string | undefined | null
-		type?: "ol" | "ul" | undefined | null
-	}
->
+export type NavListProps<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
+		MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
+		{
+			header?: HTMLAttributes | undefined | null
+			hideClass?: string | undefined | null
+			links: Array<LinkProps<Tag>>
+			list?: ListAttributes | undefined | null
+			title?: string | undefined | null
+		}
+	>
 
 export type PaginatorProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,

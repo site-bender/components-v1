@@ -14,7 +14,10 @@ const {
   metadata = {} as Metadata,
   title,
 } = Astro.props;
-const type = metadata.type || basedata.type;
+
+const data = { ...basedata, ...metadata };
+
+const { authors = [], siteName, type } = data;
 
 const author =
   typeof metadata.author === "string"
@@ -27,11 +30,7 @@ const publisher =
     : metadata.publisher?.name ||
       (basedata.publishers?.at(0) as OrganizationLeaf)?.name;
 
-const src = metadata.image?.src
-  ? metadata.image.src
-  : `${basedata.imageUrl}${metadata.image?.filename}.${
-      metadata.image?.type || "png"
-    }`;
+const src = metadata.image?.src;
 ---
 
 <meta charset={metadata.charset || basedata.charset} />
@@ -54,20 +53,16 @@ const src = metadata.image?.src
 <meta name="og:title" content={metadata.title} />
 {src ? <meta name="og:image" content={src} /> : null}
 {
-  metadata.image?.filename && metadata.image.alt ? (
-    <meta name="og:image:alt" content={metadata.image.alt} />
+  src && metadata.image?.alt ? (
+    <meta name="og:image:alt" content={metadata.image?.alt} />
   ) : null
 }{
-  metadata.image?.filename && metadata.image.height ? (
-    <meta name="og:image:height" content={metadata.image.height.toString()} />
+  src && metadata.image?.height ? (
+    <meta name="og:image:height" content={metadata.image?.height.toString()} />
   ) : null
-}{
-  metadata.image?.filename ? (
-    <meta name="og:image:type" content="image/avif" />
-  ) : null
-}{
-  metadata.image?.filename && metadata.image.width ? (
-    <meta name="og:image:width" content={metadata.image.width.toString()} />
+}{src ? <meta name="og:image:type" content="image/avif" /> : null}{
+  src && metadata.image?.width ? (
+    <meta name="og:image:width" content={metadata.image?.width.toString()} />
   ) : null
 }
 {

@@ -1,7 +1,6 @@
 .sb-cards {
-	margin: var(--sb-space-s, 1rem) 0 0;
+	margin: var(--sb-space-s, 1rem) var(--sb-space-m, 1.5rem);
 	max-width: unset;
-	width: 100%;
 }
 
 .sb-cards .sb-cards-content {

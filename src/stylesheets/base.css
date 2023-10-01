@@ -8,7 +8,7 @@
 .sb-disabled {
 	border-color: var(--sb-disabled-border-color, var(--sb-disabled-border-color)) !important;
 	color: var(--sb-disabled-color, var(--sb-disabled-color)) !important;
-	cursor: disabled-cursor;
+	cursor: not-allowed;
 }
 
 .sb-hide {
@@ -163,7 +163,7 @@ hr::after {
 }
 
 details > div {
-	padding: details- 0;
+	padding: 0;
 }
 
 ol,

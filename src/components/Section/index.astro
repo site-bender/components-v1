@@ -1,0 +1,30 @@
+---
+import generateShortId from "../../utilities/generateShortId";
+import mapAttributes from "../../utilities/mapAttributes";
+
+const {
+  as: Element = "section",
+  header = {},
+  id: sectionId,
+  label,
+  ...attrs
+} = Astro.props;
+
+const { as: HElement = "h2", id: headerId, ...hAttrs } = header;
+
+const headerAttrs = mapAttributes(hAttrs, ["sb-section-header"]);
+const sectionAttrs = mapAttributes(attrs, ["sb-section"]);
+
+const headingId = headerId || generateShortId();
+const id = sectionId || generateShortId();
+
+const content = await Astro.slots.render("default");
+const title = label || (await Astro.slots.render("title"));
+---
+
+<Element aria-labelledby={headingId} {id} {...sectionAttrs}>
+  <header {...headerAttrs} id={headingId}>
+    <HElement>{title}</HElement>
+  </header>
+  <Fragment set:html={content} />
+</Element>

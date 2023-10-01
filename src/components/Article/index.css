@@ -1,7 +1,7 @@
 .sb-article {
-	margin: var(--sb-space-s) auto;
-	max-width: min(48rem, 92vw);
-	width: 100%;
+	margin: 0 auto;
+	padding: var(--sb-space-m);
+	max-width: min(48rem, 100vw);
 }
 
 .sb-article > * + * {

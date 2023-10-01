@@ -12,13 +12,14 @@ const {
   hideClass = "sb-off-screen",
   id = generateShortId(),
   readability,
-  timeToRead = {},
+  timeRequired = {},
   title = "Time to read",
-  words,
+  wordCount,
   ...attrs
 } = Astro.props;
 
 const { as: HElement = "h2", ...hAttrs } = header;
+const headerId = generateShortId();
 
 const headerAttrs = mapAttributes(hAttrs, [
   "sb-time-to-read-heading",
@@ -27,31 +28,33 @@ const headerAttrs = mapAttributes(hAttrs, [
 const ttrAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-time-to-read"]);
 ---
 
-<section {...ttrAttrs} {id}>
-  <HElement {...headerAttrs}>{title}</HElement>
+<section aria-labelledby={headerId} {...ttrAttrs} {id}>
+  <HElement {...headerAttrs} id={headerId}>{title}</HElement>
   <p>
     {
-      timeToRead ? (
+      timeRequired ? (
         <time
           class="sb-time-to-read-time"
-          datetime={`PT${timeToRead.minutes || 0}M${timeToRead.seconds || 0}S`}
+          datetime={`PT${timeRequired.minutes || 0}M${
+            timeRequired.seconds || 0
+          }S`}
         >
-          {formatTimeToRead(timeToRead)}
+          {formatTimeToRead(timeRequired)}
         </time>
       ) : null
     }
     {
-      words ? (
+      wordCount ? (
         <>
-          {timeToRead ? ", " : ""}
-          <span class="sb-time-to-read-words">{words} words</span>
+          {timeRequired ? ", " : ""}
+          <span class="sb-time-to-read-word-count">{wordCount} words</span>
         </>
       ) : null
     }
     {
       readability ? (
         <>
-          {words || timeToRead ? ", " : ""}
+          {wordCount || timeRequired ? ", " : ""}
           <span class="sb-time-to-read-readability">
             {formatOrdinal(readability)} grade
           </span>
