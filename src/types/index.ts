@@ -6,6 +6,7 @@ import type {
 	HTMLAttributes,
 	Override,
 } from "./html"
+import { OpenGraphArticle, OpenGraphBasic } from "./openGraph"
 import type {
 	Article,
 	ArticleLeaf,
@@ -22,7 +23,6 @@ import type {
 	MusicRecording,
 	MusicRelease,
 	Number as NumberSO,
-	Organization,
 	OrganizationLeaf,
 	Person,
 	PersonLeaf,
@@ -104,7 +104,21 @@ export type TimeToReadProps<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
 
 export type ObjectType = "website" | "article" | "profile"
 
-export type TwitterCard = "app" | "player" | "summary" | "summary_large_image"
+export type TwitterCardType =
+	| "summary"
+	| "summary_large_image"
+	| "app"
+	| "player"
+
+export type TwitterCard = {
+	card: TwitterCardType
+	creator?: string | undefined
+	description?: string | undefined
+	image?: string | undefined
+	imageAlt?: string | undefined
+	site?: string | undefined
+	title?: string | undefined
+}
 
 // export type Basedata = {
 // 	authors?: Array<string | Person> | undefined
@@ -146,10 +160,17 @@ export type Metadata = {
 	webSite?: WebSite | undefined
 }
 
-export type PageMeta<Tag extends HTMLTag> = Override<
-	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
-	Metadata
->
+export type PageMeta = {
+	article?: OpenGraphArticle | undefined | null
+	author?: string | undefined | null
+	label?: string | undefined | null
+	next?: string | undefined | null
+	openGraph?: OpenGraphBasic | undefined | null
+	prev?: string | undefined | null
+	title?: string | undefined | null
+	twitter?: TwitterCard | undefined | null
+	webPage?: WebPage | undefined | null
+}
 
 export type CreatePath = (
 	filename: string,

@@ -150,8 +150,6 @@ export { default as MonetaryAmount } from "./src/components/metadata/MonetaryAmo
 // @ts-expect-error
 export { default as Number } from "./src/components/metadata/Number/index.astro"
 // @ts-expect-error
-export { default as OpenGraph } from "./src/components/metadata/OpenGraph/index.astro"
-// @ts-expect-error
 export { default as PlainDate } from "./src/components/metadata/PlainDate/index.astro"
 // @ts-expect-error
 export { default as PlainDateTime } from "./src/components/metadata/PlainDateTime/index.astro"
@@ -170,11 +168,18 @@ export { default as Tel } from "./src/components/metadata/Tel/index.astro"
 // @ts-expect-error
 export { default as TimeZone } from "./src/components/metadata/TimeZone/index.astro"
 // @ts-expect-error
+export { default as Twitter } from "./src/components/metadata/Twitter/index.astro"
+// @ts-expect-error
 export { default as Url } from "./src/components/metadata/Url/index.astro"
 // @ts-expect-error
 export { default as YearWeek } from "./src/components/metadata/YearWeek/index.astro"
 // @ts-expect-error
 export { default as ZonedDateTime } from "./src/components/metadata/ZonedDateTime/index.astro"
+
+/* ===== OPENGRAPH ===== */
+
+// @ts-expect-error
+export { default as OpenGraph } from "./src/components/opengraph/OpenGraph/index.astro"
 
 /* ===== FORMS ===== */
 

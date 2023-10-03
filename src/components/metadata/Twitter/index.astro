@@ -1,0 +1,29 @@
+---
+import type { TwitterCard } from "../../../types";
+
+export type Props = {
+  twitter: TwitterCard;
+};
+
+const { twitter = {} as TwitterCard } = Astro.props;
+---
+
+{twitter.card ? <meta name="twitter:card" content={twitter.card} /> : null}
+{
+  twitter.creator ? (
+    <meta name="twitter:creator" content={twitter.creator} />
+  ) : null
+}
+{
+  twitter.description ? (
+    <meta name="twitter:description" content={twitter.description} />
+  ) : null
+}
+{twitter.image ? <meta name="twitter:image" content={twitter.image} /> : null}
+{
+  twitter.imageAlt ? (
+    <meta name="twitter:image:alt" content={twitter.imageAlt} />
+  ) : null
+}
+{twitter.site ? <meta name="twitter:site" content={twitter.site} /> : null}
+{twitter.title ? <meta name="twitter:title" content={twitter.title} /> : null}

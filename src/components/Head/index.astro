@@ -18,18 +18,23 @@ const pageTitle = `${metadata.pageTitle || metadata.title} ${
   CHARS.bb
 } ${siteTitle}`;
 
-const next = metadata.next ? `${canonicalSite}${metadata.next}` : "";
-const prev = metadata.prev ? `${canonicalSite}${metadata.prev}` : "";
+const next = metadata.next ? `${canonicalSite}${metadata.next}` : undefined;
+const prev = metadata.prev ? `${canonicalSite}${metadata.prev}` : undefined;
 ---
 
 <head>
   <meta charset={charset} />
   <meta content={viewport} name="viewport" />
   <title>{pageTitle}</title>
-  {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+  {
+    metadata.webPage.description ? (
+      <meta name="description" content={metadata.webPage.description} />
+    ) : null
+  }
   {metadata.robots ? <meta name="robots" content={metadata.robots} /> : null}
   {metadata.author ? <meta name="author" content={metadata.author} /> : null}
   {prev ? <meta name="prev" content={prev} /> : null}
   {next ? <meta name="next" content={next} /> : null}
   <slot />
+  {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
 </head>
