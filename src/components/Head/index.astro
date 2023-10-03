@@ -1,21 +1,35 @@
 ---
 import type { HeadProps as Props } from "../../types";
+import { CHARS } from "../../constants";
 
 const {
-  charset = "UTF-8",
-  favicon = "/favicon.svg",
-  title,
+  canonicalSite,
+  charset = "utf-8",
+  metadata = {},
+  siteTitle,
   viewport = "width=device-width, initial-scale=1",
 } = Astro.props;
+
+const { pathname } = Astro.url;
+
+const canonicalUrl = `${canonicalSite}${pathname}`;
+
+const pageTitle = `${metadata.pageTitle || metadata.title} ${
+  CHARS.bb
+} ${siteTitle}`;
+
+const next = metadata.next ? `${canonicalSite}${metadata.next}` : "";
+const prev = metadata.prev ? `${canonicalSite}${metadata.prev}` : "";
 ---
 
 <head>
   <meta charset={charset} />
   <meta content={viewport} name="viewport" />
-
-  <title>{title}</title>
-
-  <link href={favicon} rel="icon" type={`image/${favicon.split(".").at(-1)}`} />
-
+  <title>{pageTitle}</title>
+  {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+  {metadata.robots ? <meta name="robots" content={metadata.robots} /> : null}
+  {metadata.author ? <meta name="author" content={metadata.author} /> : null}
+  {prev ? <meta name="prev" content={prev} /> : null}
+  {next ? <meta name="next" content={next} /> : null}
   <slot />
 </head>

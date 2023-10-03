@@ -138,6 +138,8 @@ export { default as Duration } from "./src/components/metadata/Duration/index.as
 // @ts-expect-error
 export { default as Email } from "./src/components/metadata/Email/index.astro"
 // @ts-expect-error
+export { default as Favicon } from "./src/components/metadata/Favicon/index.astro"
+// @ts-expect-error
 export { default as Instant } from "./src/components/metadata/Instant/index.astro"
 // @ts-expect-error
 export { default as Integer } from "./src/components/metadata/Integer/index.astro"
@@ -147,6 +149,8 @@ export { default as Meta } from "./src/components/metadata/Meta/index.astro"
 export { default as MonetaryAmount } from "./src/components/metadata/MonetaryAmount/index.astro"
 // @ts-expect-error
 export { default as Number } from "./src/components/metadata/Number/index.astro"
+// @ts-expect-error
+export { default as OpenGraph } from "./src/components/metadata/OpenGraph/index.astro"
 // @ts-expect-error
 export { default as PlainDate } from "./src/components/metadata/PlainDate/index.astro"
 // @ts-expect-error
@@ -238,6 +242,7 @@ export { default as filterTimeZoneOptions } from "./src/utilities/filterTimeZone
 export { default as formatDuration } from "./src/utilities/formatDuration"
 export { default as formatOrdinal } from "./src/utilities/formatOrdinal"
 export { default as formatTimeToRead } from "./src/utilities/formatTimeToRead"
+export { default as fromISODuration } from "./src/utilities/fromISODuration"
 export { default as generateShortId } from "./src/utilities/generateShortId"
 export { default as getBreadcrumbTrail } from "./src/utilities/getBreadcrumbTrail"
 export { default as getLineNumberingWidth } from "./src/utilities/getLineNumberingWidth"

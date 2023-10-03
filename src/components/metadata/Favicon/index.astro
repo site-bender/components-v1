@@ -1,0 +1,66 @@
+---
+import not from "~utilities/not";
+export type FileData = {
+  default:
+    | string
+    | {
+        src: string;
+        width: number;
+        height: number;
+        format: string;
+      };
+};
+
+export type Props = {
+  files: Array<FileData>;
+  tileColor?: string | undefined | null;
+};
+
+const { files = [], tileColor = "#fff" } = Astro.props;
+
+const filenames = files.map((file: FileData) =>
+  (typeof file.default === "string" ? file.default : file.default?.src)
+    ?.split("?")
+    .at(0)
+    ?.split("public/")
+    .at(1)
+);
+---
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+{
+  filenames.map((filename) => {
+    const parts = filename?.match(/^apple-touch-icon-([0-9]+x[0-9]+).+$/);
+
+    return parts ? (
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes={parts[1]}
+        href={parts[0]}
+      />
+    ) : null;
+  })
+}
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+
+{
+  filenames.map((filename) => {
+    const parts = filename?.match(/^mstile-([0-9]+x[0-9]+).+$/);
+
+    if (not(parts)) {
+      return null;
+    }
+
+    const name =
+      parts?.[1] === "144x144"
+        ? "msapplication-TileImage"
+        : `msapplication-square${parts?.[1]}logo`;
+
+    return <meta {name} content={parts?.[0]} />;
+  })
+}
+{
+  filenames.includes("site.webmanifest") ? (
+    <link rel="manifest" href="/site.webmanifest" />
+  ) : null
+}

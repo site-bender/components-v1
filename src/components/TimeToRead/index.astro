@@ -5,18 +5,25 @@ import generateShortId from "../../utilities/generateShortId";
 import mapAttributes from "../../utilities/mapAttributes";
 import formatOrdinal from "../../utilities/formatOrdinal";
 import formatTimeToRead from "../../utilities/formatTimeToRead";
+import fromISODuration from "../../utilities/fromISODuration";
 import { HTMLAttributes } from "../../types/html";
 
 const {
+  article = {},
   header = {},
   hideClass = "sb-off-screen",
   id = generateShortId(),
-  readability,
-  timeRequired = {},
   title = "Time to read",
-  wordCount,
   ...attrs
 } = Astro.props;
+
+const {
+  educationalLevel: { name: readability = "" } = {},
+  timeRequired: tr,
+  wordCount,
+} = article;
+
+const timeRequired = fromISODuration(tr);
 
 const { as: HElement = "h2", ...hAttrs } = header;
 const headerId = generateShortId();

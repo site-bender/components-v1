@@ -7,6 +7,7 @@ import type {
 	Override,
 } from "./html"
 import type {
+	Article,
 	ArticleLeaf,
 	Audiobook,
 	Book,
@@ -93,13 +94,11 @@ export type TimeToReadProps<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
 	Override<
 		HTMLAttributes,
 		{
+			article: Article
 			header?: (HTMLAttributes & { as: Tag }) | undefined | null
 			hideClass?: string | undefined
 			id?: string | undefined | null
-			readability?: number | undefined | null
-			timeRequired?: DurationOptions | undefined | null
 			title?: string | undefined | null
-			wordCount?: number | undefined | null
 		}
 	>
 
@@ -403,10 +402,9 @@ export type FooterProps<Tag extends HTMLTag> = MetadataProps<
 export type HeadProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<Thing>, Tag>,
 	{
+		canonicalSite: string
 		charset?: string
-		favicon?: string
-		properties?: WebSite
-		site?: string
+		title: string
 		viewport?: string
 	}
 >
