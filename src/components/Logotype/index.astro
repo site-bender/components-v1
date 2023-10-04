@@ -9,6 +9,7 @@ const {
   as = "h2",
   ariaLabel,
   href,
+  image = {},
   label: lbl,
   link,
   microdata = {},
@@ -32,10 +33,28 @@ const label = (await Astro.slots.render("default")) || lbl;
   isRoot(pathname) ? (
     <Element {...wrapperAttrs}>
       {useMicrodata ? <Microdata {...microdata} {properties} /> : null}
+      {image ? (
+        <img
+          alt={image.alt}
+          class="sb-logotype-symbol"
+          height={image.height}
+          src={image.src}
+          width={image.width}
+        />
+      ) : null}{" "}
       {label}
     </Element>
   ) : (
     <Element {...wrapperAttrs}>
+      {image ? (
+        <img
+          alt={image.alt}
+          class="sb-logotype-symbol"
+          height={image.height}
+          src={image.src}
+          width={image.width}
+        />
+      ) : null}{" "}
       <a {...linkAttrs} {href} aria-label={ariaLabel}>
         {label}
       </a>

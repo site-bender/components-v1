@@ -1,6 +1,8 @@
 .sb-logotype {
+	align-items: center;
 	background-color: var(--sb-logotype-background-color, inherit);
 	color: var(--sb-logotype-color, var(--sb-color-gray-0, #fafafa));
+	display: flex;
 	font-family: var(--sb-font-body,
 			Inter,
 			Roboto,
@@ -12,6 +14,8 @@
 	font-size: var(--sb-step-4, 2.44rem);
 	font-variant-ligatures: historical-ligatures;
 	font-weight: 300;
+	gap: 0.5rem;
+	justify-content: flex-start;
 	line-height: 1.2;
 	margin: 0;
 }

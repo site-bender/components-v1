@@ -112,12 +112,16 @@ export type TwitterCardType =
 
 export type TwitterCard = {
 	card: TwitterCardType
-	creator?: string | undefined
-	description?: string | undefined
-	image?: string | undefined
-	imageAlt?: string | undefined
-	site?: string | undefined
-	title?: string | undefined
+	creator?: string | undefined | null
+	description?: string | undefined | null
+	image?: {
+		alt: string | undefined | null
+		height: number | string | undefined | null
+		width: number | string | undefined | null
+		url: string | undefined | null
+	}
+	site?: string | undefined | null
+	title?: string | undefined | null
 }
 
 // export type Basedata = {

@@ -144,8 +144,6 @@ export { default as Instant } from "./src/components/metadata/Instant/index.astr
 // @ts-expect-error
 export { default as Integer } from "./src/components/metadata/Integer/index.astro"
 // @ts-expect-error
-export { default as Meta } from "./src/components/metadata/Meta/index.astro"
-// @ts-expect-error
 export { default as MonetaryAmount } from "./src/components/metadata/MonetaryAmount/index.astro"
 // @ts-expect-error
 export { default as Number } from "./src/components/metadata/Number/index.astro"
