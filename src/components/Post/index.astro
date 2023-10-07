@@ -1,43 +1,42 @@
 ---
-import "./index.css"
-import Microdata from "../Microdata/index.astro"
-import Byline from "../Byline/index.astro"
-import Subtitle from "../Subtitle/index.astro"
-import mapAttributes from "../../utilities/mapAttributes"
-import type { PostProps as Props } from "../../types"
+import "./index.css";
+import Microdata from "../Microdata/index.astro";
+import Byline from "../Byline/index.astro";
+import Subtitle from "../Subtitle/index.astro";
+import mapAttributes from "../../utilities/mapAttributes";
+import type { PostProps as Props } from "../../types";
 
 const {
-	as = "span",
-	asColumns,
-	byline,
-	header,
-	heading,
-	level = 2,
-	microdata,
-	properties,
-	subtitle,
-	title,
-	...attrs
-} = Astro.props
+  as = "span",
+  asColumns,
+  byline,
+  header,
+  heading = {},
+  microdata,
+  properties,
+  subtitle,
+  title,
+  ...attrs
+} = Astro.props;
 
-const headerAttrs = mapAttributes(header, ["sb-post-header"])
-const headingAttrs = mapAttributes(heading, ["sb-post-title"])
+const { as: HElement = "h2", ...hAttrs } = heading;
+
+const headerAttrs = mapAttributes(header, ["sb-post-header"]);
+const headingAttrs = mapAttributes(hAttrs, ["sb-post-title"]);
 const wrapperAttrs = mapAttributes(
-	attrs,
-	asColumns ? ["sb-post", "sb-as-columns"] : ["sb-post"]
-)
+  attrs,
+  asColumns ? ["sb-post", "sb-as-columns"] : ["sb-post"]
+);
 
-const HElement = `h${level}`
-
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
 ---
 
 <article {...wrapperAttrs}>
-	{useMicrodata ? <Microdata {as} {microdata} {properties} /> : null}
-	<header {...headerAttrs}>
-		<Byline {...byline} />
-		<HElement {...headingAttrs}>{title}</HElement>
-		<Subtitle {...subtitle} />
-	</header>
-	<slot />
+  {useMicrodata ? <Microdata {as} {microdata} {properties} /> : null}
+  <header {...headerAttrs}>
+    <Byline {...byline} />
+    <HElement {...headingAttrs}>{title}</HElement>
+    <Subtitle {subtitle} />
+  </header>
+  <slot />
 </article>

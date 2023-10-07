@@ -35,38 +35,38 @@ const headerAttrs = mapAttributes(hAttrs, [
 const ttrAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-time-to-read"]);
 ---
 
-<section aria-labelledby={headerId} {...ttrAttrs} {id}>
-  <HElement {...headerAttrs} id={headerId}>{title}</HElement>
-  <p>
-    {
-      timeRequired ? (
-        <time
-          class="sb-time-to-read-time"
-          datetime={`PT${timeRequired.minutes || 0}M${
-            timeRequired.seconds || 0
-          }S`}
-        >
-          {formatTimeToRead(timeRequired)}
-        </time>
-      ) : null
-    }
-    {
-      wordCount ? (
-        <>
-          {timeRequired ? ", " : ""}
-          <span class="sb-time-to-read-word-count">{wordCount} words</span>
-        </>
-      ) : null
-    }
-    {
-      readability ? (
-        <>
-          {wordCount || timeRequired ? ", " : ""}
-          <span class="sb-time-to-read-readability">
-            {formatOrdinal(readability)} grade
-          </span>
-        </>
-      ) : null
-    }
-  </p>
-</section>
+{
+  tr || wordCount || readability ? (
+    <section aria-labelledby={headerId} {...ttrAttrs} {id}>
+      <HElement {...headerAttrs} id={headerId}>
+        {title}
+      </HElement>
+      <p>
+        {tr ? (
+          <time
+            class="sb-time-to-read-time"
+            datetime={`PT${timeRequired.minutes || 0}M${
+              timeRequired.seconds || 0
+            }S`}
+          >
+            {formatTimeToRead(timeRequired)}
+          </time>
+        ) : null}
+        {wordCount ? (
+          <>
+            {timeRequired ? ", " : ""}
+            <span class="sb-time-to-read-word-count">{wordCount} words</span>
+          </>
+        ) : null}
+        {readability ? (
+          <>
+            {wordCount || timeRequired ? ", " : ""}
+            <span class="sb-time-to-read-readability">
+              {formatOrdinal(readability)} grade
+            </span>
+          </>
+        ) : null}
+      </p>
+    </section>
+  ) : null
+}

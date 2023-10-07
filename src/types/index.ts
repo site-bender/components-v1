@@ -110,33 +110,21 @@ export type TwitterCardType =
 	| "app"
 	| "player"
 
+export type TwitterCardImage = {
+	alt?: string | undefined | null
+	height?: number | string | undefined | null
+	width?: number | string | undefined | null
+	url: string
+}
+
 export type TwitterCard = {
 	card: TwitterCardType
 	creator?: string | undefined | null
 	description?: string | undefined | null
-	image?: {
-		alt: string | undefined | null
-		height: number | string | undefined | null
-		width: number | string | undefined | null
-		url: string | undefined | null
-	}
+	image?: TwitterCardImage | undefined | null
 	site?: string | undefined | null
 	title?: string | undefined | null
 }
-
-// export type Basedata = {
-// 	authors?: Array<string | Person> | undefined
-// 	canonical?: string
-// 	charset?: string | undefined
-// 	imageUrl?: string | undefined
-// 	locale?: string | undefined
-// 	publishers?: Array<string | Organization> | undefined
-// 	robots?: "all" | "nofollow" | "noindex" | "none" | string | undefined
-// 	siteName?: string | undefined
-// 	twitterCard: TwitterCard
-// 	type?: ObjectType
-// 	viewport?: string | undefined
-// }
 
 export type Author = Override<
 	Person,
@@ -165,15 +153,19 @@ export type Metadata = {
 }
 
 export type PageMeta = {
-	article?: OpenGraphArticle | undefined | null
 	author?: string | undefined | null
+	blurb?: string | undefined | null
+	children?: Array<string> | undefined | null
+	getArticleData?: ((v: string) => Article) | undefined | null
+	getOpenGraphData?: (() => OpenGraphBasic) | undefined | null
+	getQuotations?: (() => Array<Quotation>) | undefined | null
+	getTwitterCard?: (() => TwitterCard) | undefined | null
+	getWebPageData?: ((v: string) => WebPage) | undefined | null
 	label?: string | undefined | null
 	next?: string | undefined | null
-	openGraph?: OpenGraphBasic | undefined | null
 	prev?: string | undefined | null
+	pageTitle?: string | undefined | null
 	title?: string | undefined | null
-	twitter?: TwitterCard | undefined | null
-	webPage?: WebPage | undefined | null
 }
 
 export type CreatePath = (
@@ -428,9 +420,11 @@ export type HeadProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<Thing>, Tag>,
 	{
 		canonicalSite: string
-		charset?: string
-		title: string
-		viewport?: string
+		charset?: string | undefined | null
+		description?: string | undefined | null
+		metadata?: PageMeta | undefined | null
+		siteTitle: string
+		viewport?: string | undefined | null
 	}
 >
 
@@ -506,7 +500,7 @@ export type MenuProps<Tag extends HTMLTag> = Override<
 		as?: Tag
 		hideClass?: string | undefined | null
 		nav: NavListProps<Tag>
-		pages?: Array<PageMeta<"a">> | undefined | null
+		pages?: Array<PageMeta> | undefined | null
 		showDescription?: boolean | undefined | null
 	}
 >
@@ -707,7 +701,6 @@ export type PostProps<T, Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
 			asColumns?: boolean | undefined | null
 			byline?: BylineProps<Tag> | undefined | null
 			heading?: Partial<HTMLAttributes> | undefined | null
-			level?: 1 | 2 | 3 | 4 | 5 | 6
 			microdata?: Partial<HTMLAttributes> | undefined | null
 			properties?: Partial<T>
 			subtitle?: SubtitleProps<Tag> | undefined | null

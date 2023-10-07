@@ -3,11 +3,11 @@ import type { Metadata, PageMeta } from "../../types"
 export default function getBreadcrumbTrail(
 	pathname?: string,
 	pages?: Record<string, Partial<Metadata>>,
-): Array<PageMeta<"a">> {
+): Array<PageMeta> {
 	const path = pathname?.replace(/^\/|\/$/g, "")
 
 	if (!pages || !path) {
-		return [] as Array<PageMeta<"a">>
+		return [] as Array<PageMeta>
 	}
 
 	const trail = [
@@ -20,5 +20,5 @@ export default function getBreadcrumbTrail(
 			),
 	]
 
-	return trail.map((path) => pages[path]) as Array<PageMeta<"a">>
+	return trail.map((path) => pages[path]) as Array<PageMeta>
 }

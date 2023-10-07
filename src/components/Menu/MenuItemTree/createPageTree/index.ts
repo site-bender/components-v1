@@ -1,10 +1,10 @@
-import { PageMeta } from "~types"
+import { PageMeta } from "../../../../types"
 
 function injectPage(
 	filename: string,
 	children: Array<string>,
-	page: PageMeta<"a">,
-): Array<string | PageMeta<"a">> {
+	page: PageMeta,
+): Array<string | PageMeta> {
 	return [
 		...children.slice(0, children.indexOf(filename)),
 		page,
@@ -12,7 +12,7 @@ function injectPage(
 	]
 }
 
-export default function createPageTree(pages: Array<PageMeta<"a">>) {
+export default function createPageTree(pages: Array<PageMeta>) {
 	return pages.reduce((acc, page) => {
 		const [last] = acc.slice(-1)
 		const first = acc.slice(0, -1)

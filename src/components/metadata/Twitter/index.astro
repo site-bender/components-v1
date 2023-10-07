@@ -2,7 +2,7 @@
 import type { TwitterCard } from "../../../types";
 
 export type Props = {
-  twitter: TwitterCard;
+  twitter?: TwitterCard | undefined | null;
 };
 
 const { twitter = {} as TwitterCard } = Astro.props;
@@ -23,10 +23,5 @@ const { twitter = {} as TwitterCard } = Astro.props;
 {twitter.image?.alt ? <meta name="twitter:image:alt" content={twitter.image.alt} /> : null}
 {twitter.image?.height ? <meta name="twitter:image:height" content={twitter.image.height} /> : null}
 {twitter.image?.width ? <meta name="twitter:image:width" content={twitter.image.width} /> : null}
-{
-  twitter.imageAlt ? (
-    <meta name="twitter:image:alt" content={twitter.imageAlt} />
-  ) : null
-}
 {twitter.site ? <meta name="twitter:site" content={twitter.site} /> : null}
 {twitter.title ? <meta name="twitter:title" content={twitter.title} /> : null}

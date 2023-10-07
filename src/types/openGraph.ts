@@ -1,4 +1,5 @@
 export type OpenGraphArticle = {
+	alternativeHeadline?: string | undefined | null
 	author?: URL | undefined | null
 	expirationTime?: string | undefined | null
 	modifiedTime?: string | undefined | null
@@ -44,7 +45,19 @@ export type OpenGraphVideo = {
 	width?: number | string | undefined | null
 }
 
-export type OpenGraphTypes = "article" | "book" | "profile" | "website"
+export type OpenGraphTypes =
+	| "article"
+	| "book"
+	| "music.album"
+	| "music.playlist"
+	| "music.radio_station"
+	| "music.song"
+	| "profile"
+	| "video.episode"
+	| "video.movie"
+	| "video.other"
+	| "video.tv_show"
+	| "website"
 
 export type OpenGraphBasic = {
 	audio?: Array<URL | string> | undefined | null
@@ -55,7 +68,7 @@ export type OpenGraphBasic = {
 	image?: Array<OpenGraphImage> | undefined | null
 	siteName?: string | undefined | null // Craft Code
 	title?: string | undefined | null // raw title, no site name <= 60 chars
-	type: "website"
+	type: OpenGraphTypes
 	url?: string | undefined | null // same as canonical URL
 	video?: Array<URL | string> | undefined | null
 }
