@@ -55,22 +55,18 @@
     type: string
   }
 
-  function getMessageBoxContent({
-    body,
-    error: { message } = {} as FormError,
-    type,
-  }: FormMessage): string {
-    const parsed = body ? JSON.parse(body) : {}
+  function getMessageBoxContent(f: FormMessage): string {
+    const { message, type } = f
 
     switch (type) {
       case "SUCCESS":
-        return parsed.success
+        return message
       case "FAILURE":
-        return parsed.failure
+        return message
       default:
         return `<h2>Oops!</h2>
 				<p>
-					Our server has responded with the message: <mark>“${message}”</mark>
+					Our server has responded with the message: <mark>${message}</mark>
 				</p>
 				<p>
 					Please check your form and try again. Your input
@@ -85,7 +81,7 @@
     resp: Response,
   ): Promise<void> {
     const messageBox = getMessageBox(buttonBar)
-    const message = await resp.json()
+    const json = await resp.json()
 
     if (resp.ok) {
       const form = buttonBar.closest("form")
@@ -102,7 +98,7 @@
       messageBox.classList.add("sb-form-issue")
     }
 
-    messageBox.innerHTML = getMessageBoxContent(message)
+    messageBox.innerHTML = getMessageBoxContent(json)
     messageBox.focus()
   }
 
@@ -117,8 +113,7 @@
 
     group?.setAttribute("data-touched", "")
 
-    if (true) {
-      // form.checkValidity()
+    if (form.checkValidity()) {
       const action = form.getAttribute("action")
       const method = form.getAttribute("method") || "post"
       const formData = new FormData(form)
