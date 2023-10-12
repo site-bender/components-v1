@@ -32,7 +32,6 @@
 	"editor.insertSpaces": false,
 	"editor.tabSize": 2,
 	"files.exclude": {
-		".astro": true,
 		".cache": true,
 		".depcheckrc": true,
 		".editorconfig": true,
@@ -50,7 +49,6 @@
 		"pnpm-lock.yaml": true,
 		"sitebender.theme.dark.json": true,
 		"vercel.json": true,
-		"astro.config.mjs": true,
 		".stylelintrc.json": true
 	},
 	"javascript.format.semicolons": "remove",

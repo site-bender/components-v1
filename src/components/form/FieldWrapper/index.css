@@ -78,10 +78,10 @@
 	font-weight: 600;
 }
 
-.sb-optional::after {
-	content: "(optional)";
+.sb-optional::before {
+	content: "Optional: ";
 	display: inline-block;
-	margin-left: 0.5rem;
+	margin-right: 0.5rem;
 }
 
 .sb-field input[type="number"] {
@@ -93,4 +93,103 @@
 	border: 2px solid forestgreen;
 	border-radius: 4px;
 	min-height: 3rem;
+}
+
+.sb-field label {
+	position: relative;
+}
+
+.sb-field:has(input[data-touched]:not(:invalid)) label .sb-label-tag::before,
+.sb-field:has(select[data-touched]:not(:invalid)) label .sb-label-tag::before,
+.sb-field:has(textarea[data-touched]:not(:invalid)) label .sb-label-tag::before {
+	color: var(--sb-field-label-tag-color-valid, var(--sb-color-green, #4f3));
+	content: "\2714";
+	display: inline-block;
+	font-size: 1.5rem;
+	font-weight: 900;
+	margin-right: 0.75rem;
+}
+
+.sb-field:has(input[data-touched]:invalid) label .sb-label-tag::before,
+.sb-field:has(select[data-touched]:invalid) label .sb-label-tag::before,
+.sb-field:has(textarea[data-touched]:invalid) label .sb-label-tag::before {
+	color: var(--sb-field-label-tag-color-invalid, var(--sb-color-fuchsia, #ea00ff));
+	content: "\2718";
+	display: inline-block;
+	font-size: 1.5rem;
+	font-weight: 900;
+	margin-right: 0.75rem;
+}
+
+.sb-field input[data-touched]:invalid,
+.sb-field select[data-touched]:invalid,
+.sb-field textarea[data-touched]:invalid {
+	border: var(--sb-field-border-invalid, 4px dashed var(--sb-color-fuchsia, #ea00ff));
+}
+
+.sb-form:has(input[data-touched]:invalid, select[data-touched]:invalid, textarea[data-touched]:invalid) .sb-button-bar .sb-group[data-touched]::before {
+	content: "Form not quite ready yet. See above. ";
+	color: var(--sb-form-button-bar-group-color, var(--sb-color-fuchsia-shaded, #48094e));
+	margin-right: 1rem;
+}
+
+.sb-form-alert-box {
+	border-radius: 5px;
+	color: var(--sb-form-alert-box-color, var(--sb-color-gray-9, #131315));
+	position: relative;
+	width: 100%;
+}
+
+.sb-form-alert-box .sb-form-message-box {
+	border-radius: 5px;
+	padding: var(--sb-space-m, 1.25rem);
+}
+
+.sb-form-alert-close-button {
+	background-color: var(--sb-form-alert-close-button-background-color, transparent);
+	border: none;
+	color: var(--sb-form-alert-close-button-color, var(--sb-color-blue-shaded, #09314e));
+	font-size: 2rem;
+	line-height: 1;
+	min-height: 48px;
+	min-width: 48px;
+	padding: 0.25rem;
+	position: absolute;
+	right: 0.65rem;
+	top: 0.75rem;
+}
+
+.sb-form-alert-close-button:focus,
+.sb-form-alert-close-button:hover {
+	outline: solid 2px var(--sb-form-alert-close-button-outline-color, var(--sb-color-blue-shaded, #09314e));
+	border-radius: 5px;
+	color: var(--sb-form-alert-close-button-color-hover, var(--sb-color-blue-shaded, #09314e));
+}
+
+.sb-form-alert-box a,
+.sb-form-alert-box a:visited {
+	color: var(--sb-form-alert-box-link-color, var(--sb-color-blue-shaded, #09314e));
+}
+
+
+.sb-form .sb-form-alert-box a:active,
+.sb-form .sb-form-alert-box a:focus,
+.sb-form .sb-form-alert-box a:hover {
+	background-color: var(--sb-form-alert-box-link-background-color-hover, var(--sb-color-blue-shaded, #09314e));
+	color: var(--sb-form-alert-box-link-color-hover, var(--sb-color-gray-0, #fafafa));
+}
+
+.sb-form-alert-box h2 {
+	color: var(--sb-form-alert-box-h2-color, var(--sb-color-gray-9, #131315));
+	margin: 0;
+}
+
+.sb-form-issue {
+	background-color: var(--sb-form-issue-background-color, var(--sb-color-gray-1, #dfdfe2));
+	border: var(--sb-form-issue-border, 4px dashed var(--sb-color-fuchsia, #ea00ff));
+}
+
+.sb-form-success {
+	background-color: var(--sb-form-success-background-color, var(--sb-color-green-tinted, #aaf5a3));
+	border: var(--sb-form-success-border, 4px solid var(--sb-color-green-shaded, #0e4e09));
 }

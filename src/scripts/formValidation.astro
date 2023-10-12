@@ -1,0 +1,289 @@
+<script>
+  type EnhancedField = HTMLFormElement & { sbValidate: () => void }
+  const formatter = new Intl.ListFormat("en", { type: "conjunction" })
+  const validities = [
+    "badInput",
+    "customError",
+    "patternMismatch",
+    "rangeOverflow",
+    "rangeUnderflow",
+    "stepMismatch",
+    "tooLong",
+    "tooShort",
+    "typeMismatch",
+    "valueMissing",
+  ]
+
+  function getMessageBox(buttonBar: HTMLDivElement): HTMLDivElement {
+    const box = document.querySelector(
+      ".sb-form-alert-box .sb-form-message-box",
+    ) as HTMLDivElement
+
+    if (box) {
+      return box
+    }
+
+    const alertBox = document.createElement("div")
+    const closeButton = document.createElement("button")
+    const messageBox = document.createElement("div")
+
+    closeButton.innerHTML = "&#x2715;"
+    closeButton.setAttribute("aria-label", "Close this message box.")
+    closeButton.classList.add("sb-form-alert-close-button")
+    closeButton.addEventListener("click", (event) =>
+      (event.target as HTMLElement).parentElement?.remove(),
+    )
+
+    alertBox.append(closeButton, messageBox)
+    alertBox.classList.add("sb-form-alert-box")
+    messageBox.setAttribute("aria-live", "polite")
+    messageBox.classList.add("sb-form-message-box")
+    buttonBar?.insertAdjacentElement("beforebegin", alertBox)
+
+    return messageBox
+  }
+
+  type FormError = {
+    field: string
+    message: string
+  }
+
+  type FormMessage = {
+    body: string
+    error?: FormError | undefined
+    message: string
+    type: string
+  }
+
+  function getMessageBoxContent({
+    body,
+    error: { message } = {} as FormError,
+    type,
+  }: FormMessage): string {
+    const parsed = body ? JSON.parse(body) : {}
+
+    switch (type) {
+      case "SUCCESS":
+        return parsed.success
+      case "FAILURE":
+        return parsed.failure
+      default:
+        return `<h2>Oops!</h2>
+				<p>
+					Our server has responded with the message: <mark>“${message}”</mark>
+				</p>
+				<p>
+					Please check your form and try again. Your input
+					is important to us! If you are stuck, then please email us at
+					<a href="mailto:coder@craft-code.dev" rel="external">coder@craft-code.dev</a>.
+				</p>`
+    }
+  }
+
+  async function handleFormResponse(
+    buttonBar: HTMLDivElement,
+    resp: Response,
+  ): Promise<void> {
+    const messageBox = getMessageBox(buttonBar)
+    const message = await resp.json()
+
+    if (resp.ok) {
+      const form = buttonBar.closest("form")
+
+      messageBox.classList.remove("sb-form-message")
+      messageBox.classList.add("sb-form-success")
+
+      form?.reset()
+      ;[...(form?.querySelectorAll("input, select, textarea") || [])].forEach(
+        (item) => item.removeAttribute("data-touched"),
+      )
+    } else {
+      messageBox.classList.remove("sb-form-issue")
+      messageBox.classList.add("sb-form-issue")
+    }
+
+    messageBox.innerHTML = getMessageBoxContent(message)
+    messageBox.focus()
+  }
+
+  async function submitForm(event: SubmitEvent) {
+    event.preventDefault()
+
+    const form = event.target as HTMLFormElement
+
+    const fields = [...form.querySelectorAll("input, select, textarea")]
+    const buttonBar = form.querySelector(".sb-button-bar")
+    const group = buttonBar?.querySelector(".sb-group")
+
+    group?.setAttribute("data-touched", "")
+
+    if (true) {
+      // form.checkValidity()
+      const action = form.getAttribute("action")
+      const method = form.getAttribute("method") || "post"
+      const formData = new FormData(form)
+
+      const out = [...formData.keys()].reduce(
+        (acc, key) => ({
+          ...acc,
+          [key]: formData.get(key),
+        }),
+        {},
+      )
+
+      if (action) {
+        const resp = await fetch(action, {
+          body: JSON.stringify(out, null, 2),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          method,
+        })
+
+        handleFormResponse(buttonBar as HTMLDivElement, resp)
+      }
+    }
+
+    fields.forEach((field) => (field as EnhancedField).sbValidate?.())
+  }
+
+  function setFormEvent(form: HTMLFormElement): void {
+    form.setAttribute("novalidate", "")
+    form.addEventListener("submit", submitForm)
+  }
+
+  function setFormValidation(form: HTMLFormElement) {
+    setFormEvent(form)
+
+    const fields = [
+      ...form.querySelectorAll(`
+			form input:not([type=hidden]),
+			form select,
+			form textarea,
+			form button
+		`),
+    ]
+
+    function getRangeMessage(field: HTMLFormElement): string | void {
+      const max = parseInt(field.getAttribute("max") || "", 10)
+      const min = parseInt(field.getAttribute("min") || "", 10)
+
+      if (Number.isNaN(max) && Number.isNaN(min)) {
+        return undefined
+      }
+
+      if (Number.isNaN(max)) {
+        return `must be at least ${min}`
+      }
+
+      if (Number.isNaN(min)) {
+        return `must be at most ${max}`
+      }
+
+      return `must be between ${min} and ${max} inclusive`
+    }
+
+    function getLengthMessage(field: HTMLFormElement): string | void {
+      const max = parseInt(field.getAttribute("maxlength") || "", 10)
+      const min = parseInt(field.getAttribute("minlength") || "", 10)
+
+      if (Number.isNaN(max) && Number.isNaN(min)) {
+        return undefined
+      }
+
+      if (Number.isNaN(max)) {
+        return `must be at least ${min} characters`
+      }
+
+      if (Number.isNaN(min)) {
+        return `must be at most ${max} characters`
+      }
+
+      return `must be between ${min} and ${max} characters, inclusive`
+    }
+
+    function getMessage(validity: string, field: HTMLFormElement): string {
+      if (validity === "valueMissing") {
+        return `cannot be left blank`
+      }
+
+      if (
+        validity === "typeMismatch" ||
+        validity === "badInput" ||
+        validity === "patternMismatch"
+      ) {
+        return `does not appear to be valid`
+      }
+
+      if (validity === "rangeOverflow" || validity === "rangeUnderflow") {
+        return getRangeMessage(field) as string
+      }
+
+      if (validity === "tooLong" || validity === "tooShort") {
+        return getLengthMessage(field) as string
+      }
+
+      if (validity === "stepMismatch") {
+        const step = parseInt(field.getAttribute("step") || "", 10)
+
+        if (Number.isNaN(step)) {
+          return field.validationMessage
+        }
+
+        return `must be evenly divisible by ${step}`
+      }
+
+      return field.validationMessage
+    }
+
+    function checkValidity(field: HTMLFormElement, helpMessage = ""): string {
+      const name = field.name.replace(
+        /([A-Z])/g,
+        (match) => ` ${match.toLocaleLowerCase()}`,
+      )
+      const messages = validities
+        .filter((v) => field.validity[v])
+        .map((v) => getMessage(v, field))
+
+      if (messages.length) {
+        return `Oops! Your ${name} ${formatter.format(messages)}.`
+      }
+
+      return helpMessage
+    }
+
+    function makeValidator(id: string, help?: HTMLElement) {
+      const initialHelp = help?.innerText
+
+      return function validate() {
+        const field = document.getElementById(id) as HTMLFormElement
+
+        field?.setAttribute("data-touched", "")
+
+        if (help) {
+          help.innerHTML = checkValidity(field, initialHelp)
+        }
+      }
+    }
+
+    fields.forEach((field) => {
+      const help = document.getElementById(`${field.id}_help`)
+      const f = field as EnhancedField
+
+      f.sbValidate = makeValidator(f.id, help as HTMLElement)
+      f.addEventListener("input", f.sbValidate)
+      f.addEventListener("blur", () => {
+        f.sbValidate()
+      })
+    })
+  }
+
+  function addValidation() {
+    ;[...document.querySelectorAll("form")].forEach((form) =>
+      setFormValidation(form),
+    )
+  }
+
+  globalThis.addEventListener("DOMContentLoaded", addValidation)
+</script>

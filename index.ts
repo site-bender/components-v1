@@ -232,6 +232,10 @@ export { default as WeekSelect } from "./src/components/Form/elements/WeekSelect
 // @ts-expect-error
 export { default as YearInput } from "./src/components/Form/elements/YearInput/index.astro"
 
+/* ===== SCRIPTS ===== */
+
+export { default as ValidationScript } from "./src/scripts/formValidation.astro"
+
 /* ===== UTILITIES ===== */
 
 export { default as compact } from "./src/utilities/compact"
