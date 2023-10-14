@@ -162,7 +162,9 @@ export type PageMeta = {
 	getTwitterCard?: (() => TwitterCard) | undefined | null
 	getWebPageData?: ((v: string) => WebPage) | undefined | null
 	label?: string | undefined | null
+	menu?: Array<string> | undefined | null
 	next?: string | undefined | null
+	path: string
 	prev?: string | undefined | null
 	pageTitle?: string | undefined | null
 	title?: string | undefined | null

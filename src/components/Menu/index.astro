@@ -1,9 +1,10 @@
 ---
-import "./index.css";
-import MenuItemTree from "./MenuItemTree/index.astro";
-import generateShortId from "../../utilities/generateShortId";
-import mapAttributes from "../../utilities/mapAttributes";
-import type { MenuProps as Props } from "../../types";
+import "./index.css"
+import MenuItemTree from "./MenuItemTree/index.astro"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { MenuProps as Props } from "../../types"
+import createPageTree from "./createPageTree"
 
 const {
   as = "ul",
@@ -12,70 +13,93 @@ const {
   id = generateShortId(),
   links,
   nav = {},
-  pages,
+  pages: allPages,
   properties,
   title = "Site menu",
   ...attrs
-} = Astro.props;
+} = Astro.props
 
-const headerAttrs = mapAttributes(header, ["sb-menu-header", hideClass]);
-const wrapperAttrs = mapAttributes(attrs, ["sb-menu"]);
+const pages: Array<PageMeta> = createPageTree(allPages)
 
-const { as: HElement = "h2" } = header;
-const { as: Element = "nav" } = nav;
+const headerAttrs = mapAttributes(header, ["sb-menu-header", hideClass])
+const wrapperAttrs = mapAttributes(attrs, ["sb-menu"])
+
+const { as: HElement = "h2" } = header
+const { as: Element = "nav" } = nav
 ---
 
-<Element {...wrapperAttrs} aria-labelledby={id}>
-  <HElement {...headerAttrs} {id}>
+<Element
+  {...wrapperAttrs}
+  aria-labelledby={id}
+>
+  <HElement
+    {...headerAttrs}
+    {id}
+  >
     {title}
   </HElement>
-  <MenuItemTree {as} {pages} />
+  <MenuItemTree
+    {as}
+    {pages}
+  />
 </Element>
 
 <script>
   function createToggle(): string {
-    return `<svg height="1rem" viewBox="0 0 650 650" width="1rem" xmlns="http://www.w3.org/2000/svg">
+    return `<svg viewBox="0 0 650 650" xmlns="http://www.w3.org/2000/svg">
 	<rect fill="#fafafa" height="618" rx="24" ry="24" stroke="#09314e" stroke-width="32" width="618" x="16" y="16" />
 	<rect class="sb-vertical-bar" fill="#09314e" height="360" width="60" x="295" y="145" />
 	<rect fill="#09314e" height="60" width="360" x="145" y="295" />
-</svg>`;
+</svg>`
   }
 
   function toggleSubmenu({ target }: MouseEvent): void {
-    const listItem = (target as HTMLElement)?.closest(".sb-menu-item");
+    const listItem = (target as HTMLElement)?.closest(".sb-menu-item")
 
-    listItem?.classList.toggle("sb-toggle-shut");
+    listItem?.classList.toggle("sb-toggle-shut")
   }
 
   function setToggle(element: HTMLElement, shut?: boolean): void {
-    shut && element.classList.add("sb-toggle-shut");
-    const span = document.createElement("SPAN");
-    span.classList.add("sb-toggle");
-    span.addEventListener("click", toggleSubmenu);
-    span.innerHTML = createToggle();
-    element.prepend(span);
+    shut && element.classList.add("sb-toggle-shut")
+
+    const link = element.querySelector("a, .sb-menu-this-page")
+    const linkCloned = link?.cloneNode(true)
+    const div = document.createElement("DIV")
+    const span = document.createElement("SPAN")
+
+    div.classList.add("sb-toggle")
+    span.addEventListener("click", toggleSubmenu)
+    span.innerHTML = createToggle()
+    div.appendChild(span)
+
+    if (linkCloned) {
+      div.appendChild(linkCloned)
+      link?.remove()
+    }
+
+    element.prepend(div)
   }
 
   function enhanceMenu() {
     const open = [
       ...document.querySelectorAll(
-        ".sb-menu-item:has(.sb-foldable):has(.sb-menu-this-page)"
+        ".sb-menu-item:has(.sb-foldable):has(.sb-menu-this-page)",
       ),
-    ];
+    ]
     const shut = [
       ...document.querySelectorAll(
-        ".sb-menu-item:has(.sb-foldable):not(:has(.sb-menu-this-page))"
+        ".sb-menu-item:has(.sb-foldable):not(:has(.sb-menu-this-page))",
       ),
-    ];
+    ]
 
     open.forEach((element) => {
-      setToggle(element as HTMLElement);
-    });
+      setToggle(element as HTMLElement)
+    })
 
     shut.forEach((element) => {
-      setToggle(element as HTMLElement, true);
-    });
+      setToggle(element as HTMLElement, true)
+    })
   }
 
-  globalThis.addEventListener("DOMContentLoaded", enhanceMenu);
+  globalThis.addEventListener("DOMContentLoaded", enhanceMenu)
 </script>

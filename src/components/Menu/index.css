@@ -1,23 +1,39 @@
 .sb-menu {
-	background-color: var(--sb-menu-background-color, #dfdfe2);
+	background-color: var(--sb-menu-background-color, #ececeeef);
 	height: 100%;
 	overflow: scroll;
 	margin: 0;
-	position: absolute;
+	position: fixed;
 	left: calc(var(--sb-step-0, 1rem) * -22);
 	transition: left 0.75s ease 0s;
 	width: calc(var(--sb-step-0, 1rem) * 22);
-	padding: var(--sb-space-l) var(--sb-space-s);
-	z-index: 10000;
+	padding: var(--sb-space-2xl) var(--sb-space-s) var(--sb-space-l);
+	z-index: 1000000;
 	min-height: 100%;
 	top: 0;
+}
+
+.sb-menu-list {
+	height: 100%;
+	margin: 0 var(--sb-space-s);
+	padding-bottom: var(--sb-space-l);
+	overflow: scroll;
+	width: 100%;
+}
+
+.sb-menu-list .sb-menu-list {
+	padding-bottom: 0;
+}
+
+.sb-foldable li.sb-menu-item {
+	padding-left: 1rem;
 }
 
 main.sb-main {
 	align-items: stretch;
 	display: flex;
 	justify-content: flex-start;
-	padding: 0;
+	padding-left: 0;
 	gap: 0;
 }
 
@@ -30,20 +46,20 @@ main.sb-main {
 .sb-menu ul {
 	font-size: var(--sb-step-0, 1rem);
 	line-height: 48px;
-	padding: 0;
+	padding-left: 0;
 }
 
 .sb-menu * * li {
-	list-style-type: "\00B7";
 	margin: 0 0 0 2rem;
 }
 
-.sb-menu > ol > li,
-.sb-menu > ul > li {
+.sb-menu ol > li,
+.sb-menu ul > li {
 	list-style-type: none;
 	margin-top: 0.5rem;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	align-items: flex-start;
 	justify-content: flex-start;
 }
 
@@ -54,19 +70,26 @@ main.sb-main {
 	margin: 0;
 }
 
-.sb-menu .sb-menu-link {
-	width: 100%;
+.sb-toggle {
+	align-items: center;
+	display: flex;
+	gap: 0.25rem;
+	justify-content: flex-start;
+}
+
+.sb-toggle-shut .sb-foldable {
+	display: none;
 }
 
 .sb-menu .sb-menu-link,
-.sb-menu .sb-menu-this-page,
-.sb-menu .sb-toggle {
+.sb-menu .sb-menu-this-page {
 	align-items: center;
 	background-color: var(--sb-menu-link-background-color, transparent);
+	border: var(--sb-menu-link-border, 3px solid transparent);
 	border-radius: 4px;
-	box-sizing: border-box;
+	box-sizing: content-box;
 	color: var(--sb-menu-link-color, #09314e);
-	display: flex;
+	display: inline-flex;
 	justify-content: flex-start;
 	min-height: 48px;
 	text-decoration: none;
@@ -81,9 +104,7 @@ main.sb-main {
 
 .sb-menu .sb-menu-link:focus,
 .sb-menu .sb-menu-link:hover {
-	background-color: var(--sb-menu-link-background-color-hover, #09314e);
-	border-radius: 0;
-	color: var(--sb-menu-link-color-hover, var(--sb-color-gray-1, #dfdfe2));
+	border: var(--sb-menu-link-border-hover, 3px solid #09314e);
 }
 
 .sb-toggle svg {
@@ -91,58 +112,17 @@ main.sb-main {
 	width: 1.2rem;
 }
 
-.sb-menu-item .sb-menu-item-with-toggle {
-	align-items: center;
-	display: flex;
-	gap: 0.5rem;
-	justify-content: flex-start;
-}
-
 .sb-menu-item {
 	overflow: hidden;
 	padding-left: 2rem;
 }
 
-.sb-menu-item .sb-toggle {
-	width: 1.9rem;
+.sb-menu-item .sb-vertical-bar {
+	display: none;
 }
 
 .sb-menu-item:has(.sb-toggle) {
-	padding-left: 0;
-	display: grid;
-	gap: 0;
-	grid-template-areas: "toggle link" "list list";
-	grid-template-columns: 1fr 100%;
-}
-
-.sb-foldable {
-	opacity: 1;
-}
-
-.sb-toggle-shut .sb-foldable {
-	display: none;
-	opacity: 1;
-	transition: opacity 0.5s ease 50ms;
-}
-
-.sb-menu-item:has(.sb-toggle) .sb-toggle {
-	flex-shrink: 1;
-	flex-grow: 0;
-	grid-area: toggle;
-}
-
-.sb-menu-item:has(.sb-toggle) .sb-menu-link,
-.sb-menu-item:has(.sb-toggle) .sb-menu-this-page {
-	width: 100%;
-	grid-area: link;
-}
-
-.sb-menu-item:has(.sb-toggle) .sb-foldable {
-	grid-area: list;
-}
-
-.sb-menu-item .sb-vertical-bar {
-	display: none;
+	margin-left: -1.5rem;
 }
 
 .sb-menu-item.sb-toggle-shut .sb-vertical-bar {
@@ -158,13 +138,21 @@ main.sb-main {
 		left: -100vw;
 		transition: left 0.75s ease 0s;
 		width: 100vw;
-		padding: var(--sb-space-s) var(--sb-space-m) var(--sb-space-2xl);
-		z-index: 10000;
+		z-index: 100000;
 	}
 
 	:has(input#sb-menu-toggle:checked) .sb-menu {
 		left: 0;
 		transition: left 0.75s ease 0s;
 		width: 100vw;
+	}
+
+	.sb-menu-toggle:has(input:checked) span {
+		background-color: var(--sb-menu-toggle-color-mobile, #09314e);
+	}
+
+	.sb-menu-toggle:has(input:checked):focus-within span,
+	.sb-menu-toggle:has(input:checked):hover span {
+		background-color: var(--sb-menu-toggle-color-hover, #1c0);
 	}
 }
