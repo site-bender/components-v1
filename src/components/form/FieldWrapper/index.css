@@ -54,7 +54,7 @@
 .sb-field:has(input:focus) .sb-label,
 .sb-field:has(select:focus) .sb-label,
 .sb-field:has(textarea:focus) .sb-label {
-	color: var(--sb-field-label-color-focus, var(--sb-color-link, #09314e));
+	color: var(--sb-field-label-color-focus, var(--sb-color-link, #0d4872));
 	font-weight: 600;
 }
 
@@ -148,7 +148,7 @@
 .sb-form-alert-close-button {
 	background-color: var(--sb-form-alert-close-button-background-color, transparent);
 	border: none;
-	color: var(--sb-form-alert-close-button-color, var(--sb-color-blue-shaded, #09314e));
+	color: var(--sb-form-alert-close-button-color, var(--sb-color-blue-shaded, #0d4872));
 	font-size: 2rem;
 	line-height: 1;
 	min-height: 48px;
@@ -161,21 +161,21 @@
 
 .sb-form-alert-close-button:focus,
 .sb-form-alert-close-button:hover {
-	outline: solid 2px var(--sb-form-alert-close-button-outline-color, var(--sb-color-blue-shaded, #09314e));
+	outline: solid 2px var(--sb-form-alert-close-button-outline-color, var(--sb-color-blue-shaded, #0d4872));
 	border-radius: 5px;
-	color: var(--sb-form-alert-close-button-color-hover, var(--sb-color-blue-shaded, #09314e));
+	color: var(--sb-form-alert-close-button-color-hover, var(--sb-color-blue-shaded, #0d4872));
 }
 
 .sb-form-alert-box a,
 .sb-form-alert-box a:visited {
-	color: var(--sb-form-alert-box-link-color, var(--sb-color-blue-shaded, #09314e));
+	color: var(--sb-form-alert-box-link-color, var(--sb-color-blue-shaded, #0d4872));
 }
 
 
 .sb-form .sb-form-alert-box a:active,
 .sb-form .sb-form-alert-box a:focus,
 .sb-form .sb-form-alert-box a:hover {
-	background-color: var(--sb-form-alert-box-link-background-color-hover, var(--sb-color-blue-shaded, #09314e));
+	background-color: var(--sb-form-alert-box-link-background-color-hover, var(--sb-color-blue-shaded, #0d4872));
 	color: var(--sb-form-alert-box-link-color-hover, var(--sb-color-gray-0, #fafafa));
 }
 

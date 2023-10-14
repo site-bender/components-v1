@@ -13,7 +13,7 @@
 		--sb-color-green: #4f3;
 		--sb-color-orange: #ff6a00;
 		--sb-color-fuchsia: #ea00ff;
-		--sb-color-blue-shaded: #09314e;
+		--sb-color-blue-shaded: #0d4872;
 		--sb-color-green-shaded: #0e4e09;
 		--sb-color-orange-shaded: #4e2609;
 		--sb-color-fuchsia-shaded: #48094e;
@@ -27,9 +27,9 @@
 		--sb-color-highlight-inverse: var(--sb-color-gray-8, #2c2c30);
 		--sb-color-highlight: var(--sb-color-green-tinted, #aaf5a3);
 		--sb-color-link-visited: var(--sb-fuchsia-shaded, #48094e);
-		--sb-color-link: var(--sb-blue-shaded, #09314e);
+		--sb-color-link: var(--sb-blue-shaded, #0d4872);
 		--sb-color-mantis: var(--sb-color-green-tinted, #aaf5a3);
-		--sb-color-primary: var(--sb-blue-shaded, #09314e);
+		--sb-color-primary: var(--sb-blue-shaded, #0d4872);
 		--sb-color-sky-blue: var(--sb-color-blue-tinted, #a3d3f5);
 		--sb-color-wine: var(--sb-color-orange-shaded, #48094e);
 		--sb-font-body: inter, roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",

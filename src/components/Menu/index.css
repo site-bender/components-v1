@@ -88,7 +88,7 @@ main.sb-main {
 	border: var(--sb-menu-link-border, 3px solid transparent);
 	border-radius: 4px;
 	box-sizing: content-box;
-	color: var(--sb-menu-link-color, #09314e);
+	color: var(--sb-menu-link-color, #0d4872);
 	display: inline-flex;
 	justify-content: flex-start;
 	min-height: 48px;
@@ -97,14 +97,14 @@ main.sb-main {
 }
 
 .sb-menu .sb-menu-this-page {
-	background-color: var(--sb-menu-this-page-background-color, #09314e);
+	background-color: var(--sb-menu-this-page-background-color, #0d4872);
 	color: var(--sb-menu-this-page-color, white);
 }
 
 
 .sb-menu .sb-menu-link:focus,
 .sb-menu .sb-menu-link:hover {
-	border: var(--sb-menu-link-border-hover, 3px solid #09314e);
+	border: var(--sb-menu-link-border-hover, 3px solid #0d4872);
 }
 
 .sb-toggle svg {
@@ -148,7 +148,7 @@ main.sb-main {
 	}
 
 	.sb-menu-toggle:has(input:checked) span {
-		background-color: var(--sb-menu-toggle-color-mobile, #09314e);
+		background-color: var(--sb-menu-toggle-color-mobile, #0d4872);
 	}
 
 	.sb-menu-toggle:has(input:checked):focus-within span,

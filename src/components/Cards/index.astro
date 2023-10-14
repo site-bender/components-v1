@@ -22,6 +22,8 @@ const wrapperAttrs = mapAttributes(attrs, ["sb-cards"])
 
 
 const articleTitle = await Astro.slots.render("title") || title
+const prologue = await Astro.slots.render("prologue")
+const epilogue = await Astro.slots.render("epilogue")
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
@@ -35,7 +37,9 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 			</header>
 		) : null
 	}
+	<Fragment set:html={prologue} />
 	<div {...cardsAttrs}>
 		<slot />
 	</div>
+	<Fragment set:html={epilogue} />
 </article>

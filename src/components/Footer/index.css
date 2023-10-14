@@ -38,7 +38,7 @@
 
 .sb-footer .sb-nav-this-page {
 	align-items: center;
-	background-color: var(--sb-footer-this-page-background-color, var(--sb-color-link, #09314e));
+	background-color: var(--sb-footer-this-page-background-color, var(--sb-color-link, #0d4872));
 	box-sizing: border-box;
 	border-radius: 4px;
 	color: var(--sb-footer-this-page-color, var(--sb-color-gray-1, #dfdfe2));
@@ -52,7 +52,7 @@
 	align-items: center;
 	background-color: var(--sb-footer-nav-link-background-color, transparent);
 	box-sizing: border-box;
-	color: var(--sb-footer-nav-link-color, var(--sb-color-link, #09314e));
+	color: var(--sb-footer-nav-link-color, var(--sb-color-link, #0d4872));
 	display: flex;
 	justify-content: center;
 	min-height: 48px;
@@ -63,10 +63,10 @@
 
 .sb-footer a.sb-nav-link:focus,
 .sb-footer a.sb-nav-link:hover {
-	background-color: var(--sb-footer-nav-link-background-color-hover, var(--sb-color-link, #09314e));
+	background-color: var(--sb-footer-nav-link-background-color-hover, var(--sb-color-link, #0d4872));
 	border-radius: 4px;
 	color: var(--sb-footer-nav-link-color-hover, var(--sb-color-gray-1, #dfdfe2));
-	outline: 2px solid var(--sb-footer-nav-link-outline-color-hover, var(--sb-color-link, #09314e));
+	outline: 2px solid var(--sb-footer-nav-link-outline-color-hover, var(--sb-color-link, #0d4872));
 	outline-offset: 3px;
 	text-decoration: none;
 }
