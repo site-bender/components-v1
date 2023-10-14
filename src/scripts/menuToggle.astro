@@ -1,0 +1,17 @@
+<script>
+  function addToggle() {
+    const toggle = document.querySelector("#sb-menu-toggle") as HTMLInputElement
+
+    document.querySelector("main")?.addEventListener("click", function (event) {
+      if (
+        (event.target as HTMLElement).tagName !== "INPUT" &&
+        toggle &&
+        toggle.checked
+      ) {
+        toggle.checked = false
+      }
+    })
+  }
+
+  globalThis.addEventListener("DOMContentLoaded", addToggle)
+</script>

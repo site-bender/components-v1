@@ -1,7 +1,5 @@
 <script>
-  type EnhancedField = HTMLFormElement & { sbValidate: () => void }
-  const formatter = new Intl.ListFormat("en", { type: "conjunction" })
-  const validities = [
+  export const validities = [
     "badInput",
     "customError",
     "patternMismatch",
@@ -13,6 +11,8 @@
     "typeMismatch",
     "valueMissing",
   ]
+  type EnhancedField = HTMLFormElement & { sbValidate: () => void }
+  const formatter = new Intl.ListFormat("en", { type: "conjunction" })
 
   function getMessageBox(buttonBar: HTMLDivElement): HTMLDivElement {
     const box = document.querySelector(
