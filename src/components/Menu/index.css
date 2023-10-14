@@ -7,7 +7,7 @@
 	left: calc(var(--sb-step-0, 1rem) * -22);
 	transition: left 0.75s ease 0s;
 	width: calc(var(--sb-step-0, 1rem) * 22);
-	padding: var(--sb-space-2xl) var(--sb-space-s) var(--sb-space-l);
+	padding: var(--sb-space-s) var(--sb-space-s) var(--sb-space-l);
 	z-index: 1000000;
 	min-height: 100%;
 	top: 0;

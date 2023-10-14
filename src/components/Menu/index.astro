@@ -3,7 +3,7 @@ import "./index.css"
 import MenuItemTree from "./MenuItemTree/index.astro"
 import generateShortId from "../../utilities/generateShortId"
 import mapAttributes from "../../utilities/mapAttributes"
-import type { MenuProps as Props } from "../../types"
+import type { MenuProps as Props, PageMeta } from "../../types"
 import createPageTree from "./createPageTree"
 
 const {
@@ -26,6 +26,8 @@ const wrapperAttrs = mapAttributes(attrs, ["sb-menu"])
 
 const { as: HElement = "h2" } = header
 const { as: Element = "nav" } = nav
+
+const logo = await Astro.slots.render("logo")
 ---
 
 <Element
@@ -38,6 +40,7 @@ const { as: Element = "nav" } = nav
   >
     {title}
   </HElement>
+  {logo && <Fragment set:html={logo} />}
   <MenuItemTree
     {as}
     {pages}

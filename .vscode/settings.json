@@ -36,7 +36,6 @@
 		".depcheckrc": true,
 		".editorconfig": true,
 		".git": true,
-		".gitignore": true,
 		".infisical.json": true,
 		".npmcheckrc": true,
 		".npmrc": true,
@@ -49,7 +48,10 @@
 		"pnpm-lock.yaml": true,
 		"sitebender.theme.dark.json": true,
 		"vercel.json": true,
-		".stylelintrc.json": true
+		".stylelintrc.json": true,
+		".gitignore": true,
+		"astro.config.mjs": true,
+		"tsconfig.json": true
 	},
 	"javascript.format.semicolons": "remove",
 	"terminal.integrated.tabStopWidth": 4,

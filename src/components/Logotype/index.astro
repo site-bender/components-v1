@@ -1,9 +1,9 @@
 ---
-import "./index.css";
-import Microdata from "../Microdata/index.astro";
-import type { LogotypeProps as Props } from "../../types";
-import mapAttributes from "../../utilities/mapAttributes";
-import isRoot from "../../utilities/isRoot";
+import "./index.css"
+import Microdata from "../Microdata/index.astro"
+import type { LogotypeProps as Props } from "../../types"
+import mapAttributes from "../../utilities/mapAttributes"
+import isRoot from "../../utilities/isRoot"
 
 const {
   as = "h2",
@@ -15,25 +15,31 @@ const {
   microdata = {},
   properties,
   ...attrs
-} = Astro.props;
+} = Astro.props
 
-const linkAttrs = mapAttributes(link, ["sb-logotype-link"]);
-const wrapperAttrs = mapAttributes(attrs, ["sb-logotype"]);
+const linkAttrs = mapAttributes(link, ["sb-logotype-link"])
+const wrapperAttrs = mapAttributes(attrs, ["sb-logotype"])
 
-const useMicrodata = Boolean(import.meta.env.USE_MICRODATA);
+const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 
-const { pathname } = Astro.url;
+const { pathname } = Astro.url
 
-const Element = as;
+const Element = as
 
-const label = (await Astro.slots.render("default")) || lbl;
+const label = (await Astro.slots.render("default")) || lbl
+const slotImage = await Astro.slots.render("image")
 ---
 
 {
   isRoot(pathname) ? (
     <Element {...wrapperAttrs}>
-      {useMicrodata ? <Microdata {...microdata} {properties} /> : null}
-      {image ? (
+      {useMicrodata ? (
+        <Microdata
+          {...microdata}
+          {properties}
+        />
+      ) : null}
+      {image.src ? (
         <img
           alt={image.alt}
           class="sb-logotype-symbol"
@@ -41,12 +47,14 @@ const label = (await Astro.slots.render("default")) || lbl;
           src={image.src}
           width={image.width}
         />
-      ) : null}{" "}
+      ) : (
+        <Fragment set:html={slotImage} />
+      )}{" "}
       {label}
     </Element>
   ) : (
     <Element {...wrapperAttrs}>
-      {image ? (
+      {image.src ? (
         <img
           alt={image.alt}
           class="sb-logotype-symbol"
@@ -54,8 +62,14 @@ const label = (await Astro.slots.render("default")) || lbl;
           src={image.src}
           width={image.width}
         />
-      ) : null}{" "}
-      <a {...linkAttrs} {href} aria-label={ariaLabel}>
+      ) : (
+        <Fragment set:html={slotImage} />
+      )}{" "}
+      <a
+        {...linkAttrs}
+        {href}
+        aria-label={ariaLabel}
+      >
         {label}
       </a>
     </Element>
