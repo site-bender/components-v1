@@ -3,8 +3,11 @@
     const toggle = document.querySelector("#sb-menu-toggle") as HTMLInputElement
 
     document.querySelector("main")?.addEventListener("click", function (event) {
+      const target = event.target as HTMLElement
+
       if (
-        (event.target as HTMLElement).tagName !== "INPUT" &&
+        !target.matches(".sb-menu *") &&
+        !target.matches("#sb-menu-toggle") &&
         toggle &&
         toggle.checked
       ) {
