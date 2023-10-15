@@ -7,6 +7,6 @@
 	flex-direction: column;
 	flex-grow: 1;
 	justify-content: flex-start;
-	padding: 0 var(--sb-space-m) var(--sb-space-s);
+	padding: 0;
 	position: relative;
 }

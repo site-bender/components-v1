@@ -13,6 +13,7 @@ const {
   label: lbl,
   link,
   microdata = {},
+  noLink,
   properties,
   ...attrs
 } = Astro.props
@@ -31,7 +32,7 @@ const slotImage = await Astro.slots.render("image")
 ---
 
 {
-  isRoot(pathname) ? (
+  noLink || isRoot(pathname) ? (
     <Element {...wrapperAttrs}>
       {useMicrodata ? (
         <Microdata

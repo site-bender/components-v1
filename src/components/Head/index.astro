@@ -1,6 +1,6 @@
 ---
-import type { HeadProps as Props } from "../../types";
-import { CHARS } from "../../constants";
+import type { HeadProps as Props } from "../../types"
+import { CHARS } from "../../constants"
 
 const {
   canonicalSite,
@@ -9,29 +9,74 @@ const {
   metadata = {},
   siteTitle,
   viewport = "width=device-width, initial-scale=1",
-} = Astro.props;
+} = Astro.props
 
-const { pathname } = Astro.url;
+const { pathname } = Astro.url
 
-const canonicalUrl = `${canonicalSite}${pathname}`;
+const canonicalUrl = `${canonicalSite}${pathname}`
 
 const pageTitle = `${metadata.pageTitle || metadata.title} ${
   CHARS.bb
-} ${siteTitle}`;
+} ${siteTitle}`
 
-const next = metadata.next ? `${canonicalSite}${metadata.next}` : undefined;
-const prev = metadata.prev ? `${canonicalSite}${metadata.prev}` : undefined;
+const next = metadata.next ? `${canonicalSite}${metadata.next}` : undefined
+const prev = metadata.prev ? `${canonicalSite}${metadata.prev}` : undefined
 ---
 
 <head>
   <meta charset={charset} />
-  <meta content={viewport} name="viewport" />
+  <meta
+    content={viewport}
+    name="viewport"
+  />
   <title>{pageTitle}</title>
-  {description ? <meta name="description" content={description} /> : null}
-  {metadata.robots ? <meta name="robots" content={metadata.robots} /> : null}
-  {metadata.author ? <meta name="author" content={metadata.author} /> : null}
-  {prev ? <meta name="prev" content={prev} /> : null}
-  {next ? <meta name="next" content={next} /> : null}
+  {
+    description ? (
+      <meta
+        name="description"
+        content={description}
+      />
+    ) : null
+  }
+  {
+    metadata.robots ? (
+      <meta
+        name="robots"
+        content={metadata.robots}
+      />
+    ) : null
+  }
+  {
+    metadata.author ? (
+      <meta
+        name="author"
+        content={metadata.author}
+      />
+    ) : null
+  }
+  {
+    canonicalUrl ? (
+      <link
+        rel="canonical"
+        href={canonicalUrl}
+      />
+    ) : null
+  }
+  {
+    prev ? (
+      <meta
+        name="prev"
+        content={prev}
+      />
+    ) : null
+  }
+  {
+    next ? (
+      <meta
+        name="next"
+        content={next}
+      />
+    ) : null
+  }
   <slot />
-  {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
 </head>

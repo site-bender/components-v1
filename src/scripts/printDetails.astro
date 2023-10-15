@@ -1,0 +1,13 @@
+---
+
+---
+
+<script>
+  function openAllDetails() {
+    const details = [...document.querySelectorAll("details")]
+
+    details.forEach((elem) => elem.setAttribute("open", ""))
+  }
+
+  globalThis.addEventListener("beforeprint", openAllDetails)
+</script>

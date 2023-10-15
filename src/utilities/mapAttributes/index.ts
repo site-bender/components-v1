@@ -3,10 +3,15 @@ import type { Dataset, HTMLAttributes } from "../../types/html"
 import createClassList from "../createClassList"
 import mapDataset from "../mapDataset"
 
+type Attributes = HTMLAttributes & {
+	format?: string | undefined | null
+	validation?: string | undefined | null
+}
+
 export default function mapAttributes(
-	data: Partial<HTMLAttributes> | null = {},
+	data: Partial<Attributes> | null = {},
 	classes: Array<string> = [],
-	...attrs: Array<HTMLAttributes>
+	...attrs: Array<Attributes>
 ) {
 	const {
 		"class:list": classList = [],
@@ -16,7 +21,7 @@ export default function mapAttributes(
 		prefix = "data",
 		validation,
 		...attributes
-	} = data as Partial<HTMLAttributes>
+	} = data as Partial<Attributes>
 
 	const sbCondition =
 		condition && typeof condition !== "string"

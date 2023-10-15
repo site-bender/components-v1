@@ -167,6 +167,7 @@ export type PageMeta = {
 	path: string
 	prev?: string | undefined | null
 	pageTitle?: string | undefined | null
+	robots?: string | undefined | null
 	title?: string | undefined | null
 }
 
@@ -473,6 +474,7 @@ export type LogotypeProps<Tag extends HTMLTag> = Override<
 		label: string
 		level?: 1 | 2 | 3 | 4 | 5 | 6
 		link?: Partial<LinkAttributes> | undefined | null
+		noLink?: boolean | undefined | null
 	}
 >
 

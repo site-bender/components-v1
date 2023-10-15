@@ -234,8 +234,9 @@ export { default as YearInput } from "./src/components/Form/elements/YearInput/i
 
 /* ===== SCRIPTS ===== */
 
-export { default as ValidationScript } from "./src/scripts/formValidation.astro"
+export { default as PrintDetailsScript } from "./src/scripts/printDetails.astro"
 export { default as MenuToggleScript } from "./src/scripts/menuToggle.astro"
+export { default as ValidationScript } from "./src/scripts/formValidation.astro"
 
 /* ===== UTILITIES ===== */
 
