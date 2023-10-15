@@ -40,7 +40,7 @@
 	border-radius: 4px;
 	display: inline-block;
 	line-height: 1;
-	padding: 3px 5px;
+	padding: 0 5px;
 	margin-left: -5px;
 	text-decoration: none;
 	text-transform: lowercase;
@@ -58,7 +58,7 @@ a.sb-trail-link:hover {
 	display: inline-block;
 	outline: 2px solid var(--sb-trail-link-outline-color, var(--sb-color-highlight, #aaf5a3));
 	outline-offset: 3px;
-	padding: 3px 5px;
+	padding: 0 5px;
 	text-decoration: none;
 }
 
@@ -69,7 +69,7 @@ a.sb-trail-fallback:hover {
 	display: inline-block;
 	outline: var(--sb-trail-fallback-outline-color-hover, 2px solid var(--sb-color-highlight, #aaf5a3));
 	outline-offset: 3px;
-	padding: 3px;
+	padding: 0 3px;
 	text-decoration: none;
 }
 

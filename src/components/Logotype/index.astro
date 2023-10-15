@@ -51,26 +51,26 @@ const slotImage = await Astro.slots.render("image")
       ) : (
         <Fragment set:html={slotImage} />
       )}{" "}
-      {label}
+      <span class="sb-logotype-this-page">{label}</span>
     </Element>
   ) : (
     <Element {...wrapperAttrs}>
-      {image.src ? (
-        <img
-          alt={image.alt}
-          class="sb-logotype-symbol"
-          height={image.height}
-          src={image.src}
-          width={image.width}
-        />
-      ) : (
-        <Fragment set:html={slotImage} />
-      )}{" "}
       <a
         {...linkAttrs}
         {href}
         aria-label={ariaLabel}
       >
+        {image.src ? (
+          <img
+            alt={image.alt}
+            class="sb-logotype-symbol"
+            height={image.height}
+            src={image.src}
+            width={image.width}
+          />
+        ) : (
+          <Fragment set:html={slotImage} />
+        )}{" "}
         {label}
       </a>
     </Element>

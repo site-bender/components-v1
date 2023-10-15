@@ -21,10 +21,14 @@
 }
 
 a.sb-logotype-link {
+	align-items: center;
 	background-color: var(--sb-logotype-link-background-color, inherit);
 	border-radius: 5px;
 	color: var(--sb-logotype-link-color, var(--sb-color-gray-0, #fafafa));
-	line-height: 1;
+	display: flex;
+	gap: 0.5rem;
+	justify-content: flex-start;
+	line-height: 1.2;
 	text-decoration: none;
 }
 
@@ -33,4 +37,8 @@ a.sb-logotype-link:hover {
 	color: var(--sb-logotype-link-color-hover, var(--sb-color-highlight, #aaf5a3));
 	outline: 2px solid var(--sb-logotype-link-outline-color-hover, var(--sb-color-highlight, #aaf5a3));
 	outline-offset: 5px;
+}
+
+.sb-logotype-this-page {
+	line-height: 1.2;
 }
