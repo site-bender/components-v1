@@ -16,7 +16,7 @@ const { pathname } = Astro.url
 const canonicalUrl = `${canonicalSite}${pathname}`
 
 const pageTitle = `${metadata.pageTitle || metadata.title} ${
-  CHARS.bb
+  CHARS.middot
 } ${siteTitle}`
 
 const next = metadata.next ? `${canonicalSite}${metadata.next}` : undefined
