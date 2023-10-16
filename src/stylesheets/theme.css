@@ -34,8 +34,8 @@
 		--sb-color-wine: var(--sb-color-orange-shaded, #48094e);
 		--sb-font-body: inter, roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
 			arial, sans-serif;
-		--sb-font-code: ui-monospace, "Cascadia Code", "Source Code Pro", menlo,
-			consolas, "DejaVu Sans Mono", monospace;
+		--sb-font-code: menlo, consolas, ui-monospace, "Cascadia Code", "Source Code Pro",
+			"DejaVu Sans Mono", monospace;
 		--sb-font-titles: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
 			p052, serif;
 		--sb-menu-background-color: #ececeeef;

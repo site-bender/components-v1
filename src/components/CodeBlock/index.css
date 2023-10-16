@@ -20,11 +20,11 @@
 .sb-code-block pre,
 .sb-code-block code {
 	font-family: var(--sb-font-code,
+			Menlo,
+			Consolas,
 			ui-monospace,
 			"Cascadia Code",
 			"Source Code Pro",
-			Menlo,
-			Consolas,
 			"DejaVu Sans Mono",
 			monospace);
 }

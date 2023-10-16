@@ -1,28 +1,26 @@
 ---
-import createClassList from "../../../../utilities/createClassList"
 import createListOptions from "../../../../utilities/createListOptions"
 import generateShortId from "../../../../utilities/generateShortId"
 import mapAttributes from "../../../../utilities/mapAttributes"
-import mapDataset from "../../../../utilities/mapDataset"
 import type { ColorInput as Props } from "../../../../types/form"
 import type { HTMLAttributes } from "../../../../types/html"
 
 const {
-	autocomplete,
-	["class:list"]: elementClassList = [],
-	datalist = {},
-	dataset: elementDataset = {},
-	field = "color-input",
-	form,
-	id = generateShortId(),
-	labelledBy,
-	list,
-	name,
-	required,
-	type: _type,
-	value,
-	wrapper = {},
-	...attrs
+  autocomplete,
+  ["class:list"]: elementClassList = [],
+  datalist = {},
+  dataset: elementDataset = {},
+  field = "color-input",
+  form,
+  id = generateShortId(),
+  labelledBy,
+  list,
+  name,
+  required,
+  type: _type,
+  value,
+  wrapper = {},
+  ...attrs
 } = Astro.props
 
 const datalistAttrs = mapAttributes(datalist, ["sb-color-input-datalist"])
@@ -34,23 +32,26 @@ const lst = list ? { list: listId } : {}
 ---
 
 <span {...wrapperAttrs}>
-	<input
-		{...inputAttrs}
-		aria-labelledby={labelledBy}
-		{autocomplete}
-		{form}
-		{id}
-		{...lst}
-		{name}
-		{required}
-		type="color"
-		{value}
-	/>
-	{
-		list ? (
-			<datalist {...datalistAttrs} id={listId}>
-				<Fragment set:html={createListOptions(list)} />
-			</datalist>
-		) : null
-	}
+  <input
+    {...inputAttrs}
+    aria-labelledby={labelledBy}
+    {autocomplete}
+    {form}
+    {id}
+    {...lst}
+    {name}
+    {required}
+    type="color"
+    {value}
+  />
+  {
+    list ? (
+      <datalist
+        {...datalistAttrs}
+        id={listId}
+      >
+        <Fragment set:html={createListOptions(list)} />
+      </datalist>
+    ) : null
+  }
 </span>

@@ -1,7 +1,6 @@
 import type { Dataset, HTMLAttributes } from "../../types/html"
-
-import createClassList from "../createClassList"
 import mapDataset from "../mapDataset"
+import unique from "../unique"
 
 type Attributes = HTMLAttributes & {
 	format?: string | undefined | null
@@ -14,7 +13,8 @@ export default function mapAttributes(
 	...attrs: Array<Attributes>
 ) {
 	const {
-		"class:list": classList = [],
+		class: cls,
+		"class:list": cList = [],
 		condition,
 		dataset = {} as Dataset,
 		format,
@@ -22,6 +22,12 @@ export default function mapAttributes(
 		validation,
 		...attributes
 	} = data as Partial<Attributes>
+
+	const classList = unique([
+		...(cls ? [cls] : []),
+		...(Array.isArray(cList) ? cList : []),
+		...classes,
+	])
 
 	const sbCondition =
 		condition && typeof condition !== "string"
@@ -36,7 +42,7 @@ export default function mapAttributes(
 
 	return {
 		...attributes,
-		"class:list": createClassList(...classes, classList as Array<string>),
+		"class:list": classList,
 		...mapDataset(
 			{
 				...dataset,

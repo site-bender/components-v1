@@ -1,3 +1,5 @@
+import unique from "../unique"
+
 export default function createClassList(
 	...args: Array<string | Record<string, boolean> | Iterable<string>>
 ): Array<string> {
@@ -6,8 +8,10 @@ export default function createClassList(
 			return arg
 		}
 
-		return Object.entries(arg)
-			.filter(([, v]) => v)
-			.map(([k]) => k)
+		return unique(
+			Object.entries(arg)
+				.filter(([, v]) => v)
+				.map(([k]) => k),
+		)
 	})
 }
