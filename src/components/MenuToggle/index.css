@@ -44,21 +44,24 @@ header.sb-header {
 
 .sb-menu-toggle input#sb-menu-toggle {
 	position: absolute;
+	height: 100%;
 	inset: 0;
 	opacity: 0;
+	width: 100%;
+	z-index: 1000000;
 }
 
-.sb-menu-toggle:has(input#sb-menu-toggle:checked) span:nth-child(1) {
+input#sb-menu-toggle:checked + span {
 	transform: translate(0, 13px) rotate(45deg);
 	transition: all 0.5s ease-in-out;
 }
 
-.sb-menu-toggle:has(input#sb-menu-toggle:checked) span:nth-child(2) {
+input#sb-menu-toggle:checked + span + span {
 	opacity: 0;
 	transition: all 0.5s ease-in-out;
 }
 
-.sb-menu-toggle:has(input#sb-menu-toggle:checked) span:nth-child(3) {
+input#sb-menu-toggle:checked + span + span + span {
 	transform: translate(0, -13px) rotate(-45deg);
 	transition: all 0.5s ease-in-out;
 }

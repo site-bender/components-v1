@@ -37,6 +37,11 @@ main.sb-main {
 	gap: 0;
 }
 
+.sb-menu-open .sb-menu {
+	left: 0;
+	transition: left 0.75s ease 0s;
+}
+
 :has(input#sb-menu-toggle:checked) .sb-menu {
 	left: 0;
 	transition: left 0.75s ease 0s;

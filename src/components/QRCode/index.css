@@ -1,6 +1,9 @@
 .sb-qr-code {
 	align-items: center;
+	bottom: 1rem;
 	display: flex;
 	justify-content: center;
+	left: var(--sb-space-m, 1.5rem);
 	padding: 1rem var(--sb-space-m, 1.5rem) 0.5rem;
+	position: absolute;
 }

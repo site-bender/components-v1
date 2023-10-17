@@ -84,23 +84,15 @@ const logo = await Astro.slots.render("logo")
   }
 
   function enhanceMenu() {
-    const open = [
-      ...document.querySelectorAll(
-        ".sb-menu-item:has(.sb-foldable):has(.sb-menu-this-page)",
-      ),
-    ]
-    const shut = [
-      ...document.querySelectorAll(
-        ".sb-menu-item:has(.sb-foldable):not(:has(.sb-menu-this-page))",
-      ),
-    ]
+    ;[...document.querySelectorAll(".sb-foldable")].map((elem) => {
+      const parent = elem.parentElement
+      const hasThisPage = Boolean(
+        parent?.querySelector("span.sb-menu-this-page"),
+      )
 
-    open.forEach((element) => {
-      setToggle(element as HTMLElement)
-    })
-
-    shut.forEach((element) => {
-      setToggle(element as HTMLElement, true)
+      if (parent) {
+        setToggle(parent, !hasThisPage)
+      }
     })
   }
 
