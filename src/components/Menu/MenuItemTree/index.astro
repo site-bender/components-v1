@@ -36,7 +36,7 @@ const Element = as
       const linkAttrs = mapAttributes(link as HTMLAttributes, ["sb-menu-link"])
       const props = mapAttributes({}, ["sb-menu-item"])
 
-      return href === pathname ? (
+      return href === pathname.replace(/\/$/, "") ? (
         <li {...props}>
           <span
             aria-current="page"
