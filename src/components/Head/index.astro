@@ -11,7 +11,7 @@ const {
 
 const { pathname } = Astro.url
 
-const canonicalUrl = `${canonicalSite}${pathname}`
+const canonicalUrl = `${canonicalSite}${pathname}`.replace(/\/$/, "")
 
 const pageTitle = metadata.pageTitle || metadata.title
 

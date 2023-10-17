@@ -8,30 +8,30 @@ import type { ImageInput as Props } from "../../../../types/form"
 import type { HTMLAttributes } from "../../../../types/html"
 
 const {
-	alt,
-	field = "image-input",
-	form,
-	height,
-	id = generateShortId(),
-	labelledBy,
-	name,
-	src,
-	width,
-	...attrs
+  alt,
+  field = "image-input",
+  form,
+  height,
+  id = generateShortId(),
+  labelledBy,
+  name,
+  src,
+  width,
+  ...attrs
 } = Astro.props
 
 const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-image-input"])
 ---
 
 <input
-	{...inputAttrs}
-	{alt}
-	aria-labelledby={labelledBy}
-	{form}
-	{height}
-	{id}
-	{name}
-	{src}
-	type="image"
-	{width}
+  {...inputAttrs}
+  {alt}
+  aria-labelledby={labelledBy}
+  {form}
+  {height}
+  {id}
+  {name}
+  {src}
+  type="image"
+  {width}
 />
