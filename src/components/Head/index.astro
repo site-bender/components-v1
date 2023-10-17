@@ -1,13 +1,11 @@
 ---
 import type { HeadProps as Props } from "../../types"
-import { CHARS } from "../../constants"
 
 const {
   canonicalSite,
   charset = "utf-8",
   description,
   metadata = {},
-  siteTitle,
   viewport = "width=device-width, initial-scale=1",
 } = Astro.props
 
@@ -15,9 +13,7 @@ const { pathname } = Astro.url
 
 const canonicalUrl = `${canonicalSite}${pathname}`
 
-const pageTitle = `${metadata.pageTitle || metadata.title} ${
-  CHARS.middot
-} ${siteTitle}`
+const pageTitle = metadata.pageTitle || metadata.title
 
 const next = metadata.next ? `${canonicalSite}${metadata.next}` : undefined
 const prev = metadata.prev ? `${canonicalSite}${metadata.prev}` : undefined
