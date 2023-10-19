@@ -7,7 +7,9 @@ const {
   url = Astro.url,
 } = Astro.props
 
-const queryString = encodeURIComponent(`url=${url}&title=${title}`)
+const queryString = `url=${encodeURIComponent(url)}&title=${encodeURIComponent(
+  title,
+)}`
 const clickHandler = `
 	window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
 	return false`

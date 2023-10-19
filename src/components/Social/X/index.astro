@@ -6,7 +6,7 @@ const {
   title,
 } = Astro.props
 
-const queryString = encodeURIComponent(`text=${title}`)
+const queryString = `text=${encodeURIComponent(title)}`
 const clickHandler = `
 	window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
 	return false`
@@ -20,7 +20,7 @@ const clickHandler = `
 >
   <style define:vars={{ hoverFill }}>
     :hover rect,
-		:hover .sb-x-wide {
+    :hover .sb-x-wide {
       fill: var(--hoverFill);
     }
   </style>
@@ -30,17 +30,25 @@ const clickHandler = `
     width="48px"
     height="48px"
   >
-		<rect {fill} height="46" width="46" x="1" y="1" rx="12" ry="12"></rect>
-		<path
-			d="M 12 36 L 16 36 L 36 12 L 32 12 z"
-			fill={innerFill}
-		></path>
+    <rect
+      {fill}
+      height="46"
+      width="46"
+      x="1"
+      y="1"
+      rx="12"
+      ry="12"
+    ></rect>
     <path
-			class="sb-x-wide"
+      d="M 12 36 L 16 36 L 36 12 L 32 12 z"
+      fill={innerFill}
+    ></path>
+    <path
+      class="sb-x-wide"
       d="M 13 13.5 L 29 34.5 L 38 34.5 L 22 13.5 z"
-			{fill}
-			stroke={innerFill}
-			stroke-width="3"
-		></path>
+      {fill}
+      stroke={innerFill}
+      stroke-width="3"
+    ></path>
   </svg>
 </a>
