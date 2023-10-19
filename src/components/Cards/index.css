@@ -10,7 +10,7 @@
 
 @supports (width: min(24rem, 100%)) {
 	.sb-cards .sb-cards-content {
-		grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
 	}
 }
 

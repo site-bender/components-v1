@@ -1,0 +1,46 @@
+---
+const {
+  fill = "#747481",
+  hoverFill = "#0f1419",
+  innerFill = "#fff",
+  title,
+} = Astro.props
+
+const queryString = encodeURIComponent(`text=${title}`)
+const clickHandler = `
+	window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+	return false`
+---
+
+<a
+  href={`https://x.com/intent/tweet?${queryString}`}
+  onclick={clickHandler}
+  title="Share on Reddit"
+  rel="noopener"
+>
+  <style define:vars={{ hoverFill }}>
+    :hover rect,
+		:hover .sb-x-wide {
+      fill: var(--hoverFill);
+    }
+  </style>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 48 48"
+    width="48px"
+    height="48px"
+  >
+		<rect {fill} height="46" width="46" x="1" y="1" rx="12" ry="12"></rect>
+		<path
+			d="M 12 36 L 16 36 L 36 12 L 32 12 z"
+			fill={innerFill}
+		></path>
+    <path
+			class="sb-x-wide"
+      d="M 13 13.5 L 29 34.5 L 38 34.5 L 22 13.5 z"
+			{fill}
+			stroke={innerFill}
+			stroke-width="3"
+		></path>
+  </svg>
+</a>

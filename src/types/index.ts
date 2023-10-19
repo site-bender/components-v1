@@ -157,6 +157,7 @@ export type PageMeta = {
 	blurb?: string | undefined | null
 	children?: Array<string> | undefined | null
 	getArticleData?: ((v: string) => Article) | undefined | null
+	getCodeSnippetData?: (() => OpenGraphBasic) | undefined | null
 	getOpenGraphData?: (() => OpenGraphBasic) | undefined | null
 	getQuotations?: (() => Array<Quotation>) | undefined | null
 	getTwitterCard?: (() => TwitterCard) | undefined | null

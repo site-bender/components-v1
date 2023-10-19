@@ -17,14 +17,18 @@
 	"cSpell.words": [
 		"apos",
 		"configurers",
+		"evenodd",
 		"exifr",
 		"exifreader",
 		"funnypot",
 		"hrefs",
 		"icterine",
+		"linejoin",
 		"mauveine",
+		"miterlimit",
 		"nums",
-		"typeof"
+		"typeof",
+		"xlink"
 	],
 	"css.format.spaceAroundSelectorSeparator": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",

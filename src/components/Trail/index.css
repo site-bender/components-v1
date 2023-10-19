@@ -36,21 +36,6 @@
 	text-transform: lowercase;
 }
 
-.sb-trail-fallback {
-	border-radius: 4px;
-	display: inline-block;
-	line-height: 1;
-	padding: 0 5px;
-	margin-left: -5px;
-	text-decoration: none;
-	text-transform: lowercase;
-}
-
-a.sb-trail-fallback {
-	background-color: transparent;
-	color: var(--sb-trail-fallback-color, var(--sb-color-highlight, #aaf5a3));
-}
-
 a.sb-trail-link:focus,
 a.sb-trail-link:hover {
 	border-radius: 5px;
@@ -59,17 +44,6 @@ a.sb-trail-link:hover {
 	outline: 2px solid var(--sb-trail-link-outline-color, var(--sb-color-highlight, #aaf5a3));
 	outline-offset: 3px;
 	padding: 0 5px;
-	text-decoration: none;
-}
-
-a.sb-trail-fallback:focus,
-a.sb-trail-fallback:hover {
-	border-radius: 5px;
-	color: var(--sb-trail-fallback-color-hover, var(--sb-color-highlight, #aaf5a3));
-	display: inline-block;
-	outline: var(--sb-trail-fallback-outline-color-hover, 2px solid var(--sb-color-highlight, #aaf5a3));
-	outline-offset: 3px;
-	padding: 0 3px;
 	text-decoration: none;
 }
 

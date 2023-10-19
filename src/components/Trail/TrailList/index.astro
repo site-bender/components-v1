@@ -22,11 +22,11 @@ const { as: HElement = "h2", ...hAttrs } = header
 const headerAttrs = mapAttributes(hAttrs, ["sb-trail-header", hideClass])
 const listAttrs = mapAttributes(list, ["sb-trail-list"])
 const pageAttrs = mapAttributes(page, ["sb-trail-this-page"])
-const fbAttrs = mapAttributes(fallbackAttrs, ["sb-trail-fallback"])
+const fbAttrs = mapAttributes(fallbackAttrs, ["sb-trail-link"])
 
 const ListElement = type
 
-const links = crumbs as Array<PageMeta<"a">>
+const links = crumbs as Array<PageMeta>
 
 const FbElement = href ? "a" : as
 ---

@@ -1,0 +1,33 @@
+.sb-social {
+	padding: var(--sb-space-s) var(--sb-space-m);
+	position: absolute;
+}
+
+.sb-social-buttons {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.sb-social-vertical .sb-social-buttons {
+	flex-direction: column;
+}
+
+.sb-social-top-left {
+	left: 0;
+	top: 0;
+}
+
+.sb-social-top-right {
+	right: 0;
+	top: 0;
+}
+
+.sb-social-bottom-left {
+	bottom: 0;
+	left: 0;
+}
+
+.sb-social-bottom-right {
+	bottom: 0;
+	right: 0;
+}

@@ -61,6 +61,8 @@ export { default as Section } from "./src/components/Section/index.astro"
 // @ts-expect-error
 export { default as SkipLink } from "./src/components/SkipLink/index.astro"
 // @ts-expect-error
+export { default as Social } from "./src/components/Social/index.astro"
+// @ts-expect-error
 export { default as SubscribeForm } from "./src/components/SubscribeForm/index.astro"
 // @ts-expect-error
 export { default as Subtitle } from "./src/components/Subtitle/index.astro"
