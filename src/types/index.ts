@@ -44,6 +44,12 @@ export interface AstroPage extends AstroInstance {
 	metadata: Metadata
 }
 
+export type Crumb = {
+	description: string
+	href: string
+	label: string
+}
+
 export type Frontmatter = {
 	anchor?: string | undefined | null
 	aria?: string | undefined | null

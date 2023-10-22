@@ -1,5 +1,5 @@
-import not from "~utilities/not"
 import type { DurationOptions } from "../../types"
+import not from "../../utilities/not"
 
 export default function formatTimeToRead(duration: DurationOptions): string {
 	if (not(duration)) {

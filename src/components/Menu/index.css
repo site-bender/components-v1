@@ -37,7 +37,8 @@ main.sb-main {
 	gap: 0;
 }
 
-.sb-menu-open .sb-menu {
+.sb-menu-open .sb-menu,
+.sb-main .sb-menu:focus-within {
 	left: 0;
 	transition: left 0.75s ease 0s;
 }

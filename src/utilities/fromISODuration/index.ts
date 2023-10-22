@@ -1,5 +1,5 @@
 import type { DurationOptions } from "@sitebender/components/src/types/values"
-import not from "~utilities/not"
+import not from "../../utilities/not"
 
 export default function fromISODuration(duration: string): DurationOptions {
 	if (not(duration)) {

@@ -1,4 +1,6 @@
 ---
+import { shareURLs } from "../../../constants"
+
 const {
   fill = "#747481",
   hoverFill = "#0f1419",
@@ -13,9 +15,10 @@ const clickHandler = `
 ---
 
 <a
-  href={`https://x.com/intent/tweet?${queryString}`}
+  aria-label="Share on X"
+  href={`${shareURLs.x}?${queryString}`}
   onclick={clickHandler}
-  title="Share on Reddit"
+  title="Share on X"
   rel="noopener"
 >
   <style define:vars={{ hoverFill }}>

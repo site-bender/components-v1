@@ -122,6 +122,13 @@ export const MAX_PAGES = 8
 
 export const MEMBER_FIELD_PIVOT = 3
 
+export const shareURLs = {
+	blueSky: "",
+	mastodon: "https://mastodonshare.com/share",
+	reddit: "https://reddit.com/submit",
+	x: "https://x.com/intent/tweet",
+}
+
 export const SITE_TITLE =
 	"Sitebender Components: Astro components for Sitebender sites"
 

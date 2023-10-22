@@ -1,4 +1,6 @@
 ---
+import { shareURLs } from "../../../constants"
+
 const {
   fill = "#747481",
   hoverFill = "#ff4500",
@@ -16,7 +18,8 @@ const clickHandler = `
 ---
 
 <a
-  href={`https://reddit.com/submit?${queryString}`}
+  aria-label="Share on Reddit"
+  href={`${shareURLs.reddit}?${queryString}`}
   onclick={clickHandler}
   title="Share on Reddit"
   rel="noopener"
