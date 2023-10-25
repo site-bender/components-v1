@@ -7,15 +7,14 @@ function createSubTree(
 	return menu.reduce((acc, path) => {
 		const page = pages.find((page) => page.path?.split("/").at(-1) === path)
 
-		const fullPage = page?.children
-			? {
-					...page,
-					children: createSubTree(page.children, pages),
-			  }
-			: page
+		if (page?.children) {
+			page.children = createSubTree(page.children, pages) as Array<PageMeta>
+		}
 
-		return [...acc, fullPage]
-	}, [])
+		acc.push(page as PageMeta)
+
+		return acc
+	}, [] as Array<PageMeta>)
 }
 
 export default function createPageTree(pages: Array<PageMeta> = []) {

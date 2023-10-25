@@ -12,19 +12,14 @@ export default function createLinks(
 			path: href,
 		} = pageLookup[path] as PageMeta
 
-		return href
-			? [
-					...acc,
-					...(href
-						? [
-								{
-									description,
-									href,
-									label: label || title,
-								},
-						  ]
-						: []),
-			  ]
-			: acc
+		if (href) {
+			acc.push({
+				description,
+				href,
+				label: (label || title) as string,
+			})
+		}
+
+		return acc
 	}, [])
 }

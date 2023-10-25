@@ -12,12 +12,11 @@ export default function getBreadcrumbTrail(
 
 	const trail = [
 		"/",
-		...path
-			.split("/")
-			.reduce(
-				(acc, p) => [...acc, `${acc.at(-1) || ""}/${p}`],
-				[] as Array<string>,
-			),
+		...path.split("/").reduce((acc, p) => {
+			acc.push(`${acc.at(-1) || ""}/${p}`)
+
+			return acc
+		}, [] as Array<string>),
 	]
 
 	return trail.map((path) => pages[path]) as Array<PageMeta>

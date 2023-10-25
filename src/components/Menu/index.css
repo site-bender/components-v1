@@ -29,6 +29,10 @@
 	padding-left: 1rem;
 }
 
+.sb-foldable li.sb-menu-item li.sb-menu-item {
+	padding-left: 1.2rem;
+}
+
 main.sb-main {
 	align-items: stretch;
 	display: flex;
@@ -53,10 +57,6 @@ main.sb-main {
 	font-size: var(--sb-step-0, 1rem);
 	line-height: 48px;
 	padding-left: 0;
-}
-
-.sb-menu * * li {
-	margin: 0 0 0 2rem;
 }
 
 .sb-menu ol > li,
@@ -127,8 +127,12 @@ main.sb-main {
 	display: none;
 }
 
-.sb-menu-item:has(.sb-toggle) {
+.sb-menu-item .sb-toggle {
 	margin-left: -1.5rem;
+}
+
+.sb-menu-item .sb-foldable .sb-toggle {
+	margin-left: -0.25rem;
 }
 
 .sb-menu-item.sb-toggle-shut .sb-vertical-bar {

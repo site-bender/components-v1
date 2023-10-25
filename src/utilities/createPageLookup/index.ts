@@ -6,9 +6,8 @@ export default function createPageLookup(
 	return pages.reduce((acc, page) => {
 		const p = page.path ? page : { ...page, path: "/" }
 
-		return {
-			...acc,
-			[p.path]: p,
-		}
-	}, {})
+		acc[p.path] = p
+
+		return acc
+	}, {} as Record<string, PageMeta>)
 }

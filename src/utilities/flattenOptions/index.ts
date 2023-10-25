@@ -1,17 +1,13 @@
-export default function flattenOptions<T>(
-	optionGroups: Array<Option<T>> | Array<OptionGroup<T>>,
-): Array<Option<T>> {
-	const isGrouped = Boolean((optionGroups?.[0] as OptionGroup<T>)?.options)
+export default function flattenOptions(optionGroups) {
+	const isGrouped = Boolean(optionGroups?.[0]?.options)
 
-	return (
-		isGrouped
-			? (optionGroups as Array<OptionGroup<T>>).reduce<Array<Option<T>>>(
-					(acc: Array<Option<T>>, optionGroup: OptionGroup<T>) => [
-						...acc,
-						...(optionGroup.options || []),
-					],
-					[],
-			  )
-			: optionGroups
-	) as Array<Option<T>>
+	return isGrouped
+		? optionGroups.reduce((acc, optionGroup) => {
+				if (optionGroup.options) {
+					acc.concat(optionGroup.options)
+				}
+
+				return acc
+		  }, [])
+		: optionGroups
 }
