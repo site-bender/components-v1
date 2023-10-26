@@ -1,0 +1,14 @@
+---
+import type { GlossaryGroupProps as Props } from "../../../types"
+import Entry from "./Entry/index.astro"
+import Section from "../../Section/index.astro"
+
+const { definitions, id, label } = Astro.props
+---
+
+<Section
+  {id}
+  {label}
+>
+  {definitions ? definitions.map((dfn) => <Entry {...dfn} />) : null}
+</Section>

@@ -55,7 +55,8 @@
 		".stylelintrc.json": true,
 		".gitignore": true,
 		"astro.config.mjs": true,
-		"tsconfig.json": true
+		"tsconfig.json": true,
+		".astro": true
 	},
 	"javascript.format.semicolons": "remove",
 	"terminal.integrated.tabStopWidth": 4,

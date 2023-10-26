@@ -394,6 +394,15 @@ export type EmailProps<Tag extends HTMLTag> = Override<
 	} & Formattable
 >
 
+export type EntryProps = {
+	abbreviation?: string | undefined | null
+	definition: Array<string>
+	expansion?: string | undefined | null
+	id: string
+	isAcronym?: boolean | undefined | null
+	term: string
+}
+
 export type FaqProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Thing, Tag>,
 	{
@@ -425,6 +434,18 @@ export type FooterProps<Tag extends HTMLTag> = MetadataProps<
 	Partial<Thing>,
 	Tag
 >
+
+export type GlossaryProps = {
+	groups?: Array<GlossaryGroupProps> | undefined | null
+	id?: string | undefined | null
+	title: string
+}
+
+export type GlossaryGroupProps = {
+	definitions: Array<EntryProps> | undefined | null
+	id: string
+	label: string
+}
 
 export type HeadProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<Thing>, Tag>,

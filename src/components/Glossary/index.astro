@@ -1,0 +1,23 @@
+---
+import type { GlossaryProps as Props } from "../../types"
+import Article from "../Article/index.astro"
+import Group from "./Group/index.astro"
+
+const { groups, id = "main-content", title } = Astro.props
+
+const epilogue = await Astro.slots.render("epilogue")
+const prologue = await Astro.slots.render("prologue")
+---
+
+{
+  groups ? (
+    <Article
+      {id}
+      {title}
+    >
+      {groups.map((group) => (
+        <Group {...group} />
+      ))}
+    </Article>
+  ) : null
+}

@@ -25,6 +25,8 @@ export { default as Figure } from "./src/components/Figure/index.astro"
 // @ts-expect-error
 export { default as Footer } from "./src/components/Footer/index.astro"
 // @ts-expect-error
+export { default as Glossary } from "./src/components/Glossary/index.astro"
+// @ts-expect-error
 export { default as Head } from "./src/components/Head/index.astro"
 // @ts-expect-error
 export { default as Header } from "./src/components/Header/index.astro"
