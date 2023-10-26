@@ -3,6 +3,8 @@ export { default as Article } from "./src/components/Article/index.astro"
 // @ts-expect-error
 export { default as Body } from "./src/components/Body/index.astro"
 // @ts-expect-error
+export { default as CarbonCheck } from "./src/components/CarbonCheck/index.astro"
+// @ts-expect-error
 export { default as Card } from "./src/components/Card/index.astro"
 // @ts-expect-error
 export { default as Cards } from "./src/components/Cards/index.astro"

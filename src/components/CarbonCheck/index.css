@@ -1,0 +1,47 @@
+.sb-carbon-check {
+	max-width: min(24rem, 92vw);
+	font-size: 1rem;
+	display: flex;
+	align-items: stretch;
+	flex-direction: column;
+	justify-content: center;
+	margin: 2rem auto 0;
+}
+
+.sb-carbon-check > .sb-carbon-count {
+	border: 2px solid var(--sb-color-green-tinted);
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0;
+	margin-bottom: 5px;
+}
+
+.sb-carbon-check > .sb-carbon-count .sb-count,
+.sb-carbon-check .sb-carbon-count .sb-carbon-logo {
+	flex-grow: 1;
+	border: none;
+	line-height: 2;
+	text-align: center;
+}
+
+.sb-carbon-check .sb-carbon-count .sb-carbon-logo {
+	background-color: var(--sb-color-green-tinted);
+	color: var(--sb-color-gray-9);
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.sb-carbon-check .sb-carbon-count a.sb-carbon-logo:focus,
+.sb-carbon-check .sb-carbon-count a.sb-carbon-logo:hover {
+	background-color: var(--sb-color-gray-8);
+	color: var(--sb-color-green-tinted);
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+.sb-carbon-check > .sb-carbon-percentage {
+	text-align: center;
+}

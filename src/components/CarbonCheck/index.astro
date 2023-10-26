@@ -1,0 +1,39 @@
+---
+import "./index.css"
+
+export type Props = {
+  carbon: number
+  href: string
+  percentage: number
+}
+
+const { carbon, href, percentage } = Astro.props
+---
+
+<section class="sb-carbon-check">
+  <h2
+    id="sb-carbon-check"
+    class="sb-off-screen"
+  >
+    Carbon emissions for this page
+  </h2>
+  <div class="sb-carbon-count">
+    <span class="sb-count">{carbon}g of CO<sub>2</sub>/view</span>
+    {
+      href ? (
+        <a
+          class="sb-carbon-logo"
+          {href}
+          rel="external"
+        >
+          Website Carbon
+        </a>
+      ) : (
+        <span class="sb-carbon-logo">Website Carbon</span>
+      )
+    }
+  </div>
+  <div class="sb-carbon-percentage">
+    Cleaner than {percentage}% of pages tested
+  </div>
+</section>
