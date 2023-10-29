@@ -1,4 +1,5 @@
 .sb-article {
+	flex: 1;
 	margin: 0 auto;
 	padding: var(--sb-space-m);
 	max-width: min(48rem, 100vw);

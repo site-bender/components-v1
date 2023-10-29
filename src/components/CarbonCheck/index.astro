@@ -3,20 +3,25 @@ import "./index.css"
 
 export type Props = {
   carbon: number
+  ecograder?: string | undefined
   href: string
   percentage: number
+  score?: number | undefined
 }
 
-const { carbon, href, percentage } = Astro.props
+const { carbon, ecograder, href, percentage, score } = Astro.props
 ---
 
-<section class="sb-carbon-check">
+<article class="sb-carbon-check">
   <h2
     id="sb-carbon-check"
     class="sb-off-screen"
   >
     Carbon emissions for this page
   </h2>
+  <div class="sb-carbon-percentage">
+    Cleaner than {percentage}% of pages tested
+  </div>
   <div class="sb-carbon-count">
     <span class="sb-count">{carbon}g of CO<sub>2</sub>/view</span>
     {
@@ -33,7 +38,22 @@ const { carbon, href, percentage } = Astro.props
       )
     }
   </div>
-  <div class="sb-carbon-percentage">
-    Cleaner than {percentage}% of pages tested
-  </div>
-</section>
+  {
+    score ? (
+      <div class="sb-carbon-count">
+        <span class="sb-count">{score}/100</span>
+        {ecograder ? (
+          <a
+            class="sb-carbon-logo"
+            href={ecograder}
+            rel="external"
+          >
+            Ecograder
+          </a>
+        ) : (
+          <span class="sb-carbon-logo">Ecograder</span>
+        )}
+      </div>
+    ) : null
+  }
+</article>

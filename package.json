@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.1.42",
+	"version": "0.1.43",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -72,7 +72,7 @@
 		"exifreader": "^4.15.0",
 		"postmark": "^3.1.1",
 		"qrcode": "^1.5.3",
-		"rollup": "^4.1.4",
+		"rollup": "^4.1.5",
 		"stylelint": "^15.11.0",
 		"stylelint-config-standard": "^34.0.0",
 		"typescript": "^5.2.2",

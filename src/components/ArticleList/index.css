@@ -1,0 +1,27 @@
+.sb-article-list .sb-article-list-term {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	justify-content: space-between;
+}
+
+.sb-article-list .sb-article-pub-date {
+	font-size: 1rem;
+}
+
+.sb-article-list .sb-article-title {
+	font-size: var(--sb-step-2, 1.5rem);
+}
+
+.sb-article-list .sb-article-title a {
+	text-decoration: none;
+}
+
+.sb-article-list .sb-article-subtitle {
+	font-size: var(--sb-step-0, 1rem);
+}
+
+.sb-article-list .sb-article-abstract {
+	margin: 1rem 1rem 0;
+}

@@ -158,9 +158,18 @@ export type Metadata = {
 	webSite?: WebSite | undefined
 }
 
+export type Carbon = {
+	count: number
+	ecograder?: string | undefined | null
+	href: string | undefined | null
+	percentage: number
+	score?: number | undefined | null
+}
+
 export type PageMeta = {
 	author?: string | undefined | null
 	blurb?: string | undefined | null
+	carbon?: Carbon
 	children?: Array<string> | undefined | null
 	getArticleData?: ((v: string) => Article) | undefined | null
 	getCodeSnippetData?: (() => OpenGraphBasic) | undefined | null

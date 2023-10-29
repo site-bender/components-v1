@@ -4,8 +4,10 @@
 	display: flex;
 	align-items: stretch;
 	flex-direction: column;
+	gap: 0.5rem;
 	justify-content: center;
 	margin: 2rem auto 0;
+	width: 100%;
 }
 
 .sb-carbon-check > .sb-carbon-count {
@@ -15,12 +17,11 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: 0;
-	margin-bottom: 5px;
 }
 
 .sb-carbon-check > .sb-carbon-count .sb-count,
 .sb-carbon-check .sb-carbon-count .sb-carbon-logo {
-	flex-grow: 1;
+	flex: 1 1 0;
 	border: none;
 	line-height: 2;
 	text-align: center;
@@ -42,6 +43,19 @@
 	padding: 0;
 }
 
+.sb-carbon-check > .sb-ecograder,
 .sb-carbon-check > .sb-carbon-percentage {
 	text-align: center;
+}
+
+@media (max-width: 36rem) {
+	.sb-carbon-check > .sb-carbon-count {
+		border: 2px solid var(--sb-color-green-tinted);
+		border-radius: 5px;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		justify-content: space-between;
+		gap: 0;
+	}
 }
