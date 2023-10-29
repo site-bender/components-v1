@@ -5,14 +5,14 @@ import type { UrlProps as Props } from "../../../types"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	as = "span",
-	dataset,
-	link = {},
-	microdata = {},
-	properties,
-	url,
-	useLink,
-	...attrs
+  as = "span",
+  dataset,
+  link = {},
+  microdata = {},
+  properties,
+  url,
+  useLink,
+  ...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-url"])
@@ -26,13 +26,24 @@ const href = link.href || address
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-{useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
-	useLink ? (
-		<a {...linkAttrs} {href}>
-			<Element {...elementAttrs}>{address}</Element>
-		</a>
-	) : (
-		<Element {...elementAttrs}>{address}</Element>
-	)
+  useMicrodata ? (
+    <Microdata
+      {microdata}
+      {properties}
+    />
+  ) : null
 }
+{
+  useLink ? (
+    <a
+      {...linkAttrs}
+      {href}
+    >
+      <Element {...elementAttrs}>{address}</Element>
+    </a>
+  ) : (
+    <Element {...elementAttrs}>{address}</Element>
+  )
+}
+ ../../Fart/html-types

@@ -6,24 +6,24 @@ import type { EmailProps as Props } from "../../../types"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	as = "span",
-	dataset,
-	email,
-	link = {},
-	mailtoOptions,
-	microdata = {},
-	properties,
-	useMailto,
-	...attrs
+  as = "span",
+  dataset,
+  email,
+  link = {},
+  mailtoOptions,
+  microdata = {},
+  properties,
+  useMailto,
+  ...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-email"])
 const linkAttrs = mapAttributes(link, ["sb-email-link"])
 
 const emailAddress = (
-	(await Astro.slots.render("default")) ||
-	email ||
-	""
+  (await Astro.slots.render("default")) ||
+  email ||
+  ""
 ).trim()
 
 const Element = as
@@ -32,13 +32,24 @@ const mailto = link.href ? link.href : createMailto(emailAddress, mailtoOptions)
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-{useMicrodata ? <Microdata {microdata} {properties} /> : null}
 {
-	useMailto ? (
-		<a {...linkAttrs} href={mailto}>
-			<Element {...elementAttrs}>{emailAddress}</Element>
-		</a>
-	) : (
-		<Element {...elementAttrs}>{emailAddress}</Element>
-	)
+  useMicrodata ? (
+    <Microdata
+      {microdata}
+      {properties}
+    />
+  ) : null
 }
+{
+  useMailto ? (
+    <a
+      {...linkAttrs}
+      href={mailto}
+    >
+      <Element {...elementAttrs}>{emailAddress}</Element>
+    </a>
+  ) : (
+    <Element {...elementAttrs}>{emailAddress}</Element>
+  )
+}
+ ../../Fart/html-types

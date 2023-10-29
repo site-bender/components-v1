@@ -7,13 +7,13 @@ import type { DurationProps as Props } from "../../../types"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	as = "time",
-	dataset,
-	duration,
-	itemprop = "duration",
-	microdata,
-	properties = {},
-	...attrs
+  as = "time",
+  dataset,
+  duration,
+  itemprop = "duration",
+  microdata,
+  properties = {},
+  ...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-duration"])
@@ -21,26 +21,34 @@ const microdataAttrs = mapAttributes(microdata, ["sb-duration"])
 
 const d = Temporal.Duration.from(duration)
 const meta = {
-	duration,
-	...properties,
+  duration,
+  ...properties,
 }
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-	useMicrodata && properties.type ? (
-		<Microdata {as} {...microdataAttrs} properties={meta}>
-			<meta
-				itemprop="duration"
-				itemtype="https://schema.org/Duration"
-				content={d.toJSON()}
-			/>
-			<span {...elementAttrs}>{formatDuration(d)}</span>
-		</Microdata>
-	) : (
-		<time {...elementAttrs} datetime={d.toJSON()}>
-			{formatDuration(d)}
-		</time>
-	)
+  useMicrodata && properties.type ? (
+    <Microdata
+      {as}
+      {...microdataAttrs}
+      properties={meta}
+    >
+      <meta
+        itemprop="duration"
+        itemtype="https://schema.org/Duration"
+        content={d.toJSON()}
+      />
+      <span {...elementAttrs}>{formatDuration(d)}</span>
+    </Microdata>
+  ) : (
+    <time
+      {...elementAttrs}
+      datetime={d.toJSON()}
+    >
+      {formatDuration(d)}
+    </time>
+  )
 }
+ ../../Fart/html-types

@@ -6,13 +6,13 @@ import type { BookTitleProps as Props } from "../../../types"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	as = "span",
-	dataset,
-	href,
-	link,
-	properties = {},
-	title,
-	...attrs
+  as = "span",
+  dataset,
+  href,
+  link,
+  properties = {},
+  title,
+  ...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-book-title"])
@@ -21,22 +21,34 @@ const linkAttrs = mapAttributes(link, ["sb-book-title-link"])
 const name = ((await Astro.slots.render("default")) || "").trim() || title
 
 const meta = {
-	type: "Book",
-	name,
-	...properties,
+  type: "Book",
+  name,
+  ...properties,
 }
 ---
 
 {
-	href ? (
-		<a {...linkAttrs} {href}>
-			<Microdata {as} {...elementAttrs} properties={meta}>
-				{name}
-			</Microdata>
-		</a>
-	) : (
-		<Microdata {as} {...elementAttrs} properties={meta}>
-			{name}
-		</Microdata>
-	)
+  href ? (
+    <a
+      {...linkAttrs}
+      {href}
+    >
+      <Microdata
+        {as}
+        {...elementAttrs}
+        properties={meta}
+      >
+        {name}
+      </Microdata>
+    </a>
+  ) : (
+    <Microdata
+      {as}
+      {...elementAttrs}
+      properties={meta}
+    >
+      {name}
+    </Microdata>
+  )
 }
+ ../../Fart/html-types

@@ -7,39 +7,39 @@ import { Intl, Temporal } from "@js-temporal/polyfill"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	dataset,
-	hour = 0,
-	locales = DEFAULT_LOCALES,
-	microdata = {},
-	microsecond = 0,
-	millisecond = 0,
-	minute = 0,
-	nanosecond = 0,
-	options = {},
-	plainTime = Temporal.Now.plainTimeISO(),
-	properties,
-	second = 0,
-	itemtype,
-	...attrs
+  dataset,
+  hour = 0,
+  locales = DEFAULT_LOCALES,
+  microdata = {},
+  microsecond = 0,
+  millisecond = 0,
+  minute = 0,
+  nanosecond = 0,
+  options = {},
+  plainTime = Temporal.Now.plainTimeISO(),
+  properties,
+  second = 0,
+  itemtype,
+  ...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-plain-time"])
 
 const val = plainTime || {
-	hour: Number(hour),
-	microsecond: Number(microsecond),
-	millisecond: Number(millisecond),
-	minute: Number(minute),
-	nanosecond: Number(nanosecond),
-	second: Number(second),
+  hour: Number(hour),
+  microsecond: Number(microsecond),
+  millisecond: Number(millisecond),
+  minute: Number(minute),
+  nanosecond: Number(nanosecond),
+  second: Number(second),
 }
 
 const value = Temporal.PlainTime.from(val)
 
 const opts = {
-	...DEFAULT_TIME_OPTIONS,
-	calendar: "iso8601",
-	...options,
+  ...DEFAULT_TIME_OPTIONS,
+  calendar: "iso8601",
+  ...options,
 }
 
 const label = new Intl.DateTimeFormat(locales, opts).format(value)
@@ -47,7 +47,18 @@ const label = new Intl.DateTimeFormat(locales, opts).format(value)
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-{useMicrodata ? <Microdata {microdata} {properties} /> : null}
-<time {...elementAttrs} datetime={value.toJSON()}>
-	{label}
+{
+  useMicrodata ? (
+    <Microdata
+      {microdata}
+      {properties}
+    />
+  ) : null
+}
+<time
+  {...elementAttrs}
+  datetime={value.toJSON()}
+>
+  {label}
 </time>
+ ../../Fart/html-types

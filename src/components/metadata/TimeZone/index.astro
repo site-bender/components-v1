@@ -6,15 +6,15 @@ import { Temporal } from "@js-temporal/polyfill"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-	as = "span",
-	display = "name",
-	itemprop,
-	localTime = Temporal.Now.instant(),
-	microdata = {},
-	properties = {},
-	timeZone,
-	type,
-	...attrs
+  as = "span",
+  display = "name",
+  itemprop,
+  localTime = Temporal.Now.instant(),
+  microdata = {},
+  properties = {},
+  timeZone,
+  type,
+  ...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-time-zone"])
@@ -23,16 +23,24 @@ const Element = as
 const tz = Temporal.TimeZone.from(timeZone) as Temporal.TimeZone
 
 const label =
-	display === "offset"
-		? tz.getOffsetStringFor(localTime)
-		: display === "both"
-		? `${tz.toJSON()} ${tz.getOffsetStringFor(localTime)}`
-		: tz.toJSON()
+  display === "offset"
+    ? tz.getOffsetStringFor(localTime)
+    : display === "both"
+    ? `${tz.toJSON()} ${tz.getOffsetStringFor(localTime)}`
+    : tz.toJSON()
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-{useMicrodata ? <Microdata {microdata} {properties} /> : null}
+{
+  useMicrodata ? (
+    <Microdata
+      {microdata}
+      {properties}
+    />
+  ) : null
+}
 <Element elementAttrs={tz.toJSON()}>
-	{label}
+  {label}
 </Element>
+ ../../Fart/html-types
