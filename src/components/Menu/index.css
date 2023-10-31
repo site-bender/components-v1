@@ -13,7 +13,7 @@
 	top: 0;
 }
 
-.sb-menu-list {
+nav > .sb-menu-list {
 	height: 100%;
 	margin: 0 var(--sb-space-s);
 	padding-bottom: var(--sb-space-l);
