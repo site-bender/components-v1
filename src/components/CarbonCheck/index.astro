@@ -1,15 +1,31 @@
 ---
 import "./index.css"
 
-export type Props = {
-  carbon: number
-  ecograder?: string | undefined
-  href: string
-  percentage: number
-  score?: number | undefined
+export type Beacon = {
+  href?: string
+  firstCarbon: number
+  grade: string
+  repeatCarbon: number
 }
 
-const { carbon, ecograder, href, percentage, score } = Astro.props
+export type Ecograder = {
+  href?: string
+  score: number
+}
+
+export type WebCarbon = {
+  count: number
+  href?: string
+  percentage: number
+}
+
+export type Props = {
+  beacon?: Beacon | undefined | null
+  ecograder?: Ecograder | undefined | null
+  webCarbon?: WebCarbon | undefined | null
+}
+
+const { beacon, webCarbon } = Astro.props
 ---
 
 <article class="sb-carbon-check">
@@ -20,15 +36,15 @@ const { carbon, ecograder, href, percentage, score } = Astro.props
     Carbon emissions for this page
   </h2>
   <div class="sb-carbon-percentage">
-    Cleaner than {percentage}% of pages tested
+    Cleaner than {webCarbon?.percentage}% of pages tested
   </div>
   <div class="sb-carbon-count">
-    <span class="sb-count">{carbon}g of CO<sub>2</sub>/view</span>
+    <span class="sb-count">{webCarbon?.count}g of CO<sub>2</sub>/view</span>
     {
-      href ? (
+      webCarbon?.href ? (
         <a
           class="sb-carbon-logo"
-          {href}
+          href={webCarbon.href}
           rel="external"
         >
           Website Carbon
@@ -39,19 +55,24 @@ const { carbon, ecograder, href, percentage, score } = Astro.props
     }
   </div>
   {
-    score ? (
+    beacon ? (
       <div class="sb-carbon-count">
-        <span class="sb-count">{score}/100</span>
-        {ecograder ? (
+        <span class="sb-count">
+          {beacon.firstCarbon?.toFixed(3)}g &rarr;
+          {beacon.repeatCarbon?.toFixed(3)}g
+        </span>
+        {beacon.href ? (
           <a
             class="sb-carbon-logo"
-            href={ecograder}
+            href={beacon.href}
             rel="external"
           >
-            Ecograder
+            Beacon: <strong>{beacon.grade}</strong>
           </a>
         ) : (
-          <span class="sb-carbon-logo">Ecograder</span>
+          <span class="sb-carbon-logo">
+            Beacon: <strong>{beacon.grade}</strong>
+          </span>
         )}
       </div>
     ) : null
