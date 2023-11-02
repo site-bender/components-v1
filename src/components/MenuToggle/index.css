@@ -13,14 +13,14 @@
 	position: fixed;
 	margin-top: 0.2rem;
 	max-width: 54px;
-	top: var(--sb-space-xs);
-	right: var(--sb-space-s);
+	top: var(--sb-space-s);
+	left: var(--sb-space-s);
 	z-index: 10000000000;
 	transition: all 0.5s ease-in-out;
 }
 
 header.sb-header {
-	padding-right: 90px;
+	padding-left: 90px;
 }
 
 .sb-menu-toggle:focus-within,

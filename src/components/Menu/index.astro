@@ -40,7 +40,6 @@ const logo = await Astro.slots.render("logo")
   >
     {title}
   </HElement>
-  {logo && <Fragment set:html={logo} />}
   <MenuItemTree
     {as}
     {pages}
