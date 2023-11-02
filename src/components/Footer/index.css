@@ -1,19 +1,25 @@
 .sb-footer {
-	align-items: center;
+	align-items: stretch;
 	background-color: var(--sb-footer-background-color, var(--sb-color-gray-1, #dfdfe2));
 	border-top: 1px solid var(--sb-footer-border-top-color, var(--sb-color-gray-7, #44444b));
 	color: var(--sb-footer-color, var(--sb-color-gray-9, #131315));
 	display: flex;
+	flex-flow: column wrap;
 	flex-basis: min-content;
-	flex-wrap: wrap;
+	gap: 0;
 	grid-area: footer;
 	isolation: isolate;
 	justify-content: space-between;
-	padding: 0 var(--sb-space-m, 1.5rem);
+	padding: 1rem 0 0;
 }
 
 .sb-footer > * {
-	margin: 1rem 0;
+	align-items: center;
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0 var(--sb-space-m, 1.5rem);
 }
 
 .sb-footer .sb-nav-list {
