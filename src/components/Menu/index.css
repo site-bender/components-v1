@@ -143,9 +143,10 @@ main.sb-main {
 	.sb-menu {
 		background-color: var(--sb-menu-background-color-mobile, #ececee);
 		border-right: none;
-		overflow: scroll;
-		margin: 0;
 		left: -100vw;
+		margin: 0;
+		overflow: scroll;
+		padding-top: 6rem;
 		transition: left 0.75s ease 0s;
 		width: 100vw;
 		z-index: 100000;
