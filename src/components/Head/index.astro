@@ -6,6 +6,7 @@ const {
   charset = "utf-8",
   description,
   metadata = {},
+  title,
   viewport = "width=device-width, initial-scale=1",
 } = Astro.props
 
@@ -13,7 +14,7 @@ const { pathname } = Astro.url
 
 const canonicalUrl = `${canonicalSite}${pathname}`.replace(/\/$/, "")
 
-const pageTitle = metadata.pageTitle || metadata.title
+const pageTitle = metadata.pageTitle || metadata.title || title
 
 const next = metadata.next ? `${canonicalSite}${metadata.next}` : undefined
 const prev = metadata.prev ? `${canonicalSite}${metadata.prev}` : undefined
