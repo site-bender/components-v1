@@ -22,7 +22,7 @@ const { articles } = Astro.props
             <dt class="sb-article-list-term">
               {pubDate ? (
                 <div class="sb-article-pub-date">
-                  <PlainDate datetime={pubDate} />
+                  <PlainDate datetime={pubDate.slice(0, 10)} />
                 </div>
               ) : null}
               <div class="sb-article-title">

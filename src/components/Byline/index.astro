@@ -29,7 +29,9 @@ const list = author
 {
   author ? (
     <Element {...bylineAttrs}>
-      {datePublished ? <PlainDate plainDate={datePublished} /> : null}
+      {datePublished ? (
+        <PlainDate plainDate={datePublished.slice(0, 10)} />
+      ) : null}
       by
       {list ? <Fragment set:html={authorFormatter.format(list)} /> : null}
     </Element>
