@@ -3,9 +3,14 @@ import "./index.css"
 import type { MainProps as Props } from "../../types"
 import mapAttributes from "../../utilities/mapAttributes"
 
+const { role = "main" } = Astro.props
+
 const mainAttrs = mapAttributes(Astro.props, ["sb-main"])
 ---
 
-<main {...mainAttrs}>
-	<slot />
+<main
+  {...mainAttrs}
+  {role}
+>
+  <slot />
 </main>

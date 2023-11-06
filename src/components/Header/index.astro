@@ -4,14 +4,24 @@ import Microdata from "../Microdata/index.astro"
 import mapAttributes from "../../utilities/mapAttributes"
 import type { HeaderProps as Props } from "../../types"
 
-const { microdata = {}, properties, ...attrs } = Astro.props
+const { microdata = {}, properties, role = "banner", ...attrs } = Astro.props
 
 const wrapperAttrs = mapAttributes(attrs, ["sb-header"])
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<header {...wrapperAttrs}>
-	{useMicrodata ? <Microdata {...microdata} {properties} /> : null}
-	<slot />
+<header
+  {...wrapperAttrs}
+  {role}
+>
+  {
+    useMicrodata ? (
+      <Microdata
+        {...microdata}
+        {properties}
+      />
+    ) : null
+  }
+  <slot />
 </header>
