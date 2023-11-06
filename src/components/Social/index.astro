@@ -70,20 +70,26 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
       >
         <Element>{header.title || "Share options"}</Element>
       </header>
-      <div {...linkAttrs}>
-        <Reddit
-          {...reddit}
-          {title}
-        />
-        <Mastodon
-          {...mastodon}
-          {title}
-        />
-        <X
-          {...mastodon}
-          {title}
-        />
-      </div>
+      <ul {...linkAttrs}>
+        <li>
+          <Reddit
+            {...reddit}
+            {title}
+          />
+        </li>
+        <li>
+          <Mastodon
+            {...mastodon}
+            {title}
+          />
+        </li>
+        <li>
+          <X
+            {...mastodon}
+            {title}
+          />
+        </li>
+      </ul>
     </Microdata>
   ) : (
     <section
@@ -97,20 +103,26 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
       >
         <Element>{header.title || "Share options"}</Element>
       </header>
-      <div {...linkAttrs}>
-        <Reddit
-          {...reddit}
-          {title}
-        />
-        <Mastodon
-          {...mastodon}
-          {title}
-        />
-        <X
-          {...mastodon}
-          {title}
-        />
-      </div>
+      <ul {...linkAttrs}>
+        <li>
+          <Reddit
+            {...reddit}
+            {title}
+          />
+        </li>
+        <li>
+          <Mastodon
+            {...mastodon}
+            {title}
+          />
+        </li>
+        <li>
+          <X
+            {...mastodon}
+            {title}
+          />
+        </li>
+      </ul>
     </section>
   )
 }

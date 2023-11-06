@@ -3,6 +3,7 @@ import { shareURLs } from "../../../constants"
 
 const {
   fill = "#747481",
+  hideClass = "sb-off-screen",
   hoverFill = "#0f1419",
   innerFill = "#fff",
   title,
@@ -54,4 +55,5 @@ const clickHandler = `
       stroke-width="3"
     ></path>
   </svg>
+  <span class={hideClass}>Share on X</span>
 </a>
