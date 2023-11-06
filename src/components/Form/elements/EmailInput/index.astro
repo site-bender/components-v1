@@ -11,6 +11,7 @@ const {
   field = "email-input",
   form,
   id = generateShortId(),
+  inputmode = "email",
   labelledBy,
   list,
   name,
@@ -38,6 +39,7 @@ const lst = list ? { list: listId } : {}
     {autocomplete}
     {form}
     {id}
+    {inputmode}
     {...lst}
     {name}
     {required}

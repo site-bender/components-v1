@@ -12,6 +12,7 @@ const {
   form,
   help = {},
   id = generateShortId(),
+  inputmode = "text",
   isNewPassword,
   label = "Password",
   legend = {},
@@ -55,6 +56,7 @@ const autocomplete = allowAutocomplete
           {field}
           {form}
           {id}
+          {inputmode}
           {labelledBy}
           {required}
           {name}

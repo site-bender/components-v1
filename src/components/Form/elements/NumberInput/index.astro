@@ -6,23 +6,24 @@ import type { NumberInput as Props } from "../../../../types/form"
 import type { HTMLAttributes } from "../../../../types/html"
 
 const {
-	autocomplete,
-	autocorrect: _autocorrect,
-	datalist = {},
-	field = "number-input",
-	form,
-	id = generateShortId(),
-	isInteger,
-	labelledBy,
-	list,
-	name,
-	placeholder: _placeholder,
-	required,
-	step: stp,
-	type: _type,
-	value,
-	wrapper = {},
-	...attrs
+  autocomplete,
+  autocorrect: _autocorrect,
+  datalist = {},
+  field = "number-input",
+  form,
+  id = generateShortId(),
+  inputmode = "numeric",
+  isInteger,
+  labelledBy,
+  list,
+  name,
+  placeholder: _placeholder,
+  required,
+  step: stp,
+  type: _type,
+  value,
+  wrapper = {},
+  ...attrs
 } = Astro.props
 
 const datalistAttrs = mapAttributes(datalist, ["sb-datalist"])
@@ -35,24 +36,28 @@ const step = isInteger ? parseInt(String(stp), 10) || 1 : stp
 ---
 
 <span {...wrapperAttrs}>
-	<input
-		{...inputAttrs}
-		aria-labelledby={labelledBy}
-		{autocomplete}
-		{form}
-		{id}
-		{...lst}
-		{name}
-		{required}
-		{step}
-		type="number"
-		{value}
-	/>
-	{
-		list ? (
-			<datalist {...datalistAttrs} id={listId}>
-				<Fragment set:html={createListOptions(list)} />
-			</datalist>
-		) : null
-	}
+  <input
+    {...inputAttrs}
+    aria-labelledby={labelledBy}
+    {autocomplete}
+    {form}
+    {id}
+    {inputmode}
+    {...lst}
+    {name}
+    {required}
+    {step}
+    type="number"
+    {value}
+  />
+  {
+    list ? (
+      <datalist
+        {...datalistAttrs}
+        id={listId}
+      >
+        <Fragment set:html={createListOptions(list)} />
+      </datalist>
+    ) : null
+  }
 </span>

@@ -17,6 +17,7 @@ const {
 	help,
 	id = generateShortId(),
 	includeNull,
+  inputmode = "numeric",
 	label = "Date and time with time zone",
 	legend,
 	maxDate,
@@ -64,6 +65,7 @@ const {
 						{disabled}
 						{form}
 						id={`${id}_date`}
+						{inputmode}
 						labelledBy={`${labelledBy} ${id}_date:label`}
 						{...maxDate ? { max: maxDate } : {}}
 						{...minDate ? { min: minDate } : {}}
@@ -81,6 +83,7 @@ const {
 						{disabled}
 						{form}
 						id={`${id}_time`}
+						{inputmode}
 						labelledBy={`${labelledBy} ${id}_time:label`}
 						{...maxTime ? { max: maxTime } : {}}
 						{...minTime ? { min: minTime } : {}}

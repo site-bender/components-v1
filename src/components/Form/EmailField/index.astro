@@ -8,6 +8,7 @@ const {
   field = "email-field",
   help,
   id = generateShortId(),
+  inputmode = "email",
   label = "Email address",
   legend,
   message,
@@ -36,6 +37,7 @@ const {
           {...(attrs as TextInput)}
           {field}
           {id}
+          {inputmode}
           {labelledBy}
           {required}
         />

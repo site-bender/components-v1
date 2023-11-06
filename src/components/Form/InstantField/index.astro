@@ -21,6 +21,7 @@ const {
 	group,
 	help,
 	id = generateShortId(),
+	inputmode = "numeric",
 	label = "Timestamp",
 	legend,
 	maxDate,
@@ -78,10 +79,10 @@ const timeZoneAttributes = mapAttributes(timeZoneAttrs as HTMLAttributes, [
 					<span id={`${id}_date:label`}>Date</span>
 					<DateInput
 						{...dateAttributes}
-
 						{disabled}
 						{form}
 						id={`${id}_date`}
+						{inputmode}
 						labelledBy={`${labelledBy} ${id}_date:label`}
 						{...maxDate ? { max: maxDate } : {}}
 						{...minDate ? { min: minDate } : {}}
@@ -95,10 +96,10 @@ const timeZoneAttributes = mapAttributes(timeZoneAttrs as HTMLAttributes, [
 					<span id={`${id}_time:label`}>Time</span>
 					<TimeInput
 						{...timeAttributes}
-
 						{disabled}
 						{form}
 						id={`${id}_time`}
+						{inputmode}
 						labelledBy={`${labelledBy} ${id}_time:label`}
 						{...maxTime ? { max: maxTime } : {}}
 						{...minTime ? { min: minTime } : {}}
@@ -115,10 +116,10 @@ const timeZoneAttributes = mapAttributes(timeZoneAttrs as HTMLAttributes, [
 					<span id={`${id}_fractional-seconds:label`}>Fractional seconds</span>
 					<TextInput
 						{...fractionalSecondsAttributes}
-
 						{disabled}
 						{form}
 						id={`${id}_fractionalSeconds`}
+						{inputmode}
 						inputmode="numeric"
 						labelledBy={`${labelledBy} ${id}_fractional-seconds:label`}
 						name={`${name}:fractionalSeconds`}
@@ -131,10 +132,10 @@ const timeZoneAttributes = mapAttributes(timeZoneAttrs as HTMLAttributes, [
 					<TimeZoneSelect
 						{...timeZoneAttributes}
 						{countries}
-
 						{disabled}
 						{form}
 						id={`${id}_timeZone`}
+						{inputmode}
 						includeNull
 						labelledBy={`${labelledBy} ${id}_time-zone:label`}
 						name={`${name}:timeZone`}
