@@ -16,3 +16,16 @@ const { hideClass = "sb-remove" } = Astro.props
   <span></span>
   <span class={hideClass}>Menu toggle (ignore)<br /><br /></span>
 </label>
+<script>
+  function enhanceToggle() {
+    const toggle = document.querySelector(".sb-menu-toggle input")
+
+    toggle?.addEventListener("change", function (event) {
+      if ((event.target as HTMLInputElement).checked === false) {
+        window.location.href = window.location.pathname
+      }
+    })
+  }
+
+  document.addEventListener("DOMContentLoaded", enhanceToggle)
+</script>

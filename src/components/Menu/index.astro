@@ -28,16 +28,20 @@ const { as: HElement = "h2" } = header
 const { as: Element = "nav" } = nav
 
 const logo = await Astro.slots.render("logo")
+
+const labelledById = generateShortId()
 ---
 
 <Element
   {...wrapperAttrs}
-  aria-labelledby={id}
+  aria-labelledby={labelledById}
+  {id}
 >
   <HElement
     {...headerAttrs}
-    {id}
+    id={labelledById}
   >
+    {logo}
     {title}
   </HElement>
   <MenuItemTree
