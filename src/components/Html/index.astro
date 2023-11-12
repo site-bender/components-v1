@@ -1,18 +1,22 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLAttributes } from "astro/types"
 
-export type Props = HTMLAttributes<"html">;
+export type Props = HTMLAttributes<"html">
 
 const {
   dir = "ltr",
   lang = "en",
   prefix = "og: https://ogp.me/ns#",
   ...attrs
-} = Astro.props;
+} = Astro.props
 ---
 
-<html {...attrs} {dir} {lang} {prefix}>
+<html
+  {...attrs}
+  {dir}
+  {lang}
+  {prefix}
+>
   <slot />
-
 
 </html>

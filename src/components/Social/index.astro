@@ -64,12 +64,13 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
       {id}
       {properties}
     >
-      <header
+      <Element
         {...headerAttrs}
         id={headerId}
       >
-        <Element>{header.title || "Share options"}</Element>
-      </header>
+        {header.title || "Share options"}
+      </Element>
+
       <ul {...linkAttrs}>
         <li>
           <Reddit
@@ -97,12 +98,12 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
       aria-labelledby={headerId}
       {id}
     >
-      <header
+      <Element
         {...headerAttrs}
         id={headerId}
       >
-        <Element>{header.title || "Share options"}</Element>
-      </header>
+        {header.title || "Share options"}
+      </Element>
       <ul {...linkAttrs}>
         <li>
           <Reddit

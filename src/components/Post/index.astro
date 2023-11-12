@@ -29,6 +29,8 @@ const wrapperAttrs = mapAttributes(
 )
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
+const label = (await Astro.slots.render("title")) || title
+const sublabel = (await Astro.slots.render("subtitle")) || subtitle
 ---
 
 <article {...wrapperAttrs}>
@@ -43,8 +45,11 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
   }
   <header {...headerAttrs}>
     <Byline {...byline} />
-    <HElement {...headingAttrs}>{title}</HElement>
-    <Subtitle {subtitle} />
+    <HElement
+      {...headingAttrs}
+      set:html={label}
+    />
+    <Subtitle>{sublabel}</Subtitle>
   </header>
   <slot />
 </article>

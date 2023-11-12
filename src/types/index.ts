@@ -313,7 +313,8 @@ export type BylineProps<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
 			as?: Tag
 			author: string
 			href?: string | undefined | null
-			pubdate?: string | Temporal.PlainDate | undefined | null
+			pronunciation?: string | undefined | null
+			pubDate?: string | Temporal.PlainDate | undefined | null
 		}
 	>
 

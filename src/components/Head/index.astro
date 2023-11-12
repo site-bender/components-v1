@@ -77,3 +77,47 @@ const prev = metadata.prev ? `${canonicalSite}${metadata.prev}` : undefined
   }
   <slot />
 </head>
+<script>
+  globalThis.sitebenderEventBus = {
+    persistedEvents: {},
+    subscriberEvents: {},
+    subscriberTopics: {},
+    subscriptions: {},
+    topics: {},
+    subscribe: function (topic = "all", onMessage) {
+      const id = self.crypto.randomUUID()
+
+      if (!(topic in this.topics)) {
+        // New topic
+        this.topics[topic] = [id]
+      } else {
+        // Topic exists
+        this.topics[topic].push(id)
+      }
+
+      this.subscriberEvents[id] = onMessage
+      this.subscriberTopics[id] = topic
+
+      if (topic in this.persistedEvents) {
+        onMessage(this.persistedEvents[topic])
+      }
+
+      return id
+    },
+    publish: function (topic, message) {
+      if (topic in this.topics) {
+        const ids = this.topics[topic]
+
+        ids.forEach((id) => {
+          if (id in this.subscriberEvents) {
+            this.subscriberEvents[id](message)
+          }
+        })
+      }
+
+      if (topic in this.persistedEvents) {
+        this.persistedEvents[topic] = message
+      }
+    },
+  }
+</script>

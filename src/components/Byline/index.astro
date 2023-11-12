@@ -9,7 +9,14 @@ const authorFormatter = new Intl.ListFormat("en", {
   type: "conjunction",
 })
 
-const { ariaLabel, as = "div", author, datePublished, ...attrs } = Astro.props
+const {
+  ariaLabel,
+  as = "div",
+  author,
+  datePublished,
+  pronunciation,
+  ...attrs
+} = Astro.props
 
 const bylineAttrs = mapAttributes(attrs, ["sb-byline"])
 
@@ -20,8 +27,8 @@ const names = Array.isArray(author) ? author : [author]
 const list = author
   ? names.map(({ givenName = "", familyName = "", url }) => {
       return url
-        ? `<a class="sb-author" href="${url}">${givenName} ${familyName}</a>`
-        : `<span class="sb-author">${givenName} ${familyName}</span>`
+        ? `<a class="sb-author" href="${url}" title="Pronounced: ${pronunciation}">${givenName} ${familyName}</a>`
+        : `<span class="sb-author" title="Pronounced: ${pronunciation}">${givenName} ${familyName}</span>`
     })
   : null
 ---

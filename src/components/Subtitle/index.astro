@@ -8,6 +8,15 @@ const { as = "div", subtitle, ...attrs } = Astro.props
 const subtitleAttrs = mapAttributes(attrs, ["sb-subtitle"])
 
 const Element = as
+
+const sub = (await Astro.slots.render("default")) || subtitle
 ---
 
-{subtitle ? <Element {...subtitleAttrs}>{subtitle}</Element> : null}
+{
+  sub ? (
+    <Element
+      {...subtitleAttrs}
+      set:html={sub}
+    />
+  ) : null
+}
