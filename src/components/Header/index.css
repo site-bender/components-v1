@@ -18,3 +18,13 @@
 	position: sticky;
 	top: 0;
 }
+
+@media screen and (max-height: 420px) {
+	.sb-header {
+		position: relative;
+	}
+
+	body > main.sb-main {
+		padding-left: 4rem;
+	}
+}

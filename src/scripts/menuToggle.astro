@@ -6,21 +6,21 @@
       const target = event.target as HTMLElement
 
       if (
-        (document.querySelector("#sb-menu-toggle") as HTMLInputElement).checked
-      ) {
-        document.body.classList.add("sb-menu-open")
-      } else {
-        document.body.classList.remove("sb-menu-open")
-      }
-
-      if (
         !target.matches(".sb-menu *") &&
         !target.matches("#sb-menu-toggle") &&
         toggle &&
         toggle.checked
       ) {
         toggle.checked = false
+        document.body.classList.remove("sb-menu-open")
+        return undefined
       }
+
+      if (toggle.checked) {
+        document.body.classList.add("sb-menu-open")
+      }
+
+      document.body.classList.remove("sb-menu-open")
     })
   }
 

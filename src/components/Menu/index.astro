@@ -86,7 +86,7 @@ const labelledById = generateShortId()
     element.prepend(div)
   }
 
-  function enhanceMenu() {
+  function enhanceMenu(event) {
     ;[...document.querySelectorAll(".sb-foldable")].map((elem) => {
       const parent = elem.parentElement
       const hasThisPage = Boolean(

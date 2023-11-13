@@ -38,6 +38,7 @@
 			"DejaVu Sans Mono", monospace;
 		--sb-font-titles: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
 			p052, serif;
+		--sb-menu-toggle-background-color: #2c2c30;
 		--sb-menu-background-color: #ececeeef;
 		--sb-menu-background-color-mobile: #ececee;
 		--sb-step-0: 1rem;

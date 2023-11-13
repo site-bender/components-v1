@@ -83,6 +83,7 @@ main.sb-main {
 
 .sb-toggle {
 	align-items: center;
+	cursor: pointer;
 	display: flex;
 	gap: 0.25rem;
 	justify-content: flex-start;

@@ -2,7 +2,7 @@
 	border: 2px solid transparent;
 	border-radius: 3px;
 	align-items: center;
-	background-color: var(--sb-header-background-color);
+	background-color: var(--sb-menu-toggle-background-color, #2c2c30);
 	color: var(--sb-header-color);
 	display: flex;
 	flex-direction: column;
