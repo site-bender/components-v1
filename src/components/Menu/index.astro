@@ -41,7 +41,7 @@ const labelledById = generateShortId()
     {...headerAttrs}
     id={labelledById}
   >
-    {logo}
+    <Fragment set:html={logo} />
     {title}
   </HElement>
   <MenuItemTree

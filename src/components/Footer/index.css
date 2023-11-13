@@ -6,7 +6,7 @@
 	display: flex;
 	flex-flow: column wrap;
 	flex-basis: min-content;
-	gap: 0;
+	gap: 1rem;
 	grid-area: footer;
 	isolation: isolate;
 	justify-content: space-between;
@@ -19,7 +19,11 @@
 	gap: 1rem;
 	justify-content: space-between;
 	margin: 0;
-	padding: 0 var(--sb-space-m, 1.5rem);
+	padding: 0 var(--sb-space-m);
+}
+
+.sb-footer > * p {
+	margin: 0;
 }
 
 .sb-footer .sb-nav-list {
@@ -75,4 +79,8 @@
 	outline: 2px solid var(--sb-footer-nav-link-outline-color-hover, var(--sb-color-link, #0d4872));
 	outline-offset: 3px;
 	text-decoration: none;
+}
+
+.sb-footer .sb-logotype {
+	margin: var(--sb-space-s, 1.25rem) 0;
 }

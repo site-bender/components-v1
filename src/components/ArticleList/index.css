@@ -2,8 +2,9 @@
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+	gap: 0.1rem;
 	justify-content: space-between;
+	margin-top: var(--sb-space-m, 1.5rem);
 }
 
 .sb-article-list .sb-article-pub-date {
@@ -12,6 +13,9 @@
 
 .sb-article-list .sb-article-title {
 	font-size: var(--sb-step-2, 1.5rem);
+	line-height: 1;
+	padding: 0;
+	margin: 0;
 }
 
 .sb-article-list .sb-article-title a {
@@ -23,5 +27,5 @@
 }
 
 .sb-article-list .sb-article-abstract {
-	margin: 1rem 1rem 0;
+	margin: 1rem 1.5rem 0;
 }
