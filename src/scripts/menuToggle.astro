@@ -13,11 +13,24 @@
       ) {
         toggle.checked = false
         document.body.classList.remove("sb-menu-open")
+
+        if (
+          toggle.checked === false &&
+          globalThis.location.hash === "#site-menu"
+        ) {
+          const page = `${globalThis.location.origin}${globalThis.location.pathname}`
+
+          if (document.referrer === page) {
+            globalThis.history.back()
+          }
+        }
+
         return undefined
       }
 
       if (toggle.checked) {
         document.body.classList.add("sb-menu-open")
+        return undefined
       }
 
       document.body.classList.remove("sb-menu-open")

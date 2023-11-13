@@ -29,6 +29,8 @@ const { hideClass = "sb-remove" } = Astro.props
     globalThis.addEventListener("hashchange", function () {
       if (toggle && globalThis.location.hash === "#site-menu") {
         toggle.checked = true
+      } else {
+        toggle.checked = false
       }
     })
 
@@ -38,6 +40,7 @@ const { hideClass = "sb-remove" } = Astro.props
         globalThis.location.hash === "#site-menu"
       ) {
         const page = `${globalThis.location.origin}${globalThis.location.pathname}`
+        console.log("togge change go back", page)
         if (document.referrer === page) {
           globalThis.history.back()
         }
