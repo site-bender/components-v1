@@ -82,5 +82,5 @@
 }
 
 .sb-footer .sb-logotype {
-	margin: var(--sb-space-s, 1.25rem) 0;
+	margin: 0 0 var(--sb-space-s, 1.25rem);
 }
