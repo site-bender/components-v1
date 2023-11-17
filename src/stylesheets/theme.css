@@ -56,16 +56,17 @@
 		--sb-space-xl: 3rem;
 		--sb-space-2xl: 4rem;
 		--sb-space-3xl: 6rem;
+		--sb-article-width: clamp(48rem, 46.3562rem + 8.2192vw, 54rem);
 	}
 
 	@supports (width: min(1rem, 2rem)) {
 		:root {
-			--sb-step-0: clamp(1rem, calc(0.91rem + 0.43vw), 1.25rem);
-			--sb-step-1: clamp(1.25rem, calc(1.14rem + 0.54vw), 1.56rem);
-			--sb-step-2: clamp(1.56rem, calc(1.43rem + 0.68vw), 1.95rem);
-			--sb-step-3: clamp(1.95rem, calc(1.78rem + 0.85vw), 2.44rem);
-			--sb-step-4: clamp(2.44rem, calc(2.23rem + 1.06vw), 3.05rem);
-			--sb-step-5: clamp(3.05rem, calc(2.79rem + 1.33vw), 3.82rem);
+			--sb-step-0: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
+			--sb-step-1: clamp(1.25rem, 1.0938rem + 0.7813vw, 1.875rem);
+			--sb-step-2: clamp(1.5625rem, 1.3672rem + 0.9766vw, 2.3438rem);
+			--sb-step-3: clamp(1.9531rem, 1.7089rem + 1.2211vw, 2.93rem);
+			--sb-step-4: clamp(2.4413rem, 2.1361rem + 1.5258vw, 3.6619rem);
+			--sb-step-5: clamp(3.0519rem, 2.6705rem + 1.907vw, 4.5775rem);
 			--sb-space-3xs: clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem);
 			--sb-space-2xs: clamp(0.5rem, calc(0.45rem + 0.27vw), 0.69rem);
 			--sb-space-xs: clamp(0.75rem, calc(0.68rem + 0.36vw), 1rem);

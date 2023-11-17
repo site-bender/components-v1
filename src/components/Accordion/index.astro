@@ -1,0 +1,93 @@
+---
+import "./index.css"
+import generateShortId from "../../utilities/generateShortId"
+
+export type Props = {
+  id?: string | undefined | null
+  title?: string | undefined | null
+}
+
+const { id = generateShortId(), title } = Astro.props
+
+const summaryId = `${id}-summary`
+
+const summary = (await Astro.slots.render("summary")) || title
+---
+
+<details
+  class="sb-accordion"
+  {id}
+>
+  <summary
+    class="sb-accordion-summary"
+    id={summaryId}
+    set:html={summary}
+  />
+  <div
+    aria-labelledby={summaryId}
+    class="sb-accordion-content"
+  >
+    <slot />
+  </div>
+</details>
+<script>
+  function toggleAccordion(event) {
+    event.preventDefault()
+
+    const accordion = event.target.closest("details")
+    const content = accordion.querySelector(".sb-accordion-content")
+
+    if (parseInt(content.style.maxHeight, 10) > 0) {
+      accordion.open = true
+
+      function shutAccordion() {
+        const maxHeight = parseInt(content.style.maxHeight, 10)
+
+        if (maxHeight > 0) {
+          content.style.maxHeight = maxHeight < 30 ? "0" : `${maxHeight - 30}px`
+          setTimeout(shutAccordion, 10)
+          return
+        }
+
+        accordion.open = false
+      }
+
+      shutAccordion()
+      return
+    }
+
+    function openAccordion() {
+      const maxHeight = parseInt(content.style.maxHeight, 10)
+      accordion.open = true
+
+      if (maxHeight < accordion.openHeight) {
+        content.style.maxHeight = `${maxHeight + 15}px`
+        setTimeout(openAccordion, 10)
+      }
+    }
+
+    openAccordion()
+  }
+
+  type AccordionElement = HTMLDetailsElement & { openHeight?: number }
+
+  function enhanceAccordions() {
+    for (let accordion of [
+      ...document.querySelectorAll(".sb-accordion"),
+    ] as Array<AccordionElement>) {
+      const summary: HTMLElement | null = accordion.querySelector("summary")
+      const content: HTMLDivElement | null = accordion.querySelector(
+        ".sb-accordion-content",
+      )
+
+      accordion.open = true
+      accordion.openHeight = content?.clientHeight
+      accordion.open = false
+
+      content && (content.style.maxHeight = "0")
+      summary && summary.addEventListener("click", toggleAccordion)
+    }
+  }
+
+  globalThis.addEventListener("DOMContentLoaded", enhanceAccordions)
+</script>

@@ -11,6 +11,10 @@
 	cursor: not-allowed;
 }
 
+.sb-nobr {
+	white-space: nowrap;
+}
+
 .sb-hide {
 	visibility: hidden;
 }
@@ -136,7 +140,7 @@ h5 {
 }
 
 p {
-	margin: var(--sb-space-s) 0;
+	margin: var(--sb-space-2xs) 0 var(--sb-space-m);
 }
 
 dl > dt {

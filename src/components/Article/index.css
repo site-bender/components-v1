@@ -2,7 +2,7 @@
 	flex: 1;
 	margin: 0 auto;
 	padding: var(--sb-space-m);
-	max-width: min(48rem, 100vw);
+	max-width: min(var(--sb-article-width, 48rem), 100vw);
 }
 
 .sb-article > * + * {

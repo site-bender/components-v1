@@ -17,7 +17,7 @@
 .sb-trail-link {
 	background-color: var(--sb-trail-link-background-color, transparent);
 	border-radius: 4px;
-	color: var(--sb-trail-link-color, var(--sb-color-highlight, #aaf5a3));
+	color: var(--sb-trail-link-color, #aaf5a3);
 	display: inline-block;
 	line-height: 1;
 	padding: 3px 5px;
@@ -39,9 +39,9 @@
 a.sb-trail-link:focus,
 a.sb-trail-link:hover {
 	border-radius: 5px;
-	color: var(--sb-trail-link-color-hover, var(--sb-color-highlight, #aaf5a3));
+	color: var(--sb-trail-link-color-hover, #aaf5a3);
 	display: inline-block;
-	outline: 2px solid var(--sb-trail-link-outline-color, var(--sb-color-highlight, #aaf5a3));
+	outline: 2px solid var(--sb-trail-link-outline-color, #aaf5a3);
 	outline-offset: 3px;
 	padding: 0 5px;
 	text-decoration: none;
@@ -52,7 +52,7 @@ a.sb-trail-link:hover {
 }
 
 .sb-trail-link:visited {
-	color: var(--sb-trail-link-color-visited, var(--sb-color-highlight, #aaf5a3));
+	color: var(--sb-trail-link-color-visited, #aaf5a3);
 }
 
 .sb-trail-header {

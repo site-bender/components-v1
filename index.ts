@@ -1,4 +1,6 @@
 // @ts-expect-error
+export { default as Accordion } from "./src/components/Accordion/index.astro"
+// @ts-expect-error
 export { default as Article } from "./src/components/Article/index.astro"
 // @ts-expect-error
 export { default as ArticleList } from "./src/components/ArticleList/index.astro"
