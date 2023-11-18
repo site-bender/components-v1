@@ -474,6 +474,8 @@ export type HeaderProps<Tag extends HTMLTag> = MetadataProps<
 	Tag
 >
 
+export type HeroProps = HTMLAttributes
+
 export type InstantProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<Thing>, Tag>,
 	{
@@ -490,6 +492,13 @@ export type ItemsProps<T, Tag extends HTMLTag> = Override<
 		page: string
 		pages: Record<string, Partial<Metadata>>
 		parent: string
+	}
+>
+
+export type LatestProps<Tag extends HTMLTag> = Override<
+	MetadataProps<SiteNavigationElement, Tag>,
+	{
+		header?: HTMLAttributes | undefined | null
 	}
 >
 
@@ -551,7 +560,6 @@ export type MessengerProps<Tag extends HTMLTag> = Override<
 	MetadataProps<SiteNavigationElement, Tag>,
 	{
 		header?: HTMLAttributes | undefined | null
-		level?: 1 | 2 | 3 | 4 | 5 | 6
 	}
 >
 

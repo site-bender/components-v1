@@ -1,9 +1,9 @@
 .sb-time-to-read {
-	background-color: var(--sb-color-green-tinted, #aaf5a3);
+	background-color: var(--sb-time-to-read-background-color, #dfdfe2);
 	border-radius: 5px;
-	color: var(--sb-color-gray-8, #2c2c30);
+	color: var(--sb-time-to-read-color, #2c2c30);
 	font-size: 1rem;
-	margin: 0 0 var(--sb-space-m, 1.5rem);
+	margin: var(--sb-space-xs, 0.75rem) 0 var(--sb-space-m, 1.5rem);
 	padding: 0.5rem;
 }
 

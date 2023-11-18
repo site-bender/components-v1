@@ -1,0 +1,17 @@
+---
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { HeroProps as Props } from "../../types"
+import "./index.css"
+
+const { id = generateShortId(), ...attrs } = Astro.props
+
+const wrapperAttrs = mapAttributes(attrs, ["sb-hero"])
+---
+
+<aside
+  {...wrapperAttrs}
+  {id}
+>
+  <slot />
+</aside>

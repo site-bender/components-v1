@@ -37,6 +37,8 @@ export { default as Head } from "./src/components/Head/index.astro"
 // @ts-expect-error
 export { default as Header } from "./src/components/Header/index.astro"
 // @ts-expect-error
+export { default as Hero } from "./src/components/Hero/index.astro"
+// @ts-expect-error
 export { default as Html } from "./src/components/Html/index.astro"
 // @ts-expect-error
 export { default as Link } from "./src/components/Link/index.astro"
@@ -78,6 +80,8 @@ export { default as Subtitle } from "./src/components/Subtitle/index.astro"
 export { default as TimeToRead } from "./src/components/TimeToRead/index.astro"
 // @ts-expect-error
 export { default as Trail } from "./src/components/Trail/index.astro"
+// @ts-expect-error
+export { default as Latest } from "./src/components/Latest/index.astro"
 // @ts-expect-error
 export { default as Wrap } from "./src/components/Wrap/index.astro"
 

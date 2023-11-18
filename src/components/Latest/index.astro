@@ -2,22 +2,22 @@
 import "./index.css"
 import generateShortId from "../../utilities/generateShortId"
 import mapAttribtues from "../../utilities/mapAttributes"
-import type { MessengerProps as Props } from "../../types"
+import type { LatestProps as Props } from "../../types"
+import { CHARS } from "../../constants"
 
 const {
   as = "aside",
   header = {},
-  hideClass = "sb-off-screen",
   id = generateShortId(),
-  title: ttl = "Digression",
+  title: ttl = "The latest",
   ...attrs
 } = Astro.props
 
 const labelId = `${id}_label`
 const { as: HElement = "h2", ...hAttrs } = header
 
-const headerAttrs = mapAttribtues(hAttrs, ["sb-digression-heading", hideClass])
-const wrapperAttrs = mapAttribtues(attrs, ["sb-digression"])
+const headerAttrs = mapAttribtues(hAttrs, ["sb-latest-heading"])
+const wrapperAttrs = mapAttribtues(attrs, ["sb-latest"])
 
 const Element = as
 const title = (await Astro.slots.render("title")) || ttl

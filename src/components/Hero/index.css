@@ -1,0 +1,12 @@
+.sb-hero {
+	background: var(--sb-color-gray-5, #747481);
+	border-radius: 5px;
+	color: var(--sb-color-gray-0, #fafafa);
+	font-family: var(--sb-font-body);
+	font-size: var(--sb-step-3);
+	font-weight: 300;
+	line-height: 1.6;
+	margin: var(--sb-space-m) 0;
+	opacity: 0.9;
+	padding: 5rem 2rem 1.5rem;
+}
