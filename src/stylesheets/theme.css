@@ -42,11 +42,11 @@
 		--sb-menu-background-color: #ececeeef;
 		--sb-menu-background-color-mobile: #ececee;
 		--sb-step-0: 1rem;
-		--sb-step-1: 1.25rem;
-		--sb-step-2: 1.56rem;
-		--sb-step-3: 1.95rem;
-		--sb-step-4: 2.44rem;
-		--sb-step-5: 3.05rem;
+		--sb-step-1: 1.2rem;
+		--sb-step-2: 1.44rem;
+		--sb-step-3: 1.7281rem;
+		--sb-step-4: 2.0738rem;
+		--sb-step-5: 3.4881rem;
 		--sb-space-3xs: 0.25rem;
 		--sb-space-2xs: 0.5rem;
 		--sb-space-xs: 0.75rem;
@@ -61,12 +61,12 @@
 
 	@supports (width: min(1rem, 2rem)) {
 		:root {
-			--sb-step-0: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
-			--sb-step-1: clamp(1.25rem, 1.0938rem + 0.7813vw, 1.875rem);
-			--sb-step-2: clamp(1.5625rem, 1.3672rem + 0.9766vw, 2.3438rem);
-			--sb-step-3: clamp(1.9531rem, 1.7089rem + 1.2211vw, 2.93rem);
-			--sb-step-4: clamp(2.4413rem, 2.1361rem + 1.5258vw, 3.6619rem);
-			--sb-step-5: clamp(3.0519rem, 2.6705rem + 1.907vw, 4.5775rem);
+			--sb-step-0: clamp(1rem, 0.822rem + 0.678vw, 1.5rem);
+			--sb-step-1: clamp(1.2rem, 0.9597rem + 0.9153vw, 1.875rem);
+			--sb-step-2: clamp(1.44rem, 1.1183rem + 1.2254vw, 2.3438rem);
+			--sb-step-3: clamp(1.7281rem, 1.3003rem + 1.6297vw, 2.93rem);
+			--sb-step-4: clamp(2.0738rem, 1.5085rem + 2.1534vw, 3.6619rem);
+			--sb-step-5: clamp(2.4881rem, 1.7444rem + 2.8331vw, 4.5775rem);
 			--sb-space-3xs: clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem);
 			--sb-space-2xs: clamp(0.5rem, calc(0.45rem + 0.27vw), 0.69rem);
 			--sb-space-xs: clamp(0.75rem, calc(0.68rem + 0.36vw), 1rem);
