@@ -30,9 +30,15 @@ header.sb-header {
 }
 
 .sb-menu-toggle span {
-	background: linear-gradient(90deg, hsl(205deg, 100%, 60%), #4f3, hsl(25deg, 100%, 60%), hsl(295deg, 100%, 60%), #fafafa);
+	background: linear-gradient(90deg,
+			#fafafa,
+			#fafafa,
+			hsl(205deg, 100%, 60%),
+			#4f3,
+			hsl(25deg, 100%, 60%),
+			hsl(295deg, 100%, 60%));
 	background-size: 800% 800%;
-	animation: menu-toggle 15s ease infinite;
+	animation: menu-toggle 25s ease infinite;
 	border-radius: 2px;
 	height: 7px;
 	width: 100%;
