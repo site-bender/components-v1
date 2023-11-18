@@ -30,16 +30,32 @@ header.sb-header {
 }
 
 .sb-menu-toggle span {
-	background-color: var(--sb-menu-toggle-color, #fafafa);
+	background: linear-gradient(90deg, hsl(205deg, 100%, 60%), #4f3, hsl(25deg, 100%, 60%), hsl(295deg, 100%, 60%), #fafafa);
+	background-size: 800% 800%;
+	animation: menu-toggle 15s ease infinite;
 	border-radius: 2px;
 	height: 7px;
 	width: 100%;
 	transition: all 0.5s ease-in-out;
 }
 
+@keyframes menu-toggle {
+	0% {
+		background-position: 0% 51%
+	}
+
+	50% {
+		background-position: 100% 50%
+	}
+
+	100% {
+		background-position: 0% 51%
+	}
+}
+
 .sb-menu-toggle:focus-within span,
 .sb-menu-toggle:hover span {
-	background-color: var(--sb-menu-toggle-color-hover, #1c0);
+	background: var(--sb-menu-toggle-color-hover, #1c0);
 }
 
 .sb-menu-toggle input#sb-menu-toggle {
