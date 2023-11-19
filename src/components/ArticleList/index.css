@@ -23,6 +23,7 @@
 }
 
 .sb-article-list .sb-article-subtitle {
+	color: var(--sb-article-subtitle-color, #0e4e09);
 	font-size: var(--sb-step-0, 1rem);
 }
 

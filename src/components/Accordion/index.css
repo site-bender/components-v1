@@ -13,10 +13,6 @@
 	padding: 1rem;
 }
 
-.sb-accordion-summary::marker {
-	content: "";
-}
-
 .sb-accordion-content {
 	border-top: var(--sb-accordion-content-border-top, 1px solid #747481);
 	padding: 0 1rem;
