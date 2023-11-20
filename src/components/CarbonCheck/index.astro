@@ -1,29 +1,6 @@
 ---
 import "./index.css"
-
-export type Beacon = {
-  href?: string
-  firstCarbon: number
-  grade: string
-  repeatCarbon: number
-}
-
-export type Ecograder = {
-  href?: string
-  score: number
-}
-
-export type WebCarbon = {
-  count: number
-  href?: string
-  percentage: number
-}
-
-export type Props = {
-  beacon?: Beacon | undefined | null
-  ecograder?: Ecograder | undefined | null
-  webCarbon?: WebCarbon | undefined | null
-}
+import type { Carbon as Props } from "../../types"
 
 const { beacon, webCarbon } = Astro.props
 ---

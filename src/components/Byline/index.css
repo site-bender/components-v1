@@ -1,5 +1,6 @@
 .sb-byline {
 	font-family: var(--sb-font-body);
+	font-size: var(--sb-byline-font-size, 1.2rem);
 	font-style: normal;
 	margin: 0;
 }

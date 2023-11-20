@@ -1,16 +1,27 @@
+.sb-trail {
+	margin: auto;
+	width: var(--sb-page-width, min(48rem, 90vw));
+}
+
+.sb-trail.sb-full-width {
+	margin: 0 var(--sb-space-m, 1.5rem);
+	max-width: unset;
+}
+
 .sb-trail-list {
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
+	font-size: var(--sb-trail-list-font-size, 1.2rem);
 	gap: 2px;
-	justify-content: flex-end;
+	justify-content: flex-start;
 	list-style-type: none;
-	margin: 0;
+	margin: 3rem 0 0;
 	padding: 0;
 }
 
 .sb-trail-list-item {
-	line-height: 1.5;
+	line-height: 1.6;
 	white-space: nowrap;
 }
 
@@ -47,7 +58,7 @@ a.sb-trail-link:hover {
 	text-decoration: none;
 }
 
-.sb-trail-list-item:not(:last-of-type)::after {
+.sb-trail-list-item::after {
 	content: "\2002>\2002";
 }
 
@@ -61,7 +72,7 @@ a.sb-trail-link:hover {
 }
 
 @media only screen and (max-width: 48rem) {
-	.sb-trail-list-item:not(:last-of-type)::after {
+	.sb-trail-list-item::after {
 		content: ">\2004";
 	}
 

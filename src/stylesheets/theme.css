@@ -56,7 +56,7 @@
 		--sb-space-xl: 3rem;
 		--sb-space-2xl: 4rem;
 		--sb-space-3xl: 6rem;
-		--sb-article-width: clamp(48rem, 46.3562rem + 8.2192vw, 54rem);
+		--sb-page-width: min(clamp(48rem, 46.3562rem + 8.2192vw, 54rem), 90vw);
 	}
 
 	@supports (width: min(1rem, 2rem)) {

@@ -31,7 +31,7 @@
 
 .sb-messenger details * + * {
 	margin: 0 auto var(--sb-space-s, 1rem);
-	max-width: min(48rem, 92vw);
+	max-width: var(--sb-page-width, min(48rem, 90vw));
 }
 
 .sb-messenger summary {

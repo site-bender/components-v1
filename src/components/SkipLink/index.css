@@ -11,21 +11,24 @@
 			"Nimbus Sans",
 			Arial,
 			sans-serif);
-	opacity: 0;
+	left: -100000px;
 	padding: 0.1rem;
+	position: absolute;
+	top: -100000px;
 }
 
 .sb-skip-link:focus {
 	color: var(--sb-skip-link-color-focus, var(--sb-color-highlight, #aaf5a3));
 	display: inline-block;
 	opacity: 1;
-	outline: 2px solid var(--sb-skip-link-outline-color-focus, var(--sb-color-highlight, #aaf5a3));
 	outline-offset: 5px;
+	outline: 2px solid var(--sb-skip-link-outline-color-focus, var(--sb-color-highlight, #aaf5a3));
+	position: unset;
 	text-decoration: none;
+	width: auto;
 }
 
 @media screen and (max-width: 47rem) {
-	.sb-skip-link,
 	.sb-skip-link:focus,
 	.sb-skip-link:hover {
 		left: -100000px;

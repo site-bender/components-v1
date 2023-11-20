@@ -1,17 +1,14 @@
 .sb-latest {
-	align-items: center;
-	background-color: var(--sb-color-blue-tinted, #a3d3f5);
-	border-bottom: var(--sb-color-gray-5, #747481);
-	color: var(--sb-color-gray-8, #2c2c30);
+	align-items: flex-end;
 	display: flex;
-	gap: 0.3rem;
+	flex: 1;
+	flex-direction: column;
+	gap: 0.25rem;
 	justify-content: flex-start;
-	padding: var(--sb-space-xs, 0.75rem) var(--sb-space-m, 1.5rem);
 }
 
 .sb-latest-heading {
-	color: var(--sb-latest-heading-color, var(--sb-color-gray-8, #2c2c30));
-	display: inline;
+	color: var(--sb-latest-heading-color, var(--sb-color-gray-0, #fafafa));
 	font-size: var(--sb-step-0, 1rem);
 	font-weight: 500;
 	font-variant-caps: all-petite-caps;
@@ -19,30 +16,42 @@
 	padding: 0;
 }
 
-.sb-latest-heading::after {
-	content: " \00A0\2023\00A0 ";
+.sb-latest ol {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0;
+	justify-content: flex-end;
+	margin-right: -0.75rem;
+}
+
+.sb-latest ol li {
+	display: inline-block;
+	margin-left: 2rem;
+	list-style-type: none;
 }
 
 .sb-latest a {
-	color: var(--sb-latest-link-color, #0d4872);
-	display: inline-block;
-	font-weight: 500;
-	margin: -0.0625rem -0.1875rem;
-	padding: 0.0625rem 0.1875rem;
+	align-items: center;
+	border-radius: 5px;
+	box-sizing: border-box;
+	color: var(--sb-latest-link-color, #a3d3f5);
+	display: flex;
+	justify-content: center;
+	min-height: 48px;
 	text-decoration: none;
-	text-underline-offset: 0.3125rem;
-	text-decoration-skip-ink: none;
+	padding: 0.25rem 0.75rem;
+	margin-left: -0.75rem;
 }
 
 .sb-latest a:visited {
-	color: var(--sb-latest-link-color-visited, #48094e);
+	color: var(--sb-latest-link-color-visited, #eea3f5);
 }
 
 .sb-latest a:focus,
 .sb-latest a:hover {
-	border-radius: 5px;
-	background-color: var(--sb-latest-link-background-color-focus, var(--sb-color-link, #0d4872));
-	color: var(--sb-latest-link-color-focus, var(--sb-color-gray-0, #fafafa));
-	text-decoration: none;
-	text-decoration-skip-ink: none;
+	background-color: var(--sb-latest-link-background-color-hover, #a3d3f5);
+	color: var(--sb-latest-link-color-hover, #0d4872);
+	outline: 2px solid var(--sb-latest-link-outline-color-hover, #a3d3f5);
+	outline-offset: 3px;
 }

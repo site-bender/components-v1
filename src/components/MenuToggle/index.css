@@ -1,4 +1,20 @@
+@keyframes rotating {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	80% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 .sb-menu-toggle {
+	animation: rotating 5s ease-in-out;
+	animation-iteration-count: 3;
 	border: 2px solid transparent;
 	border-radius: 3px;
 	align-items: center;
@@ -14,7 +30,7 @@
 	margin-top: 0.2rem;
 	max-width: 54px;
 	top: var(--sb-space-s);
-	left: var(--sb-space-s);
+	left: var(--sb-space-xs);
 	z-index: 10000000000;
 	transition: all 0.5s ease-in-out;
 }
@@ -30,33 +46,11 @@ header.sb-header {
 }
 
 .sb-menu-toggle span {
-	background: linear-gradient(90deg,
-			#fafafa,
-			#fafafa,
-			hsl(205deg, 100%, 60%),
-			#4f3,
-			hsl(25deg, 100%, 60%),
-			hsl(295deg, 100%, 60%));
-	background-size: 800% 800%;
-	animation: menu-toggle 25s ease infinite;
+	background-color: var(--sb-menu-toggle-color, #fafafa);
 	border-radius: 2px;
 	height: 7px;
 	width: 100%;
 	transition: all 0.5s ease-in-out;
-}
-
-@keyframes menu-toggle {
-	0% {
-		background-position: 0% 51%
-	}
-
-	50% {
-		background-position: 100% 50%
-	}
-
-	100% {
-		background-position: 0% 51%
-	}
 }
 
 .sb-menu-toggle:focus-within span,
@@ -86,4 +80,12 @@ input#sb-menu-toggle:checked + span + span {
 input#sb-menu-toggle:checked + span + span + span {
 	transform: translate(0, -13px) rotate(-45deg);
 	transition: all 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 48rem) {
+	.sb-menu-toggle {
+		animation: unset;
+		animation-iteration-count: 0;
+		opacity: 0.7;
+	}
 }

@@ -5,6 +5,7 @@ import Byline from "../Byline/index.astro"
 import Subtitle from "../Subtitle/index.astro"
 import mapAttributes from "../../utilities/mapAttributes"
 import type { PostProps as Props } from "../../types"
+import generateShortId from "../../utilities/generateShortId"
 
 const {
   as = "span",
@@ -28,12 +29,17 @@ const wrapperAttrs = mapAttributes(
   asColumns ? ["sb-post", "sb-as-columns"] : ["sb-post"],
 )
 
+const postTitle = (await Astro.slots.render("title")) || title
+const postSubtitle = (await Astro.slots.render("subtitle")) || subtitle
+const id = generateShortId()
+
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
-const label = (await Astro.slots.render("title")) || title
-const sublabel = (await Astro.slots.render("subtitle")) || subtitle
 ---
 
-<article {...wrapperAttrs}>
+<article
+  aria-labelledby={id}
+  {...wrapperAttrs}
+>
   {
     useMicrodata ? (
       <Microdata
@@ -43,13 +49,16 @@ const sublabel = (await Astro.slots.render("subtitle")) || subtitle
       />
     ) : null
   }
-  <header {...headerAttrs}>
-    <Byline {...byline} />
+  <header
+    {...headerAttrs}
+    {id}
+  >
     <HElement
       {...headingAttrs}
-      set:html={label}
+      set:html={postTitle}
     />
-    <Subtitle>{sublabel}</Subtitle>
+    <Subtitle>{postSubtitle}</Subtitle>
+    <Byline {...byline} />
   </header>
   <slot />
 </article>

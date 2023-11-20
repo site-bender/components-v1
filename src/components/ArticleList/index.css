@@ -4,7 +4,7 @@
 	flex-direction: column;
 	gap: 0.1rem;
 	justify-content: space-between;
-	margin-top: var(--sb-space-m, 1.5rem);
+	margin-top: var(--sb-space-xl, 1.5rem);
 }
 
 .sb-article-list .sb-article-pub-date {
@@ -24,7 +24,7 @@
 
 .sb-article-list .sb-article-subtitle {
 	color: var(--sb-article-subtitle-color, #0e4e09);
-	font-size: var(--sb-step-0, 1rem);
+	font-size: var(--sb-article-subtitle-font-size, 1.2rem);
 }
 
 .sb-article-list .sb-article-abstract {

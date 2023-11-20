@@ -12,6 +12,7 @@ const {
   id,
   list = {},
   page = {},
+  showPage,
   title = "Breadcrumb trail",
   type = "ul",
 } = Astro.props
@@ -67,14 +68,16 @@ const FbElement = href ? "a" : as
           ])
 
           return index === crumbs.length - 1 ? (
-            <li {...propsAttrs}>
-              <span
-                aria-current="page"
-                {...pageAttrs}
-              >
-                {label}
-              </span>
-            </li>
+            showPage ? (
+              <li {...propsAttrs}>
+                <span
+                  aria-current="page"
+                  {...pageAttrs}
+                >
+                  {label}
+                </span>
+              </li>
+            ) : null
           ) : (
             <li {...propsAttrs}>
               <Link

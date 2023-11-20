@@ -3,7 +3,7 @@
 	border-radius: 5px;
 	color: var(--sb-time-to-read-color, #2c2c30);
 	font-size: 1rem;
-	margin: var(--sb-space-xs, 0.75rem) 0 var(--sb-space-m, 1.5rem);
+	margin: 0 0 var(--sb-space-m, 1.5rem);
 	padding: 0.5rem;
 }
 

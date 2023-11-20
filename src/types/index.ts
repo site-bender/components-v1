@@ -158,12 +158,28 @@ export type Metadata = {
 	webSite?: WebSite | undefined
 }
 
-export type Carbon = {
+export type Beacon = {
+	href?: string
+	firstCarbon: number
+	grade: string
+	repeatCarbon: number
+}
+
+export type Ecograder = {
+	href?: string
+	score: number
+}
+
+export type WebCarbon = {
 	count: number
-	ecograder?: string | undefined | null
-	href: string | undefined | null
+	href?: string
 	percentage: number
-	score?: number | undefined | null
+}
+
+export type Carbon = {
+	beacon?: Beacon | undefined | null
+	ecograder?: Ecograder | undefined | null
+	webCarbon?: WebCarbon | undefined | null
 }
 
 export type PageMeta = {
@@ -171,12 +187,14 @@ export type PageMeta = {
 	blurb?: string | undefined | null
 	carbon?: Carbon
 	children?: Array<string> | undefined | null
+	description?: string | undefined | null
 	getArticleData?: ((v: string) => Article) | undefined | null
 	getCodeSnippetData?: (() => OpenGraphBasic) | undefined | null
 	getOpenGraphData?: (() => OpenGraphBasic) | undefined | null
 	getQuotations?: (() => Array<Quotation>) | undefined | null
 	getTwitterCard?: (() => TwitterCard) | undefined | null
 	getWebPageData?: ((v: string) => WebPage) | undefined | null
+	keywords?: Array<string> | undefined | null
 	label?: string | undefined | null
 	menu?: Array<string> | undefined | null
 	next?: string | undefined | null
@@ -495,12 +513,14 @@ export type ItemsProps<T, Tag extends HTMLTag> = Override<
 	}
 >
 
-export type LatestProps<Tag extends HTMLTag> = Override<
-	MetadataProps<SiteNavigationElement, Tag>,
-	{
-		header?: HTMLAttributes | undefined | null
-	}
->
+export type LatestProps<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+	Override<
+		MetadataProps<SiteNavigationElement, Tag>,
+		{
+			header?: HTMLAttributes | undefined | null
+			latest?: Array<{ href: string; label: string }> | undefined | null
+		}
+	>
 
 export type LinkProps<Tag extends HTMLTag> = Override<
 	MetadataProps<SiteNavigationElement, Tag>,
@@ -601,6 +621,7 @@ export type QuestionProps<Tag extends HTMLTag> = Override<
 export type TrailProps<Tag extends HTMLTag> = Override<
 	MetadataProps<Partial<SiteNavigationElementLeaf>, Tag>,
 	{
+		fullWidth?: boolean | undefined | null
 		hideClass?: string | undefined | null
 		trail: TrailListProps<Tag>
 	}
@@ -614,6 +635,7 @@ export type TrailListProps<Tag extends HTMLTag> = Override<
 		hideClass?: string | undefined | null
 		level?: 1 | 2 | 3 | 4 | 5 | 6
 		list?: ListAttributes | undefined | null
+		showPage?: boolean | undefined | null
 		title?: string | undefined | null
 		type?: "ol" | "ul" | undefined | null
 	}

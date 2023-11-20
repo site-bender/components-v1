@@ -1,7 +1,8 @@
 .sb-post {
 	margin: auto;
-	max-width: min(48rem, 92vw);
-	padding: 1.5rem 0;
+	max-width: var(--sb-page-width, min(48rem, 90vw));
+	padding: 0 0 var(--sb-space-m);
+	width: var(--sb-page-width, min(48rem, 90vw));
 }
 
 .sb-post > * + * {
@@ -9,7 +10,7 @@
 }
 
 .sb-post a {
-	color: var(--sb-color-link, #0d4872);
+	color: var(--sb-article-link-color, var(--sb-color-link, #0d4872));
 	display: inline-block;
 	margin: -0.0625rem -0.1875rem;
 	padding: 0.0625rem 0.1875rem;
@@ -19,10 +20,11 @@
 }
 
 .sb-post .sb-post-header {
-	margin: 0 0 2rem;
+	margin: 0 0 1rem;
 }
 
 .sb-post .sb-post-header .sb-post-title {
+	line-height: 1.4;
 	margin: 0;
 	padding: 0;
 }

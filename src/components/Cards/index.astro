@@ -3,43 +3,63 @@ import "./index.css"
 import Microdata from "../Microdata/index.astro"
 import mapAttributes from "../../utilities/mapAttributes"
 import type { ColumnsProps as Props } from "../../types"
+import generateShortId from "../../utilities/generateShortId"
 
 const {
-	as = "span",
-	columns,
-	heading = {},
-	microdata,
-	properties,
-	title,
-	...attrs
+  as = "span",
+  columns,
+  header,
+  heading = {},
+  microdata,
+  properties,
+  title,
+  ...attrs
 } = Astro.props
 
 const { as: HElement = "h1", ...hAttrs } = heading
 
 const cardsAttrs = mapAttributes(columns, ["sb-cards-content"])
-const headingAttrs = mapAttributes(hAttrs, ["sb-cards-heading"])
+const headerAttrs = mapAttributes(header, ["sb-cards-header"])
+const headingAttrs = mapAttributes(hAttrs, ["sb-cards-title"])
 const wrapperAttrs = mapAttributes(attrs, ["sb-cards"])
 
-
-const articleTitle = await Astro.slots.render("title") || title
+const articleTitle = (await Astro.slots.render("title")) || title
 const prologue = await Astro.slots.render("prologue")
 const epilogue = await Astro.slots.render("epilogue")
+const id = generateShortId()
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<article {...wrapperAttrs}>
-	{useMicrodata ? <Microdata {as} {microdata} {properties} /> : null}
-	{
-		articleTitle ? (
-			<header {...headingAttrs}>
-				<HElement set:html={articleTitle}>
-			</header>
-		) : null
-	}
-	<Fragment set:html={prologue} />
-	<div {...cardsAttrs}>
-		<slot />
-	</div>
-	<Fragment set:html={epilogue} />
+<article
+  aria-labelledby={id}
+  {...wrapperAttrs}
+>
+  {
+    useMicrodata ? (
+      <Microdata
+        {as}
+        {microdata}
+        {properties}
+      />
+    ) : null
+  }
+  {
+    articleTitle ? (
+      <header
+        {...headerAttrs}
+        {id}
+      >
+        <HElement
+          {...headingAttrs}
+          set:html={articleTitle}
+        />
+      </header>
+    ) : null
+  }
+  <Fragment set:html={prologue} />
+  <div {...cardsAttrs}>
+    <slot />
+  </div>
+  <Fragment set:html={epilogue} />
 </article>

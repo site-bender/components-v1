@@ -3,12 +3,12 @@ import "./index.css"
 import generateShortId from "../../utilities/generateShortId"
 import mapAttribtues from "../../utilities/mapAttributes"
 import type { LatestProps as Props } from "../../types"
-import { CHARS } from "../../constants"
 
 const {
   as = "aside",
   header = {},
   id = generateShortId(),
+  latest = [],
   title: ttl = "The latest",
   ...attrs
 } = Astro.props
@@ -23,16 +23,26 @@ const Element = as
 const title = (await Astro.slots.render("title")) || ttl
 ---
 
-<Element
-  {...wrapperAttrs}
-  aria-labelledby={labelId}
-  {id}
->
-  <HElement
-    {...headerAttrs}
-    id={labelId}
-  >
-    {title}
-  </HElement>
-  <slot />
-</Element>
+{
+  latest.length ? (
+    <Element
+      {...wrapperAttrs}
+      aria-labelledby={labelId}
+      {id}
+    >
+      <HElement
+        {...headerAttrs}
+        id={labelId}
+      >
+        {title}
+      </HElement>
+      <ol role="presentation">
+        {latest.map(({ href, label }) => (
+          <li>
+            <a {href}>{label}</a>
+          </li>
+        ))}
+      </ol>
+    </Element>
+  ) : null
+}

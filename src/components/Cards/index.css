@@ -1,11 +1,21 @@
 .sb-cards {
-	margin: var(--sb-space-s, 1rem) var(--sb-space-m, 1.5rem);
+	margin: 0 var(--sb-space-m, 1.5rem) var(--sb-space-s, 1rem);
 	max-width: unset;
 }
 
 .sb-cards .sb-cards-content {
 	display: grid;
 	grid-gap: 1rem;
+}
+
+.sb-cards .sb-cards-header {
+	margin: 0 0 2rem;
+}
+
+.sb-cards .sb-cards-header .sb-cards-title {
+	line-height: 1.4;
+	margin: 0;
+	padding: 0;
 }
 
 @supports (width: min(24rem, 100%)) {
