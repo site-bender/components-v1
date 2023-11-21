@@ -3,7 +3,7 @@ import { shareURLs } from "../../../constants"
 
 const {
   fill = "#747481",
-  hideClass = "sb-off-screen",
+  hideClass = "sb-sr-only",
   hoverFill = "#5948dc",
   innerFill = "#fff",
   title,
@@ -16,14 +16,15 @@ const clickHandler = `
 ---
 
 <a
-  aria-label="Share on BlueSky"
+  aria-labelledby="sb-blue-sky-label"
   href={`${shareURLs.blueSky}?${queryString}`}
   onclick={clickHandler}
   title="Share on BlueSky"
   rel="noopener"
 >
   <style define:vars={{ hoverFill }}>
-    :hover path.sb-mastodon-path {
+    :focus path.sb-blue-sky-path,
+    :hover path.sb-blue-sky-path {
       fill: var(--hoverFill);
     }
   </style>
@@ -46,7 +47,7 @@ const clickHandler = `
     </clipPath>
     <g clip-path="url(#_clip1)">
       <path
-        class="sb-mastodon-path"
+        class="sb-blue-sky-path"
         d="M946.586,599.455c-13.713,70.541 -122.816,147.742 -248.121,162.703c-65.341,7.796 -129.674,14.962 -198.275,11.815c-112.191,-5.139 -200.716,-26.776 -200.716,-26.776c0,10.92 0.673,21.319 2.02,31.044c14.586,110.711 109.787,117.344 199.967,120.436c91.021,3.114 172.068,-22.44 172.068,-22.44l3.74,82.281c0,0 -63.666,34.185 -177.079,40.473c-62.539,3.437 -140.192,-1.573 -230.636,-25.511c-196.158,-51.916 -229.893,-260.996 -235.055,-473.143c-1.573,-62.987 -0.603,-122.381 -0.603,-172.056c0,-216.931 142.142,-280.516 142.142,-280.516c71.672,-32.914 194.655,-46.755 322.508,-47.8l3.142,0c127.853,1.045 250.917,14.886 322.583,47.8c0,0 142.138,63.585 142.138,280.516c0,0 1.783,160.053 -19.823,271.174"
         {fill}
         style="fill-rule:nonzero;"
@@ -58,5 +59,9 @@ const clickHandler = `
       ></path>
     </g>
   </svg>
-  <span class={hideClass}>Share on BlueSky</span>
+  <span
+    class={hideClass}
+    id="sb-blue-sky-label"
+    >Share on BlueSky</span
+  >
 </a>

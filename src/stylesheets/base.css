@@ -25,6 +25,10 @@
 	top: -100000px;
 }
 
+.sb-sr-only {
+	display: none;
+}
+
 .sb-print-only {
 	display: none !important;
 }
@@ -186,7 +190,7 @@ details ol li {
 article ul li,
 details ul li {
 	line-height: 1.7;
-	list-style-type: square;
+	list-style-type: disc;
 	margin: 0;
 }
 

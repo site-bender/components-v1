@@ -1,6 +1,5 @@
 ---
 import Source from "../Source/index.astro"
-import exifr from "exifr"
 import generateShortId from "../../../utilities/generateShortId"
 import mapAttributes from "../../../utilities/mapAttributes"
 import type { ImageSource, PictureElementProps as Props } from "../../../types"
@@ -12,7 +11,7 @@ const {
   description = {},
   filename,
   height = 0,
-  hideClass = "sb-off-screen",
+  hideClass = "sb-sr-only",
   id = generateShortId(),
   img = {},
   loading = "lazy",

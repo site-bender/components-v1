@@ -36,10 +36,7 @@ const id = generateShortId()
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
-<article
-  aria-labelledby={id}
-  {...wrapperAttrs}
->
+<article {...wrapperAttrs}>
   {
     useMicrodata ? (
       <Microdata

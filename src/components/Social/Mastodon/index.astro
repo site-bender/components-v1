@@ -3,7 +3,7 @@ import { shareURLs } from "../../../constants"
 
 const {
   fill = "#747481",
-  hideClass = "sb-off-screen",
+  hideClass = "sb-sr-only",
   hoverFill = "#5948dc",
   innerFill = "#fff",
   title,
@@ -16,13 +16,14 @@ const clickHandler = `
 ---
 
 <a
-  aria-label="Share on Mastodon"
+  aria-labelledby="sb-mastodon-label"
   href={`${shareURLs.mastodon}?${queryString}`}
   onclick={clickHandler}
   title="Share on Mastodon"
   rel="noopener"
 >
   <style define:vars={{ hoverFill }}>
+    :focus path.sb-mastodon-path,
     :hover path.sb-mastodon-path {
       fill: var(--hoverFill);
     }
@@ -58,5 +59,9 @@ const clickHandler = `
       ></path>
     </g>
   </svg>
-  <span class={hideClass}>Share on Mastodon</span>
+  <span
+    class={hideClass}
+    id="sb-mastodon-label"
+    >Share on Mastodon</span
+  >
 </a>

@@ -1,44 +1,51 @@
 ---
-import "./index.css";
-import type { TimeToReadProps as Props } from "../../types";
-import generateShortId from "../../utilities/generateShortId";
-import mapAttributes from "../../utilities/mapAttributes";
-import formatOrdinal from "../../utilities/formatOrdinal";
-import formatTimeToRead from "../../utilities/formatTimeToRead";
-import fromISODuration from "../../utilities/fromISODuration";
-import { HTMLAttributes } from "../../types/html";
+import "./index.css"
+import type { TimeToReadProps as Props } from "../../types"
+import generateShortId from "../../utilities/generateShortId"
+import mapAttributes from "../../utilities/mapAttributes"
+import formatOrdinal from "../../utilities/formatOrdinal"
+import formatTimeToRead from "../../utilities/formatTimeToRead"
+import fromISODuration from "../../utilities/fromISODuration"
+import { HTMLAttributes } from "../../types/html"
 
 const {
   article = {},
   header = {},
-  hideClass = "sb-off-screen",
+  hideClass = "sb-sr-only",
   id = generateShortId(),
   title = "Time to read",
   ...attrs
-} = Astro.props;
+} = Astro.props
 
 const {
   educationalLevel: { name: readability = "" } = {},
   timeRequired: tr,
   wordCount,
-} = article;
+} = article
 
-const timeRequired = fromISODuration(tr);
+const timeRequired = fromISODuration(tr)
 
-const { as: HElement = "h2", ...hAttrs } = header;
-const headerId = generateShortId();
+const { as: HElement = "h2", ...hAttrs } = header
+const headerId = generateShortId()
 
 const headerAttrs = mapAttributes(hAttrs, [
   "sb-time-to-read-heading",
   hideClass,
-]);
-const ttrAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-time-to-read"]);
+])
+const ttrAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-time-to-read"])
 ---
 
 {
   tr || wordCount || readability ? (
-    <section aria-labelledby={headerId} {...ttrAttrs} {id}>
-      <HElement {...headerAttrs} id={headerId}>
+    <section
+      aria-labelledby={headerId}
+      {...ttrAttrs}
+      {id}
+    >
+      <HElement
+        {...headerAttrs}
+        id={headerId}
+      >
         {title}
       </HElement>
       <p>

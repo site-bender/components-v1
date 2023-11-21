@@ -9,7 +9,7 @@ const {
   header = {},
   id = generateShortId(),
   latest = [],
-  title: ttl = "The latest",
+  title: ttl = "Latest additions",
   ...attrs
 } = Astro.props
 
@@ -27,15 +27,9 @@ const title = (await Astro.slots.render("title")) || ttl
   latest.length ? (
     <Element
       {...wrapperAttrs}
-      aria-labelledby={labelId}
       {id}
     >
-      <HElement
-        {...headerAttrs}
-        id={labelId}
-      >
-        {title}
-      </HElement>
+      <HElement {...headerAttrs}>{title}</HElement>
       <ol role="presentation">
         {latest.map(({ href, label }) => (
           <li>

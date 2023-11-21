@@ -1,47 +1,62 @@
 ---
-import "./index.css";
-import Items from "./Items/index.astro";
-import mapAttributes from "../../utilities/mapAttributes";
-import type { PaginatorProps as Props } from "../../types";
+import "./index.css"
+import Items from "./Items/index.astro"
+import mapAttributes from "../../utilities/mapAttributes"
+import type { PaginatorProps as Props } from "../../types"
+import generateShortId from "../../utilities/generateShortId"
 
-const { pathname } = Astro.url;
+const { pathname } = Astro.url
 
 const {
   as = "h2",
   header = {},
-  hideClass = "sb-off-screen",
-  labelledBy,
+  hideClass = "sb-sr-only",
+  id = generateShortId(),
   list,
   nav,
   pages,
   position = "top",
   title = "Pagination links",
   type = "ul",
-} = Astro.props;
+} = Astro.props
 
-const headerAttrs = mapAttributes(header, ["sb-paginator-header", hideClass]);
-const listAttrs = mapAttributes(list, ["sb-paginator-list"]);
-const navAttrs = mapAttributes(nav, ["sb-paginator"]);
+const headerAttrs = mapAttributes(header, ["sb-paginator-header", hideClass])
+const listAttrs = mapAttributes(list, ["sb-paginator-list"])
+const navAttrs = mapAttributes(nav, ["sb-paginator"])
 
-const path = pathname.replace(/\/$/, "");
-const parent = path.slice(0, path.lastIndexOf("/"));
-const parentPage = parent ? pages[parent] : undefined;
-const page = path.slice(path.lastIndexOf("/") + 1);
-const children = parentPage?.children || [];
+const path = pathname.replace(/\/$/, "")
+const parent = path.slice(0, path.lastIndexOf("/"))
+const parentPage = parent ? pages[parent] : undefined
+const page = path.slice(path.lastIndexOf("/") + 1)
+const children = parentPage?.children || []
 
-const HElement = as;
-const ListElement = type;
+const HElement = as
+const ListElement = type
 ---
 
 {
   children.length > 1 ? (
-    <nav aria-label={`pagination-${position}`} {...navAttrs}>
-      <HElement {...headerAttrs} id={labelledBy}>
+    <nav
+      aria-label={`pagination-${position}`}
+      {...navAttrs}
+    >
+      <HElement
+        {...headerAttrs}
+        {id}
+      >
         {title}
       </HElement>
 
-      <ListElement {...listAttrs}>
-        <Items {children} {page} {pages} {parent} />
+      <ListElement
+        aria-labelledBy={id}
+        {...listAttrs}
+      >
+        <Items
+          {children}
+          {page}
+          {pages}
+          {parent}
+        />
       </ListElement>
     </nav>
   ) : null

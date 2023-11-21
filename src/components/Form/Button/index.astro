@@ -11,4 +11,8 @@ const buttonAttrs = mapAttributes(attrs, ["sb-button", `sb-button-${type}`])
 const label = (await Astro.slots.render("default")) || lbl
 ---
 
-<button {...buttonAttrs}>{label}</button>
+<button
+  {...buttonAttrs}
+  {type}
+  >{label}</button
+>

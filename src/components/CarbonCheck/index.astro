@@ -5,10 +5,13 @@ import type { Carbon as Props } from "../../types"
 const { beacon, webCarbon } = Astro.props
 ---
 
-<article class="sb-carbon-check">
+<article
+  class="sb-carbon-check"
+  aria-labelledby="sb-carbon-check"
+>
   <h2
     id="sb-carbon-check"
-    class="sb-off-screen"
+    class="sb-sr-only"
   >
     Carbon emissions for this page
   </h2>
@@ -16,7 +19,11 @@ const { beacon, webCarbon } = Astro.props
     Cleaner than {webCarbon?.percentage}% of pages tested
   </div>
   <div class="sb-carbon-count">
-    <span class="sb-count">{webCarbon?.count}g of CO<sub>2</sub>/view</span>
+    <span class="sb-count"
+      >{webCarbon?.count}g of <span aria-label="carbon dioxide per view"
+        >CO<sub>2</sub>/view</span
+      ></span
+    >
     {
       webCarbon?.href ? (
         <a

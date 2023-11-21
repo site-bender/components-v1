@@ -6,16 +6,16 @@ import type { PullQuoteProps as Props } from "../../types"
 import "./index.css"
 
 const {
-	author,
-	authorItemprop = "author",
-	authorType = "Person",
-	blockquote = {},
-	["class:list"]: classList = [],
-	dataset,
-	figcaption = {},
-	id = generateShortId(),
-	properties: props,
-	...attrs
+  author,
+  authorItemprop = "author",
+  authorType = "Person",
+  blockquote = {},
+  ["class:list"]: classList = [],
+  dataset,
+  figcaption = {},
+  id = generateShortId(),
+  properties: props,
+  ...attrs
 } = Astro.props
 
 const blockquoteAttrs = mapAttributes(blockquote, ["sb-pull-quote-blockquote"])
@@ -26,36 +26,59 @@ const quote = await Astro.slots.render("default")
 const auth = (await Astro.slots.render("author")) || author
 
 const properties = {
-	type: "Quotation",
-	...props,
+  type: "Quotation",
+  ...props,
 }
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-	useMicrodata ? (
-		<Microdata {...wrapperAttrs} as="figure" {id} {properties}>
-			<blockquote {...blockquoteAttrs} itemprop="text" set:html={quote} />
-			{auth ? (
-				<figcaption
-					{...figcaptionAttrs}
-					itemprop={authorItemprop}
-					itemscope
-					itemtype={`https://schema.org/${authorType}`}
-				>
-					<span itemprop="name" set:html={auth} />
-				</figcaption>
-			) : null}
-		</Microdata>
-	) : (
-		<figure {...wrapperAttrs} {id}>
-			<blockquote {...blockquoteAttrs} set:html={quote} />
-			{auth ? (
-				<figcaption {...figcaptionAttrs}>
-					<span set:html={auth} />
-				</figcaption>
-			) : null}
-		</figure>
-	)
+  useMicrodata ? (
+    <Microdata
+      {...wrapperAttrs}
+      as="figure"
+      {id}
+      {properties}
+    >
+      <blockquote
+        aria-label="pull quote"
+        {...blockquoteAttrs}
+        itemprop="text"
+        set:html={quote}
+      />
+      {auth ? (
+        <figcaption
+          aria-label="author"
+          {...figcaptionAttrs}
+          itemprop={authorItemprop}
+          itemscope
+          itemtype={`https://schema.org/${authorType}`}
+        >
+          <span
+            itemprop="name"
+            set:html={auth}
+          />
+        </figcaption>
+      ) : null}
+    </Microdata>
+  ) : (
+    <figure
+      {...wrapperAttrs}
+      {id}
+    >
+      <blockquote
+        aria-label="pull quote"
+        {...blockquoteAttrs}
+        set:html={quote}
+      />
+      {auth ? (
+        <figcaption
+          aria-label="author"
+          {...figcaptionAttrs}
+          set:html={auth}
+        />
+      ) : null}
+    </figure>
+  )
 }

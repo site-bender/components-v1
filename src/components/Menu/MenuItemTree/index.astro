@@ -25,6 +25,7 @@ const Element = as
   {
     pages.map((page = {} as LP) => {
       const {
+        ariaLabel,
         children = [],
         label: lbl,
         link = {},
@@ -39,6 +40,7 @@ const Element = as
       return href === (pathname.replace(/\/$/, "") || "/") ? (
         <li {...props}>
           <span
+            aria-label={ariaLabel || `This page.`}
             aria-current="page"
             class="sb-menu-this-page"
           >

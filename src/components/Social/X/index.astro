@@ -3,7 +3,7 @@ import { shareURLs } from "../../../constants"
 
 const {
   fill = "#747481",
-  hideClass = "sb-off-screen",
+  hideClass = "sb-sr-only",
   hoverFill = "#0f1419",
   innerFill = "#fff",
   title,
@@ -16,13 +16,15 @@ const clickHandler = `
 ---
 
 <a
-  aria-label="Share on X"
+  aria-labelledby="sb-x-label"
   href={`${shareURLs.x}?${queryString}`}
   onclick={clickHandler}
   title="Share on X"
   rel="noopener"
 >
   <style define:vars={{ hoverFill }}>
+    :focus rect,
+    :focus .sb-x-wide,
     :hover rect,
     :hover .sb-x-wide {
       fill: var(--hoverFill);
@@ -55,5 +57,9 @@ const clickHandler = `
       stroke-width="3"
     ></path>
   </svg>
-  <span class={hideClass}>Share on X</span>
+  <span
+    class={hideClass}
+    id="sb-x-label"
+    >Share on X</span
+  >
 </a>

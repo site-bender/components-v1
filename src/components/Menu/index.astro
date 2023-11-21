@@ -9,7 +9,7 @@ import createPageTree from "./createPageTree"
 const {
   as = "ul",
   header = {},
-  hideClass = "sb-off-screen",
+  hideClass = "sb-sr-only",
   id = generateShortId(),
   links,
   nav = {},
@@ -34,7 +34,6 @@ const labelledById = generateShortId()
 
 <Element
   {...wrapperAttrs}
-  aria-labelledby={labelledById}
   {id}
 >
   <HElement

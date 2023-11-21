@@ -90,7 +90,7 @@
 
 .sb-field input[type="color"] {
 	all: revert;
-	border: 2px solid forestgreen;
+	color: var(--sb-field-color-input-color, var(--sb-color-green-shaded, #0e4e09));
 	border-radius: 4px;
 	min-height: 3rem;
 }

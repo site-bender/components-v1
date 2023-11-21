@@ -45,7 +45,8 @@ export interface AstroPage extends AstroInstance {
 }
 
 export type Crumb = {
-	description: string
+	ariaLabel?: string | undefined | null
+	description?: string | undefined | null
 	href: string
 	label: string
 }
@@ -183,6 +184,7 @@ export type Carbon = {
 }
 
 export type PageMeta = {
+	ariaLabel?: string | undefined | null
 	author?: string | undefined | null
 	blurb?: string | undefined | null
 	carbon?: Carbon

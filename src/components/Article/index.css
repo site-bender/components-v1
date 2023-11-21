@@ -25,7 +25,9 @@
 }
 
 .sb-article a:focus,
-.sb-article a:hover {
+.sb-article a:hover,
+.sb-post a:focus,
+.sb-post a:hover {
 	border-radius: 5px;
 	background-color: var(--sb-article-link-background-color-focus, var(--sb-color-link, #0d4872));
 	color: var(--sb-article-link-color-focus, var(--sb-color-gray-0, #fafafa));

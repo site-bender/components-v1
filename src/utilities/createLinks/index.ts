@@ -6,6 +6,7 @@ export default function createLinks(
 ): Array<Crumb> {
 	return paths.reduce<Array<Crumb>>((acc, path) => {
 		const {
+			ariaLabel,
 			description,
 			label,
 			title,
@@ -14,6 +15,7 @@ export default function createLinks(
 
 		if (href) {
 			acc.push({
+				ariaLabel,
 				description,
 				href,
 				label: (label || title) as string,
