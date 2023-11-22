@@ -163,6 +163,7 @@ export type Beacon = {
 	href?: string
 	firstCarbon: number
 	grade: string
+	percentage: number
 	repeatCarbon: number
 }
 
@@ -196,6 +197,7 @@ export type PageMeta = {
 	getQuotations?: (() => Array<Quotation>) | undefined | null
 	getTwitterCard?: (() => TwitterCard) | undefined | null
 	getWebPageData?: ((v: string) => WebPage) | undefined | null
+	id?: string | undefined | null
 	keywords?: Array<string> | undefined | null
 	label?: string | undefined | null
 	menu?: Array<string> | undefined | null
@@ -203,6 +205,7 @@ export type PageMeta = {
 	path: string
 	prev?: string | undefined | null
 	pageTitle?: string | undefined | null
+	question?: string | undefined | null
 	robots?: string | undefined | null
 	title?: string | undefined | null
 }

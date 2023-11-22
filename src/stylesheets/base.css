@@ -26,7 +26,7 @@
 }
 
 .sb-sr-only {
-	display: none;
+	display: none !important;
 }
 
 .sb-print-only {

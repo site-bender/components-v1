@@ -2,44 +2,24 @@
 import "./index.css"
 import type { Carbon as Props } from "../../types"
 
-const { beacon, webCarbon } = Astro.props
+const { beacon } = Astro.props
 ---
 
-<article
-  class="sb-carbon-check"
-  aria-labelledby="sb-carbon-check"
->
-  <h2
-    id="sb-carbon-check"
-    class="sb-sr-only"
-  >
-    Carbon emissions for this page
-  </h2>
-  <div class="sb-carbon-percentage">
-    Cleaner than {webCarbon?.percentage}% of pages tested
-  </div>
-  <div class="sb-carbon-count">
-    <span class="sb-count"
-      >{webCarbon?.count}g of <span aria-label="carbon dioxide per view"
-        >CO<sub>2</sub>/view</span
-      ></span
+{
+  beacon ? (
+    <article
+      class="sb-carbon-check"
+      aria-labelledby="sb-carbon-check"
     >
-    {
-      webCarbon?.href ? (
-        <a
-          class="sb-carbon-logo"
-          href={webCarbon.href}
-          rel="external"
-        >
-          Website Carbon
-        </a>
-      ) : (
-        <span class="sb-carbon-logo">Website Carbon</span>
-      )
-    }
-  </div>
-  {
-    beacon ? (
+      <h2
+        id="sb-carbon-check"
+        class="sb-sr-only"
+      >
+        Carbon emissions for this page
+      </h2>
+      <div class="sb-carbon-percentage">
+        Cleaner than {beacon.percentage}% of pages tested
+      </div>
       <div class="sb-carbon-count">
         <span class="sb-count">
           {beacon.firstCarbon?.toFixed(3)}g &rarr;
@@ -59,6 +39,6 @@ const { beacon, webCarbon } = Astro.props
           </span>
         )}
       </div>
-    ) : null
-  }
-</article>
+    </article>
+  ) : null
+}
