@@ -13,7 +13,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	font-size: var(--sb-trail-list-font-size, 1.2rem);
-	gap: 2px;
+	gap: 0.5rem;
 	justify-content: flex-start;
 	list-style-type: none;
 	margin: 3rem 0 0;
@@ -26,11 +26,14 @@
 }
 
 .sb-trail-link {
+	align-items: center;
 	background-color: var(--sb-trail-link-background-color, transparent);
 	border-radius: 4px;
 	color: var(--sb-trail-link-color, #aaf5a3);
-	display: inline-block;
+	display: flex;
+	justify-content: center;
 	line-height: 1;
+	min-height: 24px;
 	padding: 3px 5px;
 	margin-left: -5px;
 	text-decoration: none;
@@ -58,8 +61,8 @@ a.sb-trail-link:hover {
 	text-decoration: none;
 }
 
-.sb-trail-list-item::after {
-	content: "\2002>\2002";
+.sb-trail-link::after {
+	content: "\2002>";
 }
 
 .sb-trail-link:visited {
@@ -72,8 +75,8 @@ a.sb-trail-link:hover {
 }
 
 @media only screen and (max-width: 48rem) {
-	.sb-trail-list-item::after {
-		content: ">\2004";
+	.sb-trail-link::after {
+		content: "\2002>";
 	}
 
 	.sb-trail-list {

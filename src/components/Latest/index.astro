@@ -5,7 +5,7 @@ import mapAttribtues from "../../utilities/mapAttributes"
 import type { LatestProps as Props } from "../../types"
 
 const {
-  as = "aside",
+  as = "section",
   header = {},
   id = generateShortId(),
   latest = [],
@@ -13,7 +13,6 @@ const {
   ...attrs
 } = Astro.props
 
-const labelId = `${id}_label`
 const { as: HElement = "h2", ...hAttrs } = header
 
 const headerAttrs = mapAttribtues(hAttrs, ["sb-latest-heading"])

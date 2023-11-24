@@ -31,33 +31,37 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata
-      {...wrapperAttrs}
-      aria-labelledby={id}
-      as="nav"
-      {properties}
-    >
-      <TrailList
-        {...nav}
-        {crumbs}
-        {fallback}
-        {hideClass}
-        {id}
-      />
-    </Microdata>
+  crumbs.length ? (
+    useMicrodata ? (
+      <Microdata
+        {...wrapperAttrs}
+        aria-label="Breadcrumb trail"
+        as="nav"
+        {properties}
+      >
+        <TrailList
+          {...nav}
+          {crumbs}
+          {fallback}
+          {hideClass}
+          {id}
+        />
+      </Microdata>
+    ) : (
+      <nav
+        {...wrapperAttrs}
+        aria-label="Breadcrumb trail"
+      >
+        <TrailList
+          {...nav}
+          {crumbs}
+          {fallback}
+          {hideClass}
+          {id}
+        />
+      </nav>
+    )
   ) : (
-    <nav
-      {...wrapperAttrs}
-      aria-labelledby={id}
-    >
-      <TrailList
-        {...nav}
-        {crumbs}
-        {fallback}
-        {hideClass}
-        {id}
-      />
-    </nav>
+    <div class="sb-trail-list" />
   )
 }

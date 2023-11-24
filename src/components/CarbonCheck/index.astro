@@ -22,7 +22,11 @@ const { beacon } = Astro.props
       </div>
       <div class="sb-carbon-count">
         <span class="sb-count">
-          {beacon.firstCarbon?.toFixed(3)}g &rarr;
+          {beacon.firstCarbon?.toFixed(3)}g{" "}
+          <span aria-hidden="true">&rarr;</span>
+          <span class="sb-off-screen">
+            on first visit; then on return visits
+          </span>{" "}
           {beacon.repeatCarbon?.toFixed(3)}g
         </span>
         {beacon.href ? (
