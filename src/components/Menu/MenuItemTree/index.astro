@@ -41,8 +41,7 @@ const Element = as
       return href === (pathname.replace(/\/$/, "") || "/") ? (
         <li {...props}>
           <span
-            aria-label={ariaLabel || `This page.`}
-            {...aria}
+            aria-label={`This page: ${ariaLabel}`}
             aria-current="page"
             class="sb-menu-this-page"
           >
