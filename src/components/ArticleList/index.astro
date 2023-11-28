@@ -29,7 +29,10 @@ const { articles } = Astro.props
                 <a href={article.url as string}>{article.title as string}</a>
               </div>
               {subtitle ? (
-                <div class="sb-article-subtitle">{subtitle}</div>
+                <div
+                  class="sb-article-subtitle"
+                  set:html={subtitle}
+                />
               ) : null}
             </dt>
             {abstract ? (

@@ -54,7 +54,7 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
       {...headingAttrs}
       set:html={postTitle}
     />
-    <Subtitle>{postSubtitle}</Subtitle>
+    <Subtitle set:html={postSubtitle} />
     <Byline {...byline} />
   </header>
   <slot />

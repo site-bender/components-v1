@@ -17,7 +17,7 @@ const {
   loading = "lazy",
   longdesc: desc,
   link = {},
-  role: r,
+  role,
   sources = [],
   src,
   width,
@@ -36,7 +36,7 @@ const longdesc = ((await Astro.slots.render("default")) || desc || "").trim()
 const aspectRatio = (tags?.ImageHeight || 0) / (tags?.ImageWidth || 1)
 const describedById = longdesc ? { "aria-describedby": id } : {}
 const h = height || Math.floor(aspectRatio * width)
-const role = alt ? "presentation" : r
+const r = role ? { role } : alt ? {} : { role: "presentation" }
 ---
 
 {
@@ -56,7 +56,7 @@ const role = alt ? "presentation" : r
           decoding="async"
           {...(h ? { height: h } : {})}
           loading={loading}
-          {role}
+          {...r}
           {src}
           {...(width != null ? { width } : {})}
           {...imgAttrs}
@@ -85,7 +85,7 @@ const role = alt ? "presentation" : r
         decoding="async"
         {...(h ? { height: h } : {})}
         loading={loading}
-        {role}
+        {...r}
         {src}
         {...(width != null ? { width } : {})}
         {...imgAttrs}
