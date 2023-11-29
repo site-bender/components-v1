@@ -19,11 +19,11 @@ export default function getLicense({
 				saLicense: "-NoDerivatives",
 		  }
 		: shareAlike
-		? {
-				saHref: "-sa",
-				saLicense: "-ShareAlike",
-		  }
-		: { saHref: "", saLicense: "" }
+		  ? {
+					saHref: "-sa",
+					saLicense: "-ShareAlike",
+			  }
+		  : { saHref: "", saLicense: "" }
 
 	const { ncHref, ncLicense } = nonCommercial
 		? {

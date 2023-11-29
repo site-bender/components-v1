@@ -7,8 +7,8 @@ export default function toPlainDateString(
 	const date = plainDate
 		? plainDate
 		: plainDateLike
-		? Temporal.PlainDate.from(plainDateLike)
-		: undefined
+		  ? Temporal.PlainDate.from(plainDateLike)
+		  : undefined
 
 	return Intl.DateTimeFormat("fr-CA", {
 		year: "numeric",
