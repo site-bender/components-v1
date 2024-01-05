@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.1.87",
+	"version": "0.1.88",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -52,6 +52,7 @@
 		"lint": "pnpm biome check --apply-unsafe ./",
 		"lint:css": "pnpm stylelint \"src/**/*.css\"",
 		"lint:fix": "pnpm stylelint \"src/**/*.css\" --fix",
+		"lint:ox": "pnpx oxlint@latest",
 		"preview": "astro preview",
 		"pub": "npm publish --access=public",
 		"push": "git add -A && pnpm bump && git push",

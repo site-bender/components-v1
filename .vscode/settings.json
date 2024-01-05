@@ -27,6 +27,7 @@
 		"mauveine",
 		"miterlimit",
 		"nums",
+		"oxlint",
 		"typeof",
 		"xlink"
 	],
@@ -45,7 +46,6 @@
 		".npmrc": true,
 		".stylelintrc.json": true,
 		".vscode": true,
-		"README.md": true,
 		"astro.config.mjs": true,
 		"biome.json": true,
 		"node_modules": true,
