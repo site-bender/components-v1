@@ -1,0 +1,69 @@
+<script>
+  type WithOpenHeight = HTMLElement & { sbOpenHeight?: number }
+
+  function toggleAccordion(event: MouseEvent) {
+    event.preventDefault()
+
+    const summary = event.target as HTMLElement
+    const accordion = summary?.closest("details")
+    const content = accordion?.querySelector(
+      ".sb-accordion-content",
+    ) as HTMLElement
+    const openHeight = (summary as WithOpenHeight)?.sbOpenHeight || 0
+
+    if (accordion?.open) {
+      content && (content.style.maxHeight = `${openHeight}px`)
+
+      function shutAccordion() {
+        const maxHeight = parseInt(content.style.maxHeight, 10)
+
+        if (maxHeight > 0) {
+          content.style.maxHeight = maxHeight < 25 ? "0" : `${maxHeight - 25}px`
+
+          setTimeout(shutAccordion, 10)
+
+          return
+        }
+
+        accordion && (accordion.open = false)
+      }
+
+      shutAccordion()
+
+      return
+    }
+
+    content.style.maxHeight = "0px"
+
+    function openAccordion() {
+      const maxHeight = parseInt(content.style.maxHeight, 10)
+
+      accordion && (accordion.open = true)
+
+      if (maxHeight < openHeight) {
+        content.style.maxHeight = `${maxHeight + 15}px`
+
+        setTimeout(openAccordion, 10)
+      }
+    }
+
+    openAccordion()
+  }
+
+  function enhanceAccordions() {
+    const nodes = document.querySelectorAll(".sb-accordion")
+
+    for (let node of nodes) {
+      const summary = node.querySelector("summary")
+      const content = node.querySelector(".xx-accordion-content")
+
+      if (summary && content) {
+        ;(summary as WithOpenHeight).sbOpenHeight = content.clientHeight
+      }
+
+      summary?.addEventListener("click", toggleAccordion)
+    }
+  }
+
+  globalThis.addEventListener("DOMContentLoaded", enhanceAccordions)
+</script>
