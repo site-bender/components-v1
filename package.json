@@ -1,6 +1,6 @@
 {
 	"name": "@sitebender/components",
-	"version": "0.1.90",
+	"version": "0.1.91",
 	"keywords": [
 		"astro-component",
 		"sitebender",
@@ -52,11 +52,10 @@
 		"lint:css": "pnpm stylelint \"src/**/*.css\"",
 		"lint:fix": "pnpm stylelint \"src/**/*.css\" --fix",
 		"preview": "astro preview",
+		"pub": "npm publish --access=public",
 		"push": "git add -A && pnpm bump && git push",
 		"start": "astro dev",
-		"test": "pnpm test:int",
-		"test:cov": "vitest run --coverage",
-		"test:int": "vitest"
+		"test": "pnpm test:int"
 	},
 	"devDependencies": {
 		"@astrojs/mdx": "^2.0.4",
