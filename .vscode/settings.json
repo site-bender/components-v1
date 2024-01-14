@@ -46,8 +46,6 @@
 		".npmrc": true,
 		".stylelintrc.json": true,
 		".vscode": true,
-		"astro.config.mjs": true,
-		"biome.json": true,
 		"node_modules": true,
 		"pnpm-lock.yaml": true,
 		"sitebender.theme.dark.json": true,
