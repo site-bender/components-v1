@@ -1,57 +1,59 @@
 {
-	"[css]": {
-		"editor.defaultFormatter": "vscode.css-language-features"
-	},
-	"[html]": {
-		"editor.defaultFormatter": "vscode.html-language-features"
-	},
-	"[javascript]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[xml]": {
-		"editor.defaultFormatter": "mikeburgh.xml-format"
-	},
-	"cSpell.words": [
-		"apos",
-		"configurers",
-		"evenodd",
-		"exifr",
-		"exifreader",
-		"funnypot",
-		"hrefs",
-		"icterine",
-		"linejoin",
-		"mauveine",
-		"miterlimit",
-		"nums",
-		"oxlint",
-		"typeof",
-		"xlink"
-	],
-	"css.format.spaceAroundSelectorSeparator": true,
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.formatOnSave": true,
-	"editor.insertSpaces": false,
-	"editor.tabSize": 2,
-	"files.exclude": {
-		".astro": true,
-		".depcheckrc": true,
-		".editorconfig": true,
-		".git": true,
-		".gitignore": true,
-		".npmcheckrc": true,
-		".npmrc": true,
-		".stylelintrc.json": true,
-		".vscode": true,
-		"node_modules": true,
-		"pnpm-lock.yaml": true,
-		"sitebender.theme.dark.json": true,
-		"tsconfig.json": true
-	},
-	"javascript.format.semicolons": "remove",
-	"terminal.integrated.tabStopWidth": 4,
-	"typescript.extension.sortImports.omitSemicolon": true
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "mikeburgh.xml-format"
+  },
+  "cSpell.words": [
+    "apos",
+    "configurers",
+    "evenodd",
+    "exifr",
+    "exifreader",
+    "funnypot",
+    "hrefs",
+    "icterine",
+    "linejoin",
+    "mauveine",
+    "miterlimit",
+    "nums",
+    "oxlint",
+    "typeof",
+    "xlink"
+  ],
+  "css.format.spaceAroundSelectorSeparator": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": false,
+  "editor.tabSize": 2,
+  "files.exclude": {
+    ".astro": true,
+    ".depcheckrc": true,
+    ".editorconfig": true,
+    ".git": true,
+    ".gitignore": true,
+    ".npmcheckrc": true,
+    ".npmrc": true,
+    ".stylelintrc.json": true,
+    ".vscode": true,
+    "node_modules": true,
+    "pnpm-lock.yaml": true,
+    "sitebender.theme.dark.json": true,
+    "tsconfig.json": true,
+    ".prettierrc.mjs": true,
+    "astro.config.mjs": true
+  },
+  "javascript.format.semicolons": "remove",
+  "terminal.integrated.tabStopWidth": 4,
+  "typescript.extension.sortImports.omitSemicolon": true
 }

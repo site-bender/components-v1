@@ -15,7 +15,11 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 
 {
 	useMicrodata ? (
-		<Microdata {as} {microdata} {properties}>
+		<Microdata
+			{as}
+			{microdata}
+			{properties}
+		>
 			{content}
 		</Microdata>
 	) : (

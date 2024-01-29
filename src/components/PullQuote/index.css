@@ -4,12 +4,14 @@
 	color: var(--sb-color-gray-9, #131315);
 	display: flex;
 	flex-direction: column;
-	font-family: var(--sb-font-titles,
-			"Iowan Old Style",
-			"Palatino Linotype",
-			"URW Palladio L",
-			P052,
-			serif);
+	font-family: var(
+		--sb-font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
 	font-size: 1.25rem;
 	font-weight: 500;
 	justify-content: space-evenly;
@@ -25,12 +27,14 @@
 	align-items: center;
 	color: var(--sb-color-gray-9, #131315);
 	display: flex;
-	font-family: var(--sb-font-titles,
-			"Iowan Old Style",
-			"Palatino Linotype",
-			"URW Palladio L",
-			P052,
-			serif);
+	font-family: var(
+		--sb-font-titles,
+		"Iowan Old Style",
+		"Palatino Linotype",
+		"URW Palladio L",
+		P052,
+		serif
+	);
 	font-size: 1rem;
 	font-style: italic;
 	justify-content: flex-end;

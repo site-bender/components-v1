@@ -3,46 +3,46 @@ import "./index.css"
 import PlainDate from "../metadata/PlainDate/index.astro"
 
 export type Props = {
-  articles: Array<unknown>
+	articles: Array<unknown>
 }
 
 const { articles } = Astro.props
 ---
 
 {
-  articles ? (
-    <dl class="sb-article-list">
-      {articles.map((article) => {
-        const subtitle = article.getArticleData?.().alternativeHeadline
-        const pubDate = article.getArticleData?.().dateCreated
-        const abstract = article.getArticleData?.().abstract || article.blurb
+	articles ? (
+		<dl class="sb-article-list">
+			{articles.map((article) => {
+				const subtitle = article.getArticleData?.().alternativeHeadline
+				const pubDate = article.getArticleData?.().dateCreated
+				const abstract = article.getArticleData?.().abstract || article.blurb
 
-        return (
-          <>
-            <dt class="sb-article-list-term">
-              {pubDate ? (
-                <div class="sb-article-pub-date">
-                  <PlainDate plainDate={pubDate.slice(0, 10)} />
-                </div>
-              ) : null}
-              <div class="sb-article-title">
-                <a href={article.url as string}>{article.title as string}</a>
-              </div>
-              {subtitle ? (
-                <div
-                  class="sb-article-subtitle"
-                  set:html={subtitle}
-                />
-              ) : null}
-            </dt>
-            {abstract ? (
-              <dd class="sb-article-abstract">
-                <Fragment set:html={abstract} />
-              </dd>
-            ) : null}
-          </>
-        )
-      })}
-    </dl>
-  ) : null
+				return (
+					<>
+						<dt class="sb-article-list-term">
+							{pubDate ? (
+								<div class="sb-article-pub-date">
+									<PlainDate plainDate={pubDate.slice(0, 10)} />
+								</div>
+							) : null}
+							<div class="sb-article-title">
+								<a href={article.url as string}>{article.title as string}</a>
+							</div>
+							{subtitle ? (
+								<div
+									class="sb-article-subtitle"
+									set:html={subtitle}
+								/>
+							) : null}
+						</dt>
+						{abstract ? (
+							<dd class="sb-article-abstract">
+								<Fragment set:html={abstract} />
+							</dd>
+						) : null}
+					</>
+				)
+			})}
+		</dl>
+	) : null
 }

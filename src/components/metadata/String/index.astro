@@ -5,13 +5,13 @@ import type { StringProps as Props } from "../../../types"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-  as = "span",
-  dataset,
-  link = {},
-  microdata = {},
-  properties = {},
-  value,
-  ...attrs
+	as = "span",
+	dataset,
+	link = {},
+	microdata = {},
+	properties = {},
+	value,
+	...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-email"])
@@ -26,22 +26,22 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata
-      {microdata}
-      {properties}
-    />
-  ) : null
+	useMicrodata ? (
+		<Microdata
+			{microdata}
+			{properties}
+		/>
+	) : null
 }
 {
-  href ? (
-    <a
-      {...linkAttrs}
-      {href}
-    >
-      <Element {...elementAttrs}>{text}</Element>
-    </a>
-  ) : (
-    <Element {...elementAttrs}>{text}</Element>
-  )
+	href ? (
+		<a
+			{...linkAttrs}
+			{href}
+		>
+			<Element {...elementAttrs}>{text}</Element>
+		</a>
+	) : (
+		<Element {...elementAttrs}>{text}</Element>
+	)
 }

@@ -23,7 +23,7 @@ const properties = {
 }
 
 const amount = parseFloat(
-	String(Astro.props.value || properties.value).replaceAll(/[^.0-9]/g, "")
+	String(Astro.props.value || properties.value).replaceAll(/[^.0-9]/g, ""),
 )
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
@@ -31,7 +31,10 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 
 {
 	useMicrodata ? (
-		<Microdata as="span" {properties}>
+		<Microdata
+			as="span"
+			{properties}
+		>
 			<Number
 				{...attrs}
 				data-sb-currency={options.currency}

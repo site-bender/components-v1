@@ -2,113 +2,113 @@
 import type { OpenGraphBasic } from "../../../types/openGraph"
 
 export type Props = {
-  openGraph: OpenGraphBasic
+	openGraph: OpenGraphBasic
 }
 
 const {
-  openGraph: {
-    audio = [] as Array<string>,
-    description,
-    determiner,
-    locale,
-    localeAlternate,
-    image = [],
-    siteName,
-    title,
-    type,
-    url,
-    video = [] as Array<string>,
-  } = {},
+	openGraph: {
+		audio = [] as Array<string>,
+		description,
+		determiner,
+		locale,
+		localeAlternate,
+		image = [],
+		siteName,
+		title,
+		type,
+		url,
+		video = [] as Array<string>,
+	} = {},
 } = Astro.props
 
 const aud = audio?.map((aud) => `<meta name="og:audio" content="${aud}">`)
 const img = image?.map((img) => {
-  if (typeof img === "string") {
-    return `<meta name="og:image" content="${img}">`
-  }
+	if (typeof img === "string") {
+		return `<meta name="og:image" content="${img}">`
+	}
 
-  return [
-    ...(img.image ? [`<meta name="og:image" content="${img.image}">`] : []),
-    ...(img.alt ? [`<meta name="og:image:alt" content="${img.alt}">`] : []),
-    ...(img.height
-      ? [`<meta name="og:image:height" content="${img.height}">`]
-      : []),
-    ...(img.secureUrl
-      ? [`<meta name="og:image:secure_url" content="${img.secureUrl}">`]
-      : []),
-    ...(img.type ? [`<meta name="og:image:type" content="${img.type}">`] : []),
-    ...(img.width
-      ? [`<meta name="og:image:width" content="${img.width}">`]
-      : []),
-  ].join("\n")
+	return [
+		...(img.image ? [`<meta name="og:image" content="${img.image}">`] : []),
+		...(img.alt ? [`<meta name="og:image:alt" content="${img.alt}">`] : []),
+		...(img.height
+			? [`<meta name="og:image:height" content="${img.height}">`]
+			: []),
+		...(img.secureUrl
+			? [`<meta name="og:image:secure_url" content="${img.secureUrl}">`]
+			: []),
+		...(img.type ? [`<meta name="og:image:type" content="${img.type}">`] : []),
+		...(img.width
+			? [`<meta name="og:image:width" content="${img.width}">`]
+			: []),
+	].join("\n")
 })
 const vid = video?.map((vid) => `<meta name="og:video" content="${vid}">`)
 ---
 
 {aud ? <Fragment set:html={aud} /> : null}
 {
-  description ? (
-    <meta
-      name="og:description"
-      content={description}
-    />
-  ) : null
+	description ? (
+		<meta
+			name="og:description"
+			content={description}
+		/>
+	) : null
 }
 {
-  determiner ? (
-    <meta
-      name="og:title"
-      content={determiner}
-    />
-  ) : null
+	determiner ? (
+		<meta
+			name="og:title"
+			content={determiner}
+		/>
+	) : null
 }
 {img ? <Fragment set:html={img} /> : null}
 {
-  locale ? (
-    <meta
-      name="og:locale"
-      content={locale}
-    />
-  ) : null
+	locale ? (
+		<meta
+			name="og:locale"
+			content={locale}
+		/>
+	) : null
 }
 {
-  localeAlternate ? (
-    <meta
-      name="og:locale:alternate"
-      content={localeAlternate}
-    />
-  ) : null
+	localeAlternate ? (
+		<meta
+			name="og:locale:alternate"
+			content={localeAlternate}
+		/>
+	) : null
 }
 {
-  siteName ? (
-    <meta
-      name="og:site_name"
-      content={siteName}
-    />
-  ) : null
+	siteName ? (
+		<meta
+			name="og:site_name"
+			content={siteName}
+		/>
+	) : null
 }
 {
-  title ? (
-    <meta
-      name="og:title"
-      content={title}
-    />
-  ) : null
+	title ? (
+		<meta
+			name="og:title"
+			content={title}
+		/>
+	) : null
 }
 {
-  type ? (
-    <meta
-      name="og:type"
-      content={type}
-    />
-  ) : null
+	type ? (
+		<meta
+			name="og:type"
+			content={type}
+		/>
+	) : null
 }
 {
-  url ? (
-    <meta
-      name="og:url"
-      content={url}
-    />
-  ) : null
+	url ? (
+		<meta
+			name="og:url"
+			content={url}
+		/>
+	) : null
 }
 {vid ? <Fragment set:html={vid} /> : null}

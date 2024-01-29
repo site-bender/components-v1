@@ -3,14 +3,16 @@
 	border-radius: 5px;
 	color: var(--sb-skip-link-color, var(--sb-color-highlight, #aaf5a3));
 	font-size: var(--sb-step-1, 1.25rem);
-	font-family: var(--sb-font-body,
-			Inter,
-			Roboto,
-			"Helvetica Neue",
-			"Arial Nova",
-			"Nimbus Sans",
-			Arial,
-			sans-serif);
+	font-family: var(
+		--sb-font-body,
+		Inter,
+		Roboto,
+		"Helvetica Neue",
+		"Arial Nova",
+		"Nimbus Sans",
+		Arial,
+		sans-serif
+	);
 	left: -100000px;
 	padding: 0.1rem;
 	position: absolute;
@@ -22,7 +24,8 @@
 	display: inline-block;
 	opacity: 1;
 	outline-offset: 5px;
-	outline: 2px solid var(--sb-skip-link-outline-color-focus, var(--sb-color-highlight, #aaf5a3));
+	outline: 2px solid
+		var(--sb-skip-link-outline-color-focus, var(--sb-color-highlight, #aaf5a3));
 	position: unset;
 	text-decoration: none;
 	width: auto;

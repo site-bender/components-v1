@@ -4,21 +4,21 @@ import type { NumberSubfield as Props } from "../../../../types/form"
 import mapAttributes from "../../../../utilities/mapAttributes"
 
 const {
-  disabled,
-  field,
-  form,
-  id: parentId,
-  inputmode = "numeric",
-  label,
-  labelledBy,
-  outer = {},
-  parent,
-  name,
-  size = 4,
-  step = 1,
-  tag = {},
-  value,
-  ...attrs
+	disabled,
+	field,
+	form,
+	id: parentId,
+	inputmode = "numeric",
+	label,
+	labelledBy,
+	outer = {},
+	parent,
+	name,
+	size = 4,
+	step = 1,
+	tag = {},
+	value,
+	...attrs
 } = Astro.props
 
 const elemAttrs = mapAttributes(attrs as HTMLAttributes, [`sb-input-${name}`])
@@ -29,26 +29,26 @@ const id = `${parentId}_${name}`
 ---
 
 <label
-  {...outerAttrs}
-  for={id}
+	{...outerAttrs}
+	for={id}
 >
-  <span
-    {...tagAttrs}
-    id={`${id}_label`}
-    >{label}</span
-  >
-  <input
-    {...elemAttrs}
-    aria-labelledby={`${labelledBy} ${id}_label`}
-    {disabled}
-    {form}
-    {id}
-    {inputmode}
-    min="0"
-    name={`${parent}:${name}`}
-    {size}
-    {step}
-    type="number"
-    {value}
-  />
+	<span
+		{...tagAttrs}
+		id={`${id}_label`}
+		>{label}</span
+	>
+	<input
+		{...elemAttrs}
+		aria-labelledby={`${labelledBy} ${id}_label`}
+		{disabled}
+		{form}
+		{id}
+		{inputmode}
+		min="0"
+		name={`${parent}:${name}`}
+		{size}
+		{step}
+		type="number"
+		{value}
+	/>
 </label>

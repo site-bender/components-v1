@@ -6,13 +6,13 @@ import mapAttributes from "../../utilities/mapAttributes"
 import type { NavProps as Props } from "../../types"
 
 const {
-  hideClass,
-  id = generateShortId(),
-  links,
-  nav = {},
-  properties,
-  role = "navigation",
-  ...attrs
+	hideClass,
+	id = generateShortId(),
+	links,
+	nav = {},
+	properties,
+	role = "navigation",
+	...attrs
 } = Astro.props
 
 const wrapperAttrs = mapAttributes(attrs, ["sb-nav"])
@@ -21,41 +21,41 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata
-      {...wrapperAttrs}
-      as="nav"
-      {properties}
-      {role}
-    >
-      <NavList
-        {...nav}
-        {id}
-        {links}
-        {hideClass}
-      />
-    </Microdata>
-  ) : (
-    <nav
-      {...wrapperAttrs}
-      {role}
-    >
-      <NavList
-        {...nav}
-        {id}
-        {links}
-        {hideClass}
-      />
-    </nav>
-  )
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			as="nav"
+			{properties}
+			{role}
+		>
+			<NavList
+				{...nav}
+				{id}
+				{links}
+				{hideClass}
+			/>
+		</Microdata>
+	) : (
+		<nav
+			{...wrapperAttrs}
+			{role}
+		>
+			<NavList
+				{...nav}
+				{id}
+				{links}
+				{hideClass}
+			/>
+		</nav>
+	)
 }
 <style>
-  nav.sb-nav a {
-    color: var(--sb-color-blue-tinted, #a3d3f5);
-    text-decoration: none;
-  }
+	nav.sb-nav a {
+		color: var(--sb-color-blue-tinted, #a3d3f5);
+		text-decoration: none;
+	}
 
-  .sb-nav-list {
-    margin: 0;
-  }
+	.sb-nav-list {
+		margin: 0;
+	}
 </style>

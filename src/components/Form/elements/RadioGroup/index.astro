@@ -1,9 +1,9 @@
 ---
 import FieldsetWrapper from "../../FieldsetWrapper/index.astro"
-import RadioInput from "./RadioInput/index.astro";
-import generateShortId from "../../../../utilities/generateShortId";
+import RadioInput from "./RadioInput/index.astro"
+import generateShortId from "../../../../utilities/generateShortId"
 import mapAttributes from "../../../../utilities/mapAttributes"
-import type { RadioGroup as Props } from "../../../../types/form";
+import type { RadioGroup as Props } from "../../../../types/form"
 import type { HTMLAttributes } from "../../../../types/html"
 
 const {
@@ -25,11 +25,9 @@ const {
 	tag,
 	wrapper,
 	...attrs
-} = Astro.props;
+} = Astro.props
 
-const inputAttrs = mapAttributes(attrs as HTMLAttributes, [
-	"sb-radio-input",
-])
+const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-radio-input"])
 ---
 
 <FieldsetWrapper
@@ -49,9 +47,9 @@ const inputAttrs = mapAttributes(attrs as HTMLAttributes, [
 >
 	{
 		(labelledBy: string) => {
-			return <>
-				{
-					options.map(({ label, value, ...attrs }) => {
+			return (
+				<>
+					{options.map(({ label, value, ...attrs }) => {
 						const inputAttrs = mapAttributes(attrs as HTMLAttributes, [
 							"sb-radio-input",
 						])
@@ -70,10 +68,8 @@ const inputAttrs = mapAttributes(attrs as HTMLAttributes, [
 								{label}
 							</RadioInput>
 						)
-					})
-				}
-				{
-					includeNull ? (
+					})}
+					{includeNull ? (
 						<RadioInput
 							{...inputAttrs}
 							checked={Boolean(selected) && selected === ""}
@@ -86,9 +82,9 @@ const inputAttrs = mapAttributes(attrs as HTMLAttributes, [
 						>
 							N/A
 						</RadioInput>
-					) : null
-				}
-			</>
+					) : null}
+				</>
+			)
 		}
 	}
 </FieldsetWrapper>

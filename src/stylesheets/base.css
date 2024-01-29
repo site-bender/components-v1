@@ -6,7 +6,8 @@
 }
 
 .sb-disabled {
-	border-color: var(--sb-disabled-border-color, var(--sb-disabled-border-color)) !important;
+	border-color: var(--sb-disabled-border-color,
+			var(--sb-disabled-border-color)) !important;
 	color: var(--sb-disabled-color, var(--sb-disabled-color)) !important;
 	cursor: not-allowed;
 }
@@ -70,7 +71,8 @@ blockquote {
 }
 
 mark {
-	background-color: var(--sb-mark-background-color, var(--sb-color-highlight, #aaf5a3));
+	background-color: var(--sb-mark-background-color,
+			var(--sb-color-highlight, #aaf5a3));
 	color: var(--sb-mark-color, var(--sb-color-gray-9, #131315));
 	padding: 0;
 }
@@ -150,7 +152,7 @@ h5 {
 }
 
 p {
-	margin: var(--sb-space-2xs) 0 var(--sb-space-m);
+	margin: var(--sb-space-2xs) 0 var(--sb-space-s);
 }
 
 dl > dt {
@@ -168,7 +170,8 @@ hr {
 }
 
 hr::after {
-	background-color: var(--sb-hr-background-color-after, var(--sb-color-gray-1, #dfdfe2));
+	background-color: var(--sb-hr-background-color-after,
+			var(--sb-color-gray-1, #dfdfe2));
 	color: var(--sb-hr-color-after, var(--sb-color-gray-8, #2c2c30));
 	content: " § ";
 	padding: 0 1ch;

@@ -6,43 +6,43 @@ const { beacon } = Astro.props
 ---
 
 {
-  beacon ? (
-    <article
-      class="sb-carbon-check"
-      aria-labelledby="sb-carbon-check"
-    >
-      <h2
-        id="sb-carbon-check"
-        class="sb-sr-only"
-      >
-        Carbon emissions for this page
-      </h2>
-      <div class="sb-carbon-percentage">
-        Cleaner than {beacon.percentage}% of pages tested
-      </div>
-      <div class="sb-carbon-count">
-        <span class="sb-count">
-          {beacon.firstCarbon?.toFixed(3)}g{" "}
-          <span aria-hidden="true">&rarr;</span>
-          <span class="sb-off-screen">
-            on first visit; then on return visits
-          </span>{" "}
-          {beacon.repeatCarbon?.toFixed(3)}g
-        </span>
-        {beacon.href ? (
-          <a
-            class="sb-carbon-logo"
-            href={beacon.href}
-            rel="external"
-          >
-            Beacon: <strong>{beacon.grade}</strong>
-          </a>
-        ) : (
-          <span class="sb-carbon-logo">
-            Beacon: <strong>{beacon.grade}</strong>
-          </span>
-        )}
-      </div>
-    </article>
-  ) : null
+	beacon ? (
+		<article
+			class="sb-carbon-check"
+			aria-labelledby="sb-carbon-check"
+		>
+			<h2
+				id="sb-carbon-check"
+				class="sb-sr-only"
+			>
+				Carbon emissions for this page
+			</h2>
+			<div class="sb-carbon-percentage">
+				Cleaner than {beacon.percentage}% of pages tested
+			</div>
+			<div class="sb-carbon-count">
+				<span class="sb-count">
+					{beacon.firstCarbon?.toFixed(3)}g{" "}
+					<span aria-hidden="true">&rarr;</span>
+					<span class="sb-off-screen">
+						on first visit; then on return visits
+					</span>{" "}
+					{beacon.repeatCarbon?.toFixed(3)}g
+				</span>
+				{beacon.href ? (
+					<a
+						class="sb-carbon-logo"
+						href={beacon.href}
+						rel="external"
+					>
+						Beacon: <strong>{beacon.grade}</strong>
+					</a>
+				) : (
+					<span class="sb-carbon-logo">
+						Beacon: <strong>{beacon.grade}</strong>
+					</span>
+				)}
+			</div>
+		</article>
+	) : null
 }

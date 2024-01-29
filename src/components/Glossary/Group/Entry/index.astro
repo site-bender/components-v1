@@ -5,15 +5,15 @@ const { abbreviation, definition, expansion, id, isAcronym, term } = Astro.props
 ---
 
 <dl class="sb-glossary">
-  <dt {id}>
-    <dfn>{term}</dfn>{" "}
-    {
-      abbreviation ? (
-        <Fragment
-          set:html={`(<abbr title="${expansion}">${abbreviation}</abbr>)`}
-        />
-      ) : null
-    }
-  </dt>
-  {definition.map((def) => <dd set:html={def} />)}
+	<dt {id}>
+		<dfn>{term}</dfn>{" "}
+		{
+			abbreviation ? (
+				<Fragment
+					set:html={`(<abbr title="${expansion}">${abbreviation}</abbr>)`}
+				/>
+			) : null
+		}
+	</dt>
+	{definition.map((def) => <dd set:html={def} />)}
 </dl>

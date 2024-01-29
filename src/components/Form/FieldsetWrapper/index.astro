@@ -25,11 +25,11 @@ const outerAttrs = mapAttributes(
 	outer,
 	required
 		? ["sb-fieldset", `sb-${field}`, "sb-required"]
-		: ["sb-fieldset", `sb-${field}`]
+		: ["sb-fieldset", `sb-${field}`],
 )
 const tagAttrs = mapAttributes(
 	tag,
-	required ? ["sb-label-tag"] : ["sb-label-tag", "sb-optional"]
+	required ? ["sb-label-tag"] : ["sb-label-tag", "sb-optional"],
 )
 
 const hlp = (await Astro.slots.render("message")) || message
@@ -42,9 +42,21 @@ const legendId = `${id}_legend`
 const element = await Astro.slots.render("default", [labelledBy])
 ---
 
-<fieldset {...outerAttrs} {disabled} {form} {name}>
-	<legend {...legendAttrs} id={legendId}>
-		<span {...tagAttrs} id={labelId} set:html={lbl} />
+<fieldset
+	{...outerAttrs}
+	{disabled}
+	{form}
+	{name}
+>
+	<legend
+		{...legendAttrs}
+		id={legendId}
+	>
+		<span
+			{...tagAttrs}
+			id={labelId}
+			set:html={lbl}
+		/>
 		<span
 			aria-live="assertive"
 			{...helpAttrs}

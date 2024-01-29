@@ -5,14 +5,14 @@ import mapAttributes from "../../utilities/mapAttributes"
 import type { ColumnsProps as Props } from "../../types"
 
 const {
-  as = "span",
-  columns,
-  heading,
-  level = 2,
-  microdata,
-  properties,
-  title,
-  ...attrs
+	as = "span",
+	columns,
+	heading,
+	level = 2,
+	microdata,
+	properties,
+	title,
+	...attrs
 } = Astro.props
 
 const columnsAttrs = mapAttributes(columns, ["sb-columns-columns"])
@@ -27,23 +27,23 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 <article {...wrapperAttrs}>
-  {
-    useMicrodata ? (
-      <Microdata
-        {as}
-        {microdata}
-        {properties}
-      />
-    ) : null
-  }
-  {
-    articleTitle ? (
-      <header {...headingAttrs}>
-        <HElement set:html={articleTitle} />
-      </header>
-    ) : null
-  }
-  <div {...columnsAttrs}>
-    <slot />
-  </div>
+	{
+		useMicrodata ? (
+			<Microdata
+				{as}
+				{microdata}
+				{properties}
+			/>
+		) : null
+	}
+	{
+		articleTitle ? (
+			<header {...headingAttrs}>
+				<HElement set:html={articleTitle} />
+			</header>
+		) : null
+	}
+	<div {...columnsAttrs}>
+		<slot />
+	</div>
 </article>

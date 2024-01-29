@@ -1,101 +1,107 @@
 ---
-import getSlots from "../../../utilities/getSlots";
-import mapAttributes from "../../../utilities/mapAttributes";
-import type { ItemsProps as Props, Metadata } from "../../../types";
+import getSlots from "../../../utilities/getSlots"
+import mapAttributes from "../../../utilities/mapAttributes"
+import type { ItemsProps as Props, Metadata } from "../../../types"
 
 const {
-  back = "«",
-  children = [],
-  forth = "»",
-  li,
-  link,
-  page,
-  pages,
-  parent,
-} = Astro.props;
+	back = "«",
+	children = [],
+	forth = "»",
+	li,
+	link,
+	page,
+	pages,
+	parent,
+} = Astro.props
 
 const disabledAttrs = mapAttributes(li, [
-  "sb-paginator-list-item",
-  "sb-disabled",
-]);
-const liAttrs = mapAttributes(li, ["sb-paginator-list-item"]);
-const linkAttrs = mapAttributes(link, ["sb-paginator-link"]);
+	"sb-paginator-list-item",
+	"sb-disabled",
+])
+const liAttrs = mapAttributes(li, ["sb-paginator-list-item"])
+const linkAttrs = mapAttributes(link, ["sb-paginator-link"])
 
-const index = children.indexOf(page);
-const previous = children[index - 1];
-const previousPage = previous ? pages[`${parent}/${previous}`] : undefined;
-const next = children[index + 1];
-const nextPage = next ? pages[`${parent}/${next}`] : undefined;
+const index = children.indexOf(page)
+const previous = children[index - 1]
+const previousPage = previous ? pages[`${parent}/${previous}`] : undefined
+const next = children[index + 1]
+const nextPage = next ? pages[`${parent}/${next}`] : undefined
 
 const items = children
-  .map((child, index) => ({ ...pages[`${parent}/${child}`], index }))
-  .filter((item) => item) as Array<Partial<Metadata>>;
-const showing = getSlots(items, index);
+	.map((child, index) => ({ ...pages[`${parent}/${child}`], index }))
+	.filter((item) => item) as Array<Partial<Metadata>>
+const showing = getSlots(items, index)
 ---
 
 {
-  previousPage ? (
-    <li {...liAttrs}>
-      <a
-        {...linkAttrs}
-        href={previousPage.url}
-        aria-label="To the previous page"
-      >
-        <>
-          <span class="sb-remove">Previous page</span>
-          <span aria-hidden="true">{back}</span>
-        </>
-      </a>
-    </li>
-  ) : (
-    <li {...disabledAttrs}>
-      <span aria-hidden="true">{back}</span>
-    </li>
-  )
+	previousPage ? (
+		<li {...liAttrs}>
+			<a
+				{...linkAttrs}
+				href={previousPage.url}
+				aria-label="To the previous page"
+			>
+				<>
+					<span class="sb-remove">Previous page</span>
+					<span aria-hidden="true">{back}</span>
+				</>
+			</a>
+		</li>
+	) : (
+		<li {...disabledAttrs}>
+			<span aria-hidden="true">{back}</span>
+		</li>
+	)
 }
 {
-  showing.map((item) => {
-    const idx = (item.index || 0) + 1;
+	showing.map((item) => {
+		const idx = (item.index || 0) + 1
 
-    return item ? (
-      item.index === index ? (
-        <li {...liAttrs} aria-current="page">
-          <span
-            {...linkAttrs}
-            aria-label={`Page ${idx}: ${item.label || item.title}`}
-          >
-            <span class="sb-remove">Page</span>
-            {idx}
-          </span>
-        </li>
-      ) : (
-        <li {...liAttrs}>
-          <a
-            {...linkAttrs}
-            href={item.url}
-            aria-label={`Page ${idx}: ${item.label || item.title}`}
-          >
-            <span class="sb-remove">Page</span>
-            {idx}
-          </a>
-        </li>
-      )
-    ) : null;
-  })
+		return item ? (
+			item.index === index ? (
+				<li
+					{...liAttrs}
+					aria-current="page"
+				>
+					<span
+						{...linkAttrs}
+						aria-label={`Page ${idx}: ${item.label || item.title}`}
+					>
+						<span class="sb-remove">Page</span>
+						{idx}
+					</span>
+				</li>
+			) : (
+				<li {...liAttrs}>
+					<a
+						{...linkAttrs}
+						href={item.url}
+						aria-label={`Page ${idx}: ${item.label || item.title}`}
+					>
+						<span class="sb-remove">Page</span>
+						{idx}
+					</a>
+				</li>
+			)
+		) : null
+	})
 }
 {
-  nextPage ? (
-    <li {...liAttrs}>
-      <a href={nextPage.url} aria-label="To the next page">
-        <>
-          <span class="sb-remove">Next page</span>
-          <span aria-hidden="true">{forth}</span>
-        </>
-      </a>
-    </li>
-  ) : (
-    <li {...disabledAttrs}>
-      <span aria-hidden="true">{forth}</span>
-    </li>
-  )
+	nextPage ? (
+		<li {...liAttrs}>
+			<a
+				href={nextPage.url}
+				aria-label="To the next page"
+			>
+				<>
+					<span class="sb-remove">Next page</span>
+					<span aria-hidden="true">{forth}</span>
+				</>
+			</a>
+		</li>
+	) : (
+		<li {...disabledAttrs}>
+			<span aria-hidden="true">{forth}</span>
+		</li>
+	)
 }

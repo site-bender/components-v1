@@ -1,27 +1,82 @@
 ---
-import type { TwitterCard } from "../../../types";
+import type { TwitterCard } from "../../../types"
 
 export type Props = {
-  twitter?: TwitterCard | undefined | null;
-};
+	twitter?: TwitterCard | undefined | null
+}
 
-const { twitter = {} as TwitterCard } = Astro.props;
+const { twitter = {} as TwitterCard } = Astro.props
 ---
 
-{twitter.card ? <meta name="twitter:card" content={twitter.card} /> : null}
 {
-  twitter.creator ? (
-    <meta name="twitter:creator" content={twitter.creator} />
-  ) : null
+	twitter.card ? (
+		<meta
+			name="twitter:card"
+			content={twitter.card}
+		/>
+	) : null
 }
 {
-  twitter.description ? (
-    <meta name="twitter:description" content={twitter.description} />
-  ) : null
+	twitter.creator ? (
+		<meta
+			name="twitter:creator"
+			content={twitter.creator}
+		/>
+	) : null
 }
-{twitter.image?.url ? <meta name="twitter:image" content={twitter.image.url} /> : null}
-{twitter.image?.alt ? <meta name="twitter:image:alt" content={twitter.image.alt} /> : null}
-{twitter.image?.height ? <meta name="twitter:image:height" content={twitter.image.height} /> : null}
-{twitter.image?.width ? <meta name="twitter:image:width" content={twitter.image.width} /> : null}
-{twitter.site ? <meta name="twitter:site" content={twitter.site} /> : null}
-{twitter.title ? <meta name="twitter:title" content={twitter.title} /> : null}
+{
+	twitter.description ? (
+		<meta
+			name="twitter:description"
+			content={twitter.description}
+		/>
+	) : null
+}
+{
+	twitter.image?.url ? (
+		<meta
+			name="twitter:image"
+			content={twitter.image.url}
+		/>
+	) : null
+}
+{
+	twitter.image?.alt ? (
+		<meta
+			name="twitter:image:alt"
+			content={twitter.image.alt}
+		/>
+	) : null
+}
+{
+	twitter.image?.height ? (
+		<meta
+			name="twitter:image:height"
+			content={twitter.image.height}
+		/>
+	) : null
+}
+{
+	twitter.image?.width ? (
+		<meta
+			name="twitter:image:width"
+			content={twitter.image.width}
+		/>
+	) : null
+}
+{
+	twitter.site ? (
+		<meta
+			name="twitter:site"
+			content={twitter.site}
+		/>
+	) : null
+}
+{
+	twitter.title ? (
+		<meta
+			name="twitter:title"
+			content={twitter.title}
+		/>
+	) : null
+}

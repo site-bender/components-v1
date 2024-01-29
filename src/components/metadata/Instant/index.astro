@@ -7,52 +7,52 @@ import { Intl, Temporal } from "@js-temporal/polyfill"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-  as = "time",
-  dataset,
-  instant,
-  itemprop,
-  itemtype,
-  locales = DEFAULT_LOCALES,
-  microdata: micro,
-  options = {},
-  properties: props = {},
-  type,
-  ...attrs
+	as = "time",
+	dataset,
+	instant,
+	itemprop,
+	itemtype,
+	locales = DEFAULT_LOCALES,
+	microdata: micro,
+	options = {},
+	properties: props = {},
+	type,
+	...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-duration"])
 const microdata = mapAttributes(micro, ["sb-duration"])
 
 const value =
-  instant instanceof Temporal.ZonedDateTime
-    ? instant.toInstant()
-    : typeof instant === "string"
-    ? Temporal.Instant.from(instant)
-    : instant
+	instant instanceof Temporal.ZonedDateTime
+		? instant.toInstant()
+		: typeof instant === "string"
+			? Temporal.Instant.from(instant)
+			: instant
 
 const label = new Intl.DateTimeFormat(locales, options).format(value)
 const properties = {
-  type,
-  ...(itemprop ? { [itemprop]: value.toString() } : {}),
-  ...props,
+	type,
+	...(itemprop ? { [itemprop]: value.toString() } : {}),
+	...props,
 }
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata && itemtype ? (
-    <Microdata
-      {as}
-      {...elementAttrs}
-      {microdata}
-      {properties}
-    />
-  ) : null
+	useMicrodata && itemtype ? (
+		<Microdata
+			{as}
+			{...elementAttrs}
+			{microdata}
+			{properties}
+		/>
+	) : null
 }
 <time
-  {...elementAttrs}
-  datetime={value.toJSON()}
+	{...elementAttrs}
+	datetime={value.toJSON()}
 >
-  {label}
+	{label}
 </time>

@@ -22,7 +22,9 @@ const {
 
 const pwAttrs = mapAttributes(
 	attrs as HTMLAttributes,
-	allowUnmasked ? ["sb-password-input", "sb-unmaskable"] : ["sb-password-input"]
+	allowUnmasked
+		? ["sb-password-input", "sb-unmaskable"]
+		: ["sb-password-input"],
 )
 const wrapperAttrs = mapAttributes(wrapper, ["sb-input-wrapper"])
 ---

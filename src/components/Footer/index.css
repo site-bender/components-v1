@@ -1,7 +1,11 @@
 .sb-footer {
 	align-items: stretch;
-	background-color: var(--sb-footer-background-color, var(--sb-color-gray-1, #dfdfe2));
-	border-top: 1px solid var(--sb-footer-border-top-color, var(--sb-color-gray-7, #44444b));
+	background-color: var(
+		--sb-footer-background-color,
+		var(--sb-color-gray-1, #dfdfe2)
+	);
+	border-top: 1px solid
+		var(--sb-footer-border-top-color, var(--sb-color-gray-7, #44444b));
 	color: var(--sb-footer-color, var(--sb-color-gray-9, #131315));
 	display: flex;
 	flex-flow: column wrap;
@@ -48,7 +52,10 @@
 
 .sb-footer .sb-nav-this-page {
 	align-items: center;
-	background-color: var(--sb-footer-this-page-background-color, var(--sb-color-link, #0d4872));
+	background-color: var(
+		--sb-footer-this-page-background-color,
+		var(--sb-color-link, #0d4872)
+	);
 	box-sizing: border-box;
 	border-radius: 4px;
 	color: var(--sb-footer-this-page-color, var(--sb-color-gray-1, #dfdfe2));
@@ -73,10 +80,14 @@
 
 .sb-footer a.sb-nav-link:focus,
 .sb-footer a.sb-nav-link:hover {
-	background-color: var(--sb-footer-nav-link-background-color-hover, var(--sb-color-link, #0d4872));
+	background-color: var(
+		--sb-footer-nav-link-background-color-hover,
+		var(--sb-color-link, #0d4872)
+	);
 	border-radius: 4px;
 	color: var(--sb-footer-nav-link-color-hover, var(--sb-color-gray-1, #dfdfe2));
-	outline: 2px solid var(--sb-footer-nav-link-outline-color-hover, var(--sb-color-link, #0d4872));
+	outline: 2px solid
+		var(--sb-footer-nav-link-outline-color-hover, var(--sb-color-link, #0d4872));
 	outline-offset: 3px;
 	text-decoration: none;
 }

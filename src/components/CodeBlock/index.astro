@@ -7,34 +7,34 @@ import type { CodeBlockProps as Props } from "../../types"
 import generateShortId from "../../utilities/generateShortId"
 
 const {
-  caption,
-  hideClass = "sb-sr-only",
-  index,
-  isIndexed,
-  legend = {},
-  lineNumberingWidth,
-  properties: props,
-  snippet,
-  style: styl = "",
-  ...attrs
+	caption,
+	hideClass = "sb-sr-only",
+	index,
+	isIndexed,
+	legend = {},
+	lineNumberingWidth,
+	properties: props,
+	snippet,
+	style: styl = "",
+	...attrs
 } = Astro.props
 
 const legendAttrs = mapAttributes(legend, ["sb-code-block-figcaption"])
 const wrapperAttrs = mapAttributes(
-  attrs,
-  isIndexed ? ["sb-code-block", "sb-is-indexed"] : ["sb-code-block"],
+	attrs,
+	isIndexed ? ["sb-code-block", "sb-is-indexed"] : ["sb-code-block"],
 )
 
 const cap =
-  snippet.frontmatter.caption ||
-  (await Astro.slots.render("caption")) ||
-  caption
+	snippet.frontmatter.caption ||
+	(await Astro.slots.render("caption")) ||
+	caption
 const digits = lineNumberingWidth || getLineNumberingWidth(snippet.rawContent())
 const style = `${styl} --sb-line-number-width: ${digits * 1.5}ch`
 
 const properties = {
-  type: "SoftwareSourceCode",
-  ...props,
+	type: "SoftwareSourceCode",
+	...props,
 }
 
 const description = await Astro.slots.render("default")
@@ -45,49 +45,49 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata
-      {...wrapperAttrs}
-      {...aria}
-      as="figure"
-      {properties}
-      {style}
-    >
-      {cap && (
-        <figcaption {...legendAttrs}>
-          {index ? `Figure ${index}: ` : ""}
-          <Fragment set:html={cap} />
-        </figcaption>
-      )}
-      <Fragment set:html={snippet.compiledContent()} />
-      {description ? (
-        <div
-          class={hideClass}
-          id={labelledBy}
-          set:html={description}
-        />
-      ) : null}
-    </Microdata>
-  ) : (
-    <figure
-      {...wrapperAttrs}
-      {...aria}
-      {style}
-    >
-      {cap && (
-        <figcaption {...legendAttrs}>
-          {index ? `Figure ${index}: ` : ""}
-          <Fragment set:html={cap} />
-        </figcaption>
-      )}
-      <Fragment set:html={snippet.compiledContent()} />
-      {description ? (
-        <div
-          class={hideClass}
-          id={labelledBy}
-          set:html={description}
-        />
-      ) : null}
-    </figure>
-  )
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			{...aria}
+			as="figure"
+			{properties}
+			{style}
+		>
+			{cap && (
+				<figcaption {...legendAttrs}>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={cap} />
+				</figcaption>
+			)}
+			<Fragment set:html={snippet.compiledContent()} />
+			{description ? (
+				<div
+					class={hideClass}
+					id={labelledBy}
+					set:html={description}
+				/>
+			) : null}
+		</Microdata>
+	) : (
+		<figure
+			{...wrapperAttrs}
+			{...aria}
+			{style}
+		>
+			{cap && (
+				<figcaption {...legendAttrs}>
+					{index ? `Figure ${index}: ` : ""}
+					<Fragment set:html={cap} />
+				</figcaption>
+			)}
+			<Fragment set:html={snippet.compiledContent()} />
+			{description ? (
+				<div
+					class={hideClass}
+					id={labelledBy}
+					set:html={description}
+				/>
+			) : null}
+		</figure>
+	)
 }

@@ -5,12 +5,12 @@ import mapAttribtues from "../../utilities/mapAttributes"
 import type { LatestProps as Props } from "../../types"
 
 const {
-  as = "section",
-  header = {},
-  id = generateShortId(),
-  latest = [],
-  title: ttl = "Latest additions",
-  ...attrs
+	as = "section",
+	header = {},
+	id = generateShortId(),
+	latest = [],
+	title: ttl = "Latest additions",
+	...attrs
 } = Astro.props
 
 const { as: HElement = "h2", ...hAttrs } = header
@@ -23,19 +23,19 @@ const title = (await Astro.slots.render("title")) || ttl
 ---
 
 {
-  latest.length ? (
-    <Element
-      {...wrapperAttrs}
-      {id}
-    >
-      <HElement {...headerAttrs}>{title}</HElement>
-      <ol role="presentation">
-        {latest.map(({ href, label }) => (
-          <li>
-            <a {href}>{label}</a>
-          </li>
-        ))}
-      </ol>
-    </Element>
-  ) : null
+	latest.length ? (
+		<Element
+			{...wrapperAttrs}
+			{id}
+		>
+			<HElement {...headerAttrs}>{title}</HElement>
+			<ol role="presentation">
+				{latest.map(({ href, label }) => (
+					<li>
+						<a {href}>{label}</a>
+					</li>
+				))}
+			</ol>
+		</Element>
+	) : null
 }

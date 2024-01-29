@@ -4,30 +4,30 @@ import mapAttributes from "../../../utilities/mapAttributes"
 import type { FieldWrapper as Props } from "../../../types/form"
 
 const {
-  field,
-  group,
-  help = {},
-  id,
-  label,
-  legend = {},
-  message,
-  outer = {},
-  required,
-  tag = {},
+	field,
+	group,
+	help = {},
+	id,
+	label,
+	legend = {},
+	message,
+	outer = {},
+	required,
+	tag = {},
 } = Astro.props
 
 const groupAttrs = group && mapAttributes(group, ["sb-help"])
 const helpAttrs = mapAttributes(help, ["sb-help"])
 const legendAttrs = mapAttributes(legend, ["sb-label"])
 const outerAttrs = mapAttributes(
-  outer,
-  required
-    ? ["sb-field", `sb-${field}`, "sb-required"]
-    : ["sb-field", `sb-${field}`],
+	outer,
+	required
+		? ["sb-field", `sb-${field}`, "sb-required"]
+		: ["sb-field", `sb-${field}`],
 )
 const tagAttrs = mapAttributes(
-  tag,
-  required ? ["sb-label-tag"] : ["sb-label-tag", "sb-optional"],
+	tag,
+	required ? ["sb-label-tag"] : ["sb-label-tag", "sb-optional"],
 )
 
 const hlp = (await Astro.slots.render("message")) || message
@@ -40,30 +40,30 @@ const element = await Astro.slots.render("default", [labelledBy])
 ---
 
 <div {...outerAttrs}>
-  <label
-    {...legendAttrs}
-    for={id}
-  >
-    <span
-      {...tagAttrs}
-      id={labelId}
-      set:html={lbl}
-    />
-    <span
-      aria-live="assertive"
-      {...helpAttrs}
-      id={helpId}
-      role="status"
-      set:html={hlp}
-    /><br />
-  </label>
-  {
-    group ? (
-      <div {...groupAttrs}>
-        <Fragment set:html={element} />
-      </div>
-    ) : (
-      <Fragment set:html={element} />
-    )
-  }
+	<label
+		{...legendAttrs}
+		for={id}
+	>
+		<span
+			{...tagAttrs}
+			id={labelId}
+			set:html={lbl}
+		/>
+		<span
+			aria-live="assertive"
+			{...helpAttrs}
+			id={helpId}
+			role="status"
+			set:html={hlp}
+		/><br />
+	</label>
+	{
+		group ? (
+			<div {...groupAttrs}>
+				<Fragment set:html={element} />
+			</div>
+		) : (
+			<Fragment set:html={element} />
+		)
+	}
 </div>

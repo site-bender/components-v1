@@ -48,9 +48,7 @@ const fields = [
 	...(includeMicroseconds
 		? [["Micros", `microseconds`, dur.microseconds]]
 		: []),
-	...(includeNanoseconds
-		? [["Nanoss", `nanoseconds`, dur.nanoseconds]]
-		: []),
+	...(includeNanoseconds ? [["Nanoss", `nanoseconds`, dur.nanoseconds]] : []),
 ]
 ---
 

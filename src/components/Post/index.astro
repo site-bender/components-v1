@@ -8,16 +8,16 @@ import type { PostProps as Props } from "../../types"
 import generateShortId from "../../utilities/generateShortId"
 
 const {
-  as = "span",
-  asColumns,
-  byline,
-  header,
-  heading = {},
-  microdata,
-  properties,
-  subtitle,
-  title,
-  ...attrs
+	as = "span",
+	asColumns,
+	byline,
+	header,
+	heading = {},
+	microdata,
+	properties,
+	subtitle,
+	title,
+	...attrs
 } = Astro.props
 
 const { as: HElement = "h1", ...hAttrs } = heading
@@ -25,8 +25,8 @@ const { as: HElement = "h1", ...hAttrs } = heading
 const headerAttrs = mapAttributes(header, ["sb-post-header"])
 const headingAttrs = mapAttributes(hAttrs, ["sb-post-title"])
 const wrapperAttrs = mapAttributes(
-  attrs,
-  asColumns ? ["sb-post", "sb-as-columns"] : ["sb-post"],
+	attrs,
+	asColumns ? ["sb-post", "sb-as-columns"] : ["sb-post"],
 )
 
 const postTitle = (await Astro.slots.render("title")) || title
@@ -37,25 +37,25 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 <article {...wrapperAttrs}>
-  {
-    useMicrodata ? (
-      <Microdata
-        {as}
-        {microdata}
-        {properties}
-      />
-    ) : null
-  }
-  <header
-    {...headerAttrs}
-    {id}
-  >
-    <HElement
-      {...headingAttrs}
-      set:html={postTitle}
-    />
-    <Subtitle set:html={postSubtitle} />
-    <Byline {...byline} />
-  </header>
-  <slot />
+	{
+		useMicrodata ? (
+			<Microdata
+				{as}
+				{microdata}
+				{properties}
+			/>
+		) : null
+	}
+	<header
+		{...headerAttrs}
+		{id}
+	>
+		<HElement
+			{...headingAttrs}
+			set:html={postTitle}
+		/>
+		<Subtitle set:html={postSubtitle} />
+		<Byline {...byline} />
+	</header>
+	<slot />
 </article>

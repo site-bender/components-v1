@@ -13,7 +13,7 @@ export default function mapAttributes(
 	...attrs: Array<Attributes>
 ) {
 	const {
-		class: cls,
+		"class": cls,
 		"class:list": cList = [],
 		condition,
 		dataset = {} as Dataset,

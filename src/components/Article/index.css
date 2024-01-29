@@ -21,7 +21,10 @@
 }
 
 .sb-article a:visited {
-	color: var(--sb-article-link-color-visited, var(--sb-color-link-visited, #48094e));
+	color: var(
+		--sb-article-link-color-visited,
+		var(--sb-color-link-visited, #48094e)
+	);
 }
 
 .sb-article a:focus,
@@ -29,7 +32,10 @@
 .sb-post a:focus,
 .sb-post a:hover {
 	border-radius: 5px;
-	background-color: var(--sb-article-link-background-color-focus, var(--sb-color-link, #0d4872));
+	background-color: var(
+		--sb-article-link-background-color-focus,
+		var(--sb-color-link, #0d4872)
+	);
 	color: var(--sb-article-link-color-focus, var(--sb-color-gray-0, #fafafa));
 	text-decoration: none;
 	text-decoration-skip-ink: none;

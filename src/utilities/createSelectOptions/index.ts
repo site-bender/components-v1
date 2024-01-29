@@ -10,10 +10,10 @@ export default function createSelectOptions(
 				? `<optgroup label="${item.label || item.value}">${createSelectOptions(
 						item.options,
 						selected,
-				  )}</optgroup>`
+					)}</optgroup>`
 				: `<option value="${item.value}"${
 						String(item.value) === String(selected) ? " selected" : ""
-				  }>${item.label || item.value}</option>`,
+					}>${item.label || item.value}</option>`,
 		)
 		.join("\n")
 }

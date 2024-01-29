@@ -6,16 +6,16 @@ import mapAttributes from "../../utilities/mapAttributes"
 import isRoot from "../../utilities/isRoot"
 
 const {
-  as = "h2",
-  ariaLabel,
-  href,
-  image = {},
-  label: lbl,
-  link,
-  microdata = {},
-  noLink,
-  properties,
-  ...attrs
+	as = "h2",
+	ariaLabel,
+	href,
+	image = {},
+	label: lbl,
+	link,
+	microdata = {},
+	noLink,
+	properties,
+	...attrs
 } = Astro.props
 
 const linkAttrs = mapAttributes(link, ["sb-logotype-link"])
@@ -32,47 +32,47 @@ const slotImage = await Astro.slots.render("image")
 ---
 
 {
-  noLink || isRoot(pathname) ? (
-    <Element {...wrapperAttrs}>
-      {useMicrodata ? (
-        <Microdata
-          {...microdata}
-          {properties}
-        />
-      ) : null}
-      {image.src ? (
-        <img
-          alt={image.alt}
-          class="sb-logotype-symbol"
-          height={image.height}
-          src={image.src}
-          width={image.width}
-        />
-      ) : (
-        <Fragment set:html={slotImage} />
-      )}{" "}
-      <span class="sb-logotype-this-page">{label}</span>
-    </Element>
-  ) : (
-    <Element {...wrapperAttrs}>
-      <a
-        {...linkAttrs}
-        {href}
-        aria-label={ariaLabel}
-      >
-        {image.src ? (
-          <img
-            alt={image.alt}
-            class="sb-logotype-symbol"
-            height={image.height}
-            src={image.src}
-            width={image.width}
-          />
-        ) : (
-          <Fragment set:html={slotImage} />
-        )}{" "}
-        {label}
-      </a>
-    </Element>
-  )
+	noLink || isRoot(pathname) ? (
+		<Element {...wrapperAttrs}>
+			{useMicrodata ? (
+				<Microdata
+					{...microdata}
+					{properties}
+				/>
+			) : null}
+			{image.src ? (
+				<img
+					alt={image.alt}
+					class="sb-logotype-symbol"
+					height={image.height}
+					src={image.src}
+					width={image.width}
+				/>
+			) : (
+				<Fragment set:html={slotImage} />
+			)}{" "}
+			<span class="sb-logotype-this-page">{label}</span>
+		</Element>
+	) : (
+		<Element {...wrapperAttrs}>
+			<a
+				{...linkAttrs}
+				{href}
+				aria-label={ariaLabel}
+			>
+				{image.src ? (
+					<img
+						alt={image.alt}
+						class="sb-logotype-symbol"
+						height={image.height}
+						src={image.src}
+						width={image.width}
+					/>
+				) : (
+					<Fragment set:html={slotImage} />
+				)}{" "}
+				{label}
+			</a>
+		</Element>
+	)
 }

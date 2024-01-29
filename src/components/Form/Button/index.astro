@@ -12,7 +12,7 @@ const label = (await Astro.slots.render("default")) || lbl
 ---
 
 <button
-  {...buttonAttrs}
-  {type}
-  >{label}</button
+	{...buttonAttrs}
+	{type}
+	>{label}</button
 >

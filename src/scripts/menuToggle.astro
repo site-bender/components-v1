@@ -1,49 +1,49 @@
 <script>
-  function addToggle() {
-    const toggle = document.querySelector("#sb-menu-toggle") as HTMLInputElement
+	function addToggle() {
+		const toggle = document.querySelector("#sb-menu-toggle") as HTMLInputElement
 
-    function openMenu() {
-      toggle.checked = true
-      document.body.classList.add("sb-menu-open")
-    }
+		function openMenu() {
+			toggle.checked = true
+			document.body.classList.add("sb-menu-open")
+		}
 
-    function closeMenu() {
-      toggle.checked = false
-      document.body.classList.remove("sb-menu-open")
+		function closeMenu() {
+			toggle.checked = false
+			document.body.classList.remove("sb-menu-open")
 
-      if (globalThis.location.hash === "#site-menu") {
-        globalThis.location.assign(
-          `${globalThis.location.origin}${globalThis.location.pathname}`,
-        )
-      }
-    }
+			if (globalThis.location.hash === "#site-menu") {
+				globalThis.location.assign(
+					`${globalThis.location.origin}${globalThis.location.pathname}`,
+				)
+			}
+		}
 
-    if (globalThis.location.hash === "#site-menu") {
-      openMenu()
-    }
+		if (globalThis.location.hash === "#site-menu") {
+			openMenu()
+		}
 
-    toggle.addEventListener("change", function () {
-      toggle.checked ? openMenu() : closeMenu()
-    })
+		toggle.addEventListener("change", function () {
+			toggle.checked ? openMenu() : closeMenu()
+		})
 
-    document.body.addEventListener("click", function (event) {
-      const target = event.target as HTMLElement
+		document.body.addEventListener("click", function (event) {
+			const target = event.target as HTMLElement
 
-      if (
-        !target.matches(".sb-menu *") &&
-        !target.matches("#sb-menu-toggle") &&
-        toggle?.checked
-      ) {
-        closeMenu()
-      }
+			if (
+				!target.matches(".sb-menu *") &&
+				!target.matches("#sb-menu-toggle") &&
+				toggle?.checked
+			) {
+				closeMenu()
+			}
 
-      if (toggle.checked) {
-        openMenu()
-      }
+			if (toggle.checked) {
+				openMenu()
+			}
 
-      document.body.classList.remove("sb-menu-open")
-    })
-  }
+			document.body.classList.remove("sb-menu-open")
+		})
+	}
 
-  globalThis.addEventListener("DOMContentLoaded", addToggle)
+	globalThis.addEventListener("DOMContentLoaded", addToggle)
 </script>

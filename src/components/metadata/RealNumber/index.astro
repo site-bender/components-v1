@@ -7,4 +7,8 @@ const { type: _type, value: val, ...attrs } = Astro.props
 const value = typeof val === "number" ? val : parseFloat(String(val))
 ---
 
-<Number {...attrs} type="Float" {value} />
+<Number
+	{...attrs}
+	type="Float"
+	{value}
+/>

@@ -5,15 +5,15 @@ import type { BooleanProps as Props } from "../../../types"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-  as = "span",
-  itemprop,
-  itemtype,
-  labelFalse = "",
-  labelTrue,
-  microdata: micro,
-  properties: props = {},
-  value,
-  ...attrs
+	as = "span",
+	itemprop,
+	itemtype,
+	labelFalse = "",
+	labelTrue,
+	microdata: micro,
+	properties: props = {},
+	value,
+	...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-boolean"])
@@ -23,25 +23,25 @@ const Element = as
 
 const label = value ? labelTrue : labelFalse
 const properties = {
-  type: itemtype,
-  ...(itemprop ? { [itemprop]: value ? "True" : "False" } : {}),
-  ...props,
+	type: itemtype,
+	...(itemprop ? { [itemprop]: value ? "True" : "False" } : {}),
+	...props,
 }
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  label ? (
-    <Element {...elementAttrs}>
-      {useMicrodata && itemtype ? (
-        <Microdata
-          {as}
-          {microdata}
-          {properties}
-        />
-      ) : null}
-      {label}
-    </Element>
-  ) : null
+	label ? (
+		<Element {...elementAttrs}>
+			{useMicrodata && itemtype ? (
+				<Microdata
+					{as}
+					{microdata}
+					{properties}
+				/>
+			) : null}
+			{label}
+		</Element>
+	) : null
 }

@@ -6,27 +6,27 @@ import type { TextInput as Props } from "../../../../types/form"
 import type { HTMLAttributes } from "../../../../types/html"
 
 const {
-  autocomplete,
-  autocorrect: _autocorrect,
-  datalist = {},
-  field = "text-input",
-  form,
-  id = generateShortId(),
-  inputmode = "text",
-  labelledBy,
-  list,
-  name,
-  placeholder: _placeholder,
-  required,
-  type: _type,
-  value,
-  wrapper = {},
-  ...attrs
+	autocomplete,
+	autocorrect: _autocorrect,
+	datalist = {},
+	field = "text-input",
+	form,
+	id = generateShortId(),
+	inputmode = "text",
+	labelledBy,
+	list,
+	name,
+	placeholder: _placeholder,
+	required,
+	type: _type,
+	value,
+	wrapper = {},
+	...attrs
 } = Astro.props
 
 const datalistAttrs = mapAttributes(datalist, ["sb-datalist"])
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, [
-  `sb-${field}-input`,
+	`sb-${field}-input`,
 ])
 const wrapperAttrs = mapAttributes(wrapper, ["sb-string-input-wrapper"])
 
@@ -35,27 +35,27 @@ const lst = list ? { list: listId } : {}
 ---
 
 <span {...wrapperAttrs}>
-  <input
-    {...elementAttrs}
-    aria-labelledby={labelledBy}
-    {autocomplete}
-    {form}
-    {id}
-    {inputmode}
-    {...lst}
-    {name}
-    {required}
-    type="text"
-    {value}
-  />
-  {
-    list ? (
-      <datalist
-        {...datalistAttrs}
-        id={listId}
-      >
-        <Fragment set:html={createListOptions(list)} />
-      </datalist>
-    ) : null
-  }
+	<input
+		{...elementAttrs}
+		aria-labelledby={labelledBy}
+		{autocomplete}
+		{form}
+		{id}
+		{inputmode}
+		{...lst}
+		{name}
+		{required}
+		type="text"
+		{value}
+	/>
+	{
+		list ? (
+			<datalist
+				{...datalistAttrs}
+				id={listId}
+			>
+				<Fragment set:html={createListOptions(list)} />
+			</datalist>
+		) : null
+	}
 </span>

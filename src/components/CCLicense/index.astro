@@ -37,24 +37,49 @@ const linkAttributes = {
 
 <div {...wrapperAttrs}>
 	<a {...linkAttributes}>
-		<CreativeCommons {fill} {license} {size} {stroke} />
+		<CreativeCommons
+			{fill}
+			{license}
+			{size}
+			{stroke}
+		/>
 		{
 			byAttribution ? (
-				<ByAttribution {fill} {size} {stroke} />
+				<ByAttribution
+					{fill}
+					{size}
+					{stroke}
+				/>
 			) : (
-				<PublicDomainDedication {fill} {size} {stroke} />
+				<PublicDomainDedication
+					{fill}
+					{size}
+					{stroke}
+				/>
 			)
 		}
 		{
 			byAttribution && nonCommercial ? (
-				<NonCommercial {fill} {size} {stroke} />
+				<NonCommercial
+					{fill}
+					{size}
+					{stroke}
+				/>
 			) : null
 		}
 		{
 			byAttribution && noDerivatives ? (
-				<NoDerivatives {fill} {size} {stroke} />
+				<NoDerivatives
+					{fill}
+					{size}
+					{stroke}
+				/>
 			) : byAttribution && shareAlike ? (
-				<ShareAlike {fill} {size} {stroke} />
+				<ShareAlike
+					{fill}
+					{size}
+					{stroke}
+				/>
 			) : null
 		}
 	</a>

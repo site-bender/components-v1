@@ -3,11 +3,11 @@ import generateShortId from "../../utilities/generateShortId"
 import mapAttributes from "../../utilities/mapAttributes"
 
 const {
-  as: Element = "section",
-  header = {},
-  id: sectionId,
-  label,
-  ...attrs
+	as: Element = "section",
+	header = {},
+	id: sectionId,
+	label,
+	...attrs
 } = Astro.props
 
 const { as: HElement = "h2", id: headerId, ...hAttrs } = header
@@ -23,14 +23,14 @@ const title = label || (await Astro.slots.render("title"))
 ---
 
 <Element
-  {id}
-  {...sectionAttrs}
+	{id}
+	{...sectionAttrs}
 >
-  <header
-    {...headerAttrs}
-    id={headingId}
-  >
-    <HElement set:html={title} />
-  </header>
-  <Fragment set:html={content} />
+	<header
+		{...headerAttrs}
+		id={headingId}
+	>
+		<HElement set:html={title} />
+	</header>
+	<Fragment set:html={content} />
 </Element>

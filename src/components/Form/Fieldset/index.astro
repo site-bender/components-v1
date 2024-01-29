@@ -1,16 +1,20 @@
 ---
-import "./index.css";
-import mapAttributes from "../../../utilities/mapAttributes";
+import "./index.css"
+import mapAttributes from "../../../utilities/mapAttributes"
 
-const { label: lbl, legend, legendId, ...attrs } = Astro.props;
+const { label: lbl, legend, legendId, ...attrs } = Astro.props
 
-const legendAttrs = mapAttributes(legend, ["sb-fieldset-legend"]);
-const wrapperAttrs = mapAttributes(attrs, ["sb-fieldset"]);
+const legendAttrs = mapAttributes(legend, ["sb-fieldset-legend"])
+const wrapperAttrs = mapAttributes(attrs, ["sb-fieldset"])
 
-const label = (await Astro.slots.render("legend")) || lbl;
+const label = (await Astro.slots.render("legend")) || lbl
 ---
 
 <fieldset {...wrapperAttrs}>
-  <legend {...legendAttrs} id={legendId} set:html={label} />
-  <slot />
+	<legend
+		{...legendAttrs}
+		id={legendId}
+		set:html={label}
+	/>
+	<slot />
 </fieldset>

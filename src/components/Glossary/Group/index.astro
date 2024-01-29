@@ -7,8 +7,8 @@ const { definitions, id, label } = Astro.props
 ---
 
 <Section
-  {id}
-  {label}
+	{id}
+	{label}
 >
-  {definitions ? definitions.map((dfn) => <Entry {...dfn} />) : null}
+	{definitions ? definitions.map((dfn) => <Entry {...dfn} />) : null}
 </Section>

@@ -11,29 +11,29 @@ const wrapperAttrs = mapAttributes(attrs, ["sb-link"])
 const lbl = (await Astro.slots.render("default")) || label
 
 const meta = {
-  type: "SiteNavigationElement",
-  url: href,
-  name: label,
-  ...properties,
+	type: "SiteNavigationElement",
+	url: href,
+	name: label,
+	...properties,
 }
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata
-      {...wrapperAttrs}
-      as="a"
-      {href}
-      properties={meta}
-      set:html={lbl}
-    />
-  ) : (
-    <a
-      {...wrapperAttrs}
-      {href}
-      set:html={lbl}
-    />
-  )
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			as="a"
+			{href}
+			properties={meta}
+			set:html={lbl}
+		/>
+	) : (
+		<a
+			{...wrapperAttrs}
+			{href}
+			set:html={lbl}
+		/>
+	)
 }

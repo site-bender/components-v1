@@ -8,16 +8,16 @@ import generateShortId from "../../utilities/generateShortId"
 const { pathname } = Astro.url
 
 const {
-  as = "h2",
-  header = {},
-  hideClass = "sb-sr-only",
-  id = generateShortId(),
-  list,
-  nav,
-  pages,
-  position = "top",
-  title = "Pagination links",
-  type = "ul",
+	as = "h2",
+	header = {},
+	hideClass = "sb-sr-only",
+	id = generateShortId(),
+	list,
+	nav,
+	pages,
+	position = "top",
+	title = "Pagination links",
+	type = "ul",
 } = Astro.props
 
 const headerAttrs = mapAttributes(header, ["sb-paginator-header", hideClass])
@@ -35,29 +35,29 @@ const ListElement = type
 ---
 
 {
-  children.length > 1 ? (
-    <nav
-      aria-label={`pagination-${position}`}
-      {...navAttrs}
-    >
-      <HElement
-        {...headerAttrs}
-        {id}
-      >
-        {title}
-      </HElement>
+	children.length > 1 ? (
+		<nav
+			aria-label={`pagination-${position}`}
+			{...navAttrs}
+		>
+			<HElement
+				{...headerAttrs}
+				{id}
+			>
+				{title}
+			</HElement>
 
-      <ListElement
-        aria-labelledBy={id}
-        {...listAttrs}
-      >
-        <Items
-          {children}
-          {page}
-          {pages}
-          {parent}
-        />
-      </ListElement>
-    </nav>
-  ) : null
+			<ListElement
+				aria-labelledBy={id}
+				{...listAttrs}
+			>
+				<Items
+					{children}
+					{page}
+					{pages}
+					{parent}
+				/>
+			</ListElement>
+		</nav>
+	) : null
 }

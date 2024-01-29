@@ -19,5 +19,12 @@ const wrapperAttrs = mapAttributes(wrapper, ["sb-month-input-wrapper"])
 ---
 
 <span {...wrapperAttrs}>
-	<input {...inputAttrs} {autocomplete} {form} {id} {name} type="month" />
+	<input
+		{...inputAttrs}
+		{autocomplete}
+		{form}
+		{id}
+		{name}
+		type="month"
+	/>
 </span>

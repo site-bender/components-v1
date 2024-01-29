@@ -13,7 +13,7 @@ const {
 
 const wrapperAttrs = mapAttributes(
 	attrs,
-	isInvertible ? ["sb-card", "sb-allow-invert"] : ["sb-card"]
+	isInvertible ? ["sb-card", "sb-allow-invert"] : ["sb-card"],
 )
 
 const body = await Astro.slots.render("default")
@@ -22,7 +22,10 @@ const heading = await Astro.slots.render("heading")
 const Element = as
 ---
 
-<Element {...wrapperAttrs} {id}>
+<Element
+	{...wrapperAttrs}
+	{id}
+>
 	<Fragment set:html={heading} />
 	<Fragment set:html={body} />
 </Element>

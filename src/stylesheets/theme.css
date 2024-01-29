@@ -1,80 +1,83 @@
-	:root {
-		--sb-color-gray-0: #fafafa;
-		--sb-color-gray-1: #dfdfe2;
-		--sb-color-gray-2: #c4c4ca;
-		--sb-color-gray-3: #a9a9b1;
-		--sb-color-gray-4: #8f8f99;
-		--sb-color-gray-5: #747481;
-		--sb-color-gray-6: #5c5c66;
-		--sb-color-gray-7: #44444b;
-		--sb-color-gray-8: #2c2c30;
-		--sb-color-gray-9: #131315;
-		--sb-color-blue: #0095ff;
-		--sb-color-green: #4f3;
-		--sb-color-orange: #ff6a00;
-		--sb-color-fuchsia: #ea00ff;
-		--sb-color-blue-shaded: #0d4872;
-		--sb-color-green-shaded: #0e4e09;
-		--sb-color-orange-shaded: #4e2609;
-		--sb-color-fuchsia-shaded: #48094e;
-		--sb-color-blue-tinted: #a3d3f5;
-		--sb-color-green-tinted: #aaf5a3;
-		--sb-color-orange-tinted: #f5c5a3;
-		--sb-color-fuchsia-tinted: #eea3f5;
-		--sb-background-color-highlight-inverse: var(--sb-color-green-tinted, #aaf5a3);
-		--sb-background-color-highlight: var(--sb-color-gray-8, #2c2c30);
-		--sb-color-code: var(--sb-color-green-shaded);
-		--sb-color-highlight-inverse: var(--sb-color-gray-8, #2c2c30);
-		--sb-color-highlight: var(--sb-color-green-tinted, #aaf5a3);
-		--sb-color-link-visited: var(--sb-fuchsia-shaded, #48094e);
-		--sb-color-link: var(--sb-blue-shaded, #0d4872);
-		--sb-color-mantis: var(--sb-color-green-tinted, #aaf5a3);
-		--sb-color-primary: var(--sb-blue-shaded, #0d4872);
-		--sb-color-sky-blue: var(--sb-color-blue-tinted, #a3d3f5);
-		--sb-color-wine: var(--sb-color-orange-shaded, #48094e);
-		--sb-font-body: inter, roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
-			arial, sans-serif;
-		--sb-font-code: menlo, consolas, ui-monospace, "Cascadia Code", "Source Code Pro",
-			"DejaVu Sans Mono", monospace;
-		--sb-font-titles: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
-			p052, serif;
-		--sb-menu-toggle-background-color: #2c2c30;
-		--sb-menu-background-color: #ececeeef;
-		--sb-menu-background-color-mobile: #ececee;
-		--sb-step-0: 1rem;
-		--sb-step-1: 1.2rem;
-		--sb-step-2: 1.44rem;
-		--sb-step-3: 1.7281rem;
-		--sb-step-4: 2.0738rem;
-		--sb-step-5: 3.4881rem;
-		--sb-space-3xs: 0.25rem;
-		--sb-space-2xs: 0.5rem;
-		--sb-space-xs: 0.75rem;
-		--sb-space-s: 1rem;
-		--sb-space-m: 1.5rem;
-		--sb-space-l: 2rem;
-		--sb-space-xl: 3rem;
-		--sb-space-2xl: 4rem;
-		--sb-space-3xl: 6rem;
-		--sb-page-width: min(clamp(48rem, 46.3562rem + 8.2192vw, 54rem), 90vw);
-	}
+:root {
+	--sb-color-gray-0: #fafafa;
+	--sb-color-gray-1: #dfdfe2;
+	--sb-color-gray-2: #c4c4ca;
+	--sb-color-gray-3: #a9a9b1;
+	--sb-color-gray-4: #8f8f99;
+	--sb-color-gray-5: #747481;
+	--sb-color-gray-6: #5c5c66;
+	--sb-color-gray-7: #44444b;
+	--sb-color-gray-8: #2c2c30;
+	--sb-color-gray-9: #131315;
+	--sb-color-blue: #0095ff;
+	--sb-color-green: #4f3;
+	--sb-color-orange: #ff6a00;
+	--sb-color-fuchsia: #ea00ff;
+	--sb-color-blue-shaded: #0d4872;
+	--sb-color-green-shaded: #0e4e09;
+	--sb-color-orange-shaded: #4e2609;
+	--sb-color-fuchsia-shaded: #48094e;
+	--sb-color-blue-tinted: #a3d3f5;
+	--sb-color-green-tinted: #aaf5a3;
+	--sb-color-orange-tinted: #f5c5a3;
+	--sb-color-fuchsia-tinted: #eea3f5;
+	--sb-background-color-highlight-inverse: var(
+		--sb-color-green-tinted,
+		#aaf5a3
+	);
+	--sb-background-color-highlight: var(--sb-color-gray-8, #2c2c30);
+	--sb-color-code: var(--sb-color-green-shaded);
+	--sb-color-highlight-inverse: var(--sb-color-gray-8, #2c2c30);
+	--sb-color-highlight: var(--sb-color-green-tinted, #aaf5a3);
+	--sb-color-link-visited: var(--sb-fuchsia-shaded, #48094e);
+	--sb-color-link: var(--sb-blue-shaded, #0d4872);
+	--sb-color-mantis: var(--sb-color-green-tinted, #aaf5a3);
+	--sb-color-primary: var(--sb-blue-shaded, #0d4872);
+	--sb-color-sky-blue: var(--sb-color-blue-tinted, #a3d3f5);
+	--sb-color-wine: var(--sb-color-orange-shaded, #48094e);
+	--sb-font-body: inter, roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+		arial, sans-serif;
+	--sb-font-code: menlo, consolas, ui-monospace, "Cascadia Code",
+		"Source Code Pro", "DejaVu Sans Mono", monospace;
+	--sb-font-titles: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
+		p052, serif;
+	--sb-menu-toggle-background-color: #2c2c30;
+	--sb-menu-background-color: #ececeeef;
+	--sb-menu-background-color-mobile: #ececee;
+	--sb-step-0: 1rem;
+	--sb-step-1: 1.2rem;
+	--sb-step-2: 1.44rem;
+	--sb-step-3: 1.7281rem;
+	--sb-step-4: 2.0738rem;
+	--sb-step-5: 3.4881rem;
+	--sb-space-3xs: 0.25rem;
+	--sb-space-2xs: 0.5rem;
+	--sb-space-xs: 0.75rem;
+	--sb-space-s: 1rem;
+	--sb-space-m: 1.5rem;
+	--sb-space-l: 2rem;
+	--sb-space-xl: 3rem;
+	--sb-space-2xl: 4rem;
+	--sb-space-3xl: 6rem;
+	--sb-page-width: min(clamp(48rem, 46.3562rem + 8.2192vw, 54rem), 90vw);
+}
 
-	@supports (width: min(1rem, 2rem)) {
-		:root {
-			--sb-step-0: clamp(1rem, 0.822rem + 0.678vw, 1.5rem);
-			--sb-step-1: clamp(1.2rem, 0.9597rem + 0.9153vw, 1.875rem);
-			--sb-step-2: clamp(1.44rem, 1.1183rem + 1.2254vw, 2.3438rem);
-			--sb-step-3: clamp(1.7281rem, 1.3003rem + 1.6297vw, 2.93rem);
-			--sb-step-4: clamp(2.0738rem, 1.5085rem + 2.1534vw, 3.6619rem);
-			--sb-step-5: clamp(2.4881rem, 1.7444rem + 2.8331vw, 4.5775rem);
-			--sb-space-3xs: clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem);
-			--sb-space-2xs: clamp(0.5rem, calc(0.45rem + 0.27vw), 0.69rem);
-			--sb-space-xs: clamp(0.75rem, calc(0.68rem + 0.36vw), 1rem);
-			--sb-space-s: clamp(1rem, calc(0.91rem + 0.45vw), 1.31rem);
-			--sb-space-m: clamp(1.5rem, calc(1.36rem + 0.71vw), 2rem);
-			--sb-space-l: clamp(2rem, calc(1.82rem + 0.89vw), 2.63rem);
-			--sb-space-xl: clamp(3rem, calc(2.73rem + 1.34vw), 3.94rem);
-			--sb-space-2xl: clamp(4rem, calc(3.64rem + 1.79vw), 5.25rem);
-			--sb-space-3xl: clamp(6rem, calc(5.46rem + 2.68vw), 7.88rem);
-		}
+@supports (width: min(1rem, 2rem)) {
+	:root {
+		--sb-step-0: clamp(1rem, 0.822rem + 0.678vw, 1.5rem);
+		--sb-step-1: clamp(1.2rem, 0.9597rem + 0.9153vw, 1.875rem);
+		--sb-step-2: clamp(1.44rem, 1.1183rem + 1.2254vw, 2.3438rem);
+		--sb-step-3: clamp(1.7281rem, 1.3003rem + 1.6297vw, 2.93rem);
+		--sb-step-4: clamp(2.0738rem, 1.5085rem + 2.1534vw, 3.6619rem);
+		--sb-step-5: clamp(2.4881rem, 1.7444rem + 2.8331vw, 4.5775rem);
+		--sb-space-3xs: clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem);
+		--sb-space-2xs: clamp(0.5rem, calc(0.45rem + 0.27vw), 0.69rem);
+		--sb-space-xs: clamp(0.75rem, calc(0.68rem + 0.36vw), 1rem);
+		--sb-space-s: clamp(1rem, calc(0.91rem + 0.45vw), 1.31rem);
+		--sb-space-m: clamp(1.5rem, calc(1.36rem + 0.71vw), 2rem);
+		--sb-space-l: clamp(2rem, calc(1.82rem + 0.89vw), 2.63rem);
+		--sb-space-xl: clamp(3rem, calc(2.73rem + 1.34vw), 3.94rem);
+		--sb-space-2xl: clamp(4rem, calc(3.64rem + 1.79vw), 5.25rem);
+		--sb-space-3xl: clamp(6rem, calc(5.46rem + 2.68vw), 7.88rem);
 	}
+}

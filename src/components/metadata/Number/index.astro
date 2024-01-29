@@ -7,16 +7,16 @@ import type { HTMLAttributes } from "../../form/html-types"
 import { DEFAULT_LOCALES } from "../../../constants"
 
 const {
-  ["class:list"]: classList = [],
-  dataset,
-  itemprop,
-  link = {},
-  locales = DEFAULT_LOCALES,
-  options = {},
-  type = "Number",
-  useTabularNumerals,
-  value,
-  ...attrs
+	["class:list"]: classList = [],
+	dataset,
+	itemprop,
+	link = {},
+	locales = DEFAULT_LOCALES,
+	options = {},
+	type = "Number",
+	useTabularNumerals,
+	value,
+	...attrs
 } = Astro.props
 
 useTabularNumerals && import("./index.css")
@@ -28,43 +28,43 @@ const { href } = link
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, [sbType])
 const linkAttrs = mapAttributes(link, [
-  sbType,
-  ...(useTabularNumerals ? ["sb-tabular-nums"] : []),
+	sbType,
+	...(useTabularNumerals ? ["sb-tabular-nums"] : []),
 ])
 
 const ext = `${href}`?.includes("://") ? { rel: "external" } : {}
 const val = typeof value === "number" ? value : parseFloat(String(value))
 
 const num = Number.isNaN(val)
-  ? await Astro.slots.render("default")
-  : new Intl.NumberFormat(locales, options).format(val as number)
+	? await Astro.slots.render("default")
+	: new Intl.NumberFormat(locales, options).format(val as number)
 
 const prop = itemprop
-  ? { itemprop, itemtype: `https://schema.org/${type}` }
-  : {}
+	? { itemprop, itemtype: `https://schema.org/${type}` }
+	: {}
 ---
 
 {
-  href ? (
-    <a
-      {...linkAttrs}
-      {...mapDataset(linkData)}
-      {href}
-      {...ext}
-    >
-      <span
-        {...elementAttrs}
-        {...mapDataset(data)}
-        {...prop}
-        set:html={num}
-      />
-    </a>
-  ) : (
-    <span
-      {...elementAttrs}
-      {...mapDataset(data)}
-      {...prop}
-      set:html={num}
-    />
-  )
+	href ? (
+		<a
+			{...linkAttrs}
+			{...mapDataset(linkData)}
+			{href}
+			{...ext}
+		>
+			<span
+				{...elementAttrs}
+				{...mapDataset(data)}
+				{...prop}
+				set:html={num}
+			/>
+		</a>
+	) : (
+		<span
+			{...elementAttrs}
+			{...mapDataset(data)}
+			{...prop}
+			set:html={num}
+		/>
+	)
 }

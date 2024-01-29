@@ -6,13 +6,13 @@ import mapAttributes from "../../utilities/mapAttributes"
 import generateShortId from "../../utilities/generateShortId"
 
 const {
-  as = "section",
-  header = {},
-  hideClass = "sb-sr-only",
-  id = generateShortId(),
-  properties,
-  title = "Questions and answers",
-  ...attrs
+	as = "section",
+	header = {},
+	hideClass = "sb-sr-only",
+	id = generateShortId(),
+	properties,
+	title = "Questions and answers",
+	...attrs
 } = Astro.props
 
 const { as: HElement = "h2", ...hAttrs } = header
@@ -30,33 +30,33 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata
-      {...wrapperAttrs}
-      as="nav"
-      {properties}
-    >
-      <Element
-        {...wrapperAttrs}
-        {id}
-      >
-        <header {...headerAttrs}>
-          <HElement>{title}</HElement>
-        </header>
-        <Fragment set:html={faqs} />
-      </Element>
-    </Microdata>
-  ) : (
-    <div {...wrapperAttrs}>
-      <Element
-        {...wrapperAttrs}
-        {id}
-      >
-        <header {...headerAttrs}>
-          <HElement>{title}</HElement>
-        </header>
-        <Fragment set:html={faqs} />
-      </Element>
-    </div>
-  )
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			as="nav"
+			{properties}
+		>
+			<Element
+				{...wrapperAttrs}
+				{id}
+			>
+				<header {...headerAttrs}>
+					<HElement>{title}</HElement>
+				</header>
+				<Fragment set:html={faqs} />
+			</Element>
+		</Microdata>
+	) : (
+		<div {...wrapperAttrs}>
+			<Element
+				{...wrapperAttrs}
+				{id}
+			>
+				<header {...headerAttrs}>
+					<HElement>{title}</HElement>
+				</header>
+				<Fragment set:html={faqs} />
+			</Element>
+		</div>
+	)
 }

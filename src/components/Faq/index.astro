@@ -19,7 +19,10 @@ const answer = await Astro.slots.render("default")
 const question = (await Astro.slots.render("question")) || q
 ---
 
-<details {...faqAttrs} id={id}>
+<details
+	{...faqAttrs}
+	id={id}
+>
 	<summary {...questionAttrs}>
 		<Fragment set:html={question} />
 	</summary>

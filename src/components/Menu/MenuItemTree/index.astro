@@ -5,15 +5,15 @@ import type { HTMLAttributes } from "../../../types/html"
 import type { LinkProps, MenuItemTreeProps as Props } from "../../../types"
 
 type LP = LinkProps<"a"> & {
-  children?: Array<string>
-  path: string
+	children?: Array<string>
+	path: string
 }
 
 const { as = "ul", pages = [] } = Astro.props
 
 const listAttrs = mapAttributes({}, [
-  "sb-menu-list",
-  ...(Astro.props["data-foldable"] ? ["sb-foldable"] : []),
+	"sb-menu-list",
+	...(Astro.props["data-foldable"] ? ["sb-foldable"] : []),
 ])
 
 const { pathname } = Astro.url
@@ -22,55 +22,55 @@ const Element = as
 ---
 
 <Element {...listAttrs}>
-  {
-    pages.map((page = {} as LP) => {
-      const {
-        ariaLabel,
-        children = [],
-        label: lbl,
-        link = {},
-        path: href,
-        properties,
-        title,
-      } = page as LP
-      const aria = ariaLabel ? { "aria-label": ariaLabel } : {}
-      const label = lbl || title
-      const linkAttrs = mapAttributes(link as HTMLAttributes, ["sb-menu-link"])
-      const props = mapAttributes({}, ["sb-menu-item"])
+	{
+		pages.map((page = {} as LP) => {
+			const {
+				ariaLabel,
+				children = [],
+				label: lbl,
+				link = {},
+				path: href,
+				properties,
+				title,
+			} = page as LP
+			const aria = ariaLabel ? { "aria-label": ariaLabel } : {}
+			const label = lbl || title
+			const linkAttrs = mapAttributes(link as HTMLAttributes, ["sb-menu-link"])
+			const props = mapAttributes({}, ["sb-menu-item"])
 
-      return href === (pathname.replace(/\/$/, "") || "/") ? (
-        <li {...props}>
-          <span
-            aria-label={`This page: ${ariaLabel}`}
-            aria-current="page"
-            class="sb-menu-this-page"
-          >
-            {label}
-          </span>
-          {children.length ? (
-            <Astro.self
-              data-foldable
-              pages={children}
-            />
-          ) : null}
-        </li>
-      ) : (
-        <li {...props}>
-          <Link
-            {...linkAttrs}
-            {...aria}
-            {href}
-            {label}
-            {properties}
-          />
-          {children.length ? (
-            <Astro.self
-              data-foldable
-              pages={children}
-            />
-          ) : null}
-        </li>
-      )
-    })
-  }
+			return href === (pathname.replace(/\/$/, "") || "/") ? (
+				<li {...props}>
+					<span
+						aria-label={`This page: ${ariaLabel}`}
+						aria-current="page"
+						class="sb-menu-this-page"
+					>
+						{label}
+					</span>
+					{children.length ? (
+						<Astro.self
+							data-foldable
+							pages={children}
+						/>
+					) : null}
+				</li>
+			) : (
+				<li {...props}>
+					<Link
+						{...linkAttrs}
+						{...aria}
+						{href}
+						{label}
+						{properties}
+					/>
+					{children.length ? (
+						<Astro.self
+							data-foldable
+							pages={children}
+						/>
+					) : null}
+				</li>
+			)
+		})
+	}
 </Element>

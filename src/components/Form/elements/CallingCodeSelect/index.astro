@@ -34,7 +34,7 @@ const options = callingCodes.filter(({ alpha2, alpha3, numeric }) => {
 			exc &&
 				(exc?.includes(alpha2) ||
 					exc?.includes(alpha3) ||
-					exc?.includes(numeric))
+					exc?.includes(numeric)),
 		)
 	)
 })

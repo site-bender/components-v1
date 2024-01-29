@@ -5,13 +5,13 @@ import PasswordField from "../PasswordField/index.astro"
 import type { Honeypot as Props } from "../../../types/form"
 
 const {
-  cLabel = "Put nothing in this field as well:",
-  confirmation,
-  field = "funnypot",
-  form,
-  password,
-  pwLabel = "Leave this field as is:",
-  ...attrs
+	cLabel = "Put nothing in this field as well:",
+	confirmation,
+	field = "funnypot",
+	form,
+	password,
+	pwLabel = "Leave this field as is:",
+	...attrs
 } = Astro.props
 
 const wrapperAttrs = mapAttributes(attrs, ["sb-funnypot"])
@@ -21,28 +21,28 @@ const confValue = confirmation || import.meta.env.HONEYPOT_CONFIRMATION
 ---
 
 <fieldset
-  aria-hidden="true"
-  {...wrapperAttrs}
+	aria-hidden="true"
+	{...wrapperAttrs}
 >
-  <legend>Please ignore these two fields</legend>
-  <PasswordField
-    allowAutocomplete={false}
-    data-novalidate
-    {field}
-    {form}
-    label={pwLabel}
-    name="password"
-    tabindex="-1"
-    value={pwValue}
-  />
-  <PasswordField
-    allowAutocomplete={false}
-    data-novalidate
-    {field}
-    {form}
-    label={cLabel}
-    name="confirmation"
-    tabindex="-1"
-    value={confValue}
-  />
+	<legend>Please ignore these two fields</legend>
+	<PasswordField
+		allowAutocomplete={false}
+		data-novalidate
+		{field}
+		{form}
+		label={pwLabel}
+		name="password"
+		tabindex="-1"
+		value={pwValue}
+	/>
+	<PasswordField
+		allowAutocomplete={false}
+		data-novalidate
+		{field}
+		{form}
+		label={cLabel}
+		name="confirmation"
+		tabindex="-1"
+		value={confValue}
+	/>
 </fieldset>

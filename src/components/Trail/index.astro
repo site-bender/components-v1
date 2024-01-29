@@ -9,59 +9,59 @@ import type { TrailProps as Props } from "../../types"
 import compact from "../../utilities/compact"
 
 const {
-  fallback,
-  fullWidth,
-  hideClass,
-  id = generateShortId(),
-  nav = {},
-  pages,
-  properties,
-  ...attrs
+	fallback,
+	fullWidth,
+	hideClass,
+	id = generateShortId(),
+	nav = {},
+	pages,
+	properties,
+	...attrs
 } = Astro.props
 
 const { pathname } = Astro.url
 const crumbs = compact(getBreadcrumbTrail(pathname, pages))
 
 const wrapperAttrs = mapAttributes(
-  attrs,
-  fullWidth ? ["sb-trail", "sb-full-width"] : ["sb-trail"],
+	attrs,
+	fullWidth ? ["sb-trail", "sb-full-width"] : ["sb-trail"],
 )
 
 const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  crumbs.length ? (
-    useMicrodata ? (
-      <Microdata
-        {...wrapperAttrs}
-        aria-label="Breadcrumb trail"
-        as="nav"
-        {properties}
-      >
-        <TrailList
-          {...nav}
-          {crumbs}
-          {fallback}
-          {hideClass}
-          {id}
-        />
-      </Microdata>
-    ) : (
-      <nav
-        {...wrapperAttrs}
-        aria-label="Breadcrumb trail"
-      >
-        <TrailList
-          {...nav}
-          {crumbs}
-          {fallback}
-          {hideClass}
-          {id}
-        />
-      </nav>
-    )
-  ) : (
-    <div class="sb-trail-list" />
-  )
+	crumbs.length ? (
+		useMicrodata ? (
+			<Microdata
+				{...wrapperAttrs}
+				aria-label="Breadcrumb trail"
+				as="nav"
+				{properties}
+			>
+				<TrailList
+					{...nav}
+					{crumbs}
+					{fallback}
+					{hideClass}
+					{id}
+				/>
+			</Microdata>
+		) : (
+			<nav
+				{...wrapperAttrs}
+				aria-label="Breadcrumb trail"
+			>
+				<TrailList
+					{...nav}
+					{crumbs}
+					{fallback}
+					{hideClass}
+					{id}
+				/>
+			</nav>
+		)
+	) : (
+		<div class="sb-trail-list" />
+	)
 }

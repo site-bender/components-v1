@@ -13,10 +13,10 @@ const sub = (await Astro.slots.render("default")) || subtitle
 ---
 
 {
-  sub ? (
-    <Element
-      {...subtitleAttrs}
-      set:html={sub}
-    />
-  ) : null
+	sub ? (
+		<Element
+			{...subtitleAttrs}
+			set:html={sub}
+		/>
+	) : null
 }

@@ -651,9 +651,9 @@ export type BaseAttributes = Override<
 			| Iterable<string>
 			| Iterable<unknown>
 			| string
-		condition?: string | undefined | null
-		dataset?: Dataset | undefined | null
-		style?: string | undefined | null
+		"condition"?: string | undefined | null
+		"dataset"?: Dataset | undefined | null
+		"style"?: string | undefined | null
 	}
 >
 

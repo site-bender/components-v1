@@ -6,14 +6,14 @@ import type { ArticleProps as Props } from "../../types"
 import generateShortId from "../../utilities/generateShortId"
 
 const {
-  as = "span",
-  asColumns,
-  header,
-  heading = {},
-  microdata,
-  properties,
-  title,
-  ...attrs
+	as = "span",
+	asColumns,
+	header,
+	heading = {},
+	microdata,
+	properties,
+	title,
+	...attrs
 } = Astro.props
 
 const { as: HElement = "h1", ...hAttrs } = heading
@@ -21,8 +21,8 @@ const { as: HElement = "h1", ...hAttrs } = heading
 const headerAttrs = mapAttributes(header, ["sb-article-header"])
 const headingAttrs = mapAttributes(hAttrs, ["sb-article-title"])
 const wrapperAttrs = mapAttributes(
-  attrs,
-  asColumns ? ["sb-article", "sb-as-columns"] : ["sb-article"],
+	attrs,
+	asColumns ? ["sb-article", "sb-as-columns"] : ["sb-article"],
 )
 
 const articleTitle = (await Astro.slots.render("title")) || title
@@ -32,27 +32,27 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 <article {...wrapperAttrs}>
-  {
-    useMicrodata ? (
-      <Microdata
-        {as}
-        {microdata}
-        {properties}
-      />
-    ) : null
-  }
-  {
-    articleTitle ? (
-      <header
-        {...headerAttrs}
-        {id}
-      >
-        <HElement
-          {...headingAttrs}
-          set:html={articleTitle}
-        />
-      </header>
-    ) : null
-  }
-  <slot />
+	{
+		useMicrodata ? (
+			<Microdata
+				{as}
+				{microdata}
+				{properties}
+			/>
+		) : null
+	}
+	{
+		articleTitle ? (
+			<header
+				{...headerAttrs}
+				{id}
+			>
+				<HElement
+					{...headingAttrs}
+					set:html={articleTitle}
+				/>
+			</header>
+		) : null
+	}
+	<slot />
 </article>

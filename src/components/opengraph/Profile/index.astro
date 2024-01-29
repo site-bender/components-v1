@@ -1,30 +1,44 @@
 ---
-import type { OpenGraphProfile } from "../../../../types/openGraph";
+import type { OpenGraphProfile } from "../../../../types/openGraph"
 
 export type Props = {
-  profile?: Array<OpenGraphProfile> | undefined | null;
-};
+	profile?: Array<OpenGraphProfile> | undefined | null
+}
 
-const { profile = [] } = Astro.props;
+const { profile = [] } = Astro.props
 ---
 
 {
-  profile?.map(
-    ({ firstName, gender, lastName, username }: OpenGraphProfile) => {
-      return (
-        <>
-          {firstName ? (
-            <meta name="profile:first_name" content={firstName} />
-          ) : null}
-          {gender ? <meta name="profile:gender" content={gender} /> : null}
-          {lastName ? (
-            <meta name="profile:last_name" content={lastName} />
-          ) : null}
-          {username ? (
-            <meta name="profile:username" content={username} />
-          ) : null}
-        </>
-      );
-    }
-  )
+	profile?.map(
+		({ firstName, gender, lastName, username }: OpenGraphProfile) => {
+			return (
+				<>
+					{firstName ? (
+						<meta
+							name="profile:first_name"
+							content={firstName}
+						/>
+					) : null}
+					{gender ? (
+						<meta
+							name="profile:gender"
+							content={gender}
+						/>
+					) : null}
+					{lastName ? (
+						<meta
+							name="profile:last_name"
+							content={lastName}
+						/>
+					) : null}
+					{username ? (
+						<meta
+							name="profile:username"
+							content={username}
+						/>
+					) : null}
+				</>
+			)
+		},
+	)
 }

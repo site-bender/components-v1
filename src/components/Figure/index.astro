@@ -27,7 +27,13 @@ const caption = (await Astro.slots.render("caption")) || cap
 
 {
 	useMicrodata ? (
-		<Microdata {...wrapperAttrs} as="figure" {id} {...indexed} {properties}>
+		<Microdata
+			{...wrapperAttrs}
+			as="figure"
+			{id}
+			{...indexed}
+			{properties}
+		>
 			{caption && (
 				<figcaption {...figcaptionAttrs}>
 					{index ? `Figure ${index}: ` : ""}
@@ -37,7 +43,11 @@ const caption = (await Astro.slots.render("caption")) || cap
 			<slot />
 		</Microdata>
 	) : (
-		<figure {...wrapperAttrs} {id} {...indexed}>
+		<figure
+			{...wrapperAttrs}
+			{id}
+			{...indexed}
+		>
 			{caption && (
 				<figcaption {...figcaptionAttrs}>
 					{index ? `Figure ${index}: ` : ""}

@@ -5,13 +5,13 @@ import type { FieldsetWrapper as Props } from "../../../types/form"
 import generateShortId from "../../../utilities/generateShortId"
 
 const {
-  disabled,
-  group = {},
-  hideClass = "sb-sr-only",
-  id = generateShortId(),
-  label,
-  legend = {},
-  outer = {},
+	disabled,
+	group = {},
+	hideClass = "sb-sr-only",
+	id = generateShortId(),
+	label,
+	legend = {},
+	outer = {},
 } = Astro.props
 
 const groupAttrs = mapAttributes(group, ["sb-group"])
@@ -25,22 +25,22 @@ const element = await Astro.slots.render("default", [labelledBy])
 ---
 
 <fieldset
-  {...outerAttrs}
-  {disabled}
+	{...outerAttrs}
+	{disabled}
 >
-  {
-    lbl ? (
-      <legend
-        {...legendAttrs}
-        id={labelledBy}
-        set:html={lbl}
-      />
-    ) : null
-  }
-  <div
-    {...groupAttrs}
-    aria-live="polite"
-  >
-    <Fragment set:html={element} />
-  </div>
+	{
+		lbl ? (
+			<legend
+				{...legendAttrs}
+				id={labelledBy}
+				set:html={lbl}
+			/>
+		) : null
+	}
+	<div
+		{...groupAttrs}
+		aria-live="polite"
+	>
+		<Fragment set:html={element} />
+	</div>
 </fieldset>

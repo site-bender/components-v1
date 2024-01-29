@@ -13,7 +13,13 @@ const label = Astro.slots.render("default") || lbl
 const msg = Astro.slots.render("message") || message
 ---
 
-<CheckboxGroup {...cbAttrs} {wrapper}>
+<CheckboxGroup
+	{...cbAttrs}
+	{wrapper}
+>
 	<Fragment set:html={label} />
-	<Fragment slot="message" set:html={msg} />
+	<Fragment
+		slot="message"
+		set:html={msg}
+	/>
 </CheckboxGroup>

@@ -8,7 +8,7 @@ function convertBigIntToBase58(bigInt: bigint, out = ""): string {
 		? convertBigIntToBase58(
 				bigInt / len,
 				BASE58[parseInt((bigInt % len).toString(), 10)] + out,
-		  )
+			)
 		: out
 }
 

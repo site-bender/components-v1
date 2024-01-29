@@ -2,12 +2,12 @@
 import type { HeadProps as Props } from "../../types"
 
 const {
-  canonicalSite,
-  charset = "utf-8",
-  description,
-  metadata = {},
-  title,
-  viewport = "width=device-width, initial-scale=1",
+	canonicalSite,
+	charset = "utf-8",
+	description,
+	metadata = {},
+	title,
+	viewport = "width=device-width, initial-scale=1",
 } = Astro.props
 
 const { pathname } = Astro.url
@@ -21,103 +21,103 @@ const prev = metadata.prev ? `${canonicalSite}${metadata.prev}` : undefined
 ---
 
 <head>
-  <meta charset={charset} />
-  <meta
-    content={viewport}
-    name="viewport"
-  />
-  <title>{pageTitle}</title>
-  {
-    description ? (
-      <meta
-        name="description"
-        content={description}
-      />
-    ) : null
-  }
-  {
-    metadata.robots ? (
-      <meta
-        name="robots"
-        content={metadata.robots}
-      />
-    ) : null
-  }
-  {
-    metadata.author ? (
-      <meta
-        name="author"
-        content={metadata.author}
-      />
-    ) : null
-  }
-  {
-    canonicalUrl ? (
-      <link
-        rel="canonical"
-        href={canonicalUrl}
-      />
-    ) : null
-  }
-  {
-    prev ? (
-      <meta
-        name="prev"
-        content={prev}
-      />
-    ) : null
-  }
-  {
-    next ? (
-      <meta
-        name="next"
-        content={next}
-      />
-    ) : null
-  }
-  <slot />
+	<meta charset={charset} />
+	<meta
+		content={viewport}
+		name="viewport"
+	/>
+	<title>{pageTitle}</title>
+	{
+		description ? (
+			<meta
+				name="description"
+				content={description}
+			/>
+		) : null
+	}
+	{
+		metadata.robots ? (
+			<meta
+				name="robots"
+				content={metadata.robots}
+			/>
+		) : null
+	}
+	{
+		metadata.author ? (
+			<meta
+				name="author"
+				content={metadata.author}
+			/>
+		) : null
+	}
+	{
+		canonicalUrl ? (
+			<link
+				rel="canonical"
+				href={canonicalUrl}
+			/>
+		) : null
+	}
+	{
+		prev ? (
+			<meta
+				name="prev"
+				content={prev}
+			/>
+		) : null
+	}
+	{
+		next ? (
+			<meta
+				name="next"
+				content={next}
+			/>
+		) : null
+	}
+	<slot />
 </head>
 <script>
-  globalThis.sitebenderEventBus = {
-    persistedEvents: {},
-    subscriberEvents: {},
-    subscriberTopics: {},
-    subscriptions: {},
-    topics: {},
-    subscribe: function (topic = "all", onMessage) {
-      const id = self.crypto.randomUUID()
+	globalThis.sitebenderEventBus = {
+		persistedEvents: {},
+		subscriberEvents: {},
+		subscriberTopics: {},
+		subscriptions: {},
+		topics: {},
+		subscribe: function (topic = "all", onMessage) {
+			const id = self.crypto.randomUUID()
 
-      if (!(topic in this.topics)) {
-        // New topic
-        this.topics[topic] = [id]
-      } else {
-        // Topic exists
-        this.topics[topic].push(id)
-      }
+			if (!(topic in this.topics)) {
+				// New topic
+				this.topics[topic] = [id]
+			} else {
+				// Topic exists
+				this.topics[topic].push(id)
+			}
 
-      this.subscriberEvents[id] = onMessage
-      this.subscriberTopics[id] = topic
+			this.subscriberEvents[id] = onMessage
+			this.subscriberTopics[id] = topic
 
-      if (topic in this.persistedEvents) {
-        onMessage(this.persistedEvents[topic])
-      }
+			if (topic in this.persistedEvents) {
+				onMessage(this.persistedEvents[topic])
+			}
 
-      return id
-    },
-    publish: function (topic, message) {
-      if (topic in this.topics) {
-        const ids = this.topics[topic]
+			return id
+		},
+		publish: function (topic, message) {
+			if (topic in this.topics) {
+				const ids = this.topics[topic]
 
-        ids.forEach((id) => {
-          if (id in this.subscriberEvents) {
-            this.subscriberEvents[id](message)
-          }
-        })
-      }
+				ids.forEach((id) => {
+					if (id in this.subscriberEvents) {
+						this.subscriberEvents[id](message)
+					}
+				})
+			}
 
-      if (topic in this.persistedEvents) {
-        this.persistedEvents[topic] = message
-      }
-    },
-  }
+			if (topic in this.persistedEvents) {
+				this.persistedEvents[topic] = message
+			}
+		},
+	}
 </script>

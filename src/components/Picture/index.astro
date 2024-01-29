@@ -29,13 +29,24 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 
 {
 	useMicrodata ? (
-		<Microdata {...wrapperAttrs} {properties}>
-			<PictureElement {...attrs} {description} {sources}>
+		<Microdata
+			{...wrapperAttrs}
+			{properties}
+		>
+			<PictureElement
+				{...attrs}
+				{description}
+				{sources}
+			>
 				<Fragment set:html={longdesc} />
 			</PictureElement>
 		</Microdata>
 	) : (
-		<PictureElement {...attrs} {description} {sources}>
+		<PictureElement
+			{...attrs}
+			{description}
+			{sources}
+		>
 			<Fragment set:html={longdesc} />
 		</PictureElement>
 	)

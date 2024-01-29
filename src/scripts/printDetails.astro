@@ -3,11 +3,11 @@
 ---
 
 <script>
-  function openAllDetails() {
-    const details = [...document.querySelectorAll("details")]
+	function openAllDetails() {
+		const details = [...document.querySelectorAll("details")]
 
-    details.forEach((elem) => elem.setAttribute("open", ""))
-  }
+		details.forEach((elem) => elem.setAttribute("open", ""))
+	}
 
-  globalThis.addEventListener("beforeprint", openAllDetails)
+	globalThis.addEventListener("beforeprint", openAllDetails)
 </script>

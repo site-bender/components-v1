@@ -5,10 +5,10 @@ import mapAttributes from "../../utilities/mapAttributes"
 import "./index.css"
 
 const {
-  microdata = {},
-  properties,
-  role = "contentinfo",
-  ...attrs
+	microdata = {},
+	properties,
+	role = "contentinfo",
+	...attrs
 } = Astro.props
 
 const wrapperAttrs = mapAttributes(attrs, ["sb-footer"])
@@ -17,17 +17,17 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 <footer
-  aria-label="footer"
-  {...wrapperAttrs}
-  {role}
+	aria-label="footer"
+	{...wrapperAttrs}
+	{role}
 >
-  {
-    useMicrodata ? (
-      <Microdata
-        {...microdata}
-        {properties}
-      />
-    ) : null
-  }
-  <slot />
+	{
+		useMicrodata ? (
+			<Microdata
+				{...microdata}
+				{properties}
+			/>
+		) : null
+	}
+	<slot />
 </footer>

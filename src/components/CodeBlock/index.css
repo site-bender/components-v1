@@ -19,14 +19,16 @@
 
 .sb-code-block pre,
 .sb-code-block code {
-	font-family: var(--sb-font-code,
-			Menlo,
-			Consolas,
-			ui-monospace,
-			"Cascadia Code",
-			"Source Code Pro",
-			"DejaVu Sans Mono",
-			monospace);
+	font-family: var(
+		--sb-font-code,
+		Menlo,
+		Consolas,
+		ui-monospace,
+		"Cascadia Code",
+		"Source Code Pro",
+		"DejaVu Sans Mono",
+		monospace
+	);
 }
 
 .sb-code-block pre > code {
@@ -74,14 +76,16 @@
 	border-radius: 5px;
 	border: none;
 	color: var(--sb-color-gray-0, #fafafa);
-	font-family: var(--sb-font-body,
-			Inter,
-			Roboto,
-			"Helvetica Neue",
-			"Arial Nova",
-			"Nimbus Sans",
-			Arial,
-			sans-serif);
+	font-family: var(
+		--sb-font-body,
+		Inter,
+		Roboto,
+		"Helvetica Neue",
+		"Arial Nova",
+		"Nimbus Sans",
+		Arial,
+		sans-serif
+	);
 	font-size: 1rem;
 	padding: 2px 4px;
 	position: absolute;

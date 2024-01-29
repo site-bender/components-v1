@@ -3,8 +3,8 @@ import "./index.css"
 import generateShortId from "../../utilities/generateShortId"
 
 export type Props = {
-  id?: string | undefined | null
-  title?: string | undefined | null
+	id?: string | undefined | null
+	title?: string | undefined | null
 }
 
 const { id = generateShortId(), title } = Astro.props
@@ -15,18 +15,18 @@ const summary = (await Astro.slots.render("summary")) || title
 ---
 
 <details
-  class="sb-accordion"
-  {id}
+	class="sb-accordion"
+	{id}
 >
-  <summary
-    class="sb-accordion-summary"
-    id={summaryId}
-    set:html={summary}
-  />
-  <div
-    aria-labelledby={summaryId}
-    class="sb-accordion-content"
-  >
-    <slot />
-  </div>
+	<summary
+		class="sb-accordion-summary"
+		id={summaryId}
+		set:html={summary}
+	/>
+	<div
+		aria-labelledby={summaryId}
+		class="sb-accordion-content"
+	>
+		<slot />
+	</div>
 </details>

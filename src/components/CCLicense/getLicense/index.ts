@@ -17,19 +17,19 @@ export default function getLicense({
 		? {
 				saHref: "-nd",
 				saLicense: "-NoDerivatives",
-		  }
+			}
 		: shareAlike
-		  ? {
+			? {
 					saHref: "-sa",
 					saLicense: "-ShareAlike",
-			  }
-		  : { saHref: "", saLicense: "" }
+				}
+			: { saHref: "", saLicense: "" }
 
 	const { ncHref, ncLicense } = nonCommercial
 		? {
 				ncHref: "-nc",
 				ncLicense: "-NonCommercial",
-		  }
+			}
 		: { ncHref: "", ncLicense: "" }
 
 	return {

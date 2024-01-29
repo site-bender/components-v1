@@ -8,6 +8,6 @@ export default function flattenOptions(optionGroups) {
 				}
 
 				return acc
-		  }, [])
+			}, [])
 		: optionGroups
 }

@@ -8,39 +8,39 @@ import generateShortId from "../../utilities/generateShortId"
 import mapAttributes from "../../utilities/mapAttributes"
 
 export type RedditConfig = {
-  title?: string | undefined | null
-  url?: string | undefined | null
+	title?: string | undefined | null
+	url?: string | undefined | null
 }
 
 export type Props = {
-  as: string
-  mastodon?: RedditConfig | undefined | null
-  orientation?: "horizontal" | "vertical" | undefined
-  position?:
-    | "bottom-left"
-    | "bottom-right"
-    | "top-left"
-    | "top-right"
-    | undefined
-  reddit?: RedditConfig | undefined | null
-  title?: string | undefined | null
-  url?: string | undefined | null
+	as: string
+	mastodon?: RedditConfig | undefined | null
+	orientation?: "horizontal" | "vertical" | undefined
+	position?:
+		| "bottom-left"
+		| "bottom-right"
+		| "top-left"
+		| "top-right"
+		| undefined
+	reddit?: RedditConfig | undefined | null
+	title?: string | undefined | null
+	url?: string | undefined | null
 }
 
 const {
-  as: Element = "h2",
-  header = {},
-  hideClass = "sb-sr-only",
-  id = generateShortId(),
-  links = {},
-  mastodon,
-  orientation = "horizontal",
-  position = "top-right",
-  properties,
-  reddit,
-  title,
-  url = Astro.url,
-  ...attrs
+	as: Element = "h2",
+	header = {},
+	hideClass = "sb-sr-only",
+	id = generateShortId(),
+	links = {},
+	mastodon,
+	orientation = "horizontal",
+	position = "top-right",
+	properties,
+	reddit,
+	title,
+	url = Astro.url,
+	...attrs
 } = Astro.props
 
 const orClass = `sb-social-${orientation}`
@@ -56,74 +56,74 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata
-      {...wrapperAttrs}
-      aria-labelledby={headerId}
-      as="section"
-      {id}
-      {properties}
-    >
-      <Element
-        {...headerAttrs}
-        id={headerId}
-      >
-        {header.title || "Share options"}
-      </Element>
+	useMicrodata ? (
+		<Microdata
+			{...wrapperAttrs}
+			aria-labelledby={headerId}
+			as="section"
+			{id}
+			{properties}
+		>
+			<Element
+				{...headerAttrs}
+				id={headerId}
+			>
+				{header.title || "Share options"}
+			</Element>
 
-      <ul {...linkAttrs}>
-        <li>
-          <Reddit
-            {...reddit}
-            {title}
-          />
-        </li>
-        <li>
-          <Mastodon
-            {...mastodon}
-            {title}
-          />
-        </li>
-        <li>
-          <X
-            {...mastodon}
-            {title}
-          />
-        </li>
-      </ul>
-    </Microdata>
-  ) : (
-    <section
-      {...wrapperAttrs}
-      aria-labelledby={headerId}
-      {id}
-    >
-      <Element
-        {...headerAttrs}
-        id={headerId}
-      >
-        {header.title || "Share options"}
-      </Element>
-      <ul {...linkAttrs}>
-        <li>
-          <Reddit
-            {...reddit}
-            {title}
-          />
-        </li>
-        <li>
-          <Mastodon
-            {...mastodon}
-            {title}
-          />
-        </li>
-        <li>
-          <X
-            {...mastodon}
-            {title}
-          />
-        </li>
-      </ul>
-    </section>
-  )
+			<ul {...linkAttrs}>
+				<li>
+					<Reddit
+						{...reddit}
+						{title}
+					/>
+				</li>
+				<li>
+					<Mastodon
+						{...mastodon}
+						{title}
+					/>
+				</li>
+				<li>
+					<X
+						{...mastodon}
+						{title}
+					/>
+				</li>
+			</ul>
+		</Microdata>
+	) : (
+		<section
+			{...wrapperAttrs}
+			aria-labelledby={headerId}
+			{id}
+		>
+			<Element
+				{...headerAttrs}
+				id={headerId}
+			>
+				{header.title || "Share options"}
+			</Element>
+			<ul {...linkAttrs}>
+				<li>
+					<Reddit
+						{...reddit}
+						{title}
+					/>
+				</li>
+				<li>
+					<Mastodon
+						{...mastodon}
+						{title}
+					/>
+				</li>
+				<li>
+					<X
+						{...mastodon}
+						{title}
+					/>
+				</li>
+			</ul>
+		</section>
+	)
 }

@@ -7,15 +7,15 @@ import type { TelProps as Props } from "../../../types"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-  as = "span",
-  ["class:list"]: classList = [],
-  dataset,
-  link = {},
-  microdata = {},
-  properties,
-  tel,
-  useTel,
-  ...attrs
+	as = "span",
+	["class:list"]: classList = [],
+	dataset,
+	link = {},
+	microdata = {},
+	properties,
+	tel,
+	useTel,
+	...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-tel"])
@@ -31,22 +31,22 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata
-      {microdata}
-      {properties}
-    />
-  ) : null
+	useMicrodata ? (
+		<Microdata
+			{microdata}
+			{properties}
+		/>
+	) : null
 }
 {
-  useTel ? (
-    <a
-      {...linkAttrs}
-      href={telLink}
-    >
-      <Element {...elementAttrs}>{phone.replaceAll(/[^0-9+]/g, " ")}</Element>
-    </a>
-  ) : (
-    <Element {...elementAttrs}>{phone.replaceAll(/[^0-9+]/g, " ")}</Element>
-  )
+	useTel ? (
+		<a
+			{...linkAttrs}
+			href={telLink}
+		>
+			<Element {...elementAttrs}>{phone.replaceAll(/[^0-9+]/g, " ")}</Element>
+		</a>
+	) : (
+		<Element {...elementAttrs}>{phone.replaceAll(/[^0-9+]/g, " ")}</Element>
+	)
 }

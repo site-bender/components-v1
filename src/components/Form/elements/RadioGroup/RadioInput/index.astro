@@ -27,7 +27,10 @@ const labelId = `${id}_label`
 const lbl = (await Astro.slots.render("default")) || label
 ---
 
-<label {...wrapperAttrs} id={labelId}>
+<label
+	{...wrapperAttrs}
+	id={labelId}
+>
 	<input
 		{...inputAttrs}
 		aria-labelledby={`${labelledBy} ${labelId}`}

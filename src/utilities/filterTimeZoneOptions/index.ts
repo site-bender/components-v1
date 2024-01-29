@@ -38,7 +38,7 @@ export default function filterTimeZoneOptions(
 			? {
 					...region,
 					options,
-			  }
+				}
 			: ({} as Option)
 	}).filter((item) => "label" in item)
 }

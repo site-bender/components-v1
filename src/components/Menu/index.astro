@@ -7,16 +7,16 @@ import type { MenuProps as Props, PageMeta } from "../../types"
 import createPageTree from "./createPageTree"
 
 const {
-  as = "ul",
-  header = {},
-  hideClass = "sb-sr-only",
-  id = generateShortId(),
-  links,
-  nav = {},
-  pages: allPages,
-  properties,
-  title = "Site menu",
-  ...attrs
+	as = "ul",
+	header = {},
+	hideClass = "sb-sr-only",
+	id = generateShortId(),
+	links,
+	nav = {},
+	pages: allPages,
+	properties,
+	title = "Site menu",
+	...attrs
 } = Astro.props
 
 const pages: Array<PageMeta> = createPageTree(allPages)
@@ -33,70 +33,70 @@ const labelledById = generateShortId()
 ---
 
 <Element
-  {...wrapperAttrs}
-  {id}
+	{...wrapperAttrs}
+	{id}
 >
-  <HElement
-    {...headerAttrs}
-    id={labelledById}
-  >
-    <Fragment set:html={logo} />
-    {title}
-  </HElement>
-  <MenuItemTree
-    {as}
-    {pages}
-  />
+	<HElement
+		{...headerAttrs}
+		id={labelledById}
+	>
+		<Fragment set:html={logo} />
+		{title}
+	</HElement>
+	<MenuItemTree
+		{as}
+		{pages}
+	/>
 </Element>
 
 <script>
-  function createToggle(): string {
-    return `<svg height="1.2rem" viewBox="0 0 650 650" width="1.2rem" xmlns="http://www.w3.org/2000/svg">
+	function createToggle(): string {
+		return `<svg height="1.2rem" viewBox="0 0 650 650" width="1.2rem" xmlns="http://www.w3.org/2000/svg">
 	<rect fill="#fafafa" height="618" rx="24" ry="24" stroke="#0d4872" stroke-width="32" width="618" x="16" y="16" />
 	<rect class="sb-vertical-bar" fill="#0d4872" height="360" width="60" x="295" y="145" />
 	<rect fill="#0d4872" height="60" width="360" x="145" y="295" />
 </svg>`
-  }
+	}
 
-  function toggleSubmenu({ target }: MouseEvent): void {
-    const listItem = (target as HTMLElement)?.closest(".sb-menu-item")
+	function toggleSubmenu({ target }: MouseEvent): void {
+		const listItem = (target as HTMLElement)?.closest(".sb-menu-item")
 
-    listItem?.classList.toggle("sb-toggle-shut")
-  }
+		listItem?.classList.toggle("sb-toggle-shut")
+	}
 
-  function setToggle(element: HTMLElement, shut?: boolean): void {
-    shut && element.classList.add("sb-toggle-shut")
+	function setToggle(element: HTMLElement, shut?: boolean): void {
+		shut && element.classList.add("sb-toggle-shut")
 
-    const link = element.querySelector("a, .sb-menu-this-page")
-    const linkCloned = link?.cloneNode(true)
-    const div = document.createElement("DIV")
-    const span = document.createElement("SPAN")
+		const link = element.querySelector("a, .sb-menu-this-page")
+		const linkCloned = link?.cloneNode(true)
+		const div = document.createElement("DIV")
+		const span = document.createElement("SPAN")
 
-    div.classList.add("sb-toggle")
-    span.addEventListener("click", toggleSubmenu)
-    span.innerHTML = createToggle()
-    div.appendChild(span)
+		div.classList.add("sb-toggle")
+		span.addEventListener("click", toggleSubmenu)
+		span.innerHTML = createToggle()
+		div.appendChild(span)
 
-    if (linkCloned) {
-      div.appendChild(linkCloned)
-      link?.remove()
-    }
+		if (linkCloned) {
+			div.appendChild(linkCloned)
+			link?.remove()
+		}
 
-    element.prepend(div)
-  }
+		element.prepend(div)
+	}
 
-  function enhanceMenu(event) {
-    ;[...document.querySelectorAll(".sb-foldable")].map((elem) => {
-      const parent = elem.parentElement
-      const hasThisPage = Boolean(
-        parent?.querySelector("span.sb-menu-this-page"),
-      )
+	function enhanceMenu(event) {
+		;[...document.querySelectorAll(".sb-foldable")].map((elem) => {
+			const parent = elem.parentElement
+			const hasThisPage = Boolean(
+				parent?.querySelector("span.sb-menu-this-page"),
+			)
 
-      if (parent) {
-        setToggle(parent, !hasThisPage)
-      }
-    })
-  }
+			if (parent) {
+				setToggle(parent, !hasThisPage)
+			}
+		})
+	}
 
-  globalThis.addEventListener("DOMContentLoaded", enhanceMenu)
+	globalThis.addEventListener("DOMContentLoaded", enhanceMenu)
 </script>

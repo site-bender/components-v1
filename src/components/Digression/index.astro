@@ -5,12 +5,12 @@ import mapAttribtues from "../../utilities/mapAttributes"
 import type { MessengerProps as Props } from "../../types"
 
 const {
-  as = "aside",
-  header = {},
-  hideClass = "sb-sr-only",
-  id = generateShortId(),
-  title: ttl = "Digression",
-  ...attrs
+	as = "aside",
+	header = {},
+	hideClass = "sb-sr-only",
+	id = generateShortId(),
+	title: ttl = "Digression",
+	...attrs
 } = Astro.props
 
 const labelId = `${id}_label`
@@ -24,14 +24,14 @@ const title = (await Astro.slots.render("title")) || ttl
 ---
 
 <Element
-  {...wrapperAttrs}
-  {id}
+	{...wrapperAttrs}
+	{id}
 >
-  <HElement
-    {...headerAttrs}
-    id={labelId}
-  >
-    {title}
-  </HElement>
-  <slot />
+	<HElement
+		{...headerAttrs}
+		id={labelId}
+	>
+		{title}
+	</HElement>
+	<slot />
 </Element>

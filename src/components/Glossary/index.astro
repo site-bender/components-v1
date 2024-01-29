@@ -11,15 +11,15 @@ const prologue = await Astro.slots.render("prologue")
 
 {prologue ? <Fragment set:html={prologue} /> : null}
 {
-  groups ? (
-    <Article
-      {id}
-      {title}
-    >
-      {groups.map((group) => (
-        <Group {...group} />
-      ))}
-    </Article>
-  ) : null
+	groups ? (
+		<Article
+			{id}
+			{title}
+		>
+			{groups.map((group) => (
+				<Group {...group} />
+			))}
+		</Article>
+	) : null
 }
 {epilogue ? <Fragment set:html={epilogue} /> : null}

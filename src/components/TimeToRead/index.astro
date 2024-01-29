@@ -9,18 +9,18 @@ import fromISODuration from "../../utilities/fromISODuration"
 import { HTMLAttributes } from "../../types/html"
 
 const {
-  article = {},
-  header = {},
-  hideClass = "sb-sr-only",
-  id = generateShortId(),
-  title = "Time to read",
-  ...attrs
+	article = {},
+	header = {},
+	hideClass = "sb-sr-only",
+	id = generateShortId(),
+	title = "Time to read",
+	...attrs
 } = Astro.props
 
 const {
-  educationalLevel: { name: readability = "" } = {},
-  timeRequired: tr,
-  wordCount,
+	educationalLevel: { name: readability = "" } = {},
+	timeRequired: tr,
+	wordCount,
 } = article
 
 const timeRequired = fromISODuration(tr)
@@ -29,51 +29,51 @@ const { as: HElement = "h2", ...hAttrs } = header
 const headerId = generateShortId()
 
 const headerAttrs = mapAttributes(hAttrs, [
-  "sb-time-to-read-heading",
-  hideClass,
+	"sb-time-to-read-heading",
+	hideClass,
 ])
 const ttrAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-time-to-read"])
 ---
 
 {
-  tr || wordCount || readability ? (
-    <section
-      aria-labelledby={headerId}
-      {...ttrAttrs}
-      {id}
-    >
-      <HElement
-        {...headerAttrs}
-        id={headerId}
-      >
-        {title}
-      </HElement>
-      <p>
-        {tr ? (
-          <time
-            class="sb-time-to-read-time"
-            datetime={`PT${timeRequired.minutes || 0}M${
-              timeRequired.seconds || 0
-            }S`}
-          >
-            {formatTimeToRead(timeRequired)}
-          </time>
-        ) : null}
-        {wordCount ? (
-          <>
-            {timeRequired ? ", " : ""}
-            <span class="sb-time-to-read-word-count">{wordCount} words</span>
-          </>
-        ) : null}
-        {readability ? (
-          <>
-            {wordCount || timeRequired ? ", " : ""}
-            <span class="sb-time-to-read-readability">
-              {formatOrdinal(readability)} grade
-            </span>
-          </>
-        ) : null}
-      </p>
-    </section>
-  ) : null
+	tr || wordCount || readability ? (
+		<section
+			aria-labelledby={headerId}
+			{...ttrAttrs}
+			{id}
+		>
+			<HElement
+				{...headerAttrs}
+				id={headerId}
+			>
+				{title}
+			</HElement>
+			<p>
+				{tr ? (
+					<time
+						class="sb-time-to-read-time"
+						datetime={`PT${timeRequired.minutes || 0}M${
+							timeRequired.seconds || 0
+						}S`}
+					>
+						{formatTimeToRead(timeRequired)}
+					</time>
+				) : null}
+				{wordCount ? (
+					<>
+						{timeRequired ? ", " : ""}
+						<span class="sb-time-to-read-word-count">{wordCount} words</span>
+					</>
+				) : null}
+				{readability ? (
+					<>
+						{wordCount || timeRequired ? ", " : ""}
+						<span class="sb-time-to-read-readability">
+							{formatOrdinal(readability)} grade
+						</span>
+					</>
+				) : null}
+			</p>
+		</section>
+	) : null
 }

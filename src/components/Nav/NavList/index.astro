@@ -7,13 +7,13 @@ import type { LinkProps, NavListProps as Props } from "../../../types"
 type LP = LinkProps<"a">
 
 const {
-  as: Element = "ul",
-  header = {},
-  hideClass = "sb-sr-only",
-  id,
-  links = [],
-  list = {},
-  title = "Links to more info",
+	as: Element = "ul",
+	header = {},
+	hideClass = "sb-sr-only",
+	id,
+	links = [],
+	list = {},
+	title = "Links to more info",
 } = Astro.props
 
 const headerAttrs = mapAttributes(header, ["sb-nav-header", hideClass])
@@ -25,53 +25,53 @@ const { as: HElement = "h2" } = header
 ---
 
 <HElement
-  {...headerAttrs}
-  {id}
+	{...headerAttrs}
+	{id}
 >
-  {title}
+	{title}
 </HElement>
 
 <Element {...listAttrs}>
-  {
-    links.map(
-      ({
-        ariaLabel,
-        description: _desc,
-        href,
-        label: lbl,
-        link = {},
-        properties,
-        title,
-        ...attrs
-      }: LP) => {
-        const aria = ariaLabel ? { "aria-label": ariaLabel } : {}
-        const label = lbl || title
-        const linkAttrs = mapAttributes(link as HTMLAttributes, ["sb-nav-link"])
-        const props = mapAttributes(attrs, ["sb-nav-list-item"])
+	{
+		links.map(
+			({
+				ariaLabel,
+				description: _desc,
+				href,
+				label: lbl,
+				link = {},
+				properties,
+				title,
+				...attrs
+			}: LP) => {
+				const aria = ariaLabel ? { "aria-label": ariaLabel } : {}
+				const label = lbl || title
+				const linkAttrs = mapAttributes(link as HTMLAttributes, ["sb-nav-link"])
+				const props = mapAttributes(attrs, ["sb-nav-list-item"])
 
-        return href === pathname ? (
-          <li {...props}>
-            <span
-              aria-label={ariaLabel || `This page: ${label}`}
-              {...aria}
-              aria-current="page"
-              class="sb-nav-this-page"
-            >
-              {label}
-            </span>
-          </li>
-        ) : (
-          <li {...props}>
-            <Link
-              {...linkAttrs}
-              {...aria}
-              {href}
-              {label}
-              {properties}
-            />
-          </li>
-        )
-      },
-    )
-  }
+				return href === pathname ? (
+					<li {...props}>
+						<span
+							aria-label={ariaLabel || `This page: ${label}`}
+							{...aria}
+							aria-current="page"
+							class="sb-nav-this-page"
+						>
+							{label}
+						</span>
+					</li>
+				) : (
+					<li {...props}>
+						<Link
+							{...linkAttrs}
+							{...aria}
+							{href}
+							{label}
+							{properties}
+						/>
+					</li>
+				)
+			},
+		)
+	}
 </Element>

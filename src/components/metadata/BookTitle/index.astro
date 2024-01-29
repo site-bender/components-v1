@@ -6,13 +6,13 @@ import type { BookTitleProps as Props } from "../../../types"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-  as = "span",
-  dataset,
-  href,
-  link,
-  properties = {},
-  title,
-  ...attrs
+	as = "span",
+	dataset,
+	href,
+	link,
+	properties = {},
+	title,
+	...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-book-title"])
@@ -22,31 +22,31 @@ const name = title || ((await Astro.slots.render("default")) || "").trim()
 const label = ((await Astro.slots.render("default")) || "").trim() || title
 
 const meta = {
-  type: "Book",
-  name,
-  ...properties,
+	type: "Book",
+	name,
+	...properties,
 }
 ---
 
 {
-  href ? (
-    <a
-      {...linkAttrs}
-      {href}
-    >
-      <Microdata
-        {as}
-        {...elementAttrs}
-        properties={meta}
-        set:html={label}
-      />
-    </a>
-  ) : (
-    <Microdata
-      {as}
-      {...elementAttrs}
-      properties={meta}
-      set:html={label}
-    />
-  )
+	href ? (
+		<a
+			{...linkAttrs}
+			{href}
+		>
+			<Microdata
+				{as}
+				{...elementAttrs}
+				properties={meta}
+				set:html={label}
+			/>
+		</a>
+	) : (
+		<Microdata
+			{as}
+			{...elementAttrs}
+			properties={meta}
+			set:html={label}
+		/>
+	)
 }

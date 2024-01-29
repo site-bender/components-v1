@@ -45,19 +45,17 @@ const message = (await Astro.slots.render("message")) || msg
 			{required}
 			{tag}
 		>
-			{
-				(labelledBy: string) => (
-					<Select
-						{form}
-						{id}
-						{includeNull}
-						{labelledBy}
-						{name}
-						{options}
-						{selected}
-					/>
-				)
-			}
+			{(labelledBy: string) => (
+				<Select
+					{form}
+					{id}
+					{includeNull}
+					{labelledBy}
+					{name}
+					{options}
+					{selected}
+				/>
+			)}
 		</FieldWrapper>
 	) : (
 		<RadioGroup
@@ -74,10 +72,10 @@ const message = (await Astro.slots.render("message")) || msg
 			{wrapper}
 		>
 			<Fragment set:html={label} />
-			<Fragment set:html={message} slot="message" />
+			<Fragment
+				set:html={message}
+				slot="message"
+			/>
 		</RadioGroup>
 	)
 }
-
-
-

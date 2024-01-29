@@ -113,7 +113,6 @@ main.sb-main {
 	color: var(--sb-menu-this-page-color, white);
 }
 
-
 .sb-menu .sb-menu-link:focus,
 .sb-menu .sb-menu-link:hover {
 	border: var(--sb-menu-link-border-hover, 3px solid #0d4872);

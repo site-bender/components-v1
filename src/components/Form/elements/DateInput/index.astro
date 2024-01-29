@@ -5,17 +5,17 @@ import type { DateInput as Props } from "../../../../types/form"
 import type { HTMLAttributes } from "../../../../types/html"
 
 const {
-  autocomplete,
-  field = "date-input",
-  form,
-  id = generateShortId(),
-  inputmode = "numeric",
-  labelledBy,
-  name,
-  required,
-  value,
-  wrapper = {},
-  ...attrs
+	autocomplete,
+	field = "date-input",
+	form,
+	id = generateShortId(),
+	inputmode = "numeric",
+	labelledBy,
+	name,
+	required,
+	value,
+	wrapper = {},
+	...attrs
 } = Astro.props
 
 const inputAttrs = mapAttributes(attrs as HTMLAttributes, ["sb-date-input"])
@@ -23,16 +23,16 @@ const wrapperAttrs = mapAttributes(wrapper, ["sb-date-input-wrapper"])
 ---
 
 <span {...wrapperAttrs}>
-  <input
-    {...inputAttrs}
-    aria-labelledby={labelledBy}
-    {autocomplete}
-    {form}
-    {id}
-    {inputmode}
-    {name}
-    {required}
-    type="date"
-    {value}
-  />
+	<input
+		{...inputAttrs}
+		aria-labelledby={labelledBy}
+		{autocomplete}
+		{form}
+		{id}
+		{inputmode}
+		{name}
+		{required}
+		type="date"
+		{value}
+	/>
 </span>

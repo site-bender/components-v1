@@ -3,47 +3,47 @@ import Microdata from "../../Microdata/index.astro"
 import mapAttributes from "../../../utilities/mapAttributes"
 import type { PlainMonthDayProps as Props } from "../../../types"
 import {
-  DEFAULT_CALENDAR,
-  DEFAULT_MONTH_DAY_OPTIONS,
-  DEFAULT_LOCALES,
+	DEFAULT_CALENDAR,
+	DEFAULT_MONTH_DAY_OPTIONS,
+	DEFAULT_LOCALES,
 } from "../../../constants"
 import { Intl, Temporal } from "@js-temporal/polyfill"
 import type { HTMLAttributes } from "../../form/html-types"
 
 const {
-  calendar = DEFAULT_CALENDAR,
-  dataset,
-  day,
-  locales = DEFAULT_LOCALES,
-  microdata = {},
-  month,
-  monthCode,
-  options = {},
-  plainMonthDay = Temporal.PlainMonthDay.from(
-    Temporal.Now.plainDate(Astro.props.calendar || DEFAULT_CALENDAR),
-  ),
-  properties = {},
-  year,
-  ...attrs
+	calendar = DEFAULT_CALENDAR,
+	dataset,
+	day,
+	locales = DEFAULT_LOCALES,
+	microdata = {},
+	month,
+	monthCode,
+	options = {},
+	plainMonthDay = Temporal.PlainMonthDay.from(
+		Temporal.Now.plainDate(Astro.props.calendar || DEFAULT_CALENDAR),
+	),
+	properties = {},
+	year,
+	...attrs
 } = Astro.props
 
 const elementAttrs = mapAttributes(attrs as HTMLAttributes, [
-  "sb-plain-month-day",
+	"sb-plain-month-day",
 ])
 
 const val = plainMonthDay || {
-  calendar,
-  day,
-  ...(monthCode ? { monthCode } : { month }),
-  ...(year ? { year } : {}),
+	calendar,
+	day,
+	...(monthCode ? { monthCode } : { month }),
+	...(year ? { year } : {}),
 }
 
 const value = Temporal.PlainMonthDay.from(val)
 
 const opts = {
-  ...DEFAULT_MONTH_DAY_OPTIONS,
-  calendar: value.calendarId.toString(),
-  ...options,
+	...DEFAULT_MONTH_DAY_OPTIONS,
+	calendar: value.calendarId.toString(),
+	...options,
 }
 
 const label = new Intl.DateTimeFormat(locales, opts).format(value)
@@ -52,16 +52,16 @@ const useMicrodata = Boolean(import.meta.env.USE_MICRODATA)
 ---
 
 {
-  useMicrodata ? (
-    <Microdata
-      {microdata}
-      {properties}
-    />
-  ) : null
+	useMicrodata ? (
+		<Microdata
+			{microdata}
+			{properties}
+		/>
+	) : null
 }
 <time
-  {...elementAttrs}
-  datetime={value.toString()}
+	{...elementAttrs}
+	datetime={value.toString()}
 >
-  {label}
+	{label}
 </time>
